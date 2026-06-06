@@ -21,23 +21,29 @@ cross-reference it per pick from memory with **no further fetches.** (This repla
 per-pick CGB fetch — one fetch up front beats paying ~10s on every close pick.)
 
 **Set-specific expert notes — read at draft start if they exist for the set.** Pre-digested
-community/podcast strategy lives in a per-set folder in this repo (one folder per set,
-named after the source). Currently available:
+Lords of Limited podcast strategy lives in [`lords-of-limited/<set>/`](./lords-of-limited/) (one
+subfolder per set; see its README for the index). For the drafted set, **load that set's
+`*-draft-guide.md` and hold it in context for the whole draft** — each is a dense, lookup-optimized
+synthesis (meta read, archetype/guild tier table, format principles, a **card-notes table** to
+cross-reference per pick, signals, supersessions). Treat as *theory/expert opinion* (same weight as
+the CGB grade), not ground truth — **17Lands GIH WR stays primary.** Each guide encodes a **recency
+rule: on conflict the newest video wins** (prerelease/preview takes are weak predictions; the format
+retrospective is most authoritative — supersessions are marked inline). Per-episode notes + full
+transcripts are in each set's `sources/` — open one only to dig into a specific pick's rationale.
 
-- **SOS (Secrets of Strixhaven):** **load [`lords-of-limited/SOS-draft-guide.md`](./lords-of-limited/SOS-draft-guide.md)
-  and hold it in context for the whole draft** — it's a single dense, lookup-optimized synthesis of
-  10 Lords of Limited episodes: meta read, archetype/color-pair tier table, SOS format principles, a
-  **card-notes table** (card → community take → source) to cross-reference per pick, signals, and a
-  "where sources disagree" section. Treat it as *theory/expert opinion* (same weight as the CGB
-  grade), not ground truth — **17Lands GIH WR stays primary.** The guide spans 2026-04-13 →
-  2026-06-01 and encodes a **recency rule: on conflict the newest video wins**; prerelease/early
-  takes are weak predictions and the 06-01 retro is most authoritative (it already marks
-  supersessions inline, e.g. Witherbloom predicted #1 → finished last). Per-episode notes + full transcripts
-  live in [`lords-of-limited/sources/`](./lords-of-limited/sources/) — open one only to dig into a
-  specific pick's rationale; the guide already distills them.
+Currently available:
 
-When a new set's notes are added, drop them in a similarly-named folder with its own README index
-and add a bullet here so this stays the single discovery point.
+- **SOS (Secrets of Strixhaven):** [`lords-of-limited/sos/SOS-draft-guide.md`](./lords-of-limited/sos/SOS-draft-guide.md)
+  — 10 episodes (2026-04-13 → 2026-06-01). Headline: soup (greedy multicolor) > aggro, Prismari (UR)
+  strong; Witherbloom predicted #1 → finished last.
+- **MKM (Murders at Karlov Manor):** [`lords-of-limited/mkm/MKM-draft-guide.md`](./lords-of-limited/mkm/MKM-draft-guide.md)
+  — 6 episodes (2024-01-22 → 2024-03-25); **Quick Draft re-run Jun 8–16 2026**. Headline: White best
+  color, Boros (RW) top archetype, Simic (GU) #2, Dimir (UB) worst; ward-2 Disguise warps removal eval.
+  **Data caveat:** early in the re-run, 17Lands QuickDraft data may be empty — proxy with PremierDraft
+  `start_date=2024-02-01` until QD populates (the guide states this).
+
+When a new set's notes are added, create `lords-of-limited/<set>/` with its own README + dated
+`sources/` + a `*-draft-guide.md`, and add a bullet here so this stays the single discovery point.
 
 Then, each pick (when Albert says "next" or starts a draft):
 
@@ -220,8 +226,9 @@ extra removal or card-draw spell.**
 - **At draft start, learn the set's archetypes.** Pull the set's color-pair overview (Untapped
   `set-guide` or the CGB draft guide) so you know the ~10 two-color gameplans and which are strong —
   it frames every pick and tells you what a wheeling card signals. **If the set has a synthesized
-  guide in this repo** (see Quick start — e.g. [`lords-of-limited/SOS-draft-guide.md`](./lords-of-limited/SOS-draft-guide.md)
-  for SOS), load it for the format's meta read, tier list, and card notes before the first pick.
+  guide in this repo** (see Quick start — [`lords-of-limited/<set>/`](./lords-of-limited/), e.g.
+  `sos/SOS-draft-guide.md` or `mkm/MKM-draft-guide.md`), load it for the format's meta read, tier
+  list, and card notes before the first pick.
 - **Stay open early, commit late.** Flexible through roughly **P1 picks 2–7**; **lock your colors by
   P1P8–9.** Strong drafters stay open longer to scoop bombs and slide into whatever's underdrafted;
   locking in P1P1–2 is a beginner crutch.
