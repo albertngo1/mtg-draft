@@ -98,130 +98,98 @@ GIH WR rough guide: **57%+ bomb · 54–57% excellent · 52–54% solid · 50–
   double-pip cards (e.g. `1UURR`) already strain a 2-color manabase.
 - **Deckbuild target:** ~17 lands, ~14–16 creatures, the rest removal/tempo + bombs.
 
-## Draft strategy fundamentals (Reid Duke, "Level One" — read from the source articles)
+## Drafting craft (Reid Duke, "Level One" — drafting only, not gameplay)
 
-Apply these on top of the data: the 17Lands number is a card's *average* value; these decide
-whether it's right *for this deck, this pick, this game*. **The throughline for Albert: his
-data-first drafting is sound; his leak is role + closing — he builds decks that don't lose
-instead of decks that win. Push threats, evasion, and "you are the beatdown" over a marginal
-extra answer or card-draw spell.**
+This is a **drafting** coach. The job is pick decisions + deckbuilding the pool — not in-game
+play. Apply these on top of the data: the 17Lands number is a card's *average* value; these
+decide whether it's the right *pick* for this deck and this seat. **Throughline for Albert: his
+data-first drafting is sound; his leak is that he drafts decks that don't lose instead of decks
+that win. Bias picks toward proactive threats, evasion, and a real way to close — over a marginal
+extra removal or card-draw spell.**
 
-### Resources & the shape of a game
-- **The two-stage game (the master skill).** Early game, *mana* is the bottleneck → **tempo**
-  rules (develop the board fastest, use all your mana every turn, missed land drops/wasted mana =
-  lost tempo). Late game, mana is abundant and hands empty → **card advantage** rules (squeeze
-  value, grind). Correctly identifying which stage you're in is the key decision. Aggro wants to
-  win in stage one; control wants to survive to stage two.
-- **Card advantage.** Real edge = netting more usable cards than the opponent: 2-for-1s, removal,
-  repeatable value, and "blanking" their cards (a big blocker neutralizing several attackers).
-  *Virtual* card advantage counts too — their dead/flooded/outclassed cards. **Card quality can
-  beat quantity; one high-impact threat beats several weak cards.** But card advantage is a
-  *means* — with no way to convert it to damage it only delays losing (his 1-3 control run).
-- **Tempo.** Board presence / pace. The proactive player holds the tempo edge (keeps mana up,
-  forces the opponent to react). Cheap, efficient, evasive cards win on tempo before slower
-  "better" cards come online. Pure tempo plays (bounce) trade cards for speed — only worth it when
-  already ahead. In Bo1 Quick Draft tempo/aggro is structurally favored — but per Albert's rule
-  it's a *light* tiebreaker between close cards, never a reason to skip a clearly better card.
-- **Investment.** Value earlier compounds (an effect now enables more plays). Ramp/draw engines
-  cost tempo up front; only worth it if the game lasts long enough to collect — invest in slow
-  matchups, avoid vs fast aggro. When you do, point payoffs at immediate board impact.
+### Card evaluation — what makes a card worth picking
+- **Pick order backbone: bombs → premium removal → evasion → efficient creatures → filler.**
+  "A bomb is a bomb" — raw game-winning power beats synergy and color considerations; take it P1P1
+  even off-color and let it anchor you. Removal and evasion are the next tier; efficient creatures
+  are the load-bearing majority of every deck.
+- **Value = power × scarcity.** Premium removal ranks high because it's both strong *and* rare/
+  contested. A merely-good common that always wheels is worth less than its raw power suggests
+  (cross-check **ALSA**: low ALSA = take now / won't come back; high ALSA = you can wheel it).
+- **Threats beat answers when you're *drafting*.** "There are no wrong threats" — a threat is never
+  a dead card; an answer is dead when they have nothing to point it at. Draft **threat-dense** with
+  a *focused* answer suite: removal that enables your threats (clears blockers) or covers a specific
+  weakness. **Steep diminishing returns on a removal spell once the deck has ~5–6** — this is
+  Albert's exact leak; stop taking the 7th piece of interaction over a body or a closer.
+- **Evasion is a top draft priority** — flyers/menace win races and *close* the grindy games Albert
+  loses. Weight evasive creatures up, especially for his decks.
+- **Card advantage vs. tempo, as an evaluation lens.** Card-advantage cards (2-for-1s, repeatable
+  value, "blanks" like a fat blocker) are worth more the longer games go; tempo cards (cheap,
+  efficient, evasive) are worth more in fast games. Weight by what *your* deck wants — aggro/tempo
+  prizes the latter, control the former. In Bo1 Quick Draft tempo leans favored, but that's a
+  **light tiebreaker between close cards**, never a reason to skip a clearly better card.
+- **Card quality can beat quantity** — one high-impact card is worth several weak ones; don't draft
+  filler just to fill slots if a higher-ceiling card is available.
+- **Flexibility / modality raises a card's floor** — modal, scalable (X-cost), or attack-and-block
+  creatures are good picks when the power cost is small; they fill curve gaps and rescue awkward
+  draws. Rarely your single best card, but reliable.
+- **Irreplaceability can outweigh raw power.** Take the card you *can't* get later — bombs, removal,
+  and **fixing/dual lands** — over a marginally stronger card you'll see again. Take fixing early to
+  stay open and to enable later bombs.
 
-### Threats, answers, inevitability
-- **Threats vs. answers.** "There are no wrong threats" — a threat is never a dead card; an answer
-  is dead when they have nothing to answer. Answer-heavy decks are reactive, follow the opponent's
-  plan, and only *delay* losing. **This is Albert's recurring failure.** Draft threat-dense; keep
-  a *focused* answer suite — removal that enables your threats (clears blockers) or covers a
-  specific vulnerability. Steep diminishing returns on a removal spell past ~5–6.
-- **Inevitability.** Who wins if the game goes infinitely long (unlimited mana, +30 cards each)?
-  That player must *stall, draw, gain life, and wait*; the other must *force action and end it
-  fast*. It's a matchup question, not an absolute. Evasion, engines, and lifegain/sweepers grant
-  it; aggro often has it only in *short* games.
+### Reading the draft — signals, staying open, committing, pivoting
+- **Stay open early, commit late.** Flexible through roughly **P1 picks 2–7**; **lock your colors by
+  P1P8–9.** Strong drafters stay open longer to scoop bombs and slide into whatever's underdrafted;
+  locking in P1P1–2 is a beginner crutch.
+- **What an open color looks like:** premium cards arriving *late*, and/or a persistent *drought* of
+  good cards in your color over several packs (the drafters upstream are taking them).
+- **One late premium card is evidence, not proof.** Weigh *accumulating* evidence; don't torch your
+  deck off a single pick. (Per Albert's rule: don't push a narrative onto picks.)
+- **Signals are directional.** You **read** signals from your **right** (where your packs come from)
+  and **send** signals to your **left** (what you pass tells downstream what's open). **Reading the
+  wheel** — a good card circling back at P1P9+ — confirms that color/effect is underdrafted near you.
+- **Pivoting:** if a new color is clearly a *tier* stronger, pivot **early and decisively** — the
+  longer you wait the more certain you are but the less time you have to benefit; by ~P1P7–8 it's
+  usually too late to switch cleanly. **P2 picks 2–3 are the last safe window.** If you're already
+  committed with bombs/premium cards, stay the course and use **pack-2 reverse-direction signals**
+  to find your *second* color.
+- **Strengthen your own deck; don't hate-draft.** Especially here: **Quick Draft is vs. bots, so
+  hate-drafting does literally nothing** — always take the best card for your deck.
+- **Quick Draft caveat on signals (Arena-specific):** bots draft differently from humans — they pass
+  strong cards (removal, good on-color uncommons) more freely, so **good cards wheel more often and
+  signals are softer/noisier.** Practical effect: stay open a little longer, expect to pick up real
+  playables late, and don't over-read a *single* late premium the way you would against humans.
+  Lean on the 17Lands data as the anchor; treat bot-pass "signals" as weak evidence.
 
-### Role — the single most important in-game read
-- **Who is the beatdown?** Every game has an aggressor and a defender; getting it wrong loses with
-  the better cards. Decide via: (1) whoever has **inevitability** must be the aggressor and force
-  the game; (2) whoever can **win faster** takes the beatdown role. Roles are *fluid* in Limited —
-  they shift with play/draw, draws, and board state; **reassess constantly. Albert's decks default
-  to defense even when they're the beatdown — that's the root of "stabilize but can't close."** When
-  his deck is the proactive one: curve out, attack, don't durdle.
-- **Damage racing.** A race = neither can profitably block; first to zero loses. Life is asymmetric:
-  **early life is cheap (take 3 to keep a mana creature), the last point is priceless — spend life
-  early for board, hoard it late.** Chump-block once a creature has done its job, not before, not
-  too late. **"Turn the corner":** stabilize → build board → swing with everything before they draw
-  answers; even defensive decks want to end fast to deny draw steps. Race math: evasion + reach win
-  races; attack whenever safe even while defending (one shaved turn = one fewer of their draws).
+### Drafting toward an archetype (so the pool builds into a real deck)
+- Have an end-state in mind and draft toward it, rather than reacting card-by-card. The three shapes,
+  as *draft targets*:
+  - **Aggro** — lowest curve, proactive 1–2 drops, minimal answers, needs **reach** (evasion + burn)
+    to finish. Draft to *win the race*.
+  - **Control** — high land count, card-draw, a few potent finishers; *needs inevitability* (a
+    late-game that crushes). Structurally weak in Bo1 Quick Draft — avoid the pure answer-pile.
+  - **Midrange** — versatile attack-*and*-block creatures, higher creature quality, removal + a few
+    bombs. The default good Limited deck.
+- **Albert's UR builds are tempo-midrange — lean them to the proactive/aggressor side:** prioritize
+  cheap threats and evasion, keep removal lean, and make sure the deck has an actual *closer*
+  (evasive finisher, go-wide payoff, or a bomb) rather than just card advantage. A deck needs a way
+  to *win the long game* (inevitability) **or** to *end it fast* — draft toward one, not neither.
 
-### Combat, sequencing, timing
-- **Attack/block.** Creatures earn value every turn they attack or block — passivity wastes them,
-  recklessness loses them. On even trades, generally attack if you can, block if you can; an even
-  trade that saves life while developing favors the blocker (esp. on the draw). Make race trades
-  *sooner*. The blocker has the information edge (acts last). Players bluff and block *less* than
-  you'd expect — profitable attacks exist even with an empty hand.
-- **Sequencing & timing.** Plan the whole turn before acting. Maximize what *you* know before your
-  decisions, minimize what *they* know before theirs. Default: **lands before attacks** (hides your
-  tricks/mana); **cast spells at the last possible moment** (keeps options open, multiplies what
-  they play around) — exceptions: cast early if it gives info for this turn, or immediately if
-  they're tapped out. Combat tricks last; deploy creatures *before* combat to tax their mana.
-  Fire damage-removal before they can pump; unconditional removal before they untap (dodge
-  protection/hexproof).
-- **Flexibility.** Flexible/modal cards raise your floor and consistency — take them whenever the
-  power cost is small. They fill curve gaps and rescue misaligned draws; they're rarely your single
-  best play but they're insurance against variance.
-
-### Playing the position
-- **Ahead → simplify** (trade aggressively, a simple board is controllable; play around the
-  specific cards that could reverse it, assume they have them). **Behind → complicate** (preserve
-  decision points, play to your outs, take extra damage to keep outs alive, never concede early).
-- **Safe vs. scared.** Playing safe = avoiding needless risk when a long game favors you. Playing
-  *scared* = over-hedging vs unlikely cards, which loses even when they never had it — and **giving
-  them extra draw steps is itself a real cost.** First ask whether a long game favors you; if you're
-  being raced, you can't afford caution — push. Don't play around the sweeper vs control (they win
-  off a clean board anyway). Use EV, not "good players always have it."
-
-### Mulligans (when Albert asks about a hand)
-- **"Two to Five Lands" rule:** keep 2–5 lands, mulligan 0/1/6/7 — right ~90% of the time. But land
-  count isn't enough: also confirm the right **colors** and **castable spells on turns 1–3**.
-- **Limited adjusts:** mulligan *less* than Constructed (slower, lower-power, no redundancy/tutors —
-  each lost card hurts more). Rarely keep 1-landers (only on the draw with multiple 1-drops + a
-  proactive play); keep a 6-lander only in extremes (bad mana needing all colors, or a single cheap
-  bomb). Strained mana → keep imperfect hands with all your colors; clean mana → ship borderline
-  hands. **Avoid the "needs both lands AND spells" trap.** Match to role: aggro ships slow hands
-  even with good lands; mulligan harder into fast decks. Once you've already mulliganed, loosen up.
-- **Play or draw:** **default to the play** (~always correct). Tempo edge is biggest in fast
-  games/decks. Draw only when early races are unlikely and the game will go long (more common in
-  Sealed than Draft).
-
-### Drafting the deck
-- **Pick order:** **bombs first** ("a bomb is a bomb" — beats synergy/color), then removal &
-  evasion, then efficient creatures (the backbone). Value = power **×** scarcity (premium removal is
-  high because it's both strong and rare).
-- **Signals.** An open color = strong cards arriving *late*, and/or a persistent drought in your own
-  color. One late premium is *evidence, not proof* — weigh accumulating evidence, don't overreact to
-  one pick. **Read signals from your right** (where packs come from); **you send signals left.** A
-  good card *wheeling* confirms that color/effect is under-drafted.
-- **Color commitment:** stay flexible ~picks 2–7 of pack 1; lock by picks 8–9. Pack-2 picks 2–3 are
-  the last safe window to switch — pivot *early and decisively* if a new color is clearly a tier
-  stronger; if already committed with bombs, stay and read pack 2 for your second color. Take
-  **fixing/dual lands early** to stay open. **Irreplaceability can beat raw power** — take the card
-  you can't get later over a marginally stronger one you'll see again.
-- **Strengthen your deck, don't hate-draft** (especially true here — Quick Draft is vs bots, so
-  hate-drafting does literally nothing).
-
-### Deckbuilding numbers (40-card Limited — Duke's concrete targets)
-- **17–18 lands** · **~23 nonland** · **14–17 creatures** · **5–8 noncreature spells** (of which
-  **4–8 removal**, **0–2 combat tricks**).
+### Deckbuilding the pool (40-card Limited — Duke's concrete targets)
+- **17–18 lands · ~23 nonland · 14–17 creatures · 5–8 noncreature spells** (of which **4–8 removal**,
+  **0–2 combat tricks**). You want **~23 playables** out of the pool, plus basics.
 - **Creature curve (peaks at three):** 1-drops 0–2 · 2-drops 2–4 · **3-drops 5–8** · 4-drops 2–3 ·
-  5-drops ~2 · 6-drops 0–1. (So cap top-end; this is why piling on 5s is the trap.)
-- **Mana sources per color (out of ~17 lands):** can't-function-without = **11–12** · main = **9–10**
-  · secondary = **6–7** · **splash = 2–4**. Two-color ≈ even split (~9/9). Every extra color adds
-  risk — keep color count minimal; for splashes lean on nonbasic fixing, not basics. Tapped duals
-  are fine in slow decks, costly in fast ones.
-- **Archetype shapes:** *Aggro* = lowest curve, proactive 1–2 drops, minimal answers, needs reach
-  (evasion + burn); you're the aggressor, win the race. *Control* = high land count, card draw,
-  few potent finishers (low creature count blanks their removal), needs inevitability; you're the
-  defender. *Midrange* = versatile cards that attack *and* block, higher creature quality, "defend
-  then turn the corner" — must read the matchup and switch roles. **Albert's UR builds are
-  tempo-midrange; the coaching is to lean them toward the proactive/aggressor side of that.**
+  5-drops ~2 · 6-drops 0–1. **Cap the top end — a pile of 5s is the trap** (it's why we cut/flex
+  Albert's extra 5s). A genuinely better expensive card should *replace* a top-end slot, not stack
+  on top of it.
+- **Mana sources per color (out of ~17 lands):** can't-function-without = **11–12** · main color =
+  **9–10** · secondary = **6–7** · **splash = 2–4**. Two-color ≈ even split (~9/9). Every added
+  color adds risk — keep color count minimal; splash only impactful **4–6 drops** with real fixing,
+  **never a 2-drop** (it can't be delivered on curve). Tapped duals are fine in slow decks, costly
+  in fast ones; count fetch/choice lands as slightly less than a full source.
+- **Common build pitfalls (Duke's "Draft Walkthrough"):** overvaluing expensive creatures while
+  cheap playables run dry; neglecting early defense/curve in slow decks; over-splashing on shaky
+  mana. Once your top-end/inevitability is secured, spend remaining picks on **curve + consistency,
+  not more bombs.**
 
 ## Notes / gotchas
 
