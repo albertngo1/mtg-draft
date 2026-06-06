@@ -20,6 +20,7 @@ join is by mtga_id, which 17Lands provides — so Scryfall is only needed for co
 Usage:
   ./mtg-draft.sh warm                 # pre-cache the whole set (text+MV) — run once per set
   ./mtg-draft.sh pull                 # SSH the laptop, read the latest DraftPack, rank it
+  ./mtg-draft.sh pool                 # audit your picks so far: creatures/spells/lands, curve, CABS
   ./mtg-draft.sh rank 102690 102462   # rank an explicit list of Arena card IDs
   ./mtg-draft.sh resolve 102690 ...   # print name|cmc|color|type for IDs
 
@@ -201,6 +202,92 @@ def pull_pack(cfg):
     return ids, (int(pk.group(1)) if pk else -1), (int(pi.group(1)) if pi else -1), npick
 
 
+def pull_picked(cfg):
+    """Return the list of Arena IDs already picked, from the latest PickedCards in Player.log."""
+    logpath = cfg["log"]
+    if logpath.startswith("~"):
+        logpath = "$HOME" + logpath[1:]
+    remote = (f'tail -8000 "{logpath}" | grep -E "PickedCards" | tail -1')
+    cmd = ["ssh", "-i", cfg["ssh_key"], "-o", "ConnectTimeout=8", "-o", "BatchMode=yes",
+           cfg["ssh"], remote]
+    line = subprocess.check_output(cmd, text=True)
+    m = re.search(r'\\"PickedCards\\":\[([^\]]*)\]', line) or re.search(r'"PickedCards":\[([^\]]*)\]', line)
+    if not m:
+        raise SystemExit("No PickedCards found in Player.log. Has the draft started?")
+    return re.findall(r"\d{5,6}", m.group(1))
+
+
+# ---------- pool audit (agent helper: deck/curve/color check mid-draft) ----------
+def print_pool(ids, cfg):
+    data = seventeen(cfg["set"], cfg["fmt"], cfg["days"], cfg["refresh"])
+    by_id = {str(c["mtga_id"]): c for c in data if c.get("mtga_id")}
+    scry = load_scry()
+    missing = [c for c in (str(i) for i in ids) if c not in scry]
+    if missing:
+        resolve_ids(missing)
+        scry = load_scry()
+    on = set(cfg["colors"].upper())
+
+    # aggregate duplicates by id -> (count, record)
+    from collections import Counter
+    counts = Counter(str(i) for i in ids)
+    cats = {"Creatures": [], "Spells": [], "Other": [], "Lands": []}
+    off = []
+    curve = {}  # mv -> count, on-color nonland only
+    ncre = nspell = 0
+    for cid, n in counts.items():
+        s = by_id.get(cid)
+        meta = scry.get(cid, {})
+        name = (s["name"] if s else meta.get("name", f"<{cid}?>")).split("//")[0].strip()
+        color = ((s.get("color") if s else meta.get("color", "")) or "C")
+        cmc = meta.get("cmc", "?")
+        types = " ".join(s.get("types", [])) if s else meta.get("type", "")
+        if "Land" in types:
+            cat = "Lands"
+        elif "Creature" in types or "Vehicle" in types:
+            cat = "Creatures"
+        elif "Instant" in types or "Sorcery" in types:
+            cat = "Spells"
+        else:
+            cat = "Other"
+        oncol = (color == "C") or (on and all(c in on for c in color if c in "WUBRG"))
+        label = f"{name}{(' x'+str(n)) if n > 1 else ''} ({color}{cmc})"
+        if on and not oncol and cat != "Lands":
+            off.append((cmc, label))
+        else:
+            cats[cat].append((cmc, label))
+            if cat != "Lands":
+                curve[cmc] = curve.get(cmc, 0) + n
+                if cat == "Creatures":
+                    ncre += n
+                else:
+                    nspell += n
+
+    print(f"\n  YOUR POOL — {len(ids)} picks" + (f"  (on-color = {cfg['colors']})" if on else "") + "\n")
+    for cat in ("Creatures", "Spells", "Other", "Lands"):
+        rows = sorted(cats[cat], key=lambda r: (r[0] if isinstance(r[0], int) else 99))
+        if not rows:
+            continue
+        tot = sum(int(x[1].split(' x')[1].split(' ')[0]) if ' x' in x[1] else 1 for x in rows)
+        print(f"  {cat} ({tot}):")
+        print("     " + " · ".join(r[1] for r in rows) + "\n")
+    if off:
+        rows = sorted(off, key=lambda r: (r[0] if isinstance(r[0], int) else 99))
+        print(f"  Off-color / uncastable ({len(rows)}):")
+        print("     " + " · ".join(r[1] for r in rows) + "\n")
+
+    mvs = [m for m in curve if isinstance(m, int)]
+    if mvs:
+        print("  Curve (on-color nonland):")
+        for mv in range(0, max(mvs) + 1):
+            c = curve.get(mv, 0)
+            if c:
+                print(f"     {mv}: {'▮'*c} {c}")
+        n5plus = sum(c for m, c in curve.items() if isinstance(m, int) and m >= 5)
+        print(f"\n  CABS check: {ncre} creatures (target 15-18) · {nspell} spells · "
+              f"{n5plus} cards at 5+ (cap ~5-6)\n")
+
+
 # ---------- table ----------
 def grade_gih(w):
     if w is None:
@@ -297,7 +384,7 @@ def main():
     i = 0
     while i < len(args):
         a = args[i]
-        if a in ("pull", "rank", "resolve", "warm"):
+        if a in ("pull", "rank", "resolve", "warm", "pool"):
             cmd = a
         elif a == "--set":
             i += 1; cfg["set"] = args[i]
@@ -323,6 +410,8 @@ def main():
         cmd = "rank"
     if cmd == "warm":
         warm_set(cfg)
+    elif cmd == "pool":
+        print_pool(pull_picked(cfg), cfg)
     elif cmd == "pull":
         pack, pk, pi, npick = pull_pack(cfg)
         label = (f"Pack {pk+1} Pick {pi+1}" if pk >= 0 else "current pack")

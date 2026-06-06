@@ -18,6 +18,9 @@ cd ~/src/mtg-draft
 # Live: SSH the laptop, read the current pack from Player.log, rank it + show card text
 ./mtg-draft.sh pull --colors UR
 
+# Audit your picks so far: creatures/spells/lands split, curve, on/off-color, CABS check
+./mtg-draft.sh pool --colors UR
+
 # Manual: rank an explicit list of Arena card IDs
 ./mtg-draft.sh rank --colors UR 102690 102462 102498
 
