@@ -7,12 +7,18 @@ honest recommendations.
 
 ## Quick start
 
-**Once per set**, pre-cache it so live picks make zero network round-trips:
+**At the start of each draft**, do two one-time prep steps so every pick is fast:
 
 ```bash
 cd ~/src/mtg-draft
 ./mtg-draft.sh warm --set <SET>         # caches card text + mana value for the whole set
 ```
+
+…and **fetch the full Card Game Base tier list ONCE and keep the grades in context for the whole
+draft** — `WebFetch https://cardgamebase.com/<set>-draft-tier-list/` asking for *every* card's
+letter grade (and the set's color-pair archetypes while you're there). Hold that list; you'll
+cross-reference it per pick from memory with **no further fetches.** (This replaces the old
+per-pick CGB fetch — one fetch up front beats paying ~10s on every close pick.)
 
 Then, each pick (when Albert says "next" or starts a draft):
 
@@ -27,9 +33,10 @@ with oracle text + P/T. Then you:
 1. **Read what the cards actually do** — the text block is there so you judge *fit*, not just
    stats. A 55%-card that's a 2-drop flyer in his colors can beat a 58%-card that's a 6-mana
    durdle. Don't recommend off the GIH column alone.
-2. **Cross-reference one external source** for the meaningful picks — usually Card Game Base.
-   `WebFetch https://cardgamebase.com/<set>-draft-tier-list/` asking for letter grades of the
-   top few cards. (Deliberately NOT scripted — the page scrape is fragile.)
+2. **Cross-reference the CGB grade** for the contending cards — **from the tier list you already
+   fetched at draft start**, no new WebFetch. (Only re-fetch if you didn't grab it up front, or the
+   page-load context has been dropped.) Deliberately NOT scripted — the page scrape is fragile, so
+   we cache it in context instead of parsing it.
 3. Give the pick with reasoning, applying the strategy fundamentals below. See the rules.
 
 If reading the log over SSH ever fails, fall back to the manual flow: have Albert read you
@@ -73,8 +80,9 @@ Find the current event's set code in the log: the pack payload has `"EventName":
 
 - **Lead with the data.** GIH WR is the primary signal, always. Present the table first.
 - **Always show ALSA.** Low ALSA = take now, won't wheel. (The script always includes it.)
-- **Always cross-reference ≥1 external source** (CGB / Draftsim / Limited Grades) on meaningful
-  picks. Format: Card | Color | GIH WR | IWD | ALSA | External Grade.
+- **Cross-reference the external grade** (CGB, fetched once at draft start and held in context) on
+  meaningful/close picks. Format: Card | Color | GIH WR | IWD | ALSA | External Grade. Skip it on
+  blowout-obvious picks; you've got the grades in hand anyway, so it's free to include when useful.
 - **Push back, don't capitulate.** When he challenges a pick, re-examine honestly. If the pick
   was right, hold ground with a full argument. He said: "im not trying to correct you, u can push back."
 - **Don't over-correct on small samples.** A 1-3 run is variance, not proof. Don't push a narrative.
