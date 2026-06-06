@@ -29,16 +29,16 @@ a *specific* pick rationale; the guide above already distills and date-reconcile
 
 | Published | File | Episode | Phase / type |
 |-----------|------|---------|------|
-| 2026-06-01 | [sources/schools-out-for-summer.md](sources/schools-out-for-summer.md) | School's Out For Summer!!! | **Retrospective / "50 takes" — most authoritative** |
-| 2026-05-25 | [sources/sending-out-a-sos-draft.md](sources/sending-out-a-sos-draft.md) | Sending Out a SOS | Late — draft logs + format critique |
-| 2026-05-18 | [sources/ep479-pop-quiz-hotshot.md](sources/ep479-pop-quiz-hotshot.md) | Pop Quiz Hotshot (Ep. 479) | Mid-late — self-review of draft logs |
-| 2026-05-11 | [sources/ep478-midrange-is-new-aggro.md](sources/ep478-midrange-is-new-aggro.md) | Midrange is the New Aggro (Ep. 478) | Mid — state-of-format |
-| 2026-05-04 | [sources/ep477-pro-tour-draft-review.md](sources/ep477-pro-tour-draft-review.md) | Pro Tour Draft Review (Ep. 477) | Mid — PT draft review (Larson, Steuer) |
-| 2026-04-27 | [sources/soup-or-streamlined-decks.md](sources/soup-or-streamlined-decks.md) | Soup or Streamlined Decks | Early-mid — deckbuilding theory |
-| 2026-04-20 | [sources/early-format-impressions.md](sources/early-format-impressions.md) | Early Format Impressions | Early — debrief (discount) |
-| 2026-04-17 | [sources/loreholding-on-for-dear-life.md](sources/loreholding-on-for-dear-life.md) | Loreholding On For Dear Life | Early access — Lorehold (RW) draft (0-3) |
-| 2026-04-16 | [sources/am-i-the-only-bw-drafter.md](sources/am-i-the-only-bw-drafter.md) | Am I The Only BW Drafter? | Early access — Silverquill (WB) draft (3-3) |
-| 2026-04-13 | [sources/prerelease-crash-course.md](sources/prerelease-crash-course.md) | Prerelease Crash Course | **Blind / pre-format — weakest, predictions only** |
+| 2026-06-01 | [sources/2026-06-01-schools-out-for-summer.md](sources/2026-06-01-schools-out-for-summer.md) | School's Out For Summer!!! | **Retrospective / "50 takes" — most authoritative** |
+| 2026-05-25 | [sources/2026-05-25-sending-out-a-sos-draft.md](sources/2026-05-25-sending-out-a-sos-draft.md) | Sending Out a SOS | Late — draft logs + format critique |
+| 2026-05-18 | [sources/2026-05-18-ep479-pop-quiz-hotshot.md](sources/2026-05-18-ep479-pop-quiz-hotshot.md) | Pop Quiz Hotshot (Ep. 479) | Mid-late — self-review of draft logs |
+| 2026-05-11 | [sources/2026-05-11-ep478-midrange-is-new-aggro.md](sources/2026-05-11-ep478-midrange-is-new-aggro.md) | Midrange is the New Aggro (Ep. 478) | Mid — state-of-format |
+| 2026-05-04 | [sources/2026-05-04-ep477-pro-tour-draft-review.md](sources/2026-05-04-ep477-pro-tour-draft-review.md) | Pro Tour Draft Review (Ep. 477) | Mid — PT draft review (Larson, Steuer) |
+| 2026-04-27 | [sources/2026-04-27-soup-or-streamlined-decks.md](sources/2026-04-27-soup-or-streamlined-decks.md) | Soup or Streamlined Decks | Early-mid — deckbuilding theory |
+| 2026-04-20 | [sources/2026-04-20-early-format-impressions.md](sources/2026-04-20-early-format-impressions.md) | Early Format Impressions | Early — debrief (discount) |
+| 2026-04-17 | [sources/2026-04-17-loreholding-on-for-dear-life.md](sources/2026-04-17-loreholding-on-for-dear-life.md) | Loreholding On For Dear Life | Early access — Lorehold (RW) draft (0-3) |
+| 2026-04-16 | [sources/2026-04-16-am-i-the-only-bw-drafter.md](sources/2026-04-16-am-i-the-only-bw-drafter.md) | Am I The Only BW Drafter? | Early access — Silverquill (WB) draft (3-3) |
+| 2026-04-13 | [sources/2026-04-13-prerelease-crash-course.md](sources/2026-04-13-prerelease-crash-course.md) | Prerelease Crash Course | **Blind / pre-format — weakest, predictions only** |
 
 ## SOS quick reference (the five colleges)
 
