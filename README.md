@@ -12,7 +12,10 @@ Albert's draft preferences live in [`AGENTS.md`](./AGENTS.md).
 ```bash
 cd ~/src/mtg-draft
 
-# Live: SSH the laptop, read the current pack from Player.log, rank it
+# Once per set: pre-cache card text + mana value so live picks make zero queries
+./mtg-draft.sh warm --set SOS
+
+# Live: SSH the laptop, read the current pack from Player.log, rank it + show card text
 ./mtg-draft.sh pull --colors UR
 
 # Manual: rank an explicit list of Arena card IDs
@@ -22,8 +25,10 @@ cd ~/src/mtg-draft
 ./mtg-draft.sh resolve 102690 102462
 ```
 
-Output is sorted by GIH WR; on-color cards (per `--colors`) are marked `▸`, off-color tagged
-`(off)`. Columns: `CARD CLR R MV GIHWR IWD ALSA N tier`.
+Output: a table sorted by GIH WR (on-color cards per `--colors` marked `▸`, off-color tagged
+`(off)`; columns `CARD CLR R MV GIHWR IWD ALSA N tier`), **followed by a "what each card does"
+section** with mana cost, P/T, and oracle text — so picks are judged on fit, not just stats.
+Use `--brief` for the table only.
 
 ## Flags / config
 
@@ -44,10 +49,17 @@ Output is sorted by GIH WR; on-color cards (per `--colors`) are marked `▸`, of
 ## How it works
 
 1. `pull` SSHes the laptop and greps the last `DraftPack` array out of `Player.log`.
-2. Arena IDs → card data via Scryfall `cards/arena/<id>` (cached in `cache/`, needs an
-   `Accept: application/json` header or Scryfall 400s).
-3. 17Lands `card_ratings/data` for the set+format (cached 24h in `cache/`).
-4. Joins by name, sorts by GIH WR, prints the table.
+2. 17Lands `card_ratings/data` for the set+format provides GIH WR / IWD / ALSA **and** the
+   `mtga_id` for every card — so packs join to stats directly by ID (no fragile name-matching).
+   Cached 24h in `cache/`.
+3. Scryfall supplies only what 17Lands lacks — mana cost, P/T, oracle text. `warm` pre-pulls the
+   whole set via the `e:<set>` search in one paginated walk; otherwise misses are resolved
+   one-by-one via `cards/arena/<id>` (needs an `Accept: application/json` header or it 400s).
+   Cached persistently in `cache/scryfall_arena.json`.
+4. Sorts by GIH WR, prints the table + the card-text section.
+
+After `warm`, a `pull`/`rank` for that set makes **zero** network round-trips until the 24h
+17Lands cache expires.
 
 CGB / external-grade cross-reference is intentionally not scripted (fragile page scrape) — the
 coaching agent does that step with WebFetch per `AGENTS.md`.

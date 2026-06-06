@@ -10,16 +10,25 @@ The pipeline this automates (previously run by hand every pick):
 CGB / external-grade cross-reference is NOT scripted (it's a fragile scrape) — the
 coaching agent does that step with WebFetch. See AGENTS.md.
 
+Output: a table ranked by GIH WR, PLUS a "what each card does" section (oracle text +
+P/T) so picks are read for fit, not just stats. Use --brief to drop the text section.
+
+Run `warm` once per set: it pre-caches the whole set's card text + mana value, so every
+later `pull`/`rank` makes ZERO live queries (17Lands itself is cached 24h). The pack→stats
+join is by mtga_id, which 17Lands provides — so Scryfall is only needed for cost/text.
+
 Usage:
+  ./mtg-draft.sh warm                 # pre-cache the whole set (text+MV) — run once per set
   ./mtg-draft.sh pull                 # SSH the laptop, read the latest DraftPack, rank it
   ./mtg-draft.sh rank 102690 102462   # rank an explicit list of Arena card IDs
-  ./mtg-draft.sh resolve 102690 ...   # just print name|cmc|color|type for IDs
+  ./mtg-draft.sh resolve 102690 ...   # print name|cmc|color|type for IDs
 
 Common flags:
   --set SOS           17Lands expansion code (default: $MTG_SET or SOS)
   --fmt QuickDraft    PremierDraft | QuickDraft | TradDraft | Sealed (default: QuickDraft)
   --colors UR         mark these colors as on-color (default: $MTG_COLORS, blank = none)
   --days 120          17Lands lookback window in days (default 120)
+  --brief             skip the oracle-text section (table only)
   --refresh           force re-fetch of the cached 17Lands dataset
 
 Config (env or edit DEFAULTS below):
@@ -70,8 +79,33 @@ def save_scry(d):
     os.replace(tmp, SCRY_CACHE)
 
 
+def _scry_rec(d):
+    ci = d.get("color_identity", [])
+    faces = d.get("card_faces", [])
+    text = d.get("oracle_text", "")
+    if not text and faces:  # split / MDFC: stitch the faces
+        text = " // ".join(f.get("oracle_text", "") for f in faces if f.get("oracle_text"))
+    mana = d.get("mana_cost", "") or (faces[0].get("mana_cost", "") if faces else "")
+    pt = ""
+    if d.get("power") is not None:
+        pt = f"{d.get('power')}/{d.get('toughness')}"
+    elif faces and faces[0].get("power") is not None:
+        pt = f"{faces[0].get('power')}/{faces[0].get('toughness')}"
+    return {
+        "name": (d.get("name", "?").split("//")[0].strip()),
+        "full_name": d.get("name", "?"),
+        "cmc": int(d.get("cmc", 0)),
+        "mana": mana,
+        "pt": pt,
+        "color": "".join(ci) if ci else "C",
+        "rarity": d.get("rarity", "?")[:1].upper(),
+        "type": d.get("type_line", "").split("//")[0].split("—")[0].strip(),
+        "text": text.replace("\n", " "),
+    }
+
+
 def resolve_ids(ids):
-    """Return {id: {name, cmc, color, type}} resolving misses via Scryfall (cached)."""
+    """Return {id: {name, cmc, color, type}} resolving misses via Scryfall (cached, 1-by-1)."""
     cache = load_scry()
     out, dirty = {}, False
     for cid in ids:
@@ -80,16 +114,7 @@ def resolve_ids(ids):
             out[cid] = cache[cid]
             continue
         try:
-            d = json.loads(_get(f"https://api.scryfall.com/cards/arena/{cid}"))
-            ci = d.get("color_identity", [])
-            rec = {
-                "name": (d.get("name", "?").split("//")[0].strip()),
-                "full_name": d.get("name", "?"),
-                "cmc": int(d.get("cmc", 0)),
-                "color": "".join(ci) if ci else "C",
-                "rarity": d.get("rarity", "?")[:1].upper(),
-                "type": d.get("type_line", "").split("//")[0].split("—")[0].strip(),
-            }
+            rec = _scry_rec(json.loads(_get(f"https://api.scryfall.com/cards/arena/{cid}")))
         except Exception as e:
             rec = {"name": f"<{cid}?>", "full_name": "?", "cmc": 0, "color": "?",
                    "rarity": "?", "type": f"(lookup failed: {e})"}
@@ -100,6 +125,43 @@ def resolve_ids(ids):
     if dirty:
         save_scry(cache)
     return out
+
+
+def set_fetch(set_code):
+    """Page the whole set from Scryfall's search endpoint, caching each printing by arena_id
+    (cost + oracle text + P/T). One paginated walk (~2-3 requests) instead of 1-per-card."""
+    cache = load_scry()
+    url = (f"https://api.scryfall.com/cards/search?q=e:{set_code.lower()}"
+           f"&unique=prints&format=json")
+    n = 0
+    while url:
+        resp = json.loads(_get(url))
+        for d in resp.get("data", []):
+            aid = d.get("arena_id")
+            if aid is None:
+                continue
+            cache[str(aid)] = _scry_rec(d)
+            n += 1
+        url = resp.get("next_page") if resp.get("has_more") else None
+        if url:
+            time.sleep(0.1)
+    save_scry(cache)
+    return n
+
+
+def warm_set(cfg):
+    """Pre-cache the whole set so live drafts make ZERO per-card queries.
+    17Lands gives name/color/rarity/stats keyed by mtga_id; Scryfall supplies cost + text + P/T."""
+    print(f"\n  Warming {cfg['set']} from Scryfall (cost + oracle text + P/T)...")
+    try:
+        n = set_fetch(cfg["set"])
+        print(f"  Cached {n} printings. Scryfall cache now holds {len(load_scry())} cards.")
+    except Exception as e:
+        print(f"  set search failed ({e}). Falling back to per-card from 17Lands ids...")
+        data = seventeen(cfg["set"], cfg["fmt"], cfg["days"], cfg["refresh"])
+        resolve_ids([str(c["mtga_id"]) for c in data if c.get("mtga_id")])
+    print("  Done — future `pull`/`rank` for this set = 0 live queries "
+          "(17Lands itself caches 24h).\n")
 
 
 # ---------- 17Lands dataset, cached on disk (refresh daily) ----------
@@ -116,29 +178,6 @@ def seventeen(set_code, fmt, days, refresh=False):
     with open(path, "w") as f:
         json.dump(data, f)
     return data
-
-
-def index_17(data):
-    """name (lowercased, front-face) -> record."""
-    idx = {}
-    for c in data:
-        nm = c.get("name", "")
-        idx[nm.lower()] = c
-        idx[nm.split("//")[0].strip().lower()] = c
-    return idx
-
-
-def lookup_17(idx, name):
-    key = name.lower()
-    if key in idx:
-        return idx[key]
-    front = name.split("//")[0].strip().lower()
-    if front in idx:
-        return idx[front]
-    for k, v in idx.items():  # prefix fallback for split/adventure cards
-        if k.startswith(front) or front.startswith(k):
-            return v
-    return None
 
 
 # ---------- Player.log reader (SSH) ----------
@@ -171,38 +210,81 @@ def grade_gih(w):
             "solid" if w >= 52 else "filler" if w >= 50 else "avoid")
 
 
-def print_table(ids, cfg):
-    cards = resolve_ids(ids)
+def print_table(ids, cfg, show_text=True):
     data = seventeen(cfg["set"], cfg["fmt"], cfg["days"], cfg["refresh"])
-    idx = index_17(data)
+    by_id = {str(c["mtga_id"]): c for c in data if c.get("mtga_id")}  # identity + stats
+    scry = load_scry()
+    # cmc + oracle text come from Scryfall; resolve any that `warm` didn't pre-cache
+    missing = [c for c in (str(i) for i in ids) if c not in scry]
+    if missing:
+        resolve_ids(missing)
+        scry = load_scry()
     on = set(cfg["colors"].upper())
+
     rows = []
     for cid in ids:
-        rec = cards[str(cid)]
-        s = lookup_17(idx, rec["full_name"]) or lookup_17(idx, rec["name"])
-        gih = s.get("ever_drawn_win_rate") if s else None
-        iwd = s.get("drawn_improvement_win_rate") if s else None
-        alsa = s.get("avg_seen") if s else None
-        n = s.get("ever_drawn_game_count") if s else 0
-        # on-color = every colored pip is in `on` (colorless always on)
-        col = rec["color"]
+        scid = str(cid)
+        s = by_id.get(scid)                  # 17Lands record (stats + name/color/rarity)
+        meta = scry.get(scid, {})            # Scryfall record (cmc/mana/pt/text)
+        if s:
+            name = s["name"].split("//")[0].strip()
+            color = s.get("color") or "C"
+            rarity = (s.get("rarity") or "?")[:1].upper()
+            gih = s.get("ever_drawn_win_rate")
+            iwd = s.get("drawn_improvement_win_rate")
+            alsa = s.get("avg_seen")
+            n = s.get("ever_drawn_game_count") or 0
+        else:                                # no 17Lands data (basics / brand-new) -> Scryfall only
+            name = meta.get("name", f"<{cid}?>")
+            color = meta.get("color", "?")
+            rarity = meta.get("rarity", "?")
+            gih = iwd = alsa = None
+            n = 0
+        col = color if color else "C"
         oncol = (col == "C") or (on and all(c in on for c in col if c in "WUBRG"))
-        rows.append((gih or 0, oncol, rec, gih, iwd, alsa, n))
-    rows.sort(key=lambda r: r[0], reverse=True)
+        rows.append({"gih": gih or 0, "oncol": oncol, "name": name, "color": col,
+                     "rarity": rarity, "cmc": meta.get("cmc", "?"), "mana": meta.get("mana", ""),
+                     "pt": meta.get("pt", ""), "text": meta.get("text", ""),
+                     "g": gih, "iwd": iwd, "alsa": alsa, "n": n})
+    rows.sort(key=lambda r: r["gih"], reverse=True)
 
     print(f"\n  {cfg['set']} {cfg['fmt']}  ({len(ids)} cards"
           + (f", on-color = {cfg['colors']}" if on else "") + ")\n")
-    print(f"  {'':1}{'CARD':24}{'CLR':5}{'R':3}{'MV':3}{'GIHWR':8}{'IWD':7}{'ALSA':6}{'N':6} {'tier'}")
+    print(f"   {'CARD':24}{'CLR':5}{'R':3}{'MV':3}{'GIHWR':8}{'IWD':7}{'ALSA':6}{'N':6} tier")
     print("  " + "-" * 72)
-    for gih, oncol, rec, _, iwd, alsa, n in rows:
-        mark = "▸" if (on and oncol) else " "
-        g = f"{gih*100:.1f}%" if gih else "n/a"
-        i = f"{iwd*100:+.1f}" if iwd is not None else "n/a"
-        a = f"{alsa:.1f}" if alsa else "n/a"
-        dim = "" if (not on or oncol) else "  (off)"
-        print(f"  {mark}{rec['name'][:23]:24}{rec['color']:5}{rec['rarity']:3}"
-              f"{rec['cmc']:<3}{g:8}{i:7}{a:6}{str(n):6} {grade_gih(gih)}{dim}")
+    for r in rows:
+        mark = "▸" if (on and r["oncol"]) else " "
+        g = f"{r['g']*100:.1f}%" if r["g"] else "n/a"
+        i = f"{r['iwd']*100:+.1f}" if r["iwd"] is not None else "n/a"
+        a = f"{r['alsa']:.1f}" if r["alsa"] else "n/a"
+        dim = "" if (not on or r["oncol"]) else "  (off)"
+        print(f"  {mark}{r['name'][:23]:24}{r['color']:5}{r['rarity']:3}"
+              f"{str(r['cmc']):<3}{g:8}{i:7}{a:6}{str(r['n']):6} {grade_gih(r['g'])}{dim}")
+
+    if show_text:
+        print("\n  WHAT EACH CARD DOES (read fit, not just stats):")
+        for r in rows:
+            mark = "▸" if (on and r["oncol"]) else " "
+            hdr = f"{r['name']} {r['mana']}".strip()
+            if r["pt"]:
+                hdr += f"  {r['pt']}"
+            print(f"\n  {mark}{hdr}  [{r['color']} {r['rarity']} · {grade_gih(r['g'])}]")
+            if r["text"]:
+                for line in _wrap(r["text"], 92):
+                    print(f"      {line}")
     print()
+
+
+def _wrap(s, width):
+    out, cur = [], ""
+    for w in s.split():
+        if len(cur) + len(w) + 1 > width:
+            out.append(cur); cur = w
+        else:
+            cur = (cur + " " + w).strip()
+    if cur:
+        out.append(cur)
+    return out
 
 
 # ---------- arg parse ----------
@@ -211,10 +293,11 @@ def main():
     cfg = dict(DEFAULTS)
     cfg["refresh"] = False
     cmd, ids = None, []
+    cfg["brief"] = False
     i = 0
     while i < len(args):
         a = args[i]
-        if a in ("pull", "rank", "resolve"):
+        if a in ("pull", "rank", "resolve", "warm"):
             cmd = a
         elif a == "--set":
             i += 1; cfg["set"] = args[i]
@@ -226,6 +309,8 @@ def main():
             i += 1; cfg["days"] = int(args[i])
         elif a == "--refresh":
             cfg["refresh"] = True
+        elif a == "--brief":
+            cfg["brief"] = True
         elif a in ("-h", "--help"):
             print(__doc__); return
         elif re.fullmatch(r"\d{5,6}", a):
@@ -236,15 +321,17 @@ def main():
 
     if cmd is None and ids:
         cmd = "rank"
-    if cmd == "pull":
+    if cmd == "warm":
+        warm_set(cfg)
+    elif cmd == "pull":
         pack, pk, pi, npick = pull_pack(cfg)
         label = (f"Pack {pk+1} Pick {pi+1}" if pk >= 0 else "current pack")
         print(f"\n  >> {label}  ({npick} cards already taken)")
-        print_table(pack, cfg)
+        print_table(pack, cfg, show_text=not cfg["brief"])
     elif cmd == "rank":
         if not ids:
             raise SystemExit("rank: give Arena card IDs, e.g. rank 102690 102462")
-        print_table(ids, cfg)
+        print_table(ids, cfg, show_text=not cfg["brief"])
     elif cmd == "resolve":
         for cid, rec in resolve_ids(ids).items():
             print(f"{cid}|{rec['name']}|{rec['cmc']}|{rec['color']}|{rec['type']}")
