@@ -36,13 +36,20 @@ with oracle text + P/T. Then you:
 2. **Cross-reference an external grade.** If `grades/<source>_<SET>.json` exists it auto-shows as a
    `DS`/`UT` column in the table (Draftsim / Untapped). Otherwise pull the CGB grade **from the tier
    list you fetched at draft start**, no new WebFetch.
-   *Adding a grade source for a set:* the Draftsim/Untapped/CGB pages are JS-rendered (WebFetch gets
-   only the title), so have Albert **paste the rendered HTML**, then parse name→grade into
-   `grades/<source>_<SET>.json` (committed dir, NOT cache/). Treat these as *theory/reviewer* grades
-   — 17Lands GIH WR stays primary; where they disagree with the data, that's a flag (often the
-   selection-bias-inflated synergy creatures). (Only re-fetch if you didn't grab it up front, or the
-   page-load context has been dropped.) Deliberately NOT scripted — the page scrape is fragile, so
-   we cache it in context instead of parsing it.
+   *Which sources actually add signal:* **Draftsim (`DS`) is the one worth weighting** — it's a
+   *theory/reviewer* grade, so where it disagrees with 17Lands that's a real flag (usually the
+   selection-bias-inflated synergy creatures). **Untapped (`UT`) is empirically redundant with
+   17Lands** — both are In-Hand/GIH WR; same-format they correlate at rho=0.955 / 91% within 3 WR
+   pts (the source matters *less* than Quick-vs-Premier format does). Treat `UT` as a second-sample
+   consensus check (handy on thin-N cards), **not** an independent lens. 17Lands GIH WR stays primary.
+   *Adding a grade source for a set:*
+   - **Untapped** — ingest from a captured artifact, not the JS page: `python3 ingest_untapped.py
+     <card-data.json|untapped.har> --set <SET>`. Untapped's stats API keys everything by an internal
+     `title_id` with no names; the name map only lives in the Next.js `.../card-data.json` page blob.
+     A HAR's `card-data.json` is often a cached 304 (empty) — if so, fetch it once (one JSON API call,
+     not browser scraping; see the script docstring for the URL) and point the script at that.
+   - **Draftsim / CGB** — JS-rendered, no clean API; have Albert **paste the rendered HTML**, parse
+     name→grade into `grades/<source>_<SET>.json` (committed dir, NOT cache/), treat as theory grades.
 3. Give the pick with reasoning, applying the strategy fundamentals below. See the rules.
 
 If reading the log over SSH ever fails, fall back to the manual flow: have Albert read you
