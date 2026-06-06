@@ -72,18 +72,15 @@ After `warm`, a `pull`/`rank` for that set makes **zero** network round-trips un
 
 ## External grade sources (`grades/<source>_<SET>.json`)
 
-Optional committed files that add `DS` (Draftsim) / `UT` (Untapped) columns to the table.
+Optional committed files that add a `DS` (Draftsim) column to the table. **Draftsim** is JS-rendered
+with no clean API — paste the rendered HTML and hand-parse into `grades/draftsim_<SET>.json`, per
+`AGENTS.md`. It's a *theory/reviewer* grade, so it adds an orthogonal view: where it disagrees with
+17Lands (typically selection-bias-inflated synergy creatures) that's a card worth a manual look.
 
-- **Untapped** is scripted: `python3 ingest_untapped.py <card-data.json|untapped.har> --set SOS`.
-  It decodes Untapped's In-Hand WR (the value stored is WR %). Note Untapped only exposes
-  **Premier**-draft data and keys cards by an internal `title_id` with no names — the name map lives
-  in the Next.js `card-data.json` page blob, which a HAR often captures as an empty 304; if so, fetch
-  that one JSON endpoint fresh (see `ingest_untapped.py` docstring) and pass it instead.
-- **Empirically, Untapped ≈ 17Lands** (same metric; same-format Spearman ρ=0.955, 91% of cards within
-  3 WR pts — they agree more than 17Lands Quick-vs-Premier does). So `UT` is a redundant second-sample
-  *consensus* column, not new signal. **Draftsim** is the one that adds an orthogonal (theory) view.
-- **Draftsim / CGB** are JS-rendered with no clean API — paste rendered HTML and hand-parse, per
-  `AGENTS.md`.
+**Untapped was evaluated and deliberately dropped** — its "In-Hand WR" is the same metric as 17Lands
+GIH WR and, same-format, correlates at Spearman ρ=0.955 (91% of cards within 3 WR pts; they agree
+more than 17Lands Quick-vs-Premier does). A second source that *fails identically* to 17Lands can't
+flag a 17Lands mistake, so it's pure redundancy. Don't re-add it.
 
 ## Requirements
 

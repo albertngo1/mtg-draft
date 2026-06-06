@@ -49,7 +49,7 @@ GRADES = os.path.join(HERE, "grades")  # committed external-grade files: <source
 
 
 def load_grades(source, set_code):
-    """External reviewer grades (e.g. draftsim, untapped) keyed by lowercased card name.
+    """External reviewer grades (e.g. draftsim) keyed by lowercased card name.
     Returns {} if the file doesn't exist. Files live in grades/<source>_<SET>.json."""
     try:
         with open(os.path.join(GRADES, f"{source}_{set_code}.json")) as f:
@@ -396,7 +396,6 @@ def print_table(ids, cfg, show_text=True):
         scry = load_scry()
     on = set(cfg["colors"].upper())
     ds = load_grades("draftsim", cfg["set"])   # external reviewer grades (x/5), if cached
-    ut = load_grades("untapped", cfg["set"])
 
     rows = []
     for cid in ids:
@@ -424,15 +423,14 @@ def print_table(ids, cfg, show_text=True):
                      "rarity": rarity, "cmc": meta.get("cmc", "?"), "mana": meta.get("mana", ""),
                      "pt": meta.get("pt", ""), "text": meta.get("text", ""),
                      "g": gih, "iwd": iwd, "alsa": alsa, "n": n,
-                     "ds": ds.get(nm), "ut": ut.get(nm)})
+                     "ds": ds.get(nm)})
     rows.sort(key=lambda r: r["gih"], reverse=True)
 
     dsh = f"{'DS':5}" if ds else ""          # only show a grade column if that source is cached
-    uth = f"{'UT':5}" if ut else ""
     print(f"\n  {cfg['set']} {cfg['fmt']}  ({len(ids)} cards"
           + (f", on-color = {cfg['colors']}" if on else "") + ")\n")
-    print(f"   {'CARD':24}{'CLR':5}{'R':3}{'MV':3}{'GIHWR':8}{'IWD':7}{'ALSA':6}{'N':6}{dsh}{uth} tier")
-    print("  " + "-" * (72 + len(dsh) + len(uth)))
+    print(f"   {'CARD':24}{'CLR':5}{'R':3}{'MV':3}{'GIHWR':8}{'IWD':7}{'ALSA':6}{'N':6}{dsh} tier")
+    print("  " + "-" * (72 + len(dsh)))
     for r in rows:
         mark = "▸" if (on and r["oncol"]) else " "
         g = f"{r['g']*100:.1f}%" if r["g"] else "n/a"
@@ -440,9 +438,8 @@ def print_table(ids, cfg, show_text=True):
         a = f"{r['alsa']:.1f}" if r["alsa"] else "n/a"
         dim = "" if (not on or r["oncol"]) else "  (off)"
         dsc = f"{(str(r['ds']) if r['ds'] is not None else '-'):5}" if ds else ""
-        utc = f"{(str(r['ut']) if r['ut'] is not None else '-'):5}" if ut else ""
         print(f"  {mark}{r['name'][:23]:24}{r['color']:5}{r['rarity']:3}"
-              f"{str(r['cmc']):<3}{g:8}{i:7}{a:6}{str(r['n']):6}{dsc}{utc} {grade_gih(r['g'])}{dim}")
+              f"{str(r['cmc']):<3}{g:8}{i:7}{a:6}{str(r['n']):6}{dsc} {grade_gih(r['g'])}{dim}")
 
     if show_text:
         print("\n  WHAT EACH CARD DOES (read fit, not just stats):")

@@ -34,22 +34,22 @@ with oracle text + P/T. Then you:
    stats. A 55%-card that's a 2-drop flyer in his colors can beat a 58%-card that's a 6-mana
    durdle. Don't recommend off the GIH column alone.
 2. **Cross-reference an external grade.** If `grades/<source>_<SET>.json` exists it auto-shows as a
-   `DS`/`UT` column in the table (Draftsim / Untapped). Otherwise pull the CGB grade **from the tier
-   list you fetched at draft start**, no new WebFetch.
-   *Which sources actually add signal:* **Draftsim (`DS`) is the one worth weighting** — it's a
-   *theory/reviewer* grade, so where it disagrees with 17Lands that's a real flag (usually the
-   selection-bias-inflated synergy creatures). **Untapped (`UT`) is empirically redundant with
-   17Lands** — both are In-Hand/GIH WR; same-format they correlate at rho=0.955 / 91% within 3 WR
-   pts (the source matters *less* than Quick-vs-Premier format does). Treat `UT` as a second-sample
-   consensus check (handy on thin-N cards), **not** an independent lens. 17Lands GIH WR stays primary.
-   *Adding a grade source for a set:*
-   - **Untapped** — ingest from a captured artifact, not the JS page: `python3 ingest_untapped.py
-     <card-data.json|untapped.har> --set <SET>`. Untapped's stats API keys everything by an internal
-     `title_id` with no names; the name map only lives in the Next.js `.../card-data.json` page blob.
-     A HAR's `card-data.json` is often a cached 304 (empty) — if so, fetch it once (one JSON API call,
-     not browser scraping; see the script docstring for the URL) and point the script at that.
-   - **Draftsim / CGB** — JS-rendered, no clean API; have Albert **paste the rendered HTML**, parse
-     name→grade into `grades/<source>_<SET>.json` (committed dir, NOT cache/), treat as theory grades.
+   `DS` column (Draftsim) in the table. Otherwise pull the CGB grade **from the tier list you fetched
+   at draft start**, no new WebFetch.
+   *Why Draftsim earns a column:* it's a *theory/reviewer* grade built from human power-evaluation,
+   not game outcomes — so it has **decorrelated error** from 17Lands. It agrees with the win data on
+   bombs (top-quartile rho≈0.64) and diverges most on thin-sample / mushy-middle cards. So treat a
+   `DS`-vs-17Lands disagreement as a *flag to look at the card by hand* (often a selection-bias-
+   inflated synergy creature), **not** as proof Draftsim is right — in the thin-sample region neither
+   source has ground truth. 17Lands GIH WR stays primary.
+   *Do NOT add a second empirical source (Untapped/etc.).* We tested Untapped's In-Hand WR: it's the
+   same metric as 17Lands GIH WR, same-format rho=0.955 (91% within 3 WR pts — agrees more than
+   17Lands does with itself across Quick-vs-Premier). A source that fails identically to 17Lands can't
+   flag a 17Lands mistake, so it's pure bloat. Only sources with a *different method* (theory grades)
+   add anything.
+   *Adding a grade source for a set:* Draftsim / CGB are JS-rendered with no clean API — have Albert
+   **paste the rendered HTML**, parse name→grade into `grades/<source>_<SET>.json` (committed dir, NOT
+   cache/), treat as theory grades.
 3. Give the pick with reasoning, applying the strategy fundamentals below. See the rules.
 
 If reading the log over SSH ever fails, fall back to the manual flow: have Albert read you
