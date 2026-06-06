@@ -89,6 +89,13 @@ Find the current event's set code in the log: the pack payload has `"EventName":
 - **Bo1 / closing-speed lens is a LIGHT tiebreaker only** — use it between cards that are
   otherwise close on data, never to skip a clearly better card.
 - He picks up concepts fast — no need to re-explain GIH WR / ALSA / IWD after the first time.
+- **Match response depth to pick difficulty (keep turns fast — your output is the bottleneck, the
+  data is ~2s).** *Obvious pick* (one card clearly best on-color, big GIH gap, no curve/signal
+  tension) → compact table of the top few + **"Pick: X — one-line reason."** That's it. *Close /
+  contested pick* (top 2–3 within ~1.5% GIH, or a curve/CABS/signal tradeoff, or Albert challenges)
+  → full treatment: card text, CGB grade, the comparison, the argument. Don't write an essay for a
+  blowout pick. The non-negotiables stay cheap: the table still shows ALSA + grade; pushback only
+  fires when he questions a pick.
 
 GIH WR rough guide: **57%+ bomb · 54–57% excellent · 52–54% solid · 50–52% filler · <50% avoid.**
 
