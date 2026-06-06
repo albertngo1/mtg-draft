@@ -24,13 +24,14 @@ per-pick CGB fetch — one fetch up front beats paying ~10s on every close pick.
 community/podcast strategy lives in a per-set folder in this repo (one folder per set,
 named after the source). Currently available:
 
-- **SOS (Secrets of Strixhaven):** [`lords-of-limited/`](./lords-of-limited/) — summaries + key
-  draft takeaways from the 10 most-recent Lords of Limited episodes. **Start with
-  [`lords-of-limited/README.md`](./lords-of-limited/README.md)** — it has the file index, the
-  five-college color/theme table, and the recurring meta read. Skim the per-episode **Key Draft
-  Takeaways** sections for archetype reads, over/under-rated cards, and signals; the full
-  transcripts are there too if you need to dig into a specific pick. Treat these as *theory/expert
-  opinion* (same weight as the CGB grade), not ground truth — 17Lands GIH WR stays primary.
+- **SOS (Secrets of Strixhaven):** **load [`lords-of-limited/SOS-draft-guide.md`](./lords-of-limited/SOS-draft-guide.md)
+  and hold it in context for the whole draft** — it's a single dense, lookup-optimized synthesis of
+  10 Lords of Limited episodes: meta read, archetype/color-pair tier table, SOS format principles, a
+  **card-notes table** (card → community take → source) to cross-reference per pick, signals, and a
+  "where sources disagree" section. Treat it as *theory/expert opinion* (same weight as the CGB
+  grade), not ground truth — **17Lands GIH WR stays primary.** Per-episode notes + full transcripts
+  live in [`lords-of-limited/sources/`](./lords-of-limited/sources/) — open one only to dig into a
+  specific pick's rationale; the guide already distills them.
 
 When a new set's notes are added, drop them in a similarly-named folder with its own README index
 and add a bullet here so this stays the single discovery point.
@@ -208,9 +209,9 @@ extra removal or card-draw spell.**
 ### Reading the draft — signals, staying open, committing, pivoting
 - **At draft start, learn the set's archetypes.** Pull the set's color-pair overview (Untapped
   `set-guide` or the CGB draft guide) so you know the ~10 two-color gameplans and which are strong —
-  it frames every pick and tells you what a wheeling card signals. **If the set has expert notes in
-  this repo** (see Quick start — e.g. [`lords-of-limited/`](./lords-of-limited/) for SOS), read the
-  README + Key Draft Takeaways there for the format's meta read before the first pick.
+  it frames every pick and tells you what a wheeling card signals. **If the set has a synthesized
+  guide in this repo** (see Quick start — e.g. [`lords-of-limited/SOS-draft-guide.md`](./lords-of-limited/SOS-draft-guide.md)
+  for SOS), load it for the format's meta read, tier list, and card notes before the first pick.
 - **Stay open early, commit late.** Flexible through roughly **P1 picks 2–7**; **lock your colors by
   P1P8–9.** Strong drafters stay open longer to scoop bombs and slide into whatever's underdrafted;
   locking in P1P1–2 is a beginner crutch.

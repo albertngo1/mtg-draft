@@ -1,23 +1,35 @@
 # Lords of Limited — Secrets of Strixhaven (SOS) Notes
 
-Ingested transcripts + draft-strategy summaries from the [Lords of Limited](https://www.youtube.com/@LordsofLimited/videos) YouTube channel, covering **Secrets of Strixhaven** Limited.
+Agent-facing draft-strategy reference for **Secrets of Strixhaven** Limited, distilled from the
+[Lords of Limited](https://www.youtube.com/@LordsofLimited/videos) YouTube channel.
 
-Each file has a **Summary**, **Key Draft Takeaways**, and the **Full Transcript** (cleaned auto-captions; MTG card/college/mechanic names corrected by hand where confident — auto-captions mangle proper nouns).
+## → Start here: [`SOS-draft-guide.md`](./SOS-draft-guide.md)
 
-Source: 10 most-recent videos as of 2026-06-06 (yt-dlp auto-captions).
+The **consolidated, agent-primary** guide — synthesized across all 10 episodes into one dense,
+lookup-optimized file: TL;DR meta read, archetype/color-pair tier table, SOS format principles, a
+**card-notes table** (card → community take → source), signals/seat reads, and a "where sources
+disagree" section. **This is the file to hold in context for a whole draft and cross-reference per
+pick.** Treat it as expert/theory opinion — weight it like a CGB grade; **17Lands GIH WR stays
+primary.**
+
+## `sources/` — per-episode notes (dig-deeper layer)
+
+The 10 most-recent SOS videos as of 2026-06-06, each with a Summary, Key Draft Takeaways, and the
+cleaned **full transcript** (MTG names hand-corrected). Use these only to dig into a *specific* pick
+rationale; the guide above already distills them.
 
 | File | Episode | Type |
 |------|---------|------|
-| [schools-out-for-summer.md](schools-out-for-summer.md) | School's Out For Summer!!! | Format wrap-up / "50 takes" |
-| [sending-out-a-sos-draft.md](sending-out-a-sos-draft.md) | Sending Out a SOS | Draft logs + format critique |
-| [ep479-pop-quiz-hotshot.md](ep479-pop-quiz-hotshot.md) | Pop Quiz Hotshot (Ep. 479) | Self-review of own draft logs |
-| [ep478-midrange-is-new-aggro.md](ep478-midrange-is-new-aggro.md) | Midrange is the New Aggro (Ep. 478) | Strategy / state-of-format |
-| [ep477-pro-tour-draft-review.md](ep477-pro-tour-draft-review.md) | Pro Tour Draft Review (Ep. 477) | PT draft review (Larson, Steuer) |
-| [soup-or-streamlined-decks.md](soup-or-streamlined-decks.md) | Soup or Streamlined Decks | Deckbuilding theory |
-| [early-format-impressions.md](early-format-impressions.md) | Early Format Impressions | Early-access debrief |
-| [loreholding-on-for-dear-life.md](loreholding-on-for-dear-life.md) | Loreholding On For Dear Life | Lorehold (RW) draft (0-3) |
-| [am-i-the-only-bw-drafter.md](am-i-the-only-bw-drafter.md) | Am I The Only BW Drafter? | Silverquill (WB) draft (3-3) |
-| [prerelease-crash-course.md](prerelease-crash-course.md) | Prerelease Crash Course | Format-truths overview |
+| [sources/schools-out-for-summer.md](sources/schools-out-for-summer.md) | School's Out For Summer!!! | Format wrap-up / "50 takes" |
+| [sources/sending-out-a-sos-draft.md](sources/sending-out-a-sos-draft.md) | Sending Out a SOS | Draft logs + format critique |
+| [sources/ep479-pop-quiz-hotshot.md](sources/ep479-pop-quiz-hotshot.md) | Pop Quiz Hotshot (Ep. 479) | Self-review of own draft logs |
+| [sources/ep478-midrange-is-new-aggro.md](sources/ep478-midrange-is-new-aggro.md) | Midrange is the New Aggro (Ep. 478) | Strategy / state-of-format |
+| [sources/ep477-pro-tour-draft-review.md](sources/ep477-pro-tour-draft-review.md) | Pro Tour Draft Review (Ep. 477) | PT draft review (Larson, Steuer) |
+| [sources/soup-or-streamlined-decks.md](sources/soup-or-streamlined-decks.md) | Soup or Streamlined Decks | Deckbuilding theory |
+| [sources/early-format-impressions.md](sources/early-format-impressions.md) | Early Format Impressions | Early-access debrief |
+| [sources/loreholding-on-for-dear-life.md](sources/loreholding-on-for-dear-life.md) | Loreholding On For Dear Life | Lorehold (RW) draft (0-3) |
+| [sources/am-i-the-only-bw-drafter.md](sources/am-i-the-only-bw-drafter.md) | Am I The Only BW Drafter? | Silverquill (WB) draft (3-3) |
+| [sources/prerelease-crash-course.md](sources/prerelease-crash-course.md) | Prerelease Crash Course | Format-truths overview |
 
 ## SOS quick reference (the five colleges)
 
@@ -29,4 +41,12 @@ Source: 10 most-recent videos as of 2026-06-06 (yt-dlp auto-captions).
 | Lorehold | RW | tokens / go-wide / artifacts |
 | Quandrix | GU | ramp / big creatures / fractals |
 
-**Recurring meta read across these episodes:** "soup" (greedy multicolor converge/control decks) has been outperforming the aggro decks; midrange-with-interaction is strong; Prismari and Witherbloom rate highest among the hosts.
+**Recurring meta read:** "soup" (greedy multicolor converge/value/control) outperforms the aggro
+decks; midrange-with-interaction is strong; white and blue are the best colors. See the guide for
+the full tier list and the 17Lands-vs-hosts disagreement on soup.
+
+## Regenerating / refreshing
+
+These notes were built via `yt-dlp` auto-captions → cleaned → per-episode summaries → consolidated
+guide. To refresh with newer episodes, re-pull the channel's latest videos, regenerate the `sources/`
+files, and re-synthesize `SOS-draft-guide.md`.
