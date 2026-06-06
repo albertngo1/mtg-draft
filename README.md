@@ -21,6 +21,11 @@ cd ~/src/mtg-draft
 # Audit your picks so far: creatures/spells/lands split, curve, on/off-color, CABS check
 ./mtg-draft.sh pool --colors UR
 
+# Stream: auto-print the ranked table every time a new pack appears (run in its own terminal)
+./mtg-draft.sh watch --colors UR
+#   on the laptop (next to Arena, reads the local log, no SSH):
+#   python3 mtg-draft.py watch --local --colors UR
+
 # Manual: rank an explicit list of Arena card IDs
 ./mtg-draft.sh rank --colors UR 102690 102462 102498
 

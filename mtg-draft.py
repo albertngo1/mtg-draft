@@ -21,6 +21,8 @@ Usage:
   ./mtg-draft.sh warm                 # pre-cache the whole set (text+MV) — run once per set
   ./mtg-draft.sh pull                 # SSH the laptop, read the latest DraftPack, rank it
   ./mtg-draft.sh pool                 # audit your picks so far: creatures/spells/lands, curve, CABS
+  ./mtg-draft.sh watch --colors UR    # stream: auto-print the table each time a new pack appears
+                                      #   run in its own terminal; add --local if on the laptop
   ./mtg-draft.sh rank 102690 102462   # rank an explicit list of Arena card IDs
   ./mtg-draft.sh resolve 102690 ...   # print name|cmc|color|type for IDs
 
@@ -30,6 +32,8 @@ Common flags:
   --colors UR         mark these colors as on-color (default: $MTG_COLORS, blank = none)
   --days 120          17Lands lookback window in days (default 120)
   --brief             skip the oracle-text section (table only)
+  --local             read Player.log directly (no SSH) — use when running on the laptop itself
+  --poll N            watch poll interval in seconds (default 2)
   --refresh           force re-fetch of the cached 17Lands dataset
 
 Config (env or edit DEFAULTS below):
@@ -181,40 +185,84 @@ def seventeen(set_code, fmt, days, refresh=False):
     return data
 
 
-# ---------- Player.log reader (SSH) ----------
-def pull_pack(cfg):
-    """Return (ids, packnum, picknum, npicked) from the latest DraftPack in Player.log."""
+# ---------- Player.log reader (local or over SSH) ----------
+def _last_log_line(cfg, needle):
+    """Return the last line of Player.log containing `needle` — read locally if cfg['local']
+    (run on the laptop, no SSH), else tailed over SSH from the laptop."""
+    if cfg.get("local"):
+        path = os.path.expanduser(cfg["log"])
+        with open(path, "rb") as f:               # scan the last ~3MB for speed
+            f.seek(0, 2)
+            size = f.tell()
+            f.seek(max(0, size - 3_000_000))
+            data = f.read().decode("utf-8", "replace")
+        hits = [ln for ln in data.splitlines() if needle in ln]
+        return hits[-1] if hits else ""
     logpath = cfg["log"]
     if logpath.startswith("~"):
         logpath = "$HOME" + logpath[1:]
-    remote = (f'tail -8000 "{logpath}" | grep -E "DraftPack" | tail -1')
+    remote = f'tail -8000 "{logpath}" | grep -E "{needle}" | tail -1'
     cmd = ["ssh", "-i", cfg["ssh_key"], "-o", "ConnectTimeout=8", "-o", "BatchMode=yes",
            cfg["ssh"], remote]
-    line = subprocess.check_output(cmd, text=True)
-    m = re.search(r'\\"DraftPack\\":\[([^\]]*)\]', line) or re.search(r'"DraftPack":\[([^\]]*)\]', line)
-    if not m:
-        raise SystemExit("No DraftPack found in Player.log tail. Is a draft open?")
-    ids = re.findall(r"\d{5,6}", m.group(1))
+    return subprocess.check_output(cmd, text=True)
+
+
+def _parse_array(line, key):
+    m = re.search(rf'\\"{key}\\":\[([^\]]*)\]', line) or re.search(rf'"{key}":\[([^\]]*)\]', line)
+    return re.findall(r"\d{5,6}", m.group(1)) if m else None
+
+
+def pull_pack(cfg):
+    """Return (ids, packnum, picknum, npicked) from the latest DraftPack in Player.log."""
+    line = _last_log_line(cfg, "DraftPack")
+    ids = _parse_array(line, "DraftPack")
+    if not ids:
+        raise SystemExit("No DraftPack found in Player.log. Is a draft open?")
     pk = re.search(r'PackNumber\\?":(\d+)', line)
     pi = re.search(r'PickNumber\\?":(\d+)', line)
-    picked = re.search(r'\\"PickedCards\\":\[([^\]]*)\]', line) or re.search(r'"PickedCards":\[([^\]]*)\]', line)
-    npick = len(re.findall(r"\d{5,6}", picked.group(1))) if picked else 0
-    return ids, (int(pk.group(1)) if pk else -1), (int(pi.group(1)) if pi else -1), npick
+    picked = _parse_array(line, "PickedCards")
+    return ids, (int(pk.group(1)) if pk else -1), (int(pi.group(1)) if pi else -1), len(picked or [])
 
 
 def pull_picked(cfg):
     """Return the list of Arena IDs already picked, from the latest PickedCards in Player.log."""
-    logpath = cfg["log"]
-    if logpath.startswith("~"):
-        logpath = "$HOME" + logpath[1:]
-    remote = (f'tail -8000 "{logpath}" | grep -E "PickedCards" | tail -1')
-    cmd = ["ssh", "-i", cfg["ssh_key"], "-o", "ConnectTimeout=8", "-o", "BatchMode=yes",
-           cfg["ssh"], remote]
-    line = subprocess.check_output(cmd, text=True)
-    m = re.search(r'\\"PickedCards\\":\[([^\]]*)\]', line) or re.search(r'"PickedCards":\[([^\]]*)\]', line)
-    if not m:
+    ids = _parse_array(_last_log_line(cfg, "PickedCards"), "PickedCards")
+    if ids is None:
         raise SystemExit("No PickedCards found in Player.log. Has the draft started?")
-    return re.findall(r"\d{5,6}", m.group(1))
+    return ids
+
+
+def watch(cfg):
+    """Poll Player.log and auto-print the ranked table each time a new pack appears.
+    Standalone/blocking — run it in its own terminal (ideally on the laptop with --local).
+    Ctrl-C to stop."""
+    try:
+        sys.stdout.reconfigure(line_buffering=True)   # stream live even when piped
+    except Exception:
+        pass
+    where = "local log" if cfg.get("local") else f"{cfg['ssh']} over SSH"
+    print(f"\n  Watching {where} for new packs — {cfg['set']} {cfg['fmt']}"
+          + (f", colors {cfg['colors']}" if cfg["colors"] else "")
+          + f". Poll {cfg['poll']}s. Ctrl-C to stop.\n")
+    last = None
+    while True:
+        try:
+            line = _last_log_line(cfg, "DraftPack")
+        except Exception as e:
+            print(f"  (log read failed: {e} — retrying)")
+            time.sleep(cfg["poll"])
+            continue
+        ids = _parse_array(line, "DraftPack")
+        if ids:
+            pk = re.search(r'PackNumber\\?":(\d+)', line)
+            pi = re.search(r'PickNumber\\?":(\d+)', line)
+            key = (pk.group(1) if pk else "?", pi.group(1) if pi else "?", tuple(ids))
+            if key != last:
+                last = key
+                label = (f"P{int(pk.group(1))+1}P{int(pi.group(1))+1}" if pk and pi else "pack")
+                print("\n" + "=" * 74 + f"\n  >> {label}")
+                print_table(ids, cfg, show_text=not cfg["brief"])
+        time.sleep(cfg["poll"])
 
 
 # ---------- pool audit (agent helper: deck/curve/color check mid-draft) ----------
@@ -381,11 +429,17 @@ def main():
     cfg["refresh"] = False
     cmd, ids = None, []
     cfg["brief"] = False
+    cfg["local"] = bool(os.environ.get("MTG_LOCAL"))
+    cfg["poll"] = 2
     i = 0
     while i < len(args):
         a = args[i]
-        if a in ("pull", "rank", "resolve", "warm", "pool"):
+        if a in ("pull", "rank", "resolve", "warm", "pool", "watch"):
             cmd = a
+        elif a == "--local":
+            cfg["local"] = True
+        elif a == "--poll":
+            i += 1; cfg["poll"] = float(args[i])
         elif a == "--set":
             i += 1; cfg["set"] = args[i]
         elif a == "--fmt":
@@ -410,6 +464,11 @@ def main():
         cmd = "rank"
     if cmd == "warm":
         warm_set(cfg)
+    elif cmd == "watch":
+        try:
+            watch(cfg)
+        except KeyboardInterrupt:
+            print("\n  stopped.")
     elif cmd == "pool":
         print_pool(pull_picked(cfg), cfg)
     elif cmd == "pull":
