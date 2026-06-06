@@ -23,7 +23,7 @@ per-pick CGB fetch — one fetch up front beats paying ~10s on every close pick.
 Then, each pick (when Albert says "next" or starts a draft):
 
 ```bash
-./mtg-draft.sh pull --colors UR         # set --colors to his current colors once known
+./mtg-draft.sh pull                     # colors auto-detect from his picks; pass --colors UR to override
 ```
 
 That SSHes the laptop, reads the **current** pack from `Player.log`, and prints (a) a table

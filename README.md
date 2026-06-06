@@ -22,9 +22,10 @@ cd ~/src/mtg-draft
 ./mtg-draft.sh pool --colors UR
 
 # Stream: auto-print the ranked table every time a new pack appears (run in its own terminal)
-./mtg-draft.sh watch --colors UR
+# colors are AUTO-DETECTED from your picks — no --colors needed
+./mtg-draft.sh watch
 #   on the laptop (next to Arena, reads the local log, no SSH):
-#   python3 mtg-draft.py watch --local --colors UR
+#   python3 mtg-draft.py watch --local
 
 # Manual: rank an explicit list of Arena card IDs
 ./mtg-draft.sh rank --colors UR 102690 102462 102498

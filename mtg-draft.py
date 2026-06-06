@@ -29,7 +29,8 @@ Usage:
 Common flags:
   --set SOS           17Lands expansion code (default: $MTG_SET or SOS)
   --fmt QuickDraft    PremierDraft | QuickDraft | TradDraft | Sealed (default: QuickDraft)
-  --colors UR         mark these colors as on-color (default: $MTG_COLORS, blank = none)
+  --colors UR         mark these colors as on-color (OPTIONAL — auto-detected from your picks
+                      for pull/pool/watch; pass this only to override the guess)
   --days 120          17Lands lookback window in days (default 120)
   --brief             skip the oracle-text section (table only)
   --local             read Player.log directly (no SSH) — use when running on the laptop itself
@@ -213,15 +214,39 @@ def _parse_array(line, key):
 
 
 def pull_pack(cfg):
-    """Return (ids, packnum, picknum, npicked) from the latest DraftPack in Player.log."""
+    """Return (ids, packnum, picknum, picked_ids) from the latest DraftPack in Player.log.
+    The same log line carries PickedCards, so colors can be inferred without a second read."""
     line = _last_log_line(cfg, "DraftPack")
     ids = _parse_array(line, "DraftPack")
     if not ids:
         raise SystemExit("No DraftPack found in Player.log. Is a draft open?")
     pk = re.search(r'PackNumber\\?":(\d+)', line)
     pi = re.search(r'PickNumber\\?":(\d+)', line)
-    picked = _parse_array(line, "PickedCards")
-    return ids, (int(pk.group(1)) if pk else -1), (int(pi.group(1)) if pi else -1), len(picked or [])
+    picked = _parse_array(line, "PickedCards") or []
+    return ids, (int(pk.group(1)) if pk else -1), (int(pi.group(1)) if pi else -1), picked
+
+
+def infer_colors(picked_ids, cfg):
+    """Guess the player's 2 colors from their picks, by counting colored pips in mana costs.
+    Returns e.g. 'UR' (in WUBRG order), or '' if there's nothing to go on yet."""
+    picked_ids = [str(i) for i in picked_ids]
+    if not picked_ids:
+        return ""
+    scry = load_scry()
+    missing = [c for c in picked_ids if c not in scry]
+    if missing:
+        resolve_ids(missing)
+        scry = load_scry()
+    from collections import Counter
+    pips = Counter()
+    for cid in picked_ids:
+        mana = scry.get(cid, {}).get("mana", "")
+        for sym in "WUBRG":
+            pips[sym] += mana.count("{" + sym + "}")
+    if not pips:
+        return ""
+    top = [c for c, n in pips.most_common() if n > 0][:2]
+    return "".join(sorted(top, key="WUBRG".index))
 
 
 def pull_picked(cfg):
@@ -259,8 +284,11 @@ def watch(cfg):
             key = (pk.group(1) if pk else "?", pi.group(1) if pi else "?", tuple(ids))
             if key != last:
                 last = key
+                if not cfg["colors_explicit"]:        # re-infer as the pool clarifies
+                    cfg["colors"] = infer_colors(_parse_array(line, "PickedCards") or [], cfg)
                 label = (f"P{int(pk.group(1))+1}P{int(pi.group(1))+1}" if pk and pi else "pack")
-                print("\n" + "=" * 74 + f"\n  >> {label}")
+                auto = "" if cfg["colors_explicit"] else f"   (colors auto: {cfg['colors'] or '—'})"
+                print("\n" + "=" * 74 + f"\n  >> {label}{auto}")
                 print_table(ids, cfg, show_text=not cfg["brief"])
         time.sleep(cfg["poll"])
 
@@ -431,6 +459,7 @@ def main():
     cfg["brief"] = False
     cfg["local"] = bool(os.environ.get("MTG_LOCAL"))
     cfg["poll"] = 2
+    cfg["colors_explicit"] = bool(cfg["colors"])  # MTG_COLORS env counts as explicit
     i = 0
     while i < len(args):
         a = args[i]
@@ -445,7 +474,7 @@ def main():
         elif a == "--fmt":
             i += 1; cfg["fmt"] = args[i]
         elif a == "--colors":
-            i += 1; cfg["colors"] = args[i]
+            i += 1; cfg["colors"] = args[i]; cfg["colors_explicit"] = True
         elif a == "--days":
             i += 1; cfg["days"] = int(args[i])
         elif a == "--refresh":
@@ -470,11 +499,17 @@ def main():
         except KeyboardInterrupt:
             print("\n  stopped.")
     elif cmd == "pool":
-        print_pool(pull_picked(cfg), cfg)
+        picked = pull_picked(cfg)
+        if not cfg["colors_explicit"]:
+            cfg["colors"] = infer_colors(picked, cfg)
+        print_pool(picked, cfg)
     elif cmd == "pull":
-        pack, pk, pi, npick = pull_pack(cfg)
+        pack, pk, pi, picked = pull_pack(cfg)
+        if not cfg["colors_explicit"]:
+            cfg["colors"] = infer_colors(picked, cfg)
         label = (f"Pack {pk+1} Pick {pi+1}" if pk >= 0 else "current pack")
-        print(f"\n  >> {label}  ({npick} cards already taken)")
+        auto = "" if cfg["colors_explicit"] else f", colors auto: {cfg['colors'] or '—'}"
+        print(f"\n  >> {label}  ({len(picked)} cards already taken{auto})")
         print_table(pack, cfg, show_text=not cfg["brief"])
     elif cmd == "rank":
         if not ids:
