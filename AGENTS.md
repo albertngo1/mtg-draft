@@ -33,8 +33,14 @@ with oracle text + P/T. Then you:
 1. **Read what the cards actually do** — the text block is there so you judge *fit*, not just
    stats. A 55%-card that's a 2-drop flyer in his colors can beat a 58%-card that's a 6-mana
    durdle. Don't recommend off the GIH column alone.
-2. **Cross-reference the CGB grade** for the contending cards — **from the tier list you already
-   fetched at draft start**, no new WebFetch. (Only re-fetch if you didn't grab it up front, or the
+2. **Cross-reference an external grade.** If `grades/<source>_<SET>.json` exists it auto-shows as a
+   `DS`/`UT` column in the table (Draftsim / Untapped). Otherwise pull the CGB grade **from the tier
+   list you fetched at draft start**, no new WebFetch.
+   *Adding a grade source for a set:* the Draftsim/Untapped/CGB pages are JS-rendered (WebFetch gets
+   only the title), so have Albert **paste the rendered HTML**, then parse name→grade into
+   `grades/<source>_<SET>.json` (committed dir, NOT cache/). Treat these as *theory/reviewer* grades
+   — 17Lands GIH WR stays primary; where they disagree with the data, that's a flag (often the
+   selection-bias-inflated synergy creatures). (Only re-fetch if you didn't grab it up front, or the
    page-load context has been dropped.) Deliberately NOT scripted — the page scrape is fragile, so
    we cache it in context instead of parsing it.
 3. Give the pick with reasoning, applying the strategy fundamentals below. See the rules.
