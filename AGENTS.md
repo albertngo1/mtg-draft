@@ -107,8 +107,29 @@ data-first drafting is sound; his leak is that he drafts decks that don't lose i
 that win. Bias picks toward proactive threats, evasion, and a real way to close — over a marginal
 extra removal or card-draw spell.**
 
+### Reading the 17Lands numbers (and their traps — we hit all of these)
+- **GIH WR is the anchor, but check the sample size (`N`).** A card with only a few hundred games
+  has a noisy/unreliable win rate; `n/a` usually means "barely drafted" (often = weak/niche, e.g.
+  Biblioplex). Don't crown or bury a card on a small-N number — say it's uncertain.
+- **GIH WR has selection bias — especially on payoff/build-around cards.** The number reflects the
+  decks that *played* the card. A multicolor payoff, a spells-matter creature, a graveyard card, etc.
+  posts a high WR because it sat in decks built to enable it — **that doesn't transfer to a deck that
+  can't.** Discount payoff cards for *your* deck's actual support (this is why Mage Tower Referee's
+  56.8% and Spectacular Skywhale's number didn't map cleanly to our pool). Conversely, a colorless/
+  always-castable card's WR transfers well.
+- **What each column is for:** **GIH WR** = overall power (primary); **IWD** = how much it *swings*
+  a game when drawn (impact — high IWD + modest GIH = high-impact but wants a longer game or a
+  setup); **ALSA** = how late it wheels (low = take now / contested; high = you can speculate it
+  comes back). Always show ALSA.
+- **Match the format.** Use the data for the format being drafted (QuickDraft vs PremierDraft). If
+  QuickDraft data is thin for a new set, PremierDraft is a larger-sample proxy — note when you fall
+  back to it. (`--fmt` controls this.)
+- **The tool now prints oracle text — read it.** A 55% 2-drop flyer in your colors can beat a 58%
+  6-mana durdle. Judge cost, color, evasion, and role, not just the GIH column.
+
 ### Card evaluation — what makes a card worth picking
-- **Pick order backbone: bombs → premium removal → evasion → efficient creatures → filler.**
+- **Pick order backbone: bombs → premium removal → evasion → efficient creatures → filler** (the
+  "BREAD" heuristic: Bombs, Removal, Evasion, Aggro/Advantage, Dregs).
   "A bomb is a bomb" — raw game-winning power beats synergy and color considerations; take it P1P1
   even off-color and let it anchor you. Removal and evasion are the next tier; efficient creatures
   are the load-bearing majority of every deck.
@@ -120,6 +141,11 @@ extra removal or card-draw spell.**
   a *focused* answer suite: removal that enables your threats (clears blockers) or covers a specific
   weakness. **Steep diminishing returns on a removal spell once the deck has ~5–6** — this is
   Albert's exact leak; stop taking the 7th piece of interaction over a body or a closer.
+- **Removal quality rubric.** Not all removal is equal — *premium* = cheap, **unconditional**, and
+  kills (ideally exiles) most things at instant speed. *Discount* it when it's expensive (a 5-mana
+  kill spell is slow), conditional (only small creatures / only attackers / only one card type /
+  needs a setup), sorcery-speed, or "tuck/bounce" that doesn't permanently answer. (E.g. Heated
+  Argument at 5 mana isn't "efficient"; Sundering Archaic's exile is conditional on mana value.)
 - **Evasion is a top draft priority** — flyers/menace win races and *close* the grindy games Albert
   loses. Weight evasive creatures up, especially for his decks.
 - **Card advantage vs. tempo, as an evaluation lens.** Card-advantage cards (2-for-1s, repeatable
@@ -137,6 +163,9 @@ extra removal or card-draw spell.**
   stay open and to enable later bombs.
 
 ### Reading the draft — signals, staying open, committing, pivoting
+- **At draft start, learn the set's archetypes.** Pull the set's color-pair overview (Untapped
+  `set-guide` or the CGB draft guide) so you know the ~10 two-color gameplans and which are strong —
+  it frames every pick and tells you what a wheeling card signals.
 - **Stay open early, commit late.** Flexible through roughly **P1 picks 2–7**; **lock your colors by
   P1P8–9.** Strong drafters stay open longer to scoop bombs and slide into whatever's underdrafted;
   locking in P1P1–2 is a beginner crutch.
@@ -154,6 +183,10 @@ extra removal or card-draw spell.**
   to find your *second* color.
 - **Strengthen your own deck; don't hate-draft.** Especially here: **Quick Draft is vs. bots, so
   hate-drafting does literally nothing** — always take the best card for your deck.
+- **Raredraft only on dead picks.** Arena keeps *every* card you draft (collection value), so in a
+  pick where nothing is playable for your deck, taking a rare/mythic for the collection is fine —
+  but **never over an actual playable**, and a low-value utility rare isn't worth much (you can
+  wildcard-craft it cheaply). Winning the draft > a marginal rare.
 - **Quick Draft caveat on signals (Arena-specific):** bots draft differently from humans — they pass
   strong cards (removal, good on-color uncommons) more freely, so **good cards wheel more often and
   signals are softer/noisier.** Practical effect: stay open a little longer, expect to pick up real
@@ -190,6 +223,25 @@ extra removal or card-draw spell.**
   cheap playables run dry; neglecting early defense/curve in slow decks; over-splashing on shaky
   mana. Once your top-end/inevitability is secured, spend remaining picks on **curve + consistency,
   not more bombs.**
+
+### CABS — the board-density discipline (Marshall Sutcliffe) — directly targets Albert's leak
+**CABS = "Cards that Affect the Board State"**: creatures, removal, and combat tricks. The thesis:
+**~99% of Limited games are won with creatures**, so a deck needs a high *density* of board-affecting
+cards and only a *few* that don't touch the board. This is the baseline aggressive Limited shape —
+and it's the antidote to Albert's "answer-heavy / can't-close, too many durdle spells" pattern.
+- **Count your CABS as you draft and build.** Target the deck around **15–18 creatures** plus your
+  removal/tricks; treat non-board cards (card draw, counters, enchantments, lifegain) as a small
+  *budget*, not a free-for-all. Every Divergent Equation / Seize the Spoils / extra counter is
+  spending that budget.
+- Sutcliffe's commandments (the baseline "CABS deck"): **two colors only; strong curve weighted to
+  2–3-mana creatures; 15–18 creatures; minimize card-draw / enchantments / counters / lifegain;
+  prefer cards that stand alone over fragile synergies; straightforward proactive plan; consistent
+  over high-variance.**
+- **How to apply it as a data-led coach (important nuance):** CABS is a *deck-shape* discipline, not
+  a card-by-card override. Don't refuse a card-draw spell the 17Lands data loves — but **use CABS as
+  the tiebreaker and the budget cap:** when a non-board value card is close to a body/removal, take
+  the board card, and notice when the pool is drifting durdle-heavy. For Albert specifically, default
+  toward maximizing CABS density and a 2–3-drop-heavy curve; that's the build that closes games.
 
 ## Notes / gotchas
 
