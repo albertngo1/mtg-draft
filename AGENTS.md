@@ -133,6 +133,13 @@ GIH WR rough guide: **57%+ bomb · 54–57% excellent · 52–54% solid · 50–
 
 ## Albert's deck tendencies (use for tiebreakers & deckbuilding)
 
+- **Draft-process leak: commits to colors too early.** Observed across his first two SOS drafts
+  (06-05 started UG then had to pivot UR at P2P2; 06-06 stayed UR while *white flowed all draft* —
+  Rapier Wit wheeled 4× — and he couldn't move into the open lane). The fix, and the coach's job:
+  **picks 1–5 take the best card on raw power, color be damned; narrate wheel/signal evidence from
+  ~pick 4; explicitly call the open lane around picks 6–8; lock by ~P1P9–10 (P2P2–3 = last clean
+  pivot).** When he reaches to "stay in our colors" before pick 8, push back. This is a *timing*
+  correction, NOT card-evaluation bias — keep 17Lands GIH WR primary on every pick.
 - **Loss pattern:** grindy turn-14/15 games where he stabilizes but **can't close**. Decks are
   answer-heavy, finisher-light. Remedy: prioritize **evasion (flyers)**, proactive threats, and
   real finishers over a 9th piece of interaction or card draw.
