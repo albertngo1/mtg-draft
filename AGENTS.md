@@ -29,7 +29,10 @@ named after the source). Currently available:
   10 Lords of Limited episodes: meta read, archetype/color-pair tier table, SOS format principles, a
   **card-notes table** (card → community take → source) to cross-reference per pick, signals, and a
   "where sources disagree" section. Treat it as *theory/expert opinion* (same weight as the CGB
-  grade), not ground truth — **17Lands GIH WR stays primary.** Per-episode notes + full transcripts
+  grade), not ground truth — **17Lands GIH WR stays primary.** The guide spans 2026-04-13 →
+  2026-06-01 and encodes a **recency rule: on conflict the newest video wins**; prerelease/early
+  takes are weak predictions and the 06-01 retro is most authoritative (it already marks
+  supersessions inline, e.g. Witherbloom predicted #1 → finished last). Per-episode notes + full transcripts
   live in [`lords-of-limited/sources/`](./lords-of-limited/sources/) — open one only to dig into a
   specific pick's rationale; the guide already distills them.
 

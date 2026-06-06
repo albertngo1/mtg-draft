@@ -2,6 +2,7 @@
 
 - **Source:** https://www.youtube.com/watch?v=4PHlYsYf7nI
 - **Channel:** Lords of Limited
+- **Published:** 2026-06-01
 - **Set:** Secrets of Strixhaven (Limited)
 
 ## Summary
