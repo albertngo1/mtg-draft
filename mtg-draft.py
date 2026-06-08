@@ -2,10 +2,18 @@
 """MTGA live draft coach — resolve a pack's Arena card IDs to a ranked 17Lands table.
 
 The pipeline this automates (previously run by hand every pick):
-  1. read the current pack's Arena card IDs from Player.log on the laptop (over SSH)
+  1. read the current pack's Arena card IDs from MTGA's Player.log
   2. map IDs -> card names/cost via the Scryfall Arena endpoint
   3. pull 17Lands GIH WR / IWD / ALSA for the set+format
   4. print a ranked table (highest GIH WR first)
+
+By default the log is read LOCALLY — run this on the same machine where MTG Arena is
+installed (Windows or macOS). The log path is auto-detected per OS; override with MTG_LOG.
+Reading the log from another machine over SSH is an optional advanced mode (see below).
+
+Requires MTGA "Detailed Logs (Plugin Support)" to be enabled: in Arena, go to
+Settings -> Account -> check "Detailed Logs (Plugin Support)", then restart Arena. Without
+it the DraftPack entries this reads never appear in Player.log.
 
 CGB / external-grade cross-reference is NOT scripted (it's a fragile scrape) — the
 coaching agent does that step with WebFetch. See AGENTS.md.
@@ -17,29 +25,36 @@ Run `warm` once per set: it pre-caches the whole set's card text + mana value, s
 later `pull`/`rank` makes ZERO live queries (17Lands itself is cached 24h). The pack→stats
 join is by mtga_id, which 17Lands provides — so Scryfall is only needed for cost/text.
 
-Usage:
-  ./mtg-draft.sh warm                 # pre-cache the whole set (text+MV) — run once per set
-  ./mtg-draft.sh pull                 # SSH the laptop, read the latest DraftPack, rank it
-  ./mtg-draft.sh pool                 # audit your picks so far: creatures/spells/lands, curve, CABS
-  ./mtg-draft.sh watch --colors UR    # stream: auto-print the table each time a new pack appears
-                                      #   run in its own terminal; add --local if on the laptop
-  ./mtg-draft.sh rank 102690 102462   # rank an explicit list of Arena card IDs
-  ./mtg-draft.sh resolve 102690 ...   # print name|cmc|color|type for IDs
+Usage (Windows: use `python mtg-draft.py ...` or `mtg-draft.bat ...`):
+  python mtg-draft.py warm --set FIN     # pre-cache the whole set (text+MV) — run once per set
+  python mtg-draft.py pull               # read the latest DraftPack from the local log, rank it
+  python mtg-draft.py pool               # audit your picks so far: creatures/spells/lands, curve, CABS
+  python mtg-draft.py watch              # stream: auto-print the table each time a new pack appears
+  python mtg-draft.py rank 102690 102462 # rank an explicit list of Arena card IDs
+  python mtg-draft.py resolve 102690 ... # print name|cmc|color|type for IDs
+
+(On macOS/Linux you can also use the ./mtg-draft.sh wrapper.)
 
 Common flags:
-  --set SOS           17Lands expansion code (default: $MTG_SET or SOS)
-  --fmt QuickDraft    PremierDraft | QuickDraft | TradDraft | Sealed (default: QuickDraft)
+  --set FIN           17Lands expansion code (default: $MTG_SET or the current set you pass)
+  --fmt PremierDraft  PremierDraft | QuickDraft | TradDraft | Sealed (default: PremierDraft)
   --colors UR         mark these colors as on-color (OPTIONAL — auto-detected from your picks
                       for pull/pool/watch; pass this only to override the guess)
   --days 120          17Lands lookback window in days (default 120)
   --brief             skip the oracle-text section (table only)
-  --local             read Player.log directly (no SSH) — use when running on the laptop itself
   --poll N            watch poll interval in seconds (default 2)
   --refresh           force re-fetch of the cached 17Lands dataset
 
-Config (env or edit DEFAULTS below):
-  MTG_SSH=albertngo@100.111.228.115   MTG_SSH_KEY=~/.ssh/wc3_reverse_play
-  MTG_LOG="~/Library/Logs/Wizards Of The Coast/MTGA/Player.log"
+Advanced — read the log from ANOTHER machine over SSH (e.g. Arena on a different PC):
+  --ssh user@host     SSH target whose Player.log to read (or set MTG_SSH)
+  --ssh-key PATH      SSH private key for that target (or set MTG_SSH_KEY)
+  --local             force local read (default; kept for back-compat)
+  When --ssh / MTG_SSH is set, set MTG_LOG to the log path ON THAT remote machine.
+
+Config (env or flags):
+  MTG_SET, MTG_FMT, MTG_COLORS, MTG_DAYS
+  MTG_LOG    override the Player.log path (auto-detected per OS by default)
+  MTG_SSH, MTG_SSH_KEY    optional remote-read target + key (leave unset for local)
 """
 import sys, os, json, re, time, datetime, subprocess, urllib.request, urllib.error
 
@@ -59,14 +74,28 @@ def load_grades(source, set_code):
         return {}
 os.makedirs(CACHE, exist_ok=True)
 
+def default_log_path():
+    """Best-guess Player.log location for the current OS (override with MTG_LOG).
+    MTGA writes the log next to the game's data dir; the path differs per platform."""
+    if sys.platform == "win32":
+        # %USERPROFILE%\AppData\LocalLow\Wizards Of The Coast\MTGA\Player.log
+        return os.path.expandvars(
+            r"%USERPROFILE%\AppData\LocalLow\Wizards Of The Coast\MTGA\Player.log")
+    if sys.platform == "darwin":
+        return "~/Library/Logs/Wizards Of The Coast/MTGA/Player.log"
+    # Linux: MTGA runs under Steam Proton — best-effort default for the Steam app id.
+    return ("~/.steam/steam/steamapps/compatdata/2141910/pfx/drive_c/users/steamuser/"
+            "AppData/LocalLow/Wizards Of The Coast/MTGA/Player.log")
+
+
 DEFAULTS = {
-    "set": os.environ.get("MTG_SET", "SOS"),
-    "fmt": os.environ.get("MTG_FMT", "QuickDraft"),
+    "set": os.environ.get("MTG_SET", "FIN"),
+    "fmt": os.environ.get("MTG_FMT", "PremierDraft"),
     "colors": os.environ.get("MTG_COLORS", ""),
     "days": int(os.environ.get("MTG_DAYS", "120")),
-    "ssh": os.environ.get("MTG_SSH", "albertngo@100.111.228.115"),
-    "ssh_key": os.path.expanduser(os.environ.get("MTG_SSH_KEY", "~/.ssh/wc3_reverse_play")),
-    "log": os.environ.get("MTG_LOG", "~/Library/Logs/Wizards Of The Coast/MTGA/Player.log"),
+    "ssh": os.environ.get("MTG_SSH", ""),            # empty = read the log locally (default)
+    "ssh_key": os.path.expanduser(os.environ["MTG_SSH_KEY"]) if os.environ.get("MTG_SSH_KEY") else "",
+    "log": os.environ.get("MTG_LOG", default_log_path()),
 }
 
 UA = {"User-Agent": "mtg-draft-coach/1.0", "Accept": "application/json"}
@@ -199,18 +228,32 @@ def seventeen(set_code, fmt, days, refresh=False):
 
 
 # ---------- Player.log reader (local or over SSH) ----------
+def _read_mode(cfg):
+    """'ssh' only when a remote target is configured and local read isn't forced; else 'local'."""
+    return "ssh" if (cfg.get("ssh") and not cfg.get("force_local")) else "local"
+
+
 def _last_log_line(cfg, needle):
-    """Return the last line of Player.log containing `needle` — read locally if cfg['local']
-    (run on the laptop, no SSH), else tailed over SSH from the laptop."""
-    if cfg.get("local"):
+    """Return the last line of Player.log containing `needle`. Read locally by default
+    (run on the same machine as Arena); read over SSH only when --ssh / MTG_SSH is set."""
+    if _read_mode(cfg) == "local":
         path = os.path.expanduser(cfg["log"])
-        with open(path, "rb") as f:               # scan the last ~3MB for speed
+        try:
+            f = open(path, "rb")
+        except FileNotFoundError:
+            raise SystemExit(
+                f"Player.log not found at:\n  {path}\n"
+                "Set MTG_LOG to your Player.log path, and make sure MTGA 'Detailed Logs "
+                "(Plugin Support)' is enabled (Settings -> Account).")
+        with f:                                   # scan the last ~3MB for speed
             f.seek(0, 2)
             size = f.tell()
             f.seek(max(0, size - 3_000_000))
             data = f.read().decode("utf-8", "replace")
         hits = [ln for ln in data.splitlines() if needle in ln]
         return hits[-1] if hits else ""
+    if not cfg.get("ssh_key"):
+        raise SystemExit("--ssh given but no SSH key — pass --ssh-key PATH or set MTG_SSH_KEY.")
     logpath = cfg["log"]
     if logpath.startswith("~"):
         logpath = "$HOME" + logpath[1:]
@@ -277,7 +320,7 @@ def watch(cfg):
         sys.stdout.reconfigure(line_buffering=True)   # stream live even when piped
     except Exception:
         pass
-    where = "local log" if cfg.get("local") else f"{cfg['ssh']} over SSH"
+    where = f"{cfg['ssh']} over SSH" if _read_mode(cfg) == "ssh" else "local log"
     print(f"\n  Watching {where} for new packs — {cfg['set']} {cfg['fmt']}"
           + (f", colors {cfg['colors']}" if cfg["colors"] else "")
           + f". Poll {cfg['poll']}s. Ctrl-C to stop.\n")
@@ -474,7 +517,7 @@ def main():
     cfg["refresh"] = False
     cmd, ids = None, []
     cfg["brief"] = False
-    cfg["local"] = bool(os.environ.get("MTG_LOCAL"))
+    cfg["force_local"] = bool(os.environ.get("MTG_LOCAL"))  # --local / MTG_LOCAL forces local read
     cfg["poll"] = 2
     cfg["colors_explicit"] = bool(cfg["colors"])  # MTG_COLORS env counts as explicit
     i = 0
@@ -483,7 +526,11 @@ def main():
         if a in ("pull", "rank", "resolve", "warm", "pool", "watch"):
             cmd = a
         elif a == "--local":
-            cfg["local"] = True
+            cfg["force_local"] = True
+        elif a == "--ssh":
+            i += 1; cfg["ssh"] = args[i]
+        elif a == "--ssh-key":
+            i += 1; cfg["ssh_key"] = os.path.expanduser(args[i])
         elif a == "--poll":
             i += 1; cfg["poll"] = float(args[i])
         elif a == "--set":
