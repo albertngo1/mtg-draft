@@ -204,10 +204,11 @@ the page, save/paste the rendered HTML, parse `name → grade` into the JSON, an
 power-evaluation); don't add a second *empirical* source — another win-rate metric just duplicates
 17Lands and adds noise.
 
-**2. Expert strategy guides → `lords-of-limited/<set>/`.** For longer-form, pre-digested set
-strategy (meta read, archetype tier table, per-card notes, signals), each set gets a subfolder with
-a consolidated `<SET>-draft-guide.md` the agent loads once and holds in context for the whole draft,
-plus an optional `sources/` layer of per-episode notes to dig into a specific pick. See
+**2. Expert strategy guides → `lords-of-limited/<SET>-draft-guide.md`.** For longer-form, pre-digested
+set strategy (meta read, archetype tier table, per-card notes, signals), each set gets a consolidated
+`<SET>-draft-guide.md` (kept flat in `lords-of-limited/`) that the agent loads once and holds in
+context for the whole draft, plus a per-set `<set>/sources/` layer of per-episode notes to dig into a
+specific pick. See
 [`lords-of-limited/README.md`](./lords-of-limited/README.md) for the layout and the conventions for
 adding a new set (date-prefixed source notes, a recency rule where the newest take wins on
 conflict). Guides distilled from public content (e.g. strategy YouTube channels) are credited to
