@@ -129,9 +129,57 @@ take it now.
 
 ## Using it as an agent / coach
 
-`AGENTS.md` documents a full pick-by-pick coaching workflow — how an LLM agent (e.g. Claude Code)
-should drive this tool during a live draft, read signals, and build the pool at the end. The tool
-is useful standalone; `AGENTS.md` is for wiring it into an assistant.
+The tool is useful standalone, but it's designed to be driven by an **LLM agent** (e.g. Claude
+Code) that turns the raw rankings into pick-by-pick coaching. [`AGENTS.md`](./AGENTS.md) is the
+operating manual for that agent. At a high level it covers:
+
+- **The per-pick loop** — `warm` once, then `pull` each pick; how to read the ranked table + the
+  "what each card does" block so picks are judged on *fit*, not just the GIH WR column.
+- **Cross-referencing** — how to weigh a card's 17Lands win-rate against theory grades and expert
+  guides (see "Third-party insight sources" below), with **17Lands GIH WR as the primary signal**
+  and everything else as a decorrelated second opinion.
+- **Reading 17Lands correctly** — what each column means (GIH WR / IWD / ALSA), the small-sample
+  and selection-bias traps, and ALSA as a wheel/timing signal.
+- **Draft strategy fundamentals** — color/curve reads, signal reading, when to commit vs. stay
+  open, and building the final pool — so an agent with no MTG background can coach competently.
+
+The manual is intentionally **generic** — it's universal Limited theory plus this tool's pipeline,
+with no player-specific preferences baked in. Drive it from your assistant by pointing the agent at
+`AGENTS.md` at the start of a draft and having it run the `pull` loop each pick.
+
+### Third-party insight sources
+
+You can feed the coach two kinds of external, set-specific knowledge. Both are treated as
+**theory/expert opinion that cross-references — never overrides — the 17Lands win data**, because
+their error is decorrelated from game outcomes (they flag cards worth a second look; they don't
+settle them).
+
+**1. Reviewer grades → a `DS` column in the ranked table.** Drop a JSON file at
+`grades/<source>_<SET>.json` and the tool auto-joins it as a grade column when you `pull`/`rank`
+that set. The format is a flat `card name → grade` map plus a `_source` note:
+
+```json
+{
+  "_source": "draftsim.com/<set>-pick-order/ (captured 2026-06-06). Grade out of 5. Theory grades, not empirical.",
+  "Some Bomb Rare": 4.5,
+  "A Solid Common": 3.2
+}
+```
+
+Tier-list sites are usually JS-rendered with no clean API, so the practical capture flow is: open
+the page, save/paste the rendered HTML, parse `name → grade` into the JSON, and commit it under
+`grades/` (this dir **is** committed — unlike `cache/`). Use a *theory* grade source (human
+power-evaluation); don't add a second *empirical* source — another win-rate metric just duplicates
+17Lands and adds noise.
+
+**2. Expert strategy guides → `lords-of-limited/<set>/`.** For longer-form, pre-digested set
+strategy (meta read, archetype tier table, per-card notes, signals), each set gets a subfolder with
+a consolidated `<SET>-draft-guide.md` the agent loads once and holds in context for the whole draft,
+plus an optional `sources/` layer of per-episode notes to dig into a specific pick. See
+[`lords-of-limited/README.md`](./lords-of-limited/README.md) for the layout and the conventions for
+adding a new set (date-prefixed source notes, a recency rule where the newest take wins on
+conflict). Guides distilled from public content (e.g. strategy YouTube channels) are credited to
+their source there.
 
 ## Data sources & credits
 
