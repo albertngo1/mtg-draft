@@ -32,8 +32,15 @@ Usage (Windows: use `python mtg-draft.py ...` or `mtg-draft.bat ...`):
   python mtg-draft.py watch              # stream: auto-print the table each time a new pack appears
   python mtg-draft.py rank 102690 102462 # rank an explicit list of Arena card IDs
   python mtg-draft.py resolve 102690 ... # print name|cmc|color|type for IDs
+  python mtg-draft.py capture            # show/Start the background log-capture; `capture stop` to end it
 
 (On macOS/Linux you can also use the ./mtg-draft.sh wrapper.)
+
+Side-car capture: any draft command (pull/pool/watch) auto-starts a detached background
+process that mirrors the ENTIRE Player.log stream to logs/player_stream.log and keeps
+following it (across Arena restarts) until you run `capture stop`. It's idempotent — only
+one runs at a time. This gives a durable raw record of the whole draft so questions can be
+answered from the saved stream instead of re-reading the noisy live log.
 
 Common flags:
   --set FIN           17Lands expansion code (default: $MTG_SET or the current set you pass)
@@ -56,11 +63,14 @@ Config (env or flags):
   MTG_LOG    override the Player.log path (auto-detected per OS by default)
   MTG_SSH, MTG_SSH_KEY    optional remote-read target + key (leave unset for local)
 """
-import sys, os, json, re, time, datetime, subprocess, urllib.request, urllib.error
+import sys, os, json, re, time, datetime, signal, subprocess, urllib.request, urllib.error
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 CACHE = os.path.join(HERE, "cache")
 GRADES = os.path.join(HERE, "grades")  # committed external-grade files: <source>_<SET>.json
+LOGDIR = os.path.join(HERE, "logs")  # side-car capture of the raw Player.log stream (gitignored)
+STREAM = os.path.join(LOGDIR, "player_stream.log")  # everything Player.log emits, mirrored here
+PIDFILE = os.path.join(LOGDIR, ".capture.pid")       # PID of the running background tailer
 
 
 def load_grades(source, set_code):
@@ -312,6 +322,116 @@ def pull_picked(cfg):
     return ids
 
 
+# ---------- side-car capture: mirror the WHOLE Player.log stream to logs/ in the background ----------
+# A detached follower process tails Player.log and appends everything it emits to STREAM.
+# It is started automatically on a draft command (pull/pool/watch) and survives this process
+# exiting, so the raw stream is always being recorded without any extra step. No filtering —
+# capture everything; parsing/ETL happens later off the saved stream, not off the live log.
+
+
+def _capture_alive():
+    """Return the running follower's PID if it's alive, else None."""
+    try:
+        with open(PIDFILE) as f:
+            pid = int(f.read().strip())
+    except Exception:
+        return None
+    try:
+        os.kill(pid, 0)
+        return pid
+    except OSError:
+        return None
+
+
+def _spawn_detached(cmd, stdout=None):
+    """Start `cmd` fully detached so it keeps running after this CLI exits (POSIX + Windows)."""
+    kw = dict(stdin=subprocess.DEVNULL, stderr=subprocess.DEVNULL, close_fds=True,
+              stdout=(stdout if stdout is not None else subprocess.DEVNULL))
+    if os.name == "nt":
+        kw["creationflags"] = 0x00000008 | 0x00000200  # DETACHED_PROCESS | NEW_PROCESS_GROUP
+    else:
+        kw["start_new_session"] = True
+    return subprocess.Popen(cmd, **kw)
+
+
+def tail_follow(logpath, outpath):
+    """Internal worker (run via the hidden `_tail` command): follow Player.log forever and
+    append every byte it writes to outpath. Pure Python so it works on Windows too, and it
+    re-reads from the top when Arena rotates/recreates the log on relaunch."""
+    logpath = os.path.expanduser(logpath)
+    out = open(outpath, "ab")
+    pos, cur = 0, None
+    while True:
+        try:
+            st = os.stat(logpath)
+        except FileNotFoundError:
+            time.sleep(1.0)
+            continue
+        ino = (st.st_dev, st.st_ino)
+        if ino != cur or st.st_size < pos:    # first open OR rotated/truncated -> start over
+            cur, pos = ino, 0
+        if st.st_size > pos:
+            with open(logpath, "rb") as f:
+                f.seek(pos)
+                data = f.read()
+                pos = f.tell()
+            out.write(data)
+            out.flush()
+        time.sleep(0.5)
+
+
+def ensure_capture(cfg):
+    """Idempotently start the background follower mirroring Player.log -> STREAM.
+    No-op if one is already running. Best-effort: never raise into the draft flow."""
+    os.makedirs(LOGDIR, exist_ok=True)
+    if _capture_alive():
+        return False
+    try:
+        if _read_mode(cfg) == "local":
+            cmd = [sys.executable, os.path.abspath(__file__), "_tail",
+                   "--log", os.path.expanduser(cfg["log"]), "--out", STREAM]
+            p = _spawn_detached(cmd)
+        else:                                  # remote log: tail it over SSH into our STREAM
+            if not cfg.get("ssh_key"):
+                return False
+            logpath = cfg["log"]
+            if logpath.startswith("~"):
+                logpath = "$HOME" + logpath[1:]
+            cmd = ["ssh", "-i", cfg["ssh_key"], "-o", "ServerAliveInterval=15",
+                   "-o", "ConnectTimeout=8", "-o", "BatchMode=yes", cfg["ssh"],
+                   f'tail -n +1 -F "{logpath}"']
+            p = _spawn_detached(cmd, stdout=open(STREAM, "ab"))
+        with open(PIDFILE, "w") as f:
+            f.write(str(p.pid))
+        return True
+    except Exception:
+        return False
+
+
+def stop_capture():
+    pid = _capture_alive()
+    if not pid:
+        print("  capture: not running."); return
+    try:
+        os.kill(pid, signal.SIGTERM)
+    except OSError:
+        pass
+    try:
+        os.remove(PIDFILE)
+    except OSError:
+        pass
+    print(f"  capture: stopped (pid {pid}).")
+
+
+def capture_status(cfg):
+    pid = _capture_alive()
+    sz = os.path.getsize(STREAM) if os.path.exists(STREAM) else 0
+    src = f"{cfg['ssh']} (SSH)" if _read_mode(cfg) == "ssh" else os.path.expanduser(cfg["log"])
+    print(f"\n  capture: {'running (pid '+str(pid)+')' if pid else 'not running'}")
+    print(f"  source : {src}")
+    print(f"  stream : {STREAM}  ({sz/1e6:.1f} MB)\n")
+
+
 def watch(cfg):
     """Poll Player.log and auto-print the ranked table each time a new pack appears.
     Standalone/blocking — run it in its own terminal (ideally on the laptop with --local).
@@ -513,6 +633,13 @@ def _wrap(s, width):
 # ---------- arg parse ----------
 def main():
     args = sys.argv[1:]
+
+    # Internal: the detached background follower (started by ensure_capture). Not user-facing.
+    if args and args[0] == "_tail":
+        opt = {args[j]: args[j + 1] for j in range(1, len(args) - 1, 2)}
+        tail_follow(opt.get("--log"), opt.get("--out"))
+        return
+
     cfg = dict(DEFAULTS)
     cfg["refresh"] = False
     cmd, ids = None, []
@@ -520,11 +647,14 @@ def main():
     cfg["force_local"] = bool(os.environ.get("MTG_LOCAL"))  # --local / MTG_LOCAL forces local read
     cfg["poll"] = 2
     cfg["colors_explicit"] = bool(cfg["colors"])  # MTG_COLORS env counts as explicit
+    cfg["capture_action"] = "start"               # for the `capture` command: start|status|stop
     i = 0
     while i < len(args):
         a = args[i]
-        if a in ("pull", "rank", "resolve", "warm", "pool", "watch"):
+        if a in ("pull", "rank", "resolve", "warm", "pool", "watch", "capture"):
             cmd = a
+        elif a in ("stop", "status", "start") and cmd == "capture":
+            cfg["capture_action"] = a
         elif a == "--local":
             cfg["force_local"] = True
         elif a == "--ssh":
@@ -555,7 +685,21 @@ def main():
 
     if cmd is None and ids:
         cmd = "rank"
-    if cmd == "warm":
+
+    # Any live-draft command spins up the side-car capture (idempotent) so the full
+    # Player.log stream is always being mirrored to logs/ — no extra step needed.
+    if cmd in ("pull", "pool", "watch"):
+        if ensure_capture(cfg):
+            print(f"  (capture started → {os.path.relpath(STREAM, HERE)})")
+
+    if cmd == "capture":
+        if cfg["capture_action"] == "stop":
+            stop_capture()
+        else:
+            if cfg["capture_action"] != "status" and ensure_capture(cfg):
+                print("  capture: started.")
+            capture_status(cfg)
+    elif cmd == "warm":
         warm_set(cfg)
     elif cmd == "watch":
         try:

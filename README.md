@@ -56,6 +56,9 @@ python3 mtg-draft.py rank --set FIN --colors UR 102690 102462 102498
 
 # Resolve IDs to name|cmc|color|type (handy for deck audits)
 python3 mtg-draft.py resolve 102690 102462
+
+# Capture: show the background log-capture status (see "Recording the raw log stream" below)
+python3 mtg-draft.py capture          # start (if needed) + status   ·   `capture stop` to end it
 ```
 
 Output: a table sorted by GIH WR (on-color cards per `--colors` marked `▸`, off-color tagged
@@ -126,6 +129,28 @@ After `warm`, a `pull`/`rank` for that set makes **zero** network round-trips un
 **GIH WR rough guide:** 57%+ bomb · 54–57% excellent · 52–54% solid · 50–52% filler · <50% avoid.
 Use **ALSA** (Average Last Seen At) as a tiebreaker — a low ALSA means the card won't wheel, so
 take it now.
+
+## Recording the raw log stream
+
+Every draft command (`pull` / `pool` / `watch`) automatically starts a small **background
+capture process** the first time it runs. That process follows `Player.log` and mirrors
+**everything it emits** — unfiltered — into `logs/player_stream.log`, and keeps following it
+(re-opening across Arena restarts) until you stop it. It's idempotent: only one capture runs
+at a time, no matter how many times you call `pull`.
+
+Why: it gives a **durable, complete record** of the whole draft session, so a coach (or you)
+can answer "what were my options at P1P3?" by reading the saved stream instead of re-scraping
+the noisy multi-MB live log — which only ever retains the *latest* pack anyway.
+
+```bash
+python3 mtg-draft.py capture          # start it (if not running) and print status
+python3 mtg-draft.py capture status   # just print status (pid, source, stream size)
+python3 mtg-draft.py capture stop     # stop the background capture
+```
+
+`logs/` is gitignored. The capture follows whichever log the tool is configured to read —
+local by default, or a remote log when `--ssh` is set (in which case the stream is still
+written locally on the machine running the tool).
 
 ## Using it as an agent / coach
 
