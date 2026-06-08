@@ -84,6 +84,7 @@ drafting is in the log under the event name, e.g. `"EventName":"PremierDraft_FIN
 | `--brief` | | | table only, skip the oracle-text section |
 | `--refresh` | | | force re-fetch of the cached 17Lands data |
 | `--poll N` | | `2` | `watch` poll interval in seconds |
+| `--cap-mb N` | `MTG_CAP_MB` | `200` | front-truncating size cap for the captured log stream |
 | `--local` | `MTG_LOCAL` | (default) | force a local log read (this is already the default) |
 | | `MTG_LOG` | auto per-OS | override the `Player.log` path |
 
@@ -144,9 +145,15 @@ the noisy multi-MB live log — which only ever retains the *latest* pack anyway
 
 ```bash
 python3 mtg-draft.py capture          # start it (if not running) and print status
-python3 mtg-draft.py capture status   # just print status (pid, source, stream size)
+python3 mtg-draft.py capture status   # just print status (pid, source, stream size, cap)
 python3 mtg-draft.py capture stop     # stop the background capture
 ```
+
+**Size cap.** The stream is bounded by a **front-truncating** cap (default **200 MB**, set with
+`--cap-mb N` or `MTG_CAP_MB`): when it exceeds the cap it drops the *oldest* bytes and keeps the
+most recent, so a draft in progress is never the thing trimmed. The default is deliberately
+generous — one Arena session log is only ~10–25 MB, so 200 MB can't clip a single draft. (Tuning
+this down once we've measured a real end-to-end draft is tracked as a TODO.)
 
 `logs/` is gitignored. The capture follows whichever log the tool is configured to read —
 local by default, or a remote log when `--ssh` is set (in which case the stream is still

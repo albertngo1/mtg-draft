@@ -40,7 +40,9 @@ Side-car capture: any draft command (pull/pool/watch) auto-starts a detached bac
 process that mirrors the ENTIRE Player.log stream to logs/player_stream.log and keeps
 following it (across Arena restarts) until you run `capture stop`. It's idempotent — only
 one runs at a time. This gives a durable raw record of the whole draft so questions can be
-answered from the saved stream instead of re-reading the noisy live log.
+answered from the saved stream instead of re-reading the noisy live log. The stream is
+bounded by a front-truncating cap (default 200MB; --cap-mb / MTG_CAP_MB) that drops the
+oldest bytes first, so a draft in progress is never trimmed.
 
 Common flags:
   --set FIN           17Lands expansion code (default: $MTG_SET or the current set you pass)
@@ -70,7 +72,12 @@ CACHE = os.path.join(HERE, "cache")
 GRADES = os.path.join(HERE, "grades")  # committed external-grade files: <source>_<SET>.json
 LOGDIR = os.path.join(HERE, "logs")  # side-car capture of the raw Player.log stream (gitignored)
 STREAM = os.path.join(LOGDIR, "player_stream.log")  # everything Player.log emits, mirrored here
-PIDFILE = os.path.join(LOGDIR, ".capture.pid")       # PID of the running background tailer
+PIDFILE = os.path.join(LOGDIR, ".capture.pid")       # PID of the running background follower
+CFGFILE = os.path.join(LOGDIR, ".capture.json")      # source/cap config the follower reads
+# Default size cap for the captured stream. Front-truncating (keeps the most RECENT bytes),
+# so a draft in progress is never the thing trimmed. Generous on purpose — one Arena session
+# log is ~10-25MB, so 200MB can't clip a single draft; revisit once we measure a full draft.
+CAP_MB_DEFAULT = float(os.environ.get("MTG_CAP_MB", "200"))
 
 
 def load_grades(source, set_code):
@@ -354,12 +361,28 @@ def _spawn_detached(cmd, stdout=None):
     return subprocess.Popen(cmd, **kw)
 
 
-def tail_follow(logpath, outpath):
-    """Internal worker (run via the hidden `_tail` command): follow Player.log forever and
-    append every byte it writes to outpath. Pure Python so it works on Windows too, and it
-    re-reads from the top when Arena rotates/recreates the log on relaunch."""
-    logpath = os.path.expanduser(logpath)
-    out = open(outpath, "ab")
+def _trim(path, cap):
+    """Front-truncate `path` to ~80% of `cap` bytes when it exceeds `cap`, keeping the most
+    recent bytes (drops a partial first line). No-op if cap is 0/falsey or file is under cap."""
+    if not cap:
+        return
+    try:
+        if os.path.getsize(path) <= cap:
+            return
+    except OSError:
+        return
+    keep = int(cap * 0.8)                       # hysteresis: trim to 80% so we don't trim each cycle
+    with open(path, "rb") as f:
+        f.seek(-keep, os.SEEK_END)
+        f.readline()                            # align to the next full line
+        data = f.read()
+    with open(path, "wb") as f:
+        f.write(data)
+
+
+def _follow_local(c):
+    """Poll a local Player.log and append new bytes to the stream (re-reads on rotation)."""
+    logpath = os.path.expanduser(c["log"])
     pos, cur = 0, None
     while True:
         try:
@@ -368,39 +391,75 @@ def tail_follow(logpath, outpath):
             time.sleep(1.0)
             continue
         ino = (st.st_dev, st.st_ino)
-        if ino != cur or st.st_size < pos:    # first open OR rotated/truncated -> start over
+        if ino != cur or st.st_size < pos:      # first open OR rotated/truncated -> start over
             cur, pos = ino, 0
         if st.st_size > pos:
             with open(logpath, "rb") as f:
                 f.seek(pos)
                 data = f.read()
                 pos = f.tell()
-            out.write(data)
-            out.flush()
+            with open(c["out"], "ab") as out:
+                out.write(data)
+            _trim(c["out"], c["cap"])
         time.sleep(0.5)
 
 
+def _follow_remote(c):
+    """Stream a remote Player.log via `ssh tail -F`, appending to the stream and reconnecting
+    if the SSH session drops. The capped trim runs here too (Python is in the byte path)."""
+    logpath = c["log"]
+    if logpath.startswith("~"):
+        logpath = "$HOME" + logpath[1:]
+    cmd = ["ssh", "-i", c["ssh_key"], "-o", "ServerAliveInterval=15", "-o", "ServerAliveCountMax=3",
+           "-o", "ConnectTimeout=8", "-o", "BatchMode=yes", c["ssh"], f'tail -n +1 -F "{logpath}"']
+    while True:
+        p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL)
+        try:
+            for chunk in iter(lambda: p.stdout.read(65536), b""):
+                with open(c["out"], "ab") as out:
+                    out.write(chunk)
+                _trim(c["out"], c["cap"])
+        except Exception:
+            pass
+        finally:
+            try:
+                p.terminate()
+            except Exception:
+                pass
+        time.sleep(3)                           # SSH dropped — wait, then reconnect
+
+
+def tail_follow(cfgpath):
+    """Internal worker (hidden `_tail` command). Reads its source/cap config from CFGFILE and
+    follows the log forever, mirroring everything into the stream with a front-truncating cap.
+    Pure Python so it works on Windows (local mode) too."""
+    with open(cfgpath) as f:
+        c = json.load(f)
+    c["cap"] = int(float(c.get("cap_mb") or 0) * 1_000_000)
+    if c.get("ssh"):
+        _follow_remote(c)
+    else:
+        _follow_local(c)
+
+
 def ensure_capture(cfg):
-    """Idempotently start the background follower mirroring Player.log -> STREAM.
+    """Idempotently start the background follower mirroring Player.log -> STREAM (capped).
     No-op if one is already running. Best-effort: never raise into the draft flow."""
     os.makedirs(LOGDIR, exist_ok=True)
     if _capture_alive():
         return False
     try:
-        if _read_mode(cfg) == "local":
-            cmd = [sys.executable, os.path.abspath(__file__), "_tail",
-                   "--log", os.path.expanduser(cfg["log"]), "--out", STREAM]
-            p = _spawn_detached(cmd)
-        else:                                  # remote log: tail it over SSH into our STREAM
+        c = {"out": STREAM, "log": cfg["log"], "cap_mb": cfg.get("cap_mb", CAP_MB_DEFAULT)}
+        if _read_mode(cfg) == "ssh":
             if not cfg.get("ssh_key"):
                 return False
-            logpath = cfg["log"]
-            if logpath.startswith("~"):
-                logpath = "$HOME" + logpath[1:]
-            cmd = ["ssh", "-i", cfg["ssh_key"], "-o", "ServerAliveInterval=15",
-                   "-o", "ConnectTimeout=8", "-o", "BatchMode=yes", cfg["ssh"],
-                   f'tail -n +1 -F "{logpath}"']
-            p = _spawn_detached(cmd, stdout=open(STREAM, "ab"))
+            c["ssh"] = cfg["ssh"]
+            c["ssh_key"] = cfg["ssh_key"]
+        else:
+            c["log"] = os.path.expanduser(cfg["log"])
+        with open(CFGFILE, "w") as f:
+            json.dump(c, f)
+        p = _spawn_detached([sys.executable, os.path.abspath(__file__), "_tail", CFGFILE])
         with open(PIDFILE, "w") as f:
             f.write(str(p.pid))
         return True
@@ -413,9 +472,12 @@ def stop_capture():
     if not pid:
         print("  capture: not running."); return
     try:
-        os.kill(pid, signal.SIGTERM)
+        os.killpg(os.getpgid(pid), signal.SIGTERM)   # take down the worker + its ssh child
     except OSError:
-        pass
+        try:
+            os.kill(pid, signal.SIGTERM)
+        except OSError:
+            pass
     try:
         os.remove(PIDFILE)
     except OSError:
@@ -429,7 +491,7 @@ def capture_status(cfg):
     src = f"{cfg['ssh']} (SSH)" if _read_mode(cfg) == "ssh" else os.path.expanduser(cfg["log"])
     print(f"\n  capture: {'running (pid '+str(pid)+')' if pid else 'not running'}")
     print(f"  source : {src}")
-    print(f"  stream : {STREAM}  ({sz/1e6:.1f} MB)\n")
+    print(f"  stream : {STREAM}  ({sz/1e6:.1f} MB / {cfg.get('cap_mb', CAP_MB_DEFAULT):.0f} MB cap)\n")
 
 
 def watch(cfg):
@@ -636,8 +698,7 @@ def main():
 
     # Internal: the detached background follower (started by ensure_capture). Not user-facing.
     if args and args[0] == "_tail":
-        opt = {args[j]: args[j + 1] for j in range(1, len(args) - 1, 2)}
-        tail_follow(opt.get("--log"), opt.get("--out"))
+        tail_follow(args[1])
         return
 
     cfg = dict(DEFAULTS)
@@ -648,6 +709,7 @@ def main():
     cfg["poll"] = 2
     cfg["colors_explicit"] = bool(cfg["colors"])  # MTG_COLORS env counts as explicit
     cfg["capture_action"] = "start"               # for the `capture` command: start|status|stop
+    cfg["cap_mb"] = CAP_MB_DEFAULT                # captured-stream size cap (front-truncating)
     i = 0
     while i < len(args):
         a = args[i]
@@ -671,6 +733,8 @@ def main():
             i += 1; cfg["colors"] = args[i]; cfg["colors_explicit"] = True
         elif a == "--days":
             i += 1; cfg["days"] = int(args[i])
+        elif a == "--cap-mb":
+            i += 1; cfg["cap_mb"] = float(args[i])
         elif a == "--refresh":
             cfg["refresh"] = True
         elif a == "--brief":
