@@ -665,18 +665,42 @@ def analyze_pool(pool, picks, colors):
     }
 
 
+def _running_metrics(taken_cards, scry):
+    """Compact cumulative deck state THROUGH the current pick, embedded per pick so a reader never
+    has to reconstruct the pool. For the live (pending) pick this is your pool-so-far as you decide."""
+    from collections import Counter
+    counts = Counter(_kind(c.get("type")) for c in taken_cards)
+    nonland = [c for c in taken_cards if _kind(c.get("type")) != "land"]
+    curve = Counter(int(c["cmc"]) for c in nonland if isinstance(c["cmc"], int))
+    removal = sum(1 for c in taken_cards
+                  if _REMOVAL_RX.search(scry.get(c["id"], {}).get("text", "") or ""))
+    pips = Counter(ch for c in taken_cards for ch in (c.get("color") or "") if ch in "WUBRG")
+    colors = "".join(sorted((x for x, _ in pips.most_common(2)), key="WUBRG".index))
+    return {"n": len(taken_cards), "colors": colors,
+            "creatures": counts.get("creature", 0), "spells": counts.get("spell", 0),
+            "other": counts.get("other", 0), "two_drops": curve.get(2, 0),
+            "removal_est": removal, "curve": {str(mv): curve[mv] for mv in sorted(curve)}}
+
+
 def enrich_draft(cfg, draft):
     """Resolve every id in a reconstructed draft to names+ratings; offered lists sorted by GIH WR.
-    Adds an `analysis` block with deckbuilding metrics (curve, creature/spell counts, signals…)."""
+    Each pick carries (a) a cumulative `running` deck-state and (b) `wheel` flags on offered cards
+    that came back around (seen 8 picks earlier in the same pack). Adds a final `analysis` block."""
     pool_ids = [p["taken"] for p in draft["picks"] if p["taken"]]  # the deck = every card taken
     ids = {i for p in draft["picks"] for i in p["offered"]} | set(pool_ids)
     card, ratings_fmt = _card_enricher(cfg, ids)
-    picks = []
+    offered_ids = {(p["pack"], p["pick"]): set(p["offered"]) for p in draft["picks"]}
+    scry = load_scry()
+    picks, taken_sofar = [], []
     for p in draft["picks"]:
-        offered = [dict(card(i), taken=(i == p["taken"])) for i in p["offered"]]
+        prev = offered_ids.get((p["pack"], p["pick"] - 8), set())   # same pack, one lap earlier
+        offered = [dict(card(i), taken=(i == p["taken"]), wheel=(i in prev)) for i in p["offered"]]
         offered.sort(key=lambda c: c["gih"] or 0, reverse=True)
-        picks.append({"pack": p["pack"], "pick": p["pick"],
-                      "taken": card(p["taken"]) if p["taken"] else None, "offered": offered})
+        tk = card(p["taken"]) if p["taken"] else None
+        if tk:
+            taken_sofar = taken_sofar + [tk]
+        picks.append({"pack": p["pack"], "pick": p["pick"], "taken": tk,
+                      "running": _running_metrics(taken_sofar, scry), "offered": offered})
     pool = [card(i) for i in pool_ids]
     colors = cfg["colors"] if cfg.get("colors_explicit") else infer_colors(pool_ids, cfg)
     return {"set": cfg["set"], "fmt": cfg["fmt"], "event": draft.get("event", ""),
