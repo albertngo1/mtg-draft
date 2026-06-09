@@ -601,7 +601,8 @@ def _card_enricher(cfg, ids):
                 "iwd": s.get("drawn_improvement_win_rate") if s else None,
                 "alsa": s.get("avg_seen") if s else None,
                 "n": (s.get("ever_drawn_game_count") if s else 0) or 0,
-                "ds": ds.get(name.lower())}
+                "ds": ds.get(name.lower()),
+                "tags": _card_tags(meta)}
     return card, ratings_fmt
 
 
@@ -620,6 +621,63 @@ def _kind(type_line):
     if "Instant" in t or "Sorcery" in t:
         return "spell"
     return "other"
+
+
+# Theme/mechanic tags from oracle text + type/curve, so archetype themes emerge from the pool.
+# Mostly set-agnostic; the MKM-relevant ones (clues, exile, life-loss, disguise, evidence…) are here.
+_TAG_RX = [
+    ("clues",           re.compile(r"investigate|\bclue", re.I)),
+    ("exile",           re.compile(r"\bexile", re.I)),
+    ("life-loss",       re.compile(r"loses? \d+ life|lose life|each opponent loses|drain", re.I)),
+    ("lifegain",        re.compile(r"gains? \d+ life|gain life|lifelink", re.I)),
+    ("disguise",        re.compile(r"disguise|\bcloak\b", re.I)),
+    ("ward",            re.compile(r"\bward\b", re.I)),
+    ("collect-evidence", re.compile(r"collect evidence", re.I)),
+    ("suspect",         re.compile(r"\bsuspect", re.I)),
+    ("cases",           re.compile(r"to solve|solved\b", re.I)),
+    ("counters",        re.compile(r"\+1/\+1 counter", re.I)),
+    ("sacrifice",       re.compile(r"sacrifice", re.I)),
+    ("graveyard",       re.compile(r"graveyard", re.I)),
+    ("tokens",          re.compile(r"create .*token", re.I)),
+    ("evasion",         re.compile(r"flying|menace|can't be blocked|skulk|intimidate|trample", re.I)),
+    ("card-draw",       re.compile(r"draw (a|one|two|three|\d+) card", re.I)),
+]
+
+
+def _card_tags(meta):
+    """Tag a card by mechanic/theme + role so pool-wide archetype leanings can be aggregated."""
+    text = meta.get("text", "") or ""
+    cmc, tl = meta.get("cmc"), meta.get("type", "")
+    tags = [name for name, rx in _TAG_RX if rx.search(text)]
+    if _REMOVAL_RX.search(text):
+        tags.append("removal")
+    if _kind(tl) == "creature" and isinstance(cmc, int):
+        if cmc <= 2:
+            tags.append("early-creature")
+        if cmc >= 5:
+            tags.append("top-end")
+    return tags
+
+
+def _archetype_lean(themes, curve, counts):
+    """Rank the pool's strongest archetype signals (themes manifest, not prescribe). Aggro is a
+    curve/creature read; the rest are scored by theme density and only the top couple are returned."""
+    leans = []
+    nonland = sum(curve.values()) or 1
+    low = sum(n for mv, n in curve.items() if mv <= 2)
+    if counts.get("creature", 0) >= 14 and low / nonland >= 0.45:
+        leans.append("aggro / low-curve")
+    scored = [
+        ("aristocrats (sacrifice / life-loss)", themes.get("sacrifice", 0) + themes.get("life-loss", 0)),
+        ("clue / artifact value", themes.get("clues", 0)),
+        ("graveyard value", themes.get("graveyard", 0) + themes.get("collect-evidence", 0)),
+        ("+1/+1 counters", themes.get("counters", 0)),
+        ("exile-matters", themes.get("exile", 0)),
+        ("disguise / face-down tempo", themes.get("disguise", 0) + themes.get("ward", 0)),
+    ]
+    strong = sorted((x for x in scored if x[1] >= 6), key=lambda x: -x[1])
+    leans += [name for name, _ in strong[:2]]
+    return leans
 
 
 def analyze_pool(pool, picks, colors):
@@ -652,6 +710,20 @@ def analyze_pool(pool, picks, colors):
         flags.append(f"thin removal (~{removal}/3-4)")
     if five_plus > 6:
         flags.append(f"top-heavy ({five_plus} at 5+ MV, cap ~5-6)")
+    # theme tags across the pool -> emergent archetype lean
+    themes = Counter(t for c in pool for t in c.get("tags", []))
+    lean = _archetype_lean(themes, curve, counts)
+    # open-color read: premium cards (GIH >= 55%) still FLOWING to you late (pick >= 5) by color —
+    # a color the table isn't taking shows up late. (Pick 1-4 are too early to mean much.)
+    flowing = Counter()
+    for p in picks:
+        if p["pick"] >= 5:
+            for c in p["offered"]:
+                if c.get("gih") and c["gih"] >= 0.55:
+                    for ch in (c.get("color") or ""):
+                        if ch in "WUBRG":
+                            flowing[ch] += 1
+    open_signal = [{"color": col, "late_premiums_seen": n} for col, n in flowing.most_common() if n >= 4]
     return {
         "colors": colors,
         "counts": {"creatures": counts.get("creature", 0), "spells": counts.get("spell", 0),
@@ -661,13 +733,16 @@ def analyze_pool(pool, picks, colors):
         "two_drops": curve.get(2, 0), "five_plus": five_plus, "removal_est": removal,
         "targets": {"creatures": "15-18", "two_drops": "5-7", "removal": "3-4",
                     "lands": 17, "five_plus_cap": "~5-6"},
-        "signals": signals[:12], "flags": flags,
+        "themes": dict(themes.most_common()), "archetype_lean": lean,
+        "open_color_signal": open_signal, "signals": signals[:12], "flags": flags,
     }
 
 
-def _running_metrics(taken_cards, scry):
+def _running_metrics(taken_cards, passed_cards, scry):
     """Compact cumulative deck state THROUGH the current pick, embedded per pick so a reader never
-    has to reconstruct the pool. For the live (pending) pick this is your pool-so-far as you decide."""
+    has to reconstruct the pool. For the live (pending) pick this is your pool-so-far as you decide.
+    `passed_cards` are the cards you saw and DIDN'T take so far — aggregated by color (and premium
+    quality) to read open colors / whether premium cards were flowing to you."""
     from collections import Counter
     counts = Counter(_kind(c.get("type")) for c in taken_cards)
     nonland = [c for c in taken_cards if _kind(c.get("type")) != "land"]
@@ -676,10 +751,18 @@ def _running_metrics(taken_cards, scry):
                   if _REMOVAL_RX.search(scry.get(c["id"], {}).get("text", "") or ""))
     pips = Counter(ch for c in taken_cards for ch in (c.get("color") or "") if ch in "WUBRG")
     colors = "".join(sorted((x for x, _ in pips.most_common(2)), key="WUBRG".index))
+    passed_by_color = Counter(ch for c in passed_cards
+                              for ch in (c.get("color") or "") if ch in "WUBRG")
+    prem_by_color = Counter(ch for c in passed_cards if c.get("gih") and c["gih"] >= 0.55
+                            for ch in (c.get("color") or "") if ch in "WUBRG")
+    themes = Counter(t for c in taken_cards for t in c.get("tags", []))
     return {"n": len(taken_cards), "colors": colors,
             "creatures": counts.get("creature", 0), "spells": counts.get("spell", 0),
             "other": counts.get("other", 0), "two_drops": curve.get(2, 0),
-            "removal_est": removal, "curve": {str(mv): curve[mv] for mv in sorted(curve)}}
+            "removal_est": removal, "curve": {str(mv): curve[mv] for mv in sorted(curve)},
+            "passed_by_color": dict(passed_by_color),
+            "premiums_passed_by_color": dict(prem_by_color),
+            "themes": dict(themes.most_common())}
 
 
 def enrich_draft(cfg, draft):
@@ -691,7 +774,7 @@ def enrich_draft(cfg, draft):
     card, ratings_fmt = _card_enricher(cfg, ids)
     offered_ids = {(p["pack"], p["pick"]): set(p["offered"]) for p in draft["picks"]}
     scry = load_scry()
-    picks, taken_sofar = [], []
+    picks, taken_sofar, passed_sofar = [], [], []
     for p in draft["picks"]:
         prev = offered_ids.get((p["pack"], p["pick"] - 8), set())   # same pack, one lap earlier
         offered = [dict(card(i), taken=(i == p["taken"]), wheel=(i in prev)) for i in p["offered"]]
@@ -699,8 +782,9 @@ def enrich_draft(cfg, draft):
         tk = card(p["taken"]) if p["taken"] else None
         if tk:
             taken_sofar = taken_sofar + [tk]
+        passed_sofar = passed_sofar + [c for c in offered if not c["taken"]]
         picks.append({"pack": p["pack"], "pick": p["pick"], "taken": tk,
-                      "running": _running_metrics(taken_sofar, scry), "offered": offered})
+                      "running": _running_metrics(taken_sofar, passed_sofar, scry), "offered": offered})
     pool = [card(i) for i in pool_ids]
     colors = cfg["colors"] if cfg.get("colors_explicit") else infer_colors(pool_ids, cfg)
     return {"set": cfg["set"], "fmt": cfg["fmt"], "event": draft.get("event", ""),
@@ -790,10 +874,14 @@ def print_draft_summary(state, n_drafts, path):
               f"{c['other']} other · {c['lands']} land   |   ~{a['removal_est']} removal · "
               f"{a['two_drops']} two-drops · {a['five_plus']} at 5+ MV")
         print("  CURVE (nonland):  " + ("  ".join(f"{mv}:{n}" for mv, n in a["curve"].items()) or "—"))
-        if a["signals"]:
-            sig = ", ".join(f"{s['name']} {s['gih']*100:.0f}% (P{s['pack']}P{s['pick']})"
-                            for s in a["signals"][:5])
-            print(f"  OPEN SIGNALS (on-color premiums seen late):  {sig}")
+        if a.get("themes"):
+            th = "  ".join(f"{t}:{n}" for t, n in list(a["themes"].items())[:8])
+            print(f"  THEMES:  {th}")
+        if a.get("archetype_lean"):
+            print(f"  ARCHETYPE LEAN:  {'  ·  '.join(a['archetype_lean'])}")
+        if a.get("open_color_signal"):
+            oc = ", ".join(f"{s['color']} ({s['late_premiums_seen']})" for s in a["open_color_signal"])
+            print(f"  OPEN COLORS (late premiums flowing, pick 5+):  {oc}")
         if a["flags"]:
             print("  ⚠ " + "  ·  ".join(a["flags"]))
     print()

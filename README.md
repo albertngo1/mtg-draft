@@ -181,18 +181,29 @@ writes the most recent draft to **`drafts/current.json`**:
     "curve":  { "1": 7, "2": 12, "3": 8, "4": 7, "5": 4, "6": 1 },   // nonland mana curve
     "two_drops": 12, "five_plus": 5, "removal_est": 6,
     "targets": { "creatures": "15-18", "two_drops": "5-7", "removal": "3-4", "lands": 17 },
-    "signals": [ /* on-color premiums still seen late = an open lane */ ],
+    "themes": { "evasion": 13, "sacrifice": 12, "graveyard": 11, "clues": 8, ... },  // mechanic tags
+    "archetype_lean": [ "aggro / low-curve", "aristocrats (sacrifice / life-loss)" ],
+    "open_color_signal": [ { "color": "R", "late_premiums_seen": 14 }, ... ],  // colors flowing late
     "flags":   [ /* e.g. "few creatures (12/15-18)", "thin removal (~2/3-4)" */ ]
   },
   "picks": [
     { "pack": 1, "pick": 1,
-      "taken":   { "name": "Teysa, Opulent Oligarch", "gih": 0.615, "iwd": 0.10, "alsa": 1.8, ... },
-      "offered": [ { "name": "...", "gih": ..., "taken": false }, ... ] },   // all cards, sorted by GIH
+      "taken":   { "name": "Teysa, Opulent Oligarch", "gih": 0.615, "tags": ["clues","tokens"], ... },
+      "running": { "n": 1, "colors": "WB", "creatures": 1, "curve": {...},   // cumulative deck so far
+                   "passed_by_color": {...}, "premiums_passed_by_color": {...}, "themes": {...} },
+      "offered": [ { "name": "...", "gih": ..., "taken": false, "wheel": false, "tags": [...] }, ... ] },
     ...
   ],
   "pool": [ /* every card taken */ ]
 }
 ```
+
+Each pick's **`running`** block is the cumulative deck state *through that pick* (no reconstruction
+needed): curve, creature/spell counts, and what you've **passed by color** + **premiums passed by
+color** — so open lanes show up as you draft. Offered cards carry a **`wheel`** flag (true only when
+the card came back around — seen 8 picks earlier in the same pack, an 8-player lap) and **`tags`**
+(mechanic/theme labels). Pool-wide, those tags roll up into **`themes`** + an **`archetype_lean`**,
+and `open_color_signal` reports which colors kept flowing premium cards late (pick 5+).
 
 It also prints a pick-by-pick summary plus a **deck readout** (creature/spell/land counts, mana
 curve, removal estimate, two-drop count, open-color signals, and target-vs-actual flags drawn from

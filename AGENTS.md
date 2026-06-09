@@ -46,7 +46,10 @@ of the *entire* draft so far (every pack you saw, every card offered with its ra
 took at each pick). Run `python3 mtg-draft.py draft` to (re)build it on demand. **To answer any
 question about earlier picks ("what did I pass at P1P5?", "what's my curve/colors so far?"), READ
 `drafts/current.json` instead of re-reading the raw log** — the live log only retains the current
-pack. For re-run/rotated sets with no live win-rate data yet, it auto-proxies PremierDraft ratings
+pack. Each pick has a cumulative `running` block (curve, counts, what you've passed by color +
+premiums passed by color), offered cards carry `wheel` (true only on a real 8-player lap, pick≥9)
+and `tags`, and the pool rolls up into `themes` + `archetype_lean` + `open_color_signal` (colors
+flowing premiums late) — use these for signal reads and deckbuilding, don't recompute them. For re-run/rotated sets with no live win-rate data yet, it auto-proxies PremierDraft ratings
 (noted in `ratings_fmt`).
 
 Then, on the current pack, you:
