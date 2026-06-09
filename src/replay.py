@@ -11,14 +11,12 @@ HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))   # project r
 SRC = os.path.join(HERE, "src")
 DATA = os.path.join(HERE, "data")
 sys.path.insert(0, SRC)
-import importlib.util
-spec = importlib.util.spec_from_file_location("mtg", os.path.join(SRC, "mtg-draft.py"))
-mtg = importlib.util.module_from_spec(spec); spec.loader.exec_module(mtg)
+from mtgdraft.grades import load_grades_any
 
 PATH = sys.argv[1] if len(sys.argv) > 1 else os.path.join(DATA, "drafts", "current.json")
 draft = json.load(open(PATH))
 scry = json.load(open(os.path.join(DATA, "cache", "scryfall_arena.json")))
-grades, glabel = mtg.load_grades_any(draft.get("set", ""))
+grades, glabel = load_grades_any(draft.get("set", ""))
 
 COLORS = draft.get("analysis", {}).get("colors", "") or ""        # deck's final colors, e.g. "WB"
 BOMB = 0.57                                                       # GIH WR bomb threshold

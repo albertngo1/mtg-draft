@@ -122,8 +122,18 @@ tool always reads the local log.
 mtg-draft/
 ├─ mtg-draft.sh / mtg-draft.bat   # launchers (run from the repo root)
 ├─ src/
-│  ├─ mtg-draft.py                # the CLI / all the logic
-│  └─ replay.py                   # render a captured draft into a coached markdown replay
+│  ├─ mtg-draft.py                # thin entry shim → mtgdraft.cli.main()
+│  ├─ replay.py                   # render a captured draft into a coached markdown replay
+│  └─ mtgdraft/                   # the package (one concern per module)
+│     ├─ config.py                #   paths, defaults, colour names, log-path detection
+│     ├─ sources.py              #   17Lands + Scryfall fetch/cache (warm, seventeen, resolve)
+│     ├─ grades.py                #   reviewer-grade + LoL guide-note loaders
+│     ├─ analysis.py              #   tags, inflation, deck-needs, archetype, removal regex
+│     ├─ logread.py               #   read Player.log → current pack / picks / colours
+│     ├─ capture.py               #   the streaming daemon (+ auto-enrich hook)
+│     ├─ etl.py                   #   reconstruct drafts → enrich → current.json
+│     ├─ render.py                #   table / pool / summary printers, watch
+│     └─ cli.py                   #   arg parse + command dispatch (main)
 ├─ grades/                        # committed reviewer grades: <source>_<SET>.json
 ├─ lords-of-limited/              # committed expert set guides
 └─ data/                          # generated, gitignored
@@ -164,6 +174,13 @@ at a time, no matter how many times you call `pull`.
 Why: it gives a **durable, complete record** of the whole draft session, so a coach (or you)
 can answer "what were my options at P1P3?" by reading the saved stream instead of re-scraping
 the noisy multi-MB live log — which only ever retains the *latest* pack anyway.
+
+**Auto-enrich.** As picks stream in, the capture process also re-parses the stream and refreshes
+`data/drafts/current.json` on its own (best-effort, fully isolated so an enrich error can never kill
+the byte capture). So the structured draft store stays live with **no manual `pull`** — as long as
+the daemon is running it doesn't matter whether you ever open the tool. It's skipped only if the
+Scryfall cache is cold (run `warm` once), so the background process never makes surprise network
+calls on a cold start.
 
 ```bash
 python3 src/mtg-draft.py capture          # start it (if not running) and print status
