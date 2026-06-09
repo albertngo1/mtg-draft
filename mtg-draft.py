@@ -66,7 +66,7 @@ Config (env or flags):
   MTG_LOG    override the Player.log path (auto-detected per OS by default)
   MTG_SSH, MTG_SSH_KEY    optional remote-read target + key (leave unset for local)
 """
-import sys, os, json, re, time, datetime, signal, subprocess, urllib.request, urllib.error
+import sys, os, json, re, time, datetime, signal, hashlib, subprocess, urllib.request, urllib.error
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 CACHE = os.path.join(HERE, "cache")
@@ -596,7 +596,7 @@ def _card_enricher(cfg, ids):
         return {"id": cid, "name": name,
                 "color": (s.get("color") if s else meta.get("color")) or "C",
                 "rarity": ((s.get("rarity") if s else meta.get("rarity")) or "?")[:1].upper(),
-                "cmc": meta.get("cmc"),
+                "cmc": meta.get("cmc"), "type": meta.get("type", ""),
                 "gih": s.get("ever_drawn_win_rate") if s else None,
                 "iwd": s.get("drawn_improvement_win_rate") if s else None,
                 "alsa": s.get("avg_seen") if s else None,
@@ -605,8 +605,69 @@ def _card_enricher(cfg, ids):
     return card, ratings_fmt
 
 
+_REMOVAL_RX = re.compile(
+    r"destroy target|exile target (creature|permanent|artifact|enchantment|nonland|tapped)|"
+    r"deals \d+ damage to (any target|target|each|it)|fight|gets [-−]\d+/[-−]\d+|"
+    r"[-−]\d+/[-−]\d+ until|tap target|can't block", re.I)
+
+
+def _kind(type_line):
+    t = type_line or ""
+    if "Land" in t:
+        return "land"
+    if "Creature" in t or "Vehicle" in t:
+        return "creature"
+    if "Instant" in t or "Sorcery" in t:
+        return "spell"
+    return "other"
+
+
+def analyze_pool(pool, picks, colors):
+    """Deckbuilding metrics over the picked pool: composition, curve, two-drops, removal estimate,
+    signals (on-color premiums available late = open lane), and target-vs-actual flags."""
+    from collections import Counter
+    scry = load_scry()
+    counts = Counter(_kind(c.get("type")) for c in pool)
+    nonland = [c for c in pool if _kind(c.get("type")) != "land"]
+    curve = Counter(int(c["cmc"]) for c in nonland if isinstance(c["cmc"], int))
+    removal = sum(1 for c in pool
+                  if _REMOVAL_RX.search((scry.get(c["id"], {}).get("text", "") or "")))
+    on = set((colors or "").upper())
+    signals = []                                    # premium on-color cards still seen late (pick >= 6)
+    for p in picks:
+        if p["pick"] >= 6:
+            for c in p["offered"]:
+                col = c["color"]
+                oncol = col == "C" or (on and all(x in on for x in col if x in "WUBRG"))
+                if c.get("gih") and c["gih"] >= 0.55 and oncol:
+                    signals.append({"pack": p["pack"], "pick": p["pick"],
+                                    "name": c["name"], "gih": round(c["gih"], 3)})
+    five_plus = sum(n for mv, n in curve.items() if mv >= 5)
+    flags = []
+    if counts.get("creature", 0) < 15:
+        flags.append(f"few creatures ({counts.get('creature',0)}/15-18)")
+    if curve.get(2, 0) < 5:
+        flags.append(f"low on 2-drops ({curve.get(2,0)}/5-7)")
+    if removal < 3:
+        flags.append(f"thin removal (~{removal}/3-4)")
+    if five_plus > 6:
+        flags.append(f"top-heavy ({five_plus} at 5+ MV, cap ~5-6)")
+    return {
+        "colors": colors,
+        "counts": {"creatures": counts.get("creature", 0), "spells": counts.get("spell", 0),
+                   "other": counts.get("other", 0), "lands": counts.get("land", 0),
+                   "nonland": len(nonland), "total": len(pool)},
+        "curve": {str(mv): curve[mv] for mv in sorted(curve)},
+        "two_drops": curve.get(2, 0), "five_plus": five_plus, "removal_est": removal,
+        "targets": {"creatures": "15-18", "two_drops": "5-7", "removal": "3-4",
+                    "lands": 17, "five_plus_cap": "~5-6"},
+        "signals": signals[:12], "flags": flags,
+    }
+
+
 def enrich_draft(cfg, draft):
-    """Resolve every id in a reconstructed draft to names+ratings; offered lists sorted by GIH WR."""
+    """Resolve every id in a reconstructed draft to names+ratings; offered lists sorted by GIH WR.
+    Adds an `analysis` block with deckbuilding metrics (curve, creature/spell counts, signals…)."""
     pool_ids = [p["taken"] for p in draft["picks"] if p["taken"]]  # the deck = every card taken
     ids = {i for p in draft["picks"] for i in p["offered"]} | set(pool_ids)
     card, ratings_fmt = _card_enricher(cfg, ids)
@@ -616,15 +677,44 @@ def enrich_draft(cfg, draft):
         offered.sort(key=lambda c: c["gih"] or 0, reverse=True)
         picks.append({"pack": p["pack"], "pick": p["pick"],
                       "taken": card(p["taken"]) if p["taken"] else None, "offered": offered})
+    pool = [card(i) for i in pool_ids]
+    colors = cfg["colors"] if cfg.get("colors_explicit") else infer_colors(pool_ids, cfg)
     return {"set": cfg["set"], "fmt": cfg["fmt"], "event": draft.get("event", ""),
-            "ratings_fmt": ratings_fmt, "n_picks": len(picks), "picks": picks,
-            "pool": [card(i) for i in pool_ids]}
+            "ratings_fmt": ratings_fmt, "n_picks": len(picks),
+            "analysis": analyze_pool(pool, picks, colors), "picks": picks, "pool": pool}
+
+
+def _write_json(path, obj):
+    tmp = path + ".tmp"
+    with open(tmp, "w") as f:
+        json.dump(obj, f, indent=1)
+    os.replace(tmp, path)
+
+
+def _draft_fingerprint(draft):
+    """Stable id for a draft = hash of its P1P1 pack, so re-runs overwrite the same archive file
+    (no per-pick duplicates) and a different draft gets a different file."""
+    first = sorted(draft["picks"][0]["offered"]) if draft["picks"] else []
+    return hashlib.sha1((",".join(first)).encode()).hexdigest()[:8]
+
+
+def _draft_cfg(cfg, draft):
+    """Per-draft copy of cfg with set/fmt auto-detected from this draft's EventName."""
+    dcfg = dict(cfg)
+    parts = draft.get("event", "").split("_")       # "QuickDraft_MKM_0260608" -> fmt, set
+    if len(parts) >= 2 and parts[1] and not cfg.get("set_explicit"):
+        dcfg["set"] = parts[1]
+    if parts and parts[0] and not cfg.get("fmt_explicit"):
+        dcfg["fmt"] = parts[0]
+    return dcfg
 
 
 def refresh_current(cfg):
-    """Reconstruct the MOST RECENT draft from the capture stream, enrich it, save current.json.
-    Returns (state, n_drafts) or None if there's nothing to parse. Auto-detects the set from the
-    draft's EventName (e.g. QuickDraft_MKM_...) unless --set was given explicitly."""
+    """Parse the capture stream and persist every draft in it. Each draft -> a stable archive at
+    drafts/<set>_<fingerprint>.json (idempotent — re-runs overwrite the same file), and the MOST
+    RECENT draft is also written to drafts/current.json. Older, already-archived drafts are skipped
+    (they don't change), so this stays cheap to call every pick. Returns (latest_state, n_drafts,
+    current_path) or None if there's nothing to parse."""
     try:
         with open(STREAM, encoding="utf-8", errors="replace") as f:
             text = f.read()
@@ -633,20 +723,22 @@ def refresh_current(cfg):
     drafts = reconstruct_drafts(text)
     if not drafts:
         return None
-    cur = drafts[-1]
-    parts = cur.get("event", "").split("_")        # "QuickDraft_MKM_0260608" -> fmt, set
-    if len(parts) >= 2 and parts[1] and not cfg.get("set_explicit"):
-        cfg["set"] = parts[1]
-    if parts and parts[0] and not cfg.get("fmt_explicit"):
-        cfg["fmt"] = parts[0]                       # use the event's own format for ratings
-    state = enrich_draft(cfg, cur)
     os.makedirs(DRAFTS, exist_ok=True)
-    path = os.path.join(DRAFTS, "current.json")
-    tmp = path + ".tmp"
-    with open(tmp, "w") as f:
-        json.dump(state, f, indent=1)
-    os.replace(tmp, path)
-    return state, len(drafts), path
+    latest = None
+    for idx, d in enumerate(drafts):
+        is_latest = idx == len(drafts) - 1
+        dcfg = _draft_cfg(cfg, d)
+        archive = os.path.join(DRAFTS, f"{dcfg['set']}_{_draft_fingerprint(d)}.json")
+        if not is_latest and os.path.exists(archive):
+            continue                                # older draft already saved; won't change
+        state = enrich_draft(dcfg, d)
+        state["draft_id"] = _draft_fingerprint(d)
+        _write_json(archive, state)
+        if is_latest:
+            cur_path = os.path.join(DRAFTS, "current.json")
+            _write_json(cur_path, state)
+            latest = (state, len(drafts), cur_path)
+    return latest
 
 
 def print_draft_summary(state, n_drafts, path):
@@ -667,6 +759,19 @@ def print_draft_summary(state, n_drafts, path):
                 and best["gih"] - tk["gih"] > 0.03:
             line += f"   ⚠ passed {best['name']} ({best['gih']*100:.1f}%)"
         print(line)
+    a = state.get("analysis")
+    if a:
+        c = a["counts"]
+        print(f"\n  DECK ({a['colors'] or '—'}):  {c['creatures']} creatures · {c['spells']} spells · "
+              f"{c['other']} other · {c['lands']} land   |   ~{a['removal_est']} removal · "
+              f"{a['two_drops']} two-drops · {a['five_plus']} at 5+ MV")
+        print("  CURVE (nonland):  " + ("  ".join(f"{mv}:{n}" for mv, n in a["curve"].items()) or "—"))
+        if a["signals"]:
+            sig = ", ".join(f"{s['name']} {s['gih']*100:.0f}% (P{s['pack']}P{s['pick']})"
+                            for s in a["signals"][:5])
+            print(f"  OPEN SIGNALS (on-color premiums seen late):  {sig}")
+        if a["flags"]:
+            print("  ⚠ " + "  ·  ".join(a["flags"]))
     print()
 
 

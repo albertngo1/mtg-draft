@@ -174,7 +174,16 @@ writes the most recent draft to **`drafts/current.json`**:
 ```jsonc
 {
   "set": "MKM", "event": "QuickDraft_MKM_...", "ratings_fmt": "PremierDraft (historical proxy)",
-  "n_picks": 39,
+  "n_picks": 39, "draft_id": "bc3cfb81",
+  "analysis": {                                   // deckbuilding metrics over the picked pool
+    "colors": "WB",
+    "counts": { "creatures": 21, "spells": 14, "other": 4, "lands": 0, "nonland": 39, "total": 39 },
+    "curve":  { "1": 7, "2": 12, "3": 8, "4": 7, "5": 4, "6": 1 },   // nonland mana curve
+    "two_drops": 12, "five_plus": 5, "removal_est": 6,
+    "targets": { "creatures": "15-18", "two_drops": "5-7", "removal": "3-4", "lands": 17 },
+    "signals": [ /* on-color premiums still seen late = an open lane */ ],
+    "flags":   [ /* e.g. "few creatures (12/15-18)", "thin removal (~2/3-4)" */ ]
+  },
   "picks": [
     { "pack": 1, "pick": 1,
       "taken":   { "name": "Teysa, Opulent Oligarch", "gih": 0.615, "iwd": 0.10, "alsa": 1.8, ... },
@@ -185,10 +194,17 @@ writes the most recent draft to **`drafts/current.json`**:
 }
 ```
 
-It also prints a pick-by-pick summary, flagging picks where a clearly higher-GIH card was left in
-the pack (`⚠ passed ...`). This lets a coach answer "what did I pass at P1P5?" from one small file
-instead of re-scraping the multi-MB live log. `pull` refreshes `current.json` automatically each
-pick, so it stays current during a live draft. `drafts/` is gitignored.
+It also prints a pick-by-pick summary plus a **deck readout** (creature/spell/land counts, mana
+curve, removal estimate, two-drop count, open-color signals, and target-vs-actual flags drawn from
+standard Limited deckbuilding rules), and flags picks where a clearly higher-GIH card was left in
+the pack (`⚠ passed ...`). This lets a coach answer "what did I pass at P1P5?" or "is my curve/
+creature count healthy?" from one small file instead of re-scraping the multi-MB live log.
+
+**Persistence.** Every draft in the stream is saved to a stable, idempotent archive at
+`drafts/<set>_<fingerprint>.json` (fingerprint = hash of the P1P1 pack, so re-runs overwrite the
+same file rather than piling up), and the most recent is mirrored to `drafts/current.json`. `pull`
+refreshes these automatically each pick. So a draft is preserved permanently once it's been seen,
+even after it ages out of the rolling capture stream. `drafts/` is gitignored (local archive).
 
 **Ratings for re-run / rotated sets:** if the drafted format has no 17Lands win-rate data yet (e.g. a
 Quick Draft re-run early in its window), `draft` automatically proxies with the set's original
