@@ -229,6 +229,7 @@ for pk in (1, 2, 3):
 if a.get("open_color_readable"):
     out.append(f"- **Open-color read (premiums flowing late):** {a['open_color_readable']}")
 
-dest = os.path.join(DATA, "drafts", f"{draft.get('set','draft')}-replay.md")
+dest = sys.argv[2] if len(sys.argv) > 2 \
+    else os.path.join(DATA, "drafts", f"{draft.get('set','draft')}-replay.md")
 open(dest, "w").write("\n".join(out))
 print("wrote", os.path.relpath(dest, HERE), f"({len(draft['picks'])} picks)")

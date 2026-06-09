@@ -40,13 +40,16 @@ That reads the **current** pack from `Player.log` (locally by default), and prin
 ranked by GIH WR with on-color cards marked `▸`, and (b) a **"what each card does"** section with
 oracle text + P/T.
 
-**Draft history (so you don't forget earlier picks):** `pull` also runs a side-car capture of the
-whole `Player.log` stream and, each pick, refreshes **`data/drafts/current.json`** — a structured record
-of the *entire* draft so far (every pack you saw, every card offered with its ratings, and what you
-took at each pick). Run `python3 src/mtg-draft.py draft` to (re)build it on demand. **To answer any
-question about earlier picks ("what did I pass at P1P5?", "what's my curve/colors so far?"), READ
-`data/drafts/current.json` instead of re-reading the raw log** — the live log only retains the current
-pack. Each pick has a cumulative `running` block (curve, counts, what you've passed by color +
+**Draft history (so you don't forget earlier picks):** a side-car capture mirrors the whole
+`Player.log` stream and, each pick, auto-refreshes the structured store — **no manual `pull` needed
+as long as the capture daemon runs.** Each draft is persisted as a self-contained bundle folder
+`data/drafts/<set>_<fingerprint>/` holding `draft.json` (the enriched cumulative store), `raw.log`
+(this draft's stream slice), and `replay.md` (the coached audit, auto-written once the draft
+completes). The most recent draft's `draft.json` is also mirrored to **`data/drafts/current.json`**.
+Run `python3 src/mtg-draft.py draft` to (re)build on demand. **To answer any question about earlier
+picks ("what did I pass at P1P5?", "what's my curve/colors so far?"), READ `data/drafts/current.json`
+(or a specific draft's `draft.json`) instead of re-reading the raw log** — the live log only retains
+the current pack. Each pick has a cumulative `running` block (curve, counts, what you've passed by color +
 premiums passed by color, plus **`needs` / `needs_readable`** — what the deck-so-far is still short
 on, scaled to draft progress, e.g. `"2-drops (1), removal (~0)"` or `"on track"`; steer the next
 pick toward these gaps), offered cards carry `wheel` (true only on a real 8-player lap, pick≥9),

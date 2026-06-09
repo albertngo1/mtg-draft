@@ -1,5 +1,5 @@
 import sys, os, json, re, time, datetime, signal, hashlib, subprocess, urllib.request, urllib.error
-from .config import DRAFTS, STREAM
+from .config import DRAFTS, REPLAY, STREAM
 from .sources import load_scry, resolve_ids, seventeen
 from .grades import load_grades_any, load_guide_notes
 from .analysis import COLOR_NAMES, _REMOVAL_RX, _archetype_lean, _card_tags, _color_phrase, _deck_needs, _inflation, _kind
@@ -29,18 +29,19 @@ def _botdraft_payloads(text):
                  "DraftPack": re.findall(r"\d{5,6}", dp.group(1)),
                  "PickedCards": re.findall(r"\d{5,6}", pc.group(1)) if pc else [],
                  "EventName": ev.group(1) if ev else ""}
-        out.append(p)
+        out.append((p, ln))                            # keep the raw line for per-draft raw.log slicing
     return out
 def reconstruct_drafts(text):
     """Segment the stream into drafts and reconstruct each pick (offered + what was taken).
     Returns a list of {event, picks:[{pack,pick,offered:[ids],taken:id|None}], pool:[ids]}."""
     drafts, cur = [], None
-    for p in _botdraft_payloads(text):
+    for p, ln in _botdraft_payloads(text):
         reset = p["PackNumber"] == 0 and p["PickNumber"] == 0
         if cur is None or (reset and cur.get("_last") != (0, 0)):
-            cur = {"event": p.get("EventName", ""), "entries": []}
+            cur = {"event": p.get("EventName", ""), "entries": [], "raw": []}
             drafts.append(cur)
         cur["entries"].append(p)
+        cur["raw"].append(ln)                          # this draft's slice of the rolling stream
         cur["_last"] = (p["PackNumber"], p["PickNumber"])
     from collections import Counter
     for d in drafts:
@@ -68,6 +69,7 @@ def reconstruct_drafts(text):
                           "offered": e["DraftPack"], "taken": taken})
         d["picks"] = picks
         d["pool"] = seq[-1]["PickedCards"] if seq else []
+        d["raw"] = "\n".join(d.get("raw", []))         # join the draft's raw stream lines
         d.pop("entries", None); d.pop("_last", None)
     return drafts
 def _card_enricher(cfg, ids):
@@ -241,12 +243,36 @@ def _draft_cfg(cfg, draft):
     if parts and parts[0] and not cfg.get("fmt_explicit"):
         dcfg["fmt"] = parts[0]
     return dcfg
+def _is_complete(picks):
+    """Has this draft finished? True once the final pack has been drafted to its last pick — i.e.
+    we've reached pack 3+ and its last pick equals pack 1's size (the pack length). A draft still
+    in progress (the current one) has fewer picks and stays open. Derived purely from the log, so
+    it works whether or not the tool was driven live."""
+    if not picks:
+        return False
+    by_pack = {}
+    for p in picks:
+        by_pack.setdefault(p["pack"], []).append(p["pick"])
+    pack_size = max(by_pack.get(1, [0]))
+    last_pack = max(by_pack)
+    return last_pack >= 3 and pack_size > 0 and max(by_pack[last_pack]) >= pack_size
+
+def _make_replay(draft_json, out_md):
+    """Best-effort: render the coached replay for a completed draft into its folder. Subprocess so a
+    replay failure can never disturb the ETL/capture path."""
+    try:
+        subprocess.run([sys.executable, REPLAY, draft_json, out_md],
+                       check=False, capture_output=True, timeout=90)
+    except Exception:
+        pass
+
 def refresh_current(cfg):
-    """Parse the capture stream and persist every draft in it. Each draft -> a stable archive at
-    drafts/<set>_<fingerprint>.json (idempotent — re-runs overwrite the same file), and the MOST
-    RECENT draft is also written to drafts/current.json. Older, already-archived drafts are skipped
-    (they don't change), so this stays cheap to call every pick. Returns (latest_state, n_drafts,
-    current_path) or None if there's nothing to parse."""
+    """Parse the capture stream and persist every draft in it as a self-contained BUNDLE folder:
+    drafts/<set>_<fingerprint>/ holding draft.json (the enriched cumulative store), raw.log (just
+    this draft's slice of the rolling stream), and — once the draft is complete — replay.md (the
+    coached audit/playback). The most recent draft is also mirrored to drafts/current.json. Older,
+    already-bundled drafts are skipped (they don't change), so this stays cheap to call every pick.
+    Returns (latest_state, n_drafts, current_path) or None if there's nothing to parse."""
     try:
         with open(STREAM, encoding="utf-8", errors="replace") as f:
             text = f.read()
@@ -260,12 +286,23 @@ def refresh_current(cfg):
     for idx, d in enumerate(drafts):
         is_latest = idx == len(drafts) - 1
         dcfg = _draft_cfg(cfg, d)
-        archive = os.path.join(DRAFTS, f"{dcfg['set']}_{_draft_fingerprint(d)}.json")
-        if not is_latest and os.path.exists(archive):
-            continue                                # older draft already saved; won't change
+        fp = _draft_fingerprint(d)
+        folder = os.path.join(DRAFTS, f"{dcfg['set']}_{fp}")
+        draft_json = os.path.join(folder, "draft.json")
+        if not is_latest and os.path.exists(draft_json):
+            continue                                # older draft already bundled; won't change
+        os.makedirs(folder, exist_ok=True)
+        raw = d.pop("raw", "")                       # keep raw out of the enriched JSON
         state = enrich_draft(dcfg, d)
-        state["draft_id"] = _draft_fingerprint(d)
-        _write_json(archive, state)
+        state["draft_id"] = fp
+        _write_json(draft_json, state)
+        try:
+            with open(os.path.join(folder, "raw.log"), "w", encoding="utf-8") as f:
+                f.write(raw + "\n")
+        except Exception:
+            pass
+        if (not is_latest) or _is_complete(state["picks"]):
+            _make_replay(draft_json, os.path.join(folder, "replay.md"))
         if is_latest:
             cur_path = os.path.join(DRAFTS, "current.json")
             _write_json(cur_path, state)

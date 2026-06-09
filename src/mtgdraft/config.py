@@ -3,6 +3,7 @@ import sys, os, json, re, time, datetime, signal, hashlib, subprocess, urllib.re
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # repo root (this file is src/mtgdraft/)
 HERE = ROOT                            # kept for the relpath() display calls below
 SHIM = os.path.join(ROOT, "src", "mtg-draft.py")  # entry the daemon re-spawns for the hidden `_tail` worker
+REPLAY = os.path.join(ROOT, "src", "replay.py")   # coached-replay renderer (invoked to auto-write replay.md)
 DATA = os.path.join(ROOT, "data")      # gitignored generated data: cache/ drafts/ logs/
 CACHE = os.path.join(DATA, "cache")
 GRADES = os.path.join(ROOT, "grades")  # committed external-grade files: <source>_<SET>.json

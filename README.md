@@ -138,7 +138,7 @@ mtg-draft/
 ├─ lords-of-limited/              # committed expert set guides
 └─ data/                          # generated, gitignored
    ├─ cache/                      # 17Lands + Scryfall caches
-   ├─ drafts/                     # parsed per-draft JSON (current.json + archives)
+   ├─ drafts/                     # per-draft bundles <set>_<fp>/{draft.json,raw.log,replay.md} + current.json
    └─ logs/                       # raw Player.log capture stream
 ```
 
@@ -252,11 +252,21 @@ standard Limited deckbuilding rules), and flags picks where a clearly higher-GIH
 the pack (`⚠ passed ...`). This lets a coach answer "what did I pass at P1P5?" or "is my curve/
 creature count healthy?" from one small file instead of re-scraping the multi-MB live log.
 
-**Persistence.** Every draft in the stream is saved to a stable, idempotent archive at
-`data/drafts/<set>_<fingerprint>.json` (fingerprint = hash of the P1P1 pack, so re-runs overwrite the
-same file rather than piling up), and the most recent is mirrored to `data/drafts/current.json`. `pull`
-refreshes these automatically each pick. So a draft is preserved permanently once it's been seen,
-even after it ages out of the rolling capture stream. `data/drafts/` is gitignored (local archive).
+**Per-draft bundles.** Every draft in the stream is persisted as a self-contained **bundle folder**,
+`data/drafts/<set>_<fingerprint>/` (fingerprint = hash of the P1P1 pack, so re-runs overwrite the same
+folder rather than piling up), holding three artifacts:
+
+| file | what |
+|---|---|
+| `draft.json` | the enriched cumulative data store (every pick: offered+ratings+tags+inflation+guide, `running` state, `analysis`) |
+| `raw.log` | just **this draft's** slice of the rolling stream (its `BotDraft` lines), spliced out by the P1P1 segmentation |
+| `replay.md` | the coached audit/playback — **auto-generated once the draft completes** (final pack drafted to its last pick) |
+
+The most recent draft's `draft.json` is also mirrored to `data/drafts/current.json`. The capture daemon
+refreshes all of this automatically each pick (or you can run `draft`/`pull`). So a draft is preserved
+permanently once seen — bundle and all — even after it ages out of the rolling capture stream.
+Completion is detected from the log itself (pick count reaches the final pack's last pick), so the
+replay fires whether or not you ever drove the tool. `data/drafts/` is gitignored (local archive).
 
 **Ratings for re-run / rotated sets:** if the drafted format has no 17Lands win-rate data yet (e.g. a
 Quick Draft re-run early in its window), `draft` automatically proxies with the set's original
