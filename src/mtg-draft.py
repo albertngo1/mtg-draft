@@ -68,11 +68,13 @@ Config (env or flags):
 """
 import sys, os, json, re, time, datetime, signal, hashlib, subprocess, urllib.request, urllib.error
 
-HERE = os.path.dirname(os.path.abspath(__file__))
-CACHE = os.path.join(HERE, "cache")
-GRADES = os.path.join(HERE, "grades")  # committed external-grade files: <source>_<SET>.json
-DRAFTS = os.path.join(HERE, "drafts")  # ETL output: parsed per-draft JSON (gitignored)
-LOGDIR = os.path.join(HERE, "logs")  # side-car capture of the raw Player.log stream (gitignored)
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # project root (this file is in src/)
+HERE = ROOT                            # kept for the relpath() display calls below
+DATA = os.path.join(ROOT, "data")      # gitignored generated data: cache/ drafts/ logs/
+CACHE = os.path.join(DATA, "cache")
+GRADES = os.path.join(ROOT, "grades")  # committed external-grade files: <source>_<SET>.json
+DRAFTS = os.path.join(DATA, "drafts")  # ETL output: parsed per-draft JSON (gitignored)
+LOGDIR = os.path.join(DATA, "logs")  # side-car capture of the raw Player.log stream (gitignored)
 STREAM = os.path.join(LOGDIR, "player_stream.log")  # everything Player.log emits, mirrored here
 PIDFILE = os.path.join(LOGDIR, ".capture.pid")       # PID of the running background follower
 CFGFILE = os.path.join(LOGDIR, ".capture.json")      # source/cap config the follower reads

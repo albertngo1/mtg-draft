@@ -24,16 +24,16 @@ git clone <your-fork-url> mtg-draft && cd mtg-draft
 
 # Once per set: pre-cache card text + mana values so live picks make zero network calls.
 # Use the 17Lands expansion code for the set you're drafting (see "Finding the set code" below).
-python3 mtg-draft.py warm --set FIN
+python3 src/mtg-draft.py warm --set FIN
 
 # During the draft — read the current pack from the local log and rank it:
-python3 mtg-draft.py pull --set FIN --fmt PremierDraft
+python3 src/mtg-draft.py pull --set FIN --fmt PremierDraft
 ```
 
-On **Windows**, use `python` and either `mtg-draft.py` directly or the `mtg-draft.bat` wrapper:
+On **Windows**, use `python` and either `src/mtg-draft.py` directly or the `mtg-draft.bat` wrapper:
 
 ```bat
-python mtg-draft.py warm --set FIN
+python src/mtg-draft.py warm --set FIN
 mtg-draft.bat pull --set FIN --fmt PremierDraft
 ```
 
@@ -43,25 +43,25 @@ On macOS/Linux there's also a `./mtg-draft.sh` wrapper (`./mtg-draft.sh pull ...
 
 ```bash
 # Read the current pack from the log, rank it + show oracle text (colors auto-detected from picks)
-python3 mtg-draft.py pull --set FIN --fmt PremierDraft
+python3 src/mtg-draft.py pull --set FIN --fmt PremierDraft
 
 # Audit your picks so far: creatures/spells/lands split, curve, on/off-color, CABS check
-python3 mtg-draft.py pool --set FIN
+python3 src/mtg-draft.py pool --set FIN
 
 # Stream: auto-print the ranked table every time a new pack appears (run in its own terminal)
-python3 mtg-draft.py watch --set FIN
+python3 src/mtg-draft.py watch --set FIN
 
 # Manually rank an explicit list of Arena card IDs
-python3 mtg-draft.py rank --set FIN --colors UR 102690 102462 102498
+python3 src/mtg-draft.py rank --set FIN --colors UR 102690 102462 102498
 
 # Resolve IDs to name|cmc|color|type (handy for deck audits)
-python3 mtg-draft.py resolve 102690 102462
+python3 src/mtg-draft.py resolve 102690 102462
 
 # Capture: show the background log-capture status (see "Recording the raw log stream" below)
-python3 mtg-draft.py capture          # start (if needed) + status   ·   `capture stop` to end it
+python3 src/mtg-draft.py capture          # start (if needed) + status   ·   `capture stop` to end it
 
-# Draft history: parse the captured stream into drafts/current.json + a pick-by-pick summary
-python3 mtg-draft.py draft            # (see "Reconstructed draft history" below)
+# Draft history: parse the captured stream into data/drafts/current.json + a pick-by-pick summary
+python3 src/mtg-draft.py draft            # (see "Reconstructed draft history" below)
 ```
 
 Output: a table sorted by GIH WR (on-color cards per `--colors` marked `▸`, off-color tagged
@@ -105,7 +105,7 @@ If Arena runs on a *different* machine than the one running this tool (e.g. you 
 a server and play on a laptop), point it at the other machine over SSH instead of reading locally:
 
 ```bash
-python3 mtg-draft.py pull \
+python3 src/mtg-draft.py pull \
   --ssh user@host \
   --ssh-key ~/.ssh/your_key \
   --set FIN --fmt PremierDraft
@@ -116,15 +116,34 @@ python3 mtg-draft.py pull \
 SSH mode is **opt-in** — it activates only when `--ssh`/`MTG_SSH` is set. With no SSH target the
 tool always reads the local log.
 
+## Repository layout
+
+```
+mtg-draft/
+├─ mtg-draft.sh / mtg-draft.bat   # launchers (run from the repo root)
+├─ src/
+│  ├─ mtg-draft.py                # the CLI / all the logic
+│  └─ replay.py                   # render a captured draft into a coached markdown replay
+├─ grades/                        # committed reviewer grades: <source>_<SET>.json
+├─ lords-of-limited/              # committed expert set guides
+└─ data/                          # generated, gitignored
+   ├─ cache/                      # 17Lands + Scryfall caches
+   ├─ drafts/                     # parsed per-draft JSON (current.json + archives)
+   └─ logs/                       # raw Player.log capture stream
+```
+
+Paths resolve relative to the repo root regardless of where you invoke from, so
+`python3 src/mtg-draft.py …`, `./mtg-draft.sh …`, and the `.bat` wrapper are interchangeable.
+
 ## How it works
 
 1. `pull` reads the last `DraftPack` array out of `Player.log` (locally by default).
 2. 17Lands `card_ratings/data` for the set+format provides GIH WR / IWD / ALSA **and** the
    `mtga_id` for every card — so packs join to stats directly by ID (no fragile name-matching).
-   Cached 24h in `cache/`.
+   Cached 24h in `data/cache/`.
 3. Scryfall supplies only what 17Lands lacks — mana cost, P/T, oracle text. `warm` pre-pulls the
    whole set via the `e:<set>` search in one paginated walk; otherwise misses are resolved
-   one-by-one via `cards/arena/<id>`. Cached persistently in `cache/scryfall_arena.json`.
+   one-by-one via `cards/arena/<id>`. Cached persistently in `data/cache/scryfall_arena.json`.
 4. Sorts by GIH WR, prints the table + the card-text section.
 
 After `warm`, a `pull`/`rank` for that set makes **zero** network round-trips until the 24h
@@ -138,7 +157,7 @@ take it now.
 
 Every draft command (`pull` / `pool` / `watch`) automatically starts a small **background
 capture process** the first time it runs. That process follows `Player.log` and mirrors
-**everything it emits** — unfiltered — into `logs/player_stream.log`, and keeps following it
+**everything it emits** — unfiltered — into `data/logs/player_stream.log`, and keeps following it
 (re-opening across Arena restarts) until you stop it. It's idempotent: only one capture runs
 at a time, no matter how many times you call `pull`.
 
@@ -147,9 +166,9 @@ can answer "what were my options at P1P3?" by reading the saved stream instead o
 the noisy multi-MB live log — which only ever retains the *latest* pack anyway.
 
 ```bash
-python3 mtg-draft.py capture          # start it (if not running) and print status
-python3 mtg-draft.py capture status   # just print status (pid, source, stream size, cap)
-python3 mtg-draft.py capture stop     # stop the background capture
+python3 src/mtg-draft.py capture          # start it (if not running) and print status
+python3 src/mtg-draft.py capture status   # just print status (pid, source, stream size, cap)
+python3 src/mtg-draft.py capture stop     # stop the background capture
 ```
 
 **Size cap.** The stream is bounded by a **front-truncating** cap (default **50 MB**, set with
@@ -159,17 +178,17 @@ draft spans only ~0.25 MB of the stream, so 50 MB holds ~6 h of play (200+ draft
 trimming, and the parsed draft is persisted to its own JSON regardless (the raw stream is just a
 rolling buffer).
 
-`logs/` is gitignored. The capture follows whichever log the tool is configured to read —
+`data/logs/` is gitignored. The capture follows whichever log the tool is configured to read —
 local by default, or a remote log when `--ssh` is set (in which case the stream is still
 written locally on the machine running the tool).
 
 ## Reconstructed draft history
 
 `draft` turns the raw capture stream into a clean, structured record of your draft. It parses every
-`BotDraft` pick out of `logs/player_stream.log`, segments the stream into separate drafts, recovers
+`BotDraft` pick out of `data/logs/player_stream.log`, segments the stream into separate drafts, recovers
 **what you took at each pick** (by diffing the cumulative picked-list — duplicate picks and the
 forced final card handled), enriches every card with 17Lands GIH WR / IWD / ALSA + grades, and
-writes the most recent draft to **`drafts/current.json`**:
+writes the most recent draft to **`data/drafts/current.json`**:
 
 ```jsonc
 {
@@ -214,10 +233,10 @@ the pack (`⚠ passed ...`). This lets a coach answer "what did I pass at P1P5?"
 creature count healthy?" from one small file instead of re-scraping the multi-MB live log.
 
 **Persistence.** Every draft in the stream is saved to a stable, idempotent archive at
-`drafts/<set>_<fingerprint>.json` (fingerprint = hash of the P1P1 pack, so re-runs overwrite the
-same file rather than piling up), and the most recent is mirrored to `drafts/current.json`. `pull`
+`data/drafts/<set>_<fingerprint>.json` (fingerprint = hash of the P1P1 pack, so re-runs overwrite the
+same file rather than piling up), and the most recent is mirrored to `data/drafts/current.json`. `pull`
 refreshes these automatically each pick. So a draft is preserved permanently once it's been seen,
-even after it ages out of the rolling capture stream. `drafts/` is gitignored (local archive).
+even after it ages out of the rolling capture stream. `data/drafts/` is gitignored (local archive).
 
 **Ratings for re-run / rotated sets:** if the drafted format has no 17Lands win-rate data yet (e.g. a
 Quick Draft re-run early in its window), `draft` automatically proxies with the set's original
@@ -267,7 +286,7 @@ letter scales both work; split/MDFC names are matched on their front face):
 
 Some tier-list sites (Draftsim) are JS-rendered with no clean API, so the practical capture flow is:
 open the page, save/paste the rendered HTML, parse `name → grade` into the JSON, and commit it under
-`grades/` (this dir **is** committed — unlike `cache/`). **CardGameBase is server-rendered**, so its
+`grades/` (this dir **is** committed — unlike `data/cache/`). **CardGameBase is server-rendered**, so its
 list can be fetched directly (`cardgamebase.com/<set>-draft-tier-list/`) — that's how the bundled
 `grades/cardgamebase_MKM.json` was built. Use a *theory* grade source (human
 power-evaluation); don't add a second *empirical* source — another win-rate metric just duplicates

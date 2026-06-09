@@ -1,5 +1,3 @@
-cache/
-logs/
-drafts/
+data/
 __pycache__/
 *.pyc

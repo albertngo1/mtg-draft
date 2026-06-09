@@ -2,7 +2,7 @@
 
 This is the manual for an **agent** (e.g. an LLM assistant) running live MTG Arena draft
 coaching for a player. The repetitive data work (read pack → resolve names → fetch 17Lands →
-rank) is automated by `mtg-draft.py`. Your job is the judgment: cross-referencing, color/curve
+rank) is automated by `src/mtg-draft.py`. Your job is the judgment: cross-referencing, color/curve
 reads, and honest recommendations.
 
 ## Quick start
@@ -10,7 +10,7 @@ reads, and honest recommendations.
 **At the start of each draft**, do two one-time prep steps so every pick is fast:
 
 ```bash
-python3 mtg-draft.py warm --set <SET>        # caches card text + mana value for the whole set
+python3 src/mtg-draft.py warm --set <SET>        # caches card text + mana value for the whole set
 ```
 
 …and **fetch a tier list ONCE and keep the grades in context for the whole draft** — e.g.
@@ -33,7 +33,7 @@ each set's `lords-of-limited/<set>/sources/` — open one only to dig into a spe
 Then, each pick (when the player says "next" or starts a draft):
 
 ```bash
-python3 mtg-draft.py pull                  # colors auto-detect from picks; pass --colors UR to override
+python3 src/mtg-draft.py pull                  # colors auto-detect from picks; pass --colors UR to override
 ```
 
 That reads the **current** pack from `Player.log` (locally by default), and prints (a) a table
@@ -41,11 +41,11 @@ ranked by GIH WR with on-color cards marked `▸`, and (b) a **"what each card d
 oracle text + P/T.
 
 **Draft history (so you don't forget earlier picks):** `pull` also runs a side-car capture of the
-whole `Player.log` stream and, each pick, refreshes **`drafts/current.json`** — a structured record
+whole `Player.log` stream and, each pick, refreshes **`data/drafts/current.json`** — a structured record
 of the *entire* draft so far (every pack you saw, every card offered with its ratings, and what you
-took at each pick). Run `python3 mtg-draft.py draft` to (re)build it on demand. **To answer any
+took at each pick). Run `python3 src/mtg-draft.py draft` to (re)build it on demand. **To answer any
 question about earlier picks ("what did I pass at P1P5?", "what's my curve/colors so far?"), READ
-`drafts/current.json` instead of re-reading the raw log** — the live log only retains the current
+`data/drafts/current.json` instead of re-reading the raw log** — the live log only retains the current
 pack. Each pick has a cumulative `running` block (curve, counts, what you've passed by color +
 premiums passed by color), offered cards carry `wheel` (true only on a real 8-player lap, pick≥9)
 and `tags`, and the pool rolls up into `themes` + `archetype_lean` + `open_color_signal` (colors
@@ -79,23 +79,23 @@ Then, on the current pack, you:
    it's pure bloat. Only sources with a *different method* (theory grades) add anything.
    *Adding a grade source for a set:* tier-list sites are usually JS-rendered with no clean API —
    paste the rendered HTML, parse name→grade into `grades/<source>_<SET>.json` (committed dir, NOT
-   `cache/`), treat as theory grades. **CardGameBase is server-rendered**, so its tier list IS
+   `data/cache/`), treat as theory grades. **CardGameBase is server-rendered**, so its tier list IS
    WebFetch-able directly (`cardgamebase.com/<set>-draft-tier-list/`) — that's how `cardgamebase_MKM.json`
    was built. Draftsim's pick-order pages are JS-rendered and need the paste-the-HTML route.
 3. Give the pick with reasoning, applying the strategy fundamentals below.
 
 If the live read ever fails, fall back to the manual flow: have the player read you the pack, then
-`python3 mtg-draft.py rank --colors UR <id1> <id2> ...`.
+`python3 src/mtg-draft.py rank --colors UR <id1> <id2> ...`.
 
 ## The tool
 
 | command | what it does |
 |---|---|
-| `python3 mtg-draft.py warm` | pre-cache the whole set's text + mana value (run once per set) |
-| `python3 mtg-draft.py pull` | read latest `DraftPack` from `Player.log`, rank it + show card text |
-| `python3 mtg-draft.py pool` | audit picks so far: creatures/spells/lands, curve, CABS check |
-| `python3 mtg-draft.py rank ID...` | rank an explicit list of Arena card IDs |
-| `python3 mtg-draft.py resolve ID...` | `name\|cmc\|color\|type` for IDs (handy for deck audits) |
+| `python3 src/mtg-draft.py warm` | pre-cache the whole set's text + mana value (run once per set) |
+| `python3 src/mtg-draft.py pull` | read latest `DraftPack` from `Player.log`, rank it + show card text |
+| `python3 src/mtg-draft.py pool` | audit picks so far: creatures/spells/lands, curve, CABS check |
+| `python3 src/mtg-draft.py rank ID...` | rank an explicit list of Arena card IDs |
+| `python3 src/mtg-draft.py resolve ID...` | `name\|cmc\|color\|type` for IDs (handy for deck audits) |
 
 Flags: `--set FIN` `--fmt PremierDraft` `--colors UR` `--days 120` `--brief` (table only)
 `--refresh`. Config via env: `MTG_SET MTG_FMT MTG_COLORS MTG_LOG`. Reading the log from another
@@ -105,7 +105,7 @@ machine is opt-in via `--ssh` / `--ssh-key` (or `MTG_SSH` / `MTG_SSH_KEY`) — s
 **Caching (so you don't re-query every pick):** the pack→stats join is by `mtga_id`, which 17Lands
 already provides — so Scryfall is only needed for cost/oracle-text. `warm` pulls the whole set from
 Scryfall's `e:<set>` search in one paginated walk; after that, `pull`/`rank` for that set make
-**zero** live queries until the 17Lands dataset's 24h cache expires. Caches live in `cache/`
+**zero** live queries until the 17Lands dataset's 24h cache expires. Caches live in `data/cache/`
 (gitignored): `17lands_<SET>_<FMT>.json` (24h TTL) and `scryfall_arena.json` (persistent).
 `--refresh` forces a 17Lands re-pull.
 
