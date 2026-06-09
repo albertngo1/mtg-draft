@@ -3,6 +3,8 @@ from .config import CAP_MB_DEFAULT, CFGFILE, DEFAULTS, LOGDIR, PIDFILE, SCRY_CAC
 from .logread import _read_mode
 from .etl import refresh_current
 
+HEALTH_IDLE_SECS = 150   # command-path health check: stream untouched this long => follower is stale
+
 def _capture_alive():
     """Return the running follower's PID if it's alive, else None."""
     try:
@@ -15,6 +17,19 @@ def _capture_alive():
         return pid
     except OSError:
         return None
+def _capture_healthy():
+    """A live follower is only HEALTHY if it's also still mirroring bytes. The parent PID can
+    stay alive while its ssh child wedges (the stale-stream bug), so PID-exists isn't enough:
+    require the stream to have been written within HEALTH_IDLE_SECS. Returns the pid if healthy,
+    else None (caller should stop + restart). Errs toward 'healthy' only when the stream is fresh."""
+    pid = _capture_alive()
+    if not pid:
+        return None
+    try:
+        idle = time.time() - os.path.getmtime(STREAM)
+    except OSError:
+        return None
+    return pid if idle <= HEALTH_IDLE_SECS else None
 def _spawn_detached(cmd, stdout=None):
     """Start `cmd` fully detached so it keeps running after this CLI exits (POSIX + Windows)."""
     kw = dict(stdin=subprocess.DEVNULL, stderr=subprocess.DEVNULL, close_fds=True,
@@ -126,7 +141,9 @@ def ensure_capture(cfg):
     No-op if one is already running. Best-effort: never raise into the draft flow."""
     os.makedirs(LOGDIR, exist_ok=True)
     if _capture_alive():
-        return False
+        if _capture_healthy():
+            return False
+        stop_capture()                          # alive but wedged/stale -> recycle it
     try:
         c = {"out": STREAM, "log": cfg["log"], "cap_mb": cfg.get("cap_mb", CAP_MB_DEFAULT)}
         if _read_mode(cfg) == "ssh":

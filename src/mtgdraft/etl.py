@@ -285,6 +285,19 @@ def refresh_current(cfg):
     drafts = reconstruct_drafts(text)
     if not drafts:
         return None
+    # Arena periodically TRUNCATES its own Player.log; the follower then re-dumps a SHORT copy of a
+    # draft we've already captured in full. That surfaces as a second same-fingerprint segment with
+    # fewer picks. Collapse segments by fingerprint, keeping the MOST COMPLETE (max picks) instance,
+    # so a truncated re-dump can never regress a draft's history. Order by first appearance so the
+    # "latest" draft stays the most recent one.
+    best, order = {}, []
+    for d in drafts:
+        fp = _draft_fingerprint(d)
+        if fp not in best:
+            order.append(fp); best[fp] = d
+        elif len(d.get("picks") or []) > len(best[fp].get("picks") or []):
+            best[fp] = d
+    drafts = [best[fp] for fp in order]
     os.makedirs(DRAFTS, exist_ok=True)
     latest = None
     for idx, d in enumerate(drafts):
