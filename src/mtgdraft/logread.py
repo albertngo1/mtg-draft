@@ -1,5 +1,26 @@
 import sys, os, json, re, time, datetime, signal, hashlib, subprocess, urllib.request, urllib.error
+from .config import STREAM
 from .sources import load_scry, resolve_ids
+
+STREAM_FRESH_SECS = 8.0   # trust the local capture stream only if the daemon wrote it this recently
+
+def _last_stream_line(needle, max_age=STREAM_FRESH_SECS):
+    """Return the last line containing `needle` from the LOCAL capture stream — but only if the
+    daemon wrote it within `max_age` seconds (so we never serve a stale pack from a wedged/idle
+    follower). Returns None otherwise, so the caller falls back to a fresh live read. This lets
+    SSH-mode `pull` avoid a per-pick reverse-SSH round-trip while the daemon is actively capturing
+    (the stream is a local file the daemon already mirrors), with correctness preserved by the
+    freshness gate + fallback."""
+    try:
+        if time.time() - os.path.getmtime(STREAM) > max_age:
+            return None
+        with open(STREAM, "rb") as f:                 # scan the last ~2MB for speed
+            f.seek(0, 2); size = f.tell(); f.seek(max(0, size - 2_000_000))
+            data = f.read().decode("utf-8", "replace")
+        hits = [ln for ln in data.splitlines() if needle in ln]
+        return hits[-1] if hits else None
+    except Exception:
+        return None
 
 def _read_mode(cfg):
     """'ssh' only when a remote target is configured and local read isn't forced; else 'local'."""
@@ -38,7 +59,9 @@ def _parse_array(line, key):
 def pull_pack(cfg):
     """Return (ids, packnum, picknum, picked_ids) from the latest DraftPack in Player.log.
     The same log line carries PickedCards, so colors can be inferred without a second read."""
-    line = _last_log_line(cfg, "DraftPack")
+    # SSH mode: prefer the daemon's fresh local stream (no round-trip); fall back to a live read.
+    line = (_last_stream_line("DraftPack") if _read_mode(cfg) == "ssh" else None) \
+        or _last_log_line(cfg, "DraftPack")
     ids = _parse_array(line, "DraftPack")
     if not ids:
         raise SystemExit("No DraftPack found in Player.log. Is a draft open?")
@@ -69,7 +92,9 @@ def infer_colors(picked_ids, cfg):
     return "".join(sorted(top, key="WUBRG".index))
 def pull_picked(cfg):
     """Return the list of Arena IDs already picked, from the latest PickedCards in Player.log."""
-    ids = _parse_array(_last_log_line(cfg, "PickedCards"), "PickedCards")
+    line = (_last_stream_line("PickedCards") if _read_mode(cfg) == "ssh" else None) \
+        or _last_log_line(cfg, "PickedCards")
+    ids = _parse_array(line, "PickedCards")
     if ids is None:
         raise SystemExit("No PickedCards found in Player.log. Has the draft started?")
     return ids

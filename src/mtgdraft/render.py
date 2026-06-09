@@ -1,8 +1,41 @@
 import sys, os, json, re, time, datetime, signal, hashlib, subprocess, urllib.request, urllib.error
-from .config import HERE
+from .config import DRAFTS, HERE
 from .sources import load_scry, resolve_ids, seventeen
 from .grades import load_grades_any
 from .logread import _last_log_line, _parse_array, _read_mode, infer_colors
+
+def print_deck_state():
+    """Print the FULL strategic deck-state dashboard read from the structured store
+    (data/drafts/current.json, kept fresh by the capture daemon): counts/curve, archetype lean,
+    themes, the open-color signal, premiums passed by color, and target flags — so the coach can
+    reason about signals / open lanes / curve / needs on EVERY pick straight from the output, not
+    just raw creature counts. Best-effort: silent if the store isn't ready yet."""
+    try:
+        with open(os.path.join(DRAFTS, "current.json")) as f:
+            d = json.load(f)
+        a = d.get("analysis", {}); c = a.get("counts", {}) or {}
+        run = ((d.get("picks") or [{}])[-1] or {}).get("running", {}) or {}
+        cv = a.get("curve", {}) or {}
+        curve = " ".join(f"{k}:{cv[k]}" for k in sorted(cv, key=lambda x: int(x)))
+        print(f"  DECK (current.json): {c.get('creatures', 0)} creatures · {c.get('spells', 0)} spells"
+              f" · {c.get('other', 0)} other · removal {a.get('removal_est', '?')}"
+              f" · 2-drops {a.get('two_drops', '?')} · 5+ {a.get('five_plus', '?')} · curve {curve}")
+        lean = a.get("archetype_lean") or []
+        if lean:
+            print(f"  ARCHETYPE: {' · '.join(lean)}   [colors {a.get('colors', '?')}]")
+        themes = a.get("themes") or {}
+        if themes:
+            print("  THEMES: " + " · ".join(f"{k} {v}" for k, v in list(themes.items())[:6]))
+        if a.get("open_color_readable"):
+            print(f"  OPEN (premiums flowing late): {a['open_color_readable']}")
+        if run.get("premiums_passed_readable"):
+            print(f"  PASSED (premiums let go): {run['premiums_passed_readable']}")
+        flags = a.get("flags") or []
+        need = run.get("needs_readable")
+        bits = list(flags) + ([need] if (need and need != "on track") else [])
+        print(f"  NEED: {' · '.join(bits) if bits else 'on track'}")
+    except Exception:
+        pass
 
 def print_draft_summary(state, n_drafts, path):
     head = state["event"] or f"{state['set']} {state['fmt']}"
@@ -77,6 +110,7 @@ def watch(cfg):
                 label = (f"P{int(pk.group(1))+1}P{int(pi.group(1))+1}" if pk and pi else "pack")
                 auto = "" if cfg["colors_explicit"] else f"   (colors auto: {cfg['colors'] or '—'})"
                 print("\n" + "=" * 74 + f"\n  >> {label}{auto}")
+                print_deck_state()                # lead with the deck-state dashboard (if store present)
                 print_table(ids, cfg, show_text=not cfg["brief"])
         time.sleep(cfg["poll"])
 def print_pool(ids, cfg):

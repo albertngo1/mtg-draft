@@ -5,7 +5,7 @@ from .sources import resolve_ids, warm_set
 from .logread import infer_colors, pull_pack, pull_picked
 from .capture import capture_status, ensure_capture, stop_capture, tail_follow
 from .etl import refresh_current
-from .render import print_draft_summary, print_pool, print_table, watch
+from .render import print_deck_state, print_draft_summary, print_pool, print_table, watch
 
 def main():
     args = sys.argv[1:]
@@ -107,11 +107,12 @@ def main():
         label = (f"Pack {pk+1} Pick {pi+1}" if pk >= 0 else "current pack")
         auto = "" if cfg["colors_explicit"] else f", colors auto: {cfg['colors'] or '—'}"
         print(f"\n  >> {label}  ({len(picked)} cards already taken{auto})")
-        print_table(pack, cfg, show_text=not cfg["brief"])
         try:
-            refresh_current(cfg)                  # keep drafts/current.json fresh, best-effort
+            refresh_current(cfg)                  # update current.json from the live stream first
         except Exception:
             pass
+        print_deck_state()                        # LEAD with the deck-state dashboard every pick
+        print_table(pack, cfg, show_text=not cfg["brief"])
     elif cmd == "rank":
         if not ids:
             raise SystemExit("rank: give Arena card IDs, e.g. rank 102690 102462")

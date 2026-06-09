@@ -36,9 +36,13 @@ Then, each pick (when the player says "next" or starts a draft):
 python3 src/mtg-draft.py pull                  # colors auto-detect from picks; pass --colors UR to override
 ```
 
-That reads the **current** pack from `Player.log` (locally by default), and prints (a) a table
-ranked by GIH WR with on-color cards marked `▸`, and (b) a **"what each card does"** section with
-oracle text + P/T.
+That reads the **current** pack from `Player.log` (locally by default), and prints (a) a **`DECK`
+deck-state line** read from `data/drafts/current.json` — creature/spell counts, removal, two-drops,
+curve, archetype lean, top themes, the open-color signal, premiums passed by color, and target
+flags — so the live deck picture is in front of you every pick; (b) a table ranked by GIH WR with
+on-color cards marked `▸`; and (c) a **"what each card does"** section with oracle text + P/T.
+**Lead with the `DECK` line** and let its `NEED`/flags steer the pick (creature-priority when bodies
+are below target, stop stacking removal once at the cap, lean toward the open colors).
 
 **Draft history (so you don't forget earlier picks):** a side-car capture mirrors the whole
 `Player.log` stream and, each pick, auto-refreshes the structured store — **no manual `pull` needed
@@ -50,7 +54,21 @@ completes; `replay.py --ai` or `MTG_REPLAY_AI=1` adds a model-written `🤖 Take
 Run `python3 src/mtg-draft.py draft` to (re)build on demand. **To answer any question about earlier
 picks ("what did I pass at P1P5?", "what's my curve/colors so far?"), READ `data/drafts/current.json`
 (or a specific draft's `draft.json`) instead of re-reading the raw log** — the live log only retains
-the current pack. Each pick has a cumulative `running` block (curve, counts, what you've passed by color +
+the current pack.
+
+*The follower is poll-based, not `tail -F`.* MTGA buffers/flushes its `Player.log` in bursts and
+rewrites/truncates it; an `ssh tail -F` follows unreliably (it can stay alive but stop delivering
+bytes — a silent wedge). The remote follower instead **polls**: each tick it reads the remote size
+(`wc -c`) and fetches only the bytes past its offset (`tail -c +N`); a smaller size means truncation,
+so it resets the offset and re-reads. This keeps the capture **self-sufficient — `current.json` stays
+fresh with no dependence on the `pull`/AI path** (verify with a standalone `watch`). Diagnostics (byte-arrival cadence,
+truncation resets, ssh errors, idle gaps) log always-on to **`data/logs/capture-debug.log`** (capped).
+A command-path health check still recycles a follower whose stream has gone stale.
+*Lead every pick with the deck-state line `pull` prints* (`DECK (current.json): N creatures · …`,
+read from the structured store): when creatures are below the 15–17 target, bias picks toward bodies.
+*The ETL is truncation-resilient.* When a truncation makes the follower re-dump a short copy of a draft
+already captured in full, the reconstructor collapses stream segments by fingerprint and **keeps the
+most-complete (max-picks) instance**, so a truncated re-dump can never regress a draft's history. Each pick has a cumulative `running` block (curve, counts, what you've passed by color +
 premiums passed by color, plus **`needs` / `needs_readable`** — what the deck-so-far is still short
 on, scaled to draft progress, e.g. `"2-drops (1), removal (~0)"` or `"on track"`; steer the next
 pick toward these gaps), offered cards carry `wheel` (true only on a real 8-player lap, pick≥9),
@@ -104,8 +122,11 @@ If the live read ever fails, fall back to the manual flow: have the player read 
 | `python3 src/mtg-draft.py warm` | pre-cache the whole set's text + mana value (run once per set) |
 | `python3 src/mtg-draft.py pull` | read latest `DraftPack` from `Player.log`, rank it + show card text |
 | `python3 src/mtg-draft.py pool` | audit picks so far: creatures/spells/lands, curve, CABS check |
+| `python3 src/mtg-draft.py watch` | stream the ranked table standalone each time a new pack appears |
 | `python3 src/mtg-draft.py rank ID...` | rank an explicit list of Arena card IDs |
 | `python3 src/mtg-draft.py resolve ID...` | `name\|cmc\|color\|type` for IDs (handy for deck audits) |
+| `python3 src/mtg-draft.py draft` | (re)build the structured store from the capture stream → `data/drafts/current.json` + summary |
+| `python3 src/mtg-draft.py capture [status\|stop]` | show / start / stop the background log-capture daemon |
 
 Flags: `--set FIN` `--fmt PremierDraft` `--colors UR` `--days 120` `--brief` (table only)
 `--refresh`. Config via env: `MTG_SET MTG_FMT MTG_COLORS MTG_LOG`. Reading the log from another

@@ -3,7 +3,25 @@ from .config import CAP_MB_DEFAULT, CFGFILE, DEFAULTS, LOGDIR, PIDFILE, SCRY_CAC
 from .logread import _read_mode
 from .etl import refresh_current
 
-HEALTH_IDLE_SECS = 150   # command-path health check: stream untouched this long => follower is stale
+HEALTH_IDLE_SECS = 180   # command-path health check: no follower heartbeat this long => recycle (>3 idle ticks)
+DBGLOG = os.path.join(LOGDIR, "capture-debug.log")  # always-on, capped follower diagnostics
+
+def _dbg(msg):
+    """Append a timestamped diagnostic line to capture-debug.log (front-capped ~2MB). Always on but
+    event-driven (no per-poll spam), so a future wedge/lag can be diagnosed after the fact: byte
+    arrival cadence (reveals MTGA's chunked/buffered flushing), truncation resets, ssh errors, idle
+    gaps. Best-effort — never raises into the capture path."""
+    try:
+        os.makedirs(LOGDIR, exist_ok=True)
+        with open(DBGLOG, "a") as f:
+            f.write(f"{datetime.datetime.now().isoformat(timespec='seconds')} {msg}\n")
+        if os.path.getsize(DBGLOG) > 2_000_000:
+            with open(DBGLOG, "rb") as f:
+                f.seek(-1_600_000, 2); f.readline(); keep = f.read()
+            with open(DBGLOG, "wb") as f:
+                f.write(keep)
+    except Exception:
+        pass
 
 def _capture_alive():
     """Return the running follower's PID if it's alive, else None."""
@@ -18,17 +36,19 @@ def _capture_alive():
     except OSError:
         return None
 def _capture_healthy():
-    """A live follower is only HEALTHY if it's also still mirroring bytes. The parent PID can
-    stay alive while its ssh child wedges (the stale-stream bug), so PID-exists isn't enough:
-    require the stream to have been written within HEALTH_IDLE_SECS. Returns the pid if healthy,
-    else None (caller should stop + restart). Errs toward 'healthy' only when the stream is fresh."""
+    """A live follower is only HEALTHY if its poll LOOP is still turning — not merely that the PID
+    exists (a hung on_data/enrich network call could freeze the loop). We gate on the debug-log
+    heartbeat, NOT the stream: the poller writes to capture-debug.log on every byte event AND an
+    idle heartbeat every ~60s, so a healthy-but-idle follower (no new picks) still keeps it fresh,
+    while a hung loop lets it go stale. This avoids the false-positive recycle churn the old
+    stream-mtime check caused during normal between-pick idle. Returns the pid if healthy, else None."""
     pid = _capture_alive()
     if not pid:
         return None
     try:
-        idle = time.time() - os.path.getmtime(STREAM)
+        idle = time.time() - os.path.getmtime(DBGLOG)   # loop heartbeat (events + ~60s idle ticks)
     except OSError:
-        return None
+        return pid                                       # no debug log yet (just started) — trust PID
     return pid if idle <= HEALTH_IDLE_SECS else None
 def _spawn_detached(cmd, stdout=None):
     """Start `cmd` fully detached so it keeps running after this CLI exits (POSIX + Windows)."""
@@ -81,32 +101,54 @@ def _follow_local(c, on_data=None):
             if on_data:
                 on_data(data)
         time.sleep(0.5)
-def _follow_remote(c, on_data=None):
-    """Stream a remote Player.log via `ssh tail -F`, appending to the stream and reconnecting
-    if the SSH session drops. The capped trim runs here too (Python is in the byte path).
-    `on_data(new_bytes)` fires after each append so the follower can auto-refresh current.json."""
+def _follow_remote(c, on_data=None, poll=1.0):
+    """Mirror a remote Player.log by POLLING with byte-offset tracking. We do NOT use `ssh tail -F`:
+    MTGA rewrites/truncates its own Player.log, which `tail -F` over SSH doesn't track reliably (it
+    can sit alive but stop delivering new bytes — the silent-wedge bug). Instead, each tick we read
+    the remote size (`wc -c`) and fetch only the bytes past our offset (`tail -c +N`); a size smaller
+    than our offset means the log was truncated/rotated, so we reset to 0 and re-read. This mirrors
+    what `_follow_local` does for the local case, and keeps capture self-sufficient (no dependence on
+    the `pull`/AI path). `on_data(new_bytes)` fires after each append so it can refresh current.json."""
     logpath = c["log"]
     if logpath.startswith("~"):
         logpath = "$HOME" + logpath[1:]
-    cmd = ["ssh", "-i", c["ssh_key"], "-o", "ServerAliveInterval=15", "-o", "ServerAliveCountMax=3",
-           "-o", "ConnectTimeout=8", "-o", "BatchMode=yes", c["ssh"], f'tail -n +1 -F "{logpath}"']
+    base = ["ssh", "-i", c["ssh_key"], "-o", "ServerAliveInterval=15", "-o", "ServerAliveCountMax=3",
+            "-o", "ConnectTimeout=8", "-o", "BatchMode=yes", c["ssh"]]
+    offset = 0
+    idle = 0                                        # consecutive polls with no new bytes
+    _dbg(f"follow start: ssh={c['ssh']} log={logpath} poll={poll}s")
     while True:
-        p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL)
         try:
-            for chunk in iter(lambda: p.stdout.read(65536), b""):
+            size = int((subprocess.check_output(
+                base + [f'wc -c < "{logpath}"'], text=True, timeout=15).strip() or "0"))
+        except Exception as e:
+            _dbg(f"size probe FAILED: {type(e).__name__}: {e}")
+            time.sleep(2); continue                 # host unreachable / transient — retry
+        if size < offset:                           # truncated or rotated -> start over
+            _dbg(f"TRUNCATION: remote size {size} < offset {offset} — reset to 0")
+            offset = 0
+        if size > offset:
+            try:
+                data = subprocess.check_output(      # bytes past our offset (tail -c is 1-indexed)
+                    base + [f'tail -c +{offset + 1} "{logpath}"'], timeout=30)
+            except Exception as e:
+                _dbg(f"fetch FAILED at offset {offset}: {type(e).__name__}: {e}")
+                time.sleep(2); continue
+            if data:
                 with open(c["out"], "ab") as out:
-                    out.write(chunk)
+                    out.write(data)
                 _trim(c["out"], c["cap"])
                 if on_data:
-                    on_data(chunk)
-        except Exception:
-            pass
-        finally:
-            try:
-                p.terminate()
-            except Exception:
-                pass
-        time.sleep(3)                           # SSH dropped — wait, then reconnect
+                    on_data(data)
+                offset += len(data)
+                _dbg(f"+{len(data)}B  remote_size={size} offset={offset}  "
+                     f"draftpacks_in_chunk={data.count(b'DraftPack')}  (after {idle} idle polls)")
+                idle = 0
+        else:
+            idle += 1
+            if idle % 60 == 0:                      # heartbeat so long idle gaps are visible
+                _dbg(f"idle: no new bytes for ~{idle}s (remote_size={size} offset={offset})")
+        time.sleep(poll)
 def tail_follow(cfgpath):
     """Internal worker (hidden `_tail` command). Reads its source/cap config from CFGFILE and
     follows the log forever, mirroring everything into the stream with a front-truncating cap.
