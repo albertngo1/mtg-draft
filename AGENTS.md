@@ -38,7 +38,18 @@ python3 mtg-draft.py pull                  # colors auto-detect from picks; pass
 
 That reads the **current** pack from `Player.log` (locally by default), and prints (a) a table
 ranked by GIH WR with on-color cards marked `▸`, and (b) a **"what each card does"** section with
-oracle text + P/T. Then you:
+oracle text + P/T.
+
+**Draft history (so you don't forget earlier picks):** `pull` also runs a side-car capture of the
+whole `Player.log` stream and, each pick, refreshes **`drafts/current.json`** — a structured record
+of the *entire* draft so far (every pack you saw, every card offered with its ratings, and what you
+took at each pick). Run `python3 mtg-draft.py draft` to (re)build it on demand. **To answer any
+question about earlier picks ("what did I pass at P1P5?", "what's my curve/colors so far?"), READ
+`drafts/current.json` instead of re-reading the raw log** — the live log only retains the current
+pack. For re-run/rotated sets with no live win-rate data yet, it auto-proxies PremierDraft ratings
+(noted in `ratings_fmt`).
+
+Then, on the current pack, you:
 
 1. **Read what the cards actually do** — the text block is there so you judge *fit*, not just
    stats. A 55%-card that's a 2-drop flyer in your colors can beat a 58%-card that's a 6-mana

@@ -33,6 +33,7 @@ Usage (Windows: use `python mtg-draft.py ...` or `mtg-draft.bat ...`):
   python mtg-draft.py rank 102690 102462 # rank an explicit list of Arena card IDs
   python mtg-draft.py resolve 102690 ... # print name|cmc|color|type for IDs
   python mtg-draft.py capture            # show/Start the background log-capture; `capture stop` to end it
+  python mtg-draft.py draft              # parse the captured stream -> drafts/current.json + summary
 
 (On macOS/Linux you can also use the ./mtg-draft.sh wrapper.)
 
@@ -41,7 +42,7 @@ process that mirrors the ENTIRE Player.log stream to logs/player_stream.log and 
 following it (across Arena restarts) until you run `capture stop`. It's idempotent — only
 one runs at a time. This gives a durable raw record of the whole draft so questions can be
 answered from the saved stream instead of re-reading the noisy live log. The stream is
-bounded by a front-truncating cap (default 200MB; --cap-mb / MTG_CAP_MB) that drops the
+bounded by a front-truncating cap (default 50MB; --cap-mb / MTG_CAP_MB) that drops the
 oldest bytes first, so a draft in progress is never trimmed.
 
 Common flags:
@@ -70,14 +71,17 @@ import sys, os, json, re, time, datetime, signal, subprocess, urllib.request, ur
 HERE = os.path.dirname(os.path.abspath(__file__))
 CACHE = os.path.join(HERE, "cache")
 GRADES = os.path.join(HERE, "grades")  # committed external-grade files: <source>_<SET>.json
+DRAFTS = os.path.join(HERE, "drafts")  # ETL output: parsed per-draft JSON (gitignored)
 LOGDIR = os.path.join(HERE, "logs")  # side-car capture of the raw Player.log stream (gitignored)
 STREAM = os.path.join(LOGDIR, "player_stream.log")  # everything Player.log emits, mirrored here
 PIDFILE = os.path.join(LOGDIR, ".capture.pid")       # PID of the running background follower
 CFGFILE = os.path.join(LOGDIR, ".capture.json")      # source/cap config the follower reads
 # Default size cap for the captured stream. Front-truncating (keeps the most RECENT bytes),
-# so a draft in progress is never the thing trimmed. Generous on purpose — one Arena session
-# log is ~10-25MB, so 200MB can't clip a single draft; revisit once we measure a full draft.
-CAP_MB_DEFAULT = float(os.environ.get("MTG_CAP_MB", "200"))
+# so a draft in progress is never the thing trimmed. Right-sized from real data (2026-06-08):
+# a full draft spans only ~0.25MB of the unfiltered stream, so 50MB holds ~6h of play / 200+
+# draft windows before trimming — plenty, since the ETL persists each draft to its own JSON
+# and the raw stream is just a rolling buffer.
+CAP_MB_DEFAULT = float(os.environ.get("MTG_CAP_MB", "50"))
 
 
 def load_grades(source, set_code):
@@ -230,7 +234,7 @@ def warm_set(cfg):
 
 # ---------- 17Lands dataset, cached on disk (refresh daily) ----------
 def seventeen(set_code, fmt, days, refresh=False):
-    path = os.path.join(CACHE, f"17lands_{set_code}_{fmt}.json")
+    path = os.path.join(CACHE, f"17lands_{set_code}_{fmt}_{days}d.json")
     if not refresh and os.path.exists(path) and (time.time() - os.path.getmtime(path) < 86400):
         with open(path) as f:
             return json.load(f)
@@ -494,6 +498,178 @@ def capture_status(cfg):
     print(f"  stream : {STREAM}  ({sz/1e6:.1f} MB / {cfg.get('cap_mb', CAP_MB_DEFAULT):.0f} MB cap)\n")
 
 
+# ---------- ETL: parse the captured stream into structured drafts ----------
+# Each draft pick is logged as a BotDraft payload carrying PackNumber/PickNumber, the DraftPack
+# (cards offered, Arena IDs) and PickedCards (cumulative picks so far). We segment the stream
+# into drafts on (pack0,pick0) resets, recover the card taken at each pick by diffing the next
+# entry's PickedCards, and enrich with 17Lands ratings + names + grades. Output -> drafts/current.json
+# so the coach answers history questions ("what did I pass at P1P5?") from one file, not the raw log.
+
+
+def _botdraft_payloads(text):
+    """Pull every BotDraft DraftPack payload out of the raw stream, in log order."""
+    out = []
+    for ln in text.splitlines():
+        if "BotDraft" not in ln or "DraftPack" not in ln:
+            continue
+        p = None
+        m = re.search(r'"Payload":"(.*)"\}\s*$', ln)
+        if m:
+            try:                                   # Payload is an embedded escaped-JSON string
+                p = json.loads(json.loads('"' + m.group(1) + '"'))
+            except Exception:
+                p = None
+        if not p:                                  # fallback: regex the fields from the escaped line
+            pk = re.search(r'PackNumber\\":(\d+)', ln); pi = re.search(r'PickNumber\\":(\d+)', ln)
+            dp = re.search(r'DraftPack\\":\[([^\]]*)\]', ln)
+            pc = re.search(r'PickedCards\\":\[([^\]]*)\]', ln)
+            ev = re.search(r'EventName\\":\\"([^\\"]*)', ln)
+            if not (pk and pi and dp):
+                continue
+            p = {"PackNumber": int(pk.group(1)), "PickNumber": int(pi.group(1)),
+                 "DraftPack": re.findall(r"\d{5,6}", dp.group(1)),
+                 "PickedCards": re.findall(r"\d{5,6}", pc.group(1)) if pc else [],
+                 "EventName": ev.group(1) if ev else ""}
+        out.append(p)
+    return out
+
+
+def reconstruct_drafts(text):
+    """Segment the stream into drafts and reconstruct each pick (offered + what was taken).
+    Returns a list of {event, picks:[{pack,pick,offered:[ids],taken:id|None}], pool:[ids]}."""
+    drafts, cur = [], None
+    for p in _botdraft_payloads(text):
+        reset = p["PackNumber"] == 0 and p["PickNumber"] == 0
+        if cur is None or (reset and cur.get("_last") != (0, 0)):
+            cur = {"event": p.get("EventName", ""), "entries": []}
+            drafts.append(cur)
+        cur["entries"].append(p)
+        cur["_last"] = (p["PackNumber"], p["PickNumber"])
+    from collections import Counter
+    for d in drafts:
+        # sort by (pack, pick, #picked) so each pick's post-state (incl. the empty-pack closing
+        # entry that shares the last pick's key) sorts AFTER it; dedupe exact repeats.
+        seen, seq = set(), []
+        for e in sorted(d["entries"], key=lambda e: (e["PackNumber"], e["PickNumber"],
+                                                      len(e["PickedCards"]))):
+            key = (e["PackNumber"], e["PickNumber"], len(e["PickedCards"]), len(e["DraftPack"]))
+            if key in seen:
+                continue
+            seen.add(key); seq.append(e)
+        picks = []
+        for i, e in enumerate(seq):
+            if not e["DraftPack"]:                  # empty-pack closing state — not a pick offer
+                continue
+            taken, base = None, Counter(e["PickedCards"])
+            for nxt in seq[i + 1:]:                 # taken = first later state with one more card
+                diff = Counter(nxt["PickedCards"]) - base
+                if diff:
+                    taken = next(iter(diff)); break
+            if taken is None and len(e["DraftPack"]) == 1:
+                taken = e["DraftPack"][0]            # last card of a pack is forced (no post-state needed)
+            picks.append({"pack": e["PackNumber"] + 1, "pick": e["PickNumber"] + 1,
+                          "offered": e["DraftPack"], "taken": taken})
+        d["picks"] = picks
+        d["pool"] = seq[-1]["PickedCards"] if seq else []
+        d.pop("entries", None); d.pop("_last", None)
+    return drafts
+
+
+def _card_enricher(cfg, ids):
+    """Return (fn id -> {name,color,rarity,cmc,gih,iwd,alsa,n,ds}, ratings_fmt) using 17Lands+Scryfall.
+    If the live format has no win-rate data yet (e.g. a Quick-Draft re-run early in its window),
+    proxy with the set's original PremierDraft over a wide historical window."""
+    data = seventeen(cfg["set"], cfg["fmt"], cfg["days"], cfg["refresh"])
+    ratings_fmt = cfg["fmt"]
+    if not any(c.get("ever_drawn_win_rate") for c in data):
+        data = seventeen(cfg["set"], "PremierDraft", max(int(cfg["days"]), 1200), cfg["refresh"])
+        ratings_fmt = "PremierDraft (historical proxy)"
+    by_id = {str(c["mtga_id"]): c for c in data if c.get("mtga_id")}
+    scry = load_scry()
+    missing = [c for c in {str(i) for i in ids} if c not in scry]
+    if missing:
+        resolve_ids(missing); scry = load_scry()
+    ds = load_grades("draftsim", cfg["set"])
+    def card(cid):
+        cid = str(cid); s = by_id.get(cid); meta = scry.get(cid, {})
+        name = (s["name"] if s else meta.get("name", f"<{cid}?>")).split("//")[0].strip()
+        return {"id": cid, "name": name,
+                "color": (s.get("color") if s else meta.get("color")) or "C",
+                "rarity": ((s.get("rarity") if s else meta.get("rarity")) or "?")[:1].upper(),
+                "cmc": meta.get("cmc"),
+                "gih": s.get("ever_drawn_win_rate") if s else None,
+                "iwd": s.get("drawn_improvement_win_rate") if s else None,
+                "alsa": s.get("avg_seen") if s else None,
+                "n": (s.get("ever_drawn_game_count") if s else 0) or 0,
+                "ds": ds.get(name.lower())}
+    return card, ratings_fmt
+
+
+def enrich_draft(cfg, draft):
+    """Resolve every id in a reconstructed draft to names+ratings; offered lists sorted by GIH WR."""
+    pool_ids = [p["taken"] for p in draft["picks"] if p["taken"]]  # the deck = every card taken
+    ids = {i for p in draft["picks"] for i in p["offered"]} | set(pool_ids)
+    card, ratings_fmt = _card_enricher(cfg, ids)
+    picks = []
+    for p in draft["picks"]:
+        offered = [dict(card(i), taken=(i == p["taken"])) for i in p["offered"]]
+        offered.sort(key=lambda c: c["gih"] or 0, reverse=True)
+        picks.append({"pack": p["pack"], "pick": p["pick"],
+                      "taken": card(p["taken"]) if p["taken"] else None, "offered": offered})
+    return {"set": cfg["set"], "fmt": cfg["fmt"], "event": draft.get("event", ""),
+            "ratings_fmt": ratings_fmt, "n_picks": len(picks), "picks": picks,
+            "pool": [card(i) for i in pool_ids]}
+
+
+def refresh_current(cfg):
+    """Reconstruct the MOST RECENT draft from the capture stream, enrich it, save current.json.
+    Returns (state, n_drafts) or None if there's nothing to parse. Auto-detects the set from the
+    draft's EventName (e.g. QuickDraft_MKM_...) unless --set was given explicitly."""
+    try:
+        with open(STREAM, encoding="utf-8", errors="replace") as f:
+            text = f.read()
+    except FileNotFoundError:
+        return None
+    drafts = reconstruct_drafts(text)
+    if not drafts:
+        return None
+    cur = drafts[-1]
+    parts = cur.get("event", "").split("_")        # "QuickDraft_MKM_0260608" -> fmt, set
+    if len(parts) >= 2 and parts[1] and not cfg.get("set_explicit"):
+        cfg["set"] = parts[1]
+    if parts and parts[0] and not cfg.get("fmt_explicit"):
+        cfg["fmt"] = parts[0]                       # use the event's own format for ratings
+    state = enrich_draft(cfg, cur)
+    os.makedirs(DRAFTS, exist_ok=True)
+    path = os.path.join(DRAFTS, "current.json")
+    tmp = path + ".tmp"
+    with open(tmp, "w") as f:
+        json.dump(state, f, indent=1)
+    os.replace(tmp, path)
+    return state, len(drafts), path
+
+
+def print_draft_summary(state, n_drafts, path):
+    head = state["event"] or f"{state['set']} {state['fmt']}"
+    extra = f"  ({n_drafts} drafts in stream — showing most recent)" if n_drafts > 1 else ""
+    print(f"\n  DRAFT — {head} — {state['n_picks']} picks{extra}")
+    print(f"  ratings: {state.get('ratings_fmt', state['fmt'])}   ·   full detail: "
+          f"{os.path.relpath(path, HERE)}\n")
+    for p in state["picks"]:
+        tk = p["taken"]
+        if not tk:
+            print(f"  P{p['pack']}P{p['pick']:<2} (current pack — no pick yet)")
+            continue
+        g = f"{tk['gih']*100:.1f}%" if tk.get("gih") else "n/a"
+        line = f"  P{p['pack']}P{p['pick']:<2} {tk['name']} ({tk['color']} {g})"
+        best = p["offered"][0]                      # flag a clearly-better card left in the pack
+        if best["id"] != tk["id"] and best.get("gih") and tk.get("gih") \
+                and best["gih"] - tk["gih"] > 0.03:
+            line += f"   ⚠ passed {best['name']} ({best['gih']*100:.1f}%)"
+        print(line)
+    print()
+
+
 def watch(cfg):
     """Poll Player.log and auto-print the ranked table each time a new pack appears.
     Standalone/blocking — run it in its own terminal (ideally on the laptop with --local).
@@ -710,10 +886,12 @@ def main():
     cfg["colors_explicit"] = bool(cfg["colors"])  # MTG_COLORS env counts as explicit
     cfg["capture_action"] = "start"               # for the `capture` command: start|status|stop
     cfg["cap_mb"] = CAP_MB_DEFAULT                # captured-stream size cap (front-truncating)
+    cfg["set_explicit"] = False                  # --set given? (else ETL auto-detects from EventName)
+    cfg["fmt_explicit"] = False                  # --fmt given? (else ETL auto-detects from EventName)
     i = 0
     while i < len(args):
         a = args[i]
-        if a in ("pull", "rank", "resolve", "warm", "pool", "watch", "capture"):
+        if a in ("pull", "rank", "resolve", "warm", "pool", "watch", "capture", "draft"):
             cmd = a
         elif a in ("stop", "status", "start") and cmd == "capture":
             cfg["capture_action"] = a
@@ -726,9 +904,9 @@ def main():
         elif a == "--poll":
             i += 1; cfg["poll"] = float(args[i])
         elif a == "--set":
-            i += 1; cfg["set"] = args[i]
+            i += 1; cfg["set"] = args[i]; cfg["set_explicit"] = True
         elif a == "--fmt":
-            i += 1; cfg["fmt"] = args[i]
+            i += 1; cfg["fmt"] = args[i]; cfg["fmt_explicit"] = True
         elif a == "--colors":
             i += 1; cfg["colors"] = args[i]; cfg["colors_explicit"] = True
         elif a == "--days":
@@ -752,11 +930,20 @@ def main():
 
     # Any live-draft command spins up the side-car capture (idempotent) so the full
     # Player.log stream is always being mirrored to logs/ — no extra step needed.
-    if cmd in ("pull", "pool", "watch"):
+    if cmd in ("pull", "pool", "watch", "draft"):
         if ensure_capture(cfg):
             print(f"  (capture started → {os.path.relpath(STREAM, HERE)})")
 
-    if cmd == "capture":
+    if cmd == "draft":
+        out = refresh_current(cfg)
+        if not out:
+            raise SystemExit(
+                "No draft found in the capture stream yet (logs/player_stream.log).\n"
+                "Start/continue a draft in Arena (with Detailed Logs on) — `pull`/`capture` "
+                "keep the stream recording — then run `draft` again.")
+        state, n_drafts, path = out
+        print_draft_summary(state, n_drafts, path)
+    elif cmd == "capture":
         if cfg["capture_action"] == "stop":
             stop_capture()
         else:
@@ -783,6 +970,10 @@ def main():
         auto = "" if cfg["colors_explicit"] else f", colors auto: {cfg['colors'] or '—'}"
         print(f"\n  >> {label}  ({len(picked)} cards already taken{auto})")
         print_table(pack, cfg, show_text=not cfg["brief"])
+        try:
+            refresh_current(cfg)                  # keep drafts/current.json fresh, best-effort
+        except Exception:
+            pass
     elif cmd == "rank":
         if not ids:
             raise SystemExit("rank: give Arena card IDs, e.g. rank 102690 102462")

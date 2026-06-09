@@ -59,6 +59,9 @@ python3 mtg-draft.py resolve 102690 102462
 
 # Capture: show the background log-capture status (see "Recording the raw log stream" below)
 python3 mtg-draft.py capture          # start (if needed) + status   ·   `capture stop` to end it
+
+# Draft history: parse the captured stream into drafts/current.json + a pick-by-pick summary
+python3 mtg-draft.py draft            # (see "Reconstructed draft history" below)
 ```
 
 Output: a table sorted by GIH WR (on-color cards per `--colors` marked `▸`, off-color tagged
@@ -84,7 +87,7 @@ drafting is in the log under the event name, e.g. `"EventName":"PremierDraft_FIN
 | `--brief` | | | table only, skip the oracle-text section |
 | `--refresh` | | | force re-fetch of the cached 17Lands data |
 | `--poll N` | | `2` | `watch` poll interval in seconds |
-| `--cap-mb N` | `MTG_CAP_MB` | `200` | front-truncating size cap for the captured log stream |
+| `--cap-mb N` | `MTG_CAP_MB` | `50` | front-truncating size cap for the captured log stream |
 | `--local` | `MTG_LOCAL` | (default) | force a local log read (this is already the default) |
 | | `MTG_LOG` | auto per-OS | override the `Player.log` path |
 
@@ -149,15 +152,47 @@ python3 mtg-draft.py capture status   # just print status (pid, source, stream s
 python3 mtg-draft.py capture stop     # stop the background capture
 ```
 
-**Size cap.** The stream is bounded by a **front-truncating** cap (default **200 MB**, set with
+**Size cap.** The stream is bounded by a **front-truncating** cap (default **50 MB**, set with
 `--cap-mb N` or `MTG_CAP_MB`): when it exceeds the cap it drops the *oldest* bytes and keeps the
-most recent, so a draft in progress is never the thing trimmed. The default is deliberately
-generous — one Arena session log is only ~10–25 MB, so 200 MB can't clip a single draft. (Tuning
-this down once we've measured a real end-to-end draft is tracked as a TODO.)
+most recent, so a draft in progress is never the thing trimmed. Sized from real data — a full
+draft spans only ~0.25 MB of the stream, so 50 MB holds ~6 h of play (200+ draft windows) before
+trimming, and the parsed draft is persisted to its own JSON regardless (the raw stream is just a
+rolling buffer).
 
 `logs/` is gitignored. The capture follows whichever log the tool is configured to read —
 local by default, or a remote log when `--ssh` is set (in which case the stream is still
 written locally on the machine running the tool).
+
+## Reconstructed draft history
+
+`draft` turns the raw capture stream into a clean, structured record of your draft. It parses every
+`BotDraft` pick out of `logs/player_stream.log`, segments the stream into separate drafts, recovers
+**what you took at each pick** (by diffing the cumulative picked-list — duplicate picks and the
+forced final card handled), enriches every card with 17Lands GIH WR / IWD / ALSA + grades, and
+writes the most recent draft to **`drafts/current.json`**:
+
+```jsonc
+{
+  "set": "MKM", "event": "QuickDraft_MKM_...", "ratings_fmt": "PremierDraft (historical proxy)",
+  "n_picks": 39,
+  "picks": [
+    { "pack": 1, "pick": 1,
+      "taken":   { "name": "Teysa, Opulent Oligarch", "gih": 0.615, "iwd": 0.10, "alsa": 1.8, ... },
+      "offered": [ { "name": "...", "gih": ..., "taken": false }, ... ] },   // all cards, sorted by GIH
+    ...
+  ],
+  "pool": [ /* every card taken */ ]
+}
+```
+
+It also prints a pick-by-pick summary, flagging picks where a clearly higher-GIH card was left in
+the pack (`⚠ passed ...`). This lets a coach answer "what did I pass at P1P5?" from one small file
+instead of re-scraping the multi-MB live log. `pull` refreshes `current.json` automatically each
+pick, so it stays current during a live draft. `drafts/` is gitignored.
+
+**Ratings for re-run / rotated sets:** if the drafted format has no 17Lands win-rate data yet (e.g. a
+Quick Draft re-run early in its window), `draft` automatically proxies with the set's original
+PremierDraft data over a wide historical window — and notes it in `ratings_fmt`.
 
 ## Using it as an agent / coach
 
