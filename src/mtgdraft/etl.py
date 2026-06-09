@@ -259,10 +259,14 @@ def _is_complete(picks):
 
 def _make_replay(draft_json, out_md):
     """Best-effort: render the coached replay for a completed draft into its folder. Subprocess so a
-    replay failure can never disturb the ETL/capture path."""
+    replay failure can never disturb the ETL/capture path. Set MTG_REPLAY_AI=1 to also add the
+    model-written per-pick takes (one claude -p call) — off by default so the background daemon
+    stays token-free / offline."""
+    cmd = [sys.executable, REPLAY, draft_json, out_md]
+    if os.environ.get("MTG_REPLAY_AI"):
+        cmd.append("--ai")
     try:
-        subprocess.run([sys.executable, REPLAY, draft_json, out_md],
-                       check=False, capture_output=True, timeout=90)
+        subprocess.run(cmd, check=False, capture_output=True, timeout=300)
     except Exception:
         pass
 

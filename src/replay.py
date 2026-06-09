@@ -3,7 +3,8 @@
 replay. Pure post-hoc narration over the structured ETL data — every number/grade/oracle detail
 is read from the draft JSON + the scryfall/grades caches, never invented.
 
-Usage:  python3 scripts/replay.py [drafts/current.json] [> out.md]
+Usage:  python3 src/replay.py [draft.json] [out.md] [--ai]
+        --ai adds a model-written "🤖 Take" per pick (one claude -p call; needs CLAUDE_CODE_OAUTH_TOKEN).
 """
 import json, os, sys, re
 
@@ -14,10 +15,16 @@ sys.path.insert(0, SRC)
 from mtgdraft.grades import load_grades_any
 from mtgdraft.analysis import COLOR_NAMES
 
-PATH = sys.argv[1] if len(sys.argv) > 1 else os.path.join(DATA, "drafts", "current.json")
+AI = "--ai" in sys.argv                                            # opt-in model commentary per pick
+argv = [a for a in sys.argv[1:] if a != "--ai"]
+PATH = argv[0] if argv else os.path.join(DATA, "drafts", "current.json")
 draft = json.load(open(PATH))
 scry = json.load(open(os.path.join(DATA, "cache", "scryfall_arena.json")))
 grades, glabel = load_grades_any(draft.get("set", ""))
+takes = {}
+if AI:
+    from mtgdraft.ai import pick_takes
+    takes = pick_takes(draft)
 
 COLORS = draft.get("analysis", {}).get("colors", "") or ""        # deck's final colors, e.g. "WB"
 BOMB = 0.57                                                       # GIH WR bomb threshold
@@ -227,6 +234,9 @@ for p in draft["picks"]:
         out.append(f"| | _+{hidden} more_ | | | | | | |")
     out.append("")
     out.append(build_note(p, prev_run))
+    take = takes.get(f"P{p['pack']}P{p['pick']}")               # opt-in model take (--ai)
+    if take:
+        out.append(f"\n🤖 **Take:** {take}")
     # what the taken card does
     if tk:
         t = text_of(tk)
@@ -245,7 +255,7 @@ for pk in (1, 2, 3):
 if a.get("open_color_readable"):
     out.append(f"- **Open-color read (premiums flowing late):** {a['open_color_readable']}")
 
-dest = sys.argv[2] if len(sys.argv) > 2 \
+dest = argv[1] if len(argv) > 1 \
     else os.path.join(DATA, "drafts", f"{draft.get('set','draft')}-replay.md")
 open(dest, "w").write("\n".join(out))
 print("wrote", os.path.relpath(dest, HERE), f"({len(draft['picks'])} picks)")

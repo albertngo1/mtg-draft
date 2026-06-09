@@ -268,6 +268,15 @@ permanently once seen — bundle and all — even after it ages out of the rolli
 Completion is detected from the log itself (pick count reaches the final pack's last pick), so the
 replay fires whether or not you ever drove the tool. `data/drafts/` is gitignored (local archive).
 
+**AI takes in the replay (opt-in).** The per-pick replay notes are deterministic heuristics by default.
+Pass `--ai` to `replay.py` (`python3 src/replay.py <draft.json> <out.md> --ai`) to add a model-written
+**`🤖 Take`** under each pick — one batched `claude -p` call that's fed each pick's *point-in-time*
+deck state (no hindsight) plus the tool's coaching doctrine, so the takes match the same philosophy as
+the rest of the tool. It needs a long-lived `CLAUDE_CODE_OAUTH_TOKEN` (env, or a gitignored
+`claude-token.txt` at the repo root). To have the daemon's auto-replays include takes too, set
+`MTG_REPLAY_AI=1`; it's off by default so the background capture stays token-free and offline. Failures
+are silent — the deterministic replay is unaffected.
+
 **Ratings for re-run / rotated sets:** if the drafted format has no 17Lands win-rate data yet (e.g. a
 Quick Draft re-run early in its window), `draft` automatically proxies with the set's original
 PremierDraft data over a wide historical window — and notes it in `ratings_fmt`.

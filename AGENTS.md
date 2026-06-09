@@ -45,7 +45,8 @@ oracle text + P/T.
 as long as the capture daemon runs.** Each draft is persisted as a self-contained bundle folder
 `data/drafts/<set>_<fingerprint>/` holding `draft.json` (the enriched cumulative store), `raw.log`
 (this draft's stream slice), and `replay.md` (the coached audit, auto-written once the draft
-completes). The most recent draft's `draft.json` is also mirrored to **`data/drafts/current.json`**.
+completes; `replay.py --ai` or `MTG_REPLAY_AI=1` adds a model-written `🤖 Take` per pick via one
+`claude -p` call fed each pick's point-in-time state). The most recent draft's `draft.json` is also mirrored to **`data/drafts/current.json`**.
 Run `python3 src/mtg-draft.py draft` to (re)build on demand. **To answer any question about earlier
 picks ("what did I pass at P1P5?", "what's my curve/colors so far?"), READ `data/drafts/current.json`
 (or a specific draft's `draft.json`) instead of re-reading the raw log** — the live log only retains
