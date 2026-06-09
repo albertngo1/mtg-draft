@@ -12,6 +12,7 @@ SRC = os.path.join(HERE, "src")
 DATA = os.path.join(HERE, "data")
 sys.path.insert(0, SRC)
 from mtgdraft.grades import load_grades_any
+from mtgdraft.analysis import COLOR_NAMES
 
 PATH = sys.argv[1] if len(sys.argv) > 1 else os.path.join(DATA, "drafts", "current.json")
 draft = json.load(open(PATH))
@@ -155,10 +156,25 @@ def build_note(p, prev):
             state += f"  ✓ Fills a need: {' & '.join(filled)}."
         note.append(state)
 
-    # wheel callout
-    wheels = [c["name"] for c in off if c.get("wheel")]
+    # wheel callout — name the actual lane(s) flowing back, split into your colours vs a pivot signal
+    wheels = [c for c in off if c.get("wheel")]
     if wheels:
-        note.append(f"🔄 Wheeled back: {', '.join(wheels)} — confirms that lane is open near you.")
+        names = ", ".join(f"{c['name']} ({c.get('color') or 'C'})" for c in wheels)
+        def lane(cols):
+            return "/".join(COLOR_NAMES[ch] for ch in sorted(cols, key="WUBRG".index))
+        wcols = {ch for c in wheels for ch in (c.get("color") or "") if ch in "WUBRG"}
+        on_cols = {ch for ch in wcols if colors and ch in colors}
+        off_cols = wcols - on_cols
+        parts = []
+        if on_cols:
+            parts.append(f"**{lane(on_cols)}** (your colours) is coming back — your lane is open, keep mining it")
+        if off_cols:
+            where = f"open outside your {colors} — a pivot/splash signal" if colors \
+                    else "open near you (nobody upstream is taking it)"
+            parts.append(f"**{lane(off_cols)}** is {where}")
+        if not wcols:
+            parts.append("colourless/artifacts are flowing late — fine to pick up cheaply")
+        note.append(f"🔄 Wheeled back (returned on the 8-seat lap): {names} — " + "; ".join(parts) + ".")
 
     return "  \n".join(note)
 
