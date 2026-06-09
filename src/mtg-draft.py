@@ -793,6 +793,20 @@ def analyze_pool(pool, picks, colors):
     }
 
 
+def _deck_needs(n, creatures, two_drops, removal, curve):
+    """What the deck still needs RIGHT NOW, scaled to how far through the draft you are — so it reads
+    'low on 2-drops' as a live priority instead of screaming 'few creatures' at pick 3. Targets are
+    the Be-Boring/CABS end-state (16 creatures · 6 two-drops · 3-4 removal · ≤6 at 5+ MV)."""
+    frac = min(1.0, n / 42.0)                       # ~fraction of a 45-card pool drafted
+    needs = []
+    if two_drops < round(6 * frac):   needs.append(f"2-drops ({two_drops})")
+    if removal < round(3.5 * frac):   needs.append(f"removal (~{removal})")
+    if creatures < round(16 * frac):  needs.append(f"creatures ({creatures})")
+    five_plus = sum(v for k, v in curve.items() if int(k) >= 5)
+    if five_plus > 6:                 needs.append(f"top-heavy ({five_plus} at 5+)")
+    return needs
+
+
 def _running_metrics(taken_cards, passed_cards, scry):
     """Compact cumulative deck state THROUGH the current pick, embedded per pick so a reader never
     has to reconstruct the pool. For the live (pending) pick this is your pool-so-far as you decide.
@@ -811,10 +825,13 @@ def _running_metrics(taken_cards, passed_cards, scry):
     prem_by_color = Counter(ch for c in passed_cards if c.get("gih") and c["gih"] >= 0.55
                             for ch in (c.get("color") or "") if ch in "WUBRG")
     themes = Counter(t for c in taken_cards for t in c.get("tags", []))
+    curve_d = {str(mv): curve[mv] for mv in sorted(curve)}
+    needs = _deck_needs(len(taken_cards), counts.get("creature", 0), curve.get(2, 0), removal, curve_d)
     return {"n": len(taken_cards), "colors": colors,
             "creatures": counts.get("creature", 0), "spells": counts.get("spell", 0),
             "other": counts.get("other", 0), "two_drops": curve.get(2, 0),
-            "removal_est": removal, "curve": {str(mv): curve[mv] for mv in sorted(curve)},
+            "removal_est": removal, "curve": curve_d,
+            "needs": needs, "needs_readable": ", ".join(needs) if needs else "on track",
             "passed_by_color": dict(passed_by_color),
             "passed_readable": _color_phrase(passed_by_color),
             "premiums_passed_by_color": dict(prem_by_color),
@@ -942,6 +959,8 @@ def print_draft_summary(state, n_drafts, path):
         if last_run and last_run.get("premiums_passed_readable"):
             print(f"  PREMIUMS PASSED (good cards you let go, by color):  "
                   f"{last_run['premiums_passed_readable']}")
+        if last_run and last_run.get("needs_readable"):
+            print(f"  STILL NEEDS (prioritize next picks):  {last_run['needs_readable']}")
         if a["flags"]:
             print("  ⚠ " + "  ·  ".join(a["flags"]))
     print()

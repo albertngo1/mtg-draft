@@ -50,10 +50,12 @@ def mark(c, taken_id, colors):
     return "▸" if oncolor(c, colors) else " "
 
 def needs_read(run):
-    """Audit the deck-so-far (a `running` block) against Be-Boring/CABS targets → ordered need list.
-    Scaled to draft progress so it doesn't scream 'few creatures' at pick 3."""
+    """The deck's live needs — read straight from the running data store (the tool computes `needs`
+    per pick now). Falls back to recomputing for older draft JSON that predates the field."""
     if not run:
         return []
+    if "needs" in run:
+        return run["needs"]
     n = run.get("n", 0)
     cre, two, rem = run.get("creatures", 0), run.get("two_drops", 0), run.get("removal_est", 0)
     frac = n / 42.0                                              # ~how far through the draft

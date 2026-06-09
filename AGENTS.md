@@ -47,7 +47,9 @@ took at each pick). Run `python3 src/mtg-draft.py draft` to (re)build it on dema
 question about earlier picks ("what did I pass at P1P5?", "what's my curve/colors so far?"), READ
 `data/drafts/current.json` instead of re-reading the raw log** — the live log only retains the current
 pack. Each pick has a cumulative `running` block (curve, counts, what you've passed by color +
-premiums passed by color), offered cards carry `wheel` (true only on a real 8-player lap, pick≥9)
+premiums passed by color, plus **`needs` / `needs_readable`** — what the deck-so-far is still short
+on, scaled to draft progress, e.g. `"2-drops (1), removal (~0)"` or `"on track"`; steer the next
+pick toward these gaps), offered cards carry `wheel` (true only on a real 8-player lap, pick≥9)
 and `tags`, and the pool rolls up into `themes` + `archetype_lean` + `open_color_signal` (colors
 flowing premiums late) — use these for signal reads and deckbuilding, don't recompute them.
 **Color signals are pre-spelled-out** for you and the player: `running.passed_readable` /

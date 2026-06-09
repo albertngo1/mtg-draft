@@ -210,6 +210,7 @@ writes the most recent draft to **`data/drafts/current.json`**:
     { "pack": 1, "pick": 1,
       "taken":   { "name": "Teysa, Opulent Oligarch", "gih": 0.615, "tags": ["clues","tokens"], ... },
       "running": { "n": 1, "colors": "WB", "creatures": 1, "curve": {...},   // cumulative deck so far
+                   "needs": ["2-drops (1)"], "needs_readable": "2-drops (1)",  // gaps, scaled to progress
                    "passed_by_color": {...}, "premiums_passed_by_color": {...},
                    "premiums_passed_readable": "28 green, 27 red, 14 blue", "themes": {...} },
       "offered": [ { "name": "...", "gih": ..., "taken": false, "wheel": false, "tags": [...] }, ... ] },
