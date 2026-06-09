@@ -183,14 +183,16 @@ writes the most recent draft to **`drafts/current.json`**:
     "targets": { "creatures": "15-18", "two_drops": "5-7", "removal": "3-4", "lands": 17 },
     "themes": { "evasion": 13, "sacrifice": 12, "graveyard": 11, "clues": 8, ... },  // mechanic tags
     "archetype_lean": [ "aggro / low-curve", "aristocrats (sacrifice / life-loss)" ],
-    "open_color_signal": [ { "color": "R", "late_premiums_seen": 14 }, ... ],  // colors flowing late
+    "open_color_signal": [ { "color": "R", "color_name": "red", "late_premiums_seen": 14 }, ... ],
+    "open_color_readable": "14 red, 13 green, 7 black",   // same, spelled out for the player
     "flags":   [ /* e.g. "few creatures (12/15-18)", "thin removal (~2/3-4)" */ ]
   },
   "picks": [
     { "pack": 1, "pick": 1,
       "taken":   { "name": "Teysa, Opulent Oligarch", "gih": 0.615, "tags": ["clues","tokens"], ... },
       "running": { "n": 1, "colors": "WB", "creatures": 1, "curve": {...},   // cumulative deck so far
-                   "passed_by_color": {...}, "premiums_passed_by_color": {...}, "themes": {...} },
+                   "passed_by_color": {...}, "premiums_passed_by_color": {...},
+                   "premiums_passed_readable": "28 green, 27 red, 14 blue", "themes": {...} },
       "offered": [ { "name": "...", "gih": ..., "taken": false, "wheel": false, "tags": [...] }, ... ] },
     ...
   ],
@@ -248,9 +250,12 @@ You can feed the coach two kinds of external, set-specific knowledge. Both are t
 their error is decorrelated from game outcomes (they flag cards worth a second look; they don't
 settle them).
 
-**1. Reviewer grades → a `DS` column in the ranked table.** Drop a JSON file at
+**1. Reviewer grades → a grade column in the ranked table.** Drop a JSON file at
 `grades/<source>_<SET>.json` and the tool auto-joins it as a grade column when you `pull`/`rank`
-that set. The format is a flat `card name → grade` map plus a `_source` note:
+that set. The column is labeled by source — `DS` (Draftsim, x/5), `CGB` (CardGameBase, letter tier
+A+→F), or `LG` (LimitedGrades); the first source found for the set wins. The format is a flat
+`card name → grade` map plus a `_source` note (the grade value is shown verbatim, so numeric and
+letter scales both work; split/MDFC names are matched on their front face):
 
 ```json
 {
@@ -260,9 +265,11 @@ that set. The format is a flat `card name → grade` map plus a `_source` note:
 }
 ```
 
-Tier-list sites are usually JS-rendered with no clean API, so the practical capture flow is: open
-the page, save/paste the rendered HTML, parse `name → grade` into the JSON, and commit it under
-`grades/` (this dir **is** committed — unlike `cache/`). Use a *theory* grade source (human
+Some tier-list sites (Draftsim) are JS-rendered with no clean API, so the practical capture flow is:
+open the page, save/paste the rendered HTML, parse `name → grade` into the JSON, and commit it under
+`grades/` (this dir **is** committed — unlike `cache/`). **CardGameBase is server-rendered**, so its
+list can be fetched directly (`cardgamebase.com/<set>-draft-tier-list/`) — that's how the bundled
+`grades/cardgamebase_MKM.json` was built. Use a *theory* grade source (human
 power-evaluation); don't add a second *empirical* source — another win-rate metric just duplicates
 17Lands and adds noise.
 

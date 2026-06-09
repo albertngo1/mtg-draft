@@ -49,7 +49,12 @@ question about earlier picks ("what did I pass at P1P5?", "what's my curve/color
 pack. Each pick has a cumulative `running` block (curve, counts, what you've passed by color +
 premiums passed by color), offered cards carry `wheel` (true only on a real 8-player lap, pick≥9)
 and `tags`, and the pool rolls up into `themes` + `archetype_lean` + `open_color_signal` (colors
-flowing premiums late) — use these for signal reads and deckbuilding, don't recompute them. For re-run/rotated sets with no live win-rate data yet, it auto-proxies PremierDraft ratings
+flowing premiums late) — use these for signal reads and deckbuilding, don't recompute them.
+**Color signals are pre-spelled-out** for you and the player: `running.passed_readable` /
+`running.premiums_passed_readable` (e.g. `"28 green, 27 red, 14 blue"`) and
+`analysis.open_color_readable` — **always present these in plain English ("28 green premiums
+passed"), never as `G28 R27` shorthand.** The raw `*_by_color` maps and per-entry `color_name`
+are still there if you need the numbers. For re-run/rotated sets with no live win-rate data yet, it auto-proxies PremierDraft ratings
 (noted in `ratings_fmt`).
 
 Then, on the current pack, you:
@@ -58,8 +63,10 @@ Then, on the current pack, you:
    stats. A 55%-card that's a 2-drop flyer in your colors can beat a 58%-card that's a 6-mana
    durdle. Don't recommend off the GIH column alone.
 2. **Cross-reference an external grade.** If `grades/<source>_<SET>.json` exists it auto-shows as a
-   `DS` column (e.g. Draftsim) in the table. Otherwise pull the grade **from the tier list you
-   fetched at draft start**, no new WebFetch.
+   grade column labeled by source — `DS` (Draftsim, x/5), `CGB` (CardGameBase, letter tier A+→F),
+   or `LG` (LimitedGrades); the first source found for the set wins (priority DS→CGB→LG). Split/MDFC
+   cards are matched on their front face automatically. Otherwise pull the grade **from the tier list
+   you fetched at draft start**, no new WebFetch.
    *Why a theory grade earns a column:* it's a *reviewer* grade built from human power-evaluation,
    not game outcomes — so it has **decorrelated error** from 17Lands. It agrees with the win data
    on bombs and diverges most on thin-sample / mushy-middle cards. So treat a grade-vs-17Lands
@@ -72,7 +79,9 @@ Then, on the current pack, you:
    it's pure bloat. Only sources with a *different method* (theory grades) add anything.
    *Adding a grade source for a set:* tier-list sites are usually JS-rendered with no clean API —
    paste the rendered HTML, parse name→grade into `grades/<source>_<SET>.json` (committed dir, NOT
-   `cache/`), treat as theory grades.
+   `cache/`), treat as theory grades. **CardGameBase is server-rendered**, so its tier list IS
+   WebFetch-able directly (`cardgamebase.com/<set>-draft-tier-list/`) — that's how `cardgamebase_MKM.json`
+   was built. Draftsim's pick-order pages are JS-rendered and need the paste-the-HTML route.
 3. Give the pick with reasoning, applying the strategy fundamentals below.
 
 If the live read ever fails, fall back to the manual flow: have the player read you the pack, then

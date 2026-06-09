@@ -90,9 +90,30 @@ def load_grades(source, set_code):
     try:
         with open(os.path.join(GRADES, f"{source}_{set_code}.json")) as f:
             d = json.load(f)
-        return {k.lower(): v for k, v in d.items() if not k.startswith("_")}
+        out = {}
+        for k, v in d.items():
+            if k.startswith("_"):
+                continue
+            out[k.lower()] = v
+            if "//" in k:                       # split/MDFC: also key by front face, the name the pool stores
+                out[k.split("//")[0].strip().lower()] = v
+        return out
     except Exception:
         return {}
+
+# Known reviewer-grade sources, in priority order, with the table column label each gets.
+# Different sources use different scales (Draftsim = x/5 numeric; CardGameBase = letter tier) —
+# the value is shown verbatim, so they don't need to be normalized.
+_GRADE_SOURCES = [("draftsim", "DS"), ("cardgamebase", "CGB"), ("limitedgrades", "LG")]
+
+def load_grades_any(set_code):
+    """Load whichever reviewer-grade file exists for this set (first match wins).
+    Returns (grades_dict, column_label). ({}, '') if none cached."""
+    for source, label in _GRADE_SOURCES:
+        g = load_grades(source, set_code)
+        if g:
+            return g, label
+    return {}, ""
 os.makedirs(CACHE, exist_ok=True)
 
 def default_log_path():
@@ -589,7 +610,7 @@ def _card_enricher(cfg, ids):
     missing = [c for c in {str(i) for i in ids} if c not in scry]
     if missing:
         resolve_ids(missing); scry = load_scry()
-    ds = load_grades("draftsim", cfg["set"])
+    ds, _ = load_grades_any(cfg["set"])
     def card(cid):
         cid = str(cid); s = by_id.get(cid); meta = scry.get(cid, {})
         name = (s["name"] if s else meta.get("name", f"<{cid}?>")).split("//")[0].strip()
@@ -624,23 +645,35 @@ def _kind(type_line):
 
 
 # Theme/mechanic tags from oracle text + type/curve, so archetype themes emerge from the pool.
-# Mostly set-agnostic; the MKM-relevant ones (clues, exile, life-loss, disguise, evidence…) are here.
+# Set-agnostic core (evasion, removal, sacrifice…) + per-set mechanic groups. A regex that doesn't
+# match a given set's cards is harmless, so all sets' tags can coexist in one dictionary.
 _TAG_RX = [
-    ("clues",           re.compile(r"investigate|\bclue", re.I)),
-    ("exile",           re.compile(r"\bexile", re.I)),
+    # --- generic / always-on ---
     ("life-loss",       re.compile(r"loses? \d+ life|lose life|each opponent loses|drain", re.I)),
     ("lifegain",        re.compile(r"gains? \d+ life|gain life|lifelink", re.I)),
-    ("disguise",        re.compile(r"disguise|\bcloak\b", re.I)),
     ("ward",            re.compile(r"\bward\b", re.I)),
-    ("collect-evidence", re.compile(r"collect evidence", re.I)),
-    ("suspect",         re.compile(r"\bsuspect", re.I)),
-    ("cases",           re.compile(r"to solve|solved\b", re.I)),
     ("counters",        re.compile(r"\+1/\+1 counter", re.I)),
     ("sacrifice",       re.compile(r"sacrifice", re.I)),
     ("graveyard",       re.compile(r"graveyard", re.I)),
     ("tokens",          re.compile(r"create .*token", re.I)),
+    ("exile",           re.compile(r"\bexile", re.I)),
     ("evasion",         re.compile(r"flying|menace|can't be blocked|skulk|intimidate|trample", re.I)),
     ("card-draw",       re.compile(r"draw (a|one|two|three|\d+) card", re.I)),
+    # --- MKM (Murders at Karlov Manor) ---
+    ("clues",           re.compile(r"investigate|\bclue", re.I)),
+    ("disguise",        re.compile(r"disguise|\bcloak\b", re.I)),
+    ("collect-evidence", re.compile(r"collect evidence", re.I)),
+    ("suspect",         re.compile(r"\bsuspect", re.I)),
+    ("cases",           re.compile(r"to solve|solved\b", re.I)),
+    # --- SOS / Secrets of Strixhaven (school spellslinger · soup · the five colleges) ---
+    # Verified against the cached SOS pool — these are SOS's real keywords (magecraft/learn/lesson
+    # from the ORIGINAL Strixhaven do NOT appear here; this set uses prepared/converge/paradigm).
+    ("spells-matter",   re.compile(r"instant or sorcery|noncreature spell|whenever you cast", re.I)),
+    ("prepared",        re.compile(r"\bprepared\b", re.I)),                 # creature ⁠// spell-half copy
+    ("converge",        re.compile(r"\bconverge\b", re.I)),                 # soup payoff: scales w/ colors of mana
+    ("paradigm",        re.compile(r"\bparadigm\b", re.I)),                 # recast the spell from exile
+    ("fractal",         re.compile(r"\bfractal\b", re.I)),                  # Quandrix 0/0 +1/+1-counter token
+    ("flashback",       re.compile(r"\bflashback\b|cast .{0,30}from your graveyard", re.I)),  # Lorehold gy value
 ]
 
 
@@ -669,15 +702,32 @@ def _archetype_lean(themes, curve, counts):
         leans.append("aggro / low-curve")
     scored = [
         ("aristocrats (sacrifice / life-loss)", themes.get("sacrifice", 0) + themes.get("life-loss", 0)),
+        ("lifegain / lifedrain", themes.get("lifegain", 0) + themes.get("life-loss", 0)),
         ("clue / artifact value", themes.get("clues", 0)),
-        ("graveyard value", themes.get("graveyard", 0) + themes.get("collect-evidence", 0)),
-        ("+1/+1 counters", themes.get("counters", 0)),
+        ("graveyard / flashback value",
+         themes.get("graveyard", 0) + themes.get("collect-evidence", 0) + themes.get("flashback", 0)),
+        ("+1/+1 counters / fractals", themes.get("counters", 0) + themes.get("fractal", 0)),
         ("exile-matters", themes.get("exile", 0)),
         ("disguise / face-down tempo", themes.get("disguise", 0) + themes.get("ward", 0)),
+        ("spellslinger (instants & sorceries)",
+         themes.get("spells-matter", 0) + themes.get("paradigm", 0)),
+        # soup is rare-but-loud: a few Converge/paradigm payoffs already signal the multicolor plan.
+        ("soup / Converge (multicolor value)", themes.get("converge", 0) * 2 + themes.get("paradigm", 0)),
     ]
     strong = sorted((x for x in scored if x[1] >= 6), key=lambda x: -x[1])
     leans += [name for name, _ in strong[:2]]
     return leans
+
+
+COLOR_NAMES = {"W": "white", "U": "blue", "B": "black", "R": "red", "G": "green", "C": "colorless"}
+
+
+def _color_phrase(counter):
+    """Spell out a {color-letter: count} map in plain English, most-passed first:
+    {"G": 20, "R": 14, "U": 6} -> '20 green, 14 red, 6 blue'. Empty -> '' (caller skips it)."""
+    items = sorted(counter.items(),
+                   key=lambda kv: (-kv[1], "WUBRG".index(kv[0]) if kv[0] in "WUBRG" else 99))
+    return ", ".join(f"{n} {COLOR_NAMES.get(ch, ch)}" for ch, n in items if n)
 
 
 def analyze_pool(pool, picks, colors):
@@ -723,7 +773,9 @@ def analyze_pool(pool, picks, colors):
                     for ch in (c.get("color") or ""):
                         if ch in "WUBRG":
                             flowing[ch] += 1
-    open_signal = [{"color": col, "late_premiums_seen": n} for col, n in flowing.most_common() if n >= 4]
+    open_signal = [{"color": col, "color_name": COLOR_NAMES.get(col, col), "late_premiums_seen": n}
+                   for col, n in flowing.most_common() if n >= 4]
+    open_readable = ", ".join(f"{s['late_premiums_seen']} {s['color_name']}" for s in open_signal)
     return {
         "colors": colors,
         "counts": {"creatures": counts.get("creature", 0), "spells": counts.get("spell", 0),
@@ -734,7 +786,8 @@ def analyze_pool(pool, picks, colors):
         "targets": {"creatures": "15-18", "two_drops": "5-7", "removal": "3-4",
                     "lands": 17, "five_plus_cap": "~5-6"},
         "themes": dict(themes.most_common()), "archetype_lean": lean,
-        "open_color_signal": open_signal, "signals": signals[:12], "flags": flags,
+        "open_color_signal": open_signal, "open_color_readable": open_readable,
+        "signals": signals[:12], "flags": flags,
     }
 
 
@@ -761,7 +814,9 @@ def _running_metrics(taken_cards, passed_cards, scry):
             "other": counts.get("other", 0), "two_drops": curve.get(2, 0),
             "removal_est": removal, "curve": {str(mv): curve[mv] for mv in sorted(curve)},
             "passed_by_color": dict(passed_by_color),
+            "passed_readable": _color_phrase(passed_by_color),
             "premiums_passed_by_color": dict(prem_by_color),
+            "premiums_passed_readable": _color_phrase(prem_by_color),
             "themes": dict(themes.most_common())}
 
 
@@ -879,9 +934,12 @@ def print_draft_summary(state, n_drafts, path):
             print(f"  THEMES:  {th}")
         if a.get("archetype_lean"):
             print(f"  ARCHETYPE LEAN:  {'  ·  '.join(a['archetype_lean'])}")
-        if a.get("open_color_signal"):
-            oc = ", ".join(f"{s['color']} ({s['late_premiums_seen']})" for s in a["open_color_signal"])
-            print(f"  OPEN COLORS (late premiums flowing, pick 5+):  {oc}")
+        if a.get("open_color_readable"):
+            print(f"  OPEN COLORS (premiums still flowing to you, pick 5+):  {a['open_color_readable']}")
+        last_run = next((p["running"] for p in reversed(state["picks"]) if p.get("running")), None)
+        if last_run and last_run.get("premiums_passed_readable"):
+            print(f"  PREMIUMS PASSED (good cards you let go, by color):  "
+                  f"{last_run['premiums_passed_readable']}")
         if a["flags"]:
             print("  ⚠ " + "  ·  ".join(a["flags"]))
     print()
@@ -1013,7 +1071,7 @@ def print_table(ids, cfg, show_text=True):
         resolve_ids(missing)
         scry = load_scry()
     on = set(cfg["colors"].upper())
-    ds = load_grades("draftsim", cfg["set"])   # external reviewer grades (x/5), if cached
+    ds, ds_label = load_grades_any(cfg["set"])   # external reviewer grades (Draftsim x/5 or CGB tier)
 
     rows = []
     for cid in ids:
@@ -1044,7 +1102,7 @@ def print_table(ids, cfg, show_text=True):
                      "ds": ds.get(nm)})
     rows.sort(key=lambda r: r["gih"], reverse=True)
 
-    dsh = f"{'DS':5}" if ds else ""          # only show a grade column if that source is cached
+    dsh = f"{ds_label:5}" if ds else ""      # only show a grade column if that source is cached
     print(f"\n  {cfg['set']} {cfg['fmt']}  ({len(ids)} cards"
           + (f", on-color = {cfg['colors']}" if on else "") + ")\n")
     print(f"   {'CARD':24}{'CLR':5}{'R':3}{'MV':3}{'GIHWR':8}{'IWD':7}{'ALSA':6}{'N':6}{dsh} tier")
