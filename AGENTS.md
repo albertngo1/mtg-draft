@@ -49,8 +49,12 @@ question about earlier picks ("what did I pass at P1P5?", "what's my curve/color
 pack. Each pick has a cumulative `running` block (curve, counts, what you've passed by color +
 premiums passed by color, plus **`needs` / `needs_readable`** — what the deck-so-far is still short
 on, scaled to draft progress, e.g. `"2-drops (1), removal (~0)"` or `"on track"`; steer the next
-pick toward these gaps), offered cards carry `wheel` (true only on a real 8-player lap, pick≥9)
-and `tags`, and the pool rolls up into `themes` + `archetype_lean` + `open_color_signal` (colors
+pick toward these gaps), offered cards carry `wheel` (true only on a real 8-player lap, pick≥9),
+`tags`, and — when applicable — **`inflation`** (the card's GIH WR is selection-bias-inflated; a
+Converge/colors-of-mana or `{X}` card whose number reflects soup/big-X pilots, NOT your 2-color
+deck — the Snarl Song trap, with a plain-English caveat to read it well below the headline) and
+**`guide`** (the LoL set guide's expert one-liner on that card). The pool rolls up into `themes` +
+`archetype_lean` + `open_color_signal` (colors
 flowing premiums late) — use these for signal reads and deckbuilding, don't recompute them.
 **Color signals are pre-spelled-out** for you and the player: `running.passed_readable` /
 `running.premiums_passed_readable` (e.g. `"28 green, 27 red, 14 blue"`) and

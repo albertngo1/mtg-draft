@@ -116,6 +116,53 @@ def load_grades_any(set_code):
         if g:
             return g, label
     return {}, ""
+
+GUIDES = os.path.join(ROOT, "lords-of-limited")  # committed expert set guides: <SET>-draft-guide.md
+_GUIDE_NOTE_RX = re.compile(r"^\s*-\s*\*\*(.+?)\*\*\s*[—–-]\s*(.+?)\s*$")
+
+def load_guide_notes(set_code):
+    """Per-card expert notes from lords-of-limited/<SET>-draft-guide.md's '## Card notes' section
+    (bullet rows `- **Card** — note`). Keyed by lowercased card name (+ split-card front face).
+    Returns {} if no guide. Theory/expert opinion — cross-reference, 17Lands GIH WR stays primary."""
+    notes = {}
+    try:
+        in_section = False
+        with open(os.path.join(GUIDES, f"{set_code}-draft-guide.md"), encoding="utf-8") as f:
+            for line in f:
+                if line.startswith("## "):
+                    in_section = "card note" in line.lower()
+                    continue
+                if not in_section:
+                    continue
+                m = _GUIDE_NOTE_RX.match(line)
+                if m:
+                    name, note = m.group(1).split("(")[0].strip(), m.group(2).strip()
+                    notes[name.lower()] = note
+                    if "//" in name:                    # split/MDFC: also key by front face
+                        notes[name.split("//")[0].strip().lower()] = note
+    except Exception:
+        pass
+    return notes
+
+# Cards whose 17Lands GIH WR is selection-bias-inflated for a normal 2-color deck (the Snarl Song /
+# A-Killer-Among-Us trap): the headline number reflects the dedicated decks that abused the card.
+_CONVERGE_RX = re.compile(r"\bconverge\b|colou?rs? of mana spent|for each colou?r of mana", re.I)
+
+def _inflation(meta, tags):
+    """Flag (with a plain-English caveat) cards whose GIH overstates their value in a clean 2-color
+    deck. Only the *mechanically verifiable* cases — Converge/colors-of-mana and {X} costs — never a
+    fuzzy 'this looks like a payoff' guess, which would re-introduce over-correction."""
+    text = meta.get("text", "") or ""
+    mana = meta.get("mana", "") or ""
+    if "converge" in tags or _CONVERGE_RX.search(text):
+        return {"kind": "converge",
+                "note": "GIH reflects 4–5c soup pilots (scales with colors of mana spent); in a "
+                        "2-color deck this plays as X≈2 — read it well below the headline."}
+    if "{X}" in mana:
+        return {"kind": "x-cost",
+                "note": "X-cost: GIH skews to games where X was paid large; its value tracks the "
+                        "mana you have spare, not the headline number."}
+    return None
 os.makedirs(CACHE, exist_ok=True)
 
 def default_log_path():
@@ -613,19 +660,28 @@ def _card_enricher(cfg, ids):
     if missing:
         resolve_ids(missing); scry = load_scry()
     ds, _ = load_grades_any(cfg["set"])
+    guide = load_guide_notes(cfg["set"])
     def card(cid):
         cid = str(cid); s = by_id.get(cid); meta = scry.get(cid, {})
         name = (s["name"] if s else meta.get("name", f"<{cid}?>")).split("//")[0].strip()
-        return {"id": cid, "name": name,
-                "color": (s.get("color") if s else meta.get("color")) or "C",
-                "rarity": ((s.get("rarity") if s else meta.get("rarity")) or "?")[:1].upper(),
-                "cmc": meta.get("cmc"), "type": meta.get("type", ""),
-                "gih": s.get("ever_drawn_win_rate") if s else None,
-                "iwd": s.get("drawn_improvement_win_rate") if s else None,
-                "alsa": s.get("avg_seen") if s else None,
-                "n": (s.get("ever_drawn_game_count") if s else 0) or 0,
-                "ds": ds.get(name.lower()),
-                "tags": _card_tags(meta)}
+        tags = _card_tags(meta)
+        c = {"id": cid, "name": name,
+             "color": (s.get("color") if s else meta.get("color")) or "C",
+             "rarity": ((s.get("rarity") if s else meta.get("rarity")) or "?")[:1].upper(),
+             "cmc": meta.get("cmc"), "type": meta.get("type", ""),
+             "gih": s.get("ever_drawn_win_rate") if s else None,
+             "iwd": s.get("drawn_improvement_win_rate") if s else None,
+             "alsa": s.get("avg_seen") if s else None,
+             "n": (s.get("ever_drawn_game_count") if s else 0) or 0,
+             "ds": ds.get(name.lower()),
+             "tags": tags}
+        inflation = _inflation(meta, tags)
+        if inflation:                              # only present when the GIH is selection-bias-inflated
+            c["inflation"] = inflation
+        note = guide.get(name.lower())
+        if note:                                   # expert per-card note from the LoL set guide, if any
+            c["guide"] = note
+        return c
     return card, ratings_fmt
 
 

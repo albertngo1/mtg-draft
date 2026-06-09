@@ -87,8 +87,7 @@ def build_note(p, prev):
     tk_on = oncolor(tk, colors)
     best_off = not oncolor(best, colors)
     gap = (g(best) - g(tk)) if g(best) and g(tk) else None
-    payoff = bool(set(best.get("tags", [])) & {"counters", "sacrifice", "tokens", "spells-matter",
-                                               "converge", "fractal", "clues"})
+    best_inflated = best.get("inflation")          # data store: GIH is selection-bias-inflated
     synergy_reach = bool(set(tk.get("tags", [])) & {"counters", "sacrifice", "tokens", "clues",
                                                     "spells-matter", "fractal", "converge"})
     color_tag = "on-color" if tk_on else f"{tk.get('color')}, off your {colors or 'colors'}"
@@ -111,11 +110,10 @@ def build_note(p, prev):
         note.append(lead)
     elif best_off and tk_on:
         # the genuine "bomb-but-off-archetype" case — took an on-color fit over an off-color headline
-        why = "a build-around whose win rate rides on a shell you don't have" if payoff \
-              else f"off your {colors or 'colors'}"
+        extra = " (and its GIH is inflated — see below)" if best_inflated else ""
         note.append(f"**Pick: {tk['name']}** ({pct(g(tk))}, on-color · {tk_tags}). The headline number "
-                    f"is **{best['name']}** ({pct(g(best))}, {best.get('color')}) — but it's {why}. "
-                    f"Taking the on-color fit.")
+                    f"is **{best['name']}** ({pct(g(best))}, {best.get('color')}) — but it's off your "
+                    f"{colors or 'colors'}{extra}. Taking the on-color fit.")
     elif best_off and not tk_on:
         note.append(f"**Pick: {tk['name']}** ({pct(g(tk))}, {tk.get('color')} — also off your "
                     f"{colors or 'colors'}). Nothing on-color near the top; best was **{best['name']}** "
@@ -132,6 +130,16 @@ def build_note(p, prev):
     # passed an on-color premium (skip in pack 1 early — colors aren't locked, so "on-color" is moot)
     if not early and best_on and best_on["id"] != best["id"] and g(best_on) and g(best_on) >= 0.55:
         note.append(f"On-color premium also in the pack: {best_on['name']} ({pct(g(best_on))}).")
+
+    # inflation caveat on the headline card, straight from the data store (the Snarl Song trap)
+    if best_inflated and best["id"] != tk["id"]:
+        note.append(f"⚠ **{best['name']}**'s {pct(g(best))} is inflated — {best_inflated['note']}")
+    if tk.get("inflation"):
+        note.append(f"⚠ Your pick's {pct(g(tk))} is inflated — {tk['inflation']['note']}")
+
+    # expert note on the pick from the LoL set guide, if one exists
+    if tk.get("guide"):
+        note.append(f"📘 _Guide:_ {tk['guide']}")
 
     # deck-state audit, straight from the running data store: colors so far + what the deck still needs,
     # and whether this pick filled one of those needs.
@@ -197,6 +205,7 @@ for p in draft["picks"]:
         iwd = f"{cc['iwd']*100:+.1f}" if cc.get("iwd") is not None else "—"
         alsa = f"{cc['alsa']:.1f}" if cc.get("alsa") else "—"
         tags = ", ".join(cc.get("tags", []) or [])
+        if cc.get("inflation"): tags = "⚠infl · " + tags
         out.append(f"| {mark(cc, tk['id'] if tk else None, colors_at)} | {cc['name']} | {cc.get('color') or 'C'} "
                    f"| {pct(g(cc))} | {iwd} | {alsa} | {grade_of(cc)} | {tags} |")
     hidden = len(p["offered"]) - len(rows)

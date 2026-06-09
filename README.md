@@ -213,7 +213,9 @@ writes the most recent draft to **`data/drafts/current.json`**:
                    "needs": ["2-drops (1)"], "needs_readable": "2-drops (1)",  // gaps, scaled to progress
                    "passed_by_color": {...}, "premiums_passed_by_color": {...},
                    "premiums_passed_readable": "28 green, 27 red, 14 blue", "themes": {...} },
-      "offered": [ { "name": "...", "gih": ..., "taken": false, "wheel": false, "tags": [...] }, ... ] },
+      "offered": [ { "name": "...", "gih": ..., "taken": false, "wheel": false, "tags": [...],
+                     "inflation": { "kind": "converge", "note": "..." },  // only when GIH is inflated
+                     "guide": "expert one-liner from the set guide" }, ... ] },   // only if the guide notes it
     ...
   ],
   "pool": [ /* every card taken */ ]
@@ -297,7 +299,9 @@ power-evaluation); don't add a second *empirical* source — another win-rate me
 set strategy (meta read, archetype tier table, per-card notes, signals), each set gets a consolidated
 `<SET>-draft-guide.md` (kept flat in `lords-of-limited/`) that the agent loads once and holds in
 context for the whole draft, plus a per-set `<set>/sources/` layer of per-episode notes to dig into a
-specific pick. See
+specific pick. The guide's **`## Card notes`** bullets (`- **Card** — note`) are also parsed
+automatically and attached to each offered card as a `guide` field in the draft JSON, so the expert
+one-liner travels with the card. See
 [`lords-of-limited/README.md`](./lords-of-limited/README.md) for the layout and the conventions for
 adding a new set (date-prefixed source notes, a recency rule where the newest take wins on
 conflict). Guides distilled from public content (e.g. strategy YouTube channels) are credited to
