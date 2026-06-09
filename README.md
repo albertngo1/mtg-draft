@@ -138,7 +138,7 @@ mtg-draft/
 ├─ lords-of-limited/              # committed expert set guides
 └─ data/                          # generated, gitignored
    ├─ cache/                      # 17Lands + Scryfall caches
-   ├─ drafts/                     # per-draft bundles <set>_<fp>/{draft.json,raw.log,replay.md} + current.json
+   ├─ drafts/                     # bundles grouped by set: <SET>/<fmt>_<fp>/{draft.json,raw.log,replay.md} + current.json
    └─ logs/                       # raw Player.log capture stream
 ```
 
@@ -253,8 +253,8 @@ the pack (`⚠ passed ...`). This lets a coach answer "what did I pass at P1P5?"
 creature count healthy?" from one small file instead of re-scraping the multi-MB live log.
 
 **Per-draft bundles.** Every draft in the stream is persisted as a self-contained **bundle folder**,
-`data/drafts/<set>_<fingerprint>/` (fingerprint = hash of the P1P1 pack, so re-runs overwrite the same
-folder rather than piling up), holding three artifacts:
+grouped by set: `data/drafts/<SET>/<fmt>_<fingerprint>/` (fingerprint = hash of the P1P1 pack, so
+re-runs overwrite the same folder rather than piling up), holding three artifacts:
 
 | file | what |
 |---|---|

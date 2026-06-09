@@ -43,7 +43,7 @@ oracle text + P/T.
 **Draft history (so you don't forget earlier picks):** a side-car capture mirrors the whole
 `Player.log` stream and, each pick, auto-refreshes the structured store — **no manual `pull` needed
 as long as the capture daemon runs.** Each draft is persisted as a self-contained bundle folder
-`data/drafts/<set>_<fingerprint>/` holding `draft.json` (the enriched cumulative store), `raw.log`
+`data/drafts/<SET>/<fmt>_<fingerprint>/` (grouped by set) holding `draft.json` (the enriched cumulative store), `raw.log`
 (this draft's stream slice), and `replay.md` (the coached audit, auto-written once the draft
 completes). The most recent draft's `draft.json` is also mirrored to **`data/drafts/current.json`**.
 Run `python3 src/mtg-draft.py draft` to (re)build on demand. **To answer any question about earlier
