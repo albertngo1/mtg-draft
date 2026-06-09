@@ -287,7 +287,7 @@ def refresh_current(cfg):
         is_latest = idx == len(drafts) - 1
         dcfg = _draft_cfg(cfg, d)
         fp = _draft_fingerprint(d)
-        folder = os.path.join(DRAFTS, dcfg["set"], f"{dcfg['fmt']}_{fp}")  # grouped by set
+        folder = os.path.join(DRAFTS, f"{dcfg['set']}_{fp}")
         draft_json = os.path.join(folder, "draft.json")
         if not is_latest and os.path.exists(draft_json):
             continue                                # older draft already bundled; won't change
