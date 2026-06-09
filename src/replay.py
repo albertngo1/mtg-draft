@@ -23,11 +23,15 @@ grades, glabel = mtg.load_grades_any(draft.get("set", ""))
 COLORS = draft.get("analysis", {}).get("colors", "") or ""        # deck's final colors, e.g. "WB"
 BOMB = 0.57                                                       # GIH WR bomb threshold
 
-def oncolor(c):
+def oncolor(c, colors=None):
+    """On-color relative to `colors` — by default the deck's FINAL colors, but the replay passes the
+    colors committed AT THAT POINT (from the running data store) so each pick is audited against the
+    deck as it actually stood, not in hindsight. Empty colors (nothing committed yet) = all open."""
+    colors = COLORS if colors is None else colors
     col = c.get("color") or "C"
-    if col in ("C", ""):                                          # colorless = castable in any deck
+    if col in ("C", "") or not colors:                           # colorless / nothing committed = open
         return True
-    return all(ch in COLORS for ch in col if ch in "WUBRG")
+    return all(ch in colors for ch in col if ch in "WUBRG")
 
 def g(c):                                                        # GIH as a %, or None
     return c["gih"] if c.get("gih") else None
@@ -41,55 +45,107 @@ def grade_of(c):
 def text_of(c):
     return (scry.get(str(c["id"]), {}).get("text", "") or "").replace("\n", " ").strip()
 
-def mark(c, taken_id):
+def mark(c, taken_id, colors):
     if c["id"] == taken_id: return "✅"
-    return "▸" if oncolor(c) else " "
+    return "▸" if oncolor(c, colors) else " "
 
-def build_note(p):
-    """Heuristic coaching note for one pick, grounded in the card data."""
+def needs_read(run):
+    """Audit the deck-so-far (a `running` block) against Be-Boring/CABS targets → ordered need list.
+    Scaled to draft progress so it doesn't scream 'few creatures' at pick 3."""
+    if not run:
+        return []
+    n = run.get("n", 0)
+    cre, two, rem = run.get("creatures", 0), run.get("two_drops", 0), run.get("removal_est", 0)
+    frac = n / 42.0                                              # ~how far through the draft
+    needs = []
+    if two < round(6 * frac):  needs.append(f"2-drops ({two})")
+    if rem < round(3.5 * frac): needs.append(f"removal (~{rem})")
+    if cre < round(16 * frac):  needs.append(f"creatures ({cre})")
+    five_plus = sum(v for k, v in (run.get("curve") or {}).items() if int(k) >= 5)
+    if five_plus > 6:           needs.append(f"top-heavy ({five_plus} at 5+)")
+    return needs
+
+def build_note(p, prev):
+    """Heuristic coaching note for one pick, audited against the deck-so-far (`prev` running block)."""
     tk = p["taken"]
     off = p["offered"]
+    colors = (prev or {}).get("colors", "") or ""               # colors committed going INTO this pick
     if not tk:
         return "_(current pack — no pick recorded)_"
     best = off[0]                                                 # offered is pre-sorted by GIH desc
-    on_off = [c for c in off if c["id"] != tk["id"] and oncolor(c)]
+    on_off = [c for c in off if c["id"] != tk["id"] and oncolor(c, colors)]
     best_on = on_off[0] if on_off else None
     note = []
-    pickno = (p["pack"] - 1) * 15 + p["pick"]
     early = p["pack"] == 1 and p["pick"] <= 5
 
-    # framing of the card taken
+    # On-color is audited against the colors committed GOING INTO this pick (from the running data
+    # store), not the deck's final colors — so a red P1P4 pick is judged against the deck as it then
+    # stood, not retconned into the WB deck it became. Empty `colors` (pack-1 open) = everything open.
     tk_tags = ", ".join(tk.get("tags", []) or []) or "—"
+    tk_on = oncolor(tk, colors)
+    best_off = not oncolor(best, colors)
+    gap = (g(best) - g(tk)) if g(best) and g(tk) else None
+    payoff = bool(set(best.get("tags", [])) & {"counters", "sacrifice", "tokens", "spells-matter",
+                                               "converge", "fractal", "clues"})
+    synergy_reach = bool(set(tk.get("tags", [])) & {"counters", "sacrifice", "tokens", "clues",
+                                                    "spells-matter", "fractal", "converge"})
+    color_tag = "on-color" if tk_on else f"{tk.get('color')}, off your {colors or 'colors'}"
+
     if tk["id"] == best["id"]:
-        gap = (g(best) - g(off[1])) if len(off) > 1 and g(best) and g(off[1]) else None
+        nxt = (g(best) - g(off[1])) if len(off) > 1 and g(best) and g(off[1]) else None
         lead = f"**Pick: {tk['name']}** ({pct(g(tk))}). Best card in the pack"
-        lead += f", {gap*100:.1f}% clear of the next — easy." if gap and gap > 0.03 else " — took it."
+        lead += f", {nxt*100:.1f}% clear of the next — easy." if nxt and nxt > 0.03 else " — took it."
         note.append(lead)
-    else:
-        gap = (g(best) - g(tk)) if g(best) and g(tk) else None
-        payoff = bool(set(best.get("tags", [])) & {"counters", "sacrifice", "tokens", "spells-matter",
-                                                   "converge", "fractal", "clues"})
-        if not oncolor(best):
-            # the "bomb-but-off-archetype" case
-            why = "a build-around whose win rate rides on a shell you don't have" if payoff \
-                  else f"off your {COLORS or 'colors'}"
-            note.append(f"**Pick: {tk['name']}** ({pct(g(tk))}, on-color · {tk_tags}). The headline "
-                        f"number is **{best['name']}** ({pct(g(best))}, {best.get('color')}) — but it's "
-                        f"{why}. Taking the on-color fit.")
-        elif gap and gap > 0.03:
-            note.append(f"**Pick: {tk['name']}** ({pct(g(tk))}). ⚠ **{best['name']}** "
-                        f"({pct(g(best))}, on-color) was {gap*100:.1f}% better and in your colors — "
-                        f"the stronger pick here.")
+    elif early:
+        # colors aren't committed yet — judge on power, never on (final-color) fit
+        lead = f"**Pick: {tk['name']}** ({pct(g(tk))}, {tk.get('color')} · {tk_tags})."
+        if gap and gap > 0.04:
+            kind = "synergy/build-around reach" if synergy_reach else "below-rate speculative pick"
+            lead += (f" A {kind} on raw power — the pack's best was **{best['name']}** "
+                     f"({pct(g(best))}) — but P{p['pack']}P{p['pick']} is still wide open, so it's a "
+                     f"defensible flyer if the synergy comes together.")
         else:
-            note.append(f"**Pick: {tk['name']}** ({pct(g(tk))}, {tk_tags}) over "
-                        f"**{best['name']}** ({pct(g(best))}) — close; defensible on fit/curve.")
+            lead += f" Near the top of a still-open pack (best: {best['name']} {pct(g(best))})."
+        note.append(lead)
+    elif best_off and tk_on:
+        # the genuine "bomb-but-off-archetype" case — took an on-color fit over an off-color headline
+        why = "a build-around whose win rate rides on a shell you don't have" if payoff \
+              else f"off your {colors or 'colors'}"
+        note.append(f"**Pick: {tk['name']}** ({pct(g(tk))}, on-color · {tk_tags}). The headline number "
+                    f"is **{best['name']}** ({pct(g(best))}, {best.get('color')}) — but it's {why}. "
+                    f"Taking the on-color fit.")
+    elif best_off and not tk_on:
+        note.append(f"**Pick: {tk['name']}** ({pct(g(tk))}, {tk.get('color')} — also off your "
+                    f"{colors or 'colors'}). Nothing on-color near the top; best was **{best['name']}** "
+                    f"({pct(g(best))}, {best.get('color')}). A speculative/splash pick.")
+    elif gap and gap > 0.03:
+        offc = "" if tk_on else ", and off-color"
+        note.append(f"**Pick: {tk['name']}** ({pct(g(tk))}{offc}). ⚠ **{best['name']}** "
+                    f"({pct(g(best))}, on-color) was {gap*100:.1f}% better and in your colors — "
+                    f"the stronger pick here.")
+    else:
+        note.append(f"**Pick: {tk['name']}** ({pct(g(tk))}, {color_tag} · {tk_tags}) over "
+                    f"**{best['name']}** ({pct(g(best))}) — close; defensible on fit/curve.")
 
-    if early and p["pick"] >= 3:
-        note.append("_(Still open this early — taking power/color-flex, not committing.)_")
-
-    # passed an on-color premium that wasn't the headline card
-    if best_on and best_on["id"] != best["id"] and g(best_on) and g(best_on) >= 0.55:
+    # passed an on-color premium (skip in pack 1 early — colors aren't locked, so "on-color" is moot)
+    if not early and best_on and best_on["id"] != best["id"] and g(best_on) and g(best_on) >= 0.55:
         note.append(f"On-color premium also in the pack: {best_on['name']} ({pct(g(best_on))}).")
+
+    # deck-state audit, straight from the running data store: colors so far + what the deck still needs,
+    # and whether this pick filled one of those needs.
+    if prev:
+        needs = needs_read(prev)
+        state = f"_Deck going in: {prev.get('n')} cards, {prev.get('colors') or 'open'}"
+        if needs:
+            state += f" · still needs {', '.join(needs)}"
+        state += "._"
+        need_keys = " ".join(needs)
+        filled = []
+        if tk.get("cmc") == 2 and "2-drop" in need_keys:        filled.append("a 2-drop")
+        if "removal" in (tk.get("tags") or []) and "removal" in need_keys: filled.append("removal")
+        if filled:
+            state += f"  ✓ Fills a need: {' & '.join(filled)}."
+        note.append(state)
 
     # wheel callout
     wheels = [c["name"] for c in off if c.get("wheel")]
@@ -112,35 +168,46 @@ out.append(f"**Shape:** {c.get('creatures','?')} creatures · {c.get('spells','?
            f"curve {'  '.join(f'{k}:{v}' for k,v in (a.get('curve') or {}).items())}\n")
 if a.get("flags"):
     out.append(f"**Flags:** {' · '.join(a['flags'])}\n")
+out.append("\n*Each pick is audited against the deck **as it stood at that pick** (the per-pick "
+           "`running` state), not in hindsight: `▸` = on-color vs the colors you'd committed by then "
+           "(everything's open in pack 1), `✅` = your pick.*\n")
 out.append("\n---\n")
 
 # ---- per-pack, per-pick ----
 last_pack = None
+prev_run = None                                                  # running state from the PREVIOUS pick
 for p in draft["picks"]:
     if p["pack"] != last_pack:
         out.append(f"\n## Pack {p['pack']}\n")
         last_pack = p["pack"]
     tk = p["taken"]
+    colors_at = (prev_run or {}).get("colors", "") or ""         # colors committed going into this pick
     out.append(f"\n### P{p['pack']}P{p['pick']}" + (f" — took {tk['name']}" if tk else "") + "\n")
-    # table of the pack (top cards)
+    # table of the pack (top cards) — always include the card actually taken, even if it ranks low
     rows = p["offered"][:8]
+    if tk and not any(cc["id"] == tk["id"] for cc in rows):
+        taken_card = next((cc for cc in p["offered"] if cc["id"] == tk["id"]), None)
+        if taken_card:
+            rows = rows + [taken_card]
     out.append(f"| | Card | Clr | GIH | IWD | ALSA | {glabel or 'Grade'} | Tags |")
     out.append("|---|---|---|---|---|---|---|---|")
     for cc in rows:
         iwd = f"{cc['iwd']*100:+.1f}" if cc.get("iwd") is not None else "—"
         alsa = f"{cc['alsa']:.1f}" if cc.get("alsa") else "—"
         tags = ", ".join(cc.get("tags", []) or [])
-        out.append(f"| {mark(cc, tk['id'] if tk else None)} | {cc['name']} | {cc.get('color') or 'C'} "
+        out.append(f"| {mark(cc, tk['id'] if tk else None, colors_at)} | {cc['name']} | {cc.get('color') or 'C'} "
                    f"| {pct(g(cc))} | {iwd} | {alsa} | {grade_of(cc)} | {tags} |")
-    if len(p["offered"]) > 8:
-        out.append(f"| | _+{len(p['offered'])-8} more_ | | | | | | |")
+    hidden = len(p["offered"]) - len(rows)
+    if hidden > 0:
+        out.append(f"| | _+{hidden} more_ | | | | | | |")
     out.append("")
-    out.append(build_note(p))
+    out.append(build_note(p, prev_run))
     # what the taken card does
     if tk:
         t = text_of(tk)
         if t:
             out.append(f"\n> **{tk['name']}** — {t[:280]}")
+    prev_run = p.get("running") or prev_run                      # carry forward for the next pick's audit
 
 # ---- footer: running signal at end of each pack ----
 out.append("\n\n---\n\n## Signal trail\n")
