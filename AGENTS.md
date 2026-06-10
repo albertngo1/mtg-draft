@@ -33,15 +33,17 @@ each set's `lords-of-limited/<set>/sources/` — open one only to dig into a spe
 Then, each pick (when the player says "next" or starts a draft):
 
 ```bash
-python3 src/mtg-draft.py pull                  # colors auto-detect from picks; pass --colors UR to override
+python3 src/mtg-draft.py pull                  # set/fmt auto-detect from the draft's EventName,
+                                               # colors from picks; --set/--fmt/--colors override
 ```
 
 That reads the **current** pack from `Player.log` (locally by default), and prints (a) a **`DECK`
 deck-state line** read from `data/drafts/current.json` — creature/spell counts, removal, two-drops,
-curve, archetype lean, top themes, the open-color signal, premiums passed by color, and target
-flags — so the live deck picture is in front of you every pick; (b) a table ranked by GIH WR with
+curve, archetype lean, top themes, the open-color signal, premiums passed by color, and a `NEED`
+line of **progress-scaled** gaps (so it reads as a live priority, not end-state alarm-bells at
+pick 3) — so the live deck picture is in front of you every pick; (b) a table ranked by GIH WR with
 on-color cards marked `▸`; and (c) a **"what each card does"** section with oracle text + P/T.
-**Lead with the `DECK` line** and let its `NEED`/flags steer the pick (creature-priority when bodies
+**Lead with the `DECK` line** and let its `NEED` steer the pick (creature-priority when bodies
 are below target, stop stacking removal once at the cap, lean toward the open colors).
 
 **Draft history (so you don't forget earlier picks):** a side-car capture mirrors the whole
@@ -82,8 +84,9 @@ flowing premiums late) — use these for signal reads and deckbuilding, don't re
 `running.premiums_passed_readable` (e.g. `"28 green, 27 red, 14 blue"`) and
 `analysis.open_color_readable` — **always present these in plain English ("28 green premiums
 passed"), never as `G28 R27` shorthand.** The raw `*_by_color` maps and per-entry `color_name`
-are still there if you need the numbers. For re-run/rotated sets with no live win-rate data yet, it auto-proxies PremierDraft ratings
-(noted in `ratings_fmt`).
+are still there if you need the numbers. For re-run/rotated sets with no live win-rate data yet,
+**both the store AND the live `pull`/`rank` table** auto-proxy the set's original PremierDraft
+ratings over a wide historical window (noted in `ratings_fmt` and in the table header).
 
 Then, on the current pack, you:
 
@@ -129,9 +132,12 @@ If the live read ever fails, fall back to the manual flow: have the player read 
 | `python3 src/mtg-draft.py capture [status\|stop]` | show / start / stop the background log-capture daemon |
 
 Flags: `--set FIN` `--fmt PremierDraft` `--colors UR` `--days 120` `--brief` (table only)
-`--refresh`. Config via env: `MTG_SET MTG_FMT MTG_COLORS MTG_LOG`. Reading the log from another
-machine is opt-in via `--ssh` / `--ssh-key` (or `MTG_SSH` / `MTG_SSH_KEY`) — see the README's
-"Advanced" section.
+`--refresh`. Config via env: `MTG_SET MTG_FMT MTG_COLORS MTG_LOG`. For `pull`/`pool`/`watch`,
+set/fmt **auto-detect from the live draft's EventName**; precedence is flag > EventName > env >
+default (so a stale `MTG_SET` can't silently rank against the wrong set). The fmt slot is adopted
+only when it's a real 17Lands format — special events (`MWM_SOS_...`) put junk there. Reading the
+log from another machine is opt-in via `--ssh` / `--ssh-key` (or `MTG_SSH` / `MTG_SSH_KEY`) — see
+the README's "Advanced" section.
 
 **Caching (so you don't re-query every pick):** the pack→stats join is by `mtga_id`, which 17Lands
 already provides — so Scryfall is only needed for cost/oracle-text. `warm` pulls the whole set from
@@ -140,8 +146,9 @@ Scryfall's `e:<set>` search in one paginated walk; after that, `pull`/`rank` for
 (gitignored): `17lands_<SET>_<FMT>.json` (24h TTL) and `scryfall_arena.json` (persistent).
 `--refresh` forces a 17Lands re-pull.
 
-**New set each season:** just change `--set`/`--fmt` (or `MTG_SET`). Everything else is generic.
-Find the current event's set code in the log: the pack payload has `"EventName":"<FMT>_<SET>_<date>"`.
+**New set each season:** nothing to change for the live commands — `pull`/`pool`/`watch` detect
+set/fmt from the pack payload's `"EventName":"<FMT>_<SET>_<date>"`. Just `warm --set <SET>` once
+(and add grades/guide files if available). `--set`/`MTG_SET` still work as overrides.
 
 ## How the live read works (for when the script breaks)
 

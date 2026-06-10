@@ -1,4 +1,4 @@
-import sys, os, json, re, time, datetime, signal, hashlib, subprocess, urllib.request, urllib.error
+import os, json, time, datetime, urllib.request
 from .config import CACHE, SCRY_CACHE, UA
 
 def _get(url):
@@ -12,10 +12,14 @@ def load_scry():
     except Exception:
         return {}
 def save_scry(d):
-    tmp = SCRY_CACHE + ".tmp"
+    _atomic_json(SCRY_CACHE, d)
+def _atomic_json(path, obj):
+    """Write JSON atomically, pid-suffixed tmp so concurrent writers (capture daemon + a CLI
+    command both refreshing) can't interleave into the same tmp file."""
+    tmp = f"{path}.{os.getpid()}.tmp"
     with open(tmp, "w") as f:
-        json.dump(d, f)
-    os.replace(tmp, SCRY_CACHE)
+        json.dump(obj, f)
+    os.replace(tmp, path)
 def _scry_rec(d):
     ci = d.get("color_identity", [])
     faces = d.get("card_faces", [])
@@ -103,6 +107,16 @@ def seventeen(set_code, fmt, days, refresh=False):
     url = (f"https://www.17lands.com/card_ratings/data?expansion={set_code}"
            f"&format={fmt}&start_date={start}&end_date={end}")
     data = json.loads(_get(url))
-    with open(path, "w") as f:
-        json.dump(data, f)
+    _atomic_json(path, data)
     return data
+def ratings(set_code, fmt, days, refresh=False):
+    """17Lands dataset with the historical fallback: if the requested format has no win-rate data
+    yet (e.g. a Quick-Draft re-run early in its window, or a junk format), proxy with the set's
+    original PremierDraft over a wide window. Returns (data, ratings_fmt_label)."""
+    data = seventeen(set_code, fmt, days, refresh)
+    if any(c.get("ever_drawn_win_rate") for c in data):
+        return data, fmt
+    proxy = seventeen(set_code, "PremierDraft", max(int(days), 1200), refresh)
+    if any(c.get("ever_drawn_win_rate") for c in proxy):
+        return proxy, "PremierDraft (historical proxy)"
+    return data, fmt

@@ -27,7 +27,6 @@ if AI:
     takes = pick_takes(draft)
 
 COLORS = draft.get("analysis", {}).get("colors", "") or ""        # deck's final colors, e.g. "WB"
-BOMB = 0.57                                                       # GIH WR bomb threshold
 
 def oncolor(c, colors=None):
     """On-color relative to `colors` — by default the deck's FINAL colors, but the replay passes the

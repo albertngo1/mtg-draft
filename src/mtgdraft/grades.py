@@ -1,4 +1,4 @@
-import sys, os, json, re, time, datetime, signal, hashlib, subprocess, urllib.request, urllib.error
+import os, json, re
 from .config import GRADES, GUIDES
 
 def load_grades(source, set_code):

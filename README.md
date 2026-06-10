@@ -26,15 +26,16 @@ git clone <your-fork-url> mtg-draft && cd mtg-draft
 # Use the 17Lands expansion code for the set you're drafting (see "Finding the set code" below).
 python3 src/mtg-draft.py warm --set FIN
 
-# During the draft — read the current pack from the local log and rank it:
-python3 src/mtg-draft.py pull --set FIN --fmt PremierDraft
+# During the draft — read the current pack from the local log and rank it.
+# Set + format are auto-detected from the live draft's event name (override with --set/--fmt):
+python3 src/mtg-draft.py pull
 ```
 
 On **Windows**, use `python` and either `src/mtg-draft.py` directly or the `mtg-draft.bat` wrapper:
 
 ```bat
 python src/mtg-draft.py warm --set FIN
-mtg-draft.bat pull --set FIN --fmt PremierDraft
+mtg-draft.bat pull
 ```
 
 On macOS/Linux there's also a `./mtg-draft.sh` wrapper (`./mtg-draft.sh pull ...`).
@@ -42,14 +43,15 @@ On macOS/Linux there's also a `./mtg-draft.sh` wrapper (`./mtg-draft.sh pull ...
 ### Commands
 
 ```bash
-# Read the current pack from the log, rank it + show oracle text (colors auto-detected from picks)
-python3 src/mtg-draft.py pull --set FIN --fmt PremierDraft
+# Read the current pack from the log, rank it + show oracle text (set/fmt auto-detected from the
+# live draft's event name, colors auto-detected from your picks)
+python3 src/mtg-draft.py pull
 
 # Audit your picks so far: creatures/spells/lands split, curve, on/off-color, CABS check
-python3 src/mtg-draft.py pool --set FIN
+python3 src/mtg-draft.py pool
 
 # Stream: auto-print the ranked table every time a new pack appears (run in its own terminal)
-python3 src/mtg-draft.py watch --set FIN
+python3 src/mtg-draft.py watch
 
 # Manually rank an explicit list of Arena card IDs
 python3 src/mtg-draft.py rank --set FIN --colors UR 102690 102462 102498
@@ -76,12 +78,20 @@ auto-detected from the colored pips in the cards you've already taken.
 drafting is in the log under the event name, e.g. `"EventName":"PremierDraft_FIN_20250613"`. The
 17Lands code is the same short code, and the Scryfall set code is its lowercase form.
 
+For `pull`/`pool`/`watch` (and the capture daemon's auto-enrich), **set and format are auto-detected
+from that event name** — `--set` is only needed for `warm`/`rank`, or to override the detection. The
+format slot is adopted only when it's a real 17Lands format (special events like Midweek Magic put
+other tokens there). If the format has **no win-rate data yet** (e.g. a Quick-Draft re-run early in
+its window), the ranked table and the draft store automatically fall back to the set's original
+**PremierDraft data over a wide historical window** — noted in the table header and in the store's
+`ratings_fmt`.
+
 ## Flags / config
 
 | flag | env | default | meaning |
 |---|---|---|---|
-| `--set` | `MTG_SET` | `FIN` | 17Lands expansion code for the set you're drafting |
-| `--fmt` | `MTG_FMT` | `PremierDraft` | PremierDraft / QuickDraft / TradDraft / Sealed |
+| `--set` | `MTG_SET` | (auto) | 17Lands expansion code — auto-detected from the live draft for `pull`/`pool`/`watch`; the flag overrides (fallback default `FIN`) |
+| `--fmt` | `MTG_FMT` | (auto) | PremierDraft / QuickDraft / TradDraft / Sealed — auto-detected from the live draft; the flag overrides (fallback default `PremierDraft`) |
 | `--colors` | `MTG_COLORS` | (auto) | mark these colors on-color, e.g. `UR` (auto-detected if omitted) |
 | `--days` | `MTG_DAYS` | `120` | 17Lands lookback window in days |
 | `--brief` | | | table only, skip the oracle-text section |

@@ -1,9 +1,9 @@
-import sys, os, json, re, time, datetime, signal, hashlib, subprocess, urllib.request, urllib.error
+import sys, os, json, re, hashlib, subprocess
 from .config import DRAFTS, REPLAY, STREAM
-from .sources import load_scry, resolve_ids, seventeen
+from .sources import load_scry, ratings, resolve_ids
 from .grades import load_grades_any, load_guide_notes
 from .analysis import COLOR_NAMES, _REMOVAL_RX, _archetype_lean, _card_tags, _color_phrase, _deck_needs, _inflation, _kind
-from .logread import infer_colors
+from .logread import apply_event, infer_colors
 
 def _botdraft_payloads(text):
     """Pull every BotDraft DraftPack payload out of the raw stream, in log order."""
@@ -26,8 +26,8 @@ def _botdraft_payloads(text):
             if not (pk and pi and dp):
                 continue
             p = {"PackNumber": int(pk.group(1)), "PickNumber": int(pi.group(1)),
-                 "DraftPack": re.findall(r"\d{5,6}", dp.group(1)),
-                 "PickedCards": re.findall(r"\d{5,6}", pc.group(1)) if pc else [],
+                 "DraftPack": re.findall(r"\d{5,7}", dp.group(1)),
+                 "PickedCards": re.findall(r"\d{5,7}", pc.group(1)) if pc else [],
                  "EventName": ev.group(1) if ev else ""}
         out.append((p, ln))                            # keep the raw line for per-draft raw.log slicing
     return out
@@ -62,7 +62,10 @@ def reconstruct_drafts(text):
             for nxt in seq[i + 1:]:                 # taken = first later state with one more card
                 diff = Counter(nxt["PickedCards"]) - base
                 if diff:
-                    taken = next(iter(diff)); break
+                    # a capture gap can make diff hold 2+ new cards — prefer (deterministically)
+                    # one that was actually offered in THIS pack over an arbitrary dict ordering
+                    cands = [c for c in e["DraftPack"] if c in diff]
+                    taken = cands[0] if cands else next(iter(diff)); break
             if taken is None and len(e["DraftPack"]) == 1:
                 taken = e["DraftPack"][0]            # last card of a pack is forced (no post-state needed)
             picks.append({"pack": e["PackNumber"] + 1, "pick": e["PickNumber"] + 1,
@@ -76,11 +79,7 @@ def _card_enricher(cfg, ids):
     """Return (fn id -> {name,color,rarity,cmc,gih,iwd,alsa,n,ds}, ratings_fmt) using 17Lands+Scryfall.
     If the live format has no win-rate data yet (e.g. a Quick-Draft re-run early in its window),
     proxy with the set's original PremierDraft over a wide historical window."""
-    data = seventeen(cfg["set"], cfg["fmt"], cfg["days"], cfg["refresh"])
-    ratings_fmt = cfg["fmt"]
-    if not any(c.get("ever_drawn_win_rate") for c in data):
-        data = seventeen(cfg["set"], "PremierDraft", max(int(cfg["days"]), 1200), cfg["refresh"])
-        ratings_fmt = "PremierDraft (historical proxy)"
+    data, ratings_fmt = ratings(cfg["set"], cfg["fmt"], cfg["days"], cfg["refresh"])
     by_id = {str(c["mtga_id"]): c for c in data if c.get("mtga_id")}
     scry = load_scry()
     missing = [c for c in {str(i) for i in ids} if c not in scry]
@@ -214,9 +213,11 @@ def enrich_draft(cfg, draft):
         offered = [dict(card(i), taken=(i == p["taken"]), wheel=(i in prev)) for i in p["offered"]]
         offered.sort(key=lambda c: c["gih"] or 0, reverse=True)
         tk = card(p["taken"]) if p["taken"] else None
-        if tk:
-            taken_sofar = taken_sofar + [tk]
-        passed_sofar = passed_sofar + [c for c in offered if not c["taken"]]
+        if tk:                                      # only a MADE pick passes cards — the pending
+            taken_sofar = taken_sofar + [tk]        # pack's cards aren't "passed" while deciding.
+            # NB: wheel laps re-add the same physical cards — intended, it overweights colors the
+            # table keeps passing (which is exactly the open-lane signal being read).
+            passed_sofar = passed_sofar + [c for c in offered if not c["taken"]]
         picks.append({"pack": p["pack"], "pick": p["pick"], "taken": tk,
                       "running": _running_metrics(taken_sofar, passed_sofar, scry), "offered": offered})
     pool = [card(i) for i in pool_ids]
@@ -225,7 +226,9 @@ def enrich_draft(cfg, draft):
             "ratings_fmt": ratings_fmt, "n_picks": len(picks),
             "analysis": analyze_pool(pool, picks, colors), "picks": picks, "pool": pool}
 def _write_json(path, obj):
-    tmp = path + ".tmp"
+    # pid-suffixed tmp: the capture daemon's on_data and a CLI `pull`/`draft` can both refresh
+    # the same files concurrently — a shared tmp name would interleave their writes.
+    tmp = f"{path}.{os.getpid()}.tmp"
     with open(tmp, "w") as f:
         json.dump(obj, f, indent=1)
     os.replace(tmp, path)
@@ -237,11 +240,7 @@ def _draft_fingerprint(draft):
 def _draft_cfg(cfg, draft):
     """Per-draft copy of cfg with set/fmt auto-detected from this draft's EventName."""
     dcfg = dict(cfg)
-    parts = draft.get("event", "").split("_")       # "QuickDraft_MKM_0260608" -> fmt, set
-    if len(parts) >= 2 and parts[1] and not cfg.get("set_explicit"):
-        dcfg["set"] = parts[1]
-    if parts and parts[0] and not cfg.get("fmt_explicit"):
-        dcfg["fmt"] = parts[0]
+    apply_event(dcfg, draft.get("event", ""))       # "QuickDraft_MKM_20260608" -> fmt, set
     return dcfg
 def _is_complete(picks):
     """Has this draft finished? True once the final pack has been drafted to its last pick — i.e.

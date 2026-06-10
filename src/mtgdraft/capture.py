@@ -1,4 +1,4 @@
-import sys, os, json, re, time, datetime, signal, hashlib, subprocess, urllib.request, urllib.error
+import sys, os, json, time, datetime, signal, subprocess
 from .config import CAP_MB_DEFAULT, CFGFILE, DEFAULTS, LOGDIR, PIDFILE, SCRY_CACHE, SHIM, STREAM
 from .logread import _read_mode
 from .etl import refresh_current
@@ -78,28 +78,42 @@ def _trim(path, cap):
         f.write(data)
 def _follow_local(c, on_data=None):
     """Poll a local Player.log and append new bytes to the stream (re-reads on rotation).
-    `on_data(new_bytes)` fires after each append so the follower can auto-refresh current.json."""
+    `on_data(new_bytes)` fires after each append so the follower can auto-refresh current.json.
+    Writes the same debug-log heartbeat as the remote follower — `_capture_healthy` gates on the
+    debug log's mtime, so a follower that never touched it would read as wedged and get recycled
+    (the local follower historically didn't, which made a stale debug log from an earlier SSH run
+    recycle a healthy local one)."""
     logpath = os.path.expanduser(c["log"])
     pos, cur = 0, None
+    _dbg(f"follow start (local): log={logpath}")
+    last_beat = last_data = time.time()
     while True:
         try:
             st = os.stat(logpath)
         except FileNotFoundError:
-            time.sleep(1.0)
-            continue
-        ino = (st.st_dev, st.st_ino)
-        if ino != cur or st.st_size < pos:      # first open OR rotated/truncated -> start over
-            cur, pos = ino, 0
-        if st.st_size > pos:
-            with open(logpath, "rb") as f:
-                f.seek(pos)
-                data = f.read()
-                pos = f.tell()
-            with open(c["out"], "ab") as out:
-                out.write(data)
-            _trim(c["out"], c["cap"])
-            if on_data:
-                on_data(data)
+            st = None
+        if st:
+            ino = (st.st_dev, st.st_ino)
+            if ino != cur or st.st_size < pos:  # first open OR rotated/truncated -> start over
+                if cur is not None:
+                    _dbg(f"ROTATION/TRUNCATION: size {st.st_size} < offset {pos} — reset to 0")
+                cur, pos = ino, 0
+            if st.st_size > pos:
+                with open(logpath, "rb") as f:
+                    f.seek(pos)
+                    data = f.read()
+                    pos = f.tell()
+                with open(c["out"], "ab") as out:
+                    out.write(data)
+                _trim(c["out"], c["cap"])
+                if on_data:
+                    on_data(data)
+                _dbg(f"+{len(data)}B  size={st.st_size} offset={pos}  "
+                     f"draftpacks_in_chunk={data.count(b'DraftPack')}")
+                last_beat = last_data = time.time()
+        if time.time() - last_beat >= 60:       # wall-clock heartbeat so idle ≠ wedged
+            _dbg(f"idle: no new bytes for ~{int(time.time() - last_data)}s (offset={pos})")
+            last_beat = time.time()
         time.sleep(0.5)
 def _follow_remote(c, on_data=None, poll=1.0):
     """Mirror a remote Player.log by POLLING with byte-offset tracking. We do NOT use `ssh tail -F`:
@@ -117,6 +131,7 @@ def _follow_remote(c, on_data=None, poll=1.0):
     offset = 0
     idle = 0                                        # consecutive polls with no new bytes
     _dbg(f"follow start: ssh={c['ssh']} log={logpath} poll={poll}s")
+    last_beat = last_data = time.time()
     while True:
         try:
             size = int((subprocess.check_output(
@@ -144,10 +159,13 @@ def _follow_remote(c, on_data=None, poll=1.0):
                 _dbg(f"+{len(data)}B  remote_size={size} offset={offset}  "
                      f"draftpacks_in_chunk={data.count(b'DraftPack')}  (after {idle} idle polls)")
                 idle = 0
+                last_beat = last_data = time.time()
         else:
             idle += 1
-            if idle % 60 == 0:                      # heartbeat so long idle gaps are visible
-                _dbg(f"idle: no new bytes for ~{idle}s (remote_size={size} offset={offset})")
+        if time.time() - last_beat >= 60:           # WALL-CLOCK heartbeat: a poll-count cadence
+            _dbg(f"idle: no new bytes for ~{int(time.time() - last_data)}s "   # drifts with ssh
+                 f"(remote_size={size} offset={offset})")                      # round-trip time
+            last_beat = time.time()
         time.sleep(poll)
 def tail_follow(cfgpath):
     """Internal worker (hidden `_tail` command). Reads its source/cap config from CFGFILE and

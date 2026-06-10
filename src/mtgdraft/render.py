@@ -1,8 +1,8 @@
-import sys, os, json, re, time, datetime, signal, hashlib, subprocess, urllib.request, urllib.error
+import sys, os, json, re, time
 from .config import DRAFTS, HERE
-from .sources import load_scry, resolve_ids, seventeen
+from .sources import load_scry, ratings, resolve_ids
 from .grades import load_grades_any
-from .logread import _last_log_line, _parse_array, _read_mode, infer_colors
+from .logread import _last_log_line, _parse_array, _read_mode, apply_event, event_from_line, infer_colors
 
 def print_deck_state():
     """Print the FULL strategic deck-state dashboard read from the structured store
@@ -30,10 +30,9 @@ def print_deck_state():
             print(f"  OPEN (premiums flowing late): {a['open_color_readable']}")
         if run.get("premiums_passed_readable"):
             print(f"  PASSED (premiums let go): {run['premiums_passed_readable']}")
-        flags = a.get("flags") or []
-        need = run.get("needs_readable")
-        bits = list(flags) + ([need] if (need and need != "on track") else [])
-        print(f"  NEED: {' · '.join(bits) if bits else 'on track'}")
+        # progress-scaled needs only — analysis.flags use END-STATE thresholds ("few creatures"
+        # fires from pick 1) and overlap needs (e.g. top-heavy in both), so they'd duplicate/alarm.
+        print(f"  NEED: {run.get('needs_readable') or 'on track'}")
     except Exception:
         pass
 
@@ -105,6 +104,7 @@ def watch(cfg):
             key = (pk.group(1) if pk else "?", pi.group(1) if pi else "?", tuple(ids))
             if key != last:
                 last = key
+                apply_event(cfg, event_from_line(line))   # set/fmt from the event, unless explicit
                 if not cfg["colors_explicit"]:        # re-infer as the pool clarifies
                     cfg["colors"] = infer_colors(_parse_array(line, "PickedCards") or [], cfg)
                 label = (f"P{int(pk.group(1))+1}P{int(pi.group(1))+1}" if pk and pi else "pack")
@@ -114,7 +114,7 @@ def watch(cfg):
                 print_table(ids, cfg, show_text=not cfg["brief"])
         time.sleep(cfg["poll"])
 def print_pool(ids, cfg):
-    data = seventeen(cfg["set"], cfg["fmt"], cfg["days"], cfg["refresh"])
+    data, _ = ratings(cfg["set"], cfg["fmt"], cfg["days"], cfg["refresh"])
     by_id = {str(c["mtga_id"]): c for c in data if c.get("mtga_id")}
     scry = load_scry()
     missing = [c for c in (str(i) for i in ids) if c not in scry]
@@ -188,7 +188,7 @@ def grade_gih(w):
     return ("\U0001f525bomb" if w >= 57 else "excellent" if w >= 54 else
             "solid" if w >= 52 else "filler" if w >= 50 else "avoid")
 def print_table(ids, cfg, show_text=True):
-    data = seventeen(cfg["set"], cfg["fmt"], cfg["days"], cfg["refresh"])
+    data, rfmt = ratings(cfg["set"], cfg["fmt"], cfg["days"], cfg["refresh"])
     by_id = {str(c["mtga_id"]): c for c in data if c.get("mtga_id")}  # identity + stats
     scry = load_scry()
     # cmc + oracle text come from Scryfall; resolve any that `warm` didn't pre-cache
@@ -229,8 +229,9 @@ def print_table(ids, cfg, show_text=True):
     rows.sort(key=lambda r: r["gih"], reverse=True)
 
     dsh = f"{ds_label:5}" if ds else ""      # only show a grade column if that source is cached
+    proxy = f"  ·  ratings: {rfmt}" if rfmt != cfg["fmt"] else ""
     print(f"\n  {cfg['set']} {cfg['fmt']}  ({len(ids)} cards"
-          + (f", on-color = {cfg['colors']}" if on else "") + ")\n")
+          + (f", on-color = {cfg['colors']}" if on else "") + f"){proxy}\n")
     print(f"   {'CARD':24}{'CLR':5}{'R':3}{'MV':3}{'GIHWR':8}{'IWD':7}{'ALSA':6}{'N':6}{dsh} tier")
     print("  " + "-" * (72 + len(dsh)))
     for r in rows:

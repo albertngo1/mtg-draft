@@ -1,4 +1,4 @@
-import sys, os, json, re, time, datetime, signal, hashlib, subprocess, urllib.request, urllib.error
+import re
 
 _CONVERGE_RX = re.compile(r"\bconverge\b|colou?rs? of mana spent|for each colou?r of mana", re.I)
 def _inflation(meta, tags):

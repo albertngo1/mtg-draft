@@ -1,8 +1,25 @@
-import sys, os, json, re, time, datetime, signal, hashlib, subprocess, urllib.request, urllib.error
+import os, re, time, subprocess
 from .config import STREAM
 from .sources import load_scry, resolve_ids
 
 STREAM_FRESH_SECS = 8.0   # trust the local capture stream only if the daemon wrote it this recently
+KNOWN_FMTS = ("PremierDraft", "QuickDraft", "TradDraft", "Sealed", "TradSealed")  # real 17Lands formats
+
+def event_from_line(line):
+    """EventName from a raw DraftPack log line (escaped or plain JSON), or ''."""
+    m = re.search(r'EventName\\":\\"([^\\"]*)', line or "") \
+        or re.search(r'"EventName":"([^"]*)"', line or "")
+    return m.group(1) if m else ""
+def apply_event(cfg, event):
+    """Adopt set/fmt auto-detected from a draft EventName ('QuickDraft_MKM_20260608' -> fmt, set)
+    unless given explicitly. The fmt slot is adopted only when it's a real 17Lands format — special
+    events (e.g. 'MWM_SOS_Cascade_BotDraft') put junk there, which would query a dataset that
+    doesn't exist; the ratings proxy fallback covers whatever format we keep."""
+    parts = (event or "").split("_")
+    if len(parts) >= 2 and parts[1] and not cfg.get("set_explicit"):
+        cfg["set"] = parts[1]
+    if parts and parts[0] in KNOWN_FMTS and not cfg.get("fmt_explicit"):
+        cfg["fmt"] = parts[0]
 
 def _last_stream_line(needle, max_age=STREAM_FRESH_SECS):
     """Return the last line containing `needle` from the LOCAL capture stream — but only if the
@@ -55,10 +72,11 @@ def _last_log_line(cfg, needle):
     return subprocess.check_output(cmd, text=True)
 def _parse_array(line, key):
     m = re.search(rf'\\"{key}\\":\[([^\]]*)\]', line) or re.search(rf'"{key}":\[([^\]]*)\]', line)
-    return re.findall(r"\d{5,6}", m.group(1)) if m else None
+    return re.findall(r"\d{5,7}", m.group(1)) if m else None
 def pull_pack(cfg):
-    """Return (ids, packnum, picknum, picked_ids) from the latest DraftPack in Player.log.
-    The same log line carries PickedCards, so colors can be inferred without a second read."""
+    """Return (ids, packnum, picknum, picked_ids, event) from the latest DraftPack in Player.log.
+    The same log line carries PickedCards + EventName, so colors can be inferred and set/fmt
+    auto-detected without a second read."""
     # SSH mode: prefer the daemon's fresh local stream (no round-trip); fall back to a live read.
     line = (_last_stream_line("DraftPack") if _read_mode(cfg) == "ssh" else None) \
         or _last_log_line(cfg, "DraftPack")
@@ -68,7 +86,8 @@ def pull_pack(cfg):
     pk = re.search(r'PackNumber\\?":(\d+)', line)
     pi = re.search(r'PickNumber\\?":(\d+)', line)
     picked = _parse_array(line, "PickedCards") or []
-    return ids, (int(pk.group(1)) if pk else -1), (int(pi.group(1)) if pi else -1), picked
+    return (ids, (int(pk.group(1)) if pk else -1), (int(pi.group(1)) if pi else -1), picked,
+            event_from_line(line))
 def infer_colors(picked_ids, cfg):
     """Guess the player's 2 colors from their picks, by counting colored pips in mana costs.
     Returns e.g. 'UR' (in WUBRG order), or '' if there's nothing to go on yet."""
@@ -84,17 +103,19 @@ def infer_colors(picked_ids, cfg):
     pips = Counter()
     for cid in picked_ids:
         mana = scry.get(cid, {}).get("mana", "")
-        for sym in "WUBRG":
-            pips[sym] += mana.count("{" + sym + "}")
+        for tok in re.findall(r"\{([^}]+)\}", mana):   # symbol-wise so hybrid {W/U} counts both
+            for sym in "WUBRG":
+                if sym in tok:
+                    pips[sym] += 1
     if not pips:
         return ""
     top = [c for c, n in pips.most_common() if n > 0][:2]
     return "".join(sorted(top, key="WUBRG".index))
 def pull_picked(cfg):
-    """Return the list of Arena IDs already picked, from the latest PickedCards in Player.log."""
+    """Return (picked_ids, event) from the latest PickedCards in Player.log."""
     line = (_last_stream_line("PickedCards") if _read_mode(cfg) == "ssh" else None) \
         or _last_log_line(cfg, "PickedCards")
     ids = _parse_array(line, "PickedCards")
     if ids is None:
         raise SystemExit("No PickedCards found in Player.log. Has the draft started?")
-    return ids
+    return ids, event_from_line(line)
