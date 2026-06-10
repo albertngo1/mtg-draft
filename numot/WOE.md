@@ -83,3 +83,19 @@
 - **Not double-blocking when stabilized**: "If I double-block there I don't think I can lose" — costing himself a game by trying to play around Kellen's Light Blades (rare removal). Assess likelihood before playing around low-probability outs.
 - **Playing Prophetic Prism and not bargaining it**: "I would have been able to still hold up my Royal Treatment — that actually could be a huge punt." Prism is a bargain source; don't forget to use it as one.
 - **Green-black requires enough top-end**: "I haven't seen a single Hamlet Glutton yet in fact... we haven't really seen any big finishers." Don't enter the archetype without reliable bombs to close.
+
+
+---
+
+## Source recency
+
+> **Tier-2 set: distilled from Kenji's most recent WOE VODs only (2023-11-05 → 2025-01-23) — an end-of-format sample, so already recency-skewed toward his settled reads.** On any internal conflict the **newest VOD wins**; **17Lands GIH WR stays primary** (expert/theory color). For full format-arc treatment see the tier-1 files (MKM.md, SOS.md).
+
+Source VODs (newest first):
+
+| Date | VOD |
+|------|-----|
+| 2025-01-23 | It's Fun To Crash The Party |
+| 2025-01-19 | My Brain Is Completely Scorched |
+| 2023-11-06 | We've Reached This Point... |
+| 2023-11-05 | The Candy Man Can |

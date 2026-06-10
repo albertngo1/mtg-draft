@@ -40,3 +40,19 @@ RNA is a multi-color format where gates enable fixing across 2–3 color combina
 - **Not playing around quench on curve**: Playing 2-drops into open UU without considering Quench costs games.
 - **High Alert matchups**: Sky Tether is "not very good if they're running a high alert deck" since it doesn't remove the threat. Recognition of this archetype is needed to adjust.
 - **Drawing all one color in Rakdos**: "I feel like this happens a lot with my Rakdos decks — I just draw all of one color consistently." Run 8/8 split strictly; mana bases need to be respected.
+
+
+---
+
+## Source recency
+
+> **Tier-2 set: distilled from Kenji's most recent RNA VODs only (2019-03-01 → 2019-03-04) — an end-of-format sample, so already recency-skewed toward his settled reads.** On any internal conflict the **newest VOD wins**; **17Lands GIH WR stays primary** (expert/theory color). For full format-arc treatment see the tier-1 files (MKM.md, SOS.md).
+
+Source VODs (newest first):
+
+| Date | VOD |
+|------|-----|
+| 2019-03-04 | [Arena] Absolutely Build Around Absolution |
+| 2019-03-03 | [Arena] Rakdos Speedrun |
+| 2019-03-02 | [Arena] Gate Colosus Goes With Everything |
+| 2019-03-01 | [Arena] Never Regretting Anyting |

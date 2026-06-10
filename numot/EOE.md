@@ -52,3 +52,19 @@
 - **Playing around vs. going for it**: Kenji notes several game-throws from playing too passively when holding 6+ damage lethal on board. "They were actively trying to lose and we still gave them time."
 - **Three-bolt over-removal, thin creatures**: In one deck Kenji had 3 Plasma Bolts and underperformed — eventually cut one for a top-end threat (Kill Ship). Don't over-index on removal; 4–5 pieces is usually enough.
 - **Running Weapons Manufacturing in a deck that assembled the tokens but never sacrificed them**: "We made 10 tokens and never sacrificed one" across two drafts. If you run Manufacturing, you must have the sacrifice outlets online; otherwise you're just making 2/2s.
+
+
+---
+
+## Source recency
+
+> **Tier-2 set: distilled from Kenji's most recent EOE VODs only (2025-09-03 → 2025-09-09) — an end-of-format sample, so already recency-skewed toward his settled reads.** On any internal conflict the **newest VOD wins**; **17Lands GIH WR stays primary** (expert/theory color). For full format-arc treatment see the tier-1 files (MKM.md, SOS.md).
+
+Source VODs (newest first):
+
+| Date | VOD |
+|------|-----|
+| 2025-09-09 | This Deck Is The Essence Of EOE |
+| 2025-09-05 | LOL WE POISON PEOPLE OUT |
+| 2025-09-04 | I'M GOING TO MAKE THIS WORK |
+| 2025-09-03 | Trying To Manufacture Some Wins |

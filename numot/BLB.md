@@ -53,3 +53,19 @@
 - **Orphaned synergy pieces**: Building squirrels without Cash Grabs leaves the engine without fuel. "This is where I'm regretting not having more cash grabs."
 - **Attacking into a potential combat trick with a key creature**: Kenji notes missing damage by not pumping the Cultivator pre-attack and getting run away-togethered (?). Think through combat math carefully when behind.
 - **Too much top end, not enough 2-drops**: "One glaring problem with this deck and I think it's just not having too much top end" vs. "my creature count might be a little bit low overall." Both are recurring issues; aim for 12+ creatures minimum.
+
+
+---
+
+## Source recency
+
+> **Tier-2 set: distilled from Kenji's most recent BLB VODs only (2024-09-07 → 2024-09-10) — an end-of-format sample, so already recency-skewed toward his settled reads.** On any internal conflict the **newest VOD wins**; **17Lands GIH WR stays primary** (expert/theory color). For full format-arc treatment see the tier-1 files (MKM.md, SOS.md).
+
+Source VODs (newest first):
+
+| Date | VOD |
+|------|-----|
+| 2024-09-10 | My Last Bloomburrow Draft. |
+| 2024-09-09 | THE BEST "FOOD" DECK EVER! |
+| 2024-09-08 | Speedrunning To Mythic! |
+| 2024-09-07 | TWO Talented To Lose |

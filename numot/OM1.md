@@ -72,3 +72,19 @@
 - **Quint's Insight decking yourself.** At low library counts, Watcher + Carlo + Quint can draw you out of cards. "I have to be careful about decking myself here." Count remaining library cards before activating.
 - **Not having enough creatures in blue-black.** "The creature count's a little bit light, but you don't need that many creatures to win — especially when you have two Watchers on the Road, backed up with this much removal." Aim for 12–13 creatures minimum; lean on Watcher to supplement.
 - **Missing lethal because of wrong attack sequences.** Kenji cost himself wins multiple times by attacking in the wrong order: "I meant to play island there — shakeing it off." Pre-plan the full attack sequence before committing.
+
+
+---
+
+## Source recency
+
+> **Tier-2 set: distilled from Kenji's most recent OM1 VODs only (2025-10-11 → 2025-10-23) — an end-of-format sample, so already recency-skewed toward his settled reads.** On any internal conflict the **newest VOD wins**; **17Lands GIH WR stays primary** (expert/theory color). For full format-arc treatment see the tier-1 files (MKM.md, SOS.md).
+
+Source VODs (newest first):
+
+| Date | VOD |
+|------|-----|
+| 2025-10-23 | Gotta Try And Have Some Fun |
+| 2025-10-14 | Is This Just Two Mana, Win? |
+| 2025-10-13 | You Can't Beat Infinite 3/3s! |
+| 2025-10-11 | The Azorius Unblockables |

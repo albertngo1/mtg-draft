@@ -51,3 +51,19 @@
 - **Hate drafting is not worth it:** Kenji explicitly says "hate drafting is still not relevant or worth it" in this format.
 - **Don't make ring bearer choices casually:** Incorrect ring bearer assignment (e.g., putting the ring on a haunt token instead of a Ranger when you have sacrifice effects in hand) can cost you triggers and game-states.
 - **Watch for Club tokens / token flood on opponent's side:** Kenji notes that wide token boards (especially blue-black Shalob (?)) can overwhelm if you don't have a wrath or sweeper effect.
+
+
+---
+
+## Source recency
+
+> **Tier-2 set: distilled from Kenji's most recent LTR VODs only (2023-08-06 → 2023-08-10) — an end-of-format sample, so already recency-skewed toward his settled reads.** On any internal conflict the **newest VOD wins**; **17Lands GIH WR stays primary** (expert/theory color). For full format-arc treatment see the tier-1 files (MKM.md, SOS.md).
+
+Source VODs (newest first):
+
+| Date | VOD |
+|------|-----|
+| 2023-08-10 | This Man is DA BOMB |
+| 2023-08-09 | A Real SLAPPER |
+| 2023-08-07 | Mighty Milling Momma |
+| 2023-08-06 | There and Trophy Again |

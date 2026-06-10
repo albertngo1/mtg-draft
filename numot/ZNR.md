@@ -86,3 +86,19 @@
 - **Overloading on the same type**: "Three Feed the Swarms is quite a bit — now I wish I had taken the Gloom Hunter." Balance creature count vs. spell count.
 - **Not blocking with the correct creature**: Kenji noted blocking the wrong creature in a damage race can force bad trades. Identify which creature your opponent wants dead and don't give them the trade.
 - **Being on the draw vs. aggro**: "I think sometimes this format just comes down to who won the die roll" vs. red-white warriors on a fast curve. Mulligan more aggressively when on the draw vs. known aggro.
+
+
+---
+
+## Source recency
+
+> **Tier-2 set: distilled from Kenji's most recent ZNR VODs only (2020-10-13 → 2022-04-16) — an end-of-format sample, so already recency-skewed toward his settled reads.** On any internal conflict the **newest VOD wins**; **17Lands GIH WR stays primary** (expert/theory color). For full format-arc treatment see the tier-1 files (MKM.md, SOS.md).
+
+Source VODs (newest first):
+
+| Date | VOD |
+|------|-----|
+| 2022-04-16 | Crabby Flashbacks |
+| 2020-10-16 | Menace is Super OP |
+| 2020-10-15 | Playing Fast & Loose |
+| 2020-10-13 | I LOVE Best of One |

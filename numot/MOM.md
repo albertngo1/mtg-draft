@@ -60,3 +60,19 @@
 - **Splashing a third color without 2+ dual lands.** The green splash died every time Kenji didn't pull Thornwood Falls and Jungle Hollow. "If I don't get more fixing, I will not play the green."
 - **Trimming the Drinker (Ichor Drinker, 1-mana lifelink that exiles for incubate) too aggressively.** It enables Lurrus, enables sac outlets, and applies chip damage. "Maybe I should have that in the deck."
 - **Letting the opponent flip Invasions for free.** Always consider whether blocking a creature attacking your battle costs you more than flipping the battle costs them.
+
+
+---
+
+## Source recency
+
+> **Tier-2 set: distilled from Kenji's most recent MOM VODs only (2023-06-10 → 2026-03-23) — an end-of-format sample, so already recency-skewed toward his settled reads.** On any internal conflict the **newest VOD wins**; **17Lands GIH WR stays primary** (expert/theory color). For full format-arc treatment see the tier-1 files (MKM.md, SOS.md).
+
+Source VODs (newest first):
+
+| Date | VOD |
+|------|-----|
+| 2026-03-23 | This Card Was Always Insane |
+| 2026-03-19 | A Little Flashback, As A Treat |
+| 2023-06-12 | The Cat's MEOW |
+| 2023-06-10 | Spicy SINGLETON Special |

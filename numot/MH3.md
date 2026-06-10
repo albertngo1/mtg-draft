@@ -47,3 +47,19 @@
 - **Playing Blue-White Wrath of Skies into your own board:** Think about whether you have enough energy sources to pay a high X before committing; running it with only four energy available is often a loss condition.
 - **Echoes of Eternity:** If the opponent resolves it, concede to your attack — it doubles all colorless triggers and copying. "We are beyond belief dead."
 - **Keeping bad hands in flashback formats:** Opponents may not know all interactions (e.g., forgetting you can't adapt a creature that already has counters); but you still have to keep functional hands.
+
+
+---
+
+## Source recency
+
+> **Tier-2 set: distilled from Kenji's most recent MH3 VODs only (2024-07-11 → 2025-10-17) — an end-of-format sample, so already recency-skewed toward his settled reads.** On any internal conflict the **newest VOD wins**; **17Lands GIH WR stays primary** (expert/theory color). For full format-arc treatment see the tier-1 files (MKM.md, SOS.md).
+
+Source VODs (newest first):
+
+| Date | VOD |
+|------|-----|
+| 2025-10-17 | I'M HAVING FUN AGAIN! |
+| 2025-10-16 | My Lovely Lady Wumps |
+| 2025-10-15 | MH3 Flashback Goes Hard! |
+| 2024-07-11 | Brainsurge? More Like Brain Fart... |

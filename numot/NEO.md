@@ -68,3 +68,19 @@
 - **Bouncing the wrong thing with Kami War's second mode.** The second chapter bounces any non-land permanent to your opponent's hand — this can be your own card for reuse or their threat. Think before selecting the target.
 - **Over-relying on mill when opponent has Season of Renewal or Colossal Sky-Turtle.** "It's always risky to mill green when Season of Renewal and the Turtle exist in the format." Check the opponent's colors before committing to a mill plan.
 - **Wasting ninjutsu by attacking into unfavorable blocks.** When they can double-block your ninja, the value evaporates. Kenji lost games by attacking when he should have held back. "Maybe I should have held the familiar so they can't kill it — right now the familiar is the only thing that's going to allow us to attack into larger critters."
+
+
+---
+
+## Source recency
+
+> **Tier-2 set: distilled from Kenji's most recent NEO VODs only (2022-04-16 → 2022-08-06) — an end-of-format sample, so already recency-skewed toward his settled reads.** On any internal conflict the **newest VOD wins**; **17Lands GIH WR stays primary** (expert/theory color). For full format-arc treatment see the tier-1 files (MKM.md, SOS.md).
+
+Source VODs (newest first):
+
+| Date | VOD |
+|------|-----|
+| 2022-08-06 | How Can He Slap, AGAIN?! |
+| 2022-08-04 | THE KAMI WAR IS BACK |
+| 2022-04-17 | Hard-forced Ninjas, OH YEAH! |
+| 2022-04-16 | Total Obliteration |

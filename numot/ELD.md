@@ -50,3 +50,19 @@
 - **Playing Yorvo without trample note**: "Yorvo never gets trample with enough counters" — Kenji mistakenly thought it did. Yorvo is a huge body but needs pump/trample effects (Insatiable Appetite?) or evasion to close.
 - **Playing Clock turn 2 into countermagic**: Wait until opponent is tapped to resolve Clock; casting it into open mana gives opponent free countermagic.
 - **Keeping hands without action until turn 4**: In an aggressive format, slow hands die. Kenji says several losses came from "doing nothing until turn four."
+
+
+---
+
+## Source recency
+
+> **Tier-2 set: distilled from Kenji's most recent ELD VODs only (2022-10-28 → 2022-11-02) — an end-of-format sample, so already recency-skewed toward his settled reads.** On any internal conflict the **newest VOD wins**; **17Lands GIH WR stays primary** (expert/theory color). For full format-arc treatment see the tier-1 files (MKM.md, SOS.md).
+
+Source VODs (newest first):
+
+| Date | VOD |
+|------|-----|
+| 2022-11-02 | Cleaning Everyone's Clock |
+| 2022-11-01 | GREEDY for POWER |
+| 2022-10-30 | This Deck SUCKS! |
+| 2022-10-28 | Stupid, Sexy Oko |

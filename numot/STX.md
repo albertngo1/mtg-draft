@@ -74,3 +74,19 @@
 - **Underestimating life total changes**: In a slow format, "13 versus 12 is a big difference here" — small life differences become critical in the late turns when you're trying to stabilize. Don't let opponents gain small increments for free.
 - **Ignoring the auto-tapper**: "Oh god, the auto-tapper... it always wants to leave your campuses." Manually tap mana to preserve campus activations for end-of-turn scrying.
 - **Quintorius** (?): "Quintorius is a trick. He lures you. And then you're like, 'Okay, I believe you, Quintorius.' And then guess what Quintorius does? Makes no tokens." — underpowered; don't be seduced by the mythic.
+
+
+---
+
+## Source recency
+
+> **Tier-2 set: distilled from Kenji's most recent STX VODs only (2021-06-10 → 2023-03-13) — an end-of-format sample, so already recency-skewed toward his settled reads.** On any internal conflict the **newest VOD wins**; **17Lands GIH WR stays primary** (expert/theory color). For full format-arc treatment see the tier-1 files (MKM.md, SOS.md).
+
+Source VODs (newest first):
+
+| Date | VOD |
+|------|-----|
+| 2023-03-13 | School Is Back In Session |
+| 2021-06-12 | Green Gasoline |
+| 2021-06-11 | Literal Time Walk |
+| 2021-06-10 | Wandering Wincon |

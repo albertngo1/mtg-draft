@@ -60,3 +60,19 @@
 - **Splashing green without deserts:** "I need to run like eight forests — I don't like it." Going green splash requires fixing that isn't always available.
 - **Evolving Wilds in aggressive RW:** "Oh, the pain of a tap land in your red-white deck." Tap lands cost you a full turn of aggression. Only run them when the fixing is essential for your off-color bomb.
 - **Keeping 1-land hands into Glorybringer:** "I risked it for the biscuit" — Kenji mulliganed into too many Plains-only hands and died before casting his Glorybringer. Keep hands with at least 2 lands and 1 action card.
+
+
+---
+
+## Source recency
+
+> **Tier-2 set: distilled from Kenji's most recent AKR VODs only (2021-08-20 → 2021-08-23) — an end-of-format sample, so already recency-skewed toward his settled reads.** On any internal conflict the **newest VOD wins**; **17Lands GIH WR stays primary** (expert/theory color). For full format-arc treatment see the tier-1 files (MKM.md, SOS.md).
+
+Source VODs (newest first):
+
+| Date | VOD |
+|------|-----|
+| 2021-08-23 | EPIC EXERTIONS |
+| 2021-08-22 | Busted Birthday Boy |
+| 2021-08-21 | 100% NUTS Zombos |
+| 2021-08-20 | Absurd Amonkhet Aggro |

@@ -45,3 +45,19 @@
 - **Don't double-block/chump inefficiently in the lategame:** Kenji notes a specific mistake over-chumping with two creatures when a single block or redirected attack would have preserved lethal the following turn.
 - **Captain Storm demands immediate removal:** If you can't kill it the turn it comes down, the game spirals quickly. Prioritize instant-speed interaction in decks likely to face it.
 - **Don't give opponents free treasure by using removal on their triggered abilities before they've made the artifact:** Kenji gave an opponent the white source they needed to flip their Unstable Glyph Bridge by not timing the piranhas correctly before the treasure was created.
+
+
+---
+
+## Source recency
+
+> **Tier-2 set: distilled from Kenji's most recent LCI VODs only (2024-01-15 → 2024-01-18) — an end-of-format sample, so already recency-skewed toward his settled reads.** On any internal conflict the **newest VOD wins**; **17Lands GIH WR stays primary** (expert/theory color). For full format-arc treatment see the tier-1 files (MKM.md, SOS.md).
+
+Source VODs (newest first):
+
+| Date | VOD |
+|------|-----|
+| 2024-01-18 | THE BEST IXALAN DECK IS HERE! |
+| 2024-01-17 | Wow, This Format Is Actually Great! |
+| 2024-01-16 | This Format Was A "Great Mistake" |
+| 2024-01-15 | STOP PLAYING BOMBS, DAMNIT! |

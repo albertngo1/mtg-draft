@@ -49,3 +49,19 @@
 - **Not reading mana issues in keeps**: Several games lost to drawing too many of one color with a two-color deck. Mulliganing risky three-landers is correct even though "mulligans are so bad in limited."
 - **Embracing expensive creatures with no board presence**: Playing a six-drop into no board is a losing line; if behind, get on board even with sub-optimal two-drops.
 - **Goblin Sharpshooter with deathtouch**: If the opponent has deathtouch (Scarblades' Malice), they can one-for-one your entire board. Kill it ASAP; no answer usually means GG.
+
+
+---
+
+## Source recency
+
+> **Tier-2 set: distilled from Kenji's most recent ECL VODs only (2026-02-07 → 2026-02-10) — an end-of-format sample, so already recency-skewed toward his settled reads.** On any internal conflict the **newest VOD wins**; **17Lands GIH WR stays primary** (expert/theory color). For full format-arc treatment see the tier-1 files (MKM.md, SOS.md).
+
+Source VODs (newest first):
+
+| Date | VOD |
+|------|-----|
+| 2026-02-10 | Feeling Very Spry And Mighty |
+| 2026-02-09 | Getting Every Goblin, Ever |
+| 2026-02-08 | LOOK AT ME! I'M ELVES! |
+| 2026-02-07 | This Deck Is Basically Cheating |

@@ -82,3 +82,19 @@
 - **Geistflame Snare anti-synergy with Reckless Impulse**: Explicitly called out. If your build has multiple Snares, don't also run Reckless Impulse — the impulse forces you to tap out when you want mana up for Snares.
 - **Throng sequencing**: Don't sack Throng to an exploit target if you want it as a flying threat. "Is it wrong to throng? It feels wrong but I'm thronging." — sequence exploits deliberately.
 - **Bleed Dry on opponent's end step**: Casting removal on your own turn or opponent's upkeep rather than end step costs timing value. Know when each interaction is best used.
+
+
+---
+
+## Source recency
+
+> **Tier-2 set: distilled from Kenji's most recent VOW VODs only (2021-12-25 → 2022-01-28) — an end-of-format sample, so already recency-skewed toward his settled reads.** On any internal conflict the **newest VOD wins**; **17Lands GIH WR stays primary** (expert/theory color). For full format-arc treatment see the tier-1 files (MKM.md, SOS.md).
+
+Source VODs (newest first):
+
+| Date | VOD |
+|------|-----|
+| 2022-01-28 | TOO MUCH TEMPO |
+| 2022-01-27 | Powerful Wolf Pack |
+| 2021-12-26 | Master of Menache |
+| 2021-12-25 | Punt-proof Flyers??? |

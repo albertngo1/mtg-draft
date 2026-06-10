@@ -49,3 +49,19 @@
 - **Undervaluing Day/Night flip timing for offense**: Kenji missed a key turn where flipping to Day would have given his werewolves their stronger front face — "you need to think about when to use your mana efficiently to push the day/night state."
 - **Under-drafting festival crasher in UR**: Festival Crasher is easily the best common payoff for spells. If you're UR, take it aggressively early; the ceiling is enormous but requires spell density.
 - **Passive play with Suspicious Stowaway**: "That card wins games by itself" — do not treat Stowaway as just incidental looting. Build around it, protect it, and use it as the primary engine.
+
+
+---
+
+## Source recency
+
+> **Tier-2 set: distilled from Kenji's most recent DBL VODs only (2022-02-05 → 2022-02-08) — an end-of-format sample, so already recency-skewed toward his settled reads.** On any internal conflict the **newest VOD wins**; **17Lands GIH WR stays primary** (expert/theory color). For full format-arc treatment see the tier-1 files (MKM.md, SOS.md).
+
+Source VODs (newest first):
+
+| Date | VOD |
+|------|-----|
+| 2022-02-08 | DO I LOOK LIKE I CARE? |
+| 2022-02-07 | THE MOST BRUTAL GAMES |
+| 2022-02-06 | SUSPICIOUS DRAWS |
+| 2022-02-05 | LIGHTING UP OR FLAMING OUT? |

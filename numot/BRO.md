@@ -51,3 +51,19 @@
 - **Only 12 creatures**: Kenji identified one loss was partly from running too few creatures. "One glaring problem with this deck — creature count might be a little bit low overall."
 - **Casting over-the-top at wrong phase / not casting it at all**: In the GU ramp draft, the turn to cast Over the Top never arrived because the game ended first. Recognize when your "plan B" is too slow for the board state.
 - **Misreading Skyfisher Spider timing**: Best used reactively after opponent plays a big threat. Don't sac it proactively unless you have nothing better.
+
+
+---
+
+## Source recency
+
+> **Tier-2 set: distilled from Kenji's most recent BRO VODs only (2023-01-10 → 2023-01-25) — an end-of-format sample, so already recency-skewed toward his settled reads.** On any internal conflict the **newest VOD wins**; **17Lands GIH WR stays primary** (expert/theory color). For full format-arc treatment see the tier-1 files (MKM.md, SOS.md).
+
+Source VODs (newest first):
+
+| Date | VOD |
+|------|-----|
+| 2023-01-25 | OVERpowered Or Underwhelming? |
+| 2023-01-24 | BRO IS BACK, BABY |
+| 2023-01-11 | Clean Decathlon SWEEP |
+| 2023-01-10 | Decathlon? A Walk In The Park |

@@ -45,3 +45,19 @@ Streets of New Capenna is a 3-color (shard/wedge) format dominated by connive an
 - **Overvaluing wiretapping**: "Wiretapping has gone so far down in my opinion, it's crazy." Card was considered early but passed repeatedly — too slow in the format.
 - **Not using Extract the Truth correctly**: Kenji punted by using the "make opponent sacrifice a creature" mode when he could have taken the opponent's Sleep with the Fishes — "I 100% punted there, if I take the sleep with the fishes there I don't think I can lose."
 - **Playing greedy attacks with Muscle without trample**: "Freelance Muscle doesn't trample" — blocked by 1/1 tokens constantly. Needs support spells or a clear path. Can't just goldfish into blockers.
+
+
+---
+
+## Source recency
+
+> **Tier-2 set: distilled from Kenji's most recent SNC VODs only (2022-05-26 → 2022-06-02) — an end-of-format sample, so already recency-skewed toward his settled reads.** On any internal conflict the **newest VOD wins**; **17Lands GIH WR stays primary** (expert/theory color). For full format-arc treatment see the tier-1 files (MKM.md, SOS.md).
+
+Source VODs (newest first):
+
+| Date | VOD |
+|------|-----|
+| 2022-06-02 | Extracting INSANE Value |
+| 2022-06-01 | Disciplined Cleanup |
+| 2022-05-28 | EZ Esporter Finals?? |
+| 2022-05-26 | Esporter Tournament Domination! |

@@ -47,3 +47,19 @@
 - **Curator in low-artifact decks**: "Curator has very few hits, just take the land." Don't take Curator unless you have 8+ artifacts.
 - **Forgetting Rummage vs. Loot distinction**: Kenji explicitly noted "if that was loot I would have kept the land but since it's rummage no." Know your discard effects — rummage (discard first) is more constraining than loot (draw first).
 - **Punting with Wanderer's -4**: In one game Kenji forgot opponents could sacrifice creatures to a Mondrak in response to the exile. "I was maybe supposed to uptick on their Mondrak." Always check sacrifice outlets before using Wanderer's bounce ability.
+
+
+---
+
+## Source recency
+
+> **Tier-2 set: distilled from Kenji's most recent ONE VODs only (2023-03-18 → 2023-03-22) — an end-of-format sample, so already recency-skewed toward his settled reads.** On any internal conflict the **newest VOD wins**; **17Lands GIH WR stays primary** (expert/theory color). For full format-arc treatment see the tier-1 files (MKM.md, SOS.md).
+
+Source VODs (newest first):
+
+| Date | VOD |
+|------|-----|
+| 2023-03-22 | Ovika is OP! |
+| 2023-03-20 | 1, 2, 3 PLANESWALKERS?! |
+| 2023-03-20 | Best of 3 is FANTASTIC |
+| 2023-03-18 | These Ladies Are OVERPOWERED |

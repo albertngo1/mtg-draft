@@ -41,3 +41,19 @@ Ikoria (IKO) is a medium-speed format dominated by the cycling deck when assembl
 - **Running too many two-mana cyclers**: They are filler; prioritize one-mana cyclers hard. "F your three-mana cycling" — Kenji specifically disdains the three-mana cycling creatures.
 - **Not prioritizing green removal (Cheville/Ram Through) earlier**: Missed opportunities in the BG reanimator builds to stop fast mutate threats.
 - **Forgetting Garuda is a sorcery-speed trigger check** (?): In the mutate/blue builds, sequencing Garuda incorrectly let opponents play around it.
+
+
+---
+
+## Source recency
+
+> **Tier-2 set: distilled from Kenji's most recent IKO VODs only (2020-05-16 → 2020-06-11) — an end-of-format sample, so already recency-skewed toward his settled reads.** On any internal conflict the **newest VOD wins**; **17Lands GIH WR stays primary** (expert/theory color). For full format-arc treatment see the tier-1 files (MKM.md, SOS.md).
+
+Source VODs (newest first):
+
+| Date | VOD |
+|------|-----|
+| 2020-06-11 | Being the Bad Guy |
+| 2020-05-18 | An Island Too Far |
+| 2020-05-17 | Nummy the Nice Guy |
+| 2020-05-16 | Unbreakable Sandworm |

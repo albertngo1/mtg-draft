@@ -88,3 +88,19 @@
 - **Running too many 5+ drops in Boros.** Kenji cuts Command the Storm and Pack Beast to lower curve: "I'm a little bit heavy on the five drops." In Boros, curve must peak at 4 (Cosmotronic Wave); anything above that hurts consistency.
 - **Committing to red when signals indicate Dimir is open.** In VOD 4, Kenji regrets red cards: "red was a mistake I unfortunately must agree." Take the first signal of an open color pair — don't force a color because you took one good card.
 - **Not running Severed Strands when you have defensive walls.** "Strands with double wall of mist and barrier bones is actually what I want to be." Severed Strands (1G sorcery — sac a creature, destroy target creature, gain life equal to its toughness) + a Wall is an excellent value trade. Dimir should pick up 1-2 copies.
+
+
+---
+
+## Source recency
+
+> **Tier-2 set: distilled from Kenji's most recent GRN VODs only (2019-01-11 → 2019-01-15) — an end-of-format sample, so already recency-skewed toward his settled reads.** On any internal conflict the **newest VOD wins**; **17Lands GIH WR stays primary** (expert/theory color). For full format-arc treatment see the tier-1 files (MKM.md, SOS.md).
+
+Source VODs (newest first):
+
+| Date | VOD |
+|------|-----|
+| 2019-01-15 | [Arena] Insanely Good |
+| 2019-01-14 | [Arena] Walling Out The Competition |
+| 2019-01-13 | [Arena] Joining the Aggro Side |
+| 2019-01-11 | [Arena] Redeeming Stank |

@@ -45,3 +45,19 @@
 - **Bone Splinters without a Soul Tender:** Splinters requires a creature sacrifice; without Soul Tender or Repossession recursion, you're losing bodies freely.
 - **Keeping hands without forests in green-heavy decks:** Kenji mulliganed several hands with 8 forests in the deck that had no green sources. Said "I think better of it."
 - **Playing Namata without protection:** If opponent kills Namata immediately, the deck stalls. Lead with the two-drops first.
+
+
+---
+
+## Source recency
+
+> **Tier-2 set: distilled from Kenji's most recent DMU VODs only (2022-10-27 → 2022-11-03) — an end-of-format sample, so already recency-skewed toward his settled reads.** On any internal conflict the **newest VOD wins**; **17Lands GIH WR stays primary** (expert/theory color). For full format-arc treatment see the tier-1 files (MKM.md, SOS.md).
+
+Source VODs (newest first):
+
+| Date | VOD |
+|------|-----|
+| 2022-11-03 | I Almost Feel Bad, ALMOST |
+| 2022-11-01 | The Dark Knight... Falls? |
+| 2022-10-31 | Risk it for the Biscuit |
+| 2022-10-27 | Going Wide & Wild |

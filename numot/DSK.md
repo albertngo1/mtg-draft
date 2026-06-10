@@ -55,3 +55,19 @@
 - **Roller Crusher Ride but no delirium:** Still good at 3 mana deal-3 but substantially worse. Prioritize getting 4 card types in the graveyard (creature, instant, enchantment/sorcery, land usually).
 - **Overextending into rooms too early:** Rooms can be sacrificed by opponent (Glassworks-type effects). Don't lock all your mana into rooms when opponent might have interaction.
 - **Boros missing Arabella:** Red-white aggro needs its key 2-drop. Without a critical-mass of 2-drops, the curve is gappy and you can't apply enough early pressure.
+
+
+---
+
+## Source recency
+
+> **Tier-2 set: distilled from Kenji's most recent DSK VODs only (2025-01-18 → 2025-01-22) — an end-of-format sample, so already recency-skewed toward his settled reads.** On any internal conflict the **newest VOD wins**; **17Lands GIH WR stays primary** (expert/theory color). For full format-arc treatment see the tier-1 files (MKM.md, SOS.md).
+
+Source VODs (newest first):
+
+| Date | VOD |
+|------|-----|
+| 2025-01-22 | Whatever, It's Your FUNERAL |
+| 2025-01-21 | WINNING WITH MEMES IS NICE |
+| 2025-01-20 | The Graveyard Can't Contain Me |
+| 2025-01-18 | Taking Everyone For A Ride |

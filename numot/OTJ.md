@@ -46,3 +46,19 @@
 - **Overpaying on Primal Might / combat tricks**: In the Blue-Green deck, Kenji pumped his creature one extra with Primal Might, which let the opponent survive at 1 life. "All because I pumped up one extra on the Primal Might." Precision math matters in combat-trick-heavy formats.
 - **Playing Stable Master on turn 2 instead of Mana Dork**: "Of course you play the mana dork on turn two not stupid Sentry. Do they have Arcmage's Charm in their hand?" Prioritize ramping and fixing over defensive 2-drops.
 - **Attacking with everything when opponent has untapped mana and cards in hand**: Multiple games went wrong when Kenji or opponents committed to aggressive attacks without accounting for tricks. "They have five cards in their hand so that's a lot of interaction."
+
+
+---
+
+## Source recency
+
+> **Tier-2 set: distilled from Kenji's most recent OTJ VODs only (2024-05-22 → 2024-05-25) — an end-of-format sample, so already recency-skewed toward his settled reads.** On any internal conflict the **newest VOD wins**; **17Lands GIH WR stays primary** (expert/theory color). For full format-arc treatment see the tier-1 files (MKM.md, SOS.md).
+
+Source VODs (newest first):
+
+| Date | VOD |
+|------|-----|
+| 2024-05-25 | The Queen Has Returned |
+| 2024-05-23 | Bruse Almighty |
+| 2024-05-22 | 30/30 WITH TRAMPLE/HASTE?! |
+| 2024-05-22 | The Absolute BEST OTJ Games |

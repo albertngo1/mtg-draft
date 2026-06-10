@@ -79,3 +79,19 @@
 - **Running 3 Telerian Terrors(?) / too many conditional counterspells.** "I'm at 8 instants for my two Telerian Terrors. I don't think we'll be playing any of those." Counterspells that require heavy instant count are a trap if the rest of the deck is creatures.
 - **Over-splashing without fixing.** Kenji took green bombs (Spinner of Souls, Bite Down) mid-draft, then cut them because he lacked green sources. "I think probably drafted this pretty poorly... didn't see a single stab, no bake into a pie." Know the fixing ceiling before committing to a third color.
 - **Not sacrificing Hungry Ghoul at the right time.** In the mirror, Kenji's opponent failed to sac Hungry Ghoul before blockers to deny life gain. "They're supposed to sack and have a 3/3 hungry ghoul instead of a 2/2." Know your sacrifice triggers.
+
+
+---
+
+## Source recency
+
+> **Tier-2 set: distilled from Kenji's most recent FDN VODs only (2024-12-03 → 2026-03-24) — an end-of-format sample, so already recency-skewed toward his settled reads.** On any internal conflict the **newest VOD wins**; **17Lands GIH WR stays primary** (expert/theory color). For full format-arc treatment see the tier-1 files (MKM.md, SOS.md).
+
+Source VODs (newest first):
+
+| Date | VOD |
+|------|-----|
+| 2026-03-24 | Going Back To The Foundations |
+| 2024-12-20 | My Final MTG Foundations Draft |
+| 2024-12-04 | For The (Homunculus) Horde! |
+| 2024-12-03 | Taming The Eagles Of The North |

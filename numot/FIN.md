@@ -88,3 +88,19 @@
 - **Running Queen Bronhy/Aith despite bad stats.** 52.2% and 55% WR cards drag down overall deck quality. Don't take them over proven pieces.
 - **Not playing Town Greeter optimally.** Kenji milled both Evil Reawakened and Fight On with Town Greeter, stranding him without reanimation. "I milled my evil reawakened and my fight on. Well, shoot. I milled both of my ways to get back my creatures." When you know your deck has key recursive pieces, be aware of what Greeter mills.
 - **Holding too many lands with Gladiololis.** Multiple times Kenji says "I should hold my lands" but then mistakenly plays them. Gladiololis(?) wants lands in hand to pump itself or make Chocobos. "Oh I should be holding my lands. Whoopsies." Always check which cards want lands held vs. played.
+
+
+---
+
+## Source recency
+
+> **Tier-2 set: distilled from Kenji's most recent FIN VODs only (2025-07-19 → 2025-10-02) — an end-of-format sample, so already recency-skewed toward his settled reads.** On any internal conflict the **newest VOD wins**; **17Lands GIH WR stays primary** (expert/theory color). For full format-arc treatment see the tier-1 files (MKM.md, SOS.md).
+
+Source VODs (newest first):
+
+| Date | VOD |
+|------|-----|
+| 2025-10-02 | FINAL FANTASY FLASHBACK! |
+| 2025-07-22 | These Are Bad Cards But I'm A Great Gamer |
+| 2025-07-21 | What Are These Insane Bombs? |
+| 2025-07-19 | Win-Winota-Win No Matter What |

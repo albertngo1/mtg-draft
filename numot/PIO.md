@@ -49,3 +49,19 @@
 - **Over-committing resources when opponent has mana up**: In multiple games, attacking into open mana with multiple cards in opponent's hand led to getting blown out by fight spells or tricks. "They have five cards in their hand — that's a lot of interaction."
 - **Not taking Guild Summit early enough**: Kenji passed Guild Summit twice "to see if it wheels" and regretted it. "I got punished severely" the first time. Guild Summit is the engine of the Gates deck and should be taken early.
 - **Miscalculating Primal Might pump amount**: Kenji overpaid by 1 mana on a Primal Might, which let his opponent survive at 1 life. "All because I pumped the uh with the Stable Master, gave them an out." Count damage precisely when using X-spells in combat.
+
+
+---
+
+## Source recency
+
+> **Tier-2 set: distilled from Kenji's most recent PIO VODs only (2025-01-08 → 2025-01-16) — an end-of-format sample, so already recency-skewed toward his settled reads.** On any internal conflict the **newest VOD wins**; **17Lands GIH WR stays primary** (expert/theory color). For full format-arc treatment see the tier-1 files (MKM.md, SOS.md).
+
+Source VODs (newest first):
+
+| Date | VOD |
+|------|-----|
+| 2025-01-16 | Magic Is Truly A Skill Game |
+| 2025-01-10 | Progenitor Mimic Pops-Off |
+| 2025-01-09 | Taking A Golgari Safari |
+| 2025-01-08 | Rampaging Or Rampaged? |

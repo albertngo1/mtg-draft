@@ -47,3 +47,19 @@
 - **Running Push the Limit under 9 mounts+vehicles:** Kenji had 9 total in his Boros deck and still didn't run it. Don't include it speculatively.
 - **Mole(?):** Kenji had terrible luck hitting land off of Mole(?) (milling lands, missing creatures). He said "I would never cut them because of something like that, but that is always extremely frustrating."
 - **Over-tapping to activate abilities before attacks:** Kenji noted several "I did not mean to tap like that" moments with Bay and other activated abilities. Hold priority carefully.
+
+
+---
+
+## Source recency
+
+> **Tier-2 set: distilled from Kenji's most recent DFT VODs only (2025-02-25 → 2025-02-28) — an end-of-format sample, so already recency-skewed toward his settled reads.** On any internal conflict the **newest VOD wins**; **17Lands GIH WR stays primary** (expert/theory color). For full format-arc treatment see the tier-1 files (MKM.md, SOS.md).
+
+Source VODs (newest first):
+
+| Date | VOD |
+|------|-----|
+| 2025-02-28 | Making Aetherdrift Fun Again! |
+| 2025-02-27 | Wait, Can Boros Actually Win? |
+| 2025-02-26 | The Cycling Deck Is So Cool! |
+| 2025-02-25 | These Creatures Are Humongous |

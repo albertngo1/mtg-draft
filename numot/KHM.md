@@ -43,3 +43,19 @@ Kaldheim (KHM) is a midrange-to-slow format with a strong snow-matters theme. Sn
 - **Path of the World Tree**: Kenji faced an opponent with four copies and found it very hard to beat once stabilized; recognize it as a build-around combo worth respecting.
 - **Under-running snow lands**: Multiple games where hitting a snow land would have unlocked Demon Bolt or Priest of the Haunted Edge. "They have zero snow lands right now — this is a very sad Priest."
 - **Crushed by Linda (Lindworm) going late when behind**: Large ground threats that draw cards when they die create insurmountable card advantage if unanswered. Take removal over raw card advantage early in draft.
+
+
+---
+
+## Source recency
+
+> **Tier-2 set: distilled from Kenji's most recent KHM VODs only (2023-01-27 → 2023-01-31) — an end-of-format sample, so already recency-skewed toward his settled reads.** On any internal conflict the **newest VOD wins**; **17Lands GIH WR stays primary** (expert/theory color). For full format-arc treatment see the tier-1 files (MKM.md, SOS.md).
+
+Source VODs (newest first):
+
+| Date | VOD |
+|------|-----|
+| 2023-01-31 | Legitimately the NUTS |
+| 2023-01-30 | Mine is BIGGER than Yours! |
+| 2023-01-29 | A Very BAD BOY Indeed |
+| 2023-01-27 | Runed Out & Ready to Rumble! |

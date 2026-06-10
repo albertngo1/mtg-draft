@@ -71,3 +71,19 @@
 - **Assuming opponent has a trick pre-combat and over-holding**: Multiple instances of Kenji playing around phantom tricks and giving opponent free attacks. "I shouldn't have played around that."
 - **Blocking order in Mardu mirrors**: When they have Duty Beyond Death (?), blocking the wrong creature means you get punished by them returning it. Kill the creatures without recursion first.
 - **Playing too many tap lands**: Seven tap lands leads to "uphill battle" starts. Prioritize untapped sources for turn-2 and turn-3 plays.
+
+
+---
+
+## Source recency
+
+> **Tier-2 set: distilled from Kenji's most recent TDM VODs only (2025-05-17 → 2025-10-22) — an end-of-format sample, so already recency-skewed toward his settled reads.** On any internal conflict the **newest VOD wins**; **17Lands GIH WR stays primary** (expert/theory color). For full format-arc treatment see the tier-1 files (MKM.md, SOS.md).
+
+Source VODs (newest first):
+
+| Date | VOD |
+|------|-----|
+| 2025-10-22 | The Dragons Have Returned |
+| 2025-05-27 | The Best Games I've Played Of This Format! |
+| 2025-05-26 | Can Jeskai Beat Up On The Mardu? |
+| 2025-05-17 | How To Make The Best Of Nothing |

@@ -49,3 +49,20 @@
 - **Dragon's Fire timing:** Firing it early on a non-dragon turn is a mistake; save it until a dragon is in play for full damage. "And it all came down to turn three when I didn't need to Dragon's Fire and I did — that was my mistake."
 - **Mordenkainen as a greedy splash:** Powerful but double-blue is punishing. Only splice it in when you have the Temple + 2 Grim Bounties or equivalent fixing. Don't force it with fewer than 3 reliable blue sources.
 - **Matchmaking instaque:** Waiting 30–60 seconds between games reduces the chance of queuing into the same deck you just lost to and letting them adjust.
+
+
+---
+
+## Source recency
+
+> **Tier-2 set: distilled from Kenji's most recent AFR VODs only (2021-08-30 → 2021-09-08) — an end-of-format sample, so already recency-skewed toward his settled reads.** On any internal conflict the **newest VOD wins**; **17Lands GIH WR stays primary** (expert/theory color). For full format-arc treatment see the tier-1 files (MKM.md, SOS.md).
+
+Source VODs (newest first):
+
+| Date | VOD |
+|------|-----|
+| 2021-09-08 | Trollish Treasure Synergies |
+| 2021-09-03 | Spicy Hellraiser |
+| 2021-08-30 | Busted Blue Dogs |
+
+_(1 additional VOD had no usable captions — excluded from distillation.)_

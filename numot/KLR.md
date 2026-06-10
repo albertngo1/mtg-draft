@@ -49,3 +49,19 @@ Kaladesh Remastered (KLR) is a fast-to-medium format built around energy and art
 - **Not having enough one-and-two drop early game for Night Market deck**: "I think we had a little bit too much top end — we needed a couple more early game plays especially the Skiffs." Sky Skiff is the critical enabler; without it the Lookouts just sit as 1/1s.
 - **Attacking with Night Market Lookout when you don't need to**: Should have crewed the Garrison with Lookout and attacked with Garrison only — untaps Lookout for another crew. "I should have not attacked and that would have gained one back as well."
 - **Being too greedy with vehicle sequencing**: "I missed lethal playing too quickly here — I could have played the Welding Fest Engineer, crewed The Garrison with the engineer, attacked with all." Slow down and count damage before passing.
+
+
+---
+
+## Source recency
+
+> **Tier-2 set: distilled from Kenji's most recent KLR VODs only (2024-01-05 → 2025-03-23) — an end-of-format sample, so already recency-skewed toward his settled reads.** On any internal conflict the **newest VOD wins**; **17Lands GIH WR stays primary** (expert/theory color). For full format-arc treatment see the tier-1 files (MKM.md, SOS.md).
+
+Source VODs (newest first):
+
+| Date | VOD |
+|------|-----|
+| 2025-03-23 | Kaladesh Remastered Is Back? |
+| 2024-01-08 | PUMMELER MEME DREAM? |
+| 2024-01-07 | Truly The Herald Of Anguish |
+| 2024-01-05 | This Vehicle Deck Is BUSTED |

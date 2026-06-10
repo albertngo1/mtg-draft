@@ -45,3 +45,19 @@ Shadows over Innistrad Remastered is a midrange-to-synergy format with multiple 
 - **Not having enough grapples in the mill deck**: "Really do needed that one more grapple with the past" — without recursion, the mill deck decks itself and loses. Two-three grapples is the target.
 - **Undervaluing Epitaph Golem**: Easy to dismiss as slow but it's the insurance policy for the entire self-mill strategy. "Having two is not even bad as well" since the second one can recycle the first.
 - **Playing into Spider Spawning**: In Rakdos vs. green decks with self-mill, watch for Spider Spawning. "Even if we draw a mountain I don't think we have a way to come back from this one" once they flood the board with spider tokens.
+
+
+---
+
+## Source recency
+
+> **Tier-2 set: distilled from Kenji's most recent SIR VODs only (2023-04-09 → 2023-10-20) — an end-of-format sample, so already recency-skewed toward his settled reads.** On any internal conflict the **newest VOD wins**; **17Lands GIH WR stays primary** (expert/theory color). For full format-arc treatment see the tier-1 files (MKM.md, SOS.md).
+
+Source VODs (newest first):
+
+| Date | VOD |
+|------|-----|
+| 2023-10-20 | Madness. Sadness. Badness |
+| 2023-10-18 | DECK DAMAGE BEST DAMAGE |
+| 2023-04-10 | Jealous And Zealous |
+| 2023-04-09 | Mono Blue Spontaneity |
