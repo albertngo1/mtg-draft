@@ -146,6 +146,7 @@ mtg-draft/
 │     └─ cli.py                   #   arg parse + command dispatch (main)
 ├─ grades/                        # committed reviewer grades: <source>_<SET>.json
 ├─ lords-of-limited/              # committed expert set guides
+├─ numot/                         # committed NumotTheNummy VOD-distilled set notes (+ manifest.json)
 └─ data/                          # generated, gitignored
    ├─ cache/                      # 17Lands + Scryfall caches
    ├─ drafts/                     # per-draft bundles <set>_<fp>/{draft.json,raw.log,replay.md} + current.json
@@ -352,6 +353,14 @@ one-liner travels with the card. See
 adding a new set (date-prefixed source notes, a recency rule where the newest take wins on
 conflict). Guides distilled from public content (e.g. strategy YouTube channels) are credited to
 their source there.
+
+**3. NumotTheNummy VOD notes → `numot/<SET>.md`.** A second expert-notes source, distilled from
+NumotTheNummy (Kenji Egashira) regular Arena draft VODs: per-set tips (`MKM.md`/`SOS.md` deepest,
+38 other sets sampled), `general-tips.md` for evergreen principles, and a `## vs Lords of Limited`
+section per tier-1 set flagging where the two experts disagree. The agent loads `numot/<SET>.md`
+at draft start alongside the LoL guide; same status (theory/expert opinion, 17Lands GIH WR stays
+primary). The scrape is fingerprinted in `numot/manifest.json` so re-runs only fetch/distill new
+or changed VODs — see [`numot/README.md`](./numot/README.md) and `src/fingerprint_numot.py`.
 
 ## Data sources & credits
 

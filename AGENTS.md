@@ -30,6 +30,13 @@ the newest source wins** (prerelease/preview takes are weak predictions; the for
 is most authoritative — supersessions are marked inline). Per-episode notes + transcripts live in
 each set's `lords-of-limited/<set>/sources/` — open one only to dig into a specific pick's rationale.
 
+A **second** expert-notes source lives flat in [`numot/`](./numot/) as `<SET>.md` — draft tips
+distilled from NumotTheNummy (Kenji Egashira) draft VODs (`numot/general-tips.md` holds the
+evergreen principles). If the drafted set has a `numot/<SET>.md`, load it at draft start alongside
+the LoL guide and treat both the same way: theory/expert opinion, **17Lands GIH WR stays primary.**
+`MKM.md`/`SOS.md` are deepest (full VOD coverage); the rest sample ~4 end-of-format VODs. Numot's
+`vs Lords of Limited` sections flag where the two experts disagree.
+
 Then, each pick (when the player says "next" or starts a draft):
 
 ```bash
