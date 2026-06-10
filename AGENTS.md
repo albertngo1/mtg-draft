@@ -50,9 +50,13 @@ are below target, stop stacking removal once at the cap, lean toward the open co
 `Player.log` stream and, each pick, auto-refreshes the structured store — **no manual `pull` needed
 as long as the capture daemon runs.** Each draft is persisted as a self-contained bundle folder
 `data/drafts/<set>_<fingerprint>/` holding `draft.json` (the enriched cumulative store), `raw.log`
-(this draft's stream slice), and `replay.md` (the coached audit, auto-written once the draft
-completes; `replay.py --ai` or `MTG_REPLAY_AI=1` adds a model-written `🤖 Take` per pick via one
-`claude -p` call fed each pick's point-in-time state). The most recent draft's `draft.json` is also mirrored to **`data/drafts/current.json`**.
+(this draft's stream slice), and `replay.md` (the coached audit, auto-written **once** when the
+draft first completes and never re-rendered after that — re-run `src/replay.py <draft.json>
+<replay.md>` by hand to refresh one). The replay includes a model-written `🤖 Take` per pick (one
+`claude -p` call fed each pick's point-in-time state) **by default whenever the gitignored
+`claude-token.txt` exists at the repo root** — the token file is the opt-in; set `MTG_REPLAY_AI=0`
+to force the deterministic-only replay (or `=1` to force takes on). The most recent draft's
+`draft.json` is also mirrored to **`data/drafts/current.json`**.
 Run `python3 src/mtg-draft.py draft` to (re)build on demand. **To answer any question about earlier
 picks ("what did I pass at P1P5?", "what's my curve/colors so far?"), READ `data/drafts/current.json`
 (or a specific draft's `draft.json`) instead of re-reading the raw log** — the live log only retains

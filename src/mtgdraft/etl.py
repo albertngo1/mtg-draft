@@ -1,5 +1,5 @@
 import sys, os, json, re, hashlib, subprocess
-from .config import DRAFTS, REPLAY, STREAM
+from .config import DRAFTS, REPLAY, ROOT, STREAM
 from .sources import load_scry, ratings, resolve_ids
 from .grades import load_grades_any, load_guide_notes
 from .analysis import COLOR_NAMES, _REMOVAL_RX, _archetype_lean, _card_tags, _color_phrase, _deck_needs, _inflation, _kind
@@ -256,13 +256,20 @@ def _is_complete(picks):
     last_pack = max(by_pack)
     return last_pack >= 3 and pack_size > 0 and max(by_pack[last_pack]) >= pack_size
 
+def _replay_ai_enabled():
+    """Add the model-written per-pick takes? MTG_REPLAY_AI overrides explicitly (1/0); otherwise
+    default ON exactly when the auth token file is present — its presence IS the opt-in, and it
+    survives daemon recycles (an env flag would be lost when a flag-less CLI respawns the daemon)."""
+    v = os.environ.get("MTG_REPLAY_AI")
+    if v is not None:
+        return v.lower() not in ("", "0", "false", "no")
+    return os.path.exists(os.path.join(ROOT, "claude-token.txt"))
 def _make_replay(draft_json, out_md):
     """Best-effort: render the coached replay for a completed draft into its folder. Subprocess so a
-    replay failure can never disturb the ETL/capture path. Set MTG_REPLAY_AI=1 to also add the
-    model-written per-pick takes (one claude -p call) — off by default so the background daemon
-    stays token-free / offline."""
+    replay failure can never disturb the ETL/capture path. With AI takes enabled this is one
+    claude -p call (~2 min) — callers gate on replay.md not existing, so it runs ONCE per draft."""
     cmd = [sys.executable, REPLAY, draft_json, out_md]
-    if os.environ.get("MTG_REPLAY_AI"):
+    if _replay_ai_enabled():
         cmd.append("--ai")
     try:
         subprocess.run(cmd, check=False, capture_output=True, timeout=300)
@@ -317,8 +324,14 @@ def refresh_current(cfg):
                 f.write(raw + "\n")
         except Exception:
             pass
-        if (not is_latest) or _is_complete(state["picks"]):
-            _make_replay(draft_json, os.path.join(folder, "replay.md"))
+        # Render the replay ONCE, when the draft is first seen complete. Never re-render an
+        # existing replay.md: the latest complete draft stays "latest" until the next draft
+        # starts, and every refresh in that window would otherwise clobber it (losing AI takes,
+        # and with takes enabled, burning a ~2-min claude call per refresh). To re-render after
+        # a code change, run src/replay.py on the bundle by hand.
+        replay_md = os.path.join(folder, "replay.md")
+        if ((not is_latest) or _is_complete(state["picks"])) and not os.path.exists(replay_md):
+            _make_replay(draft_json, replay_md)
         if is_latest:
             cur_path = os.path.join(DRAFTS, "current.json")
             _write_json(cur_path, state)
