@@ -51,7 +51,9 @@ python3 src/mtg-draft.py pull                  # set/fmt auto-detect from the dr
 
 That reads the **current** pack from `Player.log` (locally by default), and prints (a) a **`DECK`
 deck-state line** read from `data/drafts/current.json` — creature/spell counts, removal, two-drops,
-curve, archetype lean, top themes, the open-color signal, premiums passed by color, and a `NEED`
+curve, archetype lean, top themes (`THEMES:`), a `TRIBES:` line of creature-subtype counts
+(e.g. `Detective 5`, only subtypes at ≥3 shown — surfaces an emergent tribal lane the way `THEMES:`
+surfaces mechanics), the open-color signal, premiums passed by color, and a `NEED`
 line of **progress-scaled** gaps (so it reads as a live priority, not end-state alarm-bells at
 pick 3) — so the live deck picture is in front of you every pick; (b) a table ranked by GIH WR with
 on-color cards marked `▸`; and (c) a **"what each card does"** section with oracle text + P/T.
@@ -164,6 +166,16 @@ Scryfall's `e:<set>` search in one paginated walk; after that, `pull`/`rank` for
 **zero** live queries until the 17Lands dataset's 24h cache expires. Caches live in `data/cache/`
 (gitignored): `17lands_<SET>_<FMT>.json` (24h TTL) and `scryfall_arena.json` (persistent).
 `--refresh` forces a 17Lands re-pull.
+
+Each Scryfall entry stores `cmc`/`mana`/`pt`/`color`/`rarity`/`text` **plus** the parsed
+`type_line` and its split `types` (supertypes+card types, e.g. `["Legendary","Creature"]`) and
+`subtypes` (post-dash, e.g. `["Human","Detective"]` — so creature tribes are tracked now, not just
+the broad `type`), along with `keywords`, `loyalty`, and `color_identity`. Those structured fields
+flow onto every card record in `draft.json`/`current.json` and feed the `tribes`/`tribes_readable`
+aggregation. The cache is **schema-versioned**: each entry stamps `_v` (current schema = 2). On
+load, an entry missing `_v`/below schema and lacking the rich fields is treated as a cache miss and
+transparently re-fetched, so any set **self-heals** to the rich schema on its next draft — no manual
+`warm --refresh` needed after a schema bump.
 
 **New set each season:** nothing to change for the live commands — `pull`/`pool`/`watch` detect
 set/fmt from the pack payload's `"EventName":"<FMT>_<SET>_<date>"`. Just `warm --set <SET>` once
