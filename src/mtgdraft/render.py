@@ -26,6 +26,8 @@ def print_deck_state():
         themes = a.get("themes") or {}
         if themes:
             print("  THEMES: " + " · ".join(f"{k} {v}" for k, v in list(themes.items())[:6]))
+        if a.get("tribes_readable"):
+            print(f"  TRIBES: {a['tribes_readable']}")
         if a.get("open_color_readable"):
             print(f"  OPEN (premiums flowing late): {a['open_color_readable']}")
         if run.get("premiums_passed_readable"):
@@ -64,6 +66,8 @@ def print_draft_summary(state, n_drafts, path):
         if a.get("themes"):
             th = "  ".join(f"{t}:{n}" for t, n in list(a["themes"].items())[:8])
             print(f"  THEMES:  {th}")
+        if a.get("tribes_readable"):
+            print(f"  TRIBES:  {a['tribes_readable']}")
         if a.get("archetype_lean"):
             print(f"  ARCHETYPE LEAN:  {'  ·  '.join(a['archetype_lean'])}")
         if a.get("open_color_readable"):

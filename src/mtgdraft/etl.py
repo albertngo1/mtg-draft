@@ -2,7 +2,7 @@ import sys, os, json, re, hashlib, subprocess
 from .config import DRAFTS, REPLAY, ROOT, STREAM
 from .sources import load_scry, ratings, resolve_ids
 from .grades import load_grades_any, load_guide_notes
-from .analysis import COLOR_NAMES, _REMOVAL_RX, _archetype_lean, _card_tags, _color_phrase, _deck_needs, _inflation, _kind
+from .analysis import COLOR_NAMES, _REMOVAL_RX, _archetype_lean, _card_tags, _color_phrase, _deck_needs, _inflation, _kind, _tribes, _tribes_readable
 from .logread import apply_event, infer_colors
 
 def _botdraft_payloads(text):
@@ -95,6 +95,9 @@ def _card_enricher(cfg, ids):
              "color": (s.get("color") if s else meta.get("color")) or "C",
              "rarity": ((s.get("rarity") if s else meta.get("rarity")) or "?")[:1].upper(),
              "cmc": meta.get("cmc"), "type": meta.get("type", ""),
+             "type_line": meta.get("type_line", ""),
+             "types": meta.get("types", []), "subtypes": meta.get("subtypes", []),
+             "keywords": meta.get("keywords", []), "loyalty": meta.get("loyalty"),
              "gih": s.get("ever_drawn_win_rate") if s else None,
              "iwd": s.get("drawn_improvement_win_rate") if s else None,
              "alsa": s.get("avg_seen") if s else None,
@@ -142,6 +145,7 @@ def analyze_pool(pool, picks, colors):
     # theme tags across the pool -> emergent archetype lean
     themes = Counter(t for c in pool for t in c.get("tags", []))
     lean = _archetype_lean(themes, curve, counts)
+    tribes = _tribes(pool)                          # creature-subtype counts (Detective tribal etc.)
     # open-color read: premium cards (GIH >= 55%) still FLOWING to you late (pick >= 5) by color —
     # a color the table isn't taking shows up late. (Pick 1-4 are too early to mean much.)
     flowing = Counter()
@@ -165,6 +169,7 @@ def analyze_pool(pool, picks, colors):
         "targets": {"creatures": "15-18", "two_drops": "5-7", "removal": "3-4",
                     "lands": 17, "five_plus_cap": "~5-6"},
         "themes": dict(themes.most_common()), "archetype_lean": lean,
+        "tribes": tribes, "tribes_readable": _tribes_readable(tribes),
         "open_color_signal": open_signal, "open_color_readable": open_readable,
         "signals": signals[:12], "flags": flags,
     }
@@ -186,6 +191,7 @@ def _running_metrics(taken_cards, passed_cards, scry):
     prem_by_color = Counter(ch for c in passed_cards if c.get("gih") and c["gih"] >= 0.55
                             for ch in (c.get("color") or "") if ch in "WUBRG")
     themes = Counter(t for c in taken_cards for t in c.get("tags", []))
+    tribes = _tribes(taken_cards)                   # creature-subtype counts in the pool so far
     curve_d = {str(mv): curve[mv] for mv in sorted(curve)}
     needs = _deck_needs(len(taken_cards), counts.get("creature", 0), curve.get(2, 0), removal, curve_d)
     return {"n": len(taken_cards), "colors": colors,
@@ -197,7 +203,8 @@ def _running_metrics(taken_cards, passed_cards, scry):
             "passed_readable": _color_phrase(passed_by_color),
             "premiums_passed_by_color": dict(prem_by_color),
             "premiums_passed_readable": _color_phrase(prem_by_color),
-            "themes": dict(themes.most_common())}
+            "themes": dict(themes.most_common()),
+            "tribes": tribes, "tribes_readable": _tribes_readable(tribes)}
 def enrich_draft(cfg, draft):
     """Resolve every id in a reconstructed draft to names+ratings; offered lists sorted by GIH WR.
     Each pick carries (a) a cumulative `running` deck-state and (b) `wheel` flags on offered cards

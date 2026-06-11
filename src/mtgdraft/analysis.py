@@ -70,6 +70,23 @@ def _card_tags(meta):
         if cmc >= 5:
             tags.append("top-end")
     return tags
+def _tribes(cards):
+    """Count creature subtypes across a card pool to surface tribal axes (e.g. Detective is a
+    real MKM axis). Only counts subtypes on creature-type cards — subtypes also exist on lands /
+    artifacts / enchantments (e.g. 'Equipment', 'Aura'), which aren't tribes. Returns an ordered
+    {subtype: count} dict, most-common first."""
+    from collections import Counter
+    c = Counter()
+    for card in cards:
+        if _kind(card.get("type_line") or card.get("type")) != "creature":
+            continue
+        for st in card.get("subtypes") or []:
+            c[st] += 1
+    return dict(c.most_common())
+def _tribes_readable(tribes, minimum=3):
+    """Plain-English top tribes worth coaching on: 'Detective 5, Human 4'. Empty when no
+    subtype reaches `minimum` (a 1-of isn't a tribe)."""
+    return ", ".join(f"{st} {n}" for st, n in tribes.items() if n >= minimum)
 def _archetype_lean(themes, curve, counts):
     """Rank the pool's strongest archetype signals (themes manifest, not prescribe). Aggro is a
     curve/creature read; the rest are scored by theme density and only the top couple are returned."""

@@ -20,6 +20,22 @@ def _atomic_json(path, obj):
     with open(tmp, "w") as f:
         json.dump(obj, f)
     os.replace(tmp, path)
+def _parse_type_line(type_line):
+    """Split a front-face type line into (full, types, subtypes).
+    'Legendary Creature — Human Detective' -> ('Legendary Creature — Human Detective',
+    ['Legendary','Creature'], ['Human','Detective']). Subtypes are the post-dash words
+    (creature tribes, land/artifact/enchantment subtypes); types are the supertypes+card
+    types before the dash. Handles either em-dash (—) or hyphen separators from Scryfall."""
+    front = (type_line or "").split("//")[0].strip()
+    # Scryfall uses the em-dash, but be defensive about a plain hyphen too.
+    sep = "—" if "—" in front else (" - " if " - " in front else None)
+    if sep:
+        left, _, right = front.partition(sep)
+    else:
+        left, right = front, ""
+    types = left.split()
+    subtypes = right.split()
+    return front, types, subtypes
 def _scry_rec(d):
     ci = d.get("color_identity", [])
     faces = d.get("card_faces", [])
@@ -32,6 +48,13 @@ def _scry_rec(d):
         pt = f"{d.get('power')}/{d.get('toughness')}"
     elif faces and faces[0].get("power") is not None:
         pt = f"{faces[0].get('power')}/{faces[0].get('toughness')}"
+    # capture the FULL front-face type line and parse it into structured fields. The top-level
+    # type_line is present for normal cards; for MDFCs/split cards fall back to the first face.
+    raw_tl = d.get("type_line") or (faces[0].get("type_line", "") if faces else "")
+    full_tl, types, subtypes = _parse_type_line(raw_tl)
+    loyalty = d.get("loyalty")
+    if loyalty is None and faces:
+        loyalty = next((f.get("loyalty") for f in faces if f.get("loyalty") is not None), None)
     return {
         "name": (d.get("name", "?").split("//")[0].strip()),
         "full_name": d.get("name", "?"),
@@ -39,8 +62,14 @@ def _scry_rec(d):
         "mana": mana,
         "pt": pt,
         "color": "".join(ci) if ci else "C",
+        "color_identity": list(ci),
         "rarity": d.get("rarity", "?")[:1].upper(),
-        "type": d.get("type_line", "").split("//")[0].split("—")[0].strip(),
+        "type": full_tl.split("—")[0].strip(),   # back-compat: pre-dash type only ("Creature")
+        "type_line": full_tl,                      # full string, e.g. "Creature — Human Detective"
+        "types": types,                            # supertypes+card types, e.g. ["Legendary","Creature"]
+        "subtypes": subtypes,                      # post-dash, e.g. ["Human","Detective"]
+        "keywords": d.get("keywords", []),
+        "loyalty": loyalty,
         "text": text.replace("\n", " "),
     }
 def resolve_ids(ids):

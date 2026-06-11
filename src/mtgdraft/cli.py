@@ -121,6 +121,7 @@ def main():
         print_table(ids, cfg, show_text=not cfg["brief"])
     elif cmd == "resolve":
         for cid, rec in resolve_ids(ids).items():
-            print(f"{cid}|{rec['name']}|{rec['cmc']}|{rec['color']}|{rec['type']}")
+            print(f"{cid}|{rec['name']}|{rec['cmc']}|{rec['color']}|"
+                  f"{rec.get('type_line') or rec.get('type','')}")
     else:
         print(__doc__)
