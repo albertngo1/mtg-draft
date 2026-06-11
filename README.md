@@ -236,6 +236,50 @@ rolling buffer).
 local by default, or a remote log when `--ssh` is set (in which case the stream is still
 written locally on the machine running the tool).
 
+### Keeping capture always-on (run it as a service)
+
+The auto-start above only fires *while you have the tool open* — if you run a command, capture lives
+until you `capture stop` or reboot. For a hands-off setup — e.g. an always-on box that follows Arena
+on **another** machine over SSH, so every draft is saved with zero interaction — run the follower
+under your OS service manager with restart-on-failure.
+
+The long-lived worker is the hidden `_tail` command; it reads its source config (local vs SSH
+target, log path, size cap) from `data/logs/.capture.json`. Generate that file once by running
+`capture` with the source you want (it writes `.capture.json`, and you can then stop the ad-hoc
+process), or write it yourself:
+
+```json
+{ "out": "/path/to/mtg-draft/data/logs/player_stream.log",
+  "log": "/Users/you/Library/Logs/Wizards Of The Coast/MTGA/Player.log",
+  "cap_mb": 50,
+  "ssh": "user@arena-host",
+  "ssh_key": "/Users/you/.ssh/id_arena" }
+```
+
+(Drop the `ssh`/`ssh_key` keys for a local follow; `log` is then the local path.) Then supervise
+`python3 src/mtg-draft.py _tail data/logs/.capture.json`. On **macOS**, a `KeepAlive` LaunchAgent
+at `~/Library/LaunchAgents/` does it:
+
+```xml
+<!-- com.mtg-draft.capture.plist — adjust paths/label; keep your SSH details OUT of any repo -->
+<key>ProgramArguments</key>
+<array>
+  <string>python3</string>
+  <string>/path/to/mtg-draft/src/mtg-draft.py</string>
+  <string>_tail</string>
+  <string>/path/to/mtg-draft/data/logs/.capture.json</string>
+</array>
+<key>RunAtLoad</key><true/>
+<key>KeepAlive</key><true/>
+```
+
+Load with `launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.mtg-draft.capture.plist`
+(`bootout` to unload). On Linux use a `systemd --user` unit with `Restart=always`; on Windows, a
+Task Scheduler task set to "run whether logged on or not" with restart-on-failure. The follower
+already self-heals across SSH drops and Arena's own log truncation, so the supervisor only needs to
+cover full process death. Note: auto-enrich still needs the Scryfall cache warmed once per set
+(`warm --set <CODE>`) — until then the raw byte capture is preserved but bundles aren't built.
+
 ## Reconstructed draft history
 
 `draft` turns the raw capture stream into a clean, structured record of your draft. It parses every
