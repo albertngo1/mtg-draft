@@ -27,10 +27,14 @@ def load_grades_any(set_code):
             return g, label
     return {}, ""
 _GUIDE_NOTE_RX = re.compile(r"^\s*-\s*\*\*(.+?)\*\*\s*[—–-]\s*(.+?)\s*$")
+# Table form `| **Card** (parenthetical) | take | source |` — col1 bolded name, col2 the note.
+# (SOS and other guides put their Card-notes section in a per-color table, not bullets.)
+_GUIDE_TABLE_RX = re.compile(r"^\s*\|\s*\*\*(.+?)\*\*[^|]*\|\s*(.+?)\s*\|")
 def load_guide_notes(set_code):
-    """Per-card expert notes from draft-guides/lords-of-limited/<SET>-draft-guide.md's '## Card notes' section
-    (bullet rows `- **Card** — note`). Keyed by lowercased card name (+ split-card front face).
-    Returns {} if no guide. Expert opinion — the lead lens for a pick; GIH WR is a tiebreaker only."""
+    """Per-card expert notes from draft-guides/lords-of-limited/<SET>-draft-guide.md's '## Card notes' section.
+    Reads BOTH bullet rows (`- **Card** — note`) and table rows (`| **Card** | note | … |`); a guide may
+    use either format. Keyed by lowercased card name (+ split-card front face). Returns {} if no guide.
+    Expert opinion — the lead lens that decodes archetype-conditional 17Lands WR (see AGENTS.md)."""
     notes = {}
     try:
         in_section = False
@@ -41,9 +45,11 @@ def load_guide_notes(set_code):
                     continue
                 if not in_section:
                     continue
-                m = _GUIDE_NOTE_RX.match(line)
+                m = _GUIDE_NOTE_RX.match(line) or _GUIDE_TABLE_RX.match(line)
                 if m:
                     name, note = m.group(1).split("(")[0].strip(), m.group(2).strip()
+                    if not name or not note:
+                        continue
                     notes[name.lower()] = note
                     if "//" in name:                    # split/MDFC: also key by front face
                         notes[name.split("//")[0].strip().lower()] = note

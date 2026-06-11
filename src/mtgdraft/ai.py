@@ -5,6 +5,7 @@ CLAUDE_CODE_OAUTH_TOKEN (env or a gitignored claude-token.txt at the repo root) 
 ~/.claude/.credentials.json token 401s in a spawned subprocess."""
 import os, json, shutil, subprocess
 from .config import ROOT
+from .grades import load_guide_notes
 
 # Distilled from AGENTS.md so the takes reflect THIS tool's doctrine, not generic MTG opinion.
 DOCTRINE = """You are a sharp MTG Limited draft coach. For each pick of a COMPLETED draft (under review),
@@ -74,6 +75,15 @@ def pick_takes(draft, top=6):
     claude, tok = shutil.which("claude"), _token()
     if not claude or not tok:
         return {}
+    # Backfill the expert guide note at take-time so a store built before the guide existed (or before
+    # its notes were parseable, e.g. SOS's table format) still feeds the lead-lens note to the model.
+    gnotes = load_guide_notes(draft.get("set", ""))
+    def _enrich(c):
+        if c and not c.get("guide"):
+            g = gnotes.get(c["name"].split("//")[0].strip().lower())
+            if g:
+                return {**c, "guide": g}
+        return c
     payload, prev = [], None
     for p in draft.get("picks", []):
         run = prev or {}
@@ -83,8 +93,8 @@ def pick_takes(draft, top=6):
             "deck_going_in": {"n": run.get("n", 0), "colors": run.get("colors", ""),
                               "curve": run.get("curve", {}), "needs": run.get("needs", []),
                               "premiums_passed": run.get("premiums_passed_readable", "")},
-            "took": _slim(tk) if tk else None,
-            "options": [_slim(c) for c in p.get("offered", [])[:top]],
+            "took": _slim(_enrich(tk)) if tk else None,
+            "options": [_slim(_enrich(c)) for c in p.get("offered", [])[:top]],
         })
         prev = p.get("running") or prev
     user = (f"Set/format: {draft.get('set')} {draft.get('fmt')} (ratings source: "
