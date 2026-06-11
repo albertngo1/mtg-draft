@@ -145,8 +145,9 @@ mtg-draft/
 │     ├─ render.py                #   table / pool / summary printers, watch
 │     └─ cli.py                   #   arg parse + command dispatch (main)
 ├─ grades/                        # committed reviewer grades: <source>_<SET>.json
-├─ lords-of-limited/              # committed expert set guides
-├─ numot/                         # committed NumotTheNummy VOD-distilled set notes (+ manifest.json)
+├─ draft-guides/                  # committed expert set guides (two channels)
+│  ├─ lords-of-limited/           #   Lords of Limited <SET>-draft-guide.md (one per set)
+│  └─ numot/                      #   NumotTheNummy VOD-distilled <SET>.md notes (+ manifest.json)
 └─ data/                          # generated, gitignored
    ├─ cache/                      # 17Lands + Scryfall caches
    ├─ drafts/                     # per-draft bundles <set>_<fp>/{draft.json,raw.log,replay.md} + current.json
@@ -342,24 +343,24 @@ list can be fetched directly (`cardgamebase.com/<set>-draft-tier-list/`) — tha
 power-evaluation); don't add a second *empirical* source — another win-rate metric just duplicates
 17Lands and adds noise.
 
-**2. Expert strategy guides → `lords-of-limited/<SET>-draft-guide.md`.** For longer-form, pre-digested
+**2. Expert strategy guides → `draft-guides/lords-of-limited/<SET>-draft-guide.md`.** For longer-form, pre-digested
 set strategy (meta read, archetype tier table, per-card notes, signals), each set gets a consolidated
-`<SET>-draft-guide.md` (kept flat in `lords-of-limited/`, guide-only) that the agent loads once and holds in
+`<SET>-draft-guide.md` (kept flat in `draft-guides/lords-of-limited/`, guide-only) that the agent loads once and holds in
 context for the whole draft. The guide's **`## Card notes`** bullets (`- **Card** — note`) are also parsed
 automatically and attached to each offered card as a `guide` field in the draft JSON, so the expert
 one-liner travels with the card. See
-[`lords-of-limited/README.md`](./lords-of-limited/README.md) for the layout and the conventions for
+[`draft-guides/lords-of-limited/README.md`](./draft-guides/lords-of-limited/README.md) for the layout and the conventions for
 adding a new set (date-prefixed source notes, a recency rule where the newest take wins on
 conflict). Guides distilled from public content (e.g. strategy YouTube channels) are credited to
 their source there.
 
-**3. NumotTheNummy VOD notes → `numot/<SET>.md`.** A second expert-notes source, distilled from
+**3. NumotTheNummy VOD notes → `draft-guides/numot/<SET>.md`.** A second expert-notes source, distilled from
 NumotTheNummy (Kenji Egashira) regular Arena draft VODs: per-set tips (`MKM.md`/`SOS.md` deepest,
 38 other sets sampled), `general-tips.md` for evergreen principles, and a `## vs Lords of Limited`
-section per tier-1 set flagging where the two experts disagree. The agent loads `numot/<SET>.md`
+section per tier-1 set flagging where the two experts disagree. The agent loads `draft-guides/numot/<SET>.md`
 at draft start alongside the LoL guide; same status (theory/expert opinion, 17Lands GIH WR stays
-primary). The scrape is fingerprinted in `numot/manifest.json` so re-runs only fetch/distill new
-or changed VODs — see [`numot/README.md`](./numot/README.md) and `src/fingerprint_numot.py`.
+primary). The scrape is fingerprinted in `draft-guides/numot/manifest.json` so re-runs only fetch/distill new
+or changed VODs — see [`draft-guides/numot/README.md`](./draft-guides/numot/README.md) and `src/fingerprint_numot.py`.
 
 ## Data sources & credits
 

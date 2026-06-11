@@ -12,7 +12,7 @@ compiled into per-set reference files for the draft coach.
 - **Coverage tiers:**
   - **Tier 1 (deepest):** `MKM.md` (all 21 VODs) and `SOS.md` (all 33 VODs). Each has a
     `## vs Lords of Limited` section noting only genuine conflicts with the matching
-    `lords-of-limited/<SET>-draft-guide.md` (LoL files are not modified).
+    `draft-guides/lords-of-limited/<SET>-draft-guide.md` (LoL files are not modified).
   - **Tier 2 (thinner):** 38 other Arena-draftable sets, ~4 end-of-format VODs each
     (AFR has 3 — one VOD had no captions).
 

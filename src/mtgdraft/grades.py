@@ -28,7 +28,7 @@ def load_grades_any(set_code):
     return {}, ""
 _GUIDE_NOTE_RX = re.compile(r"^\s*-\s*\*\*(.+?)\*\*\s*[—–-]\s*(.+?)\s*$")
 def load_guide_notes(set_code):
-    """Per-card expert notes from lords-of-limited/<SET>-draft-guide.md's '## Card notes' section
+    """Per-card expert notes from draft-guides/lords-of-limited/<SET>-draft-guide.md's '## Card notes' section
     (bullet rows `- **Card** — note`). Keyed by lowercased card name (+ split-card front face).
     Returns {} if no guide. Theory/expert opinion — cross-reference, 17Lands GIH WR stays primary."""
     notes = {}

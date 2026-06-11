@@ -20,7 +20,7 @@ pick from memory with **no further fetches.** One fetch up front beats paying ~1
 pick.
 
 **Set-specific expert notes — read at draft start if they exist for the set.** Pre-digested
-strategy guides live flat in [`lords-of-limited/`](./lords-of-limited/) as `<SET>-draft-guide.md`
+strategy guides live flat in [`draft-guides/lords-of-limited/`](./draft-guides/lords-of-limited/) as `<SET>-draft-guide.md`
 (see its README for the index). For the drafted set, **load that set's `<SET>-draft-guide.md` and
 hold it in context for the whole draft** — each is a dense, lookup-optimized synthesis (meta read,
 archetype/guild tier table, format principles, a **card-notes table** to cross-reference per pick,
@@ -31,9 +31,9 @@ is most authoritative — supersessions are marked inline). Each guide ends with
 list (`date — title (youtube_id)`); raw transcripts for the bulk sets live in `data/lol-subs/<CODE>/`
 (gitignored).
 
-A **second** expert-notes source lives flat in [`numot/`](./numot/) as `<SET>.md` — draft tips
-distilled from NumotTheNummy (Kenji Egashira) draft VODs (`numot/general-tips.md` holds the
-evergreen principles). If the drafted set has a `numot/<SET>.md`, load it at draft start alongside
+A **second** expert-notes source lives flat in [`draft-guides/numot/`](./draft-guides/numot/) as `<SET>.md` — draft tips
+distilled from NumotTheNummy (Kenji Egashira) draft VODs (`draft-guides/numot/general-tips.md` holds the
+evergreen principles). If the drafted set has a `draft-guides/numot/<SET>.md`, load it at draft start alongside
 the LoL guide and treat both the same way: theory/expert opinion, **17Lands GIH WR stays primary.**
 `MKM.md`/`SOS.md` are deepest (full VOD coverage); the rest sample ~4 end-of-format VODs. Numot's
 `vs Lords of Limited` sections flag where the two experts disagree.
@@ -284,7 +284,7 @@ card-draw spell.**
 - **At draft start, learn the set's archetypes.** Pull the set's color-pair overview so you know the
   ~10 two-color gameplans and which are strong — it frames every pick and tells you what a wheeling
   card signals. **If the set has a synthesized guide in this repo** (see Quick start —
-  [`lords-of-limited/<SET>-draft-guide.md`](./lords-of-limited/)), load it for the format's meta read,
+  [`draft-guides/lords-of-limited/<SET>-draft-guide.md`](./draft-guides/lords-of-limited/)), load it for the format's meta read,
   tier list, and card notes before the first pick.
 - **Stay open early, commit late.** Flexible through roughly **P1 picks 2–7**; **lock your colors by
   P1P8–9.** Strong drafters stay open longer to scoop bombs and slide into whatever's underdrafted.

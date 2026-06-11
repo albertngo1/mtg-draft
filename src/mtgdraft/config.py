@@ -13,7 +13,7 @@ STREAM = os.path.join(LOGDIR, "player_stream.log")  # everything Player.log emit
 PIDFILE = os.path.join(LOGDIR, ".capture.pid")       # PID of the running background follower
 CFGFILE = os.path.join(LOGDIR, ".capture.json")      # source/cap config the follower reads
 CAP_MB_DEFAULT = float(os.environ.get("MTG_CAP_MB", "50"))
-GUIDES = os.path.join(ROOT, "lords-of-limited")  # committed expert set guides: <SET>-draft-guide.md
+GUIDES = os.path.join(ROOT, "draft-guides", "lords-of-limited")  # committed expert set guides: <SET>-draft-guide.md
 os.makedirs(CACHE, exist_ok=True)
 def default_log_path():
     """Best-guess Player.log location for the current OS (override with MTG_LOG).

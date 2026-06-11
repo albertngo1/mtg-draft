@@ -4,16 +4,16 @@
 The scrape has two stages that can redo work:
   1. fetch   — fetch_subs.sh downloads auto-captions to data/numot-subs/<SET>/<id>.txt.
                Already idempotent (skips existing .txt).
-  2. distill — stage-2 agents summarize every transcript into numot/<SET>.md.
+  2. distill — stage-2 agents summarize every transcript into draft-guides/numot/<SET>.md.
                WITHOUT a manifest this re-summarizes everything each run.
 
 This script records a content fingerprint (sha1 + word count) of every transcript
-that has been distilled into numot/, in a committed manifest (numot/manifest.json).
+that has been distilled into draft-guides/numot/, in a committed manifest (draft-guides/numot/manifest.json).
 A future run computes the same fingerprints and only fetches/distills the videos
 that are NEW or whose transcript CHANGED.
 
 Usage:
-  fingerprint_numot.py update          Rebuild numot/manifest.json from current
+  fingerprint_numot.py update          Rebuild draft-guides/numot/manifest.json from current
                                         transcripts + worklist.json (run after a
                                         distill pass; marks every fetched video distilled).
   fingerprint_numot.py new             Print video IDs in worklist.json that are NOT
@@ -31,7 +31,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent          # ~/src/mtg-draft
 SUBS = ROOT / "data" / "numot-subs"                    # transcript tree (gitignored)
 WORKLIST = SUBS / "worklist.json"
-MANIFEST = ROOT / "numot" / "manifest.json"            # committed, travels with repo
+MANIFEST = ROOT / "draft-guides" / "numot" / "manifest.json"   # committed, travels with repo
 
 
 def sha1_words(txt_path):

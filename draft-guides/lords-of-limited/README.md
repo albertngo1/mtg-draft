@@ -9,9 +9,9 @@ section so newer episodes win on conflict.
 Treat all of this as expert/theory opinion — weight it like a CGB grade; **17Lands GIH WR stays primary.**
 
 Every set is **guide-only** — the committed `<SET>-draft-guide.md` is the whole artifact. Raw
-auto-caption transcripts for the bulk sets live in `../data/lol-subs/<CODE>/` (gitignored); SOS and MKM
+auto-caption transcripts for the bulk sets live in `../../data/lol-subs/<CODE>/` (gitignored); SOS and MKM
 were distilled by hand earlier from the same channel and aren't cached locally (re-fetchable any time
-via `../data/lol-subs/fetch_lol.sh`).
+via `../../data/lol-subs/fetch_lol.sh`).
 
 ## Sets covered
 
@@ -62,5 +62,5 @@ via `../data/lol-subs/fetch_lol.sh`).
   (`date — title (youtube_id)`).
 - Pipeline: `data/lol-subs/fetch_lol.sh` (`yt-dlp` auto-captions → clean `.txt` + `meta.tsv`) →
   `data/lol-subs/synth_workflow.js` (one synthesis agent per set). `worklist.json` scopes which videos
-  belong to which set. Transcripts stay in `../data/lol-subs/<CODE>/` (gitignored).
-- Add a row to the table above, and keep the `../AGENTS.md` pointer current.
+  belong to which set. Transcripts stay in `../../data/lol-subs/<CODE>/` (gitignored).
+- Add a row to the table above, and keep the `../../AGENTS.md` pointer current.
