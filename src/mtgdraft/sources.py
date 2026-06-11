@@ -1,6 +1,29 @@
 import os, json, time, datetime, urllib.request
 from .config import CACHE, SCRY_CACHE, UA
 
+# Scryfall cache entry schema version. Bump whenever _scry_rec() starts storing new fields
+# so older thin entries (cached before the change) are treated as cache misses and lazily
+# re-fetched + re-enriched. v2 added type_line/types/subtypes/keywords/loyalty/color_identity.
+SCRYFALL_SCHEMA = 2
+
+def is_fresh(rec):
+    """True if a cached Scryfall record is at the current schema and safe to serve.
+    A record is fresh if it stamps the current schema (`_v` >= SCRYFALL_SCHEMA) OR — for
+    entries written just before the version stamp existed (e.g. the freshly re-warmed MKM
+    set) — it already carries the rich v2 fields. Anything else is stale: missing/old `_v`
+    and lacking the enriched fields, so it re-fetches. A failed-lookup placeholder
+    (no `type_line`) is also treated as stale so it self-heals on a later pass."""
+    if not isinstance(rec, dict):
+        return False
+    if rec.get("_v", 0) >= SCRYFALL_SCHEMA:
+        return True
+    # Back-compat: rich entries from the re-warm that predate the `_v` stamp.
+    return "subtypes" in rec and bool(rec.get("type_line"))
+
+def stale_ids(scry, ids):
+    """Subset of `ids` that need a (re)fetch: absent from cache or holding a stale entry."""
+    return [c for c in ids if not is_fresh(scry.get(c))]
+
 def _get(url):
     req = urllib.request.Request(url, headers=UA)
     with urllib.request.urlopen(req, timeout=30) as r:
@@ -56,6 +79,7 @@ def _scry_rec(d):
     if loyalty is None and faces:
         loyalty = next((f.get("loyalty") for f in faces if f.get("loyalty") is not None), None)
     return {
+        "_v": SCRYFALL_SCHEMA,                      # schema stamp; stale entries lacking it re-fetch
         "name": (d.get("name", "?").split("//")[0].strip()),
         "full_name": d.get("name", "?"),
         "cmc": int(d.get("cmc", 0)),
@@ -78,7 +102,7 @@ def resolve_ids(ids):
     out, dirty = {}, False
     for cid in ids:
         cid = str(cid)
-        if cid in cache:
+        if is_fresh(cache.get(cid)):  # served from cache; stale/missing entries fall through to fetch
             out[cid] = cache[cid]
             continue
         try:

@@ -1,6 +1,6 @@
 import os, re, time, subprocess
 from .config import STREAM
-from .sources import load_scry, resolve_ids
+from .sources import load_scry, resolve_ids, stale_ids
 
 STREAM_FRESH_SECS = 8.0   # trust the local capture stream only if the daemon wrote it this recently
 KNOWN_FMTS = ("PremierDraft", "QuickDraft", "TradDraft", "Sealed", "TradSealed")  # real 17Lands formats
@@ -95,7 +95,7 @@ def infer_colors(picked_ids, cfg):
     if not picked_ids:
         return ""
     scry = load_scry()
-    missing = [c for c in picked_ids if c not in scry]
+    missing = stale_ids(scry, picked_ids)  # absent OR below current schema -> (re)fetch
     if missing:
         resolve_ids(missing)
         scry = load_scry()

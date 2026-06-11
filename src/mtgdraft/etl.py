@@ -1,6 +1,6 @@
 import sys, os, json, re, hashlib, subprocess
 from .config import DRAFTS, REPLAY, ROOT, STREAM
-from .sources import load_scry, ratings, resolve_ids
+from .sources import load_scry, ratings, resolve_ids, stale_ids
 from .grades import load_grades_any, load_guide_notes
 from .analysis import COLOR_NAMES, _REMOVAL_RX, _archetype_lean, _card_tags, _color_phrase, _deck_needs, _inflation, _kind, _tribes, _tribes_readable
 from .logread import apply_event, infer_colors
@@ -82,7 +82,7 @@ def _card_enricher(cfg, ids):
     data, ratings_fmt = ratings(cfg["set"], cfg["fmt"], cfg["days"], cfg["refresh"])
     by_id = {str(c["mtga_id"]): c for c in data if c.get("mtga_id")}
     scry = load_scry()
-    missing = [c for c in {str(i) for i in ids} if c not in scry]
+    missing = stale_ids(scry, {str(i) for i in ids})  # absent OR below current schema -> (re)fetch
     if missing:
         resolve_ids(missing); scry = load_scry()
     ds, _ = load_grades_any(cfg["set"])

@@ -1,6 +1,6 @@
 import sys, os, json, re, time
 from .config import DRAFTS, HERE
-from .sources import load_scry, ratings, resolve_ids
+from .sources import load_scry, ratings, resolve_ids, stale_ids
 from .grades import load_grades_any
 from .logread import _last_log_line, _parse_array, _read_mode, apply_event, event_from_line, infer_colors
 
@@ -121,7 +121,7 @@ def print_pool(ids, cfg):
     data, _ = ratings(cfg["set"], cfg["fmt"], cfg["days"], cfg["refresh"])
     by_id = {str(c["mtga_id"]): c for c in data if c.get("mtga_id")}
     scry = load_scry()
-    missing = [c for c in (str(i) for i in ids) if c not in scry]
+    missing = stale_ids(scry, [str(i) for i in ids])  # absent OR below current schema -> (re)fetch
     if missing:
         resolve_ids(missing)
         scry = load_scry()
@@ -196,7 +196,7 @@ def print_table(ids, cfg, show_text=True):
     by_id = {str(c["mtga_id"]): c for c in data if c.get("mtga_id")}  # identity + stats
     scry = load_scry()
     # cmc + oracle text come from Scryfall; resolve any that `warm` didn't pre-cache
-    missing = [c for c in (str(i) for i in ids) if c not in scry]
+    missing = stale_ids(scry, [str(i) for i in ids])  # absent OR below current schema -> (re)fetch
     if missing:
         resolve_ids(missing)
         scry = load_scry()
