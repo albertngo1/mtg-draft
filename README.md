@@ -9,6 +9,31 @@ Runs **locally** on the same machine where you play Arena (Windows or macOS). No
 overlay, no service — just a Python script and the log Arena already writes. Stdlib only, nothing
 to `pip install`.
 
+## Two ways to use it: solo (no AI) or coached (AI)
+
+The tool splits cleanly into a **deterministic core** and an **optional AI layer**. Pick whichever
+you want — the core never depends on the AI.
+
+**Solo — no AI, no account, no API key.** Everything that reads the pack and ranks it is plain
+Python over cached 17Lands + Scryfall data. `warm` the set once, then keep **`watch`** running in a
+side pane: each time a new pack appears it auto-prints the GIH-WR-ranked table, what each card does,
+and your pool's curve/colors (colors auto-inferred as you pick) — no per-pick command, no network
+call per pick (17Lands is cached), nothing leaves the machine. You draft straight off it; it's a
+live 17Lands overlay. → see [Commands](#commands) — `warm`, `watch`, `pull`, `pool`, `draft`.
+
+**Coached — adds an LLM agent (Claude Code).** Point an agent at [`AGENTS.md`](./AGENTS.md) and it
+drives the same pack-reading loop, but turns the raw rankings into pick-by-pick *judgment*:
+lane/signal reads, cross-referencing CGB tier grades + the expert guides in
+[`draft-guides/`](./draft-guides/), mana-math warnings, and adapting when you override a pick. After
+the draft it can also write a coached **replay** (one `claude -p` call per completed draft,
+auto-enabled when the gitignored `claude-token.txt` exists — see [Reconstructed draft
+history](#reconstructed-draft-history)). This layer is a *second opinion on top of* the solo
+overlay — skip it and nothing in the core stops working. → see [Using it as an agent /
+coach](#using-it-as-an-agent--coach).
+
+Either way, the **17Lands ranking is the primary signal**; the AI is decorrelated expert color, not
+the source of truth.
+
 ## Prerequisites
 
 1. **Python 3.8+** — `python --version` (Windows) / `python3 --version` (macOS).
@@ -295,9 +320,11 @@ PremierDraft data over a wide historical window — and notes it in `ratings_fmt
 
 ## Using it as an agent / coach
 
-The tool is useful standalone, but it's designed to be driven by an **LLM agent** (e.g. Claude
-Code) that turns the raw rankings into pick-by-pick coaching. [`AGENTS.md`](./AGENTS.md) is the
-operating manual for that agent. At a high level it covers:
+This is the **AI layer** from [Two ways to use
+it](#two-ways-to-use-it-solo-no-ai-or-coached-ai). The solo CLI stands on its own, but the tool is
+also designed to be driven by an **LLM agent** (e.g. Claude Code) that turns the raw rankings into
+pick-by-pick coaching. [`AGENTS.md`](./AGENTS.md) is the operating manual for that agent. At a high
+level it covers:
 
 - **The per-pick loop** — `warm` once, then `pull` each pick; how to read the ranked table + the
   "what each card does" block so picks are judged on *fit*, not just the GIH WR column.
