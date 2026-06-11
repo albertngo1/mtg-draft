@@ -18,10 +18,12 @@ Two coverage tiers exist:
 
 ## Sets covered — deep (with `sources/`)
 
+Per-episode source notes for the deep sets live under [`sources/`](./sources/).
+
 | Set | Guide | Sources | Notes |
 |-----|-------|---------|-------|
-| **Secrets of Strixhaven (SOS)** | [SOS-draft-guide.md](./SOS-draft-guide.md) | [`sos/`](./sos/) | 10 episodes, 2026-04-13 → 2026-06-01. Soup vs aggro; Prismari (UR) strong. |
-| **Murders at Karlov Manor (MKM)** | [MKM-draft-guide.md](./MKM-draft-guide.md) | [`mkm/`](./mkm/) | 6 episodes, 2024-01-22 → 2024-03-25. Quick Draft re-run **Jun 8–16 2026**. Boros (RW) top. |
+| **Secrets of Strixhaven (SOS)** | [SOS-draft-guide.md](./SOS-draft-guide.md) | [`sources/sos/`](./sources/sos/) | 10 episodes, 2026-04-13 → 2026-06-01. Soup vs aggro; Prismari (UR) strong. |
+| **Murders at Karlov Manor (MKM)** | [MKM-draft-guide.md](./MKM-draft-guide.md) | [`sources/mkm/`](./sources/mkm/) | 6 episodes, 2024-01-22 → 2024-03-25. Quick Draft re-run **Jun 8–16 2026**. Boros (RW) top. |
 
 ## Sets covered — bulk (guide-only, built 2026-06-10)
 

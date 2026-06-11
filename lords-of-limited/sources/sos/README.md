@@ -3,7 +3,7 @@
 Agent-facing draft-strategy reference for **Secrets of Strixhaven** Limited, distilled from the
 [Lords of Limited](https://www.youtube.com/@LordsofLimited/videos) YouTube channel.
 
-## → Start here: [`SOS-draft-guide.md`](../SOS-draft-guide.md)
+## → Start here: [`SOS-draft-guide.md`](../../SOS-draft-guide.md)
 
 The **consolidated, agent-primary** guide — synthesized across all 10 episodes into one dense,
 lookup-optimized file: TL;DR meta read, archetype/color-pair tier table, SOS format principles, a

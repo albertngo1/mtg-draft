@@ -6,7 +6,7 @@ Agent-facing draft-strategy reference for **Murders at Karlov Manor** Limited, d
 MKM originally released Feb 2024; these notes are from that window. The cards are **identical** in the
 2026 MTG Arena Quick Draft re-run (**June 8–16, 2026**), so the strategy applies directly.
 
-## → Start here: [`MKM-draft-guide.md`](../MKM-draft-guide.md)
+## → Start here: [`MKM-draft-guide.md`](../../MKM-draft-guide.md)
 
 The **consolidated, agent-primary** guide — synthesized across all 6 episodes: recency rule, a
 **2026 Quick-Draft data caveat** (see below), TL;DR meta read, 10-guild tier table, MKM format

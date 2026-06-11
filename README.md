@@ -345,8 +345,8 @@ power-evaluation); don't add a second *empirical* source — another win-rate me
 **2. Expert strategy guides → `lords-of-limited/<SET>-draft-guide.md`.** For longer-form, pre-digested
 set strategy (meta read, archetype tier table, per-card notes, signals), each set gets a consolidated
 `<SET>-draft-guide.md` (kept flat in `lords-of-limited/`) that the agent loads once and holds in
-context for the whole draft, plus a per-set `<set>/sources/` layer of per-episode notes to dig into a
-specific pick. The guide's **`## Card notes`** bullets (`- **Card** — note`) are also parsed
+context for the whole draft, plus a per-set `sources/<set>/sources/` layer of per-episode notes to dig into a
+specific pick (deep sets only — SOS, MKM). The guide's **`## Card notes`** bullets (`- **Card** — note`) are also parsed
 automatically and attached to each offered card as a `guide` field in the draft JSON, so the expert
 one-liner travels with the card. See
 [`lords-of-limited/README.md`](./lords-of-limited/README.md) for the layout and the conventions for
