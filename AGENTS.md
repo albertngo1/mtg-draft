@@ -89,19 +89,29 @@ read from the structured store): when creatures are below the 15–17 target, bi
 *The ETL is truncation-resilient.* When a truncation makes the follower re-dump a short copy of a draft
 already captured in full, the reconstructor collapses stream segments by fingerprint and **keeps the
 most-complete (max-picks) instance**, so a truncated re-dump can never regress a draft's history. Each pick has a cumulative `running` block (curve, counts, what you've passed by color +
-premiums passed by color, plus **`needs` / `needs_readable`** — what the deck-so-far is still short
+premiums passed by color, **plus `premiums_seen_by_color` / `premiums_seen_readable`** — premiums
+SEEN (taken + passed) by color, the *unconfounded* openness read, plus **`needs` / `needs_readable`** — what the deck-so-far is still short
 on, scaled to draft progress, e.g. `"2-drops (1), removal (~0)"` or `"on track"`; steer the next
 pick toward these gaps), offered cards carry `wheel` (true only on a real 8-player lap, pick≥9),
 `tags`, and — when applicable — **`inflation`** (the card's GIH WR is selection-bias-inflated; a
 Converge/colors-of-mana or `{X}` card whose number reflects soup/big-X pilots, NOT your 2-color
 deck — the Snarl Song trap, with a plain-English caveat to read it well below the headline) and
 **`guide`** (the LoL set guide's expert one-liner on that card). The pool rolls up into `themes` +
-`archetype_lean` + `open_color_signal` (colors
-flowing premiums late) — use these for signal reads and deckbuilding, don't recompute them.
+`archetype_lean` + `open_color_signal` (colors with premiums still SEEN — taken + passed — late,
+pick≥5) — use these for signal reads and deckbuilding, don't recompute them.
+**Read openness from premiums SEEN late, NOT from premiums *passed*.** A premium surviving to pick
+5+ means that color is underdrafted upstream *whether or not you took it*. `passed_by_color` /
+`premiums_passed_by_color` count only cards you DIDN'T take — so they're **structurally blind to
+your own drafted colors** (you keep the premiums you take, so your main color never accrues a passed
+count and reads as dry/closed — e.g. you're being fed green every pack and scooping it, yet "green:
+1 passed" reads as dead). That's the confound the SEEN metrics fix: `premiums_seen_by_color` and the
+SEEN-late `open_color_signal` include taken + passed, so your own heavily-drafted color reads
+correctly. Keep `passed_by_color` / `premiums_passed_by_color` only as the **"what am I shipping
+left / signaling to my left"** view — never as the openness read for your own colors.
 **Color signals are pre-spelled-out** for you and the player: `running.passed_readable` /
-`running.premiums_passed_readable` (e.g. `"28 green, 27 red, 14 blue"`) and
-`analysis.open_color_readable` — **always present these in plain English ("28 green premiums
-passed"), never as `G28 R27` shorthand.** The raw `*_by_color` maps and per-entry `color_name`
+`running.premiums_passed_readable` / **`running.premiums_seen_readable`** (e.g. `"28 green, 27 red,
+14 blue"`) and `analysis.open_color_readable` (the seen-late open-lane line) — **always present
+these in plain English ("28 green premiums seen"), never as `G28 R27` shorthand.** The raw `*_by_color` maps and per-entry `color_name`
 are still there if you need the numbers. For re-run/rotated sets with no live win-rate data yet,
 **both the store AND the live `pull`/`rank` table** auto-proxy the set's original PremierDraft
 ratings over a wide historical window (noted in `ratings_fmt` and in the table header).

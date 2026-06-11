@@ -1,5 +1,12 @@
 import re
 
+# GIH WR at/above which a card counts as a "premium" — the threshold used everywhere we read
+# openness (premiums seen/passed late by color). Single source of truth so etl + analysis agree.
+PREMIUM_GIH = 0.55
+# A premium surviving to this pick (or later) means the color is underdrafted upstream — too early
+# before this and a strong card showing up means nothing.
+OPEN_LATE_PICK = 5
+
 _CONVERGE_RX = re.compile(r"\bconverge\b|colou?rs? of mana spent|for each colou?r of mana", re.I)
 def _inflation(meta, tags):
     """Flag (with a plain-English caveat) cards whose GIH overstates their value in a clean 2-color
@@ -119,6 +126,29 @@ def _color_phrase(counter):
     items = sorted(counter.items(),
                    key=lambda kv: (-kv[1], "WUBRG".index(kv[0]) if kv[0] in "WUBRG" else 99))
     return ", ".join(f"{n} {COLOR_NAMES.get(ch, ch)}" for ch, n in items if n)
+def _premiums_seen_by_color(offered_cards):
+    """Premium cards (GIH WR >= PREMIUM_GIH) SEEN across a set of offered cards, counted by color
+    pip. SEEN = taken + passed — the *unconfounded* supply reaching the seat. Reading openness off
+    cards *passed* is blind to your own colors (you keep the premiums you take, so your drafted color
+    never accumulates a passed count and reads as dry); counting what you SAW fixes that confound."""
+    from collections import Counter
+    return Counter(ch for c in offered_cards
+                   if c.get("gih") and c["gih"] >= PREMIUM_GIH
+                   for ch in (c.get("color") or "") if ch in "WUBRG")
+def _open_color_signal(picks):
+    """Open-color read: premium cards (GIH >= PREMIUM_GIH) still SEEN late (pick >= OPEN_LATE_PICK)
+    by color. A premium surviving to pick 5+ means that color is underdrafted upstream WHETHER OR NOT
+    you took it — so we count every offered card (taken + passed), not just the ones you let go.
+    Returns (signal_list, readable_phrase) with colors at >=4 late premiums seen, most-seen first."""
+    from collections import Counter
+    seen = Counter()
+    for p in picks:
+        if p["pick"] >= OPEN_LATE_PICK:
+            seen += _premiums_seen_by_color(p["offered"])
+    signal = [{"color": col, "color_name": COLOR_NAMES.get(col, col), "late_premiums_seen": n}
+              for col, n in seen.most_common() if n >= 4]
+    readable = ", ".join(f"{s['late_premiums_seen']} {s['color_name']}" for s in signal)
+    return signal, readable
 def _deck_needs(n, creatures, two_drops, removal, curve):
     """What the deck still needs RIGHT NOW, scaled to how far through the draft you are — so it reads
     'low on 2-drops' as a live priority instead of screaming 'few creatures' at pick 3. Targets are

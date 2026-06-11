@@ -2,7 +2,9 @@ import sys, os, json, re, hashlib, subprocess
 from .config import DRAFTS, REPLAY, ROOT, STREAM
 from .sources import load_scry, ratings, resolve_ids, stale_ids
 from .grades import load_grades_any, load_guide_notes
-from .analysis import COLOR_NAMES, _REMOVAL_RX, _archetype_lean, _card_tags, _color_phrase, _deck_needs, _inflation, _kind, _tribes, _tribes_readable
+from .analysis import (COLOR_NAMES, PREMIUM_GIH, _REMOVAL_RX, _archetype_lean, _card_tags,
+                       _color_phrase, _deck_needs, _inflation, _kind, _open_color_signal,
+                       _premiums_seen_by_color, _tribes, _tribes_readable)
 from .logread import apply_event, infer_colors
 
 def _botdraft_payloads(text):
@@ -129,7 +131,7 @@ def analyze_pool(pool, picks, colors):
             for c in p["offered"]:
                 col = c["color"]
                 oncol = col == "C" or (on and all(x in on for x in col if x in "WUBRG"))
-                if c.get("gih") and c["gih"] >= 0.55 and oncol:
+                if c.get("gih") and c["gih"] >= PREMIUM_GIH and oncol:
                     signals.append({"pack": p["pack"], "pick": p["pick"],
                                     "name": c["name"], "gih": round(c["gih"], 3)})
     five_plus = sum(n for mv, n in curve.items() if mv >= 5)
@@ -146,19 +148,11 @@ def analyze_pool(pool, picks, colors):
     themes = Counter(t for c in pool for t in c.get("tags", []))
     lean = _archetype_lean(themes, curve, counts)
     tribes = _tribes(pool)                          # creature-subtype counts (Detective tribal etc.)
-    # open-color read: premium cards (GIH >= 55%) still FLOWING to you late (pick >= 5) by color —
-    # a color the table isn't taking shows up late. (Pick 1-4 are too early to mean much.)
-    flowing = Counter()
-    for p in picks:
-        if p["pick"] >= 5:
-            for c in p["offered"]:
-                if c.get("gih") and c["gih"] >= 0.55:
-                    for ch in (c.get("color") or ""):
-                        if ch in "WUBRG":
-                            flowing[ch] += 1
-    open_signal = [{"color": col, "color_name": COLOR_NAMES.get(col, col), "late_premiums_seen": n}
-                   for col, n in flowing.most_common() if n >= 4]
-    open_readable = ", ".join(f"{s['late_premiums_seen']} {s['color_name']}" for s in open_signal)
+    # open-color read: premium cards (GIH >= 55%) still SEEN late (pick >= 5) by color — taken +
+    # passed, NOT just passed. A premium surviving to pick 5+ means the color is underdrafted upstream
+    # whether or not you took it; reading off *passed* would be blind to your own drafted colors (you
+    # keep the premiums you take, so they'd never count). (Pick 1-4 are too early to mean much.)
+    open_signal, open_readable = _open_color_signal(picks)
     return {
         "colors": colors,
         "counts": {"creatures": counts.get("creature", 0), "spells": counts.get("spell", 0),
@@ -173,11 +167,13 @@ def analyze_pool(pool, picks, colors):
         "open_color_signal": open_signal, "open_color_readable": open_readable,
         "signals": signals[:12], "flags": flags,
     }
-def _running_metrics(taken_cards, passed_cards, scry):
+def _running_metrics(taken_cards, passed_cards, seen_cards, scry):
     """Compact cumulative deck state THROUGH the current pick, embedded per pick so a reader never
     has to reconstruct the pool. For the live (pending) pick this is your pool-so-far as you decide.
-    `passed_cards` are the cards you saw and DIDN'T take so far — aggregated by color (and premium
-    quality) to read open colors / whether premium cards were flowing to you."""
+    `passed_cards` are the cards you saw and DIDN'T take so far — the "signaling to my left" view.
+    `seen_cards` are ALL offered cards (taken + passed) — the unconfounded openness supply: read
+    open colors off `premiums_seen_by_color`, NOT off what you passed (your own drafted color never
+    accumulates a passed count, so passed-by-color reads your main color as dry — the confound)."""
     from collections import Counter
     counts = Counter(_kind(c.get("type")) for c in taken_cards)
     nonland = [c for c in taken_cards if _kind(c.get("type")) != "land"]
@@ -188,8 +184,11 @@ def _running_metrics(taken_cards, passed_cards, scry):
     colors = "".join(sorted((x for x, _ in pips.most_common(2)), key="WUBRG".index))
     passed_by_color = Counter(ch for c in passed_cards
                               for ch in (c.get("color") or "") if ch in "WUBRG")
-    prem_by_color = Counter(ch for c in passed_cards if c.get("gih") and c["gih"] >= 0.55
+    prem_by_color = Counter(ch for c in passed_cards if c.get("gih") and c["gih"] >= PREMIUM_GIH
                             for ch in (c.get("color") or "") if ch in "WUBRG")
+    # premiums SEEN (taken + passed) by color — the unconfounded openness read (includes your own
+    # drafted colors, which premiums_passed_by_color structurally misses).
+    seen_prem_by_color = _premiums_seen_by_color(seen_cards)
     themes = Counter(t for c in taken_cards for t in c.get("tags", []))
     tribes = _tribes(taken_cards)                   # creature-subtype counts in the pool so far
     curve_d = {str(mv): curve[mv] for mv in sorted(curve)}
@@ -203,6 +202,8 @@ def _running_metrics(taken_cards, passed_cards, scry):
             "passed_readable": _color_phrase(passed_by_color),
             "premiums_passed_by_color": dict(prem_by_color),
             "premiums_passed_readable": _color_phrase(prem_by_color),
+            "premiums_seen_by_color": dict(seen_prem_by_color),
+            "premiums_seen_readable": _color_phrase(seen_prem_by_color),
             "themes": dict(themes.most_common()),
             "tribes": tribes, "tribes_readable": _tribes_readable(tribes)}
 def enrich_draft(cfg, draft):
@@ -214,7 +215,7 @@ def enrich_draft(cfg, draft):
     card, ratings_fmt = _card_enricher(cfg, ids)
     offered_ids = {(p["pack"], p["pick"]): set(p["offered"]) for p in draft["picks"]}
     scry = load_scry()
-    picks, taken_sofar, passed_sofar = [], [], []
+    picks, taken_sofar, passed_sofar, seen_sofar = [], [], [], []
     for p in draft["picks"]:
         prev = offered_ids.get((p["pack"], p["pick"] - 8), set())   # same pack, one lap earlier
         offered = [dict(card(i), taken=(i == p["taken"]), wheel=(i in prev)) for i in p["offered"]]
@@ -225,8 +226,11 @@ def enrich_draft(cfg, draft):
             # NB: wheel laps re-add the same physical cards — intended, it overweights colors the
             # table keeps passing (which is exactly the open-lane signal being read).
             passed_sofar = passed_sofar + [c for c in offered if not c["taken"]]
+            seen_sofar = seen_sofar + offered       # SEEN = taken + passed: the whole offered pack,
+            # including the card you took — the unconfounded supply behind premiums_seen_by_color.
         picks.append({"pack": p["pack"], "pick": p["pick"], "taken": tk,
-                      "running": _running_metrics(taken_sofar, passed_sofar, scry), "offered": offered})
+                      "running": _running_metrics(taken_sofar, passed_sofar, seen_sofar, scry),
+                      "offered": offered})
     pool = [card(i) for i in pool_ids]
     colors = cfg["colors"] if cfg.get("colors_explicit") else infer_colors(pool_ids, cfg)
     return {"set": cfg["set"], "fmt": cfg["fmt"], "event": draft.get("event", ""),
