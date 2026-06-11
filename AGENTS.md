@@ -199,6 +199,22 @@ set/fmt from the pack payload's `"EventName":"<FMT>_<SET>_<date>"`. Just `warm -
    treat it with **more** skepticism than GIH WR, not less. Its one good use: a quick read on whether
    a card actually *does something* when it lands vs. pads a record — a flag, never a primary signal.
 
+**Format & card-type caveat — when GIH WR earns back primary weight.** The demotion above is
+calibrated to *soup-heavy / data-hostile* formats (SOS is the case in point: multicolor decks don't
+aggregate into one archetype, so 17Lands structurally *can't see* the best deck, and payoff WRs are
+selection-bias-inflated). **GIH WR's reliability is inversely proportional to how much selection bias
+the card carries** — so weight it by *card type and format*, not flatly:
+- **Cleanly-castable cards** (colorless, mono-pip, two-color commons/uncommons that any deck in those
+  colors plays) — the WR **transfers well**. Treat GIH WR as a **strong primary input** here, near
+  co-equal with the guide; it's not just a tiebreaker.
+- **Payoffs / multicolor / build-arounds / soup pieces** — WR is inflated by the decks built to enable
+  them. Keep GIH WR a **tiebreaker only**, lean on the guide.
+- **Data-friendly formats with well-defined two-color guilds** (e.g. a grindy midrange set like **MKM**,
+  where the archetypes the data represents *are* the decks you draft) — GIH WR is more trustworthy
+  across the board; let it back up toward primary. **Don't over-fit the win-rate distrust to SOS.**
+The guide stays the lead lens and ALSA stays primary in *every* format — this caveat only governs how
+hard you lean on the win-rate number underneath them.
+
 - **Always surface the data, even though it's not the lead.** The table still prints; present it as
   a reference (ALSA + grade), with GIH WR / IWD alongside. Format: Card | Color | ALSA | Grade | GIH WR | IWD.
 - **Push back, don't capitulate.** When the player challenges a pick, re-examine honestly. If the

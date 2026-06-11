@@ -34,8 +34,10 @@ coach](#using-it-as-an-agent--coach).
 Either way, the **set guide + archetype read is the lead lens** (which color pairs are strongest in
 the set, the card's role in the open archetype); the 17Lands columns support it — **ALSA** is the
 signal that matters (the one column orthogonal to win rate), and **GIH WR / IWD are tiebreakers
-only** (IWD is a noisier win-rate delta). The AI take is decorrelated expert color, not the source
-of truth.
+only** (IWD is a noisier win-rate delta). *Caveat: GIH WR earns back primary weight for
+cleanly-castable cards and in data-friendly two-color formats like MKM — the demotion is calibrated
+to soup/payoff-heavy sets like SOS (see AGENTS.md).* The AI take is decorrelated expert color, not
+the source of truth.
 
 ## Prerequisites
 

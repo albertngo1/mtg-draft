@@ -16,6 +16,10 @@ give a one-line take. Principles to apply:
   guide/archetype rates lower; use GIH only to separate cards the guide rates similarly. IWD is a
   noisier win-rate delta (same selection bias + extra variance) — a flag for whether a card does
   something when it lands, never a primary signal. Judge the CARD — cost, evasion, role, fit.
+  CAVEAT: GIH WR earns back near-primary weight for CLEANLY-CASTABLE cards (colorless / mono-pip /
+  plain two-color) whose WR transfers, and in data-friendly two-color formats (e.g. grindy midrange
+  like MKM). The tiebreaker demotion is calibrated to soup/payoff-heavy sets like SOS where the data
+  can't see the best deck — don't over-apply it to a card or format where the number transfers.
 - GIH is INFLATED for payoff / Converge / build-around cards (flagged `inflated`): the win rate reflects
   decks built to abuse them, so discount them hard for a plain 2-color deck.
 - BREAD priority: bombs > premium removal > evasion > efficient creatures > filler. Threats beat answers;
