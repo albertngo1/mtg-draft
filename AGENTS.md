@@ -26,8 +26,9 @@ hold it in context for the whole draft** — each is a dense, lookup-optimized s
 archetype/guild tier table, format principles, a **card-notes table** to cross-reference per pick,
 signals, supersessions). **This guide is the lead lens for every pick** — the set's archetypes,
 which color pairs are strongest *in this set*, and the card's role within them drive the
-recommendation. The 17Lands columns *support* that read: **ALSA** (contention/wheel) and **IWD**
-(game-swing) are the signals that matter; **GIH WR is a tiebreaker only** (see Coaching rules).
+recommendation — and it **decodes** the 17Lands columns: every GIH WR is *archetype-conditional* (the
+soup deck's number, not yours), and the guide tells you which archetype's number you're reading. So
+**ALSA** is the one orthogonal signal, and **GIH WR transfers or inflates by card type** (see Coaching rules).
 Each guide encodes a **recency rule: on conflict
 the newest source wins** (prerelease/preview takes are weak predictions; the format retrospective
 is most authoritative — supersessions are marked inline). Each guide ends with a `## Source episodes`
@@ -182,38 +183,42 @@ set/fmt from the pack payload's `"EventName":"<FMT>_<SET>_<date>"`. Just `warm -
 
 ## Coaching rules
 
-**The signal hierarchy (this is the whole methodology):**
+**Lead every pick with the guide read** — the set's archetypes, which color pairs are strongest *in
+this set*, and the card's role in the open archetype. Present that first, then the supporting data
+(ALSA, then GIH WR / IWD read through the lens below). The reason the guide leads isn't that it's
+unbiased — it's the decoder for what the win-rate number is actually measuring:
 
-1. **Lead with the guide.** The set's archetypes, which color pairs are strongest *in this set*,
-   and the card's role within the open archetype drive the pick. Present that read first — not the
-   table. The LoL/Numot guides + the external reviewer grade are the power evaluation.
-2. **ALSA is the 17Lands signal that matters.** It's the one column *orthogonal* to win rate — it
-   measures draft *behavior* (what's contested, what's open), not game outcomes. Low = take now,
-   contested, won't wheel; high = you can speculate it comes back. Surface it every meaningful pick.
-3. **GIH WR and IWD are tiebreakers only — and IWD is the noisier of the two.** Still show them, but
-   neither leads. A higher GIH WR is **not** a reason to take a card the guide/archetype read rates
-   lower; use it only to break a tie between cards the guide rates *similarly*, and to flag a sharp
-   divergence (a guide darling sitting at <48%, or a true 57%+ bomb the guide undersold) as a *prompt
-   to look closer* — not as the verdict. **IWD is a win-rate delta** (GIH WR minus games-not-drawn
-   WR), so it inherits GIH's selection bias *and* adds variance (a difference of two noisy numbers);
-   treat it with **more** skepticism than GIH WR, not less. Its one good use: a quick read on whether
-   a card actually *does something* when it lands vs. pads a record — a flag, never a primary signal.
+**The core principle: every GIH WR is archetype-conditional. Decode it; don't rank guide-vs-stat.**
+A card's win rate is a *conditional* statistic — it's the win rate of *the decks that actually drafted
+that card*, not a context-free measure of the card. It answers "how did the archetypes that play this
+card do with it," not "how good is this card in *my* deck." The whole skill is **decoding what the
+number is conditioned on and asking whether your deck matches that archetype:**
+- **Low archetype concentration** — colorless, mono-pip, generically-good two-color cards that nearly
+  every deck in those colors plays. The conditioning ≈ unconditional, so the WR **transfers**: trust
+  it as a **strong primary input**, near co-equal with the guide.
+- **High archetype concentration** — Converge/X-cost payoffs, build-arounds, multicolor synergy pieces.
+  The number *is the soup/payoff deck's result*, not yours. Discount hard unless you're building that
+  deck. (Snarl Song's 60.7% GIH is soup casting it at X=4–5 for two 5/5s; in 2-color GW it's two 2/2s
+  for six mana — a C, not a bomb. **Mentally substitute your real X / your real support before reading
+  the number.**)
+- **This is why the guide leads — not because it's "less biased."** The guide is built from archetype
+  tiers too; it carries the *same* archetypal lens. Its job is to **decode** the stat: "A in soup, C in
+  2-color" makes the hidden conditioning explicit where the single aggregate number buries it. Guide +
+  stat answer different questions — the guide tells you *which archetype's number* you're looking at.
+- **ALSA is the exception** that stays genuinely separate: it measures draft *behavior* (what's
+  contested / open), not a game outcome, so it isn't archetype-conditioned the same way. Surface it
+  every meaningful pick (low = take now, won't wheel; high = you can speculate it comes back).
+- **IWD inherits all of this and adds variance.** It's a win-rate delta (GIH WR minus games-not-drawn
+  WR), so it carries the same archetype conditioning *plus* the noise of a difference of two numbers.
+  Treat it with **more** skepticism than GIH WR — a flag for "does this card do something when it
+  lands," never a primary signal.
 
-**Format & card-type caveat — when GIH WR earns back primary weight.** The demotion above is
-calibrated to *soup-heavy / data-hostile* formats (SOS is the case in point: multicolor decks don't
-aggregate into one archetype, so 17Lands structurally *can't see* the best deck, and payoff WRs are
-selection-bias-inflated). **GIH WR's reliability is inversely proportional to how much selection bias
-the card carries** — so weight it by *card type and format*, not flatly:
-- **Cleanly-castable cards** (colorless, mono-pip, two-color commons/uncommons that any deck in those
-  colors plays) — the WR **transfers well**. Treat GIH WR as a **strong primary input** here, near
-  co-equal with the guide; it's not just a tiebreaker.
-- **Payoffs / multicolor / build-arounds / soup pieces** — WR is inflated by the decks built to enable
-  them. Keep GIH WR a **tiebreaker only**, lean on the guide.
-- **Data-friendly formats with well-defined two-color guilds** (e.g. a grindy midrange set like **MKM**,
-  where the archetypes the data represents *are* the decks you draft) — GIH WR is more trustworthy
-  across the board; let it back up toward primary. **Don't over-fit the win-rate distrust to SOS.**
-The guide stays the lead lens and ALSA stays primary in *every* format — this caveat only governs how
-hard you lean on the win-rate number underneath them.
+**Format note (a consequence, not a separate axis):** format matters only because it changes how
+*concentrated* archetypes are. SOS buries everything into invisible soup, so almost every payoff WR is
+mis-conditioned — distrust the column hard. A grindy two-color-guild format like **MKM** concentrates
+far less (the archetypes the data represents *are* the decks you draft), so more cards fall in the
+"transfers well" bucket and GIH WR backs up toward primary. **Don't over-fit the SOS-era distrust to a
+format where the conditioning is benign.**
 
 - **Always surface the data, even though it's not the lead.** The table still prints; present it as
   a reference (ALSA + grade), with GIH WR / IWD alongside. Format: Card | Color | ALSA | Grade | GIH WR | IWD.
@@ -265,15 +270,18 @@ don't *lose* instead of decks that *win*. Bias picks toward proactive threats, e
 way to close — over a marginal extra removal or card-draw spell.**
 
 ### Reading the 17Lands numbers (and their traps)
-- **GIH WR is a tiebreaker, and even then check the sample size (`N`).** A card with only a few
-  hundred games has a noisy/unreliable win rate; `n/a` usually means "barely drafted" (often =
-  weak/niche). Don't crown or bury a card on a small-N number — say it's uncertain. The guide and
-  the card's archetype role decide the pick; GIH only separates cards the guide rates the same.
-- **GIH WR has selection bias — especially on payoff/build-around cards.** The number reflects the
-  decks that *played* the card. A multicolor payoff, a spells-matter creature, a graveyard card,
-  etc. posts a high WR because it sat in decks built to enable it — **that doesn't transfer to a
-  deck that can't.** Discount payoff cards for *your* deck's actual support. Conversely, a
-  colorless/always-castable card's WR transfers well.
+- **GIH WR is archetype-conditional — read it through that lens (and check `N`).** It's the win rate
+  of the decks that *drafted* the card, not a context-free measure. How much you trust it depends on
+  the card's archetype concentration (see the core principle in Coaching rules): it's a **strong
+  primary input** for cleanly-castable cards whose WR transfers, a **tiebreaker** for
+  payoff/multicolor cards whose number belongs to soup. Either way, a card with only a few hundred
+  games has a noisy WR; `n/a` usually means "barely drafted" (often = weak/niche) — don't crown or
+  bury on a small-N number.
+- **The selection bias is the conditioning made concrete — especially on payoff/build-around cards.**
+  A multicolor payoff, a spells-matter creature, a Converge/X-cost body, a graveyard card, etc. posts
+  a high WR because it sat in decks built to enable it — **that doesn't transfer to a deck that
+  can't.** Substitute *your* deck's real support (real X, real color count) before reading the
+  number. Conversely, a colorless/always-castable card's WR transfers well.
 - **What each column is for:** **ALSA** = how late it wheels (low = take now / contested; high =
   you can speculate it comes back) — the primary signal, and the only one orthogonal to win rate
   (it measures draft behavior, not outcomes); **GIH WR** = average power across the decks that

@@ -32,12 +32,14 @@ overlay — skip it and nothing in the core stops working. → see [Using it as 
 coach](#using-it-as-an-agent--coach).
 
 Either way, the **set guide + archetype read is the lead lens** (which color pairs are strongest in
-the set, the card's role in the open archetype); the 17Lands columns support it — **ALSA** is the
-signal that matters (the one column orthogonal to win rate), and **GIH WR / IWD are tiebreakers
-only** (IWD is a noisier win-rate delta). *Caveat: GIH WR earns back primary weight for
-cleanly-castable cards and in data-friendly two-color formats like MKM — the demotion is calibrated
-to soup/payoff-heavy sets like SOS (see AGENTS.md).* The AI take is decorrelated expert color, not
-the source of truth.
+the set, the card's role in the open archetype). The key idea: **every GIH WR is
+archetype-conditional** — it's the win rate of *the decks that drafted the card*, not a context-free
+measure (a Converge payoff's high WR is the soup deck's result, not yours). So the guide leads
+because it **decodes** what the number is conditioned on ("A in soup, C in 2-color"), not because
+it's unbiased. WR **transfers** for cleanly-castable cards (trust it) and is **inflated** for
+payoffs/multicolor (discount unless you're that deck); **ALSA** is the one column orthogonal to win
+rate (draft behavior, not outcome) and **IWD** is a noisier win-rate delta — a flag only. See
+AGENTS.md for the full treatment. The AI take is decorrelated expert color, not the source of truth.
 
 ## Prerequisites
 
@@ -378,10 +380,12 @@ level it covers:
 - **The per-pick loop** — `warm` once, then `pull` each pick; how to read the ranked table + the
   "what each card does" block so picks are judged on *fit*, not just the GIH WR column.
 - **Cross-referencing** — how to weigh the expert guides + theory grades (the lead lens; see
-  "Third-party insight sources" below) against the 17Lands columns, with **the guide/archetype read
-  leading, ALSA as the supporting signal, and GIH WR / IWD as tiebreakers only.**
-- **Reading 17Lands correctly** — what each column means (ALSA the primary signal; GIH WR and the
-  noisier IWD as tiebreakers), the small-sample and selection-bias traps, and ALSA as a wheel/timing signal.
+  "Third-party insight sources" below) against the 17Lands columns: **every WR is
+  archetype-conditional, the guide decodes what it's conditioned on, ALSA is the orthogonal signal,
+  and GIH WR transfers or inflates by card type.**
+- **Reading 17Lands correctly** — every WR is conditional on the decks that drafted the card; how to
+  tell transfers-well (cleanly-castable) from inflated (payoffs/multicolor), the small-sample trap,
+  ALSA as the orthogonal wheel/timing signal, and IWD as a noisier delta.
 - **Draft strategy fundamentals** — color/curve reads, signal reading, when to commit vs. stay
   open, and building the final pool — so an agent with no MTG background can coach competently.
 
