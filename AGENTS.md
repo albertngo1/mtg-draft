@@ -187,18 +187,20 @@ set/fmt from the pack payload's `"EventName":"<FMT>_<SET>_<date>"`. Just `warm -
 1. **Lead with the guide.** The set's archetypes, which color pairs are strongest *in this set*,
    and the card's role within the open archetype drive the pick. Present that read first — not the
    table. The LoL/Numot guides + the external reviewer grade are the power evaluation.
-2. **ALSA and IWD are the 17Lands signals that matter.** **ALSA** (low = take now, contested,
-   won't wheel; high = you can speculate it comes back) is a real read on what's open and what's
-   scarce. **IWD** (how much the card swings a game when drawn) flags genuine game-changers and
-   high-impact build-arounds. Surface both every meaningful pick.
-3. **GIH WR is a tiebreaker only.** Still show it — but it no longer leads, and a higher GIH WR is
-   **not** a reason to take a card the guide/archetype read rates lower. Use it only to break a tie
-   between cards the guide rates *similarly*, and to flag a sharp divergence (a card the guide
-   loves sitting at <48%, or a true 57%+ bomb the guide undersold) as a *prompt to look closer* —
-   not as the verdict.
+2. **ALSA is the 17Lands signal that matters.** It's the one column *orthogonal* to win rate — it
+   measures draft *behavior* (what's contested, what's open), not game outcomes. Low = take now,
+   contested, won't wheel; high = you can speculate it comes back. Surface it every meaningful pick.
+3. **GIH WR and IWD are tiebreakers only — and IWD is the noisier of the two.** Still show them, but
+   neither leads. A higher GIH WR is **not** a reason to take a card the guide/archetype read rates
+   lower; use it only to break a tie between cards the guide rates *similarly*, and to flag a sharp
+   divergence (a guide darling sitting at <48%, or a true 57%+ bomb the guide undersold) as a *prompt
+   to look closer* — not as the verdict. **IWD is a win-rate delta** (GIH WR minus games-not-drawn
+   WR), so it inherits GIH's selection bias *and* adds variance (a difference of two noisy numbers);
+   treat it with **more** skepticism than GIH WR, not less. Its one good use: a quick read on whether
+   a card actually *does something* when it lands vs. pads a record — a flag, never a primary signal.
 
 - **Always surface the data, even though it's not the lead.** The table still prints; present it as
-  a reference (ALSA + IWD + grade), with GIH WR alongside. Format: Card | Color | ALSA | IWD | Grade | GIH WR.
+  a reference (ALSA + grade), with GIH WR / IWD alongside. Format: Card | Color | ALSA | Grade | GIH WR | IWD.
 - **Push back, don't capitulate.** When the player challenges a pick, re-examine honestly. If the
   pick was right, hold ground with a full argument — coaching means disagreeing when the read says so.
 - **Don't over-correct on small samples.** A 1-3 run is variance, not proof. Don't push a narrative.
@@ -257,10 +259,12 @@ way to close — over a marginal extra removal or card-draw spell.**
   deck that can't.** Discount payoff cards for *your* deck's actual support. Conversely, a
   colorless/always-castable card's WR transfers well.
 - **What each column is for:** **ALSA** = how late it wheels (low = take now / contested; high =
-  you can speculate it comes back) — a primary signal on what's open and scarce; **IWD** = how much
-  it *swings* a game when drawn (impact — high IWD flags a real game-changer; high IWD + modest GIH
-  = high-impact but wants a longer game or a setup) — the other primary signal; **GIH WR** =
-  average power across the decks that played it, used as a *tiebreaker* only. Always show ALSA and IWD.
+  you can speculate it comes back) — the primary signal, and the only one orthogonal to win rate
+  (it measures draft behavior, not outcomes); **GIH WR** = average power across the decks that
+  played it, a *tiebreaker* only; **IWD** = a win-rate *delta* (how much it swings a game when
+  drawn) — same family as GIH WR but noisier (a difference of two noisy numbers, with the same
+  selection bias), so an even weaker tiebreaker. Use IWD only as a flag for whether a card actually
+  does something when it lands. Always show ALSA.
 - **Match the format.** Use the data for the format being drafted (QuickDraft vs PremierDraft). If
   QuickDraft data is thin for a new set, PremierDraft is a larger-sample proxy — note when you fall
   back to it. (`--fmt` controls this.)

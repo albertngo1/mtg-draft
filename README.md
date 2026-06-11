@@ -32,9 +32,10 @@ overlay — skip it and nothing in the core stops working. → see [Using it as 
 coach](#using-it-as-an-agent--coach).
 
 Either way, the **set guide + archetype read is the lead lens** (which color pairs are strongest in
-the set, the card's role in the open archetype); the 17Lands columns support it — **ALSA** and
-**IWD** are the signals that matter, and **GIH WR is a tiebreaker only**. The AI take is decorrelated
-expert color, not the source of truth.
+the set, the card's role in the open archetype); the 17Lands columns support it — **ALSA** is the
+signal that matters (the one column orthogonal to win rate), and **GIH WR / IWD are tiebreakers
+only** (IWD is a noisier win-rate delta). The AI take is decorrelated expert color, not the source
+of truth.
 
 ## Prerequisites
 
@@ -376,9 +377,9 @@ level it covers:
   "what each card does" block so picks are judged on *fit*, not just the GIH WR column.
 - **Cross-referencing** — how to weigh the expert guides + theory grades (the lead lens; see
   "Third-party insight sources" below) against the 17Lands columns, with **the guide/archetype read
-  leading, ALSA + IWD as the supporting signals, and GIH WR as a tiebreaker only.**
-- **Reading 17Lands correctly** — what each column means (ALSA / IWD as the primary signals, GIH WR
-  as the tiebreaker), the small-sample and selection-bias traps, and ALSA as a wheel/timing signal.
+  leading, ALSA as the supporting signal, and GIH WR / IWD as tiebreakers only.**
+- **Reading 17Lands correctly** — what each column means (ALSA the primary signal; GIH WR and the
+  noisier IWD as tiebreakers), the small-sample and selection-bias traps, and ALSA as a wheel/timing signal.
 - **Draft strategy fundamentals** — color/curve reads, signal reading, when to commit vs. stay
   open, and building the final pool — so an agent with no MTG background can coach competently.
 
