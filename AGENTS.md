@@ -63,7 +63,11 @@ are below target, stop stacking removal once at the cap, lean toward the open co
 **Draft history (so you don't forget earlier picks):** a side-car capture mirrors the whole
 `Player.log` stream and, each pick, auto-refreshes the structured store — **no manual `pull` needed
 as long as the capture daemon runs.** Each draft is persisted as a self-contained bundle folder
-`data/drafts/<set>_<fingerprint>/` holding `draft.json` (the enriched cumulative store), `raw.log`
+`data/drafts/<set>_<YYYY-MM-DD>_<fingerprint>/` (the date is parsed from the draft's `EventName`
+8-digit suffix — e.g. `QuickDraft_MKM_20260611` → `2026-06-11`, falling back to the bundle's
+`raw.log` mtime when the EventName has no parseable date; it's **deterministic**, never wall-clock,
+so it stays the idempotency key and a re-run overwrites the same folder) holding `draft.json` (the
+enriched cumulative store), `raw.log`
 (this draft's stream slice), and `replay.md` (the coached audit, auto-written **once** when the
 draft first completes and never re-rendered after that — re-run `src/replay.py <draft.json>
 <replay.md>` by hand to refresh one). The replay includes a model-written `🤖 Take` per pick (one

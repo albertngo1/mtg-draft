@@ -248,6 +248,44 @@ def _draft_fingerprint(draft):
     (no per-pick duplicates) and a different draft gets a different file."""
     first = sorted(draft["picks"][0]["offered"]) if draft["picks"] else []
     return hashlib.sha1((",".join(first)).encode()).hexdigest()[:8]
+def _draft_date(draft, raw_log=None):
+    """Deterministic YYYY-MM-DD for a draft, used in the bundle folder name. MUST return the SAME
+    string every run for the same draft so re-running `draft`/`pull` overwrites the same folder
+    (the dated name is the idempotency key — so it can't be wall-clock 'now').
+    Primary: parse the 8-digit YYYYMMDD suffix out of the EventName, e.g.
+      'QuickDraft_MKM_20260611' -> '2026-06-11', 'MWM_SOS_Cascade_BotDraft_20260609' -> '2026-06-09'.
+    Fallback (no parseable 8-digit date — e.g. a malformed '0260608'): the raw.log mtime, stable
+    enough for archives. `raw_log` defaults to raw.log inside the draft's own bundle folder."""
+    event = draft.get("event", "") or ""
+    m = re.search(r"(\d{8})(?:\D|$)", event)
+    if m:
+        y, mo, da = m.group(1)[:4], m.group(1)[4:6], m.group(1)[6:8]
+        if "2000" <= y <= "2099" and "01" <= mo <= "12" and "01" <= da <= "31":
+            return f"{y}-{mo}-{da}"
+    import datetime
+    if raw_log and os.path.exists(raw_log):
+        return datetime.date.fromtimestamp(os.path.getmtime(raw_log)).isoformat()
+    return datetime.date.today().isoformat()
+def _bundle_parts(name):
+    """Split a bundle folder name into (set, date, fingerprint). The fingerprint is the LAST
+    '_'-segment, the set is the FIRST, and the date (if any) is the middle. Robust to both the new
+    '<SET>_<YYYY-MM-DD>_<fp>' shape and the legacy '<SET>_<fp>' shape (date=None)."""
+    parts = name.split("_")
+    if len(parts) < 2:
+        return (name, None, None)
+    return (parts[0], "_".join(parts[1:-1]) or None, parts[-1])
+def _find_bundle(set_code, fp):
+    """Path of an existing bundle folder for this set+fingerprint (any date), or None. Lets a re-run
+    reuse the prior bundle (and its raw.log mtime) instead of minting a new dated folder."""
+    try:
+        names = os.listdir(DRAFTS)
+    except FileNotFoundError:
+        return None
+    for name in names:
+        s, _date, f = _bundle_parts(name)
+        if s == set_code and f == fp and os.path.isdir(os.path.join(DRAFTS, name)):
+            return os.path.join(DRAFTS, name)
+    return None
 def _draft_cfg(cfg, draft):
     """Per-draft copy of cfg with set/fmt auto-detected from this draft's EventName."""
     dcfg = dict(cfg)
@@ -289,7 +327,7 @@ def _make_replay(draft_json, out_md):
 
 def refresh_current(cfg):
     """Parse the capture stream and persist every draft in it as a self-contained BUNDLE folder:
-    drafts/<set>_<fingerprint>/ holding draft.json (the enriched cumulative store), raw.log (just
+    drafts/<set>_<YYYY-MM-DD>_<fingerprint>/ holding draft.json (the enriched cumulative store), raw.log (just
     this draft's slice of the rolling stream), and — once the draft is complete — replay.md (the
     coached audit/playback). The most recent draft is also mirrored to drafts/current.json. Older,
     already-bundled drafts are skipped (they don't change), so this stays cheap to call every pick.
@@ -321,7 +359,13 @@ def refresh_current(cfg):
         is_latest = idx == len(drafts) - 1
         dcfg = _draft_cfg(cfg, d)
         fp = _draft_fingerprint(d)
-        folder = os.path.join(DRAFTS, f"{dcfg['set']}_{fp}")
+        # Bundle name carries the draft's date (deterministic, parsed from EventName; see
+        # _draft_date) so it sorts/reads chronologically while staying the idempotency key.
+        # For the mtime fallback we point at an ALREADY-bundled raw.log for this set+fingerprint
+        # (if one exists) so a re-run reuses the same date and overwrites the same folder.
+        existing = _find_bundle(dcfg["set"], fp)
+        date = _draft_date(d, existing and os.path.join(existing, "raw.log"))
+        folder = os.path.join(DRAFTS, f"{dcfg['set']}_{date}_{fp}")
         draft_json = os.path.join(folder, "draft.json")
         if not is_latest and os.path.exists(draft_json):
             continue                                # older draft already bundled; won't change
