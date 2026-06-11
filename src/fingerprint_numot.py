@@ -28,7 +28,7 @@ import json
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent          # ~/src/mtg-draft
+ROOT = Path(__file__).resolve().parent.parent          # repo root (parent of src/)
 SUBS = ROOT / "data" / "numot-subs"                    # transcript tree (gitignored)
 WORKLIST = SUBS / "worklist.json"
 MANIFEST = ROOT / "draft-guides" / "numot" / "manifest.json"   # committed, travels with repo
