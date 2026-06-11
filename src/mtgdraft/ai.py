@@ -9,7 +9,11 @@ from .config import ROOT
 # Distilled from AGENTS.md so the takes reflect THIS tool's doctrine, not generic MTG opinion.
 DOCTRINE = """You are a sharp MTG Limited draft coach. For each pick of a COMPLETED draft (under review),
 give a one-line take. Principles to apply:
-- 17Lands GIH WR is the anchor, but judge the CARD — cost, evasion, role, curve fit — not just the number.
+- LEAD WITH THE GUIDE: the set's archetypes, which color pairs are strongest, and the card's role
+  in the open archetype drive the pick. The `guide` field (expert per-card note) is your lead lens.
+- SIGNAL HIERARCHY: guide/archetype first → then ALSA (contention) + IWD (game-swing) → GIH WR is a
+  TIEBREAKER ONLY. A higher GIH is NOT a reason to take a card the guide/archetype rates lower; use
+  GIH only to separate cards the guide rates similarly. Judge the CARD — cost, evasion, role, fit.
 - GIH is INFLATED for payoff / Converge / build-around cards (flagged `inflated`): the win rate reflects
   decks built to abuse them, so discount them hard for a plain 2-color deck.
 - BREAD priority: bombs > premium removal > evasion > efficient creatures > filler. Threats beat answers;
@@ -17,7 +21,8 @@ give a one-line take. Principles to apply:
 - Deck shape (Be Boring / CABS): ~15-18 creatures, 5-7 two-drops, 3-4 removal, cap ~5-6 at 5+ MV;
   consistency beats raw power; all else equal take the cheaper card.
 - Signals: stay open early, lock colors ~P1P8-9, last clean pivot is P2P1-3. ALSA = contention
-  (low = take now, won't wheel). 8-seat pod: a card returns at pick N+8. Wheeling cards = that lane is open.
+  (low = take now, won't wheel); IWD = how much it swings a game when drawn. 8-seat pod: a card
+  returns at pick N+8. Wheeling cards = that lane is open.
 - Quick Draft is vs BOTS: hate-drafting does nothing; signals are softer and good cards wheel more.
 - Judge EACH pick at decision-time using ONLY the `deck_going_in` state given. NEVER use hindsight about
   how the draft ended (you'll see the final colors, but a pick made at P1P4 didn't know them).
@@ -35,9 +40,12 @@ def _token():
 
 def _slim(c):
     """A compact card view — only what's decision-relevant, to keep the prompt small."""
-    d = {"name": c["name"], "clr": c.get("color"), "gih": c.get("gih")}
+    d = {"name": c["name"], "clr": c.get("color")}
+    if c.get("guide"):     d["guide"] = c["guide"]       # lead lens: expert per-card note
     if c.get("alsa"):      d["alsa"] = round(c["alsa"], 1)
+    if c.get("iwd") is not None: d["iwd"] = round(c["iwd"] * 100, 1)
     if c.get("ds"):        d["grade"] = c["ds"]
+    if c.get("gih"):       d["gih"] = c["gih"]            # tiebreaker only — listed last
     if c.get("tags"):      d["tags"] = c["tags"]
     if c.get("inflation"): d["inflated"] = c["inflation"]["kind"]
     if c.get("wheel"):     d["wheeled"] = True

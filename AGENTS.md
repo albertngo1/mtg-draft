@@ -24,8 +24,11 @@ strategy guides live flat in [`draft-guides/lords-of-limited/`](./draft-guides/l
 (see its README for the index). For the drafted set, **load that set's `<SET>-draft-guide.md` and
 hold it in context for the whole draft** — each is a dense, lookup-optimized synthesis (meta read,
 archetype/guild tier table, format principles, a **card-notes table** to cross-reference per pick,
-signals, supersessions). Treat as *theory/expert opinion* (same weight as a tier-list grade), not
-ground truth — **17Lands GIH WR stays primary.** Each guide encodes a **recency rule: on conflict
+signals, supersessions). **This guide is the lead lens for every pick** — the set's archetypes,
+which color pairs are strongest *in this set*, and the card's role within them drive the
+recommendation. The 17Lands columns *support* that read: **ALSA** (contention/wheel) and **IWD**
+(game-swing) are the signals that matter; **GIH WR is a tiebreaker only** (see Coaching rules).
+Each guide encodes a **recency rule: on conflict
 the newest source wins** (prerelease/preview takes are weak predictions; the format retrospective
 is most authoritative — supersessions are marked inline). Each guide ends with a `## Source episodes`
 list (`date — title (youtube_id)`); raw transcripts for the bulk sets live in `data/lol-subs/<CODE>/`
@@ -34,7 +37,7 @@ list (`date — title (youtube_id)`); raw transcripts for the bulk sets live in 
 A **second** expert-notes source lives flat in [`draft-guides/numot/`](./draft-guides/numot/) as `<SET>.md` — draft tips
 distilled from NumotTheNummy (Kenji Egashira) draft VODs (`draft-guides/numot/general-tips.md` holds the
 evergreen principles). If the drafted set has a `draft-guides/numot/<SET>.md`, load it at draft start alongside
-the LoL guide and treat both the same way: theory/expert opinion, **17Lands GIH WR stays primary.**
+the LoL guide and treat both as lead-lens expert opinion (GIH WR remains a tiebreaker only).
 `MKM.md`/`SOS.md` are deepest (full VOD coverage); the rest sample ~4 end-of-format VODs. Numot's
 `vs Lords of Limited` sections flag where the two experts disagree.
 
@@ -102,10 +105,13 @@ ratings over a wide historical window (noted in `ratings_fmt` and in the table h
 
 Then, on the current pack, you:
 
-1. **Read what the cards actually do** — the text block is there so you judge *fit*, not just
-   stats. A 55%-card that's a 2-drop flyer in your colors can beat a 58%-card that's a 6-mana
-   durdle. Don't recommend off the GIH column alone.
-2. **Cross-reference an external grade.** If `grades/<source>_<SET>.json` exists it auto-shows as a
+1. **Start from the guide, not the table.** Which color pairs are strongest *in this set*, what
+   archetype is the pool building toward, and what role does this card play in it? The guide's
+   card-notes + the set's archetype tiers are the lead lens — lead the recommendation with them.
+2. **Read what the cards actually do** — the text block is there so you judge *fit*, not just
+   stats. A 2-drop flyer in your colors and on-archetype beats a higher-GIH 6-mana durdle. Don't
+   recommend off the GIH column at all — it's a tiebreaker, not the headline.
+3. **Cross-reference an external grade.** If `grades/<source>_<SET>.json` exists it auto-shows as a
    grade column labeled by source — `DS` (Draftsim, x/5), `CGB` (CardGameBase, letter tier A+→F),
    or `LG` (LimitedGrades); the first source found for the set wins (priority DS→CGB→LG). Split/MDFC
    cards are matched on their front face automatically. Otherwise pull the grade **from the tier list
@@ -115,7 +121,7 @@ Then, on the current pack, you:
    on bombs and diverges most on thin-sample / mushy-middle cards. So treat a grade-vs-17Lands
    disagreement as a *flag to look at the card by hand* (often a selection-bias-inflated synergy
    creature), **not** as proof the grade is right — in the thin-sample region neither source has
-   ground truth. 17Lands GIH WR stays primary.
+   ground truth. The reviewer grade and the guide are the power read; GIH WR only breaks ties.
    *Do NOT add a second empirical source (Untapped/etc.).* Untapped's In-Hand WR is the same metric
    as 17Lands GIH WR (same-format rho≈0.955 — it agrees more than 17Lands does with itself across
    Quick-vs-Premier). A source that fails identically to 17Lands can't flag a 17Lands mistake, so
@@ -125,7 +131,7 @@ Then, on the current pack, you:
    `data/cache/`), treat as theory grades. **CardGameBase is server-rendered**, so its tier list IS
    WebFetch-able directly (`cardgamebase.com/<set>-draft-tier-list/`) — that's how `cardgamebase_MKM.json`
    was built. Draftsim's pick-order pages are JS-rendered and need the paste-the-HTML route.
-3. Give the pick with reasoning, applying the strategy fundamentals below.
+4. Give the pick with reasoning, applying the strategy fundamentals below.
 
 If the live read ever fails, fall back to the manual flow: have the player read you the pack, then
 `python3 src/mtg-draft.py rank --colors UR <id1> <id2> ...`.
@@ -176,25 +182,37 @@ set/fmt from the pack payload's `"EventName":"<FMT>_<SET>_<date>"`. Just `warm -
 
 ## Coaching rules
 
-- **Lead with the data.** GIH WR is the primary signal, always. Present the table first.
-- **Always show ALSA.** Low ALSA = take now, won't wheel. (The script always includes it.)
-- **Cross-reference the external grade** (tier list, fetched once at draft start and held in
-  context) on meaningful/close picks. Format: Card | Color | GIH WR | IWD | ALSA | External Grade.
-  Skip it on blowout-obvious picks.
+**The signal hierarchy (this is the whole methodology):**
+
+1. **Lead with the guide.** The set's archetypes, which color pairs are strongest *in this set*,
+   and the card's role within the open archetype drive the pick. Present that read first — not the
+   table. The LoL/Numot guides + the external reviewer grade are the power evaluation.
+2. **ALSA and IWD are the 17Lands signals that matter.** **ALSA** (low = take now, contested,
+   won't wheel; high = you can speculate it comes back) is a real read on what's open and what's
+   scarce. **IWD** (how much the card swings a game when drawn) flags genuine game-changers and
+   high-impact build-arounds. Surface both every meaningful pick.
+3. **GIH WR is a tiebreaker only.** Still show it — but it no longer leads, and a higher GIH WR is
+   **not** a reason to take a card the guide/archetype read rates lower. Use it only to break a tie
+   between cards the guide rates *similarly*, and to flag a sharp divergence (a card the guide
+   loves sitting at <48%, or a true 57%+ bomb the guide undersold) as a *prompt to look closer* —
+   not as the verdict.
+
+- **Always surface the data, even though it's not the lead.** The table still prints; present it as
+  a reference (ALSA + IWD + grade), with GIH WR alongside. Format: Card | Color | ALSA | IWD | Grade | GIH WR.
 - **Push back, don't capitulate.** When the player challenges a pick, re-examine honestly. If the
-  pick was right, hold ground with a full argument — coaching means disagreeing when the data says so.
+  pick was right, hold ground with a full argument — coaching means disagreeing when the read says so.
 - **Don't over-correct on small samples.** A 1-3 run is variance, not proof. Don't push a narrative.
 - **Bo1 / closing-speed lens is a LIGHT tiebreaker only** — use it between cards that are otherwise
-  close on data, never to skip a clearly better card.
-- **Match response depth to pick difficulty (keep turns fast — your output is the bottleneck, the
-  data is ~2s).** *Obvious pick* (one card clearly best on-color, big GIH gap, no curve/signal
-  tension) → compact table of the top few + **"Pick: X — one-line reason."** *Close / contested
-  pick* (top 2–3 within ~1.5% GIH, or a curve/CABS/signal tradeoff, or the player challenges) →
-  full treatment: card text, grade, the comparison, the argument. Don't write an essay for a
-  blowout pick. The non-negotiables stay cheap: the table still shows ALSA + grade; pushback only
-  fires when a pick is questioned.
+  close, never to skip a card the guide/archetype read clearly prefers.
+- **Match response depth to pick difficulty (keep turns fast — your output is the bottleneck).**
+  *Obvious pick* (one card clearly best for the open archetype, no curve/signal tension) → compact
+  table of the top few + **"Pick: X — one-line reason."** *Close / contested pick* (two cards the
+  guide rates similarly, or a curve/CABS/signal/archetype tradeoff, or the player challenges) →
+  full treatment: card text, guide note, grade, ALSA/IWD, the argument. Don't write an essay for a
+  blowout pick. Pushback only fires when a pick is questioned.
 
-GIH WR rough guide: **57%+ bomb · 54–57% excellent · 52–54% solid · 50–52% filler · <50% avoid.**
+GIH WR reference bands (for the *tiebreaker* read only): **57%+ bomb · 54–57% excellent · 52–54%
+solid · 50–52% filler · <50% avoid.** Treat these as a sanity check on the guide, not a pick order.
 
 ## Common leaks to coach against (use for tiebreakers & deckbuilding)
 
@@ -204,8 +222,8 @@ These are the most common drafting mistakes; watch the player's pool for them an
   open lanes. The coaching fix: **picks 1–5 take the best card on raw power, color be damned;
   narrate wheel/signal evidence from ~pick 4; explicitly call the open lane around picks 6–8; lock
   by ~P1P9–10 (P2P2–3 = last clean pivot).** When the player reaches to "stay in our colors" before
-  pick 8, push back. This is a *timing* correction, NOT card-evaluation bias — keep 17Lands GIH WR
-  primary on every pick.
+  pick 8, push back. This is a *timing* correction, NOT card-evaluation bias — keep judging each
+  card on the guide read (best card / open archetype), not on staying in-color.
 - **Answer-heavy, finisher-light decks** that stabilize but **can't close** grindy late games.
   Remedy: prioritize **evasion (flyers)**, proactive threats, and real finishers over a 9th piece
   of interaction or card draw.
@@ -221,25 +239,28 @@ These are the most common drafting mistakes; watch the player's pool for them an
 ## Drafting craft (Reid Duke, "Level One" — drafting only, not gameplay)
 
 This is a **drafting** coach. The job is pick decisions + deckbuilding the pool — not in-game play.
-Apply these on top of the data: the 17Lands number is a card's *average* value; these decide
-whether it's the right *pick* for this deck and this seat. **Throughline: data-first drafting is
-sound, but the common failure is drafting decks that don't *lose* instead of decks that *win*. Bias
-picks toward proactive threats, evasion, and a real way to close — over a marginal extra removal or
-card-draw spell.**
+Apply these on top of the guide read: the 17Lands GIH WR is a card's *average* value across all
+decks that played it; these fundamentals decide whether it's the right *pick* for *this* deck and
+this seat. **Throughline: archetype-first drafting (know the set's strong color pairs and build
+toward one) beats picking down a win-rate column, and the common failure is drafting decks that
+don't *lose* instead of decks that *win*. Bias picks toward proactive threats, evasion, and a real
+way to close — over a marginal extra removal or card-draw spell.**
 
 ### Reading the 17Lands numbers (and their traps)
-- **GIH WR is the anchor, but check the sample size (`N`).** A card with only a few hundred games
-  has a noisy/unreliable win rate; `n/a` usually means "barely drafted" (often = weak/niche). Don't
-  crown or bury a card on a small-N number — say it's uncertain.
+- **GIH WR is a tiebreaker, and even then check the sample size (`N`).** A card with only a few
+  hundred games has a noisy/unreliable win rate; `n/a` usually means "barely drafted" (often =
+  weak/niche). Don't crown or bury a card on a small-N number — say it's uncertain. The guide and
+  the card's archetype role decide the pick; GIH only separates cards the guide rates the same.
 - **GIH WR has selection bias — especially on payoff/build-around cards.** The number reflects the
   decks that *played* the card. A multicolor payoff, a spells-matter creature, a graveyard card,
   etc. posts a high WR because it sat in decks built to enable it — **that doesn't transfer to a
   deck that can't.** Discount payoff cards for *your* deck's actual support. Conversely, a
   colorless/always-castable card's WR transfers well.
-- **What each column is for:** **GIH WR** = overall power (primary); **IWD** = how much it *swings*
-  a game when drawn (impact — high IWD + modest GIH = high-impact but wants a longer game or a
-  setup); **ALSA** = how late it wheels (low = take now / contested; high = you can speculate it
-  comes back). Always show ALSA.
+- **What each column is for:** **ALSA** = how late it wheels (low = take now / contested; high =
+  you can speculate it comes back) — a primary signal on what's open and scarce; **IWD** = how much
+  it *swings* a game when drawn (impact — high IWD flags a real game-changer; high IWD + modest GIH
+  = high-impact but wants a longer game or a setup) — the other primary signal; **GIH WR** =
+  average power across the decks that played it, used as a *tiebreaker* only. Always show ALSA and IWD.
 - **Match the format.** Use the data for the format being drafted (QuickDraft vs PremierDraft). If
   QuickDraft data is thin for a new set, PremierDraft is a larger-sample proxy — note when you fall
   back to it. (`--fmt` controls this.)
@@ -307,7 +328,8 @@ card-draw spell.**
 - **Quick Draft caveat on signals (Arena-specific):** bots draft differently from humans — they pass
   strong cards more freely, so **good cards wheel more often and signals are softer/noisier.**
   Practical effect: stay open a little longer, expect real playables late, and don't over-read a
-  *single* late premium the way you would against humans. Lean on the 17Lands data as the anchor.
+  *single* late premium the way you would against humans. Lean on the guide's archetype read and
+  ALSA as the anchor.
 
 ### Drafting toward an archetype (so the pool builds into a real deck)
 - Have an end-state in mind and draft toward it, rather than reacting card-by-card. The three shapes
@@ -350,8 +372,8 @@ and it's the antidote to the "answer-heavy / can't-close, too many durdle spells
   2–3-mana creatures; 15–18 creatures; minimize card-draw / enchantments / counters / lifegain;
   prefer cards that stand alone over fragile synergies; straightforward proactive plan; consistent
   over high-variance.**
-- **How to apply it as a data-led coach (important nuance):** CABS is a *deck-shape* discipline, not
-  a card-by-card override. Don't refuse a card-draw spell the 17Lands data loves — but **use CABS as
+- **How to apply it (important nuance):** CABS is a *deck-shape* discipline, not
+  a card-by-card override. Don't refuse a card-draw spell the guide rates highly — but **use CABS as
   the tiebreaker and the budget cap:** when a non-board value card is close to a body/removal, take
   the board card, and notice when the pool is drifting durdle-heavy. Default toward maximizing CABS
   density and a 2–3-drop-heavy curve; that's the build that closes games.
