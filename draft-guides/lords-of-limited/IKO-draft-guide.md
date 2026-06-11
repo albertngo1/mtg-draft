@@ -1,6 +1,6 @@
 # Ikoria: Lair of Behemoths (IKO) — Draft Guide
 
-> Synthesized from 6 Lords of Limited episodes (transcripts in auto-caption form). Treat as expert/theory opinion. **17Lands GIH WR stays primary.** Source episodes span 2020-04-16 → 2020-06-17 (IKO's original release window).
+> Synthesized from 6 Lords of Limited episodes (transcripts in auto-caption form). Treat as expert/theory opinion. **The guide decodes archetype-conditional 17Lands WR (see AGENTS.md).** Source episodes span 2020-04-16 → 2020-06-17 (IKO's original release window).
 
 ## ⚠ Recency rule (read first)
 
@@ -8,7 +8,7 @@
 - The **2020-04-16** and **2020-04-22/23** episodes are EARLY ACCESS / preview-era content — first impressions, limited reps, weak evidence. Treat their evaluations as hypotheses.
 - The **2020-05-15** draft video (FLASH deck) and **2020-04-30** showdown are mid-format with real reps — medium weight.
 - The **2020-06-17 "Top 8 Swagoi Tournament"** is the MOST AUTHORITATIVE source — competitive tournament play, settled format reads. When it disagrees with earlier notes, this wins.
-- **17Lands GIH WR stays primary over all of this.** This guide is expert/theory color, not data.
+- **This guide decodes the 17Lands data rather than ranking beneath it.** Every GIH WR is archetype-conditional — use the guide to tell which archetype's deck a number came from: trust the WR where it transfers (cleanly-castable cards), discount it where it inflates (payoffs/multicolor). See AGENTS.md.
 
 ## Source timeline
 

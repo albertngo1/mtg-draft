@@ -59,7 +59,7 @@
 
 ## Source recency
 
-> **Tier-2 set: distilled from Kenji's most recent BLB VODs only (2024-09-07 → 2024-09-10) — an end-of-format sample, so already recency-skewed toward his settled reads.** On any internal conflict the **newest VOD wins**; **17Lands GIH WR stays primary** (expert/theory color). For full format-arc treatment see the tier-1 files (MKM.md, SOS.md).
+> **Tier-2 set: distilled from Kenji's most recent BLB VODs only (2024-09-07 → 2024-09-10) — an end-of-format sample, so already recency-skewed toward his settled reads.** On any internal conflict the **newest VOD wins**; the GIH WR these notes decode is **archetype-conditional** (see AGENTS.md). For full format-arc treatment see the tier-1 files (MKM.md, SOS.md).
 
 Source VODs (newest first):
 

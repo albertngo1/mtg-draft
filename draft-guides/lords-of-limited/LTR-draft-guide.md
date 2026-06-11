@@ -1,6 +1,6 @@
 # The Lord of the Rings: Tales of Middle-earth (LTR) — Draft Guide
 
-> Synthesized from 5 Lords of Limited episodes (Early Access through retrospective). Treat as expert/theory opinion — weight it like a tier-list grade; **17Lands GIH WR stays primary signal**. This guide is secondary. Source episodes span 2023-06-17 → 2023-08-08.
+> Synthesized from 5 Lords of Limited episodes (Early Access through retrospective). This guide is the lead lens that **decodes** the 17Lands data — every GIH WR is archetype-conditional (trust where it transfers, discount where it inflates; see AGENTS.md). This guide is secondary. Source episodes span 2023-06-17 → 2023-08-08.
 
 ## ⚠ Recency rule (read first)
 
@@ -8,7 +8,7 @@
 - The **2023-06-17 Early Access** episode (H833J6KUFAs) was played BEFORE the public launch — weakest evidence, treat as day-zero impressions.
 - The **2023-07-03 Extended Edition** (LnO6bWR-7Gc) is a mid-format deep-dive; strong signal but still evolving meta.
 - The **2023-08-08 "50 Takes in 50 Minutes"** retrospective (hKHM128ThfQ) is the MOST AUTHORITATIVE source — fully settled reads, format wrap-up. When it disagrees with earlier episodes, the retro wins.
-- **17Lands GIH WR stays primary over all of this.** This guide is expert/theory color, not data. If live win-rate data contradicts a take here, trust the data.
+- **This guide decodes the 17Lands data rather than ranking beneath it.** Every GIH WR is archetype-conditional — use the guide to tell which archetype's deck a number came from: trust the WR where it transfers (cleanly-castable cards), discount it where it inflates (payoffs/multicolor). See AGENTS.md.
 
 ## Source timeline
 

@@ -1,17 +1,17 @@
 # Murders at Karlov Manor (MKM) — Draft Guide
 
-> Agent-primary reference, synthesized from 6 Lords of Limited episodes (listed under Source episodes). Treat as expert/theory opinion — weight it like a CGB grade; **17Lands GIH WR stays primary**. Source episodes from 2024-01 → 2024-03 (MKM's original release); cards are identical in the 2026 Quick Draft re-run.
+> Agent-primary reference, synthesized from 6 Lords of Limited episodes (listed under Source episodes). This guide is the lead lens that **decodes** the 17Lands data — every GIH WR is archetype-conditional (trust where it transfers, discount where it inflates; see AGENTS.md). Source episodes from 2024-01 → 2024-03 (MKM's original release); cards are identical in the 2026 Quick Draft re-run.
 
 ## ⚠ Recency rule (read first)
 
 - Notes span **2024-01-22 → 2024-03-25**. On any conflict, the **newest video wins**.
 - The **2024-01-22 preview** is BLIND PREDICTIONS (no games played) — weakest; treat its evaluations as hypotheses, not data.
 - The **2024-03-25 retrospective "Gone Too Soon"** is the MOST AUTHORITATIVE source — it's the hosts' final, fully-informed verdict. When it disagrees with earlier notes, the retro wins.
-- **17Lands GIH WR stays primary over all of this.** This guide is expert/theory color, not data. If live win-rate data contradicts a take here, trust the data.
+- **This guide decodes the 17Lands data rather than ranking beneath it.** Every GIH WR is archetype-conditional — use the guide to tell which archetype's deck a number came from: trust the WR where it transfers (cleanly-castable cards), discount it where it inflates (payoffs/multicolor). See AGENTS.md.
 
 ## Data caveat for the 2026 Quick Draft re-run
 
-**IMPORTANT (coaching agent, read this):** This is a Quick Draft re-run (June 8–16 2026). Early in the window — and possibly the whole window — 17Lands **QuickDraft** data for MKM may be empty (0 games) or extremely thin. When QD data is sparse/missing, **proxy with MKM's original PremierDraft window: query 17Lands with `start_date=2024-02-01`** until live QD win-rates populate. QD and Premier metagames differ slightly (QD is bot-drafted, generally a touch slower / more forgiving, signals are weaker), but card-level GIH WR transfers well enough to be the primary signal. (Source: project memory / standing directive.)
+**IMPORTANT (coaching agent, read this):** This is a Quick Draft re-run (June 8–16 2026). Early in the window — and possibly the whole window — 17Lands **QuickDraft** data for MKM may be empty (0 games) or extremely thin. When QD data is sparse/missing, **proxy with MKM's original PremierDraft window: query 17Lands with `start_date=2024-02-01`** until live QD win-rates populate. QD and Premier metagames differ slightly (QD is bot-drafted, generally a touch slower / more forgiving, signals are weaker), but card-level GIH WR transfers well enough to rely on. (Source: project memory / standing directive.)
 
 ## Source timeline
 

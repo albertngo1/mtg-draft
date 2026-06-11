@@ -1,6 +1,6 @@
 # Core Set 2021 (M21) — Draft Guide
 
-> Coverage is moderate: 6 Lords of Limited YouTube draft episodes from the first 3 weeks of release (2020-06-25 → 2020-07-14). No retrospective or "50 takes" wrap-up episode was sampled, so some takes are still mid-format. **17Lands GIH WR stays primary**; treat this guide as expert/theory color.
+> Coverage is moderate: 6 Lords of Limited YouTube draft episodes from the first 3 weeks of release (2020-06-25 → 2020-07-14). No retrospective or "50 takes" wrap-up episode was sampled, so some takes are still mid-format. **The guide decodes archetype-conditional 17Lands WR (see AGENTS.md); treat it as expert/theory color.**
 
 ## ⚠ Recency rule (read first)
 
@@ -8,7 +8,7 @@
 - The **2020-06-25 "First Draft Ever"** (kLaWVEeIdXc) is Day-0 gameplay — weakest evidence; the host openly admits no format knowledge. Treat as early hypotheses only.
 - The **2020-07-02 "Limited Testing Meeting: Black"** (e7cGsP_BdrI) is a structured multi-person set-review/theory session roughly one week in — medium authority, heavy theory.
 - The **2020-07-14 "Going DEEP"** (ls1ANmFeW_4) is the latest video (day 21 of a 21-day content push), drafted by Ethan after the most reps — **most authoritative single source** for format reads.
-- **17Lands GIH WR stays primary over all of this.** This guide is expert/theory color, not data. Trust live win-rate data over any take here.
+- **This guide decodes the 17Lands data rather than ranking beneath it.** Every GIH WR is archetype-conditional — use the guide to tell which archetype's deck a number came from: trust the WR where it transfers (cleanly-castable cards), discount it where it inflates (payoffs/multicolor). See AGENTS.md.
 
 ## Source timeline
 

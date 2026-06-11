@@ -1,6 +1,6 @@
 # Lorwyn Eclipsed (ECL) — Draft Guide
 
-> Synthesized from 6 Lords of Limited episodes. Treat as expert/theory opinion — weight it like a CGB grade; **17Lands GIH WR stays primary**. Synthesized from videos current as of 2026-03-23.
+> Synthesized from 6 Lords of Limited episodes. This guide is the lead lens that **decodes** the 17Lands data — every GIH WR is archetype-conditional (trust where it transfers, discount where it inflates; see AGENTS.md). Synthesized from videos current as of 2026-03-23.
 
 ## ⚠ Recency rule (read first)
 
@@ -9,7 +9,7 @@ These notes span **2026-01-12 → 2026-03-23**, and the format evolved *substant
 - **The newest video wins.** On any disagreement, the later-published episode supersedes the earlier one.
 - **Prerelease + early-access takes (2026-01-12 → 2026-01-23) are PREDICTIONS** made before real reps — weakest evidence. Claims resting *only* on these are suspect.
 - **The 2026-03-23 retrospective ("50 Takes in 50 Minutes") is the single most authoritative source.** When it speaks, it settles the matter.
-- **17Lands GIH WR stays primary** over all of the above — these episodes are expert/theory color only.
+- **This guide decodes the 17Lands data rather than ranking beneath it.** Every GIH WR is archetype-conditional — use the guide to tell which archetype's deck a number came from: trust the WR where it transfers (cleanly-castable cards), discount it where it inflates (payoffs/multicolor). See AGENTS.md.
 
 Use the Source timeline below to see at a glance how fresh each cited claim is.
 

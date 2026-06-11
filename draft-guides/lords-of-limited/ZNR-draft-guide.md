@@ -1,13 +1,13 @@
 # Zendikar Rising (ZNR) — Draft Guide
 
-> **Coverage note: thin (preview-only).** All 6 source episodes are color-by-color set reviews recorded on the same date (2020-09-11), before the set released. Every evaluation in this guide is a **blind prediction** — no games had been played. Weight accordingly: these are informed hypotheses, not settled reads. **17Lands GIH WR is the mandatory primary signal.** This guide is expert/theory color only.
+> **Coverage note: thin (preview-only).** All 6 source episodes are color-by-color set reviews recorded on the same date (2020-09-11), before the set released. Every evaluation in this guide is a **blind prediction** — no games had been played. Weight accordingly: these are informed hypotheses, not settled reads. This guide is the lead lens that **decodes** the 17Lands data — every GIH WR is archetype-conditional (trust where it transfers, discount where it inflates; see AGENTS.md). This guide is expert/theory color only.
 
 ## ⚠ Recency rule (read first)
 
 - Notes span **2020-09-11 → 2020-09-11** (all six episodes released the same day, pre-release).
 - ALL episodes are PREVIEW/BLIND — zero real reps at time of recording. This is the weakest possible evidence tier.
 - There are no mid-format or retrospective episodes in this sample. No supersessions or settled late reads exist.
-- **17Lands GIH WR stays primary over all of this.** When live data contradicts a take here, trust the data.
+- **This guide decodes the 17Lands data rather than ranking beneath it.** Every GIH WR is archetype-conditional — use the guide to tell which archetype's deck a number came from: trust the WR where it transfers (cleanly-castable cards), discount it where it inflates (payoffs/multicolor). See AGENTS.md.
 
 ## Source timeline
 

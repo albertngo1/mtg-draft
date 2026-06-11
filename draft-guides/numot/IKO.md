@@ -47,7 +47,7 @@ Ikoria (IKO) is a medium-speed format dominated by the cycling deck when assembl
 
 ## Source recency
 
-> **Tier-2 set: distilled from Kenji's most recent IKO VODs only (2020-05-16 → 2020-06-11) — an end-of-format sample, so already recency-skewed toward his settled reads.** On any internal conflict the **newest VOD wins**; **17Lands GIH WR stays primary** (expert/theory color). For full format-arc treatment see the tier-1 files (MKM.md, SOS.md).
+> **Tier-2 set: distilled from Kenji's most recent IKO VODs only (2020-05-16 → 2020-06-11) — an end-of-format sample, so already recency-skewed toward his settled reads.** On any internal conflict the **newest VOD wins**; the GIH WR these notes decode is **archetype-conditional** (see AGENTS.md). For full format-arc treatment see the tier-1 files (MKM.md, SOS.md).
 
 Source VODs (newest first):
 

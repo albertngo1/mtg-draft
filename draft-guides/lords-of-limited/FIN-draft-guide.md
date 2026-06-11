@@ -1,13 +1,13 @@
 # Final Fantasy (FIN) — Draft Guide
 
-> Agent-primary reference, synthesized from 6 Lords of Limited episodes (transcripts in `data/lol-subs/FIN/`). Treat as expert/theory opinion — weight it like a CGB grade; **17Lands GIH WR stays primary**. Source episodes from 2025-05 → 2025-07 (FIN's original release window).
+> Agent-primary reference, synthesized from 6 Lords of Limited episodes (transcripts in `data/lol-subs/FIN/`). This guide is the lead lens that **decodes** the 17Lands data — every GIH WR is archetype-conditional (trust where it transfers, discount where it inflates; see AGENTS.md). Source episodes from 2025-05 → 2025-07 (FIN's original release window).
 
 ## Recency rule (read first)
 
 - Notes span **2025-05-26 → 2025-07-17**. On any conflict, the **newest video wins**.
 - The **2025-05-26 preview** is BLIND PREDICTIONS (no games played) — weakest; treat its evaluations as hypotheses.
 - The **2025-07-17 "Final Fantasy's Finale"** (50 Takes retro) is the MOST AUTHORITATIVE source — hosts' final, fully-informed verdict. When it disagrees with earlier notes, the retro wins.
-- **17Lands GIH WR stays primary over all of this.** This guide is expert/theory color, not data.
+- **This guide decodes the 17Lands data rather than ranking beneath it.** Every GIH WR is archetype-conditional — use the guide to tell which archetype's deck a number came from: trust the WR where it transfers (cleanly-castable cards), discount it where it inflates (payoffs/multicolor). See AGENTS.md.
 
 ## Source timeline
 

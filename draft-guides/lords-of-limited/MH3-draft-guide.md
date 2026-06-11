@@ -1,6 +1,6 @@
 # Modern Horizons 3 (MH3) — Draft Guide
 
-> Synthesized from 5 Lords of Limited episodes (crash course + early access + gameplay + RCQ). Coverage is moderate — one theoretical crash course, two early-access drafts, one arena gameplay video, one paper sealed/draft RCQ. No explicit late-season retro episode was captured. **17Lands GIH WR stays the primary signal; this guide is expert/theory color.**
+> Synthesized from 5 Lords of Limited episodes (crash course + early access + gameplay + RCQ). Coverage is moderate — one theoretical crash course, two early-access drafts, one arena gameplay video, one paper sealed/draft RCQ. No explicit late-season retro episode was captured. This guide is the lead lens that **decodes** the 17Lands data — every GIH WR is archetype-conditional (trust where it transfers, discount where it inflates; see AGENTS.md).
 
 ## ⚠ Recency rule (read first)
 
@@ -8,7 +8,7 @@
 - The **2024-06-03 crash course** is BLIND PREDICTIONS (before any real games played, except ~3 practice-bot drafts by Ben) — weakest evidence; treat evaluations as hypotheses.
 - The **2024-06-08 Early Access episodes** (Arena and MTGO) are first real reps — medium weight.
 - The **2024-06-12 arena gameplay** and **2024-06-20 RCQ sealed/draft** are mid-to-late evidence, not a full retro, but more reliable than the crash course. The RCQ episode is the most authoritative source sampled.
-- **17Lands GIH WR is the primary signal.** This guide is expert/theory color; if live win-rate data contradicts a take here, trust the data.
+- **This guide decodes the 17Lands data rather than ranking beneath it.** Every GIH WR is archetype-conditional — use the guide to tell which archetype's deck a number came from: trust the WR where it transfers (cleanly-castable cards), discount it where it inflates (payoffs/multicolor). See AGENTS.md.
 
 ## Source timeline
 

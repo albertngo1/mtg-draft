@@ -1,6 +1,6 @@
 # Bloomburrow (BLB) — Draft Guide
 
-> Synthesized from 6 Lords of Limited episodes (draft gameplay + one full "50 Takes in 50 Minutes" retrospective). Treat as expert/theory opinion — **17Lands GIH WR stays the primary signal**. This guide is secondary color.
+> Synthesized from 6 Lords of Limited episodes (draft gameplay + one full "50 Takes in 50 Minutes" retrospective). Treat as expert/theory opinion — This guide is the lead lens that **decodes** the 17Lands data — every GIH WR is archetype-conditional (trust where it transfers, discount where it inflates; see AGENTS.md). This guide is secondary color.
 
 ## ⚠ Recency rule (read first)
 
@@ -8,7 +8,7 @@
 - The first two videos (2024-08-02, 2024-08-14) are **early/mid-format gameplay** — somewhat settled but still evolving reads.
 - The **2024-08-19** episode is a two-host (Ben + Ethan) discussion episode covering format updates, cooking strategies, and a draft log — high insight density.
 - The **2024-09-03 "Saying Goodbye to Bloomburrow"** episode is a full "50 Takes in 50 Minutes" retrospective and is the **MOST AUTHORITATIVE** source. When it disagrees with earlier takes, it wins.
-- **17Lands GIH WR stays primary over all of this.** If live data contradicts a take here, trust the data.
+- **This guide decodes the 17Lands data rather than ranking beneath it.** Every GIH WR is archetype-conditional — use the guide to tell which archetype's deck a number came from: trust the WR where it transfers (cleanly-castable cards), discount it where it inflates (payoffs/multicolor). See AGENTS.md.
 
 ## Source timeline
 

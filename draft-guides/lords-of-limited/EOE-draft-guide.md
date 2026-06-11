@@ -1,6 +1,6 @@
 # Edge of Eternities (EOE) — Draft Guide
 
-> Agent-primary reference, synthesized from 6 Lords of Limited episodes (transcripts in `eoe/`). Treat as expert/theory opinion — weight it like a CGB grade; **17Lands GIH WR stays primary**. Synthesized from episodes current as of 2025-10-06.
+> Agent-primary reference, synthesized from 6 Lords of Limited episodes (transcripts in `eoe/`). This guide is the lead lens that **decodes** the 17Lands data — every GIH WR is archetype-conditional (trust where it transfers, discount where it inflates; see AGENTS.md). Synthesized from episodes current as of 2025-10-06.
 >
 > IMPORTANT TIMELINE NOTE: preview and early-access episodes made predictions that mid and retrospective episodes **revised substantially**. Spacecraft, lander tokens, and several specific card evaluations shifted. Where they conflict, trust the *late/retrospective* read. Biggest reversals noted in the Supersessions section.
 
@@ -11,7 +11,7 @@ These notes span **2025-07-14 → 2025-10-06**, and the format evolved substanti
 - **The newest episode wins.** On any disagreement, the later-published episode supersedes the earlier one.
 - **Preview/early-access takes (07-14 → 07-28) are PREDICTIONS** made before/at first contact with the format — weakest possible evidence.
 - **The 2025-10-06 Pro Tour retrospective ("Warping Back to the EDGE!!!", `retro`) is the single most authoritative source.** When it speaks, it settles the matter.
-- **17Lands GIH WR stays primary** over all of the above (project policy) — these episodes are expert/theory color.
+- **This guide decodes the 17Lands data rather than ranking beneath it.** Every GIH WR is archetype-conditional — use the guide to tell which archetype's deck a number came from: trust the WR where it transfers (cleanly-castable cards), discount it where it inflates (payoffs/multicolor). See AGENTS.md.
 
 | Date | Episode (shorthand) | Phase | Weight |
 |------|---------------------|-------|--------|

@@ -1,6 +1,6 @@
 # The Lost Caverns of Ixalan (LCI) — Draft Guide
 
-> Synthesized from 6 Lords of Limited episodes (transcripts in `data/lol-subs/LCI/`). Treat as expert/theory opinion — **17Lands GIH WR stays primary**. This guide is secondary color for decision-making.
+> Synthesized from 6 Lords of Limited episodes (transcripts in `data/lol-subs/LCI/`). This guide is the lead lens that **decodes** the 17Lands data — every GIH WR is archetype-conditional (trust where it transfers, discount where it inflates; see AGENTS.md). This guide is secondary color for decision-making.
 
 ## ⚠ Recency rule (read first)
 
@@ -8,7 +8,7 @@
 - The **2023-11-10 early-access draft battle** is the weakest source — it's the hosts' very first draft of the format, zero reps beforehand. Evaluations from that episode are first-impressions only; treat as hypotheses.
 - The **2024-01-08 "Redesigning Cards for LCI"** episode is the most analytical and critical — a format post-mortem where the hosts identify what worked and what didn't. It is the most authoritative source for format-level reads.
 - The **2023-12-04 "Is Black the Worst Color?"** pod episode is the midpoint analysis and the most useful archetype-building reference — both hosts had played heavily and had settled reads on archetypes.
-- **17Lands GIH WR stays primary over all of this.** If live win-rate data contradicts a take here, trust the data.
+- **This guide decodes the 17Lands data rather than ranking beneath it.** Every GIH WR is archetype-conditional — use the guide to tell which archetype's deck a number came from: trust the WR where it transfers (cleanly-castable cards), discount it where it inflates (payoffs/multicolor). See AGENTS.md.
 
 ## Source timeline
 

@@ -1,6 +1,6 @@
 # Strixhaven: School of Mages (STX) — Draft Guide
 
-> **Coverage note:** The transcripts in the STX folder are all from *Secrets of Strixhaven* (the 2026 return set), not the original 2021 STX. Six episodes were read, spanning 2026-04-07 → 2026-06-01, including a preview episode, early-access video, two mid-format episodes, the Pro Tour review, and the 50-takes wrap-up. The final retrospective is the single most authoritative source. **17Lands GIH WR stays the primary draft signal; this guide is expert/theory color only.**
+> **Coverage note:** The transcripts in the STX folder are all from *Secrets of Strixhaven* (the 2026 return set), not the original 2021 STX. Six episodes were read, spanning 2026-04-07 → 2026-06-01, including a preview episode, early-access video, two mid-format episodes, the Pro Tour review, and the 50-takes wrap-up. The final retrospective is the single most authoritative source. This guide is the lead lens that **decodes** the 17Lands data — every GIH WR is archetype-conditional (trust where it transfers, discount where it inflates; see AGENTS.md).
 
 ---
 
@@ -13,7 +13,7 @@ These notes span **2026-04-07 → 2026-06-01**. The format evolved significantly
 - **The early-access YouTube video (2026-04-16) is the first real gameplay**, but Ben explicitly 0-6'd the first two drafts and called some takes incomplete.
 - **The 2026-05-04 Pro Tour review (ep. 477)** provides the first settled competitive reads.
 - **The 2026-06-01 "50 Takes in 50 Minutes" wrap-up is the single most authoritative source** — retrospective with full format knowledge.
-- **17Lands GIH WR stays primary** over all host opinion (project policy).
+- **This guide decodes the 17Lands data rather than ranking beneath it.** Every GIH WR is archetype-conditional — use the guide to tell which archetype's deck a number came from: trust the WR where it transfers (cleanly-castable cards), discount it where it inflates (payoffs/multicolor). See AGENTS.md.
 
 ---
 

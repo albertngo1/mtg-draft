@@ -1,6 +1,6 @@
 # Throne of Eldraine (ELD) — Draft Guide
 
-> Agent-primary reference, synthesized from 4 Lords of Limited showdown episodes (drafts + gameplay commentary). Treat as expert/theory opinion — weight it like a tier-list grade; **17Lands GIH WR stays primary**. Coverage is moderate: all four episodes are **showdown drafts** (live gameplay), not a dedicated set review or retrospective, so big-picture theory is inferred from in-draft commentary rather than stated directly.
+> Agent-primary reference, synthesized from 4 Lords of Limited showdown episodes (drafts + gameplay commentary). This guide is the lead lens that **decodes** the 17Lands data — every GIH WR is archetype-conditional (trust where it transfers, discount where it inflates; see AGENTS.md). Coverage is moderate: all four episodes are **showdown drafts** (live gameplay), not a dedicated set review or retrospective, so big-picture theory is inferred from in-draft commentary rather than stated directly.
 
 ## ⚠ Recency rule (read first)
 
@@ -8,7 +8,7 @@
 - The two October 2019 episodes (Showdown 1 & 2) are **early-format** reads — reps were shallow, some evaluations were still forming.
 - The December 2019 episode (Showdown 3) reflects mid-season settled knowledge.
 - The July 2020 episode (Showdown — Flashback) is the **most authoritative**: hosts are returning to a format they drafted heavily, explicitly noting evolved card valuations and recalling which early takes were wrong.
-- **17Lands GIH WR stays primary over all of this.** This guide is expert/theory color, not data.
+- **This guide decodes the 17Lands data rather than ranking beneath it.** Every GIH WR is archetype-conditional — use the guide to tell which archetype's deck a number came from: trust the WR where it transfers (cleanly-castable cards), discount it where it inflates (payoffs/multicolor). See AGENTS.md.
 
 ## Source timeline
 

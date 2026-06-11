@@ -8,7 +8,7 @@ compiled into per-set reference files for the draft coach.
 - **Built:** 2026-06-10, from YouTube auto-caption transcripts (`data/numot-subs/<SET>/<id>.txt`,
   gitignored). Auto-captions mangle card/mechanic names heavily; names were corrected only where
   confident from context, and uncertain readings are marked `(?)`. Treat as expert
-  opinion/theory — **at draft time, 17Lands GIH win-rate data stays primary.**
+  opinion/theory — at draft time these **decode** the archetype-conditional 17Lands data (see AGENTS.md).
 - **Coverage tiers:**
   - **Tier 1 (deepest):** `MKM.md` (all 21 VODs) and `SOS.md` (all 33 VODs). Each has a
     `## vs Lords of Limited` section noting only genuine conflicts with the matching

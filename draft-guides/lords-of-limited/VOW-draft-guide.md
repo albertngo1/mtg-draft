@@ -2,7 +2,7 @@
 
 > **Coverage is thin — only 2 episodes sampled.** One is a live team-draft match stream (Nov 27), the other is a settled multi-expert roundtable recorded after ~60-100 drafts each (Dec 1). That roundtable is highly authoritative despite the small episode count.
 >
-> Agent-primary reference, synthesized from 2 Lords of Limited episodes. Treat as expert/theory opinion — weight it like a CGB grade; **17Lands GIH WR stays primary**. Synthesized from videos current as of 2021-12-01.
+> Agent-primary reference, synthesized from 2 Lords of Limited episodes. This guide is the lead lens that **decodes** the 17Lands data — every GIH WR is archetype-conditional (trust where it transfers, discount where it inflates; see AGENTS.md). Synthesized from videos current as of 2021-12-01.
 
 ## ⚠ Recency rule (read first)
 
@@ -11,7 +11,7 @@ These notes span **2021-11-27 → 2021-12-01**, a window of ~4 days. Both episod
 - **The newest video wins.** The Dec 1 roundtable (`roundtable`) supersedes the Nov 27 team-draft stream (`showdown`) on any conflict.
 - **The `roundtable` episode is the most authoritative source.** Six high-trophy drafters (Ethan + 5 guests, each with 62-100 drafts and 22-40 trophies) giving settled, data-informed reads.
 - **The `showdown` episode** is a live LOL vs. LR team draft — it shows real picks and reasoning but is one person's in-the-moment draft, not a format overview. Treat as illustrative evidence, not doctrine.
-- **17Lands GIH WR stays primary** over all of the above (project policy) — these episodes are expert/theory color, like a CGB grade.
+- **This guide decodes the 17Lands data rather than ranking beneath it.** Every GIH WR is archetype-conditional — use the guide to tell which archetype's deck a number came from: trust the WR where it transfers (cleanly-castable cards), discount it where it inflates (payoffs/multicolor). See AGENTS.md.
 
 ## Source timeline
 

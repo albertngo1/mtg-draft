@@ -7,7 +7,7 @@
 - Notes span a **single video published 2022-02-28**. There is no timeline to apply; no recency conflict is possible.
 - This episode is a **team-draft match** (Lords of Limited vs. Limited Resources), not a preview, crash course, or retrospective. It is a "during-format" reps episode — moderate weight for card evaluations, zero weight for archetype/meta reads beyond what the draft decisions reveal.
 - There are no earlier or later episodes to compare against. **No supersessions or live disagreements can be confirmed.**
-- **17Lands GIH WR stays primary** over all content in this guide (project policy). These observations are expert in-play color, not data.
+- **This guide decodes the 17Lands data rather than ranking beneath it.** Every GIH WR is archetype-conditional — use the guide to tell which archetype's deck a number came from: trust the WR where it transfers (cleanly-castable cards), discount it where it inflates (payoffs/multicolor). See AGENTS.md.
 
 ## Source timeline
 

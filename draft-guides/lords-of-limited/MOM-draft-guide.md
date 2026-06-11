@@ -1,6 +1,6 @@
 # March of the Machine (MOM) — Draft Guide
 
-> Synthesized from 6 Lords of Limited episodes (2023-04-06 → 2023-05-04). Coverage is **moderate** — the episodes include two early practice drafts, a companion-ranking analysis, two team-draft showdowns, and one Arena Open Day 2 retrospective. No single "retrospective" wrap-up episode exists; the Arena Open Day 2 piece (2023-05-04) is the most authoritative settled read. **17Lands GIH WR stays primary.** This guide is expert/theory color.
+> Synthesized from 6 Lords of Limited episodes (2023-04-06 → 2023-05-04). Coverage is **moderate** — the episodes include two early practice drafts, a companion-ranking analysis, two team-draft showdowns, and one Arena Open Day 2 retrospective. No single "retrospective" wrap-up episode exists; the Arena Open Day 2 piece (2023-05-04) is the most authoritative settled read. **The guide decodes archetype-conditional 17Lands WR (see AGENTS.md).** This guide is expert/theory color.
 
 ## ⚠ Recency rule (read first)
 
@@ -8,7 +8,7 @@
 - The **2023-04-06 and 2023-04-07 practice drafts** were played before official release on pre-release builds — treat their evaluations as early/unconfirmed predictions. Card assessments from these may be wrong once real reps accumulate.
 - The **2023-04-21 companions ranking** video is theory/analysis with no draft reps — useful for companion guidance, weight lower for general format reads.
 - The **2023-05-04 Arena Open Day 2 retrospective** is the most authoritative source — Ethan reflects on competitive drafting with hindsight. When it disagrees with earlier notes, the Day 2 piece wins.
-- **17Lands GIH WR stays primary over all of this.** This guide is expert/theory color, not data.
+- **This guide decodes the 17Lands data rather than ranking beneath it.** Every GIH WR is archetype-conditional — use the guide to tell which archetype's deck a number came from: trust the WR where it transfers (cleanly-castable cards), discount it where it inflates (payoffs/multicolor). See AGENTS.md.
 
 ## Source timeline
 

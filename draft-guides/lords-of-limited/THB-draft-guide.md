@@ -1,6 +1,6 @@
 # Theros Beyond Death (THB) — Draft Guide
 
-> Coverage note: only 6 Lords of Limited videos were sampled for this set, and 3 of them are puzzle/gameplay videos rather than dedicated tier-list episodes. The two earliest Limited Meeting episodes (Jan 28 and Feb 1, 2020) are the primary evaluation sources; the remaining four are gameplay/puzzle with incidental card commentary. Expect thin coverage compared to later-set guides. **17Lands GIH WR stays the primary signal; this guide is secondary expert/theory color.**
+> Coverage note: only 6 Lords of Limited videos were sampled for this set, and 3 of them are puzzle/gameplay videos rather than dedicated tier-list episodes. The two earliest Limited Meeting episodes (Jan 28 and Feb 1, 2020) are the primary evaluation sources; the remaining four are gameplay/puzzle with incidental card commentary. Expect thin coverage compared to later-set guides. This guide is the lead lens that **decodes** the 17Lands data — every GIH WR is archetype-conditional (trust where it transfers, discount where it inflates; see AGENTS.md).
 
 ## ⚠ Recency rule (read first)
 
@@ -8,7 +8,7 @@
 - The **2020-01-28** and **2020-02-01** Limited Meeting episodes are early-access evaluations — first reps, theory-heavy. Weight them as early-phase reads.
 - The **2020-02-18 draft showdown** and **2020-03-04/13/24 puzzle/draft videos** are deeper-in-the-format and show lived experience; their incidental commentary is more reliable.
 - No explicit retrospective/wrap-up episode was sampled. All reads should be treated as mid-format rather than final settled verdicts.
-- **17Lands GIH WR stays primary over all of this.** This guide is expert/theory color. If live win-rate data contradicts a take here, trust the data.
+- **This guide decodes the 17Lands data rather than ranking beneath it.** Every GIH WR is archetype-conditional — use the guide to tell which archetype's deck a number came from: trust the WR where it transfers (cleanly-castable cards), discount it where it inflates (payoffs/multicolor). See AGENTS.md.
 
 ## Source timeline
 

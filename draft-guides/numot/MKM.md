@@ -10,7 +10,7 @@ These notes span **2024-01-30 → 2024-03-24** and the format evolved over that 
 - **The newest VOD wins on any conflict.** A later read supersedes an earlier one.
 - **Release-week VODs (2024-01-30 → 2024-02-12) are PREDICTIONS** — made before/at first contact with the format. Weakest possible evidence; a claim resting only on these is suspect.
 - **End-of-format VODs (2024-03-11 → 2024-03-24) are the most authoritative** — these are settled reads after grinding the whole format.
-- **17Lands GIH WR stays primary** over all of the above (project policy — these notes are expert/theory color, like a CGB grade).
+- **This guide decodes the 17Lands data rather than ranking beneath it.** Every GIH WR is archetype-conditional — use the guide to tell which archetype's deck a number came from: trust the WR where it transfers (cleanly-castable cards), discount it where it inflates (payoffs/multicolor). See AGENTS.md.
 
 ### Source timeline
 

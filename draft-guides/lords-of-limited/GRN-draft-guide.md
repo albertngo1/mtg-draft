@@ -1,13 +1,13 @@
 # Guilds of Ravnica (GRN) — Draft Guide
 
-> **Coverage is thin — only 1 episode sampled.** This guide was synthesized from a single Lords of Limited video: a live "Showdown" draft gameplay recording (November 2018). It is NOT an analysis or theory episode — it is a real-time commentary draft. Insights are incidental rather than systematic. Treat every take here as weakly sourced anecdote, not settled expert opinion. **17Lands GIH WR is the only reliable primary signal for this set.**
+> **Coverage is thin — only 1 episode sampled.** This guide was synthesized from a single Lords of Limited video: a live "Showdown" draft gameplay recording (November 2018). It is NOT an analysis or theory episode — it is a real-time commentary draft. Insights are incidental rather than systematic. Treat every take here as weakly sourced anecdote, not settled expert opinion. This guide is the lead lens that **decodes** the 17Lands data — every GIH WR is archetype-conditional (trust where it transfers, discount where it inflates; see AGENTS.md).
 
 ## ⚠ Recency rule (read first)
 
 - Notes span a **single episode: 2018-11-15**. There is no multi-episode recency gradient to apply.
 - This is a **gameplay showdown video**, not a preview, crash-course, or retrospective — it contains real-time draft decision commentary but no structured format analysis.
 - Because there is only one episode, there are no supersessions or live disagreements to report.
-- **17Lands GIH WR stays primary over all of the above.** This guide is incidental commentary color, not data.
+- **This guide decodes the 17Lands data rather than ranking beneath it.** Every GIH WR is archetype-conditional — use the guide to tell which archetype's deck a number came from: trust the WR where it transfers (cleanly-castable cards), discount it where it inflates (payoffs/multicolor). See AGENTS.md.
 
 ## Source timeline
 

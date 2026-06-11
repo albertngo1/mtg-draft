@@ -1,13 +1,13 @@
 # Kaldheim (KHM) — Draft Guide
 
-> **Coverage is thin: only 1 episode sampled.** This guide is built from a single flashback draft video (October 2024). It records one host's in-draft picks and commentary — real reps, not predictions — but there is no retrospective, no format-wide tier discussion, and no explicit color-ranking segment. Treat every take here as a data point of one, not settled consensus. **17Lands GIH WR stays primary.**
+> **Coverage is thin: only 1 episode sampled.** This guide is built from a single flashback draft video (October 2024). It records one host's in-draft picks and commentary — real reps, not predictions — but there is no retrospective, no format-wide tier discussion, and no explicit color-ranking segment. Treat every take here as a data point of one, not settled consensus. **The guide decodes archetype-conditional 17Lands WR (see AGENTS.md).**
 
 ## ⚠ Recency rule (read first)
 
 - Notes span a **single episode: 2024-10-25**. There is no earlier vs. later conflict to resolve — all commentary comes from the same video.
 - This is a **mid/late flashback draft** (Kaldheim was originally released 2021; this video is a 2024 revisit). The host has real reps and calls KHM "pretty fun" / "GOAT-ed draft format" after multiple flashback runs — treat it as an experienced player's perspective, not first-contact guessing.
 - Because there is only one source, the Supersessions and Live Disagreements sections are minimal by definition.
-- **17Lands GIH WR stays primary over all of this.** This guide is expert/theory color. If live win-rate data contradicts a take here, trust the data.
+- **This guide decodes the 17Lands data rather than ranking beneath it.** Every GIH WR is archetype-conditional — use the guide to tell which archetype's deck a number came from: trust the WR where it transfers (cleanly-castable cards), discount it where it inflates (payoffs/multicolor). See AGENTS.md.
 
 ## Source timeline
 

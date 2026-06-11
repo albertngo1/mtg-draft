@@ -1,6 +1,6 @@
 # Pioneer Masters (PIOM) — Draft Guide
 
-> Agent-primary reference, synthesized from 6 Lords of Limited episodes (5 solo drafts by Ethan and Ben + 1 joint analysis). All content is from YouTube auto-captions — card names may be garbled. Treat as expert/theory opinion. **17Lands GIH WR stays primary signal**; this guide is secondary color.
+> Agent-primary reference, synthesized from 6 Lords of Limited episodes (5 solo drafts by Ethan and Ben + 1 joint analysis). All content is from YouTube auto-captions — card names may be garbled. This guide is the lead lens that **decodes** the 17Lands data — every GIH WR is archetype-conditional (trust where it transfers, discount where it inflates; see AGENTS.md). This guide is secondary color.
 
 ## ⚠ Recency rule (read first)
 
@@ -8,7 +8,7 @@
 - The **2024-12-03 preview video** ("Pioneer Is Finally Coming to Arena!!") is BLIND PREDICTIONS — no gameplay, spoiler-season only. Weakest evidence; treat evaluations as hypotheses.
 - The **2024-12-08 early-access video** ("The Horror…The Dinrova Horror") was recorded during Early Access, before the format was open to all. Still pre-settled; medium weight.
 - **2025-01-09 and 2025-01-16** are the most authoritative — format experience has accumulated and the hosts have refined their reads.
-- **17Lands GIH WR stays primary over all of this.** If live win-rate data contradicts a take here, trust the data.
+- **This guide decodes the 17Lands data rather than ranking beneath it.** Every GIH WR is archetype-conditional — use the guide to tell which archetype's deck a number came from: trust the WR where it transfers (cleanly-castable cards), discount it where it inflates (payoffs/multicolor). See AGENTS.md.
 
 ## Source timeline
 

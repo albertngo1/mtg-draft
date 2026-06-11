@@ -1,6 +1,6 @@
 # Marvel's Spider-Man (MAR) — Draft Guide
 
-> **Coverage is thin: only 4 episodes sampled, spanning preview through week-1.** No retrospective or "50 takes" episode was available at time of writing. Treat the week-1 reads with appropriate confidence; the preview-episode takes should be weighted minimally. **17Lands GIH WR stays the primary signal**; this guide is secondary expert/theory color.
+> **Coverage is thin: only 4 episodes sampled, spanning preview through week-1.** No retrospective or "50 takes" episode was available at time of writing. Treat the week-1 reads with appropriate confidence; the preview-episode takes should be weighted minimally. This guide is the lead lens that **decodes** the 17Lands data — every GIH WR is archetype-conditional (trust where it transfers, discount where it inflates; see AGENTS.md). This guide is secondary expert/theory color.
 
 ## ⚠ Recency rule (read first)
 
@@ -9,7 +9,7 @@ These notes span **2025-09-08 → 2025-09-29**, a window that includes one previ
 - **The newest video wins.** On any disagreement, the later-published episode supersedes the earlier one.
 - **The 2025-09-08 preview episode ("Spiderman Previews Are HERE!!!", `y5l`) is PREDICTIONS** made before playing the format — weakest evidence. Several takes were walked back within one week.
 - **The 2025-09-29 week-1 episode ("The Wekhdu's and Wekh-don'ts", `VI5`) is the most authoritative** source in this sample. Its takes reflect real draft reps plus 17Lands data.
-- **17Lands GIH WR stays primary** over all of the above (project policy).
+- **This guide decodes the 17Lands data rather than ranking beneath it.** Every GIH WR is archetype-conditional — use the guide to tell which archetype's deck a number came from: trust the WR where it transfers (cleanly-castable cards), discount it where it inflates (payoffs/multicolor). See AGENTS.md.
 
 Use the Source timeline below to see at a glance how fresh each cited claim is.
 

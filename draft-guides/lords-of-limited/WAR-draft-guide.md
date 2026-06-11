@@ -1,6 +1,6 @@
 # War of the Spark (WAR) — Draft Guide
 
-> **Coverage note — 2 gameplay episodes, no dedicated theory episode.** Both sources are "Showdown" live-draft videos (Ethan vs. Ben) from the first five weeks of the format. There is no preview/crash-course or retrospective episode sampled. Insights are incidental commentary extracted from real-time draft decision-making. Treat every tier and evaluation here as weakly-sourced practitioner read, not settled data. **17Lands GIH WR is the only reliable primary signal for this set.**
+> **Coverage note — 2 gameplay episodes, no dedicated theory episode.** Both sources are "Showdown" live-draft videos (Ethan vs. Ben) from the first five weeks of the format. There is no preview/crash-course or retrospective episode sampled. Insights are incidental commentary extracted from real-time draft decision-making. Treat every tier and evaluation here as weakly-sourced practitioner read, not settled data. This guide is the lead lens that **decodes** the 17Lands data — every GIH WR is archetype-conditional (trust where it transfers, discount where it inflates; see AGENTS.md).
 
 ## ⚠ Recency rule (read first)
 
@@ -8,7 +8,7 @@
 - Both episodes are the **same phase** — early-to-mid-format gameplay reps — with no preview content and no retrospective. The latest episode (2019-06-05, Showdown 2) gets the most weight as the settled read.
 - Both hosts' reads are explicitly provisional in places — they reference cards they "haven't played yet" and decks that are "still being figured out."
 - **On any conflict, Showdown 2 (2019-06-05) is the authoritative read.** Showdown 1 (2019-05-10) is corroborating evidence only.
-- **17Lands GIH WR stays the primary signal.** This guide is Lords of Limited practitioner color commentary only.
+- **This guide decodes the 17Lands data rather than ranking beneath it.** Every GIH WR is archetype-conditional — use the guide to tell which archetype's deck a number came from: trust the WR where it transfers (cleanly-castable cards), discount it where it inflates (payoffs/multicolor). See AGENTS.md.
 
 ## Source timeline
 

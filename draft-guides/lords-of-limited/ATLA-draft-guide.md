@@ -1,13 +1,13 @@
 # Avatar: The Last Airbender (ATLA) — Draft Guide
 
-> Agent-primary reference, synthesized from 6 Lords of Limited episodes (transcripts in `data/lol-subs/ATLA/`). Treat as expert/theory opinion — weight it like a CGB grade; **17Lands GIH WR stays primary**. Source episodes from 2025-11-03 → 2025-12-22.
+> Agent-primary reference, synthesized from 6 Lords of Limited episodes (transcripts in `data/lol-subs/ATLA/`). This guide is the lead lens that **decodes** the 17Lands data — every GIH WR is archetype-conditional (trust where it transfers, discount where it inflates; see AGENTS.md). Source episodes from 2025-11-03 → 2025-12-22.
 
 ## Recency rule (read first)
 
 - Notes span **2025-11-03 → 2025-12-22**. On any conflict, the **newest video wins**.
 - The **2025-11-03 preview** is BLIND PREDICTIONS (no games played) — weakest source; treat evaluations as hypotheses.
 - The **2025-12-22 retrospective "Saying Goodbye to Avatar / 50 Takes"** is the MOST AUTHORITATIVE source — final fully-informed verdict. When it disagrees with earlier notes, the retro wins.
-- **17Lands GIH WR stays primary over all of this.** If live win-rate data contradicts a take here, trust the data.
+- **This guide decodes the 17Lands data rather than ranking beneath it.** Every GIH WR is archetype-conditional — use the guide to tell which archetype's deck a number came from: trust the WR where it transfers (cleanly-castable cards), discount it where it inflates (payoffs/multicolor). See AGENTS.md.
 
 ## Source timeline
 

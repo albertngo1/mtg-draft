@@ -1,6 +1,6 @@
 # Ravnica Allegiance (RNA) — Draft Guide
 
-> **Coverage note — 3 gameplay episodes, no dedicated theory episode.** All three sources are "Showdown" live-draft videos (Ethan vs. Ben). There is no preview/crash-course or retrospective episode sampled. Insights are incidental commentary extracted from real-time draft decision-making. Treat every tier and evaluation here as weakly-sourced practitioner read, not data. **17Lands GIH WR is the only reliable primary signal for this set.**
+> **Coverage note — 3 gameplay episodes, no dedicated theory episode.** All three sources are "Showdown" live-draft videos (Ethan vs. Ben). There is no preview/crash-course or retrospective episode sampled. Insights are incidental commentary extracted from real-time draft decision-making. Treat every tier and evaluation here as weakly-sourced practitioner read, not data. This guide is the lead lens that **decodes** the 17Lands data — every GIH WR is archetype-conditional (trust where it transfers, discount where it inflates; see AGENTS.md).
 
 ## ⚠ Recency rule (read first)
 
@@ -8,7 +8,7 @@
 - All three episodes are the **same phase** — mid-format gameplay reps — with no preview content and no retrospective. The latest episode (2019-03-27, Showdown 3) gets the most weight as the settled read.
 - Both hosts' takes evolved noticeably across the series: early Showdown 1 comments on guild rankings were treated as provisional; by Showdown 3 comments are more confident and cross-validate each other.
 - **On any conflict, Showdown 3 (2019-03-27) is the authoritative read.** Earlier episodes are corroborating evidence.
-- **17Lands GIH WR stays the primary signal.** This guide is Lords of Limited practitioner color commentary only.
+- **This guide decodes the 17Lands data rather than ranking beneath it.** Every GIH WR is archetype-conditional — use the guide to tell which archetype's deck a number came from: trust the WR where it transfers (cleanly-castable cards), discount it where it inflates (payoffs/multicolor). See AGENTS.md.
 
 ## Source timeline
 

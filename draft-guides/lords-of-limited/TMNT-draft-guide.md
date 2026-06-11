@@ -1,8 +1,8 @@
 # Teenage Mutant Ninja Turtles (TMNT) — Draft Guide
 
-> **Coverage is thin: only 1 episode sampled (early-access double-feature, pre-release weekend).** All takes here are PREDICTIONS made before real reps. Treat everything with extra skepticism and lean on 17Lands GIH WR as your primary signal.
+> **Coverage is thin: only 1 episode sampled (early-access double-feature, pre-release weekend).** All takes here are PREDICTIONS made before real reps. Treat everything with extra skepticism and lean on the 17Lands data, decoded for archetype conditioning (see AGENTS.md).
 >
-> Agent-primary reference, synthesized from 1 Lords of Limited episode. Treat as expert/theory opinion — weight it like a CGB grade; **17Lands GIH WR stays primary**. Synthesized from videos current as of 2026-02-27.
+> Agent-primary reference, synthesized from 1 Lords of Limited episode. This guide is the lead lens that **decodes** the 17Lands data — every GIH WR is archetype-conditional (trust where it transfers, discount where it inflates; see AGENTS.md). Synthesized from videos current as of 2026-02-27.
 
 ## ⚠ Recency rule (read first)
 
@@ -10,7 +10,7 @@ These notes span a **single episode: 2026-02-27** — early access weekend, befo
 
 - **The newest video wins.** With only one episode, there are no supersessions — every opinion here is equally early-access weight.
 - **Early-access takes (2026-02-27) are PREDICTIONS** made at first contact with the format — weakest possible evidence. Treat every claim as provisional.
-- **17Lands GIH WR stays primary** over all of the above (project policy) — these episodes are expert/theory color, like a CGB grade.
+- **This guide decodes the 17Lands data rather than ranking beneath it.** Every GIH WR is archetype-conditional — use the guide to tell which archetype's deck a number came from: trust the WR where it transfers (cleanly-castable cards), discount it where it inflates (payoffs/multicolor). See AGENTS.md.
 - No retrospective or mid-format episodes were available at time of writing. This guide should be re-synthesized once later episodes exist.
 
 ## Source timeline

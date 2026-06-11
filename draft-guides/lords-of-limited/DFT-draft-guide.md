@@ -1,6 +1,6 @@
 # Aetherdrift (DFT) — Draft Guide
 
-> Synthesized from 6 Lords of Limited episodes (Ben Warney & Ethan Sachs), Jan 27 → Mar 17 2025. Treat as expert/theory opinion — **17Lands GIH WR stays the primary signal**; this guide is secondary color.
+> Synthesized from 6 Lords of Limited episodes (Ben Warney & Ethan Sachs), Jan 27 → Mar 17 2025. Treat as expert/theory opinion — This guide is the lead lens that **decodes** the 17Lands data — every GIH WR is archetype-conditional (trust where it transfers, discount where it inflates; see AGENTS.md). This guide is secondary color.
 
 ## ⚠ Recency rule (read first)
 
@@ -8,7 +8,7 @@
 - **2025-01-27 preview episode** (rwjej_rb5l4) is BLIND PREDICTIONS — no games played, weakest evidence. Treat its evaluations as hypotheses, not data.
 - **2025-02-07 Early Access episode** (o1hUbEcmsC8) is the first games-played data, but it is still early-access and only Day 1 of the format.
 - **2025-03-17 "Get In Loser, We're Saying Goodbye to DFT"** (bsxvnoUBCnU) is a 50-takes retrospective and is the **MOST AUTHORITATIVE** source — the hosts' final settled verdict. When it disagrees with any earlier episode, the retro wins.
-- **17Lands GIH WR stays primary over all of this.** If live win-rate data contradicts a take here, trust the data.
+- **This guide decodes the 17Lands data rather than ranking beneath it.** Every GIH WR is archetype-conditional — use the guide to tell which archetype's deck a number came from: trust the WR where it transfers (cleanly-castable cards), discount it where it inflates (payoffs/multicolor). See AGENTS.md.
 
 ## Source timeline
 

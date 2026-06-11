@@ -1,6 +1,6 @@
 # Outlaws of Thunder Junction (OTJ) — Draft Guide
 
-> Synthesized from 6 Lords of Limited episodes (2 early-access drafts, 2 Arena Open day-two draft walkthroughs, 1 dedicated format-discussion episode, 1 flashback/retrospective). Treat as expert/theory opinion. **17Lands GIH WR stays the primary signal; this guide is secondary.** Source episodes span 2024-04-10 → 2025-01-28.
+> Synthesized from 6 Lords of Limited episodes (2 early-access drafts, 2 Arena Open day-two draft walkthroughs, 1 dedicated format-discussion episode, 1 flashback/retrospective). Treat as expert/theory opinion. This guide is the lead lens that **decodes** the 17Lands data — every GIH WR is archetype-conditional (trust where it transfers, discount where it inflates; see AGENTS.md). Source episodes span 2024-04-10 → 2025-01-28.
 
 ## ⚠ Recency rule (read first)
 
@@ -8,7 +8,7 @@
 - The **2024-04-10 and 2024-04-11** episodes are Early Access — played before public release, first impressions only. Treat evaluations as early hypotheses.
 - The **2024-05-06** "We're Not Blue About Blue" episode is a mid-format settled read (3+ weeks of reps) and is **highly authoritative** on color/archetype assessments.
 - The **2025-01-28** "Saddle Up — OTJ Flashback" is a **retrospective/crash-course** recorded months after the original format. It is the **most authoritative** source for settled verdicts on card quality, traps, and the overall meta.
-- **17Lands GIH WR stays primary over all of this.** If live win-rate data contradicts a take here, trust the data.
+- **This guide decodes the 17Lands data rather than ranking beneath it.** Every GIH WR is archetype-conditional — use the guide to tell which archetype's deck a number came from: trust the WR where it transfers (cleanly-castable cards), discount it where it inflates (payoffs/multicolor). See AGENTS.md.
 
 ## Source timeline
 

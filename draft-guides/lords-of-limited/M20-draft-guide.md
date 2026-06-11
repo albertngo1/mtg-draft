@@ -2,7 +2,7 @@
 
 > **Coverage is thin** — only 2 episodes sampled (both showdown/gameplay videos, not dedicated analysis episodes). Expect gaps. Draft insights are extracted from pick commentary and between-round discussion rather than a structured breakdown episode.
 >
-> Agent-primary reference, synthesized from Lords of Limited (Ben Warney & Ethan Sachs). Treat as expert/theory opinion — **17Lands GIH WR stays primary**. These episodes are secondary color, like a CGB grade.
+> Agent-primary reference, synthesized from Lords of Limited (Ben Warney & Ethan Sachs). This guide is the lead lens that **decodes** the 17Lands data — every GIH WR is archetype-conditional (trust where it transfers, discount where it inflates; see AGENTS.md). These episodes are secondary color, like a CGB grade.
 
 ## ⚠ Recency rule (read first)
 
@@ -11,7 +11,7 @@ These notes span **2019-08-11 → 2019-09-08** (about four weeks of the format).
 - **The newest video wins.** On any disagreement, the later-published episode supersedes the earlier one.
 - Both episodes are **mid-format showdown videos** — real reps already logged, but neither is a retrospective wrap-up or "50 takes"-style settled read. Evidence quality is medium.
 - The **GP Vegas episode (2019-09-08)** is more authoritative than the August showdown. It also contains both Ben and Ethan's commentary on their own drafts and on-the-spot deck-building decisions.
-- **17Lands GIH WR stays primary** over all of the above — these episodes are expert/theory color, like a CGB grade.
+- **This guide decodes the 17Lands data rather than ranking beneath it.** Every GIH WR is archetype-conditional — use the guide to tell which archetype's deck a number came from: trust the WR where it transfers (cleanly-castable cards), discount it where it inflates (payoffs/multicolor). See AGENTS.md.
 
 ## Source timeline
 

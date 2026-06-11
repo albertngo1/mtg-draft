@@ -1,6 +1,6 @@
 # Wilds of Eldraine (WOE) — Draft Guide
 
-> Synthesized from 6 Lords of Limited episodes (Previews through retrospective). Treat as expert/theory opinion — weight it like a tier-list grade; **17Lands GIH WR stays primary signal**. This guide is secondary. Source episodes span 2023-08-22 → 2023-11-01.
+> Synthesized from 6 Lords of Limited episodes (Previews through retrospective). This guide is the lead lens that **decodes** the 17Lands data — every GIH WR is archetype-conditional (trust where it transfers, discount where it inflates; see AGENTS.md). This guide is secondary. Source episodes span 2023-08-22 → 2023-11-01.
 
 ## ⚠ Recency rule (read first)
 
@@ -10,7 +10,7 @@
 - The **2023-09-21 Arena Open** (ehFCb2hkM-E) and **2023-09-27 Draft Battle** (tSWYatSxWN8) are gameplay/draft videos — empirical evidence, moderate theory signal.
 - The **2023-10-23 "Saying Goodbye to WOE"** retrospective (hzYQn1e7pQE) is a **50 Takes in 50 Minutes** wrap-up — the MOST AUTHORITATIVE source; fully settled reads. When it disagrees with earlier episodes, the retro wins.
 - The **2023-11-01 Arena Open Day 2 Draft 2** (48LJkNe7jJg) is a late gameplay video; confirms settled card picks.
-- **17Lands GIH WR stays primary over all of this.** This guide is expert/theory color, not data. If live win-rate data contradicts a take here, trust the data.
+- **This guide decodes the 17Lands data rather than ranking beneath it.** Every GIH WR is archetype-conditional — use the guide to tell which archetype's deck a number came from: trust the WR where it transfers (cleanly-castable cards), discount it where it inflates (payoffs/multicolor). See AGENTS.md.
 
 ## Source timeline
 

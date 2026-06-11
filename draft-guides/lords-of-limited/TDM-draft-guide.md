@@ -1,6 +1,6 @@
 # Tarkir: Dragonstorm (TDM) — Draft Guide
 
-> Agent-primary reference, synthesized from 6 Lords of Limited episodes (Ben Warney & Ethan Sachs). Treat as expert/theory opinion — weight it like a CGB grade; **17Lands GIH WR stays primary**. Synthesized from episodes current as of 2025-05-19.
+> Agent-primary reference, synthesized from 6 Lords of Limited episodes (Ben Warney & Ethan Sachs). This guide is the lead lens that **decodes** the 17Lands data — every GIH WR is archetype-conditional (trust where it transfers, discount where it inflates; see AGENTS.md). Synthesized from episodes current as of 2025-05-19.
 >
 > IMPORTANT TIMELINE NOTE: preview/crash-course and early-access episodes made predictions the retrospective "50 Takes" episode reversed. Where they conflict, trust the *late/retrospective* read. Biggest reversals: Snowmelt Stag (hyped → replacement-level), hybrid commons (touted as "delayed decision" picks → largely filler), Teamer devotee (stacked as fixing glue → do not play it).
 
@@ -11,7 +11,7 @@ These notes span **2025-03-24 → 2025-05-19**, and the format evolved substanti
 - **The newest episode wins.** On any disagreement, the later-published episode supersedes the earlier one.
 - **Preview + early-access takes (03-24 → 04-07) are PREDICTIONS** made before or at first contact with the format — weakest possible evidence.
 - **The 2025-05-19 "50 Takes in 50 Minutes" wrap-up (`50t`) is the single most authoritative source.** When it speaks, it settles the matter.
-- **17Lands GIH WR stays primary** over all of the above (project policy).
+- **This guide decodes the 17Lands data rather than ranking beneath it.** Every GIH WR is archetype-conditional — use the guide to tell which archetype's deck a number came from: trust the WR where it transfers (cleanly-castable cards), discount it where it inflates (payoffs/multicolor). See AGENTS.md.
 
 | Date | Episode / file | Phase | Weight |
 |------|---------------|-------|--------|

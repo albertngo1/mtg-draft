@@ -1,6 +1,6 @@
 # Duskmourn: House of Horror (DSK) — Draft Guide
 
-> Synthesized from 6 Lords of Limited episodes (transcripts in `lol-subs/DSK/`). Treat as expert/theory opinion — **17Lands GIH WR stays the primary signal**; this guide is secondary. Source episodes span 2024-09-16 → 2025-01-24.
+> Synthesized from 6 Lords of Limited episodes (transcripts in `lol-subs/DSK/`). Treat as expert/theory opinion — This guide is the lead lens that **decodes** the 17Lands data — every GIH WR is archetype-conditional (trust where it transfers, discount where it inflates; see AGENTS.md). This guide is secondary. Source episodes span 2024-09-16 → 2025-01-24.
 
 ## ⚠ Recency rule (read first)
 
@@ -9,7 +9,7 @@
 - The **early access draft (2024-09-26)** is the first gameplay episode — a single draft, limited reps.
 - The **2024-10-02, 2024-10-12, 2024-10-21** episodes are mid-format drafts with genuine experience and real corrections to the Crash Course.
 - The **2025-01-24 Gruul grinding Mythic Ladder** episode is the most recent by far and reflects a fully-settled read on the format. It is the most authoritative source.
-- **17Lands GIH WR stays primary over all of this.** If live win-rate data contradicts a take here, trust the data.
+- **This guide decodes the 17Lands data rather than ranking beneath it.** Every GIH WR is archetype-conditional — use the guide to tell which archetype's deck a number came from: trust the WR where it transfers (cleanly-castable cards), discount it where it inflates (payoffs/multicolor). See AGENTS.md.
 
 ## Source timeline
 

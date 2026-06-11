@@ -1,6 +1,6 @@
 # Foundations (FDN) — Draft Guide
 
-> Synthesized from 6 Lords of Limited draft videos (Nov 2024 – Dec 2024). All episodes are gameplay/commentary — no dedicated "50 Takes" or retrospective episode was captured in this sample. Coverage is moderate: 1 crash-course preview + 5 gameplay videos. Treat as expert/theory opinion. **17Lands GIH WR stays the primary signal; this guide is secondary.**
+> Synthesized from 6 Lords of Limited draft videos (Nov 2024 – Dec 2024). All episodes are gameplay/commentary — no dedicated "50 Takes" or retrospective episode was captured in this sample. Coverage is moderate: 1 crash-course preview + 5 gameplay videos. Treat as expert/theory opinion. This guide is the lead lens that **decodes** the 17Lands data — every GIH WR is archetype-conditional (trust where it transfers, discount where it inflates; see AGENTS.md).
 
 ## ⚠ Recency rule (read first)
 
@@ -8,7 +8,7 @@
 - The **2024-11-04 "crash course"** episode is PREDICTIONS (pre-games played, theory only) — weakest evidence. Treat its card evaluations as hypotheses.
 - The **later gameplay videos** (Nov 14 – Dec 26) are the most authoritative: they show real draft decisions, card performance in context, and sideboard reasoning.
 - No "50 Takes" or season wrap-up episode is present in this sample — there is no single decisive "settled read" episode. The Dec 26 video (qualifier day one) is the most recent and highest-stakes.
-- **17Lands GIH WR stays primary over all of this.**
+- **This guide decodes the 17Lands data rather than ranking beneath it.** Every GIH WR is archetype-conditional — use the guide to tell which archetype's deck a number came from: trust the WR where it transfers (cleanly-castable cards), discount it where it inflates (payoffs/multicolor). See AGENTS.md.
 
 ## Source timeline
 
