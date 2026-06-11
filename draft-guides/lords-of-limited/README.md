@@ -6,7 +6,7 @@ Agent-facing draft-strategy references distilled from the
 directory** — one per set. Each guide carries a recency-weighted **Source timeline** + **Supersessions**
 section so newer episodes win on conflict.
 
-Treat all of this as expert/theory opinion — weight it like a CGB grade; **17Lands GIH WR stays primary.**
+These guides are the **lead lens and the decoder for the 17Lands data**: every GIH WR is *archetype-conditional* (the win rate of the decks that drafted the card), and the guide tells you which archetype's number you're reading — so the WR transfers for cleanly-castable cards and inflates for payoffs/multicolor. See `AGENTS.md` for the full treatment.
 
 Every set is **guide-only** — the committed `<SET>-draft-guide.md` is the whole artifact. Raw
 auto-caption transcripts for the bulk sets live in `../../data/lol-subs/<CODE>/` (gitignored); SOS and MKM

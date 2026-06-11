@@ -201,6 +201,20 @@ number is conditioned on and asking whether your deck matches that archetype:**
   deck. (Snarl Song's 60.7% GIH is soup casting it at X=4–5 for two 5/5s; in 2-color GW it's two 2/2s
   for six mana — a C, not a bomb. **Mentally substitute your real X / your real support before reading
   the number.**)
+
+**The discipline that keeps this honest — name the mechanism.** "That win rate doesn't apply to *us*"
+is exactly right for Snarl Song and exactly how motivated reasoning sounds when it's wrong. The test:
+**to discount a card's WR you must be able to name the concrete mechanism by which the conditioning
+fails for your deck** — X = your color count, double-off-color pips you can't cast, needs a graveyard
+you're not filling, needs a go-wide board you don't have, needs a payoff you didn't draft. *If you
+can't name a mechanism, the WR transfers and you don't get to override it.* No nameable mechanism =
+you're rationalizing past an inconvenient number, not decoding it.
+
+**Spend the decoding effort where it matters — the flagged minority, not every pick.** Most cards in
+a pack are low-concentration commons where the WR just transfers; don't turn a vanilla 2-drop into a
+philosophy exercise. The "whose deck is this number from" machinery only needs to fire on the ~10–20
+high-conditioning cards in a set (payoffs, Converge/X-cost, multicolor synergy, build-arounds). For
+everything else, trust the number and move fast.
 - **This is why the guide leads — not because it's "less biased."** The guide is built from archetype
   tiers too; it carries the *same* archetypal lens. Its job is to **decode** the stat: "A in soup, C in
   2-color" makes the hidden conditioning explicit where the single aggregate number buries it. Guide +

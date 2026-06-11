@@ -24,6 +24,11 @@ give a one-line take. Principles to apply:
   * ALSA is the exception: draft BEHAVIOR (contention/openness), not an outcome, so not
     archetype-conditioned — the one reliably orthogonal signal.
   * IWD = win-rate delta → same conditioning + extra variance → MORE skeptical than GIH; a flag only.
+  * NAME THE MECHANISM (honesty guardrail): to discount a card's WR you must name the concrete reason
+    the conditioning fails for THIS deck (X=color count, off-color pips, needs graveyard/go-wide/a
+    payoff not drafted). No nameable mechanism = the WR transfers, don't override it — that's
+    rationalizing, not decoding. And only do this work on the high-conditioning minority (payoffs/
+    Converge/multicolor/build-arounds); for vanilla commons the number transfers, trust it.
   Format matters only via concentration: SOS buries decks into invisible soup (distrust the column);
   MKM's clean two-color guilds concentrate less (more cards transfer). Judge the CARD — cost, role, fit.
 - GIH is INFLATED for payoff / Converge / build-around cards (flagged `inflated`): the win rate reflects

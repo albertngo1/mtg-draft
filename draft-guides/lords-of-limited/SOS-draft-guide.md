@@ -1,6 +1,6 @@
 # Secrets of Strixhaven (SOS) — Draft Guide
 
-> Agent-primary reference, synthesized from 10 Lords of Limited episodes (listed under Source episodes). Treat as expert/theory opinion — weight it like a CGB grade; **17Lands GIH WR stays primary**. Synthesized from videos current as of 2026-06-06.
+> Agent-primary reference, synthesized from 10 Lords of Limited episodes (listed under Source episodes). This guide is the **lead lens and the decoder for the 17Lands data**: every GIH WR is *archetype-conditional* (it's the win rate of the decks that drafted the card), and this guide tells you which archetype's number you're reading — so the WR **transfers** for cleanly-castable cards and **inflates** for payoffs/multicolor/soup pieces. See AGENTS.md for the full treatment. Synthesized from videos current as of 2026-06-06.
 >
 > IMPORTANT TIMELINE NOTE: prerelease/early-access episodes made predictions that the retrospective episodes **reversed**. Where they conflict, trust the *late/retrospective* read (50-takes wrap-up, mid-format episodes). Biggest reversal: Witherbloom was predicted #1 college, finished **dead last**.
 
@@ -11,7 +11,7 @@ These notes span **2026-04-13 → 2026-06-01**, and the format evolved *substant
 - **The newest video wins.** On any disagreement, the later-published episode supersedes the earlier one.
 - **Prerelease + early-access takes (04-13 → 04-20) are PREDICTIONS** made before/at first contact with the format — weakest possible evidence. A claim resting only on these is suspect.
 - **The 2026-06-01 retrospective ("School's Out For Summer", `50t`) is the single most authoritative source.** When it speaks, it settles the matter.
-- **17Lands GIH WR stays primary** over all of the above (project policy) — these episodes are expert/theory color, like a CGB grade.
+- **The guide decodes the 17Lands data, it doesn't rank below it** (project policy) — every GIH WR is archetype-conditional; use this guide to tell whose-deck a number came from, trust the WR where it transfers (cleanly-castable cards) and discount it where it inflates (payoffs/multicolor). See AGENTS.md.
 
 Use the Source timeline below to see at a glance how fresh each cited claim is (episode shorthands are defined in Card notes).
 
@@ -228,7 +228,7 @@ These are settled by recency. The early take is dead; do not treat it as a compe
 
 - **Lorehold vs. Silverquill ordering:** hosts nearly flip them even late (479/50t) — Silverquill is the scarier raw aggro deck, but Lorehold ranks ahead because it can also be a soup base. Genuinely close; treat as roughly equal B-tier aggro.
 - **"Don't pick commons picks 1-8":** Ethan's hard stance; **Ben explicitly does NOT co-sign it** — take fitting hits/power, just never sacrifice power level. Still a live split as of the late episodes. Treat as an *ethos*, not a rule.
-- **17Lands says white is best; hosts say soup is best.** They argue 17Lands structurally can't represent multicolor decks (lumps disparate 3-4c piles together). This is a standing methodological gap, not a stale take. Per project policy **17Lands GIH WR stays primary** — but be aware the data under-credits soup.
+- **17Lands says white is best; hosts say soup is best.** They argue 17Lands structurally can't represent multicolor decks (lumps disparate 3-4c piles together). This is a standing methodological gap, not a stale take — **and it's the textbook case of archetype-conditional WR**: white's high column comes from clean two-color decks the data *can* see, while soup's strength is split across invisible 3-4c piles, so the data systematically *under-credits soup and over-credits white*. Decode accordingly (see AGENTS.md core principle); don't read the white-is-best column at face value in this format.
 - **Ben vs. Ethan philosophy split (recurring through the whole run):** Ben takes the most powerful card every pack regardless; Ethan takes small power hits to stay focused/keep lanes open and prioritizes fixing when mana is shaky. Neither is "the answer" — both note Ben's all-greed soup deck still 7-0'd.
 - **Bombard:** Ben claims he's *higher* than Ethan on it; Ethan denies. Minor, live.
 - **Sonar:** one host loved it (50t), the other was lower and "never got to do" the Micah combo. Single-host enthusiasm, unresolved.

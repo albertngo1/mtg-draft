@@ -8,7 +8,7 @@
 - **Early-access / release-week VODs (2026-04-21 → 2026-04-27) are PREDICTIONS** — first contact with the format, weakest evidence. A claim resting only on these is suspect.
 - **End-of-format / Contender VODs (2026-05-26 → 2026-06-02) are the most authoritative** — Kenji's settled, rep-tested verdict.
 - **The mid-format converge-hatred (~05-13, "I HATE THE CONVERGE DECKS") was a transient detour, NOT the final word.** The end-of-format verdict lands firmly on **soup = best deck** (he farms Contender with it). His EARLY pro-converge call (04-25) was vindicated.
-- **17Lands GIH WR stays primary** over all of this (project policy). These notes are expert/practical color, not a substitute for the data.
+- **These notes decode the 17Lands data, they don't rank below it** (project policy). Every GIH WR is archetype-conditional; use these to tell whose-deck a number came from — trust the WR where it transfers, discount it where it inflates (e.g. soup is under-credited by the data; see AGENTS.md).
 
 ### Source timeline
 

@@ -1,5 +1,5 @@
 # Numot — general draft principles
-> Evergreen, set-independent draft & play principles distilled across ~205 NumotTheNummy (Kenji Egashira) regular Arena draft VODs. Built 2026-06-10. These are expert opinion/theory — at draft time, 17Lands GIH win-rate data stays primary; treat these as the "why" behind picks.
+> Evergreen, set-independent draft & play principles distilled across ~205 NumotTheNummy (Kenji Egashira) regular Arena draft VODs. Built 2026-06-10. Expert opinion/theory and the "why" behind picks — and the lens that *decodes* the 17Lands data: every GIH WR is archetype-conditional, so these principles tell you whose-deck a number came from and whether it transfers to yours (see AGENTS.md).
 
 ## Picking & pick order
 
