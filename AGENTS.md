@@ -27,8 +27,9 @@ archetype/guild tier table, format principles, a **card-notes table** to cross-r
 signals, supersessions). Treat as *theory/expert opinion* (same weight as a tier-list grade), not
 ground truth — **17Lands GIH WR stays primary.** Each guide encodes a **recency rule: on conflict
 the newest source wins** (prerelease/preview takes are weak predictions; the format retrospective
-is most authoritative — supersessions are marked inline). Per-episode notes + transcripts live in
-the deep sets' `lords-of-limited/sources/<set>/sources/` (SOS, MKM) — open one only to dig into a specific pick's rationale.
+is most authoritative — supersessions are marked inline). Each guide ends with a `## Source episodes`
+list (`date — title (youtube_id)`); raw transcripts for the bulk sets live in `data/lol-subs/<CODE>/`
+(gitignored).
 
 A **second** expert-notes source lives flat in [`numot/`](./numot/) as `<SET>.md` — draft tips
 distilled from NumotTheNummy (Kenji Egashira) draft VODs (`numot/general-tips.md` holds the

@@ -8,26 +8,14 @@ section so newer episodes win on conflict.
 
 Treat all of this as expert/theory opinion — weight it like a CGB grade; **17Lands GIH WR stays primary.**
 
-Two coverage tiers exist:
+Every set is **guide-only** — the committed `<SET>-draft-guide.md` is the whole artifact. Raw
+auto-caption transcripts for the bulk sets live in `../data/lol-subs/<CODE>/` (gitignored); SOS and MKM
+were distilled by hand earlier from the same channel and aren't cached locally (re-fetchable any time
+via `../data/lol-subs/fetch_lol.sh`).
 
-- **Deep sets (SOS, MKM)** — the actively-drafted sets also keep a `<set>/` folder with its own
-  `README.md` + a `sources/` dig-deeper layer of per-episode notes.
-- **Bulk sets (the other 33)** — guide-only, synthesized in one pass (2026-06-10) directly from
-  auto-caption transcripts. The transcripts live in `../data/lol-subs/<CODE>/` (gitignored); only the
-  guide `.md` is committed. No `sources/` subfolder.
+## Sets covered
 
-## Sets covered — deep (with `sources/`)
-
-Per-episode source notes for the deep sets live under [`sources/`](./sources/).
-
-| Set | Guide | Sources | Notes |
-|-----|-------|---------|-------|
-| **Secrets of Strixhaven (SOS)** | [SOS-draft-guide.md](./SOS-draft-guide.md) | [`sources/sos/`](./sources/sos/) | 10 episodes, 2026-04-13 → 2026-06-01. Soup vs aggro; Prismari (UR) strong. |
-| **Murders at Karlov Manor (MKM)** | [MKM-draft-guide.md](./MKM-draft-guide.md) | [`sources/mkm/`](./sources/mkm/) | 6 episodes, 2024-01-22 → 2024-03-25. Quick Draft re-run **Jun 8–16 2026**. Boros (RW) top. |
-
-## Sets covered — bulk (guide-only, built 2026-06-10)
-
-`Eps` = transcripts distilled; thin-coverage sets (≤2 episodes, often a single gameplay/showdown video) are hedged in-guide.
+`Eps` = episodes distilled; thin-coverage sets (≤2 episodes, often a single gameplay/showdown video) are hedged in-guide.
 
 | Set | Guide | Eps | Span | Settled read |
 |-----|-------|-----|------|--------------|
@@ -49,11 +37,13 @@ Per-episode source notes for the deep sets live under [`sources/`](./sources/).
 | Core Set 2021 (M21) | [M21-draft-guide.md](./M21-draft-guide.md) | 6 | 2020-06 → 2020-07 | Aggressive format. |
 | Marvel's Spider-Man (MAR) | [MAR-draft-guide.md](./MAR-draft-guide.md) | 4 | 2025-09 | High-synergy small-set (pick-2); week-1 only. |
 | Modern Horizons 3 (MH3) | [MH3-draft-guide.md](./MH3-draft-guide.md) | 5 | 2024-06 | Three-wedge, high-synergy (Jeskai energy etc.). |
+| Murders at Karlov Manor (MKM) | [MKM-draft-guide.md](./MKM-draft-guide.md) | 6 | 2024-01 → 2024-03 | Quick Draft re-run **Jun 8–16 2026**. Boros (RW) top. |
 | March of the Machine (MOM) | [MOM-draft-guide.md](./MOM-draft-guide.md) | 6 | 2023-04 → 2023-05 | UB is the best pair. |
 | Kamigawa: Neon Dynasty (NEO) | [NEO-draft-guide.md](./NEO-draft-guide.md) | 1 | 2022-02 | **Thin** — single draft; Simic functional. |
 | Outlaws of Thunder Junction (OTJ) | [OTJ-draft-guide.md](./OTJ-draft-guide.md) | 6 | 2024-04 → 2025-01 | Green best; GW the best archetype. |
 | Pioneer Masters (PIOM) | [PIOM-draft-guide.md](./PIOM-draft-guide.md) | 6 | 2024-12 → 2025-01 | Multicolor good-stuff; gates fix. |
 | Ravnica Allegiance (RNA) | [RNA-draft-guide.md](./RNA-draft-guide.md) | 3 | 2019-01 → 2019-03 | Orzhov best guild, Azorius 2nd. |
+| Secrets of Strixhaven (SOS) | [SOS-draft-guide.md](./SOS-draft-guide.md) | 10 | 2026-04 → 2026-06 | Soup vs aggro; Prismari (UR) strong. |
 | Strixhaven: School of Mages (STX) | [STX-draft-guide.md](./STX-draft-guide.md) | 6 | 2026-04 → 2026-06 | Soup vs aggro (orig. Strixhaven). |
 | Tarkir: Dragonstorm (TDM) | [TDM-draft-guide.md](./TDM-draft-guide.md) | 6 | 2025-03 → 2025-05 | Boros aggro vs 5c dragon soup. |
 | Theros Beyond Death (THB) | [THB-draft-guide.md](./THB-draft-guide.md) | 6 | 2020-01 → 2020-03 | Black is best/deepest by a wide margin. |
@@ -65,15 +55,12 @@ Per-episode source notes for the deep sets live under [`sources/`](./sources/).
 
 ## Conventions (for adding a new set)
 
-- Write the consolidated `<SET>-draft-guide.md` **here in `lords-of-limited/`** (flat). Every guide
-  applies a **recency rule** (newest video supersedes older on conflict; prerelease/preview takes are
-  weakest; the format retrospective is most authoritative) and carries a `## Source timeline` table +
-  `## Supersessions` section.
-- **Deep mode** (a set Albert actively drafts): also create `lords-of-limited/<code-lowercase>/` with
-  its own `README.md` and a `sources/` folder of per-episode notes (filenames prefixed with publish
-  date, `YYYY-MM-DD-slug.md`, so they sort chronologically).
-- **Bulk mode** (everything else): guide-only, no `sources/` subfolder; transcripts stay in
-  `../data/lol-subs/<CODE>/` (gitignored). Pipeline: `data/lol-subs/fetch_lol.sh` (`yt-dlp`
-  auto-captions → clean `.txt` + `meta.tsv`) → `data/lol-subs/synth_workflow.js` (one synthesis
-  agent per set). `worklist.json` scopes which videos belong to which set.
-- Add a row to the right table above, and keep the `../AGENTS.md` pointer current.
+- Write the consolidated `<SET>-draft-guide.md` **here in `lords-of-limited/`** (flat), guide-only — no
+  `sources/` subfolder. Every guide applies a **recency rule** (newest video supersedes older on
+  conflict; prerelease/preview takes are weakest; the format retrospective is most authoritative) and
+  carries a `## Source timeline` table + `## Supersessions` section + a bottom `## Source episodes` list
+  (`date — title (youtube_id)`).
+- Pipeline: `data/lol-subs/fetch_lol.sh` (`yt-dlp` auto-captions → clean `.txt` + `meta.tsv`) →
+  `data/lol-subs/synth_workflow.js` (one synthesis agent per set). `worklist.json` scopes which videos
+  belong to which set. Transcripts stay in `../data/lol-subs/<CODE>/` (gitignored).
+- Add a row to the table above, and keep the `../AGENTS.md` pointer current.

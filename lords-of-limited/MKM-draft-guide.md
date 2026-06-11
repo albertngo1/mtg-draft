@@ -1,6 +1,6 @@
 # Murders at Karlov Manor (MKM) — Draft Guide
 
-> Agent-primary reference, synthesized from 6 Lords of Limited episodes (per-episode notes + transcripts in `sources/mkm/sources/`). Treat as expert/theory opinion — weight it like a CGB grade; **17Lands GIH WR stays primary**. Source episodes from 2024-01 → 2024-03 (MKM's original release); cards are identical in the 2026 Quick Draft re-run.
+> Agent-primary reference, synthesized from 6 Lords of Limited episodes (listed under Source episodes). Treat as expert/theory opinion — weight it like a CGB grade; **17Lands GIH WR stays primary**. Source episodes from 2024-01 → 2024-03 (MKM's original release); cards are identical in the 2026 Quick Draft re-run.
 
 ## ⚠ Recency rule (read first)
 
@@ -228,9 +228,9 @@ Auto-transcribed names — verify against the actual card list before trusting:
 
 ## Source episodes
 
-- [2024-01-22 — Murders at Karlov Manor Preview Season!!!](sources/mkm/sources/2024-01-22-preview-season.md) — BLIND preview, predictions only.
-- [2024-01-29 — Solving the Case of MKM Draft!!!](sources/mkm/sources/2024-01-29-solving-the-case-draft.md) — pre-release crash course / stats.
-- [2024-02-07 — MKM Draft Battle Day 1!!!](sources/mkm/sources/2024-02-07-draft-battle-day-1.md) — early reps (BR splash vs WB aggro).
-- [2024-03-05 — MKM Arena Open Day 2 Draft 1](sources/mkm/sources/2024-03-05-arena-open-d2-draft-1.md) — late competitive (WU Detective Tempo, 3-1).
-- [2024-03-06 — MKM Arena Open Day 2 Draft 2](sources/mkm/sources/2024-03-06-arena-open-d2-draft-2.md) — late competitive (BG graveyard splash R).
-- [2024-03-25 — MKM Is Gone Too Soon!!! (retrospective)](sources/mkm/sources/2024-03-25-gone-too-soon-retro.md) — final verdict, MOST AUTHORITATIVE.
+- 2024-01-22 — Murders at Karlov Manor Preview Season!!! (VNOkdn2Rb6I) — BLIND preview, predictions only.
+- 2024-01-29 — Solving the Case of MKM Draft!!! (k1K8KHFkzs4) — pre-release crash course / stats.
+- 2024-02-07 — MKM Draft Battle - Day 1!!! (XseexR0eTfs) — early reps (BR splash vs WB aggro).
+- 2024-03-05 — MKM Arena Open Day 2 Draft 1 (2H0chsu1KT4) — late competitive (WU Detective Tempo, 3-1).
+- 2024-03-06 — MKM Arena Open Day 2 Draft 2 (n9EDYcuV1Cg) — late competitive (BG graveyard splash R).
+- 2024-03-25 — MKM Is Gone Too Soon!!! (mFajL8fdfhQ) — final verdict, MOST AUTHORITATIVE.

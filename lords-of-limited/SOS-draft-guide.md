@@ -1,6 +1,6 @@
 # Secrets of Strixhaven (SOS) — Draft Guide
 
-> Agent-primary reference, synthesized from 10 Lords of Limited episodes (per-episode notes + transcripts in `sources/sos/sources/`). Treat as expert/theory opinion — weight it like a CGB grade; **17Lands GIH WR stays primary**. Synthesized from videos current as of 2026-06-06.
+> Agent-primary reference, synthesized from 10 Lords of Limited episodes (listed under Source episodes). Treat as expert/theory opinion — weight it like a CGB grade; **17Lands GIH WR stays primary**. Synthesized from videos current as of 2026-06-06.
 >
 > IMPORTANT TIMELINE NOTE: prerelease/early-access episodes made predictions that the retrospective episodes **reversed**. Where they conflict, trust the *late/retrospective* read (50-takes wrap-up, mid-format episodes). Biggest reversal: Witherbloom was predicted #1 college, finished **dead last**.
 
@@ -239,13 +239,13 @@ These are settled by recency. The early take is dead; do not treat it as a compe
 
 ## Source episodes
 
-- `sources/sos/sources/2026-04-13-prerelease-crash-course.md` — Prerelease Crash Course: Secrets of Strixhaven (mechanics + college-by-college + early predictions; **predictions later reversed**).
-- `sources/sos/sources/2026-04-16-am-i-the-only-bw-drafter.md` — Am I The Only BW Drafter at the Table??? (early-access Silverquill removal deck; reading an open color).
-- `sources/sos/sources/2026-04-17-loreholding-on-for-dear-life.md` — Loreholding On For Dear Life!!! (early-access Lorehold tokens-go-wide, 0-3 vs. sweepers + lifegain).
-- `sources/sos/sources/2026-04-20-early-format-impressions.md` — Early Format Impressions (post-prerelease debrief; ~10 commons matter, college mechanics).
-- `sources/sos/sources/2026-04-27-soup-or-streamlined-decks.md` — Should You Draft Soup or Streamlined Decks (week-one format dump; soup vs. white aggro; over-the-top payoff list).
-- `sources/sos/sources/2026-05-04-ep477-pro-tour-draft-review.md` — Ep 477 Pro Tour Draft Review (Larson + Steuer drafts; converge checklist; Bo3/pod context).
-- `sources/sos/sources/2026-05-11-ep478-midrange-is-new-aggro.md` — Ep 478 Midrange is the New Aggro (three pillars of the assertive deck; Render Speechless).
-- `sources/sos/sources/2026-05-18-ep479-pop-quiz-hotshot.md` — Ep 479 Pop Quiz Hotshot (two of the hosts' own draft logs; greed vs. mana base; fixing-when-poor).
-- `sources/sos/sources/2026-05-25-sending-out-a-sos-draft.md` — Sending Out a SOS Draft (format-fatigue vent; avoid bad soup; non-rare cards that beat soup).
-- `sources/sos/sources/2026-06-01-schools-out-for-summer.md` — School's Out For Summer (50-takes wrap-up; the definitive retrospective consensus + power rankings).
+- 2026-04-13 — Prerelease Crash Course: Secrets of Strixhaven (sonKik39H9o) — mechanics + college-by-college + early predictions; **predictions later reversed**.
+- 2026-04-16 — Am I The Only BW Drafter at the Table??? (yN458RU9CGw) — early-access Silverquill removal deck; reading an open color.
+- 2026-04-17 — Loreholding On For Dear Life!!! (z3FU6NAG4PI) — early-access Lorehold tokens-go-wide, 0-3 vs. sweepers + lifegain.
+- 2026-04-20 — Early Format Impressions (7U6MhblA7LA) — post-prerelease debrief; ~10 commons matter, college mechanics.
+- 2026-04-27 — Should You Draft Soup or Streamlined Decks (96moLNSBajQ) — week-one format dump; soup vs. white aggro; over-the-top payoff list.
+- 2026-05-04 — Pro Tour Draft Review | Episode 477 (wn-eSEEWYlU) — Larson + Steuer drafts; converge checklist; Bo3/pod context.
+- 2026-05-11 — Midrange is the New Aggro | Episode 478 (OAZ-_Z3V5Bs) — three pillars of the assertive deck; Render Speechless.
+- 2026-05-18 — Pop Quiz Hotshot | Episode 479 (Gfxw2MYe-9Y) — two of the hosts' own draft logs; greed vs. mana base; fixing-when-poor.
+- 2026-05-25 — Sending Out a SOS Draft (Vf2jJkxXA3Q) — format-fatigue vent; avoid bad soup; non-rare cards that beat soup.
+- 2026-06-01 — School's Out For Summer!!! (4PHlYsYf7nI) — 50-takes wrap-up; the definitive retrospective consensus + power rankings.
