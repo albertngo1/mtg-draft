@@ -32,7 +32,7 @@ soup deck's number, not yours), and the guide tells you which archetype's number
 Each guide encodes a **recency rule: on conflict
 the newest source wins** (prerelease/preview takes are weak predictions; the format retrospective
 is most authoritative — supersessions are marked inline). Each guide ends with a `## Source episodes`
-list (`date — title (youtube_id)`); raw transcripts for the bulk sets live in `data/lol-subs/<CODE>/`
+list (`date — title (youtube_id)`); raw transcripts for the bulk sets live in `data/subs/lords-of-limited/<CODE>/`
 (gitignored).
 
 A **second** expert-notes source lives flat in [`draft-guides/numot/`](./draft-guides/numot/) as `<SET>.md` — draft tips

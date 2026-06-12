@@ -1,6 +1,6 @@
 # Avatar: The Last Airbender (ATLA) — Draft Guide
 
-> Agent-primary reference, synthesized from 6 Lords of Limited episodes (transcripts in `data/lol-subs/ATLA/`). This guide is the lead lens that **decodes** the 17Lands data — every GIH WR is archetype-conditional (trust where it transfers, discount where it inflates; see AGENTS.md). Source episodes from 2025-11-03 → 2025-12-22.
+> Agent-primary reference, synthesized from 6 Lords of Limited episodes (transcripts in `data/subs/lords-of-limited/ATLA/`). This guide is the lead lens that **decodes** the 17Lands data — every GIH WR is archetype-conditional (trust where it transfers, discount where it inflates; see AGENTS.md). Source episodes from 2025-11-03 → 2025-12-22.
 
 ## Recency rule (read first)
 

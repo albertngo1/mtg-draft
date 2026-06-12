@@ -1,6 +1,6 @@
 # Final Fantasy (FIN) — Draft Guide
 
-> Agent-primary reference, synthesized from 6 Lords of Limited episodes (transcripts in `data/lol-subs/FIN/`). This guide is the lead lens that **decodes** the 17Lands data — every GIH WR is archetype-conditional (trust where it transfers, discount where it inflates; see AGENTS.md). Source episodes from 2025-05 → 2025-07 (FIN's original release window).
+> Agent-primary reference, synthesized from 6 Lords of Limited episodes (transcripts in `data/subs/lords-of-limited/FIN/`). This guide is the lead lens that **decodes** the 17Lands data — every GIH WR is archetype-conditional (trust where it transfers, discount where it inflates; see AGENTS.md). Source episodes from 2025-05 → 2025-07 (FIN's original release window).
 
 ## Recency rule (read first)
 
@@ -218,9 +218,9 @@ Auto-transcribed names — verify against actual card list:
 
 ## Source episodes
 
-- [2025-05-26 — "These New Cards Look FANTASTIC!!!"](../data/lol-subs/FIN/OuQacGs_k5I.txt) — BLIND preview, predictions only.
-- [2025-06-02 — "Synergy and Excitement Levels are HIGH!!!"](../data/lol-subs/FIN/wnysYygplA4.txt) — crash course / pre-release.
-- [2025-06-16 — "BIG Surprises after Week 1 of FIN!!!"](../data/lol-subs/FIN/5-GScnchgoU.txt) — early reps, first data.
-- [2025-06-23 — "LIVE Show and PT Insider Scoop!!!"](../data/lol-subs/FIN/i4DBgsOtqrA.txt) — mid-format, MagicCon Vegas / Pro Tour.
-- [2025-07-07 — "Why Won't You Draft This Color Pair???"](../data/lol-subs/FIN/xLiVBasIH2I.txt) — late, draft logs / decision trees.
-- [2025-07-17 — "Final Fantasy's Finale" (50 Takes retro)](../data/lol-subs/FIN/lMfeEkmcxqY.txt) — final verdict, MOST AUTHORITATIVE.
+- 2025-05-26 — "These New Cards Look FANTASTIC!!!" (OuQacGs_k5I) — BLIND preview, predictions only.
+- 2025-06-02 — "Synergy and Excitement Levels are HIGH!!!" (wnysYygplA4) — crash course / pre-release.
+- 2025-06-16 — "BIG Surprises after Week 1 of FIN!!!" (5-GScnchgoU) — early reps, first data.
+- 2025-06-23 — "LIVE Show and PT Insider Scoop!!!" (i4DBgsOtqrA) — mid-format, MagicCon Vegas / Pro Tour.
+- 2025-07-07 — "Why Won't You Draft This Color Pair???" (xLiVBasIH2I) — late, draft logs / decision trees.
+- 2025-07-17 — "Final Fantasy's Finale" (50 Takes retro) (lMfeEkmcxqY) — final verdict, MOST AUTHORITATIVE.

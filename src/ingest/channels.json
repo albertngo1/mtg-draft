@@ -1,0 +1,29 @@
+{
+  "_doc": "Registry of expert-prose source channels. The ETL (src/ingest/) is channel-agnostic and keys off this file. slug = the bucket name used in BOTH data/subs/<slug>/ (raw, gitignored) and draft-guides/<slug>/ (results, committed). fetch with: src/ingest/fetch_subs.sh <slug>.",
+  "channels": {
+    "lords-of-limited": {
+      "name": "Lords of Limited",
+      "youtube": "https://www.youtube.com/@LordsofLimited",
+      "content_type": "draft-gameplay + set-strategy videos",
+      "guide_dir": "draft-guides/lords-of-limited",
+      "guide_filename": "<SET>-draft-guide.md",
+      "notes": "Channel #1 (original). Per-set consolidated guide; ## Card notes bullets are parsed into the draft JSON."
+    },
+    "numot": {
+      "name": "NumotTheNummy (Kenji Egashira)",
+      "youtube": "https://www.youtube.com/@NumotTheNummy",
+      "content_type": "regular Arena draft VODs (cube/sealed/constructed/alchemy excluded)",
+      "guide_dir": "draft-guides/numot",
+      "guide_filename": "<SET>.md",
+      "notes": "Channel #2. Gameplay-driven; auto-captions of speech (names mangled, mark (?))."
+    },
+    "limited-resources": {
+      "name": "Limited Resources (Marshall Sutcliffe + Luis Scott-Vargas)",
+      "youtube": "https://www.youtube.com/channel/UCT22Ehr7vuRpIAaJ7dEkApg",
+      "content_type": "audio podcast on YouTube: card-by-card set reviews (letter grades) + format overviews",
+      "guide_dir": "draft-guides/limited-resources",
+      "guide_filename": "<SET>.md",
+      "notes": "Channel #3 (added 2026-06). Review/theory lens, decorrelated from the two gameplay channels; preserves LR's per-card letter grades. Audio auto-captions (names mangled, mark (?))."
+    }
+  }
+}

@@ -1,6 +1,6 @@
 # The Lost Caverns of Ixalan (LCI) — Draft Guide
 
-> Synthesized from 6 Lords of Limited episodes (transcripts in `data/lol-subs/LCI/`). This guide is the lead lens that **decodes** the 17Lands data — every GIH WR is archetype-conditional (trust where it transfers, discount where it inflates; see AGENTS.md). This guide is secondary color for decision-making.
+> Synthesized from 6 Lords of Limited episodes (transcripts in `data/subs/lords-of-limited/LCI/`). This guide is the lead lens that **decodes** the 17Lands data — every GIH WR is archetype-conditional (trust where it transfers, discount where it inflates; see AGENTS.md). This guide is secondary color for decision-making.
 
 ## ⚠ Recency rule (read first)
 

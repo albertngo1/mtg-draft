@@ -440,7 +440,7 @@ NumotTheNummy (Kenji Egashira) regular Arena draft VODs: per-set tips (`MKM.md`/
 section per tier-1 set flagging where the two experts disagree. The agent loads `draft-guides/numot/<SET>.md`
 at draft start alongside the LoL guide; same status (theory/expert opinion, 17Lands GIH WR stays
 primary). The scrape is fingerprinted in `draft-guides/numot/manifest.json` so re-runs only fetch/distill new
-or changed VODs — see [`draft-guides/numot/README.md`](./draft-guides/numot/README.md) and `src/fingerprint_numot.py`.
+or changed VODs — see [`draft-guides/numot/README.md`](./draft-guides/numot/README.md) and `src/ingest/fingerprint.py numot`.
 
 ## Data sources & credits
 

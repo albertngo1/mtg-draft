@@ -5,7 +5,7 @@ compiled into per-set reference files for the draft coach.
 
 - **Source:** the NumotTheNummy YouTube channel, *regular draft* VODs only (cube, sealed,
   constructed, and alchemy content excluded).
-- **Built:** 2026-06-10, from YouTube auto-caption transcripts (`data/numot-subs/<SET>/<id>.txt`,
+- **Built:** 2026-06-10, from YouTube auto-caption transcripts (`data/subs/numot/<SET>/<id>.txt`,
   gitignored). Auto-captions mangle card/mechanic names heavily; names were corrected only where
   confident from context, and uncertain readings are marked `(?)`. Treat as expert
   opinion/theory — at draft time these **decode** the archetype-conditional 17Lands data (see AGENTS.md).
@@ -30,18 +30,18 @@ compiled into per-set reference files for the draft coach.
 been distilled into the notes, plus videos known to have no captions. This lets a future run skip
 work that's already done instead of re-fetching and re-summarizing all 205 VODs.
 
-Tool: `src/fingerprint_numot.py`
+Tool: `src/ingest/fingerprint.py numot`
 
 ```sh
-# After adding/re-enumerating VODs in data/numot-subs/worklist.json:
-python3 src/fingerprint_numot.py new          # what's new or changed (human-readable)
-python3 src/fingerprint_numot.py new --ids     # bare "<SET>\t<id>" lines to drive a fetch/distill loop
+# After adding/re-enumerating VODs in data/subs/numot/worklist.json:
+python3 src/ingest/fingerprint.py numot new          # what's new or changed (human-readable)
+python3 src/ingest/fingerprint.py numot new --ids     # bare "<SET>\t<id>" lines to drive a fetch/distill loop
 
 # After fetching + distilling those into numot/<SET>.md:
-python3 src/fingerprint_numot.py update        # rewrite manifest.json to mark them done
+python3 src/ingest/fingerprint.py numot update        # rewrite manifest.json to mark them done
 ```
 
-`fetch_subs.sh` is already idempotent at the fetch layer (it skips any video with an existing
+`src/ingest/fetch_subs.sh numot` is already idempotent at the fetch layer (it skips any video with an existing
 `.txt`). The manifest adds the missing piece — **distill-layer** idempotency — so stage 2 only
 processes videos that are new or whose transcript changed. Captionless videos are recorded too, so
 they aren't retried every run.

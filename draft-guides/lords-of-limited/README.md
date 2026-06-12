@@ -9,9 +9,9 @@ section so newer episodes win on conflict.
 These guides are the **lead lens and the decoder for the 17Lands data**: every GIH WR is *archetype-conditional* (the win rate of the decks that drafted the card), and the guide tells you which archetype's number you're reading — so the WR transfers for cleanly-castable cards and inflates for payoffs/multicolor. See `AGENTS.md` for the full treatment.
 
 Every set is **guide-only** — the committed `<SET>-draft-guide.md` is the whole artifact. Raw
-auto-caption transcripts for the bulk sets live in `../../data/lol-subs/<CODE>/` (gitignored); SOS and MKM
+auto-caption transcripts for the bulk sets live in `../../data/subs/lords-of-limited/<CODE>/` (gitignored); SOS and MKM
 were distilled by hand earlier from the same channel and aren't cached locally (re-fetchable any time
-via `../../data/lol-subs/fetch_lol.sh`).
+via `src/ingest/fetch_subs.sh lords-of-limited`).
 
 ## Sets covered
 
@@ -60,7 +60,8 @@ via `../../data/lol-subs/fetch_lol.sh`).
   conflict; prerelease/preview takes are weakest; the format retrospective is most authoritative) and
   carries a `## Source timeline` table + `## Supersessions` section + a bottom `## Source episodes` list
   (`date — title (youtube_id)`).
-- Pipeline: `data/lol-subs/fetch_lol.sh` (`yt-dlp` auto-captions → clean `.txt` + `meta.tsv`) →
-  `data/lol-subs/synth_workflow.js` (one synthesis agent per set). `worklist.json` scopes which videos
-  belong to which set. Transcripts stay in `../../data/lol-subs/<CODE>/` (gitignored).
+- Pipeline: `src/ingest/fetch_subs.sh lords-of-limited` (`yt-dlp` auto-captions → clean `.txt` +
+  `meta.tsv`) → an agent distills/synthesizes one guide per set. (The old `synth_workflow.js` is now
+  legacy, archived under `data/subs/lords-of-limited/_archive/`.) `worklist.json` scopes which videos
+  belong to which set. Transcripts stay in `../../data/subs/lords-of-limited/<CODE>/` (gitignored).
 - Add a row to the table above, and keep the `../../AGENTS.md` pointer current.

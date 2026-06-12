@@ -1,6 +1,6 @@
 # Duskmourn: House of Horror (DSK) — Draft Guide
 
-> Synthesized from 6 Lords of Limited episodes (transcripts in `lol-subs/DSK/`). Treat as expert/theory opinion — This guide is the lead lens that **decodes** the 17Lands data — every GIH WR is archetype-conditional (trust where it transfers, discount where it inflates; see AGENTS.md). This guide is secondary. Source episodes span 2024-09-16 → 2025-01-24.
+> Synthesized from 6 Lords of Limited episodes (transcripts in `data/subs/lords-of-limited/DSK/`). Treat as expert/theory opinion — This guide is the lead lens that **decodes** the 17Lands data — every GIH WR is archetype-conditional (trust where it transfers, discount where it inflates; see AGENTS.md). This guide is secondary. Source episodes span 2024-09-16 → 2025-01-24.
 
 ## ⚠ Recency rule (read first)
 

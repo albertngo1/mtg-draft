@@ -1,37 +1,38 @@
 #!/usr/bin/env python3
-"""Fingerprint the Numot transcript scrape so incremental runs skip redundant work.
+"""Fingerprint a channel's transcript scrape so incremental runs skip redundant work.
+
+Channel-agnostic: takes a channel slug (one of the keys in src/ingest/channels.json,
+e.g. lords-of-limited, numot, limited-resources) as its first argument and derives all
+paths from it.
 
 The scrape has two stages that can redo work:
-  1. fetch   — fetch_subs.sh downloads auto-captions to data/numot-subs/<SET>/<id>.txt.
-               Already idempotent (skips existing .txt).
-  2. distill — stage-2 agents summarize every transcript into draft-guides/numot/<SET>.md.
+  1. fetch   — src/ingest/fetch_subs.sh downloads auto-captions to
+               data/subs/<slug>/<SET>/<id>.txt. Already idempotent (skips existing .txt).
+  2. distill — stage-2 agents summarize every transcript into draft-guides/<slug>/<SET>.md.
                WITHOUT a manifest this re-summarizes everything each run.
 
 This script records a content fingerprint (sha1 + word count) of every transcript
-that has been distilled into draft-guides/numot/, in a committed manifest (draft-guides/numot/manifest.json).
-A future run computes the same fingerprints and only fetches/distills the videos
-that are NEW or whose transcript CHANGED.
+that has been distilled into draft-guides/<slug>/, in a committed manifest
+(draft-guides/<slug>/manifest.json). A future run computes the same fingerprints and
+only fetches/distills the videos that are NEW or whose transcript CHANGED.
 
 Usage:
-  fingerprint_numot.py update          Rebuild draft-guides/numot/manifest.json from current
-                                        transcripts + worklist.json (run after a
-                                        distill pass; marks every fetched video distilled).
-  fingerprint_numot.py new             Print video IDs in worklist.json that are NOT
-                                        in the manifest, or whose transcript sha1
-                                        changed — i.e. the work an incremental run
-                                        actually needs to do. Grouped by set.
-  fingerprint_numot.py new --ids       Same, but print bare "<SET>\t<id>" lines
-                                        (feed straight into a fetch/distill loop).
+  fingerprint.py <slug> update      Rebuild draft-guides/<slug>/manifest.json from current
+                                     transcripts + worklist.json (run after a distill pass;
+                                     marks every fetched video distilled).
+  fingerprint.py <slug> new         Print video IDs in worklist.json that are NOT in the
+                                     manifest, or whose transcript sha1 changed — i.e. the
+                                     work an incremental run actually needs to do. Grouped by set.
+  fingerprint.py <slug> new --ids   Same, but print bare "<SET>\t<id>" lines
+                                     (feed straight into a fetch/distill loop).
 """
 import hashlib
 import json
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent          # repo root (parent of src/)
-SUBS = ROOT / "data" / "numot-subs"                    # transcript tree (gitignored)
-WORKLIST = SUBS / "worklist.json"
-MANIFEST = ROOT / "draft-guides" / "numot" / "manifest.json"   # committed, travels with repo
+ROOT = Path(__file__).resolve().parents[2]             # repo root (two up from src/ingest/)
+CHANNELS = ROOT / "src" / "ingest" / "channels.json"
 
 
 def sha1_words(txt_path):
@@ -39,10 +40,10 @@ def sha1_words(txt_path):
     return hashlib.sha1(raw).hexdigest(), len(raw.split())
 
 
-def scan_transcripts():
+def scan_transcripts(subs):
     """{set: {video_id: {"sha1":..., "words":...}}} for every .txt on disk."""
     out = {}
-    for txt in sorted(SUBS.glob("*/*.txt")):
+    for txt in sorted(subs.glob("*/*.txt")):
         s, vid = txt.parent.name, txt.stem
         if s.startswith((".", "_")):
             continue
@@ -51,13 +52,13 @@ def scan_transcripts():
     return out
 
 
-def load_worklist():
-    return json.loads(WORKLIST.read_text()) if WORKLIST.exists() else {}
+def load_worklist(worklist):
+    return json.loads(worklist.read_text()) if worklist.exists() else {}
 
 
-def cmd_update():
-    work = load_worklist()
-    scanned = scan_transcripts()
+def cmd_update(slug, subs, worklist, manifest_path, channel_meta):
+    work = load_worklist(worklist)
+    scanned = scan_transcripts(subs)
     videos, sets = {}, {}
     for s, vids in scanned.items():
         tier = work.get(s, {}).get("tier")
@@ -74,26 +75,26 @@ def cmd_update():
                                    "distilled": False, "reason": "no-captions"}
                 miss.append(f"{s}/{v['id']}")
     manifest = {
-        "channel": "NumotTheNummy",
-        "scope": "regular Arena draft VODs (cube/sealed/constructed/alchemy excluded)",
+        "channel": channel_meta.get("name", slug),
+        "scope": channel_meta.get("content_type", ""),
         "note": "Fingerprint of distilled scrape. sha1 = sha1 of the cleaned transcript .txt.",
         "counts": {"sets": len(sets), "videos_distilled": sum(1 for v in videos.values() if v["distilled"]),
                    "videos_no_captions": len(miss)},
         "sets": dict(sorted(sets.items())),
         "videos": dict(sorted(videos.items())),
     }
-    MANIFEST.parent.mkdir(parents=True, exist_ok=True)
-    MANIFEST.write_text(json.dumps(manifest, indent=2) + "\n")
-    print(f"wrote {MANIFEST.relative_to(ROOT)} — {manifest['counts']['sets']} sets, "
+    manifest_path.parent.mkdir(parents=True, exist_ok=True)
+    manifest_path.write_text(json.dumps(manifest, indent=2) + "\n")
+    print(f"wrote {manifest_path.relative_to(ROOT)} — {manifest['counts']['sets']} sets, "
           f"{manifest['counts']['videos_distilled']} distilled, "
           f"{manifest['counts']['videos_no_captions']} captionless")
 
 
-def cmd_new(bare_ids=False):
-    work = load_worklist()
-    manifest = json.loads(MANIFEST.read_text()) if MANIFEST.exists() else {"videos": {}}
+def cmd_new(slug, subs, worklist, manifest_path, bare_ids=False):
+    work = load_worklist(worklist)
+    manifest = json.loads(manifest_path.read_text()) if manifest_path.exists() else {"videos": {}}
     known = manifest.get("videos", {})
-    scanned = scan_transcripts()
+    scanned = scan_transcripts(subs)
     todo = {}  # set -> list of (id, why)
     for s, w in work.items():
         for v in w.get("videos", []):
@@ -123,15 +124,27 @@ def cmd_new(bare_ids=False):
         print(f"  {s}: {ids}")
 
 
+def load_channel(slug):
+    channels = json.loads(CHANNELS.read_text()).get("channels", {})
+    if slug not in channels:
+        sys.exit(f"unknown channel slug '{slug}' — known: {', '.join(sorted(channels))}")
+    return channels[slug]
+
+
 def main():
     args = sys.argv[1:]
-    if not args or args[0] not in ("update", "new"):
+    if len(args) < 2 or args[1] not in ("update", "new"):
         print(__doc__)
         sys.exit(1)
-    if args[0] == "update":
-        cmd_update()
+    slug, cmd = args[0], args[1]
+    channel_meta = load_channel(slug)
+    subs = ROOT / "data" / "subs" / slug
+    worklist = subs / "worklist.json"
+    manifest_path = ROOT / "draft-guides" / slug / "manifest.json"
+    if cmd == "update":
+        cmd_update(slug, subs, worklist, manifest_path, channel_meta)
     else:
-        cmd_new(bare_ids="--ids" in args)
+        cmd_new(slug, subs, worklist, manifest_path, bare_ids="--ids" in args)
 
 
 if __name__ == "__main__":
