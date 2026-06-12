@@ -36,4 +36,4 @@ The supersession sections in each LR guide are the single highest-leverage produ
 
 ## Pipeline
 
-Raw transcripts fetched via `src/ingest/fetch_subs.sh limited-resources` (idempotent; yt-dlp auto-captions → `data/subs/limited-resources/<SET>/<id>.txt` + `meta.tsv`). Distillation is manual / one-shot per set — no fingerprint registry yet (the corpus is small enough to re-distill from scratch when a new set ships).
+Raw transcripts fetched via `src/ingest/fetch_subs.sh limited-resources` (idempotent; yt-dlp auto-captions → `data/subs/limited-resources/<SET>/<id>.txt` + `meta.tsv`). Distillation follows the shared runbook [`src/ingest/DISTILL.md`](../../src/ingest/DISTILL.md) against this channel's output contract in [`src/ingest/channels.json`](../../src/ingest/channels.json) (`channels.limited-resources.distill_format`). Incremental work is tracked by `manifest.json` (content fingerprint per transcript) — run `python3 src/ingest/fingerprint.py limited-resources new` / `… update` like the other channels.

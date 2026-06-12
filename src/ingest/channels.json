@@ -1,5 +1,6 @@
 {
-  "_doc": "Registry of expert-prose source channels. The ETL (src/ingest/) is channel-agnostic and keys off this file. slug = the bucket name used in BOTH data/subs/<slug>/ (raw, gitignored) and draft-guides/<slug>/ (results, committed). fetch with: src/ingest/fetch_subs.sh <slug>.",
+  "_doc": "Registry of expert-prose source channels. The ETL (src/ingest/) is channel-agnostic and keys off this file. slug = the bucket name used in BOTH data/subs/<slug>/ (raw, gitignored) and draft-guides/<slug>/ (results, committed). fetch with: src/ingest/fetch_subs.sh <slug>; fingerprint with: src/ingest/fingerprint.py <slug>.",
+  "_distill_doc": "distill_format below is the per-channel OUTPUT CONTRACT a stage-2 agent must satisfy when turning data/subs/<slug>/ transcripts into draft-guides/<slug>/ markdown. The shared 'recency-aware house style' (recency rule, Source timeline table, Supersessions, Source episodes list, (?) caveat for mangled auto-caption names) plus the step-by-step procedure live in src/ingest/DISTILL.md — channels here carry only the per-channel specifics.",
   "channels": {
     "lords-of-limited": {
       "name": "Lords of Limited",
@@ -7,7 +8,30 @@
       "content_type": "draft-gameplay + set-strategy videos",
       "guide_dir": "draft-guides/lords-of-limited",
       "guide_filename": "<SET>-draft-guide.md",
-      "notes": "Channel #1 (original). Per-set consolidated guide; ## Card notes bullets are parsed into the draft JSON."
+      "notes": "Channel #1 (original). Per-set consolidated guide; ## Card notes bullets are parsed into the draft JSON.",
+      "distill_format": {
+        "house_style": "shared",
+        "per_set_file": "<SET>-draft-guide.md",
+        "flat_in_guide_dir": true,
+        "channel_files": [],
+        "sections": [
+          "## Source timeline (dated table, Phase + Weight per episode)",
+          "## Supersessions (opinion reversals the run reveals)",
+          "## Format speed / meta read",
+          "## Archetypes (with explicit archetype-hierarchy ranks)",
+          "## Card notes",
+          "## Source episodes (bottom; `date — title (youtube_id)` list)"
+        ],
+        "card_bullets": {
+          "heading": "## Card notes",
+          "format": "- **Card** — note",
+          "machine_parsed": true,
+          "parser_note": "LOAD-BEARING: src/mtgdraft parses these bullets into each card's `guide` field in the draft JSON. Keep the exact `- **Card** — note` shape; card name must match the printed card name."
+        },
+        "recency": "newest video supersedes older on conflict; prerelease/preview takes are weakest; the end-of-format retrospective is most authoritative",
+        "manifest": true,
+        "special_rules": []
+      }
     },
     "numot": {
       "name": "NumotTheNummy (Kenji Egashira)",
@@ -15,7 +39,33 @@
       "content_type": "regular Arena draft VODs (cube/sealed/constructed/alchemy excluded)",
       "guide_dir": "draft-guides/numot",
       "guide_filename": "<SET>.md",
-      "notes": "Channel #2. Gameplay-driven; auto-captions of speech (names mangled, mark (?))."
+      "notes": "Channel #2. Gameplay-driven; auto-captions of speech (names mangled, mark (?)).",
+      "distill_format": {
+        "house_style": "shared",
+        "per_set_file": "<SET>.md",
+        "flat_in_guide_dir": true,
+        "channel_files": [
+          "general-tips.md (evergreen, set-independent draft & play principles, deduped and themed: picking, signals, curve/deckbuild, play patterns, mindset)"
+        ],
+        "sections": [
+          "## Format speed / meta read",
+          "## Archetypes",
+          "## Card interactions & combos",
+          "## Card tips",
+          "## Pitfalls"
+        ],
+        "card_bullets": {
+          "heading": "## Card tips",
+          "format": "- **Card** — note",
+          "machine_parsed": false
+        },
+        "recency": "opinions surface as Kenji-while-drafting commentary; strongest signal on which cards are actually playable late",
+        "manifest": true,
+        "special_rules": [
+          "Tier-1 sets (MKM, SOS) get a `## vs Lords of Limited` section noting ONLY genuine conflicts with draft-guides/lords-of-limited/<SET>-draft-guide.md. Never modify the LoL files.",
+          "Tier 1 = ALL VODs for that set (deepest); Tier 2 = ~4 end-of-format VODs per other set."
+        ]
+      }
     },
     "limited-resources": {
       "name": "Limited Resources (Marshall Sutcliffe + Luis Scott-Vargas)",
@@ -23,7 +73,33 @@
       "content_type": "audio podcast on YouTube: card-by-card set reviews (letter grades) + format overviews",
       "guide_dir": "draft-guides/limited-resources",
       "guide_filename": "<SET>.md",
-      "notes": "Channel #3 (added 2026-06). Review/theory lens, decorrelated from the two gameplay channels; preserves LR's per-card letter grades. Audio auto-captions (names mangled, mark (?))."
+      "notes": "Channel #3 (added 2026-06). Review/theory lens, decorrelated from the two gameplay channels; preserves LR's per-card letter grades. Audio auto-captions (names mangled, mark (?)).",
+      "distill_format": {
+        "house_style": "shared",
+        "per_set_file": "<SET>.md",
+        "flat_in_guide_dir": true,
+        "channel_files": [],
+        "sections": [
+          "## ⚠ Recency rule (read first)",
+          "### Source timeline (dated table, Phase release-week/early/mid/late/Sunset + Weight Weakest→Strongest)",
+          "## Supersessions (release-week grade flips: early take → late take, verdict)",
+          "## Format speed / meta read",
+          "## Archetypes (10 two-color pairs, ranked by the settled Sunset Show read)",
+          "## Card tips"
+        ],
+        "card_bullets": {
+          "heading": "## Card tips",
+          "format": "- **Card** — grade (#NNN release). Late take if reversed.",
+          "machine_parsed": false,
+          "grouping": "by color W/U/B/R/G, then multicolor, then artifacts/lands",
+          "preserve": "the LR letter grade inline on every card bullet — this is the channel's distinctive product"
+        },
+        "recency": "release-week set-review grades are PREDICTIONS made before any games (weakest evidence); the Sunset Show retrospective is the most authoritative source",
+        "manifest": true,
+        "special_rules": [
+          "The Supersessions section (which release-week grades flipped, and by how much) is the single highest-leverage product of this channel — never omit it."
+        ]
+      }
     }
   }
 }

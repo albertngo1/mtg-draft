@@ -1,0 +1,1222 @@
+{
+  "channel": "Lords of Limited",
+  "scope": "draft-gameplay + set-strategy videos",
+  "note": "Fingerprint of distilled scrape. sha1 = sha1 of the cleaned transcript .txt.",
+  "counts": {
+    "sets": 31,
+    "videos_distilled": 145,
+    "videos_no_captions": 1
+  },
+  "sets": {
+    "ATLA": {
+      "tier": null,
+      "file": "ATLA-draft-guide.md",
+      "video_ids": [
+        "01y45qudoRY",
+        "5w4yf6XE3p8",
+        "TMugA8JDL7s",
+        "XqZwptPCT9Q",
+        "esQcRepx1iQ",
+        "g6f0LRFHWYI"
+      ]
+    },
+    "BLB": {
+      "tier": null,
+      "file": "BLB-draft-guide.md",
+      "video_ids": [
+        "FNslPj3jKDo",
+        "GqKFhgXBA7Q",
+        "MEUlVv3Cr5U",
+        "RA_Qm4-D3Tw",
+        "Z2hY3_aX8KE",
+        "f2CwyxgoREI"
+      ]
+    },
+    "DFT": {
+      "tier": null,
+      "file": "DFT-draft-guide.md",
+      "video_ids": [
+        "VoODWrkB0a0",
+        "bsxvnoUBCnU",
+        "eYvRyfX_j1c",
+        "mJAGKvSYkfQ",
+        "o1hUbEcmsC8",
+        "rwjej_rb5l4"
+      ]
+    },
+    "DSK": {
+      "tier": null,
+      "file": "DSK-draft-guide.md",
+      "video_ids": [
+        "A4hKLnMrYeA",
+        "Lx0RjK0-2fI",
+        "N2C9U_oql7U",
+        "d9-pgb6U7L0",
+        "n35PdFpj90Q",
+        "zkX8YPWAGiE"
+      ]
+    },
+    "ECL": {
+      "tier": null,
+      "file": "ECL-draft-guide.md",
+      "video_ids": [
+        "5eGjK4dGHOE",
+        "OK7MWMufhk4",
+        "S4Ui8irKBzI",
+        "Wm6xKK6XYUo",
+        "eq_JtVMNAro",
+        "jEHZhFIiRjk"
+      ]
+    },
+    "ELD": {
+      "tier": null,
+      "file": "ELD-draft-guide.md",
+      "video_ids": [
+        "ZoRJjFjl7kE",
+        "fM7MNRzfplc",
+        "jtA1MzrS8ks",
+        "pEjqlw0d8qA"
+      ]
+    },
+    "EOE": {
+      "tier": null,
+      "file": "EOE-draft-guide.md",
+      "video_ids": [
+        "D0XZKy8Ky6k",
+        "E_An39_gxHw",
+        "KcD3agInPW4",
+        "PoKT6Hn5OPY",
+        "WWBvxAKc6QU",
+        "xD12qSUTo5k"
+      ]
+    },
+    "FDN": {
+      "tier": null,
+      "file": "FDN-draft-guide.md",
+      "video_ids": [
+        "5K67Q6b2-ds",
+        "LoNecPag3OU",
+        "QBWxHqpVIKc",
+        "VNJjCHf36xU",
+        "f7UXSaGi4aY",
+        "yW1TFvJJmMI"
+      ]
+    },
+    "FIN": {
+      "tier": null,
+      "file": "FIN-draft-guide.md",
+      "video_ids": [
+        "5-GScnchgoU",
+        "OuQacGs_k5I",
+        "i4DBgsOtqrA",
+        "lMfeEkmcxqY",
+        "wnysYygplA4",
+        "xLiVBasIH2I"
+      ]
+    },
+    "GRN": {
+      "tier": null,
+      "file": "GRN-draft-guide.md",
+      "video_ids": [
+        "y1IxWia7X3c"
+      ]
+    },
+    "IKO": {
+      "tier": null,
+      "file": "IKO-draft-guide.md",
+      "video_ids": [
+        "43SMDhSiqxQ",
+        "Aez0-sfZkjA",
+        "crzECpSy4YY",
+        "iwKO2z7DWj0",
+        "kKSZXgue5WA",
+        "oak4qx0_1ZI"
+      ]
+    },
+    "KHM": {
+      "tier": null,
+      "file": "KHM-draft-guide.md",
+      "video_ids": [
+        "f_lhdbwWfsw"
+      ]
+    },
+    "LCI": {
+      "tier": null,
+      "file": "LCI-draft-guide.md",
+      "video_ids": [
+        "TC_1yV79T0g",
+        "kv6e2NAGCz4",
+        "nvr6azpOksI",
+        "tArZTyQfiYw",
+        "xKoK8XV06z8",
+        "xltOJRS53JU"
+      ]
+    },
+    "LTR": {
+      "tier": null,
+      "file": "LTR-draft-guide.md",
+      "video_ids": [
+        "CMJylQBx6n4",
+        "H833J6KUFAs",
+        "LnO6bWR-7Gc",
+        "MydOJ_rhDSY",
+        "hKHM128ThfQ"
+      ]
+    },
+    "M20": {
+      "tier": null,
+      "file": "M20-draft-guide.md",
+      "video_ids": [
+        "Xr50E3CuvW4",
+        "sbc-y50BYAI"
+      ]
+    },
+    "M21": {
+      "tier": null,
+      "file": "M21-draft-guide.md",
+      "video_ids": [
+        "0ZaKLi5r3z4",
+        "Bie_qcuDZvs",
+        "e7cGsP_BdrI",
+        "h9d_1iLOU20",
+        "kLaWVEeIdXc",
+        "ls1ANmFeW_4"
+      ]
+    },
+    "MAR": {
+      "tier": null,
+      "file": "MAR-draft-guide.md",
+      "video_ids": [
+        "6IZ3A170fxM",
+        "VI5yjwasb_I",
+        "WpUf-PH9dwI",
+        "y5lOF0WEr_A"
+      ]
+    },
+    "MH3": {
+      "tier": null,
+      "file": "MH3-draft-guide.md",
+      "video_ids": [
+        "-cf9DheUNJU",
+        "68oXLXdSuD0",
+        "7pTxCE5jfdo",
+        "Ha5oVgjxnSk",
+        "bieSwnm7ROM"
+      ]
+    },
+    "MOM": {
+      "tier": null,
+      "file": "MOM-draft-guide.md",
+      "video_ids": [
+        "1Dtj5VcMa7Y",
+        "KhV6NavpHo8",
+        "S1RN_A7F_ac",
+        "ZrTcWpqC8s8",
+        "oPLh3hNJDuM",
+        "rmmOWYVAzbw"
+      ]
+    },
+    "NEO": {
+      "tier": null,
+      "file": "NEO-draft-guide.md",
+      "video_ids": [
+        "kja2rKFkU5I"
+      ]
+    },
+    "OTJ": {
+      "tier": null,
+      "file": "OTJ-draft-guide.md",
+      "video_ids": [
+        "1JColz4xeyY",
+        "2hIcTDHLRxk",
+        "BOgvNmR6Qts",
+        "_Ur9j5rM7Jg",
+        "o5A_ODbPYh8",
+        "wSiJM6z2_g8"
+      ]
+    },
+    "PIOM": {
+      "tier": null,
+      "file": "PIOM-draft-guide.md",
+      "video_ids": [
+        "-3FshDYctUE",
+        "CuaWJkd0EwM",
+        "LfTWseNXZqs",
+        "MpaIMbD4F_k",
+        "PHZy76dKdDA",
+        "a6MbKQ46sHY"
+      ]
+    },
+    "RNA": {
+      "tier": null,
+      "file": "RNA-draft-guide.md",
+      "video_ids": [
+        "3jgQy3fMAJ8",
+        "eFBDDf9Akec",
+        "haKoOwB8g9s"
+      ]
+    },
+    "STX": {
+      "tier": null,
+      "file": "STX-draft-guide.md",
+      "video_ids": [
+        "4PHlYsYf7nI",
+        "7U6MhblA7LA",
+        "Gfxw2MYe-9Y",
+        "nnPmQLr0_8U",
+        "wn-eSEEWYlU",
+        "yN458RU9CGw"
+      ]
+    },
+    "TDM": {
+      "tier": null,
+      "file": "TDM-draft-guide.md",
+      "video_ids": [
+        "4H7pjO1y4Eo",
+        "EL7L8ec_R0k",
+        "WPizty-xUT0",
+        "YsMtK1eXVu4",
+        "aR_oF5QEhMg",
+        "nO4XEWWOaEY"
+      ]
+    },
+    "THB": {
+      "tier": null,
+      "file": "THB-draft-guide.md",
+      "video_ids": [
+        "682_yEM_obE",
+        "Fs6rnMlW-iY",
+        "M7pVCtJsT9s",
+        "MoqqOHgLGDk",
+        "RbclaC6WOV4",
+        "ahjN2LLZ3MQ"
+      ]
+    },
+    "TMNT": {
+      "tier": null,
+      "file": "TMNT-draft-guide.md",
+      "video_ids": [
+        "bIsDeOGFLLk"
+      ]
+    },
+    "VOW": {
+      "tier": null,
+      "file": "VOW-draft-guide.md",
+      "video_ids": [
+        "QjQGPkDPbas",
+        "a1v8DNukxKE"
+      ]
+    },
+    "WAR": {
+      "tier": null,
+      "file": "WAR-draft-guide.md",
+      "video_ids": [
+        "5kEaUMRN60g",
+        "ESdm7n8UVGA"
+      ]
+    },
+    "WOE": {
+      "tier": null,
+      "file": "WOE-draft-guide.md",
+      "video_ids": [
+        "48LJkNe7jJg",
+        "Lae20pQdgM8",
+        "STVSlZ0FYnA",
+        "ehFCb2hkM-E",
+        "hzYQn1e7pQE",
+        "tSWYatSxWN8"
+      ]
+    },
+    "ZNR": {
+      "tier": null,
+      "file": "ZNR-draft-guide.md",
+      "video_ids": [
+        "-VqyvmDofyA",
+        "6INOCjejolU",
+        "Tm2F4yaNsFI",
+        "XWxMnmE-7Jw",
+        "eUvvvYIFiSM",
+        "jHAlgpDNzZg"
+      ]
+    }
+  },
+  "videos": {
+    "-3FshDYctUE": {
+      "set": "PIOM",
+      "sha1": "cb823cfaeded885c0cb6f184ce3f22baa0e9798f",
+      "words": 4961,
+      "distilled": true
+    },
+    "-VqyvmDofyA": {
+      "set": "ZNR",
+      "sha1": "d9532f3a9162530993eedce7e4d1015ff81e678b",
+      "words": 8867,
+      "distilled": true
+    },
+    "-cf9DheUNJU": {
+      "set": "MH3",
+      "sha1": "17cca2d47735e78a83bd8cbdde52766e9d602cbf",
+      "words": 7136,
+      "distilled": true
+    },
+    "01y45qudoRY": {
+      "set": "ATLA",
+      "sha1": "0e4294eeb6d7439a41e6c09d0db930d3b0c7d0ee",
+      "words": 17219,
+      "distilled": true
+    },
+    "0ZaKLi5r3z4": {
+      "set": "M21",
+      "sha1": "74f51d56600c6443173695f1fe95ba85f02e2851",
+      "words": 8714,
+      "distilled": true
+    },
+    "1Dtj5VcMa7Y": {
+      "set": "MOM",
+      "sha1": "0f40f007f6f0c3998ab3b6d1c484cadb28bef30e",
+      "words": 9309,
+      "distilled": true
+    },
+    "1JColz4xeyY": {
+      "set": "OTJ",
+      "sha1": "bbcb256f47f6ab94f66ea99f10aaa3c31f44cdad",
+      "words": 6731,
+      "distilled": true
+    },
+    "2hIcTDHLRxk": {
+      "set": "OTJ",
+      "sha1": "013eaeb0ed540f5f08cdf3aeb9c2d99014b9f58b",
+      "words": 4228,
+      "distilled": true
+    },
+    "3jgQy3fMAJ8": {
+      "set": "RNA",
+      "sha1": "58c80dbd00fd8279f997ccebc9d2933eab0d6255",
+      "words": 11427,
+      "distilled": true
+    },
+    "43SMDhSiqxQ": {
+      "set": "IKO",
+      "sha1": "f15f678229ac75920c20760488b3c7368dec78b5",
+      "words": 7437,
+      "distilled": true
+    },
+    "48LJkNe7jJg": {
+      "set": "WOE",
+      "sha1": "0936f5358e3f643747348953e759f2b8992e356b",
+      "words": 3403,
+      "distilled": true
+    },
+    "4H7pjO1y4Eo": {
+      "set": "TDM",
+      "sha1": "9ffdd9a66e65dc735b93ba3aa02b3f58d87e5d4d",
+      "words": 18469,
+      "distilled": true
+    },
+    "4PHlYsYf7nI": {
+      "set": "STX",
+      "sha1": "800b4a2248957b0f7b94ecd4b488d9a8a6e0ac2b",
+      "words": 12012,
+      "distilled": true
+    },
+    "5-GScnchgoU": {
+      "set": "FIN",
+      "sha1": "94cf41644bf3830284b4b730f8516dd82d5bbfb5",
+      "words": 16792,
+      "distilled": true
+    },
+    "5K67Q6b2-ds": {
+      "set": "FDN",
+      "sha1": "16722ce95b7e66fde728825789fabe00e8b5e6de",
+      "words": 314,
+      "distilled": true
+    },
+    "5eGjK4dGHOE": {
+      "set": "ECL",
+      "sha1": "9c00392e4f06a67e55e61f40a3008523df3c5e49",
+      "words": 5265,
+      "distilled": true
+    },
+    "5kEaUMRN60g": {
+      "set": "WAR",
+      "sha1": "4e55488ca94dbcb5067f251671c66f3d1d1869b2",
+      "words": 9903,
+      "distilled": true
+    },
+    "5w4yf6XE3p8": {
+      "set": "ATLA",
+      "sha1": "9e24892c708f879d208655f5a0113da0d043203e",
+      "words": 13783,
+      "distilled": true
+    },
+    "682_yEM_obE": {
+      "set": "THB",
+      "sha1": "6d1c54b0deb6c3da4f9a04aa372c5fc0574f99f7",
+      "words": 8793,
+      "distilled": true
+    },
+    "68oXLXdSuD0": {
+      "set": "MH3",
+      "sha1": "a8d06bd8c727970e3697e7466647c4349e17b802",
+      "words": 20542,
+      "distilled": true
+    },
+    "6INOCjejolU": {
+      "set": "ZNR",
+      "sha1": "0e87f1e9ad3666ad99f7ae5a45207b7c281d2d9f",
+      "words": 11522,
+      "distilled": true
+    },
+    "6IZ3A170fxM": {
+      "set": "MAR",
+      "sha1": "21c3604e01558a911c21a21190970593f7f2247d",
+      "words": 15106,
+      "distilled": true
+    },
+    "7U6MhblA7LA": {
+      "set": "STX",
+      "sha1": "f6cdfb0f88a7492495202d0d10031043ffcbae9c",
+      "words": 14795,
+      "distilled": true
+    },
+    "7pTxCE5jfdo": {
+      "set": "MH3",
+      "sha1": "ca44a398fe890a85b176eee55b894653005f5d30",
+      "words": 8707,
+      "distilled": true
+    },
+    "A4hKLnMrYeA": {
+      "set": "DSK",
+      "sha1": "ceec0214aa42dad848c950200a7bc59a2af0e4a5",
+      "words": 14311,
+      "distilled": true
+    },
+    "Aez0-sfZkjA": {
+      "set": "IKO",
+      "sha1": "1b0b02e521b35df67b4bbc17e6782a20f446c318",
+      "words": 7935,
+      "distilled": true
+    },
+    "BOgvNmR6Qts": {
+      "set": "OTJ",
+      "sha1": "ae6ab761d231c7c4cc2d448a6b78e1fe94c585bb",
+      "words": 5281,
+      "distilled": true
+    },
+    "Bie_qcuDZvs": {
+      "set": "M21",
+      "sha1": "6b42151f96ee458c0aae90e50bb2c81dee26e426",
+      "words": 9426,
+      "distilled": true
+    },
+    "CMJylQBx6n4": {
+      "set": "LTR",
+      "sha1": "dcf98cf67a11023644d720ba5f5c5a4f56f45e04",
+      "words": 17302,
+      "distilled": true
+    },
+    "CuaWJkd0EwM": {
+      "set": "PIOM",
+      "sha1": "dd06539fe4b7b32b8cc78a53ffc45adea1154507",
+      "words": 10552,
+      "distilled": true
+    },
+    "CwUXyJSqlsM": {
+      "set": "LTR",
+      "sha1": null,
+      "words": 0,
+      "distilled": false,
+      "reason": "no-captions"
+    },
+    "D0XZKy8Ky6k": {
+      "set": "EOE",
+      "sha1": "3b1f0190bd0f6a1a0d91c4d268b2257020b728c1",
+      "words": 13606,
+      "distilled": true
+    },
+    "EL7L8ec_R0k": {
+      "set": "TDM",
+      "sha1": "5b78692009a28e706b7fb927631f1e6eae349d16",
+      "words": 17729,
+      "distilled": true
+    },
+    "ESdm7n8UVGA": {
+      "set": "WAR",
+      "sha1": "c59b46aac767396cbeec97de133f5ac0df1f34cc",
+      "words": 10975,
+      "distilled": true
+    },
+    "E_An39_gxHw": {
+      "set": "EOE",
+      "sha1": "73465c7c00693ef673da9b3a401cb9f0164bd296",
+      "words": 21641,
+      "distilled": true
+    },
+    "FNslPj3jKDo": {
+      "set": "BLB",
+      "sha1": "eb46467fcf66bb934be636f0058d82c3ff1ce184",
+      "words": 4658,
+      "distilled": true
+    },
+    "Fs6rnMlW-iY": {
+      "set": "THB",
+      "sha1": "86785cfefb8475ff6b943975e32e8f2bc8bb2ced",
+      "words": 1474,
+      "distilled": true
+    },
+    "Gfxw2MYe-9Y": {
+      "set": "STX",
+      "sha1": "cc41c97d2354c825e5594f93d0d094ea9db72342",
+      "words": 12093,
+      "distilled": true
+    },
+    "GqKFhgXBA7Q": {
+      "set": "BLB",
+      "sha1": "82c4909fcc17203202d864a6b275863833865978",
+      "words": 6686,
+      "distilled": true
+    },
+    "H833J6KUFAs": {
+      "set": "LTR",
+      "sha1": "1f6330a045da3c928e03f38782a9821ecb7093fa",
+      "words": 5103,
+      "distilled": true
+    },
+    "Ha5oVgjxnSk": {
+      "set": "MH3",
+      "sha1": "76a4422efde4f6efbf33da18e9d24f50c0560adc",
+      "words": 10743,
+      "distilled": true
+    },
+    "KcD3agInPW4": {
+      "set": "EOE",
+      "sha1": "c81a9a5b4af25ce571652fd09b3b0944268c95dc",
+      "words": 17151,
+      "distilled": true
+    },
+    "KhV6NavpHo8": {
+      "set": "MOM",
+      "sha1": "2cec6c29c11533d408e40d4a536398897efea16b",
+      "words": 4881,
+      "distilled": true
+    },
+    "Lae20pQdgM8": {
+      "set": "WOE",
+      "sha1": "67ebe4dec78fd314ea3b8b30d9fe3baf4abcbe1d",
+      "words": 16643,
+      "distilled": true
+    },
+    "LfTWseNXZqs": {
+      "set": "PIOM",
+      "sha1": "857374e222d4112b9fd1b9c362d23fece115bec1",
+      "words": 4718,
+      "distilled": true
+    },
+    "LnO6bWR-7Gc": {
+      "set": "LTR",
+      "sha1": "4d84cd1b846e46a8d855e39e0fe8204f2abb0706",
+      "words": 17769,
+      "distilled": true
+    },
+    "LoNecPag3OU": {
+      "set": "FDN",
+      "sha1": "15c30cff0a96bc0b87a6c189b7cd598e29b9e177",
+      "words": 4311,
+      "distilled": true
+    },
+    "Lx0RjK0-2fI": {
+      "set": "DSK",
+      "sha1": "4a5b274511125f80cefcd5cc9540a3ae4673a33b",
+      "words": 6465,
+      "distilled": true
+    },
+    "M7pVCtJsT9s": {
+      "set": "THB",
+      "sha1": "bac4d39734661394a61af0602688f26472979ab3",
+      "words": 1116,
+      "distilled": true
+    },
+    "MEUlVv3Cr5U": {
+      "set": "BLB",
+      "sha1": "58e495d263e7bb4151b4a29efa4951c5ce566794",
+      "words": 12337,
+      "distilled": true
+    },
+    "MoqqOHgLGDk": {
+      "set": "THB",
+      "sha1": "6e434b9fe9ac6f0d9924f490947b31047effd496",
+      "words": 4522,
+      "distilled": true
+    },
+    "MpaIMbD4F_k": {
+      "set": "PIOM",
+      "sha1": "ded2d1ef31651badfb5245eed33fcb2edeaf871d",
+      "words": 4825,
+      "distilled": true
+    },
+    "MydOJ_rhDSY": {
+      "set": "LTR",
+      "sha1": "277f1261144b1c18327ce5156a94276a017f5373",
+      "words": 14019,
+      "distilled": true
+    },
+    "N2C9U_oql7U": {
+      "set": "DSK",
+      "sha1": "f0b6156cb2beff87788a6b05489ee0b1ac61808b",
+      "words": 22854,
+      "distilled": true
+    },
+    "OK7MWMufhk4": {
+      "set": "ECL",
+      "sha1": "f003beaa9bc1c5d698a92735a2878a29b8a5bd50",
+      "words": 5265,
+      "distilled": true
+    },
+    "OuQacGs_k5I": {
+      "set": "FIN",
+      "sha1": "c27f03c20a1a077bde5fd3be984e84d789f13d06",
+      "words": 17866,
+      "distilled": true
+    },
+    "PHZy76dKdDA": {
+      "set": "PIOM",
+      "sha1": "083c88aac73e11deb1a04aab875977c7e1d7a4a5",
+      "words": 1198,
+      "distilled": true
+    },
+    "PoKT6Hn5OPY": {
+      "set": "EOE",
+      "sha1": "fad5ee4a6ffea62eb3190fc9afaa31ca617dee7e",
+      "words": 16941,
+      "distilled": true
+    },
+    "QBWxHqpVIKc": {
+      "set": "FDN",
+      "sha1": "b948d4450a0e6c1482c14104f51a59becccbda58",
+      "words": 4164,
+      "distilled": true
+    },
+    "QjQGPkDPbas": {
+      "set": "VOW",
+      "sha1": "6e232155c898834a2ea54ff84a9484b13e8500b6",
+      "words": 7844,
+      "distilled": true
+    },
+    "RA_Qm4-D3Tw": {
+      "set": "BLB",
+      "sha1": "4afe7cc86c03a702a4a2560a600adfc16e09d197",
+      "words": 5348,
+      "distilled": true
+    },
+    "RbclaC6WOV4": {
+      "set": "THB",
+      "sha1": "00f8c1f5ceca2aeeb4c407a65a3b4209e1332077",
+      "words": 8746,
+      "distilled": true
+    },
+    "S1RN_A7F_ac": {
+      "set": "MOM",
+      "sha1": "0a70d222893506f200fb8fd897f134bd8fa7c5a0",
+      "words": 4190,
+      "distilled": true
+    },
+    "S4Ui8irKBzI": {
+      "set": "ECL",
+      "sha1": "d374b2af3797f7f69f882d1468d26f00b1aa9dc7",
+      "words": 11316,
+      "distilled": true
+    },
+    "STVSlZ0FYnA": {
+      "set": "WOE",
+      "sha1": "ffca1abd78e35aa60e82a60ea049a740b0c2f952",
+      "words": 15750,
+      "distilled": true
+    },
+    "TC_1yV79T0g": {
+      "set": "LCI",
+      "sha1": "fbcc2cc49b314906ec8bfdf5db1c9a94703ca96b",
+      "words": 9935,
+      "distilled": true
+    },
+    "TMugA8JDL7s": {
+      "set": "ATLA",
+      "sha1": "f7b6dc3d765b06f42e7cf8d1a80ac9da05354a0e",
+      "words": 15044,
+      "distilled": true
+    },
+    "Tm2F4yaNsFI": {
+      "set": "ZNR",
+      "sha1": "51f32fb0e1c4960badb25a3af1ccaa7019cc8f34",
+      "words": 8760,
+      "distilled": true
+    },
+    "VI5yjwasb_I": {
+      "set": "MAR",
+      "sha1": "1ecc92a04d5e43bf5599de1d0e0004b0e5b83476",
+      "words": 15768,
+      "distilled": true
+    },
+    "VNJjCHf36xU": {
+      "set": "FDN",
+      "sha1": "54693baa7aee8940bfd957eb520d4c6f1bb2202a",
+      "words": 6629,
+      "distilled": true
+    },
+    "VoODWrkB0a0": {
+      "set": "DFT",
+      "sha1": "a55ee928c01f936e59382f30a322d100ec8b5177",
+      "words": 15209,
+      "distilled": true
+    },
+    "WPizty-xUT0": {
+      "set": "TDM",
+      "sha1": "cf716b74a7ef36d955bebd5c270d6710bb98fa55",
+      "words": 15816,
+      "distilled": true
+    },
+    "WWBvxAKc6QU": {
+      "set": "EOE",
+      "sha1": "1127de53d3f4fc0ddd4cbaa2f5763a4a66775420",
+      "words": 14388,
+      "distilled": true
+    },
+    "Wm6xKK6XYUo": {
+      "set": "ECL",
+      "sha1": "0e3c0ce88eb2646e4aeb9c711edc7a3f01b4e9a1",
+      "words": 16582,
+      "distilled": true
+    },
+    "WpUf-PH9dwI": {
+      "set": "MAR",
+      "sha1": "d3a0751ca38ca84ea6d8d5998fca0a2242df5205",
+      "words": 16726,
+      "distilled": true
+    },
+    "XWxMnmE-7Jw": {
+      "set": "ZNR",
+      "sha1": "fe3342cbf89f4e417370c8f6d98a5709f3bde4e9",
+      "words": 10306,
+      "distilled": true
+    },
+    "XqZwptPCT9Q": {
+      "set": "ATLA",
+      "sha1": "054befada04b2aa9989803a32cb4f393b74906ce",
+      "words": 16950,
+      "distilled": true
+    },
+    "Xr50E3CuvW4": {
+      "set": "M20",
+      "sha1": "4aac258cdd27dd88270f42df26e7d98ff97a3c87",
+      "words": 10138,
+      "distilled": true
+    },
+    "YsMtK1eXVu4": {
+      "set": "TDM",
+      "sha1": "680b839ee5257139b315864940acfd9a3e2f9094",
+      "words": 15938,
+      "distilled": true
+    },
+    "Z2hY3_aX8KE": {
+      "set": "BLB",
+      "sha1": "19adf01201e195b8937e70d32f7944a2f0fd077d",
+      "words": 7225,
+      "distilled": true
+    },
+    "ZoRJjFjl7kE": {
+      "set": "ELD",
+      "sha1": "18a186640d3e1fd5957639f5a5af2759d7b1a1c6",
+      "words": 8506,
+      "distilled": true
+    },
+    "ZrTcWpqC8s8": {
+      "set": "MOM",
+      "sha1": "7c8219d43cf85c8c7402b68ce1c4eeccf0ac5299",
+      "words": 4895,
+      "distilled": true
+    },
+    "_Ur9j5rM7Jg": {
+      "set": "OTJ",
+      "sha1": "ae44eb2865922425f034490e662f538f91bef6d2",
+      "words": 3607,
+      "distilled": true
+    },
+    "a1v8DNukxKE": {
+      "set": "VOW",
+      "sha1": "a73c210f0a450e5107a763198d21fdabd02b9a91",
+      "words": 16779,
+      "distilled": true
+    },
+    "a6MbKQ46sHY": {
+      "set": "PIOM",
+      "sha1": "15304a9ff5b9fe39b6f969ceaf93a2337cdfc35b",
+      "words": 6789,
+      "distilled": true
+    },
+    "aR_oF5QEhMg": {
+      "set": "TDM",
+      "sha1": "475c1e0daaee1fc66b99e4f1a57318a9fd029225",
+      "words": 12368,
+      "distilled": true
+    },
+    "ahjN2LLZ3MQ": {
+      "set": "THB",
+      "sha1": "2380fd269a71e60c0b22b1c1b5a46d06efcd23a8",
+      "words": 918,
+      "distilled": true
+    },
+    "bIsDeOGFLLk": {
+      "set": "TMNT",
+      "sha1": "d6fa043640d174175342f664fc469415fe13abc1",
+      "words": 5909,
+      "distilled": true
+    },
+    "bieSwnm7ROM": {
+      "set": "MH3",
+      "sha1": "e007ab5eb4e3aae0e552d4ca5c84a3cd29499cfe",
+      "words": 6613,
+      "distilled": true
+    },
+    "bsxvnoUBCnU": {
+      "set": "DFT",
+      "sha1": "049d7109bba9034bd68ef41b894dbcf711ef92c8",
+      "words": 12811,
+      "distilled": true
+    },
+    "crzECpSy4YY": {
+      "set": "IKO",
+      "sha1": "30b66d905df7bcfb94164b5712a56e98a2290af7",
+      "words": 12095,
+      "distilled": true
+    },
+    "d9-pgb6U7L0": {
+      "set": "DSK",
+      "sha1": "dd4161ebc9456dac20aa24e30b83b0ca769cd017",
+      "words": 5239,
+      "distilled": true
+    },
+    "e7cGsP_BdrI": {
+      "set": "M21",
+      "sha1": "bb1ca850197a71b1845fdead2dc021729d351e1c",
+      "words": 4582,
+      "distilled": true
+    },
+    "eFBDDf9Akec": {
+      "set": "RNA",
+      "sha1": "74b846cfd0002331ae70f319f08c3dfbf93e9f95",
+      "words": 11063,
+      "distilled": true
+    },
+    "eUvvvYIFiSM": {
+      "set": "ZNR",
+      "sha1": "5ae92373eefb5b6e57392cb326c4fcf57f246581",
+      "words": 12382,
+      "distilled": true
+    },
+    "eYvRyfX_j1c": {
+      "set": "DFT",
+      "sha1": "807fcc7f8976c7613eaeb60a8cdaa6f4b6af43eb",
+      "words": 7759,
+      "distilled": true
+    },
+    "ehFCb2hkM-E": {
+      "set": "WOE",
+      "sha1": "88e61919a04812108699ea3d55a100261e712eaa",
+      "words": 7758,
+      "distilled": true
+    },
+    "eq_JtVMNAro": {
+      "set": "ECL",
+      "sha1": "8197a7a5bf908283a6799e7fb2fe9c9220291369",
+      "words": 12641,
+      "distilled": true
+    },
+    "esQcRepx1iQ": {
+      "set": "ATLA",
+      "sha1": "51813c237c65c893e1143e85eb136d3e484e755f",
+      "words": 13213,
+      "distilled": true
+    },
+    "f2CwyxgoREI": {
+      "set": "BLB",
+      "sha1": "91dc57cbacee453837b45f5832d86fe0daeb274a",
+      "words": 14527,
+      "distilled": true
+    },
+    "f7UXSaGi4aY": {
+      "set": "FDN",
+      "sha1": "d189760aef94a09a2d45c335c812244816dfdd60",
+      "words": 7844,
+      "distilled": true
+    },
+    "fM7MNRzfplc": {
+      "set": "ELD",
+      "sha1": "b6ff09ded681744c813a2b4c16908e5e6064685f",
+      "words": 10926,
+      "distilled": true
+    },
+    "f_lhdbwWfsw": {
+      "set": "KHM",
+      "sha1": "43a441324a1597532b7c084d1479d814b7b76547",
+      "words": 4310,
+      "distilled": true
+    },
+    "g6f0LRFHWYI": {
+      "set": "ATLA",
+      "sha1": "67dff5c8fa22650841a6197723922ed00a1b4316",
+      "words": 13903,
+      "distilled": true
+    },
+    "h9d_1iLOU20": {
+      "set": "M21",
+      "sha1": "f5d21ccd404ad47717366a89f877634cb14f71a4",
+      "words": 6514,
+      "distilled": true
+    },
+    "hKHM128ThfQ": {
+      "set": "LTR",
+      "sha1": "92f92b86e32fce65554c1640f56ee7ecdd6a7808",
+      "words": 13512,
+      "distilled": true
+    },
+    "haKoOwB8g9s": {
+      "set": "RNA",
+      "sha1": "eda11a0cd173f320f760247eab88d881bd0ae51b",
+      "words": 13002,
+      "distilled": true
+    },
+    "hzYQn1e7pQE": {
+      "set": "WOE",
+      "sha1": "bf04827497cb88aad21324102a3072ed842aeff3",
+      "words": 13114,
+      "distilled": true
+    },
+    "i4DBgsOtqrA": {
+      "set": "FIN",
+      "sha1": "8325eed2c122d7800f85091952ec8ba6da616a8c",
+      "words": 16138,
+      "distilled": true
+    },
+    "iwKO2z7DWj0": {
+      "set": "IKO",
+      "sha1": "213c5e47e10612dbbc3f3a6f95081b26bda6487a",
+      "words": 7705,
+      "distilled": true
+    },
+    "jEHZhFIiRjk": {
+      "set": "ECL",
+      "sha1": "5f7aa076476bd148ff503d282de218be43f0028c",
+      "words": 10856,
+      "distilled": true
+    },
+    "jHAlgpDNzZg": {
+      "set": "ZNR",
+      "sha1": "bede8fb54c740aa3d91700ca190bb81a3fa934c4",
+      "words": 14303,
+      "distilled": true
+    },
+    "jtA1MzrS8ks": {
+      "set": "ELD",
+      "sha1": "56e25c5cdab4c72a896944f30b28356b18e81b69",
+      "words": 9678,
+      "distilled": true
+    },
+    "kKSZXgue5WA": {
+      "set": "IKO",
+      "sha1": "dedc0e00f50193b055342d036c738a87c9d920fa",
+      "words": 4484,
+      "distilled": true
+    },
+    "kLaWVEeIdXc": {
+      "set": "M21",
+      "sha1": "0545cd22b15ed35f91d442773561e4c10ed3aa09",
+      "words": 5297,
+      "distilled": true
+    },
+    "kja2rKFkU5I": {
+      "set": "NEO",
+      "sha1": "8214e6409556bc253606c2af1992cf392749a0c1",
+      "words": 6832,
+      "distilled": true
+    },
+    "kv6e2NAGCz4": {
+      "set": "LCI",
+      "sha1": "d5cbff5298f8d10b1e85b65a32200ceb6e34b416",
+      "words": 7059,
+      "distilled": true
+    },
+    "lMfeEkmcxqY": {
+      "set": "FIN",
+      "sha1": "24bed2777c6eb0aa1841b59827963c726a4bc585",
+      "words": 13518,
+      "distilled": true
+    },
+    "ls1ANmFeW_4": {
+      "set": "M21",
+      "sha1": "ad721abeca52e54f11772c4b9dfbf4ef4e50d796",
+      "words": 5284,
+      "distilled": true
+    },
+    "mJAGKvSYkfQ": {
+      "set": "DFT",
+      "sha1": "85e145203c4b56df04d08bdedfe9df672e4db7a6",
+      "words": 6560,
+      "distilled": true
+    },
+    "n35PdFpj90Q": {
+      "set": "DSK",
+      "sha1": "3f17fd9ebf0669d581930847ac4a8ac4898b8760",
+      "words": 3008,
+      "distilled": true
+    },
+    "nO4XEWWOaEY": {
+      "set": "TDM",
+      "sha1": "493bee0fdd031ebc299b86d19fc6b6f91a68ed67",
+      "words": 16277,
+      "distilled": true
+    },
+    "nnPmQLr0_8U": {
+      "set": "STX",
+      "sha1": "dab235fba50a907e055d4c100df51cc655f1a502",
+      "words": 13857,
+      "distilled": true
+    },
+    "nvr6azpOksI": {
+      "set": "LCI",
+      "sha1": "42b737d9094a73cd41c6ba19b3cc4349210daa1a",
+      "words": 5443,
+      "distilled": true
+    },
+    "o1hUbEcmsC8": {
+      "set": "DFT",
+      "sha1": "f237b6586065059f91e8474fb45c32c402748c93",
+      "words": 3902,
+      "distilled": true
+    },
+    "o5A_ODbPYh8": {
+      "set": "OTJ",
+      "sha1": "0af65419f31b1395d65f8207a6441f93b3b4ada8",
+      "words": 3195,
+      "distilled": true
+    },
+    "oPLh3hNJDuM": {
+      "set": "MOM",
+      "sha1": "e9e5a70f1c6a0039f9076449666d2594ec3453f8",
+      "words": 5610,
+      "distilled": true
+    },
+    "oak4qx0_1ZI": {
+      "set": "IKO",
+      "sha1": "943ad460466ffc7c234674a6f34c3d7ba11093c0",
+      "words": 7218,
+      "distilled": true
+    },
+    "pEjqlw0d8qA": {
+      "set": "ELD",
+      "sha1": "70b004a7df8da70005fba64d508439c01b6eb32b",
+      "words": 12383,
+      "distilled": true
+    },
+    "rmmOWYVAzbw": {
+      "set": "MOM",
+      "sha1": "f0d9846347159c27062fe7d137ee2d3aaf12db4c",
+      "words": 3256,
+      "distilled": true
+    },
+    "rwjej_rb5l4": {
+      "set": "DFT",
+      "sha1": "c1ee4f64e9f247c291f949f58fe5844618f29a83",
+      "words": 15286,
+      "distilled": true
+    },
+    "sbc-y50BYAI": {
+      "set": "M20",
+      "sha1": "46a9839daae13fb1fcfb26fe007a4713161f3c7c",
+      "words": 9235,
+      "distilled": true
+    },
+    "tArZTyQfiYw": {
+      "set": "LCI",
+      "sha1": "a875211829f2d18a6bcefd8fff0c87da799b4d6e",
+      "words": 14460,
+      "distilled": true
+    },
+    "tSWYatSxWN8": {
+      "set": "WOE",
+      "sha1": "816f342b297fdbdf3c3812db5d5699fcf9128a1a",
+      "words": 9467,
+      "distilled": true
+    },
+    "wSiJM6z2_g8": {
+      "set": "OTJ",
+      "sha1": "57070285c833b32542e40539413f13a8541c8403",
+      "words": 12626,
+      "distilled": true
+    },
+    "wn-eSEEWYlU": {
+      "set": "STX",
+      "sha1": "a38ea9ed4f1e449df1e7caf3f1c70f28cf191d72",
+      "words": 12248,
+      "distilled": true
+    },
+    "wnysYygplA4": {
+      "set": "FIN",
+      "sha1": "1666b20cb32a21c405fcdc3397b598bd687ab4bf",
+      "words": 19869,
+      "distilled": true
+    },
+    "xD12qSUTo5k": {
+      "set": "EOE",
+      "sha1": "3155cc72ad3b1921b2241856d59c950a0e80bd0b",
+      "words": 15814,
+      "distilled": true
+    },
+    "xKoK8XV06z8": {
+      "set": "LCI",
+      "sha1": "a4d3c28ee63eab46c540ca989a43289803115dc5",
+      "words": 14081,
+      "distilled": true
+    },
+    "xLiVBasIH2I": {
+      "set": "FIN",
+      "sha1": "de2eb01db263cd8b819192c89a64a498152d2304",
+      "words": 13817,
+      "distilled": true
+    },
+    "xltOJRS53JU": {
+      "set": "LCI",
+      "sha1": "7fc98f8fcd7f26b027539d720f55dffe40dd52bf",
+      "words": 5703,
+      "distilled": true
+    },
+    "y1IxWia7X3c": {
+      "set": "GRN",
+      "sha1": "770a4bf01cb3da69075c26c2e7e17f0425d56b60",
+      "words": 11756,
+      "distilled": true
+    },
+    "y5lOF0WEr_A": {
+      "set": "MAR",
+      "sha1": "d3795d72832caea4f5c7acb7011250e903ef9b08",
+      "words": 14583,
+      "distilled": true
+    },
+    "yN458RU9CGw": {
+      "set": "STX",
+      "sha1": "36dc8b3082a065cef32190c59ab19f9272f2267a",
+      "words": 4893,
+      "distilled": true
+    },
+    "yW1TFvJJmMI": {
+      "set": "FDN",
+      "sha1": "d147c2c76559e948728a6ed9de00ccb38274896d",
+      "words": 19002,
+      "distilled": true
+    },
+    "zkX8YPWAGiE": {
+      "set": "DSK",
+      "sha1": "e8352b296782158aa0998edb76d09fe6820469db",
+      "words": 4955,
+      "distilled": true
+    }
+  }
+}

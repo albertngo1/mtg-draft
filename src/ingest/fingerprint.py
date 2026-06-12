@@ -59,10 +59,13 @@ def load_worklist(worklist):
 def cmd_update(slug, subs, worklist, manifest_path, channel_meta):
     work = load_worklist(worklist)
     scanned = scan_transcripts(subs)
+    # per-set guide filename is channel-specific (e.g. <SET>-draft-guide.md for lords-of-limited,
+    # <SET>.md for numot/limited-resources) — read the template from channels.json.
+    fname_tpl = channel_meta.get("guide_filename", "<SET>.md")
     videos, sets = {}, {}
     for s, vids in scanned.items():
         tier = work.get(s, {}).get("tier")
-        sets[s] = {"tier": tier, "file": f"{s}.md", "video_ids": sorted(vids)}
+        sets[s] = {"tier": tier, "file": fname_tpl.replace("<SET>", s), "video_ids": sorted(vids)}
         for vid, fp in vids.items():
             videos[vid] = {"set": s, "sha1": fp["sha1"], "words": fp["words"], "distilled": True}
     # videos in the worklist with no transcript on disk = captionless MISS — record them so

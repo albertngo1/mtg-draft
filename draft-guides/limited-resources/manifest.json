@@ -1,0 +1,110 @@
+{
+  "channel": "Limited Resources (Marshall Sutcliffe + Luis Scott-Vargas)",
+  "scope": "audio podcast on YouTube: card-by-card set reviews (letter grades) + format overviews",
+  "note": "Fingerprint of distilled scrape. sha1 = sha1 of the cleaned transcript .txt.",
+  "counts": {
+    "sets": 2,
+    "videos_distilled": 12,
+    "videos_no_captions": 0
+  },
+  "sets": {
+    "MKM": {
+      "tier": 1,
+      "file": "MKM.md",
+      "video_ids": [
+        "4FHYlsnnlnE",
+        "NBxFmlK0Bho",
+        "hS_fyPS8jnI",
+        "hUYXa1aOPck",
+        "jSmDFHLHDcI",
+        "lK8O-nmlVWE"
+      ]
+    },
+    "SOS": {
+      "tier": 1,
+      "file": "SOS.md",
+      "video_ids": [
+        "O1Up-bcloFM",
+        "Wlgwz49mKec",
+        "Y1ESx1xg6fo",
+        "bsBoYVrt-mI",
+        "gr7wsr0z_2c",
+        "xcTMrj6GNUY"
+      ]
+    }
+  },
+  "videos": {
+    "4FHYlsnnlnE": {
+      "set": "MKM",
+      "sha1": "f3e04b4feb7dd4fa317565a6789b7485a0d74ca4",
+      "words": 16115,
+      "distilled": true
+    },
+    "NBxFmlK0Bho": {
+      "set": "MKM",
+      "sha1": "c2f3474f81e254768541446b4fa5957819747cfc",
+      "words": 18074,
+      "distilled": true
+    },
+    "O1Up-bcloFM": {
+      "set": "SOS",
+      "sha1": "8304e8bef84ccc15846db1f0ddcff34624d56370",
+      "words": 17979,
+      "distilled": true
+    },
+    "Wlgwz49mKec": {
+      "set": "SOS",
+      "sha1": "4d30e079b0416bb6642fb67b60b42b77f1558899",
+      "words": 17376,
+      "distilled": true
+    },
+    "Y1ESx1xg6fo": {
+      "set": "SOS",
+      "sha1": "edf8ab9183ae2505cb038abab13fadcea2abf832",
+      "words": 48006,
+      "distilled": true
+    },
+    "bsBoYVrt-mI": {
+      "set": "SOS",
+      "sha1": "c6e7d3c575553ac2fac48c92980347cd297e9d60",
+      "words": 53005,
+      "distilled": true
+    },
+    "gr7wsr0z_2c": {
+      "set": "SOS",
+      "sha1": "910c0a4c00c44ec63e463c5f908deec19bfa8f50",
+      "words": 14956,
+      "distilled": true
+    },
+    "hS_fyPS8jnI": {
+      "set": "MKM",
+      "sha1": "8ea5daf06e91d6d834cea4cec540a4fad312de3a",
+      "words": 34005,
+      "distilled": true
+    },
+    "hUYXa1aOPck": {
+      "set": "MKM",
+      "sha1": "b2bcc9fbdc51d775866e32368ae884e5b3cb8927",
+      "words": 59711,
+      "distilled": true
+    },
+    "jSmDFHLHDcI": {
+      "set": "MKM",
+      "sha1": "5aa5f389924522b2ae4dfab0d5629359a3cf2f06",
+      "words": 15307,
+      "distilled": true
+    },
+    "lK8O-nmlVWE": {
+      "set": "MKM",
+      "sha1": "9dec6a6b810d5c96ee55bac9ffaf5dcaea001cfe",
+      "words": 16317,
+      "distilled": true
+    },
+    "xcTMrj6GNUY": {
+      "set": "SOS",
+      "sha1": "61d4a3b1ea2404cd4c0bfc7f5f03950ec4446015",
+      "words": 19751,
+      "distilled": true
+    }
+  }
+}

@@ -442,6 +442,13 @@ at draft start alongside the LoL guide; same status (theory/expert opinion, 17La
 primary). The scrape is fingerprinted in `draft-guides/numot/manifest.json` so re-runs only fetch/distill new
 or changed VODs — see [`draft-guides/numot/README.md`](./draft-guides/numot/README.md) and `src/ingest/fingerprint.py numot`.
 
+**Ingest is channel-agnostic.** All expert-prose channels share one pipeline keyed off
+[`src/ingest/channels.json`](./src/ingest/channels.json): `fetch_subs.sh <slug>` (fetch + clean
+captions), `fingerprint.py <slug>` (incremental manifest), and the distill output contract
+(`channels.<slug>.distill_format`). The stage-2 runbook for turning transcripts into guides is
+[`src/ingest/DISTILL.md`](./src/ingest/DISTILL.md). Adding a new YouTuber is a channels.json entry +
+a worklist — no code changes.
+
 ## Data sources & credits
 
 - **[Scryfall](https://scryfall.com/)** — card names, mana costs, oracle text (queried at runtime;
