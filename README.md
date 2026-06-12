@@ -68,7 +68,10 @@ ranked overlay. Nothing leaves your machine.
 **🤖 Coached — add an AI agent.** Point an LLM agent (e.g. Claude Code) at
 [`AGENTS.md`](./AGENTS.md) and it drives the same loop but adds *judgment*: reading open lanes,
 cross-referencing expert set guides, mana-curve warnings, and adapting when you take an off-meta
-pick. It's a second opinion layered on top — the solo tool works fine without it.
+pick. It's a second opinion layered on top — the solo tool works fine without it. If you use
+[Claude Code](https://claude.com/claude-code), the repo ships a `/mtg-draft` skill (in
+[`.claude/skills/`](./.claude/skills/mtg-draft/)) that wires this up — just open the repo and type
+`/mtg-draft`.
 
 Either way, the 17Lands data is the source of truth and the AI is decorrelated expert color, never
 the other way around.
