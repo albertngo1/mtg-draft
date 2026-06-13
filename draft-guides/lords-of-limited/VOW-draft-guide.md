@@ -81,85 +81,85 @@ Episode shorthands: **roundtable** = Trophy Leaderboard Roundtable (Dec 1), **sh
 
 ### Red
 
-- **Flame-Blessed Bolt** — premier common; almost always a first pick contender. One bolt is taken over multiple alternatives in the showdown repeatedly. | roundtable, showdown
-- **Reckless Impulse** — high-value common; provides card advantage in a color that wants to chain spells. Taken late pack 1 in showdown. | roundtable, showdown
-- **Kessig Flamebreather** ("flame breather" in captions) — the linchpin of the red-spells archetype. A 1/3 that pings for 1 whenever you cast a non-creature spell. Its GIH WR per 17Lands is low (53.7%), but beers argues this is because most players draft it incorrectly — you must go all-in on the spell/anger(?) package. In a tuned spells deck it is a first-pick caliber card. | roundtable
-- **Rending Flame** ("running flame" in captions) — solid removal; played over weaker alternatives in the showdown. | showdown
-- **Epicure of Blood** ("epicure") — blood token generator; provides incidental damage and life drain. Wheeled late in the showdown despite being strong; late-wheeling is noted by roundtable panelists as characteristic of deep red commons. | roundtable, showdown
-- **Pyre Spawn** ("pyre spawn") — large threat; contested; Ethan unsure how good it is in the showdown. | showdown
-- **Sure Strike** — fine combat trick; beers mentions as a key card in the aggressive plan (panelists want to attack every turn; tricks enable that). | roundtable
-- **Angers** (?) — captions unclear, possibly "Antagonize" or similar card; referenced as key enabler for the Flamebreather deck alongside spells. | roundtable
+- [**Flame-Blessed Bolt**](https://scryfall.com/search?q=Flame-Blessed%20Bolt) — premier common; almost always a first pick contender. One bolt is taken over multiple alternatives in the showdown repeatedly. | roundtable, showdown
+- [**Reckless Impulse**](https://scryfall.com/search?q=Reckless%20Impulse) — high-value common; provides card advantage in a color that wants to chain spells. Taken late pack 1 in showdown. | roundtable, showdown
+- [**Kessig Flamebreather**](https://scryfall.com/search?q=Kessig%20Flamebreather) ("flame breather" in captions) — the linchpin of the red-spells archetype. A 1/3 that pings for 1 whenever you cast a non-creature spell. Its GIH WR per 17Lands is low (53.7%), but beers argues this is because most players draft it incorrectly — you must go all-in on the spell/anger(?) package. In a tuned spells deck it is a first-pick caliber card. | roundtable
+- [**Rending Flame**](https://scryfall.com/search?q=Rending%20Flame) ("running flame" in captions) — solid removal; played over weaker alternatives in the showdown. | showdown
+- [**Epicure of Blood**](https://scryfall.com/search?q=Epicure%20of%20Blood) ("epicure") — blood token generator; provides incidental damage and life drain. Wheeled late in the showdown despite being strong; late-wheeling is noted by roundtable panelists as characteristic of deep red commons. | roundtable, showdown
+- [**Pyre Spawn**](https://scryfall.com/search?q=Pyre%20Spawn) ("pyre spawn") — large threat; contested; Ethan unsure how good it is in the showdown. | showdown
+- [**Sure Strike**](https://scryfall.com/search?q=Sure%20Strike) — fine combat trick; beers mentions as a key card in the aggressive plan (panelists want to attack every turn; tricks enable that). | roundtable
+- [**Angers**](https://scryfall.com/search?q=Angers) (?) — captions unclear, possibly "Antagonize" or similar card; referenced as key enabler for the Flamebreather deck alongside spells. | roundtable
 
 ### Blue
 
-- **Syncopate** — overperformer; pairs well with Ballista Watcher(?) or any card that wants you to hold up mana. Works especially with the watchers. | showdown
-- **Siphon Essence** — solid counterspell; provides incremental benefit; mentioned as part of the blue counterspell package. | showdown, roundtable
-- **Biolume Egg** ("lume" / "biolume egg") — Alex's pick for most underrated blue uncommon. Goes pick 6-7-8. Functions as an evasive 3-for-1 (scry 2, flip into 4/4, exploit trigger on self). Not a blue-black gold card — just a blue card. | roundtable
-- **Repository Scab** / **Scab-Diver** ("scob" / "scab" / "diver scob" in captions) — highly rated uncommon that goes very late. Jim compares it to the Diagraph Scavenger pattern: 2/3 deathtouch that leeches life, data-validated over-performer. Wheel-able multiple rounds. | roundtable, showdown
-- **Geist-Light Snare** ("dice light snare" in captions) — cited as a key blue-white back-door card; good signal card if it wheels. | roundtable
-- **Lunar Rejection** ("lunar rejection") — premium blue uncommon mentioned by Alex as undervalued and going late. | roundtable
-- **Storm Chaser Drake** ("drake" / "storm chaser drake") — Jacob's favorite blue card alongside the Flamebreather; pairs well with the spells plan; evasive threat. | roundtable, showdown
-- **Lantern Bearer** — one-mana flyer; gives a creature flying; not exciting alone but useful in blue-white and worth noting if passing signals. | showdown, roundtable
-- **Scattered Thoughts** — card selection; played in the showdown but described as "fine, not exciting." | showdown
-- **Cruel Witness** — decent blue creature; Ethan has middling enthusiasm; the panel seems split (scattered thoughts vs. witness). | showdown
+- [**Syncopate**](https://scryfall.com/search?q=Syncopate) — overperformer; pairs well with Ballista Watcher(?) or any card that wants you to hold up mana. Works especially with the watchers. | showdown
+- [**Siphon Essence**](https://scryfall.com/search?q=Siphon%20Essence) — solid counterspell; provides incremental benefit; mentioned as part of the blue counterspell package. | showdown, roundtable
+- [**Biolume Egg**](https://scryfall.com/search?q=Biolume%20Egg) ("lume" / "biolume egg") — Alex's pick for most underrated blue uncommon. Goes pick 6-7-8. Functions as an evasive 3-for-1 (scry 2, flip into 4/4, exploit trigger on self). Not a blue-black gold card — just a blue card. | roundtable
+- [**Repository Scab**](https://scryfall.com/search?q=Repository%20Scab) / **Scab-Diver** ("scob" / "scab" / "diver scob" in captions) — highly rated uncommon that goes very late. Jim compares it to the Diagraph Scavenger pattern: 2/3 deathtouch that leeches life, data-validated over-performer. Wheel-able multiple rounds. | roundtable, showdown
+- [**Geist-Light Snare**](https://scryfall.com/search?q=Geist-Light%20Snare) ("dice light snare" in captions) — cited as a key blue-white back-door card; good signal card if it wheels. | roundtable
+- [**Lunar Rejection**](https://scryfall.com/search?q=Lunar%20Rejection) ("lunar rejection") — premium blue uncommon mentioned by Alex as undervalued and going late. | roundtable
+- [**Storm Chaser Drake**](https://scryfall.com/search?q=Storm%20Chaser%20Drake) ("drake" / "storm chaser drake") — Jacob's favorite blue card alongside the Flamebreather; pairs well with the spells plan; evasive threat. | roundtable, showdown
+- [**Lantern Bearer**](https://scryfall.com/search?q=Lantern%20Bearer) — one-mana flyer; gives a creature flying; not exciting alone but useful in blue-white and worth noting if passing signals. | showdown, roundtable
+- [**Scattered Thoughts**](https://scryfall.com/search?q=Scattered%20Thoughts) — card selection; played in the showdown but described as "fine, not exciting." | showdown
+- [**Cruel Witness**](https://scryfall.com/search?q=Cruel%20Witness) — decent blue creature; Ethan has middling enthusiasm; the panel seems split (scattered thoughts vs. witness). | showdown
 
 ### Black
 
-- **Bleed Dry** — solid removal; passed in the showdown (Ethan explicitly notes he should not "bop around" by passing it without good reason). | showdown
-- **Fell Stinger** / "feltstinger" (?) — mentioned as better than Bleed Dry in some contexts; uncommon exploit creature. | showdown
-- **Pointed Discussion** ("pointed discussion") — Ethan regrets not taking it in the showdown; says it's the worst thing he did. Card draw with blood generation; went late. | showdown
-- **Wretched Throng** — token-generating zombie; powerful with Necroduality(?); contested against the team-draft context but noted as a good common. | showdown
-- **Bloody Betrayal** — situational removal / finisher; Jacob brings two in as main-deck inclusion when he needs the deck to close games in a different way. | roundtable
-- **Vampiric Bloodline** (?) / **Dominating Vampire** — small uncommon vampire; mostly filler ("basically just a three drop" per Ethan). | showdown
-- **Diagraph Scavenger** (?) — Jim's biggest data surprise: a 2/3 deathtouch that gains 2 life, consistently among the best black commons in the set. | roundtable
+- [**Bleed Dry**](https://scryfall.com/search?q=Bleed%20Dry) — solid removal; passed in the showdown (Ethan explicitly notes he should not "bop around" by passing it without good reason). | showdown
+- [**Fell Stinger**](https://scryfall.com/search?q=Fell%20Stinger) / "feltstinger" (?) — mentioned as better than Bleed Dry in some contexts; uncommon exploit creature. | showdown
+- [**Pointed Discussion**](https://scryfall.com/search?q=Pointed%20Discussion) ("pointed discussion") — Ethan regrets not taking it in the showdown; says it's the worst thing he did. Card draw with blood generation; went late. | showdown
+- [**Wretched Throng**](https://scryfall.com/search?q=Wretched%20Throng) — token-generating zombie; powerful with Necroduality(?); contested against the team-draft context but noted as a good common. | showdown
+- [**Bloody Betrayal**](https://scryfall.com/search?q=Bloody%20Betrayal) — situational removal / finisher; Jacob brings two in as main-deck inclusion when he needs the deck to close games in a different way. | roundtable
+- [**Vampiric Bloodline**](https://scryfall.com/search?q=Vampiric%20Bloodline) (?) / **Dominating Vampire** — small uncommon vampire; mostly filler ("basically just a three drop" per Ethan). | showdown
+- [**Diagraph Scavenger**](https://scryfall.com/search?q=Diagraph%20Scavenger) (?) — Jim's biggest data surprise: a 2/3 deathtouch that gains 2 life, consistently among the best black commons in the set. | roundtable
 
 ### White
 
-- **Traveling Minister** — 1-drop life-gain enabler; part of the white common package mentioned by Ethan. | showdown
-- **Ancestor's Embrace** (?) / **Kindly Ancestor** — life-gain creature with disturb; noted as a significant threat in the showdown opponent's deck. | showdown
-- **Valorous Stance** (?) — premium removal spell (exile); mentioned as a devastating answer in the showdown. | showdown
-- **Imprisonment** / **Sigarda's Imprisonment** ("imprisonment") — enchantment removal; debated pick in showdown (Ethan chooses other cards but acknowledges it's also good). | showdown
-- **Militia Rallier** — white creature threat; appeared as a difficult-to-deal-with problem in the showdown. | showdown
-- **Training creatures (general)** — consensus is training synergies are underwhelming. "All of the training cards suck" per nilo. Panelists who trophied with white-green explicitly avoided training. | roundtable
-- **Life gain (general)** — Chris calls it one of his biggest format surprises: stronger and more impactful than expected. Particularly relevant in white and black. | roundtable
+- [**Traveling Minister**](https://scryfall.com/search?q=Traveling%20Minister) — 1-drop life-gain enabler; part of the white common package mentioned by Ethan. | showdown
+- [**Ancestor's Embrace**](https://scryfall.com/search?q=Ancestor%27s%20Embrace) (?) / **Kindly Ancestor** — life-gain creature with disturb; noted as a significant threat in the showdown opponent's deck. | showdown
+- [**Valorous Stance**](https://scryfall.com/search?q=Valorous%20Stance) (?) — premium removal spell (exile); mentioned as a devastating answer in the showdown. | showdown
+- [**Imprisonment**](https://scryfall.com/search?q=Imprisonment) / **Sigarda's Imprisonment** ("imprisonment") — enchantment removal; debated pick in showdown (Ethan chooses other cards but acknowledges it's also good). | showdown
+- [**Militia Rallier**](https://scryfall.com/search?q=Militia%20Rallier) — white creature threat; appeared as a difficult-to-deal-with problem in the showdown. | showdown
+- [**Training creatures (general)**](https://scryfall.com/search?q=Training%20creatures%20%28general%29) — consensus is training synergies are underwhelming. "All of the training cards suck" per nilo. Panelists who trophied with white-green explicitly avoided training. | roundtable
+- [**Life gain (general)**](https://scryfall.com/search?q=Life%20gain%20%28general%29) — Chris calls it one of his biggest format surprises: stronger and more impactful than expected. Particularly relevant in white and black. | roundtable
 
 ### Green
 
-- **Flourishing Hunter** ("flourishing hunter") — the premier green common; a ramp payoff/threat. Described as one of the best cards available to green. Alex and ncaa both rate it very highly. | roundtable
-- **Hook-Hand Mariner** ("hook and marinara" / "hook hand mariner" in captions) — nilo calls it "one of the best wardrobes(?)" (likely "uncommons" or "creatures") in the set at common. A 3/3 that exerts(?) or similar; forces hard removal, exhausts opponent resources. | roundtable
-- **Weaver of Blossoms** / **Weaver Blossoms** (?) — fixing/ramp piece; makes green viable as a splash platform; mentioned as key to multicolor green builds. | roundtable
-- **Wolf Strike** ("wolf strike") — goes fairly late; solid removal for green; Alex notes it "goes a little bit late." | roundtable
-- **Massive Might** ("the plus two plus two") — green combat trick with trample; beers rates it as the most important green common for enabling attacks. Panel somewhat split (Alex says his green decks don't attack enough to make full use of it; ncaa and beers like it). | roundtable
-- **Bramble Wurm** (?) / "bramble bomb" — one of the best green uncommons per ncaa; big must-answer threat. | roundtable
-- **Sporeback Wolf** — two-drop mana sink wolf; mentioned as a solid early curve card with late-game potential. | showdown
+- [**Flourishing Hunter**](https://scryfall.com/search?q=Flourishing%20Hunter) ("flourishing hunter") — the premier green common; a ramp payoff/threat. Described as one of the best cards available to green. Alex and ncaa both rate it very highly. | roundtable
+- [**Hook-Hand Mariner**](https://scryfall.com/search?q=Hook-Hand%20Mariner) ("hook and marinara" / "hook hand mariner" in captions) — nilo calls it "one of the best wardrobes(?)" (likely "uncommons" or "creatures") in the set at common. A 3/3 that exerts(?) or similar; forces hard removal, exhausts opponent resources. | roundtable
+- [**Weaver of Blossoms**](https://scryfall.com/search?q=Weaver%20of%20Blossoms) / **Weaver Blossoms** (?) — fixing/ramp piece; makes green viable as a splash platform; mentioned as key to multicolor green builds. | roundtable
+- [**Wolf Strike**](https://scryfall.com/search?q=Wolf%20Strike) ("wolf strike") — goes fairly late; solid removal for green; Alex notes it "goes a little bit late." | roundtable
+- [**Massive Might**](https://scryfall.com/search?q=Massive%20Might) ("the plus two plus two") — green combat trick with trample; beers rates it as the most important green common for enabling attacks. Panel somewhat split (Alex says his green decks don't attack enough to make full use of it; ncaa and beers like it). | roundtable
+- [**Bramble Wurm**](https://scryfall.com/search?q=Bramble%20Wurm) (?) / "bramble bomb" — one of the best green uncommons per ncaa; big must-answer threat. | roundtable
+- [**Sporeback Wolf**](https://scryfall.com/search?q=Sporeback%20Wolf) — two-drop mana sink wolf; mentioned as a solid early curve card with late-game potential. | showdown
 
 ### Multicolor / Gold
 
-- **Biolume Egg** (UB) — see Blue. Alex says it's not really a gold card; it's a blue card that happens to need exploiters. | roundtable
-- **Katilda, Dawnhart Martyr** (?) / "katilda" — bomb rare mentioned; Ethan passes on taking it strategically during the showdown (team-draft concern about passing to opponent) but calls it powerful. | showdown
-- **Dreadfeast Demon** ("dreadfuse demon" / "dreadfast demon" — both mispronounced) — contender for biggest bomb in the set per beers; Alex notes he splashed it in a blue-green deck with 8 incidental black sources. | roundtable
-- **Necroduality** ("necro duality") — very powerful but hard to make work in team draft context; Ethan and Ben both pass on it; noted as a strong card that requires the right deck. | showdown
-- **Brine Comber** — UW gold card; Jim flags it as a "backdoor" signal for the blue-white draft, meaning if it wheels you're officially in that lane. | roundtable
-- **Child of the Pack** (RG) / "child of the night" — two-five that makes werewolves; Jim specifically calls it out as what draws him to green-red werewolves. | roundtable
+- [**Biolume Egg**](https://scryfall.com/search?q=Biolume%20Egg) (UB) — see Blue. Alex says it's not really a gold card; it's a blue card that happens to need exploiters. | roundtable
+- [**Katilda, Dawnhart Martyr**](https://scryfall.com/search?q=Katilda%2C%20Dawnhart%20Martyr) (?) / "katilda" — bomb rare mentioned; Ethan passes on taking it strategically during the showdown (team-draft concern about passing to opponent) but calls it powerful. | showdown
+- [**Dreadfeast Demon**](https://scryfall.com/search?q=Dreadfeast%20Demon) ("dreadfuse demon" / "dreadfast demon" — both mispronounced) — contender for biggest bomb in the set per beers; Alex notes he splashed it in a blue-green deck with 8 incidental black sources. | roundtable
+- [**Necroduality**](https://scryfall.com/search?q=Necroduality) ("necro duality") — very powerful but hard to make work in team draft context; Ethan and Ben both pass on it; noted as a strong card that requires the right deck. | showdown
+- [**Brine Comber**](https://scryfall.com/search?q=Brine%20Comber) — UW gold card; Jim flags it as a "backdoor" signal for the blue-white draft, meaning if it wheels you're officially in that lane. | roundtable
+- [**Child of the Pack**](https://scryfall.com/search?q=Child%20of%20the%20Pack) (RG) / "child of the night" — two-five that makes werewolves; Jim specifically calls it out as what draws him to green-red werewolves. | roundtable
 
 ### Colorless / Artifacts
 
-- **Blood Servitor** — colorless creature that generates blood tokens; mentioned favorably in the showdown as something to sacrifice to Scab and a colorless mana source. | showdown
-- **Ruinous Intrusion** / Estate lands — Voldaren Estate(?) and similar utility lands; Ethan plays one in the showdown. | showdown
+- [**Blood Servitor**](https://scryfall.com/search?q=Blood%20Servitor) — colorless creature that generates blood tokens; mentioned favorably in the showdown as something to sacrifice to Scab and a colorless mana source. | showdown
+- [**Ruinous Intrusion**](https://scryfall.com/search?q=Ruinous%20Intrusion) / Estate lands — Voldaren Estate(?) and similar utility lands; Ethan plays one in the showdown. | showdown
 
 ### Lands
 
-- **Voldaren Estate** (?) — appears twice in the showdown draft; Ethan takes one for utility value; notes seeing multiple in a row means few bombs were opened. | showdown
-- **Dual lands / Taplands** — 18 lands is noted as correct for high-curve blood decks; fixing matters for splashes. | showdown, roundtable
+- [**Voldaren Estate**](https://scryfall.com/search?q=Voldaren%20Estate) (?) — appears twice in the showdown draft; Ethan takes one for utility value; notes seeing multiple in a row means few bombs were opened. | showdown
+- [**Dual lands / Taplands**](https://scryfall.com/search?q=Dual%20lands%20/%20Taplands) — 18 lands is noted as correct for high-curve blood decks; fixing matters for splashes. | showdown, roundtable
 
 ### Rares & Bombs
 
-- **Ballista Watcher** — high-rated uncommon(?)/rare that came up multiple times in the showdown; Ethan calls it clearly better than Dominating Vampire; two copies in one draft is noted as excellent. Pairs well with Cradle of Safety(?) (play it protected). | showdown
-- **Cradle of Safety** — hexproof enchantment aura; pairs with high-value creatures (Ballista Watcher). Ethan specifically notes his two-Watcher deck wants Cradle to protect them. | showdown
-- **Attendance** / "Morbid Opportunist" (?) — called "nuts" by Ethan; he plays 18 lands partly because of this card's high power. | showdown
-- **Katilda, Dawnhart Martyr** — bomb rare; see Multicolor. | showdown
-- **Avabruck Caretaker** (?) / "caretaker and the hotline" — referenced as a green rare/bomb; beers jokes he'd take flame breather over it (team laughs, acknowledges this is "probably wrong for everyone, maybe even me included"). | roundtable
-- **Dreadfeast Demon** — see Multicolor. | roundtable
+- [**Ballista Watcher**](https://scryfall.com/search?q=Ballista%20Watcher) — high-rated uncommon(?)/rare that came up multiple times in the showdown; Ethan calls it clearly better than Dominating Vampire; two copies in one draft is noted as excellent. Pairs well with Cradle of Safety(?) (play it protected). | showdown
+- [**Cradle of Safety**](https://scryfall.com/search?q=Cradle%20of%20Safety) — hexproof enchantment aura; pairs with high-value creatures (Ballista Watcher). Ethan specifically notes his two-Watcher deck wants Cradle to protect them. | showdown
+- [**Attendance**](https://scryfall.com/search?q=Attendance) / "Morbid Opportunist" (?) — called "nuts" by Ethan; he plays 18 lands partly because of this card's high power. | showdown
+- [**Katilda, Dawnhart Martyr**](https://scryfall.com/search?q=Katilda%2C%20Dawnhart%20Martyr) — bomb rare; see Multicolor. | showdown
+- [**Avabruck Caretaker**](https://scryfall.com/search?q=Avabruck%20Caretaker) (?) / "caretaker and the hotline" — referenced as a green rare/bomb; beers jokes he'd take flame breather over it (team laughs, acknowledges this is "probably wrong for everyone, maybe even me included"). | roundtable
+- [**Dreadfeast Demon**](https://scryfall.com/search?q=Dreadfeast%20Demon) — see Multicolor. | roundtable
 
 ## Signals & seat reads
 

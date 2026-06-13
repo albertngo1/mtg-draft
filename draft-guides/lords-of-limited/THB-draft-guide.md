@@ -68,105 +68,105 @@ Evidence is thin on non-black archetypes. Tiers are approximate based on hosts' 
 Deduped across episodes; later takes win. "(?) " marks heavy auto-caption garble.
 
 ### White
-- **Heliod's Pilgrim** — Premium white uncommon, tutor for enchantments. Can fetch Dreadful Apathy or War Brier Blessing(?). Curves into whatever you need. P1P1-able if black is contested.
-- **Elspeth, Sun's Nemesis** — Better than initially expected. Goes well in white-black go-wide (tokens + soldiers). Rise to Glory can rebuy her. Her escape cost is high but worth it; she's a value engine not just a beatdown card.
-- **Elspeth's Nightmare** — Called "one of the best uncommons in the set." Strong disruption + card advantage. Snap-pick; better than Elspeth herself per the 03-24 episode.
-- **Pious Wayfarer** — "Second best white common" (02-18). Scales with multiple copies. Excellent in constellation/enchantment-heavy decks where each new enchantment pumps all of them.
-- **Dreadful Apathy** — Stronger than early impressions. Becomes premium with Flicker of Fate. The enchantment subtype means Heliod's Pilgrim fetches it. Play Flicker of Fate if you have 2+ Apathy.
-- **Daybreak Chimera** — Went DOWN in evaluation over time (02-18, 03-24). Early format had it as a top common; later commentary says "it's not one of my top 3 white commons." Only truly exciting in heavy-white Heliod devotion builds where WW pip matters. Restricts mana too much for non-devoted decks.
-- **Hero of the Pride** — Fine white common, better than Hero of the Winds in most builds. Goes in heroic/targeting decks.
-- **Dawn Evangel** — Solid white 3-drop; good in aggressive builds but cut against go-long opponents (02-18 commentary).
-- **Shatter the Sky** — Red-flag wrath for white. Useful in some builds but the mana cost is not trivial and it "gets walked by a 2-drop." Goes in fewer than half of white decks — mainly white-control/midrange. Not actively bad but not something to build around.
-- **Hero of the Winds** — Fine blocker, gets pump from targeting, but less exciting than Hero of the Pride.
-- **Rumbling Sentry** — A 4/5 for 4W (or similar) that blocks well and adds two white devotion pips for Heliod. "Very relevant" body in the Heliod-white deck specifically.
-- **Birth of Meletis** — Can function as a pseudo-17th land in some builds. Also triggers constellation.
-- **Archon of Sun's Grace** — "Insane" in a deck with lots of enchantments and Dreadful Apathy. Flying 3/4 that creates Pegasus tokens. High-value pick for the Heliod devotion/aura shell.
-- **Omen of the Sun** — Good constellation trigger, makes tokens, instant speed. Pairs well with Pious Wayfarer.
-- **Triumphant Surge** — Conditional removal (exile creature with 4+ power). Important answer for big green threats and gods. Usually want 1 in the main, 1-2 in the board.
-- **Indomitable Will** — Combat trick / aura that can push things through and triggers heroic/constellation. Better than it looks in the right build.
+- [**Heliod's Pilgrim**](https://scryfall.com/search?q=Heliod%27s%20Pilgrim) — Premium white uncommon, tutor for enchantments. Can fetch Dreadful Apathy or War Brier Blessing(?). Curves into whatever you need. P1P1-able if black is contested.
+- [**Elspeth, Sun's Nemesis**](https://scryfall.com/search?q=Elspeth%2C%20Sun%27s%20Nemesis) — Better than initially expected. Goes well in white-black go-wide (tokens + soldiers). Rise to Glory can rebuy her. Her escape cost is high but worth it; she's a value engine not just a beatdown card.
+- [**Elspeth's Nightmare**](https://scryfall.com/search?q=Elspeth%27s%20Nightmare) — Called "one of the best uncommons in the set." Strong disruption + card advantage. Snap-pick; better than Elspeth herself per the 03-24 episode.
+- [**Pious Wayfarer**](https://scryfall.com/search?q=Pious%20Wayfarer) — "Second best white common" (02-18). Scales with multiple copies. Excellent in constellation/enchantment-heavy decks where each new enchantment pumps all of them.
+- [**Dreadful Apathy**](https://scryfall.com/search?q=Dreadful%20Apathy) — Stronger than early impressions. Becomes premium with Flicker of Fate. The enchantment subtype means Heliod's Pilgrim fetches it. Play Flicker of Fate if you have 2+ Apathy.
+- [**Daybreak Chimera**](https://scryfall.com/search?q=Daybreak%20Chimera) — Went DOWN in evaluation over time (02-18, 03-24). Early format had it as a top common; later commentary says "it's not one of my top 3 white commons." Only truly exciting in heavy-white Heliod devotion builds where WW pip matters. Restricts mana too much for non-devoted decks.
+- [**Hero of the Pride**](https://scryfall.com/search?q=Hero%20of%20the%20Pride) — Fine white common, better than Hero of the Winds in most builds. Goes in heroic/targeting decks.
+- [**Dawn Evangel**](https://scryfall.com/search?q=Dawn%20Evangel) — Solid white 3-drop; good in aggressive builds but cut against go-long opponents (02-18 commentary).
+- [**Shatter the Sky**](https://scryfall.com/search?q=Shatter%20the%20Sky) — Red-flag wrath for white. Useful in some builds but the mana cost is not trivial and it "gets walked by a 2-drop." Goes in fewer than half of white decks — mainly white-control/midrange. Not actively bad but not something to build around.
+- [**Hero of the Winds**](https://scryfall.com/search?q=Hero%20of%20the%20Winds) — Fine blocker, gets pump from targeting, but less exciting than Hero of the Pride.
+- [**Rumbling Sentry**](https://scryfall.com/search?q=Rumbling%20Sentry) — A 4/5 for 4W (or similar) that blocks well and adds two white devotion pips for Heliod. "Very relevant" body in the Heliod-white deck specifically.
+- [**Birth of Meletis**](https://scryfall.com/search?q=Birth%20of%20Meletis) — Can function as a pseudo-17th land in some builds. Also triggers constellation.
+- [**Archon of Sun's Grace**](https://scryfall.com/search?q=Archon%20of%20Sun%27s%20Grace) — "Insane" in a deck with lots of enchantments and Dreadful Apathy. Flying 3/4 that creates Pegasus tokens. High-value pick for the Heliod devotion/aura shell.
+- [**Omen of the Sun**](https://scryfall.com/search?q=Omen%20of%20the%20Sun) — Good constellation trigger, makes tokens, instant speed. Pairs well with Pious Wayfarer.
+- [**Triumphant Surge**](https://scryfall.com/search?q=Triumphant%20Surge) — Conditional removal (exile creature with 4+ power). Important answer for big green threats and gods. Usually want 1 in the main, 1-2 in the board.
+- [**Indomitable Will**](https://scryfall.com/search?q=Indomitable%20Will) — Combat trick / aura that can push things through and triggers heroic/constellation. Better than it looks in the right build.
 
 ### Blue
-- **Omen of the Sea** — Strong blue common, instant-speed scry 2 draw. Best home is blue-green constellation. Powers up Phoenix of Ash in blue-red.
-- **Thirst for Meaning** — "Pretty good" card flow; best when you can pitch escape cards to fuel. Goes well in blue-red and blue-black.
-- **Thrill of Possibility** — "Excellent" in blue-red, especially with Phoenix of Ash in your deck. Pitching Phoenix and then escaping it is a core game plan. Two or three copies in blue-red.
-- **Stinging Lionfish** — Premium blue 2-drop for blue-red tempo; "flash 1-power creature that matters when casting things on opponent's turn." Key aggressive piece.
-- **Sleep of the Dead** — "Really scary" card. Taps a key creature, returns from the graveyard if opponent sacrifices a thing. Best in blue-red tempo where you don't have other escape outlets. Demonstrated its threat potential in the Nap Time! puzzle episode.
-- **Deny the Divine** — Instant exile for attacking/blocking creature. Good anti-escape answer and removes the creature from being fuel. "Pairs well with things blue-red is trying to do."
-- **Stern Dismissal** — Fine tempo bounce, niche role. 
-- **Mystic Repeal** — Actively useful; demonstrated ability to deny opponent's omen-sacrifice loops to prevent re-casting Sleep of the Dead (03-13 puzzle). Better than typical bounce.
-- **Whirlwind Denial** — Okay counter; slots into blue-red for the instant-speed density.
-- **Witness of Tomorrow** — Fine blue flier but not exciting; good when you need bodies in blue-white.
-- **Nyx-Born Colossus (?)** — 6/7 for 6 at common (blue?). "A lot of stats." Goes in blue-green threat-dense decks. Late-pick value that's hard to beat on size.
-- **Nadir Kraken (?)** — Rare mentioned as a build-around. Can audible into it if it wheels.
+- [**Omen of the Sea**](https://scryfall.com/search?q=Omen%20of%20the%20Sea) — Strong blue common, instant-speed scry 2 draw. Best home is blue-green constellation. Powers up Phoenix of Ash in blue-red.
+- [**Thirst for Meaning**](https://scryfall.com/search?q=Thirst%20for%20Meaning) — "Pretty good" card flow; best when you can pitch escape cards to fuel. Goes well in blue-red and blue-black.
+- [**Thrill of Possibility**](https://scryfall.com/search?q=Thrill%20of%20Possibility) — "Excellent" in blue-red, especially with Phoenix of Ash in your deck. Pitching Phoenix and then escaping it is a core game plan. Two or three copies in blue-red.
+- [**Stinging Lionfish**](https://scryfall.com/search?q=Stinging%20Lionfish) — Premium blue 2-drop for blue-red tempo; "flash 1-power creature that matters when casting things on opponent's turn." Key aggressive piece.
+- [**Sleep of the Dead**](https://scryfall.com/search?q=Sleep%20of%20the%20Dead) — "Really scary" card. Taps a key creature, returns from the graveyard if opponent sacrifices a thing. Best in blue-red tempo where you don't have other escape outlets. Demonstrated its threat potential in the Nap Time! puzzle episode.
+- [**Deny the Divine**](https://scryfall.com/search?q=Deny%20the%20Divine) — Instant exile for attacking/blocking creature. Good anti-escape answer and removes the creature from being fuel. "Pairs well with things blue-red is trying to do."
+- [**Stern Dismissal**](https://scryfall.com/search?q=Stern%20Dismissal) — Fine tempo bounce, niche role. 
+- [**Mystic Repeal**](https://scryfall.com/search?q=Mystic%20Repeal) — Actively useful; demonstrated ability to deny opponent's omen-sacrifice loops to prevent re-casting Sleep of the Dead (03-13 puzzle). Better than typical bounce.
+- [**Whirlwind Denial**](https://scryfall.com/search?q=Whirlwind%20Denial) — Okay counter; slots into blue-red for the instant-speed density.
+- [**Witness of Tomorrow**](https://scryfall.com/search?q=Witness%20of%20Tomorrow) — Fine blue flier but not exciting; good when you need bodies in blue-white.
+- [**Nyx-Born Colossus (?)**](https://scryfall.com/search?q=Nyx-Born%20Colossus%20%28%3F%29) — 6/7 for 6 at common (blue?). "A lot of stats." Goes in blue-green threat-dense decks. Late-pick value that's hard to beat on size.
+- [**Nadir Kraken (?)**](https://scryfall.com/search?q=Nadir%20Kraken%20%28%3F%29) — Rare mentioned as a build-around. Can audible into it if it wheels.
 
 ### Black
-- **Gray Merchant of Asphodel (Gary)** — "Better than I thought it would be." A game-ending drain effect when devotion is high enough. The inevitable escape on a drain/life-swing is a real plan B. "Inevitable is a huge thing."
-- **Inevitable End** — Third-best black common per the 01-28 episode. Enchantment-based removal that also adds devotion. "Almost always kills the target." Good in sacrifice synergy decks.
-- **Underworld Charger (?)** — Strong black common. Listed above Lampad and Soul Reaper in some rankings. Escape creature that recurs itself.
-- **Drag to the Underworld** — Below Final Death when exile matters. The double-black pip is "kind of a problem." Good in dedicated black builds, but don't cut Final Death for it.
-- **Final Death** — Exile removal; premium specifically because of the escape environment. Best black common removal for non-black-heavy decks.
-- **Soul Reaper of Mogis** — Important black role-player. Sac outlet + some value. Want exactly 1, not multiple. Critical for sacrifice synergy archetypes (Rakdos, Orzhov).
-- **Lampad of Death's Vigil** — Cheap sac outlet that burns opponent. Want 1, not 2. "When I have one and draw the other I'm really unhappy." Best when you're already sacrificing things.
-- **Nightmare Shepherd (?)** — Mentioned as a strong rare; "creating tokens of your stuff when they die" is a powerful graveyard/sacrifice synergy.
-- **Elspeth's Nightmare** — Black uncommon that exiles creatures/hand/enchantments chapter by chapter. "One of the best uncommons in the set." (03-24)
-- **Myers Grasp (?) / Mire's Grasp (?)** — Premium black removal. Snap-pick. Goes well in the Heliod white-black deck; late copy tipped drafting into black commitment in 03-24.
-- **Rise to Glory** — Black enchantment that recurs creatures. Engine card in white-black: with two Dreadful Apathy + Myers Grasp, Rise to Glory is "a very real card." Makes Flicker of Fate even better.
-- **Minion's Return (?)** — Situational recursion, listed below Gary in the 01-28 ranking. Narrow.
-- **Acolyte of Affliction** — "Best card in the pack" in some contexts (03-24). Milling yourself for escape fuel while also being a body.
-- **Venomous Hierophant (?)** — Deathtouch creature, mentioned in gameplay commentary. Blocks well, relevant body.
-- **Dream Shaper Shaman** — Medium card. Fine when you have omens or expendable stuff. "I have a good build around it sometimes"; not a reason to draft blue-red alone.
+- [**Gray Merchant of Asphodel (Gary)**](https://scryfall.com/search?q=Gray%20Merchant%20of%20Asphodel%20%28Gary%29) — "Better than I thought it would be." A game-ending drain effect when devotion is high enough. The inevitable escape on a drain/life-swing is a real plan B. "Inevitable is a huge thing."
+- [**Inevitable End**](https://scryfall.com/search?q=Inevitable%20End) — Third-best black common per the 01-28 episode. Enchantment-based removal that also adds devotion. "Almost always kills the target." Good in sacrifice synergy decks.
+- [**Underworld Charger (?)**](https://scryfall.com/search?q=Underworld%20Charger%20%28%3F%29) — Strong black common. Listed above Lampad and Soul Reaper in some rankings. Escape creature that recurs itself.
+- [**Drag to the Underworld**](https://scryfall.com/search?q=Drag%20to%20the%20Underworld) — Below Final Death when exile matters. The double-black pip is "kind of a problem." Good in dedicated black builds, but don't cut Final Death for it.
+- [**Final Death**](https://scryfall.com/search?q=Final%20Death) — Exile removal; premium specifically because of the escape environment. Best black common removal for non-black-heavy decks.
+- [**Soul Reaper of Mogis**](https://scryfall.com/search?q=Soul%20Reaper%20of%20Mogis) — Important black role-player. Sac outlet + some value. Want exactly 1, not multiple. Critical for sacrifice synergy archetypes (Rakdos, Orzhov).
+- [**Lampad of Death's Vigil**](https://scryfall.com/search?q=Lampad%20of%20Death%27s%20Vigil) — Cheap sac outlet that burns opponent. Want 1, not 2. "When I have one and draw the other I'm really unhappy." Best when you're already sacrificing things.
+- [**Nightmare Shepherd (?)**](https://scryfall.com/search?q=Nightmare%20Shepherd%20%28%3F%29) — Mentioned as a strong rare; "creating tokens of your stuff when they die" is a powerful graveyard/sacrifice synergy.
+- [**Elspeth's Nightmare**](https://scryfall.com/search?q=Elspeth%27s%20Nightmare) — Black uncommon that exiles creatures/hand/enchantments chapter by chapter. "One of the best uncommons in the set." (03-24)
+- [**Myers Grasp (?) / Mire's Grasp (?)**](https://scryfall.com/search?q=Myers%20Grasp%20%28%3F%29%20/%20Mire%27s%20Grasp%20%28%3F%29) — Premium black removal. Snap-pick. Goes well in the Heliod white-black deck; late copy tipped drafting into black commitment in 03-24.
+- [**Rise to Glory**](https://scryfall.com/search?q=Rise%20to%20Glory) — Black enchantment that recurs creatures. Engine card in white-black: with two Dreadful Apathy + Myers Grasp, Rise to Glory is "a very real card." Makes Flicker of Fate even better.
+- [**Minion's Return (?)**](https://scryfall.com/search?q=Minion%27s%20Return%20%28%3F%29) — Situational recursion, listed below Gary in the 01-28 ranking. Narrow.
+- [**Acolyte of Affliction**](https://scryfall.com/search?q=Acolyte%20of%20Affliction) — "Best card in the pack" in some contexts (03-24). Milling yourself for escape fuel while also being a body.
+- [**Venomous Hierophant (?)**](https://scryfall.com/search?q=Venomous%20Hierophant%20%28%3F%29) — Deathtouch creature, mentioned in gameplay commentary. Blocks well, relevant body.
+- [**Dream Shaper Shaman**](https://scryfall.com/search?q=Dream%20Shaper%20Shaman) — Medium card. Fine when you have omens or expendable stuff. "I have a good build around it sometimes"; not a reason to draft blue-red alone.
 
 ### Red
-- **Tectonic Giant** — Premium rare/uncommon. "Better than all commons and uncommons" when it hits the table according to Ethan (02-18). Slam-pick.
-- **Phoenix of Ash** — Slam-pick rare. Makes Thrill of Possibility and Thirst for Meaning better. "Makes any future filtering be great." Core of the blue-red escape plan.
-- **Omen of the Forge** — Instant-speed 1-mana artifact/enchantment deal-2 trigger + scry. "Really makes the deck" for blue-red; enables Final Flare, is a good mana-sink at instant speed, and is good with Tectonic Giant.
-- **Final Flare** — Sorcery-speed sacrifice + direct damage. Good but requires expendable stuff. "You need expendable stuff to make Final Flare better." Don't first-pick into it; better as a later addition.
-- **Wrap in Flames** — Red board-wide effect (gives tapped -2/-0?). Good in white-red aggro or heroic builds.
-- **Incendiary Oracle (?)** — "One of the top 4-5 red commons." Good early pick in red. (03-24)
-- **Hero of the Games (?)** — Red heroic creature; grows when you target it. Less exciting without dedicated targeting support.
-- **Aspect of Manticore (?)** — Instant-speed pump trick; gives haste. Relevant specifically in situations where you need to attack immediately with a new creature.
-- **Stampede Rider** — Below average in most decks; only in green-red where you can actually use the triggered ability. Mentioned as not great even in red-green.
-- **Blood Aspirant** — Mentioned briefly; not good in blue-red (no sac outlets), fine in black-red sacrifice decks.
+- [**Tectonic Giant**](https://scryfall.com/search?q=Tectonic%20Giant) — Premium rare/uncommon. "Better than all commons and uncommons" when it hits the table according to Ethan (02-18). Slam-pick.
+- [**Phoenix of Ash**](https://scryfall.com/search?q=Phoenix%20of%20Ash) — Slam-pick rare. Makes Thrill of Possibility and Thirst for Meaning better. "Makes any future filtering be great." Core of the blue-red escape plan.
+- [**Omen of the Forge**](https://scryfall.com/search?q=Omen%20of%20the%20Forge) — Instant-speed 1-mana artifact/enchantment deal-2 trigger + scry. "Really makes the deck" for blue-red; enables Final Flare, is a good mana-sink at instant speed, and is good with Tectonic Giant.
+- [**Final Flare**](https://scryfall.com/search?q=Final%20Flare) — Sorcery-speed sacrifice + direct damage. Good but requires expendable stuff. "You need expendable stuff to make Final Flare better." Don't first-pick into it; better as a later addition.
+- [**Wrap in Flames**](https://scryfall.com/search?q=Wrap%20in%20Flames) — Red board-wide effect (gives tapped -2/-0?). Good in white-red aggro or heroic builds.
+- [**Incendiary Oracle (?)**](https://scryfall.com/search?q=Incendiary%20Oracle%20%28%3F%29) — "One of the top 4-5 red commons." Good early pick in red. (03-24)
+- [**Hero of the Games (?)**](https://scryfall.com/search?q=Hero%20of%20the%20Games%20%28%3F%29) — Red heroic creature; grows when you target it. Less exciting without dedicated targeting support.
+- [**Aspect of Manticore (?)**](https://scryfall.com/search?q=Aspect%20of%20Manticore%20%28%3F%29) — Instant-speed pump trick; gives haste. Relevant specifically in situations where you need to attack immediately with a new creature.
+- [**Stampede Rider**](https://scryfall.com/search?q=Stampede%20Rider) — Below average in most decks; only in green-red where you can actually use the triggered ability. Mentioned as not great even in red-green.
+- [**Blood Aspirant**](https://scryfall.com/search?q=Blood%20Aspirant) — Mentioned briefly; not good in blue-red (no sac outlets), fine in black-red sacrifice decks.
 
 ### Green
-- **Nessian Hornbeetle (?)** — Strong green common. "Best card in the pack" multiple times. 2/2 that grows when other creatures enter. Goes in blue-green and red-green. Takes over games if uninterrupted.
-- **Wolf Willow Haven** — Ethan rates higher than most; Ben more skeptical. Mana acceleration into the mid-game. Good ramp for builds that need it.
-- **War Brier Blessing (?)** — "One of the best cards for Bluegreen" (02-18). Aura that triggers constellation. Actively good synergy piece, not just a combat trick.
-- **Setessan Training (?)** — Sorcery-speed aura with card draw; triggers heroic/constellation. Good in Simic constellation builds.
-- **Venomous Hierophant / Nessian Hierophant (?)** — Self-mill creature for green; enables escape. Mentioned in puzzle gameplay.
-- **Binding of the Titans** — Mill 2, exile from graveyard. Mentioned in 5-color control gameplay (03-13). Graveyard-hate AND graveyard filler.
-- **Omen of the Hunt** — Ramp + constellation trigger. Good in 5-color fixing builds. Tutors a land and triggers enchantment-matters abilities.
-- **Return to Nature** — Graveyard hate / enchantment removal. "Revoke Existence is better" because exile is better than return to hand in the escape environment (02-18).
-- **Nyx-Born Colossus** (see Blue — may be green-blue gold or specifically a large common in one color).
-- **Destiny Spinner** — Good creature; "once it's down with a land, surge it down" (03-24). Hard to remove and blocks well.
+- [**Nessian Hornbeetle (?)**](https://scryfall.com/search?q=Nessian%20Hornbeetle%20%28%3F%29) — Strong green common. "Best card in the pack" multiple times. 2/2 that grows when other creatures enter. Goes in blue-green and red-green. Takes over games if uninterrupted.
+- [**Wolf Willow Haven**](https://scryfall.com/search?q=Wolf%20Willow%20Haven) — Ethan rates higher than most; Ben more skeptical. Mana acceleration into the mid-game. Good ramp for builds that need it.
+- [**War Brier Blessing (?)**](https://scryfall.com/search?q=War%20Brier%20Blessing%20%28%3F%29) — "One of the best cards for Bluegreen" (02-18). Aura that triggers constellation. Actively good synergy piece, not just a combat trick.
+- [**Setessan Training (?)**](https://scryfall.com/search?q=Setessan%20Training%20%28%3F%29) — Sorcery-speed aura with card draw; triggers heroic/constellation. Good in Simic constellation builds.
+- [**Venomous Hierophant / Nessian Hierophant (?)**](https://scryfall.com/search?q=Venomous%20Hierophant%20/%20Nessian%20Hierophant%20%28%3F%29) — Self-mill creature for green; enables escape. Mentioned in puzzle gameplay.
+- [**Binding of the Titans**](https://scryfall.com/search?q=Binding%20of%20the%20Titans) — Mill 2, exile from graveyard. Mentioned in 5-color control gameplay (03-13). Graveyard-hate AND graveyard filler.
+- [**Omen of the Hunt**](https://scryfall.com/search?q=Omen%20of%20the%20Hunt) — Ramp + constellation trigger. Good in 5-color fixing builds. Tutors a land and triggers enchantment-matters abilities.
+- [**Return to Nature**](https://scryfall.com/search?q=Return%20to%20Nature) — Graveyard hate / enchantment removal. "Revoke Existence is better" because exile is better than return to hand in the escape environment (02-18).
+- [**Nyx-Born Colossus**](https://scryfall.com/search?q=Nyx-Born%20Colossus) (see Blue — may be green-blue gold or specifically a large common in one color).
+- [**Destiny Spinner**](https://scryfall.com/search?q=Destiny%20Spinner) — Good creature; "once it's down with a land, surge it down" (03-24). Hard to remove and blocks well.
 
 ### Multicolor
-- **Uro, Titan of Nature's Wrath (?)** — Referenced as S-tier bomb. "Feels nearly unbeatable." (02-01)
-- **Kroxa, Titan of Death's Hunger (?)** — Referenced as S-tier alongside Uro. Similar "almost pushed" power level.
-- **Kiora Bests the Sea God (?)** — Powerful but harder to escape (Blue-Green specific). "Easier to escape than the blue-green one" referenced about Kroxa, so Kiora is harder. Still very powerful.
-- **Atris, Oracle of Half-Truths (?)** — "A-grade" rare; good value engine. (02-01 rare review)
-- **Bronzehide Lion** — "Pretty sure I cannot beat Bronzehide Lion" per gameplay; excellent 2-drop rare with indestructible-granting ability.
-- **Erebos, Bleak-Hearted** — "Not turning this on" unless devotion is high. 30-cent value at time of recording; fine card but hard to enable.
-- **Heliod, Sun-Crowned** — "Whole other gear" once online. Makes the Heliod devotion deck's gameplan completely different; he can animate and go beatdown. In the 03-24 draft, Heliod was the key win condition.
+- [**Uro, Titan of Nature's Wrath (?)**](https://scryfall.com/search?q=Uro%2C%20Titan%20of%20Nature%27s%20Wrath%20%28%3F%29) — Referenced as S-tier bomb. "Feels nearly unbeatable." (02-01)
+- [**Kroxa, Titan of Death's Hunger (?)**](https://scryfall.com/search?q=Kroxa%2C%20Titan%20of%20Death%27s%20Hunger%20%28%3F%29) — Referenced as S-tier alongside Uro. Similar "almost pushed" power level.
+- [**Kiora Bests the Sea God (?)**](https://scryfall.com/search?q=Kiora%20Bests%20the%20Sea%20God%20%28%3F%29) — Powerful but harder to escape (Blue-Green specific). "Easier to escape than the blue-green one" referenced about Kroxa, so Kiora is harder. Still very powerful.
+- [**Atris, Oracle of Half-Truths (?)**](https://scryfall.com/search?q=Atris%2C%20Oracle%20of%20Half-Truths%20%28%3F%29) — "A-grade" rare; good value engine. (02-01 rare review)
+- [**Bronzehide Lion**](https://scryfall.com/search?q=Bronzehide%20Lion) — "Pretty sure I cannot beat Bronzehide Lion" per gameplay; excellent 2-drop rare with indestructible-granting ability.
+- [**Erebos, Bleak-Hearted**](https://scryfall.com/search?q=Erebos%2C%20Bleak-Hearted) — "Not turning this on" unless devotion is high. 30-cent value at time of recording; fine card but hard to enable.
+- [**Heliod, Sun-Crowned**](https://scryfall.com/search?q=Heliod%2C%20Sun-Crowned) — "Whole other gear" once online. Makes the Heliod devotion deck's gameplan completely different; he can animate and go beatdown. In the 03-24 draft, Heliod was the key win condition.
 
 ### Colorless / Artifacts
-- **Traveler's Amulet** — "Great even in just a two-color deck" as soon as you have one escape card. Functionally better than a land — it's "about 1.25 for 1" per Ethan (02-18). Also helps with double-pip color requirements. Draft early once you have an escape card.
-- **Shadowspear** — "One of the best cards in the set, colorless." Pack 2 Pick 1 material in the draft showdown. Equip for lifelink and trample; "going to make your deck no matter what." (02-18)
+- [**Traveler's Amulet**](https://scryfall.com/search?q=Traveler%27s%20Amulet) — "Great even in just a two-color deck" as soon as you have one escape card. Functionally better than a land — it's "about 1.25 for 1" per Ethan (02-18). Also helps with double-pip color requirements. Draft early once you have an escape card.
+- [**Shadowspear**](https://scryfall.com/search?q=Shadowspear) — "One of the best cards in the set, colorless." Pack 2 Pick 1 material in the draft showdown. Equip for lifelink and trample; "going to make your deck no matter what." (02-18)
 
 ### Lands
-- **Temples (scry lands)** — "Take them just before we pack in" — good late picks, not high picks. Scry is fine but not a draft priority.
+- [**Temples (scry lands)**](https://scryfall.com/search?q=Temples%20%28scry%20lands%29) — "Take them just before we pack in" — good late picks, not high picks. Scry is fine but not a draft priority.
 
 ### Rares & Bombs
-- **Dream Trawler** — S-tier. "Better than previous first picks on pack 1." The blue-white control deck built around Dream Trawler is a legitimate win condition. Multiple pilots in the puzzle episodes demonstrated both how good it is and how to beat it (get under it with aggro sideboard plan).
-- **Elspeth, Sun's Nemesis** — Mid-tier planeswalker. Good in white-black but not broken. "Fine, not insane."
-- **Callaphe (?)** — Strong if you're in blue heavy.
-- **Uro, Titan** and **Kroxa, Titan** — S-tier, near-unbeatable when they resolve.
-- **Shadowspear** — S/A tier artifact bomb.
-- **Tectonic Giant** — A-tier (only uncommon?); slam-first-pick across red decks.
-- **Phoenix of Ash** — A-tier rare for blue-red.
-- **Heliod, Sun-Crowned** — A-tier God; game-warping if you build devotion.
-- **Nadir Kraken** — Mentioned as a build-around blue rare that can cause audibles mid-draft (02-18 showdown).
-- **Kil… (?)** — Likely Kiora or Klothys; called "probably the best God in the set" in the 03-24 episode (non-colorless mythic, green-based). "Very difficult to beat and or race."
+- [**Dream Trawler**](https://scryfall.com/search?q=Dream%20Trawler) — S-tier. "Better than previous first picks on pack 1." The blue-white control deck built around Dream Trawler is a legitimate win condition. Multiple pilots in the puzzle episodes demonstrated both how good it is and how to beat it (get under it with aggro sideboard plan).
+- [**Elspeth, Sun's Nemesis**](https://scryfall.com/search?q=Elspeth%2C%20Sun%27s%20Nemesis) — Mid-tier planeswalker. Good in white-black but not broken. "Fine, not insane."
+- [**Callaphe (?)**](https://scryfall.com/search?q=Callaphe%20%28%3F%29) — Strong if you're in blue heavy.
+- [**Uro, Titan**](https://scryfall.com/search?q=Uro%2C%20Titan) and **Kroxa, Titan** — S-tier, near-unbeatable when they resolve.
+- [**Shadowspear**](https://scryfall.com/search?q=Shadowspear) — S/A tier artifact bomb.
+- [**Tectonic Giant**](https://scryfall.com/search?q=Tectonic%20Giant) — A-tier (only uncommon?); slam-first-pick across red decks.
+- [**Phoenix of Ash**](https://scryfall.com/search?q=Phoenix%20of%20Ash) — A-tier rare for blue-red.
+- [**Heliod, Sun-Crowned**](https://scryfall.com/search?q=Heliod%2C%20Sun-Crowned) — A-tier God; game-warping if you build devotion.
+- [**Nadir Kraken**](https://scryfall.com/search?q=Nadir%20Kraken) — Mentioned as a build-around blue rare that can cause audibles mid-draft (02-18 showdown).
+- [**Kil… (?)**](https://scryfall.com/search?q=Kil%E2%80%A6%20%28%3F%29) — Likely Kiora or Klothys; called "probably the best God in the set" in the 03-24 episode (non-colorless mythic, green-based). "Very difficult to beat and or race."
 
 ## Signals & seat reads
 

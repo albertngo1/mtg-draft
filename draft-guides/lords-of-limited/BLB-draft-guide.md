@@ -83,91 +83,91 @@ Ranked by the **2024-09-03 retrospective** final consensus.
 Later-episode takes supersede earlier ones. (?) marks card names garbled by auto-captions.
 
 ### White
-- **Intrepid Rabbit** — Top white common per retro (surprising upset over Carrot Cake). 3/2 for 2W with offspring 1; almost always pay offspring; makes a token. Key engine piece in go-wide.
-- **Carrot Cake** — Makes a 1/1 rabbit when ETB or sacrificed, scry 1. Excellent in black-white bats, good in any life-gain deck. Second-best white common.
-- **Banishing Light** — Premium white removal; always include. Triggers Builder's Talent.
-- **Hop to It** — Create three 1/1 rabbits; bread and butter token spell.
-- **Strike Force** — 1/3 flying double strike vigilance for 2W. Wears Builder's Talent counters extremely well ("why does it need vigilance, it's a moose").
-- **Sonar Strike** — Deal 4 to attacking/blocking/tapped + gain 3 if you control a bat. Best in black-white bats but playable as a removal spell elsewhere.
-- **Essence Channeler** (rare) — Only good in white-heavy/life-gain decks; best in black-white bats. Not a slam P1P1 in isolation.
-- **Innkeeper's Talent** (rare) — One of the most oppressive cards in the format. "A little too broken for limited" (retro).
+- [**Intrepid Rabbit**](https://scryfall.com/search?q=Intrepid%20Rabbit) — Top white common per retro (surprising upset over Carrot Cake). 3/2 for 2W with offspring 1; almost always pay offspring; makes a token. Key engine piece in go-wide.
+- [**Carrot Cake**](https://scryfall.com/search?q=Carrot%20Cake) — Makes a 1/1 rabbit when ETB or sacrificed, scry 1. Excellent in black-white bats, good in any life-gain deck. Second-best white common.
+- [**Banishing Light**](https://scryfall.com/search?q=Banishing%20Light) — Premium white removal; always include. Triggers Builder's Talent.
+- [**Hop to It**](https://scryfall.com/search?q=Hop%20to%20It) — Create three 1/1 rabbits; bread and butter token spell.
+- [**Strike Force**](https://scryfall.com/search?q=Strike%20Force) — 1/3 flying double strike vigilance for 2W. Wears Builder's Talent counters extremely well ("why does it need vigilance, it's a moose").
+- [**Sonar Strike**](https://scryfall.com/search?q=Sonar%20Strike) — Deal 4 to attacking/blocking/tapped + gain 3 if you control a bat. Best in black-white bats but playable as a removal spell elsewhere.
+- [**Essence Channeler**](https://scryfall.com/search?q=Essence%20Channeler) (rare) — Only good in white-heavy/life-gain decks; best in black-white bats. Not a slam P1P1 in isolation.
+- [**Innkeeper's Talent**](https://scryfall.com/search?q=Innkeeper%27s%20Talent) (rare) — One of the most oppressive cards in the format. "A little too broken for limited" (retro).
 
 ### Blue
-- **Light Shell Duo** — 3/4 prowess for 3U that surveils 2 on ETB. Goes very late; one of blue's best cards and an easy include. Key "imperial oath award for clunky over-performer."
-- **Shoreline Looter** — 1/1 can't-be-blocked for 1U; sculpts your hand or draws when threshold. Wears Builder's Talent counters excellently (unblockable).
-- **Dower Port Mage** (?) — 2-drop that can pay 1U to pick something up; demanding an answer or it generates card advantage. Goes in every blue deck.
-- **Night-World Hermit** (?) — 1/4 vigilance for 2U; gains unblockable and +1/+0 at threshold. Looks unassuming; late-pick gem in Builder's Talent decks.
-- **Eddie Murk Crab** (?) — 5/5 flash 5-drop that taps up to two creatures on ETB; mana cost reduced by instants/sorceries in graveyard. Excellent in blue-black when open late; signals an open blue lane when it comes around pack 1 pick 4–5.
-- **Mockingbird** — Copies any creature on board for X mana. Very powerful; Ben discussed taking it over Baker's Bane Duo late in the format as a card with enough individual power to justify a splash.
-- **Daring Wave Rider** — "Unfortunate casualty of Bloomburrow pushing green"; format was a bit out of balance and it fell flat. Still useful in blue-red.
-- **Into the Flood Maw** — One blue instant bounce. Excellent in blue-black because it meta-games against green's fight-based removal ("opponent tries to fight your creature, you bounce it in response").
+- [**Light Shell Duo**](https://scryfall.com/search?q=Light%20Shell%20Duo) — 3/4 prowess for 3U that surveils 2 on ETB. Goes very late; one of blue's best cards and an easy include. Key "imperial oath award for clunky over-performer."
+- [**Shoreline Looter**](https://scryfall.com/search?q=Shoreline%20Looter) — 1/1 can't-be-blocked for 1U; sculpts your hand or draws when threshold. Wears Builder's Talent counters excellently (unblockable).
+- [**Dower Port Mage**](https://scryfall.com/search?q=Dower%20Port%20Mage) (?) — 2-drop that can pay 1U to pick something up; demanding an answer or it generates card advantage. Goes in every blue deck.
+- [**Night-World Hermit**](https://scryfall.com/search?q=Night-World%20Hermit) (?) — 1/4 vigilance for 2U; gains unblockable and +1/+0 at threshold. Looks unassuming; late-pick gem in Builder's Talent decks.
+- [**Eddie Murk Crab**](https://scryfall.com/search?q=Eddie%20Murk%20Crab) (?) — 5/5 flash 5-drop that taps up to two creatures on ETB; mana cost reduced by instants/sorceries in graveyard. Excellent in blue-black when open late; signals an open blue lane when it comes around pack 1 pick 4–5.
+- [**Mockingbird**](https://scryfall.com/search?q=Mockingbird) — Copies any creature on board for X mana. Very powerful; Ben discussed taking it over Baker's Bane Duo late in the format as a card with enough individual power to justify a splash.
+- [**Daring Wave Rider**](https://scryfall.com/search?q=Daring%20Wave%20Rider) — "Unfortunate casualty of Bloomburrow pushing green"; format was a bit out of balance and it fell flat. Still useful in blue-red.
+- [**Into the Flood Maw**](https://scryfall.com/search?q=Into%20the%20Flood%20Maw) — One blue instant bounce. Excellent in blue-black because it meta-games against green's fight-based removal ("opponent tries to fight your creature, you bounce it in response").
 
 ### Black
-- **Savor** — Instant, sac a food, destroy target creature. Premium removal that also triggers forage synergies; excellent in Builder's Talent decks at instant speed.
-- **Nocturnal Hunger** — Destroy target creature (gift of food, or lose 2 life if not). Premium black removal; take highly.
-- **Thought Stalker Warlock** — 2/2 menace for 2B; ETB discard opponent (plus reveal if they lost life). "The LeBron James of Bloomburrow" — lived up to its preview-season hype all format.
-- **Downwind Ambusher** — Got a -1/-1 mini-nerf that pushed it "from niche playable to one of the better uncommons in the set" (retro).
-- **Dagger Fang Duo** — 3/2 deathtouch for 3B that mills 2 on ETB. Great in blue-black for threshold; slightly underrated by Ethan early in the format. Third-best duo overall.
-- **Glide Dive Duo** — Goes in every black deck; fourth-best duo.
-- **Vine Reap Mentor** — Key squirrel uncommon signpost; high win rate. Take it.
-- **Stargaze** — Draw 2, lose 2. Good in decks that mitigate the life loss (food, life gain); risky in red-black which lacks that mitigation.
-- **Scavenger's Talent** (uncommon) — "Sick" per both hosts. Makes food when permanents die (1/turn), mills when you sac permanents at level 2, returns a creature with finality counter at level 3. Unlocks a mill sub-plan in black-green; go after it.
-- **Fireglass Mentor** (uncommon) — Red-black signpost 2/1; at second main phase after damage was dealt, exile top 2, play one until EOT. Key card advantage engine for the archetype. Note: cast it in **second** main phase after attacking, not first.
+- [**Savor**](https://scryfall.com/search?q=Savor) — Instant, sac a food, destroy target creature. Premium removal that also triggers forage synergies; excellent in Builder's Talent decks at instant speed.
+- [**Nocturnal Hunger**](https://scryfall.com/search?q=Nocturnal%20Hunger) — Destroy target creature (gift of food, or lose 2 life if not). Premium black removal; take highly.
+- [**Thought Stalker Warlock**](https://scryfall.com/search?q=Thought%20Stalker%20Warlock) — 2/2 menace for 2B; ETB discard opponent (plus reveal if they lost life). "The LeBron James of Bloomburrow" — lived up to its preview-season hype all format.
+- [**Downwind Ambusher**](https://scryfall.com/search?q=Downwind%20Ambusher) — Got a -1/-1 mini-nerf that pushed it "from niche playable to one of the better uncommons in the set" (retro).
+- [**Dagger Fang Duo**](https://scryfall.com/search?q=Dagger%20Fang%20Duo) — 3/2 deathtouch for 3B that mills 2 on ETB. Great in blue-black for threshold; slightly underrated by Ethan early in the format. Third-best duo overall.
+- [**Glide Dive Duo**](https://scryfall.com/search?q=Glide%20Dive%20Duo) — Goes in every black deck; fourth-best duo.
+- [**Vine Reap Mentor**](https://scryfall.com/search?q=Vine%20Reap%20Mentor) — Key squirrel uncommon signpost; high win rate. Take it.
+- [**Stargaze**](https://scryfall.com/search?q=Stargaze) — Draw 2, lose 2. Good in decks that mitigate the life loss (food, life gain); risky in red-black which lacks that mitigation.
+- [**Scavenger's Talent**](https://scryfall.com/search?q=Scavenger%27s%20Talent) (uncommon) — "Sick" per both hosts. Makes food when permanents die (1/turn), mills when you sac permanents at level 2, returns a creature with finality counter at level 3. Unlocks a mill sub-plan in black-green; go after it.
+- [**Fireglass Mentor**](https://scryfall.com/search?q=Fireglass%20Mentor) (uncommon) — Red-black signpost 2/1; at second main phase after damage was dealt, exile top 2, play one until EOT. Key card advantage engine for the archetype. Note: cast it in **second** main phase after attacking, not first.
 
 ### Red
-- **Take Out the Trash** — Deal 3 to creature/planeswalker; if you control a raccoon, discard a card to draw a card. Best red common; premium removal.
-- **Scales of Shale** — +2/+0 lifelink indestructible until EOT instant for 2B (1 less per lizard you control). Strong one-of in any black deck; not just lizards.
-- **Coruscation Mage** — 2/2 with offspring for 1R; each copy pings the opponent whenever you cast a spell. Good in red-black spells/control; Fountain Port Bell triggers it. Useful for triggering "opponent lost life" synergies without combat.
-- **Blacksmith's Talent** — Equipment class enchantment. Level 1 creates a weapon token; level 3 gives a permanent +3/+3 and double strike. Combos with Starforged Sword for insane results. Good in red-green and as a component of Builder's Talent splash builds.
-- **Wildfire Howl** — Deal 2 to all creatures; gift a card to deal 1 first then 2 to all. The answer to token/rabbit decks; important include in blue-red.
-- **Hoarder's Overflow** — 1R enchantment; put counters on it when you expend 4, then sac to draw equal to counters. "Drew me four cards in all the games I cast it" in red-black control. Good card advantage engine for the deck that wants it.
+- [**Take Out the Trash**](https://scryfall.com/search?q=Take%20Out%20the%20Trash) — Deal 3 to creature/planeswalker; if you control a raccoon, discard a card to draw a card. Best red common; premium removal.
+- [**Scales of Shale**](https://scryfall.com/search?q=Scales%20of%20Shale) — +2/+0 lifelink indestructible until EOT instant for 2B (1 less per lizard you control). Strong one-of in any black deck; not just lizards.
+- [**Coruscation Mage**](https://scryfall.com/search?q=Coruscation%20Mage) — 2/2 with offspring for 1R; each copy pings the opponent whenever you cast a spell. Good in red-black spells/control; Fountain Port Bell triggers it. Useful for triggering "opponent lost life" synergies without combat.
+- [**Blacksmith's Talent**](https://scryfall.com/search?q=Blacksmith%27s%20Talent) — Equipment class enchantment. Level 1 creates a weapon token; level 3 gives a permanent +3/+3 and double strike. Combos with Starforged Sword for insane results. Good in red-green and as a component of Builder's Talent splash builds.
+- [**Wildfire Howl**](https://scryfall.com/search?q=Wildfire%20Howl) — Deal 2 to all creatures; gift a card to deal 1 first then 2 to all. The answer to token/rabbit decks; important include in blue-red.
+- [**Hoarder's Overflow**](https://scryfall.com/search?q=Hoarder%27s%20Overflow) — 1R enchantment; put counters on it when you expend 4, then sac to draw equal to counters. "Drew me four cards in all the games I cast it" in red-black control. Good card advantage engine for the deck that wants it.
 
 ### Green
-- **Baker's Bane Duo** — 2/2 for 1G that makes a food on ETB; gets +1/+1 whenever you expend 4 until EOT. Best or second-best common in the set (debates with Intrepid Rabbit at top). "At the top of the common power rankings" per early 17Lands data. Take highly.
-- **Head of the Homestead** — 4-mana rare; makes 1/1 rabbit tokens (likely 2+). Comparable to Cloud Goat Ranger / Imperial Oath per Ethan. One of the best cards in green-white.
-- **Hunter's Talent** (uncommon) — "A little too OP." Loot/fight/draw card advantage engine. Confirmed busted all format; take early.
-- **Corpse Berry Cultivator** — Squirrel that puts counters on things when you forage. Great incidental value in green decks.
-- **Tangle Tumbler** — 3-mana artifact vehicle; 6/6 crewed by tapping two tokens; can put a counter on a creature for 3. "A beating" in green-white token decks. Tap two bunny tokens from Head of the Homestead for a 6/6 vigilance.
-- **Cash Grab** — Searches up a squirrel, and if you had a squirrel in play you get a food; **if you did NOT have a squirrel, you still get the food** (hosts discovered this late). Excellent in any green deck even without squirrels.
-- **Paw Patch Formation** — "Poor man's Cash Grab" but also a good card: make food, draw a card, OR destroy a flying/enchantment. Main-deck in most green decks for Talent destruction.
-- **Vine Wreath Mentor** (?) — Squirrels signpost; "crushing it in the uncommon power rankings." Take it early when in black-green.
-- **Sticky Tongue Sentinel** — 3/3 reach for 2G that returns up to one other permanent you control to hand on ETB. The green card that went up the most in Ben's estimation over the format. Key in Builder's Talent decks (picks up Builder's Talent to replay it). Good body, reach matters vs flyers.
-- **Long Stock Brawl** — Green fight spell; over-performed expectations. Gifting the fish is often correct. Great removal for a format dominated by big green creatures.
-- **Polywollop** — 4-mana fight spell; ranges from insane to merely playable. Worth a spot in most green decks.
-- **Moose** (Galen Moose? / Gilded Moose?) (?) — Very good rare that kept coming up in gameplay. "Moose is a hell of a card."
-- **Rush Shield Rampager** (?) — Keywords-big green rare. Good in green decks, especially when Offspring'd.
-- **Honored Dre(?) Leader** — Squirrel-related uncommon that keeps generating value; excellent in black-green.
-- **Thorn Vault Forager** (?) — 2-drop squirrel with forage synergy; tutors up squirrels; excellent in squirrel decks.
-- **Bushy Bodyguard** — Squirrel with offspring; good forage fodder and double-trigger creature.
+- [**Baker's Bane Duo**](https://scryfall.com/search?q=Baker%27s%20Bane%20Duo) — 2/2 for 1G that makes a food on ETB; gets +1/+1 whenever you expend 4 until EOT. Best or second-best common in the set (debates with Intrepid Rabbit at top). "At the top of the common power rankings" per early 17Lands data. Take highly.
+- [**Head of the Homestead**](https://scryfall.com/search?q=Head%20of%20the%20Homestead) — 4-mana rare; makes 1/1 rabbit tokens (likely 2+). Comparable to Cloud Goat Ranger / Imperial Oath per Ethan. One of the best cards in green-white.
+- [**Hunter's Talent**](https://scryfall.com/search?q=Hunter%27s%20Talent) (uncommon) — "A little too OP." Loot/fight/draw card advantage engine. Confirmed busted all format; take early.
+- [**Corpse Berry Cultivator**](https://scryfall.com/search?q=Corpse%20Berry%20Cultivator) — Squirrel that puts counters on things when you forage. Great incidental value in green decks.
+- [**Tangle Tumbler**](https://scryfall.com/search?q=Tangle%20Tumbler) — 3-mana artifact vehicle; 6/6 crewed by tapping two tokens; can put a counter on a creature for 3. "A beating" in green-white token decks. Tap two bunny tokens from Head of the Homestead for a 6/6 vigilance.
+- [**Cash Grab**](https://scryfall.com/search?q=Cash%20Grab) — Searches up a squirrel, and if you had a squirrel in play you get a food; **if you did NOT have a squirrel, you still get the food** (hosts discovered this late). Excellent in any green deck even without squirrels.
+- [**Paw Patch Formation**](https://scryfall.com/search?q=Paw%20Patch%20Formation) — "Poor man's Cash Grab" but also a good card: make food, draw a card, OR destroy a flying/enchantment. Main-deck in most green decks for Talent destruction.
+- [**Vine Wreath Mentor**](https://scryfall.com/search?q=Vine%20Wreath%20Mentor) (?) — Squirrels signpost; "crushing it in the uncommon power rankings." Take it early when in black-green.
+- [**Sticky Tongue Sentinel**](https://scryfall.com/search?q=Sticky%20Tongue%20Sentinel) — 3/3 reach for 2G that returns up to one other permanent you control to hand on ETB. The green card that went up the most in Ben's estimation over the format. Key in Builder's Talent decks (picks up Builder's Talent to replay it). Good body, reach matters vs flyers.
+- [**Long Stock Brawl**](https://scryfall.com/search?q=Long%20Stock%20Brawl) — Green fight spell; over-performed expectations. Gifting the fish is often correct. Great removal for a format dominated by big green creatures.
+- [**Polywollop**](https://scryfall.com/search?q=Polywollop) — 4-mana fight spell; ranges from insane to merely playable. Worth a spot in most green decks.
+- [**Moose**](https://scryfall.com/search?q=Moose) (Galen Moose? / Gilded Moose?) (?) — Very good rare that kept coming up in gameplay. "Moose is a hell of a card."
+- [**Rush Shield Rampager**](https://scryfall.com/search?q=Rush%20Shield%20Rampager) (?) — Keywords-big green rare. Good in green decks, especially when Offspring'd.
+- [**Honored Dre(?) Leader**](https://scryfall.com/search?q=Honored%20Dre%28%3F%29%20Leader) — Squirrel-related uncommon that keeps generating value; excellent in black-green.
+- [**Thorn Vault Forager**](https://scryfall.com/search?q=Thorn%20Vault%20Forager) (?) — 2-drop squirrel with forage synergy; tutors up squirrels; excellent in squirrel decks.
+- [**Bushy Bodyguard**](https://scryfall.com/search?q=Bushy%20Bodyguard) — Squirrel with offspring; good forage fodder and double-trigger creature.
 
 ### Multicolor
-- **Zoraline Cosmos Caller** (WB rare) — 3/3 flying vigilance; returns a permanent with MV ≤ 3 from graveyard with finality counter when she enters or attacks. "Disgusting" curve with Essence Channeler. Very strong black-white rare but locks you in hard.
-- **Camellia** (BG rare?) (?) — Other squirrels have menace; whenever you sac a food, make a 1/1 squirrel; when you forage, put a counter on each other squirrel. Excellent in black-green squirrels.
-- **Alani the Divergent Storm** (UR rare) — 3/5 for 3UR; copy your first instant/sorcery/otter of each type if you gift your opponent a card. Fun rare for blue-red.
+- [**Zoraline Cosmos Caller**](https://scryfall.com/search?q=Zoraline%20Cosmos%20Caller) (WB rare) — 3/3 flying vigilance; returns a permanent with MV ≤ 3 from graveyard with finality counter when she enters or attacks. "Disgusting" curve with Essence Channeler. Very strong black-white rare but locks you in hard.
+- [**Camellia**](https://scryfall.com/search?q=Camellia) (BG rare?) (?) — Other squirrels have menace; whenever you sac a food, make a 1/1 squirrel; when you forage, put a counter on each other squirrel. Excellent in black-green squirrels.
+- [**Alani the Divergent Storm**](https://scryfall.com/search?q=Alani%20the%20Divergent%20Storm) (UR rare) — 3/5 for 3UR; copy your first instant/sorcery/otter of each type if you gift your opponent a card. Fun rare for blue-red.
 
 ### Colorless
-- **Fountain Port Bell** — Golden egg of the set (retro). Enters as a land (or close); cantrips; triggers prowess creatures, Coruscation Mage, Kindle Spark Duo, Builder's Talent; counts toward forage/threshold. Include as a 1-of in decks that care about any of those things.
-- **Bumble Flower Sharepot** (?) — 2-mana artifact removal spell that makes a food on ETB; the food triggers Builder's Talent. Better than Early Winter per retro. Picks up with Sticky Tongue Sentinel.
-- **Patchwork Banner** — Pumps all creatures of a chosen type (+1/+1) and triggers when a creature of that type ETBs. MANDATORY in blue-red (names otter to make 1/3s into 2/4s). Good in most go-wide creature-type decks. Take early.
+- [**Fountain Port Bell**](https://scryfall.com/search?q=Fountain%20Port%20Bell) — Golden egg of the set (retro). Enters as a land (or close); cantrips; triggers prowess creatures, Coruscation Mage, Kindle Spark Duo, Builder's Talent; counts toward forage/threshold. Include as a 1-of in decks that care about any of those things.
+- [**Bumble Flower Sharepot**](https://scryfall.com/search?q=Bumble%20Flower%20Sharepot) (?) — 2-mana artifact removal spell that makes a food on ETB; the food triggers Builder's Talent. Better than Early Winter per retro. Picks up with Sticky Tongue Sentinel.
+- [**Patchwork Banner**](https://scryfall.com/search?q=Patchwork%20Banner) — Pumps all creatures of a chosen type (+1/+1) and triggers when a creature of that type ETBs. MANDATORY in blue-red (names otter to make 1/3s into 2/4s). Good in most go-wide creature-type decks. Take early.
 
 ### Lands
-- **Uncharted Haven** — Enters tapped, taps for a chosen color. Good fixing for splashing; come up on this late in the format.
-- **Hidden Grotto** — Multicolor fixer. Good as a one-of for splashing.
-- **The Villages (creature-type duals)** — **Don't play them.** Entering tapped plus occasional color screw is not worth the rare activation opportunity. Trap.
+- [**Uncharted Haven**](https://scryfall.com/search?q=Uncharted%20Haven) — Enters tapped, taps for a chosen color. Good fixing for splashing; come up on this late in the format.
+- [**Hidden Grotto**](https://scryfall.com/search?q=Hidden%20Grotto) — Multicolor fixer. Good as a one-of for splashing.
+- [**The Villages (creature-type duals)**](https://scryfall.com/search?q=The%20Villages%20%28creature-type%20duals%29) — **Don't play them.** Entering tapped plus occasional color screw is not worth the rare activation opportunity. Trap.
 
 ### Rares & bombs
-- **Hunter's Talent** (green uncommon) — Best or second-best card in the set; slightly too strong for limited. P1P1 every time.
-- **Innkeeper's Talent** (blue uncommon) — "A little too broken for limited."
-- **Scavenger's Talent** (black uncommon) — Excellent build-around; unlocks mill plan. Take after seeing the first one.
-- **Builder's Talent** (white uncommon) — Legitimate build-around; Ben's favorite card in the format. Best in bant (GWU) shells. See Format Principles section.
-- **Mah(a)? / Greenhill the 4/6** (?) — Oppressive mythic that drew cards and pumped the team. "Will not be missed" (retro).
-- **Season of Loss** (?) — Ended Arena Open runs. Oppressive.
-- **Hive Spine Wolverine** (?) — "A house in sealed"; artifact/enchantment hate (destroys Talents, key in sealed).
-- **Keen-Eyed Curator** — Randomly hoses threshold AND forage; turns into a large creature itself. More oppressive than it appears.
-- **Klement** (?) — The blue-green frog rare that reverse-Birthing-Pods creatures and taps for creature-spell mana. Generates tempo pressure by forcing opponents to react instead of executing their plan.
-- **Gav** (?) — Black-red lizard rare wizard; draws from Fireglass Mentor synergy trigger on turn 2. "The draws with Gav are nigh unbeatable."
-- **Zoraline Cosmos Caller** — See Multicolor above.
-- **Eager Eater of All** (BG mythic) — 6/6 for 3BG with ward: sac a food; makes everything a food; gets +2/+2 counters when food leaves the battlefield. "Incredibly hard to interact with profitably" — everything becomes food, ward costs compound rapidly.
+- [**Hunter's Talent**](https://scryfall.com/search?q=Hunter%27s%20Talent) (green uncommon) — Best or second-best card in the set; slightly too strong for limited. P1P1 every time.
+- [**Innkeeper's Talent**](https://scryfall.com/search?q=Innkeeper%27s%20Talent) (blue uncommon) — "A little too broken for limited."
+- [**Scavenger's Talent**](https://scryfall.com/search?q=Scavenger%27s%20Talent) (black uncommon) — Excellent build-around; unlocks mill plan. Take after seeing the first one.
+- [**Builder's Talent**](https://scryfall.com/search?q=Builder%27s%20Talent) (white uncommon) — Legitimate build-around; Ben's favorite card in the format. Best in bant (GWU) shells. See Format Principles section.
+- [**Mah(a)? / Greenhill the 4/6**](https://scryfall.com/search?q=Mah%28a%29%3F%20/%20Greenhill%20the%204/6) (?) — Oppressive mythic that drew cards and pumped the team. "Will not be missed" (retro).
+- [**Season of Loss**](https://scryfall.com/search?q=Season%20of%20Loss) (?) — Ended Arena Open runs. Oppressive.
+- [**Hive Spine Wolverine**](https://scryfall.com/search?q=Hive%20Spine%20Wolverine) (?) — "A house in sealed"; artifact/enchantment hate (destroys Talents, key in sealed).
+- [**Keen-Eyed Curator**](https://scryfall.com/search?q=Keen-Eyed%20Curator) — Randomly hoses threshold AND forage; turns into a large creature itself. More oppressive than it appears.
+- [**Klement**](https://scryfall.com/search?q=Klement) (?) — The blue-green frog rare that reverse-Birthing-Pods creatures and taps for creature-spell mana. Generates tempo pressure by forcing opponents to react instead of executing their plan.
+- [**Gav**](https://scryfall.com/search?q=Gav) (?) — Black-red lizard rare wizard; draws from Fireglass Mentor synergy trigger on turn 2. "The draws with Gav are nigh unbeatable."
+- [**Zoraline Cosmos Caller**](https://scryfall.com/search?q=Zoraline%20Cosmos%20Caller) — See Multicolor above.
+- [**Eager Eater of All**](https://scryfall.com/search?q=Eager%20Eater%20of%20All) (BG mythic) — 6/6 for 3BG with ward: sac a food; makes everything a food; gets +2/+2 counters when food leaves the battlefield. "Incredibly hard to interact with profitably" — everything becomes food, ward costs compound rapidly.
 
 ## Signals & seat reads
 

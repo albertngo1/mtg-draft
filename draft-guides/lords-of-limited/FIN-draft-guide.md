@@ -67,91 +67,91 @@ Dedupe across episodes; retro/late takes override earlier ones. ⚠ = early-was-
 
 ### White
 
-- **White Oresite** — ⚠ Data says top white common; hosts were mixed during the format but retro confirms it as **#1 white common**. (retro)
-- **Dragoon's Lance** — Top white uncommon consistently across all episodes. Job Select equipment that grants flying; four-mana re-equip is expensive but the 1/1 with flying is a real problem. (crash course through retro)
-- **Galacat / Galatcat** — ⚠ Underrated early, major Week 1 breakout. Ethan called it the "jelly cat" and was obsessed. Ben confirmed it's the best white uncommon signpost; "there's a giant power level gap between Galacat and everything else." Ben wanted to put it as #1 white common but was immediately shut down in retro. (week1 through retro)
-- **Delivery Mughal** — White 3/2 flyer (4-mana) that tutors an artifact ≤MV2 from library or graveyard. Good but suffers from white's four-drop crowding problem. (multiple episodes)
-- **Magitech Armor** — Four-drop vehicle; good but competes in the congested white 4-slot. (retro)
-- **Magitech Infantry** — Solid common. (multiple episodes)
-- **Zack Fair** — ⚠ Underrated → real. One-white, 0/1, sack it to make a creature you control indestructible and put its counters on it. "Annoyingly good" when you face it. Protection for a bomb (Dion, etc.) is key. (late)
-- **Restoration Magic** — ⚠ Underrated → excellent. White protection spell (Saga); Ben's second-favorite card in the format behind Sorceress's Schemes. Curaga chapter 3 interaction was frequently used. (retro)
-- **Dragoon's Wyvern** — ⚠ Early: unclear tier. Final verdict: consistently top 3 common overall and top blue common pick for UR. Sahagen eventually compared favorably to it. (crash course through retro)
-- **Dion Bahamut's Dominion** — Bomb rare. "Hell or high water" P1P1 target. The 3/3 that brings a 2/2, flips, and wins. Needs to be in a white deck ideally; splashing it doesn't give you the key on-curve 4-mana deployment. (late, retro)
-- **White four-drop crowding problem** — "All of Delivery Mughal, White Oresite, Magitech Armor, Weapons Vendor compete in the same slot." (retro)
+- [**White Oresite**](https://scryfall.com/search?q=White%20Oresite) — ⚠ Data says top white common; hosts were mixed during the format but retro confirms it as **#1 white common**. (retro)
+- [**Dragoon's Lance**](https://scryfall.com/search?q=Dragoon%27s%20Lance) — Top white uncommon consistently across all episodes. Job Select equipment that grants flying; four-mana re-equip is expensive but the 1/1 with flying is a real problem. (crash course through retro)
+- [**Galacat / Galatcat**](https://scryfall.com/search?q=Galacat%20/%20Galatcat) — ⚠ Underrated early, major Week 1 breakout. Ethan called it the "jelly cat" and was obsessed. Ben confirmed it's the best white uncommon signpost; "there's a giant power level gap between Galacat and everything else." Ben wanted to put it as #1 white common but was immediately shut down in retro. (week1 through retro)
+- [**Delivery Mughal**](https://scryfall.com/search?q=Delivery%20Mughal) — White 3/2 flyer (4-mana) that tutors an artifact ≤MV2 from library or graveyard. Good but suffers from white's four-drop crowding problem. (multiple episodes)
+- [**Magitech Armor**](https://scryfall.com/search?q=Magitech%20Armor) — Four-drop vehicle; good but competes in the congested white 4-slot. (retro)
+- [**Magitech Infantry**](https://scryfall.com/search?q=Magitech%20Infantry) — Solid common. (multiple episodes)
+- [**Zack Fair**](https://scryfall.com/search?q=Zack%20Fair) — ⚠ Underrated → real. One-white, 0/1, sack it to make a creature you control indestructible and put its counters on it. "Annoyingly good" when you face it. Protection for a bomb (Dion, etc.) is key. (late)
+- [**Restoration Magic**](https://scryfall.com/search?q=Restoration%20Magic) — ⚠ Underrated → excellent. White protection spell (Saga); Ben's second-favorite card in the format behind Sorceress's Schemes. Curaga chapter 3 interaction was frequently used. (retro)
+- [**Dragoon's Wyvern**](https://scryfall.com/search?q=Dragoon%27s%20Wyvern) — ⚠ Early: unclear tier. Final verdict: consistently top 3 common overall and top blue common pick for UR. Sahagen eventually compared favorably to it. (crash course through retro)
+- [**Dion Bahamut's Dominion**](https://scryfall.com/search?q=Dion%20Bahamut%27s%20Dominion) — Bomb rare. "Hell or high water" P1P1 target. The 3/3 that brings a 2/2, flips, and wins. Needs to be in a white deck ideally; splashing it doesn't give you the key on-curve 4-mana deployment. (late, retro)
+- [**White four-drop crowding problem**](https://scryfall.com/search?q=White%20four-drop%20crowding%20problem) — "All of Delivery Mughal, White Oresite, Magitech Armor, Weapons Vendor compete in the same slot." (retro)
 
 ### Blue
 
-- **Combat Tutorial** — **#1 blue common** (retro). Two-mana draw-two with a +1/+1 counter on a creature. Extraordinary value. (retro)
-- **Sahagen** — ⚠ Major miss early. One-blue, 1/3 that grows when you cast a MV4+ spell and becomes unblockable. Emerged as a top-common tier card alongside Dragoon's Wyvern by Week 1. "One of the biggest missed cards." Retro: "Sahagen was everything we had hoped Snowmelt Stag would be." (week1 through retro)
-- **Scorpion Sentinel** — ⚠ Underrated early. 1-blue, 1/4 artifact creature; becomes a 4/4 when you hit seven lands. Amazing blocker, amazing eventual threat. Blue's defensive backbone alongside Sahagen. (week1 through retro)
-- **Ice Magic** — Good blue interaction; tiered freeze spell. (multiple episodes)
-- **Swallowed by Leviathan** — Counter spell variant (counter unless controller pays 1 per card in your graveyard). Excellent; gets better as game goes on and graveyards fill. (late)
-- **Syncopate** — ⚠ "Crept up and up" over the format. Exiles the spell it counters; very powerful in a format where the graveyard matters. Hosts most scared of this card from opponents late in the format. (retro)
-- **Summoner Sanctum (Stuck in Summoner Sanctum)** — Flash; locks something down. Not flashy but flash matters. Ended up being more useful than Sleep Magic. (retro)
-- **Ether** — Uncommon that drew eight cards with the draw-four-for-towns. Not built around but the ceiling is absurd. (retro)
-- **Ignis Ciencia** — Blue-Green gold uncommon signpost; look at top 6, put a land onto battlefield tapped. Value card. (late)
-- **Dreams of Lagona** — Blue one-mana surveill 1, draw 1, flashback for four. Solid card selection. (late)
+- [**Combat Tutorial**](https://scryfall.com/search?q=Combat%20Tutorial) — **#1 blue common** (retro). Two-mana draw-two with a +1/+1 counter on a creature. Extraordinary value. (retro)
+- [**Sahagen**](https://scryfall.com/search?q=Sahagen) — ⚠ Major miss early. One-blue, 1/3 that grows when you cast a MV4+ spell and becomes unblockable. Emerged as a top-common tier card alongside Dragoon's Wyvern by Week 1. "One of the biggest missed cards." Retro: "Sahagen was everything we had hoped Snowmelt Stag would be." (week1 through retro)
+- [**Scorpion Sentinel**](https://scryfall.com/search?q=Scorpion%20Sentinel) — ⚠ Underrated early. 1-blue, 1/4 artifact creature; becomes a 4/4 when you hit seven lands. Amazing blocker, amazing eventual threat. Blue's defensive backbone alongside Sahagen. (week1 through retro)
+- [**Ice Magic**](https://scryfall.com/search?q=Ice%20Magic) — Good blue interaction; tiered freeze spell. (multiple episodes)
+- [**Swallowed by Leviathan**](https://scryfall.com/search?q=Swallowed%20by%20Leviathan) — Counter spell variant (counter unless controller pays 1 per card in your graveyard). Excellent; gets better as game goes on and graveyards fill. (late)
+- [**Syncopate**](https://scryfall.com/search?q=Syncopate) — ⚠ "Crept up and up" over the format. Exiles the spell it counters; very powerful in a format where the graveyard matters. Hosts most scared of this card from opponents late in the format. (retro)
+- [**Summoner Sanctum (Stuck in Summoner Sanctum)**](https://scryfall.com/search?q=Summoner%20Sanctum%20%28Stuck%20in%20Summoner%20Sanctum%29) — Flash; locks something down. Not flashy but flash matters. Ended up being more useful than Sleep Magic. (retro)
+- [**Ether**](https://scryfall.com/search?q=Ether) — Uncommon that drew eight cards with the draw-four-for-towns. Not built around but the ceiling is absurd. (retro)
+- [**Ignis Ciencia**](https://scryfall.com/search?q=Ignis%20Ciencia) — Blue-Green gold uncommon signpost; look at top 6, put a land onto battlefield tapped. Value card. (late)
+- [**Dreams of Lagona**](https://scryfall.com/search?q=Dreams%20of%20Lagona) — Blue one-mana surveill 1, draw 1, flashback for four. Solid card selection. (late)
 
 ### Black
 
-- **Sephiroth's Intervention** — **#1 black common AND #1 overall common** (retro). Four-mana catch-all removal that gains two life. ⚠ Hosts expected it to be too slow/clunky given job select; it was premium. Biggest surprise of the format. P1P1 material. (week1 through retro)
-- **Vein's Treachery** — Top black removal; instant-speed exile at two mana (kills up to 3 toughness at base). Premium. (crash course through retro)
-- **Resentful Revelation** — **Golden Egg Award winner for "gluing the most archetypes together."** One-black sorcery: look at top 3, put one in hand; flashback for seven. "What deck didn't want this? The answer is none." Fills the graveyard for permanents, triggers wizard pings, smooths draws. (retro)
-- **Cornered by Black Mages** — Efficient removal. Better the more removal you have alongside it (the token-eating trade-off depends on context). (multiple episodes)
-- **Black Mage's Rod** — Job Select pinger; 1-black, 2/1 that pings. Good. (late)
-- **Fang Fearless Lei** — 2-black, 2/3. Draw a card, lose a life when a card leaves your graveyard. Excellent graveyard synergy card. (late)
-- **Malbero** — **Imperial Oath Award for clunky-looking overperformer.** Land cycler that just does work. 6-mana land cycler that refills your hand from a nearly-empty state. Retro: "I loathe that card. It's never not been backbreaking when cast against me." Best land cycler; also top of power rankings for the cycle. (retro)
-- **Namazu Trader** — 3/4 for three black; makes a treasure. Another Imperial Oath candidate. Four toughness is the key. (retro)
-- **Garland, Knight of Cornelia** — RB gold uncommon signpost. 3/2 that surveils 1 whenever you cast a non-creature spell. "Nuts with Triple Triad because you get to set the top of your library." Premium RB signpost. (late)
-- **Final Days** — Five-mana black permanent-based sweeper (creatures come in tapped). Fun and powerful but "if I only had one more turn" energy — sometimes just doesn't win fast enough. (retro)
-- **Phantom Train** — **Premium in White-Black specifically.** Sac outlet on a vehicle; hard to interact with. WB has enough permanents to support it. Hard to make work in RB. (retro)
-- **Darkness Crystal** — Rare: makes black spells cheaper, exile something that dies to gain 2, can pay six to reanimate with counters. More divisive: Ben got good mileage in appropriate decks; Ethan found the 6-mana activation rarely happened. (late)
+- [**Sephiroth's Intervention**](https://scryfall.com/search?q=Sephiroth%27s%20Intervention) — **#1 black common AND #1 overall common** (retro). Four-mana catch-all removal that gains two life. ⚠ Hosts expected it to be too slow/clunky given job select; it was premium. Biggest surprise of the format. P1P1 material. (week1 through retro)
+- [**Vein's Treachery**](https://scryfall.com/search?q=Vein%27s%20Treachery) — Top black removal; instant-speed exile at two mana (kills up to 3 toughness at base). Premium. (crash course through retro)
+- [**Resentful Revelation**](https://scryfall.com/search?q=Resentful%20Revelation) — **Golden Egg Award winner for "gluing the most archetypes together."** One-black sorcery: look at top 3, put one in hand; flashback for seven. "What deck didn't want this? The answer is none." Fills the graveyard for permanents, triggers wizard pings, smooths draws. (retro)
+- [**Cornered by Black Mages**](https://scryfall.com/search?q=Cornered%20by%20Black%20Mages) — Efficient removal. Better the more removal you have alongside it (the token-eating trade-off depends on context). (multiple episodes)
+- [**Black Mage's Rod**](https://scryfall.com/search?q=Black%20Mage%27s%20Rod) — Job Select pinger; 1-black, 2/1 that pings. Good. (late)
+- [**Fang Fearless Lei**](https://scryfall.com/search?q=Fang%20Fearless%20Lei) — 2-black, 2/3. Draw a card, lose a life when a card leaves your graveyard. Excellent graveyard synergy card. (late)
+- [**Malbero**](https://scryfall.com/search?q=Malbero) — **Imperial Oath Award for clunky-looking overperformer.** Land cycler that just does work. 6-mana land cycler that refills your hand from a nearly-empty state. Retro: "I loathe that card. It's never not been backbreaking when cast against me." Best land cycler; also top of power rankings for the cycle. (retro)
+- [**Namazu Trader**](https://scryfall.com/search?q=Namazu%20Trader) — 3/4 for three black; makes a treasure. Another Imperial Oath candidate. Four toughness is the key. (retro)
+- [**Garland, Knight of Cornelia**](https://scryfall.com/search?q=Garland%2C%20Knight%20of%20Cornelia) — RB gold uncommon signpost. 3/2 that surveils 1 whenever you cast a non-creature spell. "Nuts with Triple Triad because you get to set the top of your library." Premium RB signpost. (late)
+- [**Final Days**](https://scryfall.com/search?q=Final%20Days) — Five-mana black permanent-based sweeper (creatures come in tapped). Fun and powerful but "if I only had one more turn" energy — sometimes just doesn't win fast enough. (retro)
+- [**Phantom Train**](https://scryfall.com/search?q=Phantom%20Train) — **Premium in White-Black specifically.** Sac outlet on a vehicle; hard to interact with. WB has enough permanents to support it. Hard to make work in RB. (retro)
+- [**Darkness Crystal**](https://scryfall.com/search?q=Darkness%20Crystal) — Rare: makes black spells cheaper, exile something that dies to gain 2, can pay six to reanimate with counters. More divisive: Ben got good mileage in appropriate decks; Ethan found the 6-mana activation rarely happened. (late)
 
 ### Red
 
-- **Thunder Magic** — **#1 red common** (retro). Tiered: deal 2 / deal 2 draw a card / deal 4. Instant speed; versatile. (multiple episodes)
-- **Choco Comet** — Top red uncommon; consistently praised. (crash course through retro)
-- **Sorceress's Schemes** — ⚠ Late-format obsession card. Three-red sorcery: grab an instant or sorcery from your yard or exile; float a red mana; flashback for 4R. "Came close to Bath Song for me. That's the highest compliment I could pay." Best home: Red-Black. Great with Triple Triad to loop Fire Magic. (late, retro)
-- **Triple Triad** — The rare power-combo payoff for RB. Tap six, flip the top card of your library: land = nothing, nonland = put it in play. Great home in RB which controls the board until turn 6 and then untaps with whatever it hit. Garland lets you set the top of the library for perfect Triple Triad hits. (late, retro)
-- **Fire Magic** — ⚠ Underrated early. Sweeper; Ben looped it with Sorceress's Schemes to repeatedly handle a 3/3 indestructible knight saga. "Just absolute nom" on Dragoon's Wyverns. Matt Nass P1P1'd it at the Pro Tour. (retro)
-- **Unexpected Request** — ⚠ Ignored early because removal seemed less needed. Now: two-mana steal-a-thing-for-a-turn + attach an equipment. Extremely late pick; nobody takes it early. Enables the Steel-and-Sack game plan in RB. (late)
-- **Midian Elder** — 2-red, 1/3 that makes a 0/1 Wizard token. Ben praised this card and Ethan eventually came around. Good for the wizard-pingers theme. (late)
-- **Self-Destruct** — Red instant: creature deals damage equal to its power to any target, then to itself. Combines with Unexpected Request to kill stolen creatures. (late)
+- [**Thunder Magic**](https://scryfall.com/search?q=Thunder%20Magic) — **#1 red common** (retro). Tiered: deal 2 / deal 2 draw a card / deal 4. Instant speed; versatile. (multiple episodes)
+- [**Choco Comet**](https://scryfall.com/search?q=Choco%20Comet) — Top red uncommon; consistently praised. (crash course through retro)
+- [**Sorceress's Schemes**](https://scryfall.com/search?q=Sorceress%27s%20Schemes) — ⚠ Late-format obsession card. Three-red sorcery: grab an instant or sorcery from your yard or exile; float a red mana; flashback for 4R. "Came close to Bath Song for me. That's the highest compliment I could pay." Best home: Red-Black. Great with Triple Triad to loop Fire Magic. (late, retro)
+- [**Triple Triad**](https://scryfall.com/search?q=Triple%20Triad) — The rare power-combo payoff for RB. Tap six, flip the top card of your library: land = nothing, nonland = put it in play. Great home in RB which controls the board until turn 6 and then untaps with whatever it hit. Garland lets you set the top of the library for perfect Triple Triad hits. (late, retro)
+- [**Fire Magic**](https://scryfall.com/search?q=Fire%20Magic) — ⚠ Underrated early. Sweeper; Ben looped it with Sorceress's Schemes to repeatedly handle a 3/3 indestructible knight saga. "Just absolute nom" on Dragoon's Wyverns. Matt Nass P1P1'd it at the Pro Tour. (retro)
+- [**Unexpected Request**](https://scryfall.com/search?q=Unexpected%20Request) — ⚠ Ignored early because removal seemed less needed. Now: two-mana steal-a-thing-for-a-turn + attach an equipment. Extremely late pick; nobody takes it early. Enables the Steel-and-Sack game plan in RB. (late)
+- [**Midian Elder**](https://scryfall.com/search?q=Midian%20Elder) — 2-red, 1/3 that makes a 0/1 Wizard token. Ben praised this card and Ethan eventually came around. Good for the wizard-pingers theme. (late)
+- [**Self-Destruct**](https://scryfall.com/search?q=Self-Destruct) — Red instant: creature deals damage equal to its power to any target, then to itself. Combines with Unexpected Request to kill stolen creatures. (late)
 
 ### Green
 
-- **Town Greeter** — **#1 green common** (retro data confirms; hosts' hearts wanted Summon Fat Chocobo but data wins). 1-green, 1/1: mill 4, if it's a town you gain 2. (retro)
-- **Summon Fat Chocobo** — ⚠ Close to Town Greeter for #1 green common. Hosts' subjective favorite. "Every time I'm like, what am I going to do about this card?" Hard to deal with, problem every time it resolves. (retro)
-- **Summon Fenrir** — **#1 saga creature overall** (not close). Green uncommon: ramps, grows a creature, draws a card. (retro saga-creature rankings)
-- **Saja's Chocobo (Saza's Chocobo)** — ⚠ Contested for "best card in the set" by some players and commenters; hosts disagree. They like it as a fine card in green decks but would never take it to steer them toward green. "It's gonna take more than Saza's Chocobo" to make them draft green. Never P1P1 material for Ben or Ethan given green's weak pair options. (late)
-- **Garnett, Princess of Alexandria** — ⚠ Disappointing. Green-white gold uncommon; didn't perform. Nominated for most disappointing card. (retro)
-- **Green worst color:** All episodes from Week 1 onward confirmed green as the worst color. Main issue: only GB and UG are good green pairs; GW is mediocre and RG is the worst deck. If you're in green, you need to be steering toward blue or black.
+- [**Town Greeter**](https://scryfall.com/search?q=Town%20Greeter) — **#1 green common** (retro data confirms; hosts' hearts wanted Summon Fat Chocobo but data wins). 1-green, 1/1: mill 4, if it's a town you gain 2. (retro)
+- [**Summon Fat Chocobo**](https://scryfall.com/search?q=Summon%20Fat%20Chocobo) — ⚠ Close to Town Greeter for #1 green common. Hosts' subjective favorite. "Every time I'm like, what am I going to do about this card?" Hard to deal with, problem every time it resolves. (retro)
+- [**Summon Fenrir**](https://scryfall.com/search?q=Summon%20Fenrir) — **#1 saga creature overall** (not close). Green uncommon: ramps, grows a creature, draws a card. (retro saga-creature rankings)
+- [**Saja's Chocobo (Saza's Chocobo)**](https://scryfall.com/search?q=Saja%27s%20Chocobo%20%28Saza%27s%20Chocobo%29) — ⚠ Contested for "best card in the set" by some players and commenters; hosts disagree. They like it as a fine card in green decks but would never take it to steer them toward green. "It's gonna take more than Saza's Chocobo" to make them draft green. Never P1P1 material for Ben or Ethan given green's weak pair options. (late)
+- [**Garnett, Princess of Alexandria**](https://scryfall.com/search?q=Garnett%2C%20Princess%20of%20Alexandria) — ⚠ Disappointing. Green-white gold uncommon; didn't perform. Nominated for most disappointing card. (retro)
+- [**Green worst color:**](https://scryfall.com/search?q=Green%20worst%20color%3A) All episodes from Week 1 onward confirmed green as the worst color. Main issue: only GB and UG are good green pairs; GW is mediocre and RG is the worst deck. If you're in green, you need to be steering toward blue or black.
 
 ### Multicolor / gold
 
-- **Shanto Tactician Magician** — Top UR gold uncommon signpost. Seen late in drafts when UR is open; P4 and P7 passes in same draft were a strong signal to steer into UR. (late)
-- **Cloud of Darkness** — Top GB gold uncommon signpost. (multiple episodes)
-- **Garland (RB)** — See Black section; top RB signpost. (late)
-- **Galacat (UW)** — See White section; top UW signpost. (week1 through retro)
-- **Ignis Ciencia (UG)** — See Blue section. (late)
-- **Saraphin / Sarah** — UW gold uncommon; 1-green-white, 2/2. First legendary creature you cast each turn costs 2 less. Transforms if you control 2+ other legendary creatures into Crystallized Sarah (gives your legendaries +2/+2). Fun legends subtheme enabler. (late)
+- [**Shanto Tactician Magician**](https://scryfall.com/search?q=Shanto%20Tactician%20Magician) — Top UR gold uncommon signpost. Seen late in drafts when UR is open; P4 and P7 passes in same draft were a strong signal to steer into UR. (late)
+- [**Cloud of Darkness**](https://scryfall.com/search?q=Cloud%20of%20Darkness) — Top GB gold uncommon signpost. (multiple episodes)
+- [**Garland (RB)**](https://scryfall.com/search?q=Garland%20%28RB%29) — See Black section; top RB signpost. (late)
+- [**Galacat (UW)**](https://scryfall.com/search?q=Galacat%20%28UW%29) — See White section; top UW signpost. (week1 through retro)
+- [**Ignis Ciencia (UG)**](https://scryfall.com/search?q=Ignis%20Ciencia%20%28UG%29) — See Blue section. (late)
+- [**Saraphin / Sarah**](https://scryfall.com/search?q=Saraphin%20/%20Sarah) — UW gold uncommon; 1-green-white, 2/2. First legendary creature you cast each turn costs 2 less. Transforms if you control 2+ other legendary creatures into Crystallized Sarah (gives your legendaries +2/+2). Fun legends subtheme enabler. (late)
 
 ### Artifacts / colorless
 
-- **Adventurer's Airship (Struggler's Copter)** — ⚠ Silver Egg Award (Ethan's love card). Ethan loves this card; Ben says it's "woefully bad" when he plays it. Genuine disagreement unresolved. Ethan's take: "You just gotta play it on turn four." Not a high pick by consensus. (retro)
-- **Rook Turret** — Artifact that pairs with Galacat. (late)
-- **Rune-Brand Artifacts / Job Select equipment generally** — The job select mechanics on equipment create 1/1 heroes. Kill the 1/1; don't let it run away with equip value.
+- [**Adventurer's Airship (Struggler's Copter)**](https://scryfall.com/search?q=Adventurer%27s%20Airship%20%28Struggler%27s%20Copter%29) — ⚠ Silver Egg Award (Ethan's love card). Ethan loves this card; Ben says it's "woefully bad" when he plays it. Genuine disagreement unresolved. Ethan's take: "You just gotta play it on turn four." Not a high pick by consensus. (retro)
+- [**Rook Turret**](https://scryfall.com/search?q=Rook%20Turret) — Artifact that pairs with Galacat. (late)
+- [**Rune-Brand Artifacts / Job Select equipment generally**](https://scryfall.com/search?q=Rune-Brand%20Artifacts%20/%20Job%20Select%20equipment%20generally) — The job select mechanics on equipment create 1/1 heroes. Kill the 1/1; don't let it run away with equip value.
 
 ### Rare / bombs
 
-- **Dion, Bahamut's Dominion** — See White section; hell-or-high-water rare. (late)
-- **Triple Triad** — See Red section; power-combo rare for RB. (late, retro)
-- **Ardan** — ⚠ "Absolutely bonkers." 8-mana triple-black. Late-game haymaker; has a one-step window (answer between first main and combat or lose). "Still kind of okay because the game got to that state, good kudos to you." (retro)
-- **Summon Leviathan** — Rare saga that bounces all non-octopus sea creatures back; draw a card when you attack; can be looped with Ambrosia Whiteart. Plague-winds choco/job-select plans. (retro)
-- **Matoya Archine Elder** — 2U rare; draws whenever you scry or surveil. "Gets out of hand in a hurry." Ill Pixie into this on curve draws cards on every scry. (retro)
-- **Jumbo Cactuar + Gladiolus Amachita** — The GG combo: together on board means basically instant win. One-turn window to answer. (retro)
-- **Dark Confidant** — Classic reprint in the set (bonus sheet or rare). Still powerful; combine with inexpensive spells (not triple-black land cyclers). (late)
-- **Ancient Copper Dragon** — Roll a d20 for treasures; fun but RNG. (late)
+- [**Dion, Bahamut's Dominion**](https://scryfall.com/search?q=Dion%2C%20Bahamut%27s%20Dominion) — See White section; hell-or-high-water rare. (late)
+- [**Triple Triad**](https://scryfall.com/search?q=Triple%20Triad) — See Red section; power-combo rare for RB. (late, retro)
+- [**Ardan**](https://scryfall.com/search?q=Ardan) — ⚠ "Absolutely bonkers." 8-mana triple-black. Late-game haymaker; has a one-step window (answer between first main and combat or lose). "Still kind of okay because the game got to that state, good kudos to you." (retro)
+- [**Summon Leviathan**](https://scryfall.com/search?q=Summon%20Leviathan) — Rare saga that bounces all non-octopus sea creatures back; draw a card when you attack; can be looped with Ambrosia Whiteart. Plague-winds choco/job-select plans. (retro)
+- [**Matoya Archine Elder**](https://scryfall.com/search?q=Matoya%20Archine%20Elder) — 2U rare; draws whenever you scry or surveil. "Gets out of hand in a hurry." Ill Pixie into this on curve draws cards on every scry. (retro)
+- [**Jumbo Cactuar + Gladiolus Amachita**](https://scryfall.com/search?q=Jumbo%20Cactuar%20%2B%20Gladiolus%20Amachita) — The GG combo: together on board means basically instant win. One-turn window to answer. (retro)
+- [**Dark Confidant**](https://scryfall.com/search?q=Dark%20Confidant) — Classic reprint in the set (bonus sheet or rare). Still powerful; combine with inexpensive spells (not triple-black land cyclers). (late)
+- [**Ancient Copper Dragon**](https://scryfall.com/search?q=Ancient%20Copper%20Dragon) — Roll a d20 for treasures; fun but RNG. (late)
 
 ### Land cyclers (the cycle)
 

@@ -58,67 +58,67 @@ Extracted from live draft commentary. These are **incidental observations**, not
 > Only cards explicitly discussed during the draft are listed. Garbled names are marked (?).
 
 ### White
-- **Conclave Tribunal** — Snap first-pick level white removal. Referenced as the best card in multiple packs. Discussed repeatedly as the premium removal spell in white.
-- **Healer's Hawk** — Strong white one-drop; flexible for Boros and Selesnya. Nice with convoke (enables early Rosemane Centaur), good with Mentor (can be mentored onto). Ethan took it over Goblin Banneret in one pick.
-- **Vernadi Shieldmate (?)** ("shield mate" in commentary) — 2/2 vigilance for 1W. Vigilance noted as relevant for attacking then blocking, and for convoke enablement post-combat. Excellent two-drop.
-- **Luminous Bonds** — Noted as good removal but passed in this draft; referenced as a late pickup that "you so late" — implying it shouldn't wheel.
+- [**Conclave Tribunal**](https://scryfall.com/search?q=Conclave%20Tribunal) — Snap first-pick level white removal. Referenced as the best card in multiple packs. Discussed repeatedly as the premium removal spell in white.
+- [**Healer's Hawk**](https://scryfall.com/search?q=Healer%27s%20Hawk) — Strong white one-drop; flexible for Boros and Selesnya. Nice with convoke (enables early Rosemane Centaur), good with Mentor (can be mentored onto). Ethan took it over Goblin Banneret in one pick.
+- [**Vernadi Shieldmate (?)**](https://scryfall.com/search?q=Vernadi%20Shieldmate%20%28%3F%29) ("shield mate" in commentary) — 2/2 vigilance for 1W. Vigilance noted as relevant for attacking then blocking, and for convoke enablement post-combat. Excellent two-drop.
+- [**Luminous Bonds**](https://scryfall.com/search?q=Luminous%20Bonds) — Noted as good removal but passed in this draft; referenced as a late pickup that "you so late" — implying it shouldn't wheel.
 
 ### Blue
-- **Nightveil Predator** — Top-end Dimir threat; rated as bomb-level, taken over rare. Cited as too strong to give up on.
-- **Nightveil Sprite** — Strong Dimir two-drop, enables surveil synergies. Ben's starting point for being in Dimir.
-- **Whisper Agent** — Instant-speed flash creature with surveil; key for holding up mana and getting surveil triggers during opponent's turn.
-- **Disdainful Stroke** — Rated as "pseudo-removal" when real removal is absent. Worth playing as the fourth or fifth "removal" spell if the deck is removal-starved.
-- **Notion Rain** — Card draw; Ethan played it over Howling Mine (?) — Ben took it P1-equivalent because he lacked "actual literal card advantage."
-- **Watcher in the Mist** — Noted as "not great in Dimir decks" in passing commentary (Ethan's aside: "I generally don't like Watcher in the Mist in Dimir decks"), but Ben picked it up late as a five-drop filler.
-- **City Watch Sphinx (?)** — Ben hoped to wheel it but doubted it would come around with suspected Dimir competition.
-- **Sinister Sabotage** — Noted as worse than Whisper Agent in Dimir without enough surveil payoffs.
+- [**Nightveil Predator**](https://scryfall.com/search?q=Nightveil%20Predator) — Top-end Dimir threat; rated as bomb-level, taken over rare. Cited as too strong to give up on.
+- [**Nightveil Sprite**](https://scryfall.com/search?q=Nightveil%20Sprite) — Strong Dimir two-drop, enables surveil synergies. Ben's starting point for being in Dimir.
+- [**Whisper Agent**](https://scryfall.com/search?q=Whisper%20Agent) — Instant-speed flash creature with surveil; key for holding up mana and getting surveil triggers during opponent's turn.
+- [**Disdainful Stroke**](https://scryfall.com/search?q=Disdainful%20Stroke) — Rated as "pseudo-removal" when real removal is absent. Worth playing as the fourth or fifth "removal" spell if the deck is removal-starved.
+- [**Notion Rain**](https://scryfall.com/search?q=Notion%20Rain) — Card draw; Ethan played it over Howling Mine (?) — Ben took it P1-equivalent because he lacked "actual literal card advantage."
+- [**Watcher in the Mist**](https://scryfall.com/search?q=Watcher%20in%20the%20Mist) — Noted as "not great in Dimir decks" in passing commentary (Ethan's aside: "I generally don't like Watcher in the Mist in Dimir decks"), but Ben picked it up late as a five-drop filler.
+- [**City Watch Sphinx (?)**](https://scryfall.com/search?q=City%20Watch%20Sphinx%20%28%3F%29) — Ben hoped to wheel it but doubted it would come around with suspected Dimir competition.
+- [**Sinister Sabotage**](https://scryfall.com/search?q=Sinister%20Sabotage) — Noted as worse than Whisper Agent in Dimir without enough surveil payoffs.
 
 ### Black
-- **Thief of Sanity** — Ben's bomb rare; rated as the top Dimir payoff and first real "this deck is working" signal. "We have no payoffs being Dimir other than just really strong cards" before this was drafted.
-- **Darkblade Agent** — "Pretty easy" pick over City Watch Sphinx; "very strong with Nightveil Sprite, very good with Whisper Agent." Key Dimir synergy engine.
-- **Dead Weight / Deadly Visit** — Repeatedly referenced as what Dimir was missing. Ethan said "we're definitely missing a card like Disinformation Campaign and just cards like Dead Weight and Deadly Visit." Premium early removal for the archetype.
-- **Child of Night** — 2/1 lifelink for 1B; picked late as a filler blocker/roadblock. Called "a strong defensive roadblock in Dimir."
-- **Veiled Shade (?)** — Picked up in a dry stretch; Ben acknowledged he was "a little too high on that card in general."
+- [**Thief of Sanity**](https://scryfall.com/search?q=Thief%20of%20Sanity) — Ben's bomb rare; rated as the top Dimir payoff and first real "this deck is working" signal. "We have no payoffs being Dimir other than just really strong cards" before this was drafted.
+- [**Darkblade Agent**](https://scryfall.com/search?q=Darkblade%20Agent) — "Pretty easy" pick over City Watch Sphinx; "very strong with Nightveil Sprite, very good with Whisper Agent." Key Dimir synergy engine.
+- [**Dead Weight / Deadly Visit**](https://scryfall.com/search?q=Dead%20Weight%20/%20Deadly%20Visit) — Repeatedly referenced as what Dimir was missing. Ethan said "we're definitely missing a card like Disinformation Campaign and just cards like Dead Weight and Deadly Visit." Premium early removal for the archetype.
+- [**Child of Night**](https://scryfall.com/search?q=Child%20of%20Night) — 2/1 lifelink for 1B; picked late as a filler blocker/roadblock. Called "a strong defensive roadblock in Dimir."
+- [**Veiled Shade (?)**](https://scryfall.com/search?q=Veiled%20Shade%20%28%3F%29) — Picked up in a dry stretch; Ben acknowledged he was "a little too high on that card in general."
 
 ### Red
-- **Direct Current** — Taken over Runaway Steam-Kin P1P1. Reasoning: more flexibility, never a bad top-deck. "A bit more flexibility" edges it out.
-- **Lava Coil** — Referenced as premium removal, picked over a guild gate late. Used as the signal to commit to red.
-- **Runaway Steam-Kin** — "Both really strong" vs. Direct Current; passed because removal was deemed more flexible. Implied to be a strong card.
-- **True-Fire Captain (?)** ("truefire captain" in transcript) — Taken 3rd (in a missing-rare pack). Implied to be the key Boros rare/uncommon signpost.
-- **Goblin Banneret** — Good Boros one-drop; Ethan compared favorably to Healer's Hawk but chose the Hawk for flexibility.
-- **Torch Courier** — Placed in the "red-white cards I am not happy to play as one-drops, but will if I have to" category.
+- [**Direct Current**](https://scryfall.com/search?q=Direct%20Current) — Taken over Runaway Steam-Kin P1P1. Reasoning: more flexibility, never a bad top-deck. "A bit more flexibility" edges it out.
+- [**Lava Coil**](https://scryfall.com/search?q=Lava%20Coil) — Referenced as premium removal, picked over a guild gate late. Used as the signal to commit to red.
+- [**Runaway Steam-Kin**](https://scryfall.com/search?q=Runaway%20Steam-Kin) — "Both really strong" vs. Direct Current; passed because removal was deemed more flexible. Implied to be a strong card.
+- [**True-Fire Captain (?)**](https://scryfall.com/search?q=True-Fire%20Captain%20%28%3F%29) ("truefire captain" in transcript) — Taken 3rd (in a missing-rare pack). Implied to be the key Boros rare/uncommon signpost.
+- [**Goblin Banneret**](https://scryfall.com/search?q=Goblin%20Banneret) — Good Boros one-drop; Ethan compared favorably to Healer's Hawk but chose the Hawk for flexibility.
+- [**Torch Courier**](https://scryfall.com/search?q=Torch%20Courier) — Placed in the "red-white cards I am not happy to play as one-drops, but will if I have to" category.
 
 ### Green
-- **Rosemane Centaur** — Strong Selesnya four-drop; key payoff for going wide with convoke enablers. Ethan kept it even when unsure about GW.
-- **Kraul Harpooner** — Picked late, called "the nail in the coffin" for committing to green. Good signal card.
-- **Portcullis Vine** — 0/3 for G that defends and enables convoke. Ethan drafted two but acknowledged they "don't really belong in the deck" without sufficient convoke payoffs.
-- **Bounty of Might** — Triple pump trick; taken over mediocre alternatives, called "good enough."
-- **Urban Utopia** — Fixing/cantrip; drafted by Ben as color fixing for a potential Sultai-ish shell.
-- **Flower // Flourish** — Ethan watched it to see if it would wheel as a Selesnya signal; it didn't.
+- [**Rosemane Centaur**](https://scryfall.com/search?q=Rosemane%20Centaur) — Strong Selesnya four-drop; key payoff for going wide with convoke enablers. Ethan kept it even when unsure about GW.
+- [**Kraul Harpooner**](https://scryfall.com/search?q=Kraul%20Harpooner) — Picked late, called "the nail in the coffin" for committing to green. Good signal card.
+- [**Portcullis Vine**](https://scryfall.com/search?q=Portcullis%20Vine) — 0/3 for G that defends and enables convoke. Ethan drafted two but acknowledged they "don't really belong in the deck" without sufficient convoke payoffs.
+- [**Bounty of Might**](https://scryfall.com/search?q=Bounty%20of%20Might) — Triple pump trick; taken over mediocre alternatives, called "good enough."
+- [**Urban Utopia**](https://scryfall.com/search?q=Urban%20Utopia) — Fixing/cantrip; drafted by Ben as color fixing for a potential Sultai-ish shell.
+- [**Flower // Flourish**](https://scryfall.com/search?q=Flower) — Ethan watched it to see if it would wheel as a Selesnya signal; it didn't.
 
 ### Multicolor
-- **Spy Bug (?)** ("spy bug" / "Dimir spy bug" in transcript) — Dimir gold card; Ethan took it P1P1 as "high-risk high-reward" but pivoted off immediately once Boros/Selesnya signals appeared.
-- **League Guildmage** — Izzet gold card; Ben drafted it as a potential Dimir splash, valued for "keeping it growing every turn" with Nightveil Sprite.
-- **Tajic, Legion's Edge (?)** ("Taj ik" in transcript) — Ethan picked it up late when pivoting back toward Boros. Ben drafted it in Pack 3 thinking he was still in Selesnya. Called out as a bomb.
-- **Devious Cover-Up** — Dimir gold; taken over Dimir Guildgate. "Works well with Whisper Agent at instant speed."
-- **Barging Sergeant (?)** ("barging sergeant" in transcript) — Wheeled in Ethan's draft; noted as "fantastic with double Rock Charger." Likely Boros signpost.
-- **Disinformation Campaign** — Never drafted but cited as a key missing Dimir card ("we're definitely missing a card like Disinformation Campaign").
-- **Camaraderie** — Green-white gold card; Ethan passed it repeatedly and finally it came back 5th–6th suggesting Selesnya was moderately open.
+- [**Spy Bug (?)**](https://scryfall.com/search?q=Spy%20Bug%20%28%3F%29) ("spy bug" / "Dimir spy bug" in transcript) — Dimir gold card; Ethan took it P1P1 as "high-risk high-reward" but pivoted off immediately once Boros/Selesnya signals appeared.
+- [**League Guildmage**](https://scryfall.com/search?q=League%20Guildmage) — Izzet gold card; Ben drafted it as a potential Dimir splash, valued for "keeping it growing every turn" with Nightveil Sprite.
+- [**Tajic, Legion's Edge (?)**](https://scryfall.com/search?q=Tajic%2C%20Legion%27s%20Edge%20%28%3F%29) ("Taj ik" in transcript) — Ethan picked it up late when pivoting back toward Boros. Ben drafted it in Pack 3 thinking he was still in Selesnya. Called out as a bomb.
+- [**Devious Cover-Up**](https://scryfall.com/search?q=Devious%20Cover-Up) — Dimir gold; taken over Dimir Guildgate. "Works well with Whisper Agent at instant speed."
+- [**Barging Sergeant (?)**](https://scryfall.com/search?q=Barging%20Sergeant%20%28%3F%29) ("barging sergeant" in transcript) — Wheeled in Ethan's draft; noted as "fantastic with double Rock Charger." Likely Boros signpost.
+- [**Disinformation Campaign**](https://scryfall.com/search?q=Disinformation%20Campaign) — Never drafted but cited as a key missing Dimir card ("we're definitely missing a card like Disinformation Campaign").
+- [**Camaraderie**](https://scryfall.com/search?q=Camaraderie) — Green-white gold card; Ethan passed it repeatedly and finally it came back 5th–6th suggesting Selesnya was moderately open.
 
 ### Colorless
 - None specifically evaluated in this episode.
 
 ### Lands
-- **Gateway Plaza** — Noted as "five-color fixing" gate; Ben took one to enable splashing.
-- **Guild Gates (Dimir, Selesnya, Izzet, Golgari, Boros gates all mentioned)** — Both drafters actively picked gates for fixing. Ethan took Selesnya gates to enable potential splashes off his Boros base; Ben took multiple off-color gates for fixing and potential splash.
-- **Izzet Locket** — Debated by Ben as fixing; ultimately passed in favor of more central cards.
+- [**Gateway Plaza**](https://scryfall.com/search?q=Gateway%20Plaza) — Noted as "five-color fixing" gate; Ben took one to enable splashing.
+- [**Guild Gates (Dimir, Selesnya, Izzet, Golgari, Boros gates all mentioned)**](https://scryfall.com/search?q=Guild%20Gates%20%28Dimir%2C%20Selesnya%2C%20Izzet%2C%20Golgari%2C%20Boros%20gates%20all%20mentioned%29) — Both drafters actively picked gates for fixing. Ethan took Selesnya gates to enable potential splashes off his Boros base; Ben took multiple off-color gates for fixing and potential splash.
+- [**Izzet Locket**](https://scryfall.com/search?q=Izzet%20Locket) — Debated by Ben as fixing; ultimately passed in favor of more central cards.
 
 ### Rares & bombs
-- **Thief of Sanity** — Top Dimir bomb; game-winning if it sticks.
-- **Nightveil Predator** — Rare-level power; hexproof, deathtouch, makes it very difficult to interact with.
-- **Tajic, Legion's Edge (?)** — Boros rare; showed up late in both drafts as a bomb.
-- **Runaway Steam-Kin** — Implied strong Boros/Izzet rare.
-- **True-Fire Captain (?)** — Implied Boros uncommon/rare signpost.
+- [**Thief of Sanity**](https://scryfall.com/search?q=Thief%20of%20Sanity) — Top Dimir bomb; game-winning if it sticks.
+- [**Nightveil Predator**](https://scryfall.com/search?q=Nightveil%20Predator) — Rare-level power; hexproof, deathtouch, makes it very difficult to interact with.
+- [**Tajic, Legion's Edge (?)**](https://scryfall.com/search?q=Tajic%2C%20Legion%27s%20Edge%20%28%3F%29) — Boros rare; showed up late in both drafts as a bomb.
+- [**Runaway Steam-Kin**](https://scryfall.com/search?q=Runaway%20Steam-Kin) — Implied strong Boros/Izzet rare.
+- [**True-Fire Captain (?)**](https://scryfall.com/search?q=True-Fire%20Captain%20%28%3F%29) — Implied Boros uncommon/rare signpost.
 
 ## Signals & seat reads
 

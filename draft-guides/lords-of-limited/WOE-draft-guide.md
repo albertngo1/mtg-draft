@@ -89,98 +89,98 @@ Ranked by the **2023-10-23 retrospective** final consensus. Earlier episodes mis
 ## Card notes (community consensus)
 
 ### White
-- **Hopeful Vigil** — clear #1 white common; two-mana enchantment that scries and cycles when used as bargain fodder. Works with Stockpiling Celebrant. Pick early.
-- **Cooped Up** — pacifism variant that can Exile at cost; pick 2–3 quality, excellent interaction.
-- **Archon's Glory** — single-white instant +2/+2; if bargained, also grants flying and lifelink. Better than it looks: blow out fight spells, combat tricks, all for one Mana.
-- **Stockpiling Celebrant** — three-mana 3/2 that scries 2 and picks up an enchantment. Great late game value. Requires a full curve before it shines; don't prioritize over two-drops.
-- **Return Triumphant** — two-mana reanimation for ≤3 MV creature with young hero token attached. Came way up over the format — pairs with one-drops to grow them into threatening bodies.
-- **Kell's Light Blades (Kell's light blades(?))** — two-mana deal-three-to-attacker-or-blocker; if bargained, kills it outright. Excellent control payoff; wheels criminally late. White's best removal spell.
-- **Hopeless Nightmare** — single-black common (White/Black deck); they discard and lose two life; scry 2 and lose two when sacrificed. Top black common overall.
-- **Cursed Courtier** — three-mana 3/3 lifelink that enters as a 1/1 until the cursed role is knocked off. Black/White bargain payoff; requires work but when it works it's great.
-- **Savior of the Sleeping (?)** — two-mana 2/3 vigilance that gets +1/+1 counters when enchantments go to graveyard. Mediocre filler; there are better three-drops.
-- **Knight of Doves** — two-mana 1/3 that makes 1/1 flying birds when enchantments die. Cute synergy, rarely the plan.
+- [**Hopeful Vigil**](https://scryfall.com/search?q=Hopeful%20Vigil) — clear #1 white common; two-mana enchantment that scries and cycles when used as bargain fodder. Works with Stockpiling Celebrant. Pick early.
+- [**Cooped Up**](https://scryfall.com/search?q=Cooped%20Up) — pacifism variant that can Exile at cost; pick 2–3 quality, excellent interaction.
+- [**Archon's Glory**](https://scryfall.com/search?q=Archon%27s%20Glory) — single-white instant +2/+2; if bargained, also grants flying and lifelink. Better than it looks: blow out fight spells, combat tricks, all for one Mana.
+- [**Stockpiling Celebrant**](https://scryfall.com/search?q=Stockpiling%20Celebrant) — three-mana 3/2 that scries 2 and picks up an enchantment. Great late game value. Requires a full curve before it shines; don't prioritize over two-drops.
+- [**Return Triumphant**](https://scryfall.com/search?q=Return%20Triumphant) — two-mana reanimation for ≤3 MV creature with young hero token attached. Came way up over the format — pairs with one-drops to grow them into threatening bodies.
+- [**Kell's Light Blades (Kell's light blades(?))**](https://scryfall.com/search?q=Kell%27s%20Light%20Blades%20%28Kell%27s%20light%20blades%28%3F%29%29) — two-mana deal-three-to-attacker-or-blocker; if bargained, kills it outright. Excellent control payoff; wheels criminally late. White's best removal spell.
+- [**Hopeless Nightmare**](https://scryfall.com/search?q=Hopeless%20Nightmare) — single-black common (White/Black deck); they discard and lose two life; scry 2 and lose two when sacrificed. Top black common overall.
+- [**Cursed Courtier**](https://scryfall.com/search?q=Cursed%20Courtier) — three-mana 3/3 lifelink that enters as a 1/1 until the cursed role is knocked off. Black/White bargain payoff; requires work but when it works it's great.
+- [**Savior of the Sleeping (?)**](https://scryfall.com/search?q=Savior%20of%20the%20Sleeping%20%28%3F%29) — two-mana 2/3 vigilance that gets +1/+1 counters when enchantments go to graveyard. Mediocre filler; there are better three-drops.
+- [**Knight of Doves**](https://scryfall.com/search?q=Knight%20of%20Doves) — two-mana 1/3 that makes 1/1 flying birds when enchantments die. Cute synergy, rarely the plan.
 
 ### Blue
-- **Spell Stutter** — single-blue counter target spell unless opponent pays two (plus one more per fairy you control). Top blue common personally for Ben; best when opponents are setting up synergies into open Mana.
-- **Ice Out** — one-blue-blue counter spell; bargain to cast for just UU. "Garbage" but playable in any blue deck; becomes excellent in decks with hatching plans.
-- **Johann's Stopgap** — three-mana sorcery, bounce + draw; bargain makes it cost one blue and sorcery speed. Blue's premium removal-substitute; excellent in any blue deck.
-- **Into the Fae Court** — five-mana draw three and make 1/1 fairy flier (ground-only). Looks like garbage (Mold Drifter comparison), plays amazingly once you stabilize. Imperial Oath over-performer of the format; wheel late, always include one.
-- **Bitter Chill** — one-blue aura: tap Enchanted creature, keep it tapped; when Bitter Chill dies you may pay one to scry 1, draw a card. Gives Blue/White clean answers to Hamlet Glutton and big bodies.
-- **Snare Master Sprite (?)** — single-blue 1/1 flier; pay two to tap and keep tapped on ETB. Worse than it looks because Blue makes mostly Cursed role tokens, so you can't follow up with a role to augment it.
-- **Frolicking Familiar** — two-blue 2/2 flier with prowess-ish; adventure "Blow Off Steam" deals one to any target. The bone-crusher otter of WOE; excellent in Blue/Red.
-- **Splashy Spellcaster** — four-mana 2/4; whenever you cast instant/sorcery create a Sorcerer role token. Came up huge over the format despite initial skepticism; Ben had it rated too low. Put it at B-level.
-- **Threadbind Clique (?)** — four-mana 3/3 flier; adventure "Rip the Seams" destroys tapped creature. Slots perfectly into Blue/White tapping plan.
+- [**Spell Stutter**](https://scryfall.com/search?q=Spell%20Stutter) — single-blue counter target spell unless opponent pays two (plus one more per fairy you control). Top blue common personally for Ben; best when opponents are setting up synergies into open Mana.
+- [**Ice Out**](https://scryfall.com/search?q=Ice%20Out) — one-blue-blue counter spell; bargain to cast for just UU. "Garbage" but playable in any blue deck; becomes excellent in decks with hatching plans.
+- [**Johann's Stopgap**](https://scryfall.com/search?q=Johann%27s%20Stopgap) — three-mana sorcery, bounce + draw; bargain makes it cost one blue and sorcery speed. Blue's premium removal-substitute; excellent in any blue deck.
+- [**Into the Fae Court**](https://scryfall.com/search?q=Into%20the%20Fae%20Court) — five-mana draw three and make 1/1 fairy flier (ground-only). Looks like garbage (Mold Drifter comparison), plays amazingly once you stabilize. Imperial Oath over-performer of the format; wheel late, always include one.
+- [**Bitter Chill**](https://scryfall.com/search?q=Bitter%20Chill) — one-blue aura: tap Enchanted creature, keep it tapped; when Bitter Chill dies you may pay one to scry 1, draw a card. Gives Blue/White clean answers to Hamlet Glutton and big bodies.
+- [**Snare Master Sprite (?)**](https://scryfall.com/search?q=Snare%20Master%20Sprite%20%28%3F%29) — single-blue 1/1 flier; pay two to tap and keep tapped on ETB. Worse than it looks because Blue makes mostly Cursed role tokens, so you can't follow up with a role to augment it.
+- [**Frolicking Familiar**](https://scryfall.com/search?q=Frolicking%20Familiar) — two-blue 2/2 flier with prowess-ish; adventure "Blow Off Steam" deals one to any target. The bone-crusher otter of WOE; excellent in Blue/Red.
+- [**Splashy Spellcaster**](https://scryfall.com/search?q=Splashy%20Spellcaster) — four-mana 2/4; whenever you cast instant/sorcery create a Sorcerer role token. Came up huge over the format despite initial skepticism; Ben had it rated too low. Put it at B-level.
+- [**Threadbind Clique (?)**](https://scryfall.com/search?q=Threadbind%20Clique%20%28%3F%29) — four-mana 3/3 flier; adventure "Rip the Seams" destroys tapped creature. Slots perfectly into Blue/White tapping plan.
 
 ### Black
-- **Candy Grapple** — two-mana instant; target creature gets -3/-3 until end of turn; bargain to make it -5/-5. The #1 or #2 best common overall; an absolute must-pick.
-- **Hopeless Nightmare** — single-black enchantment; ETB opponent discards and loses two life; sacrifice to scry 2 and they lose two more; pay two black to sacrifice. See White section. Top common by 17Lands top users.
-- **Rat Out** — single-black instant; target creature -1/-1 and make 1/1 rat that can't block. Excellent in aggro black decks; came down in value as format evolved but still run one in aggressive builds.
-- **Voracious Vermin** — three-mana 2/1; ETB make 1/1 rat; whenever another creature you control dies put a +1/+1 counter on it. "Rectangles." Low setup cost, excellent rate.
-- **Sweet Tooth Witch** — three-mana 3/2; ETB make a food; pay two sacrifice food to drain two life as many times as you want. Excellent across all Black decks; Sweet Tooth Witch was Ben's arch-nemesis ("take eight to the dome after stabilizing the board").
-- **Hyfae Negotiator (?)** — three-black-black 3/5 fairy; bargain to drain three and gain three. Premium black uncommon finisher for Blue/Black control.
-- **Barrow Naughty (?)** — one-black 1/3 flier; gains lifelink if you have another fairy. Key in Fairy builds; makes aggro decks' lives miserable once turned on. Small games-played sample but top-2 black common among top users.
-- **Twisted Sewer-Witch** — five-mana 3/4; ETB make a rat token, then attach wicked role to each rat you control. Build-around finisher for Black/Red rats; "overrun for red-black." Don't first-pick; take Hyfae Negotiator over this.
-- **Lord Skitter's Butcher (Rata-2-3)** — two-mana 2/3; choose ETB one of: make a rat, sacrifice another creature to scry 2 draw a card, or give creatures menace. Good but "basically a Voracious Vermin that can't grow." Was predicted to be the best black uncommon; not even close to that.
-- **Fairy Dream Thief** — one-black 1/1 flier uncommon; ETB surveil 1; pay two-black Exile from graveyard to draw a card and lose a life. Just great, no complex take needed.
+- [**Candy Grapple**](https://scryfall.com/search?q=Candy%20Grapple) — two-mana instant; target creature gets -3/-3 until end of turn; bargain to make it -5/-5. The #1 or #2 best common overall; an absolute must-pick.
+- [**Hopeless Nightmare**](https://scryfall.com/search?q=Hopeless%20Nightmare) — single-black enchantment; ETB opponent discards and loses two life; sacrifice to scry 2 and they lose two more; pay two black to sacrifice. See White section. Top common by 17Lands top users.
+- [**Rat Out**](https://scryfall.com/search?q=Rat%20Out) — single-black instant; target creature -1/-1 and make 1/1 rat that can't block. Excellent in aggro black decks; came down in value as format evolved but still run one in aggressive builds.
+- [**Voracious Vermin**](https://scryfall.com/search?q=Voracious%20Vermin) — three-mana 2/1; ETB make 1/1 rat; whenever another creature you control dies put a +1/+1 counter on it. "Rectangles." Low setup cost, excellent rate.
+- [**Sweet Tooth Witch**](https://scryfall.com/search?q=Sweet%20Tooth%20Witch) — three-mana 3/2; ETB make a food; pay two sacrifice food to drain two life as many times as you want. Excellent across all Black decks; Sweet Tooth Witch was Ben's arch-nemesis ("take eight to the dome after stabilizing the board").
+- [**Hyfae Negotiator (?)**](https://scryfall.com/search?q=Hyfae%20Negotiator%20%28%3F%29) — three-black-black 3/5 fairy; bargain to drain three and gain three. Premium black uncommon finisher for Blue/Black control.
+- [**Barrow Naughty (?)**](https://scryfall.com/search?q=Barrow%20Naughty%20%28%3F%29) — one-black 1/3 flier; gains lifelink if you have another fairy. Key in Fairy builds; makes aggro decks' lives miserable once turned on. Small games-played sample but top-2 black common among top users.
+- [**Twisted Sewer-Witch**](https://scryfall.com/search?q=Twisted%20Sewer-Witch) — five-mana 3/4; ETB make a rat token, then attach wicked role to each rat you control. Build-around finisher for Black/Red rats; "overrun for red-black." Don't first-pick; take Hyfae Negotiator over this.
+- [**Lord Skitter's Butcher (Rata-2-3)**](https://scryfall.com/search?q=Lord%20Skitter%27s%20Butcher%20%28Rata-2-3%29) — two-mana 2/3; choose ETB one of: make a rat, sacrifice another creature to scry 2 draw a card, or give creatures menace. Good but "basically a Voracious Vermin that can't grow." Was predicted to be the best black uncommon; not even close to that.
+- [**Fairy Dream Thief**](https://scryfall.com/search?q=Fairy%20Dream%20Thief) — one-black 1/1 flier uncommon; ETB surveil 1; pay two-black Exile from graveyard to draw a card and lose a life. Just great, no complex take needed.
 
 ### Red
-- **Torch the Tower** — single-red instant; deals two to creature/planeswalker; if bargained deals three and Exiles. #1 common in the set across nearly all data cuts. Snap-pick.
-- **Cut In** — three-red sorcery; deals four to creature and creates a young hero role token. Elite aggro curve-topper. Was pegged correctly as a top common from previews.
-- **Flick a Coin** — two-red instant; deals one to any target, create treasure, draw a card. Excellent "three for one" that also hoses x/1s.
-- **Rat Catcher Trainee** — two-red 2/1 first-striker on your turn; adventure "Make two 1/1 rats at instant speed." Three bodies for two Mana; absurd rate.
-- **Monstrous Rage** — single-red instant; creature gets +2/+0 and a Monster role (so +3/+1 trample). One of the best combat tricks in the format.
-- **Harried Spearguard** — single-red 1/1 haste; when it dies make a 1/1 rat. Contested garbage-or-great evaluation. Hosts split: Ben (garbage leaning), Ethan (great). In context of bombardment/sacrifice builds it can be great, but as a vanilla 1/1 the front end is too weak.
-- **Imodane's Recruiter** — three-mana 2/2; ETB all your creatures get +1/+0 and haste; adventure "Make two 2/2 knight tokens." Best Pack 1 Pick 1 in the set (retro consensus). Not necessarily the most powerful card, but most likely to make your deck and most likely to be a bomb.
-- **Edgewall Pack (?)** — three-mana 3/3 Menace; adventure at two-mana to make two rats. Excellent rate cards that also create rat tokens.
-- **Ginger Brute** — single-red 3/1 can't block; opponents must attack with all if able. "Young hero of WOE" — played extremely well with young hero role tokens, wicked roles, all of red's pieces.
+- [**Torch the Tower**](https://scryfall.com/search?q=Torch%20the%20Tower) — single-red instant; deals two to creature/planeswalker; if bargained deals three and Exiles. #1 common in the set across nearly all data cuts. Snap-pick.
+- [**Cut In**](https://scryfall.com/search?q=Cut%20In) — three-red sorcery; deals four to creature and creates a young hero role token. Elite aggro curve-topper. Was pegged correctly as a top common from previews.
+- [**Flick a Coin**](https://scryfall.com/search?q=Flick%20a%20Coin) — two-red instant; deals one to any target, create treasure, draw a card. Excellent "three for one" that also hoses x/1s.
+- [**Rat Catcher Trainee**](https://scryfall.com/search?q=Rat%20Catcher%20Trainee) — two-red 2/1 first-striker on your turn; adventure "Make two 1/1 rats at instant speed." Three bodies for two Mana; absurd rate.
+- [**Monstrous Rage**](https://scryfall.com/search?q=Monstrous%20Rage) — single-red instant; creature gets +2/+0 and a Monster role (so +3/+1 trample). One of the best combat tricks in the format.
+- [**Harried Spearguard**](https://scryfall.com/search?q=Harried%20Spearguard) — single-red 1/1 haste; when it dies make a 1/1 rat. Contested garbage-or-great evaluation. Hosts split: Ben (garbage leaning), Ethan (great). In context of bombardment/sacrifice builds it can be great, but as a vanilla 1/1 the front end is too weak.
+- [**Imodane's Recruiter**](https://scryfall.com/search?q=Imodane%27s%20Recruiter) — three-mana 2/2; ETB all your creatures get +1/+0 and haste; adventure "Make two 2/2 knight tokens." Best Pack 1 Pick 1 in the set (retro consensus). Not necessarily the most powerful card, but most likely to make your deck and most likely to be a bomb.
+- [**Edgewall Pack (?)**](https://scryfall.com/search?q=Edgewall%20Pack%20%28%3F%29) — three-mana 3/3 Menace; adventure at two-mana to make two rats. Excellent rate cards that also create rat tokens.
+- [**Ginger Brute**](https://scryfall.com/search?q=Ginger%20Brute) — single-red 3/1 can't block; opponents must attack with all if able. "Young hero of WOE" — played extremely well with young hero role tokens, wicked roles, all of red's pieces.
 
 ### Green
-- **Hamlet Glutton** — five-mana 6/6 with "each opponent must block it if able" plus food. Clear #1 green common; data confirmed it's on the border of the top 10 overall commons.
-- **Hollow Scavenger** — two-mana 3/2; adventure that makes food. "Rectangles" in ferocious Were-Fox style. Consistent, no setup required.
-- **Ferocious Werefox (?)** — two-mana adventure that fights a creature and makes a Monster role token. Green's best removal-ish effect. Requires a curve to maximize but punished when set up.
-- **Curse of the Werefox (?)** — two-green fight effect with role token. Came down in value because it requires creatures and a curve; was lower than expected in data but Ben still likes it.
-- **Brave the Wilds** — single-green sorcery; search up a basic (replace a land draw); bargain makes a land you control a 3/3 elemental haste. This format's lay of the land. Goes in every green deck; double spell with food or another spell to make a 3/3 turn three is the best-case that happened more than expected.
-- **Root Rider Fawn** — two-mana 1/3; taps for green, pay one to add any color. Mana dork, fixer, and keeps being relevant late. Excellent especially in splash-heavy decks.
-- **Return from the Wilds** — three-mana sorcery; rampant growth + choose to make a food or a 1/1 white human. Three-mana rampant growth is excellent; the choice is pure upside.
-- **Welcome to Sweetooth** — two-mana saga; ch1 make 1/1 human, ch2 make food, ch3 put X +1/+1 counters on target creature where X is 1 plus foods. Best two-drop in the format per Ben; scarce premium two-drop slot filled perfectly.
-- **Tough Cookie** — one-green 2/2 artifact food creature; ETB make food; pay two-green to turn a non-creature artifact into 4/4; sacrifice for three life. Rawly efficient; every ability is premium.
-- **Gingerbread Hunter** — three-mana adventure; exile target food or artifact (main deck viable); creature body is solid. Premium at every point of the curve.
-- **Knight of Sweets Revenge** — four-mana enchantment; ETB make food, gives food lands to tap for green; pay seven sacrifice it for +X/+X team where X is food count. Build-around that works if you get enough food and can double-spell with it; overrun potential is real.
+- [**Hamlet Glutton**](https://scryfall.com/search?q=Hamlet%20Glutton) — five-mana 6/6 with "each opponent must block it if able" plus food. Clear #1 green common; data confirmed it's on the border of the top 10 overall commons.
+- [**Hollow Scavenger**](https://scryfall.com/search?q=Hollow%20Scavenger) — two-mana 3/2; adventure that makes food. "Rectangles" in ferocious Were-Fox style. Consistent, no setup required.
+- [**Ferocious Werefox (?)**](https://scryfall.com/search?q=Ferocious%20Werefox%20%28%3F%29) — two-mana adventure that fights a creature and makes a Monster role token. Green's best removal-ish effect. Requires a curve to maximize but punished when set up.
+- [**Curse of the Werefox (?)**](https://scryfall.com/search?q=Curse%20of%20the%20Werefox%20%28%3F%29) — two-green fight effect with role token. Came down in value because it requires creatures and a curve; was lower than expected in data but Ben still likes it.
+- [**Brave the Wilds**](https://scryfall.com/search?q=Brave%20the%20Wilds) — single-green sorcery; search up a basic (replace a land draw); bargain makes a land you control a 3/3 elemental haste. This format's lay of the land. Goes in every green deck; double spell with food or another spell to make a 3/3 turn three is the best-case that happened more than expected.
+- [**Root Rider Fawn**](https://scryfall.com/search?q=Root%20Rider%20Fawn) — two-mana 1/3; taps for green, pay one to add any color. Mana dork, fixer, and keeps being relevant late. Excellent especially in splash-heavy decks.
+- [**Return from the Wilds**](https://scryfall.com/search?q=Return%20from%20the%20Wilds) — three-mana sorcery; rampant growth + choose to make a food or a 1/1 white human. Three-mana rampant growth is excellent; the choice is pure upside.
+- [**Welcome to Sweetooth**](https://scryfall.com/search?q=Welcome%20to%20Sweetooth) — two-mana saga; ch1 make 1/1 human, ch2 make food, ch3 put X +1/+1 counters on target creature where X is 1 plus foods. Best two-drop in the format per Ben; scarce premium two-drop slot filled perfectly.
+- [**Tough Cookie**](https://scryfall.com/search?q=Tough%20Cookie) — one-green 2/2 artifact food creature; ETB make food; pay two-green to turn a non-creature artifact into 4/4; sacrifice for three life. Rawly efficient; every ability is premium.
+- [**Gingerbread Hunter**](https://scryfall.com/search?q=Gingerbread%20Hunter) — three-mana adventure; exile target food or artifact (main deck viable); creature body is solid. Premium at every point of the curve.
+- [**Knight of Sweets Revenge**](https://scryfall.com/search?q=Knight%20of%20Sweets%20Revenge) — four-mana enchantment; ETB make food, gives food lands to tap for green; pay seven sacrifice it for +X/+X team where X is food count. Build-around that works if you get enough food and can double-spell with it; overrun potential is real.
 
 ### Multicolor
-- **Neva Stocked by Nightmares** — two-white-black 2/2 menace; ETB return creature or enchantment from graveyard; whenever enchantment you control dies put a +1/+1 counter on Neva and scry 1. White/Black signpost; gravedigger for enchantments and creatures. Came up slightly from preview expectations.
-- **Ash Party Crasher** — two-white-red 2/2 haste legendary; celebration: whenever you attack if two+ non-land permanents ETB this turn, put a +1/+1 counter on Ash. Premium White/Red signpost; grows fast with even incidental celebration triggers.
-- **Imodane's Recruiter** — see Red section. Best non-rare; effectively White/Red but the adventure half is the key.
-- **Greta Sweet Tooth Scourge** — two-black-green 3/3; ETB make food; pay green sac food to put +1/+1 counter on creature; pay one black sac food to draw and lose a life. Everything you want from Green/Black; rawly efficient.
-- **Sherae of Numbing Depths** — two-white-blue 2/3; ETB tap opponent's creature and stun it; whenever you tap untapped creature opponent controls draw a card (once per turn). Powerful signpost; sets up Blue/White control with free card-draw.
-- **Obira Dreaming Duelist** — one-blue-black 2/2 flash flier legendary; whenever another fairy ETB under your control each opponent loses a life. Blue/Black fairy signpost. "Very efficient" — flash + flying + drain.
-- **Totentanz Swarm Piper** — two-black-red 2/3; whenever this or another non-token creature you control dies make a 1/1 rat; pay one-black give attacking rat deathtouch. Black/Red signpost; engine creature for rats.
-- **Sir Armand the Redeemer** — four-white-green 4/4; ETB make Monster role token on another creature (that's +2/+2 trample); enchanted creatures get +1/+1. Green/White signpost; enables alpha strikes.
-- **Johan Apprentice Sorcerer** — three-blue-red 2/5; look at top of library any time; once per turn may cast instant/sorcery from top. Blue/Red signpost; value engine that points toward longer games.
-- **Ruby Daring Tracker** — two-red-green 1/2 haste; when she attacks while you control a power 4+ creature she gets +2/+2; taps to add R or G. Red/Green signpost; mana dork, combat pump, late-game beater. Better than past four-power archetypes because this card is the enabler.
+- [**Neva Stocked by Nightmares**](https://scryfall.com/search?q=Neva%20Stocked%20by%20Nightmares) — two-white-black 2/2 menace; ETB return creature or enchantment from graveyard; whenever enchantment you control dies put a +1/+1 counter on Neva and scry 1. White/Black signpost; gravedigger for enchantments and creatures. Came up slightly from preview expectations.
+- [**Ash Party Crasher**](https://scryfall.com/search?q=Ash%20Party%20Crasher) — two-white-red 2/2 haste legendary; celebration: whenever you attack if two+ non-land permanents ETB this turn, put a +1/+1 counter on Ash. Premium White/Red signpost; grows fast with even incidental celebration triggers.
+- [**Imodane's Recruiter**](https://scryfall.com/search?q=Imodane%27s%20Recruiter) — see Red section. Best non-rare; effectively White/Red but the adventure half is the key.
+- [**Greta Sweet Tooth Scourge**](https://scryfall.com/search?q=Greta%20Sweet%20Tooth%20Scourge) — two-black-green 3/3; ETB make food; pay green sac food to put +1/+1 counter on creature; pay one black sac food to draw and lose a life. Everything you want from Green/Black; rawly efficient.
+- [**Sherae of Numbing Depths**](https://scryfall.com/search?q=Sherae%20of%20Numbing%20Depths) — two-white-blue 2/3; ETB tap opponent's creature and stun it; whenever you tap untapped creature opponent controls draw a card (once per turn). Powerful signpost; sets up Blue/White control with free card-draw.
+- [**Obira Dreaming Duelist**](https://scryfall.com/search?q=Obira%20Dreaming%20Duelist) — one-blue-black 2/2 flash flier legendary; whenever another fairy ETB under your control each opponent loses a life. Blue/Black fairy signpost. "Very efficient" — flash + flying + drain.
+- [**Totentanz Swarm Piper**](https://scryfall.com/search?q=Totentanz%20Swarm%20Piper) — two-black-red 2/3; whenever this or another non-token creature you control dies make a 1/1 rat; pay one-black give attacking rat deathtouch. Black/Red signpost; engine creature for rats.
+- [**Sir Armand the Redeemer**](https://scryfall.com/search?q=Sir%20Armand%20the%20Redeemer) — four-white-green 4/4; ETB make Monster role token on another creature (that's +2/+2 trample); enchanted creatures get +1/+1. Green/White signpost; enables alpha strikes.
+- [**Johan Apprentice Sorcerer**](https://scryfall.com/search?q=Johan%20Apprentice%20Sorcerer) — three-blue-red 2/5; look at top of library any time; once per turn may cast instant/sorcery from top. Blue/Red signpost; value engine that points toward longer games.
+- [**Ruby Daring Tracker**](https://scryfall.com/search?q=Ruby%20Daring%20Tracker) — two-red-green 1/2 haste; when she attacks while you control a power 4+ creature she gets +2/+2; taps to add R or G. Red/Green signpost; mana dork, combat pump, late-game beater. Better than past four-power archetypes because this card is the enabler.
 
 ### Colorless / Artifacts
-- **Prophetic Prism** — two-mana artifact cantrip that fixes mana. "Golden Egg award" of the format. Does it all at a cost. Slightly worse in aggressive decks where spending turn two is too slow, but in any midrange or control build it is a premium card.
-- **Collector's Vault** — two-mana artifact; pay two tap: draw a card, discard a card, make a treasure. Ethan's favorite card in the format; fixing, filtering, gas, bargain fodder, celebration trigger, food-fight enabler. Lifestyle.
-- **Edgewall Inn** — colorless land; enters tapped; taps for chosen color; pay three tap sacrifice to return an adventure card from graveyard to hand. Auto-pick in most packs with adventures.
-- **Arion's Tempting Apple (?)** — colorless "threaten" artifact; opponent can block with their own creatures, otherwise they gain control of it next turn. Actually good; "best threat and effect we've seen in a long time" — can be lava axe, can gain life when cracked as food.
+- [**Prophetic Prism**](https://scryfall.com/search?q=Prophetic%20Prism) — two-mana artifact cantrip that fixes mana. "Golden Egg award" of the format. Does it all at a cost. Slightly worse in aggressive decks where spending turn two is too slow, but in any midrange or control build it is a premium card.
+- [**Collector's Vault**](https://scryfall.com/search?q=Collector%27s%20Vault) — two-mana artifact; pay two tap: draw a card, discard a card, make a treasure. Ethan's favorite card in the format; fixing, filtering, gas, bargain fodder, celebration trigger, food-fight enabler. Lifestyle.
+- [**Edgewall Inn**](https://scryfall.com/search?q=Edgewall%20Inn) — colorless land; enters tapped; taps for chosen color; pay three tap sacrifice to return an adventure card from graveyard to hand. Auto-pick in most packs with adventures.
+- [**Arion's Tempting Apple (?)**](https://scryfall.com/search?q=Arion%27s%20Tempting%20Apple%20%28%3F%29) — colorless "threaten" artifact; opponent can block with their own creatures, otherwise they gain control of it next turn. Actually good; "best threat and effect we've seen in a long time" — can be lava axe, can gain life when cracked as food.
 
 ### Lands
-- **Rare land cycle (creature lands)** — all the restless/rare lands are strong splash targets even just to activate them once; the Blue/Green restless stock(?) was the most impactful seen in gameplay. Worth splashing even for just the activated creature.
-- **Evolving Wilds** — common; important fixing especially in decks wanting off-color adventure halves.
-- **Crystal Grotto (?)** — colorless common land; enters tapped but adds any color. Correct to run one in any multi-color pile.
+- [**Rare land cycle (creature lands)**](https://scryfall.com/search?q=Rare%20land%20cycle%20%28creature%20lands%29) — all the restless/rare lands are strong splash targets even just to activate them once; the Blue/Green restless stock(?) was the most impactful seen in gameplay. Worth splashing even for just the activated creature.
+- [**Evolving Wilds**](https://scryfall.com/search?q=Evolving%20Wilds) — common; important fixing especially in decks wanting off-color adventure halves.
+- [**Crystal Grotto (?)**](https://scryfall.com/search?q=Crystal%20Grotto%20%28%3F%29) — colorless common land; enters tapped but adds any color. Correct to run one in any multi-color pile.
 
 ### Rares and bombs
-- **Imodane's Recruiter (uncommon)** — see Red. Best P1P1 in the set.
-- **Yenna Redtooth Regent (?)** — copies enchantments you control (up to one of each name). Cool with Princess Takes Flight; goes infinite with Three Blind Mice + Yenna token (printing press of saga tokens).
-- **Ashiok (mythic Planeswalker)** — three-black-black five-loyalty; plus for card advantage, minus for 2/1 tokens that grow. Game-ending against the decks that cannot interact.
-- **Gruff Triplets (mythic)** — three 3/3s for six; probably the most "powerful" card in the set but not the best P1P1 because it doesn't make your deck 95% of the time.
-- **Archon of the Wild Rose** — four-mana 4/4 flier; enchanted creatures you control that are aura'd have base 4/4 flying. Excellent rare for White enchantment builds.
-- **Decadent Dragon** — adventure: exile top three of opponent's library, may cast them; creature: four-mana 4/4 flier. Strong build-around rare.
-- **Princess Takes Flight (uncommon, White)** — three-mana saga; ch1 exile up to one creature, ch2 a creature gets +2/+2 flying, ch3 return exiled creature. Sweet build-around; bargaining it away (on ch3's stack as instant) or looping it with Stockpiling Celebrant is the premium line. Requires 6-8 bargain sources to fully maximize. Power range is very wide depending on deck context.
-- **Hatching Plans (Enchanting Tales uncommon)** — draw three when Hatching Plans is put into graveyard. Top Enchanting Tales uncommon; excellent bargain fodder (sac to ice out or any bargain card) that replaces itself richly.
-- **Goblin Bombardment (Enchanting Tales uncommon)** — pay one sac a creature: deal one damage to any target. Build-around in Red; goes with rats, Imodane's Recruiter, Totentanz.
-- **Utopia Sprawl (Enchanting Tales uncommon)** — land enchantment that doubles mana. Powerful but narrow; best with fixed two-color decks.
+- [**Imodane's Recruiter (uncommon)**](https://scryfall.com/search?q=Imodane%27s%20Recruiter%20%28uncommon%29) — see Red. Best P1P1 in the set.
+- [**Yenna Redtooth Regent (?)**](https://scryfall.com/search?q=Yenna%20Redtooth%20Regent%20%28%3F%29) — copies enchantments you control (up to one of each name). Cool with Princess Takes Flight; goes infinite with Three Blind Mice + Yenna token (printing press of saga tokens).
+- [**Ashiok (mythic Planeswalker)**](https://scryfall.com/search?q=Ashiok%20%28mythic%20Planeswalker%29) — three-black-black five-loyalty; plus for card advantage, minus for 2/1 tokens that grow. Game-ending against the decks that cannot interact.
+- [**Gruff Triplets (mythic)**](https://scryfall.com/search?q=Gruff%20Triplets%20%28mythic%29) — three 3/3s for six; probably the most "powerful" card in the set but not the best P1P1 because it doesn't make your deck 95% of the time.
+- [**Archon of the Wild Rose**](https://scryfall.com/search?q=Archon%20of%20the%20Wild%20Rose) — four-mana 4/4 flier; enchanted creatures you control that are aura'd have base 4/4 flying. Excellent rare for White enchantment builds.
+- [**Decadent Dragon**](https://scryfall.com/search?q=Decadent%20Dragon) — adventure: exile top three of opponent's library, may cast them; creature: four-mana 4/4 flier. Strong build-around rare.
+- [**Princess Takes Flight (uncommon, White)**](https://scryfall.com/search?q=Princess%20Takes%20Flight%20%28uncommon%2C%20White%29) — three-mana saga; ch1 exile up to one creature, ch2 a creature gets +2/+2 flying, ch3 return exiled creature. Sweet build-around; bargaining it away (on ch3's stack as instant) or looping it with Stockpiling Celebrant is the premium line. Requires 6-8 bargain sources to fully maximize. Power range is very wide depending on deck context.
+- [**Hatching Plans (Enchanting Tales uncommon)**](https://scryfall.com/search?q=Hatching%20Plans%20%28Enchanting%20Tales%20uncommon%29) — draw three when Hatching Plans is put into graveyard. Top Enchanting Tales uncommon; excellent bargain fodder (sac to ice out or any bargain card) that replaces itself richly.
+- [**Goblin Bombardment (Enchanting Tales uncommon)**](https://scryfall.com/search?q=Goblin%20Bombardment%20%28Enchanting%20Tales%20uncommon%29) — pay one sac a creature: deal one damage to any target. Build-around in Red; goes with rats, Imodane's Recruiter, Totentanz.
+- [**Utopia Sprawl (Enchanting Tales uncommon)**](https://scryfall.com/search?q=Utopia%20Sprawl%20%28Enchanting%20Tales%20uncommon%29) — land enchantment that doubles mana. Powerful but narrow; best with fixed two-color decks.
 
 ## Signals and seat reads
 

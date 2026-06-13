@@ -78,73 +78,73 @@
 Garbled caption names marked with (?). Later/Day-2 episode takes win.
 
 ### White
-- **Alabaster Host Intercessor** — Premium white common. Five-mana 3/4 exiles a permanent until it leaves, plus plane-cycling for 2. "One of my top three white commons." Has built-in fixing via cycling. (Practice Draft #2)
-- **Tarkir Dune-Shaper** — Two-mana 2/1, flips into a 4/3 trample. Solid. (referenced multiple times)
-- **Reyav, Master Smith** (?) — Red-white uncommon signpost. Good if you're in the RW backup/double-strike lane.
+- [**Alabaster Host Intercessor**](https://scryfall.com/search?q=Alabaster%20Host%20Intercessor) — Premium white common. Five-mana 3/4 exiles a permanent until it leaves, plus plane-cycling for 2. "One of my top three white commons." Has built-in fixing via cycling. (Practice Draft #2)
+- [**Tarkir Dune-Shaper**](https://scryfall.com/search?q=Tarkir%20Dune-Shaper) — Two-mana 2/1, flips into a 4/3 trample. Solid. (referenced multiple times)
+- [**Reyav, Master Smith**](https://scryfall.com/search?q=Reyav%2C%20Master%20Smith) (?) — Red-white uncommon signpost. Good if you're in the RW backup/double-strike lane.
 
 ### Blue
-- **Preening Champion** — Three-mana 2/2 flyer that comes with a 1/1. Excellent. Repeatedly taken early. (Practice Drafts #1 and #2, Showdown)
-- **Thunderhead Squadron** — Six-mana 3/4 convoke flyer. Fine finisher in convoke decks; "not the kind of blue convoke card I'm really interested in" but serviceable. (multiple episodes)
-- **Skyclave Aerialist** — Two-mana evasive creature. "Premium two-drop, evasive." (Day 2)
-- **Meeting of Minds** — Four-mana convoke draw-two. "Pretty sweet with creatures." Excellent in low-curve convoke builds. (Practice Draft #1, Day 2)
-- **Faerie Mastermind** (?) — Two-mana 2/1 flash flyer, whenever an opponent draws their second card each turn you both draw. "Seems pretty good." (Practice Draft #2)
-- **Assimilate Essence** — One U, counter target spell that transforms — generally too conditional. "Counterspells been bad when conditional." (Practice Draft #2)
-- **Cyber Cryptomancer** (?) — One-mana 0/1 flash, backup 1, hexproof until end of turn. Good as a trick or a cheap hexproof body to put counters on. "Hexproof on a cheap common is kind of wild." (Practice Draft #2, Day 2)
-- **Zephyr Singer** — Four-mana 3/4 flying vigilance convoke; creatures that convoked it get flying counters. "This is like the Venerated Loxodon." (Practice Draft #2)
+- [**Preening Champion**](https://scryfall.com/search?q=Preening%20Champion) — Three-mana 2/2 flyer that comes with a 1/1. Excellent. Repeatedly taken early. (Practice Drafts #1 and #2, Showdown)
+- [**Thunderhead Squadron**](https://scryfall.com/search?q=Thunderhead%20Squadron) — Six-mana 3/4 convoke flyer. Fine finisher in convoke decks; "not the kind of blue convoke card I'm really interested in" but serviceable. (multiple episodes)
+- [**Skyclave Aerialist**](https://scryfall.com/search?q=Skyclave%20Aerialist) — Two-mana evasive creature. "Premium two-drop, evasive." (Day 2)
+- [**Meeting of Minds**](https://scryfall.com/search?q=Meeting%20of%20Minds) — Four-mana convoke draw-two. "Pretty sweet with creatures." Excellent in low-curve convoke builds. (Practice Draft #1, Day 2)
+- [**Faerie Mastermind**](https://scryfall.com/search?q=Faerie%20Mastermind) (?) — Two-mana 2/1 flash flyer, whenever an opponent draws their second card each turn you both draw. "Seems pretty good." (Practice Draft #2)
+- [**Assimilate Essence**](https://scryfall.com/search?q=Assimilate%20Essence) — One U, counter target spell that transforms — generally too conditional. "Counterspells been bad when conditional." (Practice Draft #2)
+- [**Cyber Cryptomancer**](https://scryfall.com/search?q=Cyber%20Cryptomancer) (?) — One-mana 0/1 flash, backup 1, hexproof until end of turn. Good as a trick or a cheap hexproof body to put counters on. "Hexproof on a cheap common is kind of wild." (Practice Draft #2, Day 2)
+- [**Zephyr Singer**](https://scryfall.com/search?q=Zephyr%20Singer) — Four-mana 3/4 flying vigilance convoke; creatures that convoked it get flying counters. "This is like the Venerated Loxodon." (Practice Draft #2)
 
 ### Black
-- **Ichor Drinker** — One black, 1/1 lifelink. Pay one black, exile from graveyard → incubate 2. "So so good" as a one-drop that gives you two rectangles to sacrifice later AND is a great backup counter target. Taken very high in Day 2. (Practice Drafts #1 and #2, Day 2)
-- **Nazumi Informant** (?) — Two-mana ravenous-rats effect. Core piece of any Hoarding Broodlord / convoke black deck. "Exactly what Broodlord wants." (Day 2, repeatedly)
-- **Blightreaper Thallid** — Black two-mana creature. "Love Blightreaper Thallid" over most other options; pairs well with Grimgrin-style sacrifice. (Team Draft Mistermetronome)
-- **Etched Host Doombringer** (?) — Five-mana 3/5. ETB: target opponent loses 2 life and you gain 2, then interact with a battle (remove 3 or add 3 counters). "Just awesome... the gain-two drain-two style is always underrated." (Practice Draft #1)
-- **Completed Huntmaster** — Two-mana black creature, sac outlet: pay 1, tap, sac another creature → incubate 3. Good sacrifice enabler; treasures from Deadly Derision fuel it. (Day 2)
-- **Unsealed Necropolis** — Two-mana black instant, each player mills 3, then return up to 2 creature cards from your graveyard to hand. "Big game at instant speed... every black deck wants one copy." (Practice Drafts #1 and #2)
-- **Archpriest of Shadows** — Three-mana 4/4 deathtouch backup-1; when it deals combat damage to a player or battle, return a creature from your graveyard to the battlefield. Key rare/uncommon threat. (Day 2 repeatedly)
-- **Hoarding Broodlord** — Five-mana triple-black convoke 5/4 flyer; ETB searches library for a card, exiles it face down, and you can cast it as long as it's exiled (with convoke). "Exactly the kind of rare you want to open." (Day 2)
-- **Deadly Derision** — Two-mana instant destroy creature, make a treasure. "Premium removal." Always taken over most alternatives. (multiple)
-- **Ayara, First of Locthwain** (?) / **IR, First of Locthwain** — Triple-black payoff. Ethan notes it was "almost always taken out in all four matches — too slow and tough to cast" even in a heavy-black deck with Broodlord. Don't over-commit to triple-pip bombs without a full plan.
+- [**Ichor Drinker**](https://scryfall.com/search?q=Ichor%20Drinker) — One black, 1/1 lifelink. Pay one black, exile from graveyard → incubate 2. "So so good" as a one-drop that gives you two rectangles to sacrifice later AND is a great backup counter target. Taken very high in Day 2. (Practice Drafts #1 and #2, Day 2)
+- [**Nazumi Informant**](https://scryfall.com/search?q=Nazumi%20Informant) (?) — Two-mana ravenous-rats effect. Core piece of any Hoarding Broodlord / convoke black deck. "Exactly what Broodlord wants." (Day 2, repeatedly)
+- [**Blightreaper Thallid**](https://scryfall.com/search?q=Blightreaper%20Thallid) — Black two-mana creature. "Love Blightreaper Thallid" over most other options; pairs well with Grimgrin-style sacrifice. (Team Draft Mistermetronome)
+- [**Etched Host Doombringer**](https://scryfall.com/search?q=Etched%20Host%20Doombringer) (?) — Five-mana 3/5. ETB: target opponent loses 2 life and you gain 2, then interact with a battle (remove 3 or add 3 counters). "Just awesome... the gain-two drain-two style is always underrated." (Practice Draft #1)
+- [**Completed Huntmaster**](https://scryfall.com/search?q=Completed%20Huntmaster) — Two-mana black creature, sac outlet: pay 1, tap, sac another creature → incubate 3. Good sacrifice enabler; treasures from Deadly Derision fuel it. (Day 2)
+- [**Unsealed Necropolis**](https://scryfall.com/search?q=Unsealed%20Necropolis) — Two-mana black instant, each player mills 3, then return up to 2 creature cards from your graveyard to hand. "Big game at instant speed... every black deck wants one copy." (Practice Drafts #1 and #2)
+- [**Archpriest of Shadows**](https://scryfall.com/search?q=Archpriest%20of%20Shadows) — Three-mana 4/4 deathtouch backup-1; when it deals combat damage to a player or battle, return a creature from your graveyard to the battlefield. Key rare/uncommon threat. (Day 2 repeatedly)
+- [**Hoarding Broodlord**](https://scryfall.com/search?q=Hoarding%20Broodlord) — Five-mana triple-black convoke 5/4 flyer; ETB searches library for a card, exiles it face down, and you can cast it as long as it's exiled (with convoke). "Exactly the kind of rare you want to open." (Day 2)
+- [**Deadly Derision**](https://scryfall.com/search?q=Deadly%20Derision) — Two-mana instant destroy creature, make a treasure. "Premium removal." Always taken over most alternatives. (multiple)
+- [**Ayara, First of Locthwain**](https://scryfall.com/search?q=Ayara%2C%20First%20of%20Locthwain) (?) / **IR, First of Locthwain** — Triple-black payoff. Ethan notes it was "almost always taken out in all four matches — too slow and tough to cast" even in a heavy-black deck with Broodlord. Don't over-commit to triple-pip bombs without a full plan.
 
 ### Red
-- **Pyretic Prankster** — Two-mana 2/1; flips into a 3/2 that when it dies, each opponent sacrifices an artifact or creature. "Pretty sick." Core red-black sacrifice piece. (Practice Drafts #1 and #2)
-- **Marauding Dreadship** — Three-mana 4/1 haste vehicle (crew 2), ETB incubate 2. "Low-key insane." Gets in for four and leaves a 2/2. (Practice Drafts #1 and #2, Day 2)
-- **Stormclaw Rager** — Two-mana 3/0 trample; when it attacks and there's a battle to attack, put a +1/+1 counter on it. Excellent aggressive threat. Taken in early drafts and Day 2. (multiple)
-- **Volcanic Spite** — One red instant, deal 3 to creature/planeswalker/battle; may put a card from hand on bottom to draw a card. "Functional reprint" of a similar card from Ikoria (Frostveil Ambush / Showdown of the Skalds (?)) — great rate. (Practice Draft #1)
-- **Final Flourish** — Two-mana -2/-2; can kick by sacrificing a creature/artifact for -6/-6 instead. Premium removal especially in sac decks. (multiple)
-- **Thrashing Frontliner** (?) — Two-mana creature with backup synergy. Fine aggressive two-drop. (Practice Draft #1)
-- **Invasion of Mercadia** (?) — Two-mana red battle (defense-4 (?)), ETB thrill-of-possibility effect; flips into a 3/3 spell shaper (discard to make 1/1s and give haste). "Strong." (multiple)
-- **Chandra** (rare) — "One of the best cards in the set." Taken P1P1 in the Showdown draft.
+- [**Pyretic Prankster**](https://scryfall.com/search?q=Pyretic%20Prankster) — Two-mana 2/1; flips into a 3/2 that when it dies, each opponent sacrifices an artifact or creature. "Pretty sick." Core red-black sacrifice piece. (Practice Drafts #1 and #2)
+- [**Marauding Dreadship**](https://scryfall.com/search?q=Marauding%20Dreadship) — Three-mana 4/1 haste vehicle (crew 2), ETB incubate 2. "Low-key insane." Gets in for four and leaves a 2/2. (Practice Drafts #1 and #2, Day 2)
+- [**Stormclaw Rager**](https://scryfall.com/search?q=Stormclaw%20Rager) — Two-mana 3/0 trample; when it attacks and there's a battle to attack, put a +1/+1 counter on it. Excellent aggressive threat. Taken in early drafts and Day 2. (multiple)
+- [**Volcanic Spite**](https://scryfall.com/search?q=Volcanic%20Spite) — One red instant, deal 3 to creature/planeswalker/battle; may put a card from hand on bottom to draw a card. "Functional reprint" of a similar card from Ikoria (Frostveil Ambush / Showdown of the Skalds (?)) — great rate. (Practice Draft #1)
+- [**Final Flourish**](https://scryfall.com/search?q=Final%20Flourish) — Two-mana -2/-2; can kick by sacrificing a creature/artifact for -6/-6 instead. Premium removal especially in sac decks. (multiple)
+- [**Thrashing Frontliner**](https://scryfall.com/search?q=Thrashing%20Frontliner) (?) — Two-mana creature with backup synergy. Fine aggressive two-drop. (Practice Draft #1)
+- [**Invasion of Mercadia**](https://scryfall.com/search?q=Invasion%20of%20Mercadia) (?) — Two-mana red battle (defense-4 (?)), ETB thrill-of-possibility effect; flips into a 3/3 spell shaper (discard to make 1/1s and give haste). "Strong." (multiple)
+- [**Chandra**](https://scryfall.com/search?q=Chandra) (rare) — "One of the best cards in the set." Taken P1P1 in the Showdown draft.
 
 ### Green
-- **Overgrown Pest** — Three-mana 2/2; ETB look at top 5, put a land or double-faced card into hand. "Probably one of the best green commons and one of the best commons in the set overall." (Practice Draft #1)
-- **Portent Tracker** (?) — Two-mana 2/1 vigilance; pay 2G to scry 1 or untap target land. Green card-selection piece. (Practice Draft #2, Day 2)
-- **Tangled Skyline** (?) — Green uncommon, five-mana 3/1 ETB incubate 5 and gain 5, and Phyrexian incubate tokens you control gain reach. "Best card in the pack by quite a bit." (Practice Draft #2, Showdown)
-- **Glistening Dawn** — Two GG sorcery, incubate X twice where X is lands you control. "Seems incredible... incubate 4 twice." Bombs when you have 4+ lands. (Practice Draft #2, Team Draft)
-- **Storm the Seed Core** (?) — Green sorcery, distribute 4 +1/+1 counters; creatures that receive them gain trample and vigilance. Overrun-style finisher for token/incubate decks. (multiple)
-- **Wildwood Escort** — Five-mana 3/3; when it dies, exile it and return a target creature/battle card from your graveyard on top of your library. "The Gravedigger variant." (multiple)
-- **Blighted Burgeoning** (?) — Green enchantment, mana fixing ramp. Core of the BG Portent Tracker engine — double Burgeoning plus Glistening Dawn is powerful. (Team Draft)
-- **Placid Rottentail** (?) — One-mana 1/1 vigilance; pay 2G to exile from graveyard and put two counters on target creature. Good counter synergy. (Practice Draft #2)
-- **War Historian** — Three-mana 3/3 reach; indestructible as long as it attacked a battle this turn. Solid battle-attacker. (multiple)
+- [**Overgrown Pest**](https://scryfall.com/search?q=Overgrown%20Pest) — Three-mana 2/2; ETB look at top 5, put a land or double-faced card into hand. "Probably one of the best green commons and one of the best commons in the set overall." (Practice Draft #1)
+- [**Portent Tracker**](https://scryfall.com/search?q=Portent%20Tracker) (?) — Two-mana 2/1 vigilance; pay 2G to scry 1 or untap target land. Green card-selection piece. (Practice Draft #2, Day 2)
+- [**Tangled Skyline**](https://scryfall.com/search?q=Tangled%20Skyline) (?) — Green uncommon, five-mana 3/1 ETB incubate 5 and gain 5, and Phyrexian incubate tokens you control gain reach. "Best card in the pack by quite a bit." (Practice Draft #2, Showdown)
+- [**Glistening Dawn**](https://scryfall.com/search?q=Glistening%20Dawn) — Two GG sorcery, incubate X twice where X is lands you control. "Seems incredible... incubate 4 twice." Bombs when you have 4+ lands. (Practice Draft #2, Team Draft)
+- [**Storm the Seed Core**](https://scryfall.com/search?q=Storm%20the%20Seed%20Core) (?) — Green sorcery, distribute 4 +1/+1 counters; creatures that receive them gain trample and vigilance. Overrun-style finisher for token/incubate decks. (multiple)
+- [**Wildwood Escort**](https://scryfall.com/search?q=Wildwood%20Escort) — Five-mana 3/3; when it dies, exile it and return a target creature/battle card from your graveyard on top of your library. "The Gravedigger variant." (multiple)
+- [**Blighted Burgeoning**](https://scryfall.com/search?q=Blighted%20Burgeoning) (?) — Green enchantment, mana fixing ramp. Core of the BG Portent Tracker engine — double Burgeoning plus Glistening Dawn is powerful. (Team Draft)
+- [**Placid Rottentail**](https://scryfall.com/search?q=Placid%20Rottentail) (?) — One-mana 1/1 vigilance; pay 2G to exile from graveyard and put two counters on target creature. Good counter synergy. (Practice Draft #2)
+- [**War Historian**](https://scryfall.com/search?q=War%20Historian) — Three-mana 3/3 reach; indestructible as long as it attacked a battle this turn. Solid battle-attacker. (multiple)
 
 ### Multicolor
-- **Invasion of Asgold** (?) — Black-red battle; ETB edict effect; flips into 2/1 Menace that grows when permanents go to graveyard. Solid removal battle for BR. (Showdown)
-- **Etched Host (Rondel?)** — Mentioned as "not great" in green-red (Kogla and Yadaro aside). Kogla and Yadaro (red-red green-green, 7/7 trample haste, fights/destroys/shuffles back) is "how can you not take it." (Practice Draft #1)
-- **Rankle and Torbran** (?) — Black-red bomb rare. Taken in Mistermetronome team draft. (Team Draft)
+- [**Invasion of Asgold**](https://scryfall.com/search?q=Invasion%20of%20Asgold) (?) — Black-red battle; ETB edict effect; flips into 2/1 Menace that grows when permanents go to graveyard. Solid removal battle for BR. (Showdown)
+- [**Etched Host (Rondel?)**](https://scryfall.com/search?q=Etched%20Host%20%28Rondel%3F%29) — Mentioned as "not great" in green-red (Kogla and Yadaro aside). Kogla and Yadaro (red-red green-green, 7/7 trample haste, fights/destroys/shuffles back) is "how can you not take it." (Practice Draft #1)
+- [**Rankle and Torbran**](https://scryfall.com/search?q=Rankle%20and%20Torbran) (?) — Black-red bomb rare. Taken in Mistermetronome team draft. (Team Draft)
 
 ### Colorless
-- **Bladed Battle Fan** — Two-mana flash equipment; auto-attaches, gives +1/+1 and indestructible until end of turn. "Good" — functions as a combat trick AND becomes a sacrificeable artifact. (Practice Draft #1)
-- **Urn of Godfire** — Colorless artifact removal. "Pretty suspect" for main deck but solid sideboard hate. (Team Draft)
+- [**Bladed Battle Fan**](https://scryfall.com/search?q=Bladed%20Battle%20Fan) — Two-mana flash equipment; auto-attaches, gives +1/+1 and indestructible until end of turn. "Good" — functions as a combat trick AND becomes a sacrificeable artifact. (Practice Draft #1)
+- [**Urn of Godfire**](https://scryfall.com/search?q=Urn%20of%20Godfire) — Colorless artifact removal. "Pretty suspect" for main deck but solid sideboard hate. (Team Draft)
 
 ### Lands
-- **Land cyclers (Mana Cyclers)** — The white and red single-pipped ones are best since they can splash themselves. Double-pipped (blue, black, green) are slightly worse. Worth taking if you need fixing; otherwise low picks. Play at most one or two in a deck.
+- [**Land cyclers (Mana Cyclers)**](https://scryfall.com/search?q=Land%20cyclers%20%28Mana%20Cyclers%29) — The white and red single-pipped ones are best since they can splash themselves. Double-pipped (blue, black, green) are slightly worse. Worth taking if you need fixing; otherwise low picks. Play at most one or two in a deck.
 - **Dual lands (Thornwood Falls, Tranquil Cove, Jungle Hollow, Rugged Highlands, etc.)** — Take freely for splashes. Especially good in companion-Gigantha decks.
 
 ### Rares & bombs
-- **Grimgrin, Corpse-Born** — Blue-black rare. Great sacrifice payoff — gets huge fast, indestructible mid-combat, and can blow up blockers. Pairs beautifully with cheap sac fodder and Unsealed Necropolis to rebuy. Built around in the team-draft Mistermetronome game. (Team Draft)
-- **Seizan, Perverter of Truth** — Five-mana black creature; each upkeep each player loses 2 life and draws 2 cards. "I think it's good" but the draft note is "not convinced we're playing Seizan" given the deck was already clunky. (Team Draft)
-- **Glistening Dawn** — Already noted under Green; also deserves mention here as one of the biggest over-performers found in competitive drafts.
-- **Hoarding Broodlord** — Already noted under Black. "Exactly the kind of rare you want to open" for Day 2 of the Arena Open.
-- **Archpriest of Shadows** — Discussed under Black. 4/4 deathtouch backup is an A+/bomb.
-- **Invasion of Alara** — "Real splash target" with Gigantha. Five-color payoff that is accessible when your Gigantha companion provides the fixing.
+- [**Grimgrin, Corpse-Born**](https://scryfall.com/search?q=Grimgrin%2C%20Corpse-Born) — Blue-black rare. Great sacrifice payoff — gets huge fast, indestructible mid-combat, and can blow up blockers. Pairs beautifully with cheap sac fodder and Unsealed Necropolis to rebuy. Built around in the team-draft Mistermetronome game. (Team Draft)
+- [**Seizan, Perverter of Truth**](https://scryfall.com/search?q=Seizan%2C%20Perverter%20of%20Truth) — Five-mana black creature; each upkeep each player loses 2 life and draws 2 cards. "I think it's good" but the draft note is "not convinced we're playing Seizan" given the deck was already clunky. (Team Draft)
+- [**Glistening Dawn**](https://scryfall.com/search?q=Glistening%20Dawn) — Already noted under Green; also deserves mention here as one of the biggest over-performers found in competitive drafts.
+- [**Hoarding Broodlord**](https://scryfall.com/search?q=Hoarding%20Broodlord) — Already noted under Black. "Exactly the kind of rare you want to open" for Day 2 of the Arena Open.
+- [**Archpriest of Shadows**](https://scryfall.com/search?q=Archpriest%20of%20Shadows) — Discussed under Black. 4/4 deathtouch backup is an A+/bomb.
+- [**Invasion of Alara**](https://scryfall.com/search?q=Invasion%20of%20Alara) — "Real splash target" with Gigantha. Five-color payoff that is accessible when your Gigantha companion provides the fixing.
 
 ## Signals & seat reads
 

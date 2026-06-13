@@ -81,107 +81,107 @@ Grades in plain words. Episode shorthand: **retro**=warping-back-to-the-edge (10
 
 | Card | Take | Source |
 |------|------|--------|
-| **Focus Fire** (W instant, deal X+2 damage to attacker/blocker where X is creatures/spacecraft you control) | Premium common. Absurd defensive tool, also great in go-wide decks. Scales well and "savages" opponents regularly. High pick in any white deck. | retro, mid3, early |
-| **Banishing Light** (2W enchantment, O-ring an anything) | Top-tier white common. Clean, universally good, always a high pick. Confirmed #1 or #2 white common through all episodes. | retro, mid1, early, prev |
-| **All Fate Stalker** (3W instant, exile target tapped creature) | Premium white removal. Hits anything that's tapped; stacks well with your own spacecraft (tap their crew, exile it). | retro, early |
-| **Sunstar Lightsmith** (2W 3/3, double-spell → put a counter on it and draw a card) | Excellent uncommon. The payoff card for UW double-spell; overperforms in any white deck that can reliably double-spell. | retro, mid3, early |
-| **Station Monitor** (1WU 2/2, double-spell → make a 1/1 flyer) | Key UW uncommon signpost. P1P1-quality when you're in the archetype; the card that defines the double-spell strategy. | retro, mid3 |
-| **Sunstar Expansionist** (1W 2/3, landfall: if opponent has more lands, make a lander) | Decent two-drop with upside. Good in green-white or any deck that generates landers. | retro |
-| **Dawn Strike Vanguard** (white flying creature) | Good in UW double-spell, rates as a plus-one in the deck-evaluation system when triple Gene Pollinator is online. | mid3 |
-| **Exo Suit Savior** (2W 2/2 flyer, ETB grab a small permanent) | Solid white flyer; fine pick in white decks, picks up permanent synergy. | retro |
-| **Seam Rip** (W, exile a nonland permanent MV 2 or less) | Ben: "not a card." Ethan: disagrees. Kills a two-drop. **Ben's retro take: terrible card; don't rely on it.** Low confidence — use only in dedicated early-game plans. | retro |
-| **Radiant Strike** (3W instant, destroy target artifact or tapped creature, gain 3 life) | Better than it looks. "Closer to Grav Kill than you'd think" per mid3. The 3 life swings close games; picks up to a zero or slightly plus in strong white decks. | mid3 |
-| **Dock Worker Drone** (1W 1/1 artifact, enters with a counter, when it dies dump counter elsewhere) | Synergy piece for counters strategy (GW Diadin builds). Not a standalone; take when you have counter payoffs. | retro |
+| [**Focus Fire**](https://scryfall.com/search?q=Focus%20Fire) (W instant, deal X+2 damage to attacker/blocker where X is creatures/spacecraft you control) | Premium common. Absurd defensive tool, also great in go-wide decks. Scales well and "savages" opponents regularly. High pick in any white deck. | retro, mid3, early |
+| [**Banishing Light**](https://scryfall.com/search?q=Banishing%20Light) (2W enchantment, O-ring an anything) | Top-tier white common. Clean, universally good, always a high pick. Confirmed #1 or #2 white common through all episodes. | retro, mid1, early, prev |
+| [**All Fate Stalker**](https://scryfall.com/search?q=All%20Fate%20Stalker) (3W instant, exile target tapped creature) | Premium white removal. Hits anything that's tapped; stacks well with your own spacecraft (tap their crew, exile it). | retro, early |
+| [**Sunstar Lightsmith**](https://scryfall.com/search?q=Sunstar%20Lightsmith) (2W 3/3, double-spell → put a counter on it and draw a card) | Excellent uncommon. The payoff card for UW double-spell; overperforms in any white deck that can reliably double-spell. | retro, mid3, early |
+| [**Station Monitor**](https://scryfall.com/search?q=Station%20Monitor) (1WU 2/2, double-spell → make a 1/1 flyer) | Key UW uncommon signpost. P1P1-quality when you're in the archetype; the card that defines the double-spell strategy. | retro, mid3 |
+| [**Sunstar Expansionist**](https://scryfall.com/search?q=Sunstar%20Expansionist) (1W 2/3, landfall: if opponent has more lands, make a lander) | Decent two-drop with upside. Good in green-white or any deck that generates landers. | retro |
+| [**Dawn Strike Vanguard**](https://scryfall.com/search?q=Dawn%20Strike%20Vanguard) (white flying creature) | Good in UW double-spell, rates as a plus-one in the deck-evaluation system when triple Gene Pollinator is online. | mid3 |
+| [**Exo Suit Savior**](https://scryfall.com/search?q=Exo%20Suit%20Savior) (2W 2/2 flyer, ETB grab a small permanent) | Solid white flyer; fine pick in white decks, picks up permanent synergy. | retro |
+| [**Seam Rip**](https://scryfall.com/search?q=Seam%20Rip) (W, exile a nonland permanent MV 2 or less) | Ben: "not a card." Ethan: disagrees. Kills a two-drop. **Ben's retro take: terrible card; don't rely on it.** Low confidence — use only in dedicated early-game plans. | retro |
+| [**Radiant Strike**](https://scryfall.com/search?q=Radiant%20Strike) (3W instant, destroy target artifact or tapped creature, gain 3 life) | Better than it looks. "Closer to Grav Kill than you'd think" per mid3. The 3 life swings close games; picks up to a zero or slightly plus in strong white decks. | mid3 |
+| [**Dock Worker Drone**](https://scryfall.com/search?q=Dock%20Worker%20Drone) (1W 1/1 artifact, enters with a counter, when it dies dump counter elsewhere) | Synergy piece for counters strategy (GW Diadin builds). Not a standalone; take when you have counter payoffs. | retro |
 
 ### Blue (U)
 
 | Card | Take | Source |
 |------|------|--------|
-| **Cryogen Relic** (1U artifact, draw a card when it ETBs or leaves; also drawn when a creature with it dies) | Top common; potentially best in the set per coverage data (highest game-in-hand win rate per Marshall and Paul on Pro Tour coverage). Ben rates it top-3 common, ahead of Galactic Wayfarer. | retro, mid1, early, prev |
-| **Tractor Beam** (2UU, control magic that keeps the stolen creature tapped) | Premium rare. "No discussion, slam" per retro. Packages perfectly with Nanoform Sentinel (untap the stolen creature to use it). | retro |
-| **Nanoform Sentinel** (2U 3/2, becomes-tapped → untap one other thing once per turn) | Significantly under-picked in Pro Tour drafts per retro. Goes up sharply with Tractor Beam (untap what you stole and swing with it). Synergy-dependent but high ceiling. | retro |
-| **Ilvoy Infiltrator** (3U 1/3, if you've double-spelled this turn it's unblockable; when it connects draw a card) | Key UW blue payoff. Unblockable damage-drawing engine once the double-spell train is running. | retro, early |
-| **Ilvoy Galeblade** (U 1/1 flash flyer, sac to draw a card) | Good one-drop. Flies in, draws a card when you need to sacrifice it. Provides both board presence and cantrip value. | early, prev |
-| **Star Breach Whale** (4U 3/5, enter: surveil 2; warp 1U) | Debated. Good stats and surveil for blue; warp makes it recastable for triggers. Ben: it's fine; Ethan: it's below the holy trinity of commons. Decent in blue control, not a slam. | retro, early |
-| **Uro Scansship** (4 mana 4/4 spacecraft, station 8: ETB draw 2 discard 1) | Good blue uncommon spacecraft. Ben was "shocked" Ken didn't take it in the Pro Tour draft where it appeared pick 7. Pairs well with Nanoform Sentinel. | retro |
-| **Gigastorm Titan** (5U 4/4, costs 3 less if you've cast another spell this turn) | Powerful blue rare for double-spell decks; essentially a 2-mana 4/4 if you sequence a spell first. | retro |
-| **Divert Disaster** (1U counter, opponent can pay 2 or you get a lander) | Fine counterspell; at PT level opponents can pay the tax. Prefer Unravel in competitive pods. | retro |
-| **Unravel** (1UU counter, cancel; if countered thing was warped draw a card) | Hard counter; better than Divert Disaster in high-stakes pods where players play around soft counters. | retro |
-| **Worm Wall Sweeper** (2 mana spacecraft 2/2 flyer, station 4: surveil + fly) | Filler spacecraft. Fine if you need one for your deck but not one you're thrilled to play. | retro |
+| [**Cryogen Relic**](https://scryfall.com/search?q=Cryogen%20Relic) (1U artifact, draw a card when it ETBs or leaves; also drawn when a creature with it dies) | Top common; potentially best in the set per coverage data (highest game-in-hand win rate per Marshall and Paul on Pro Tour coverage). Ben rates it top-3 common, ahead of Galactic Wayfarer. | retro, mid1, early, prev |
+| [**Tractor Beam**](https://scryfall.com/search?q=Tractor%20Beam) (2UU, control magic that keeps the stolen creature tapped) | Premium rare. "No discussion, slam" per retro. Packages perfectly with Nanoform Sentinel (untap the stolen creature to use it). | retro |
+| [**Nanoform Sentinel**](https://scryfall.com/search?q=Nanoform%20Sentinel) (2U 3/2, becomes-tapped → untap one other thing once per turn) | Significantly under-picked in Pro Tour drafts per retro. Goes up sharply with Tractor Beam (untap what you stole and swing with it). Synergy-dependent but high ceiling. | retro |
+| [**Ilvoy Infiltrator**](https://scryfall.com/search?q=Ilvoy%20Infiltrator) (3U 1/3, if you've double-spelled this turn it's unblockable; when it connects draw a card) | Key UW blue payoff. Unblockable damage-drawing engine once the double-spell train is running. | retro, early |
+| [**Ilvoy Galeblade**](https://scryfall.com/search?q=Ilvoy%20Galeblade) (U 1/1 flash flyer, sac to draw a card) | Good one-drop. Flies in, draws a card when you need to sacrifice it. Provides both board presence and cantrip value. | early, prev |
+| [**Star Breach Whale**](https://scryfall.com/search?q=Star%20Breach%20Whale) (4U 3/5, enter: surveil 2; warp 1U) | Debated. Good stats and surveil for blue; warp makes it recastable for triggers. Ben: it's fine; Ethan: it's below the holy trinity of commons. Decent in blue control, not a slam. | retro, early |
+| [**Uro Scansship**](https://scryfall.com/search?q=Uro%20Scansship) (4 mana 4/4 spacecraft, station 8: ETB draw 2 discard 1) | Good blue uncommon spacecraft. Ben was "shocked" Ken didn't take it in the Pro Tour draft where it appeared pick 7. Pairs well with Nanoform Sentinel. | retro |
+| [**Gigastorm Titan**](https://scryfall.com/search?q=Gigastorm%20Titan) (5U 4/4, costs 3 less if you've cast another spell this turn) | Powerful blue rare for double-spell decks; essentially a 2-mana 4/4 if you sequence a spell first. | retro |
+| [**Divert Disaster**](https://scryfall.com/search?q=Divert%20Disaster) (1U counter, opponent can pay 2 or you get a lander) | Fine counterspell; at PT level opponents can pay the tax. Prefer Unravel in competitive pods. | retro |
+| [**Unravel**](https://scryfall.com/search?q=Unravel) (1UU counter, cancel; if countered thing was warped draw a card) | Hard counter; better than Divert Disaster in high-stakes pods where players play around soft counters. | retro |
+| [**Worm Wall Sweeper**](https://scryfall.com/search?q=Worm%20Wall%20Sweeper) (2 mana spacecraft 2/2 flyer, station 4: surveil + fly) | Filler spacecraft. Fine if you need one for your deck but not one you're thrilled to play. | retro |
 
 ### Black (B)
 
 | Card | Take | Source |
 |------|------|--------|
-| **Virus Beetle** (1B 1/1 artifact insect, ETB each opponent discards a card) | Top-tier common. Confirmed "holy trinity" member by mid1 onward. Discard on a body is always relevant; also an artifact for synergy. Never cut. | retro, mid1, early, prev |
-| **Embrace Oblivion** (B sorcery, sac a creature or artifact as additional cost, destroy target creature or spacecraft) | Premium black removal. Sacrifice cost is a feature (rebuys Cryogen Relic triggers, feeds void, clears out artifact fodder). High pick in any black deck. | retro, mid1, early |
-| **Tragic Trajectory** (B sorcery, −2/−2; −10/−10 if void happened this turn) | "Fake" removal without void; an unconditional bomb with it. Build your deck to enable void consistently if you're leaning on this. | mid1, early, prev |
-| **Faller's Faithful** (2B 3/1, ETB: destroy a creature; if the creature wasn't damaged when it died, controller draws 2) | Strong black common. Kills a healthy creature and often draws two cards for your opponent — but you're the one that got the 3/1 and removal. Net positive. | early, mid1 |
-| **Parig Becker** (black creature) | Significantly under-rated in preview (barely mentioned) → called "second-best black common" by mid1/mid3. **Supersession: now a known quantity; take highly.** | mid1, mid3 |
-| **Depressurize** (1B instant, −3/−0 then destroy if power is 0 or less) | Conditional removal that hits big creatures. Better than it reads; −3 puts a lot of threats in range. | retro, early |
-| **Void Forge Titan** (3B 5/4, end of turn: if something left the battlefield or was warped this turn, draw a card and lose a life) | Strong uncommon for sacrifice/void strategies. Provides repeatable card advantage if your deck reliably triggers void each turn. | retro |
-| **Cicorian Voidorn** (2B 2/2, cares about creatures or artifacts dying on your side) | Good value creature for sacrifice decks. Rewards building around things dying. | mid3 |
-| **Lightless Evangel** (1B 1/2, grows every time you sacrifice something) | Payoff for sacrifice strategy; grows quickly if you have fodder. | retro |
-| **Mechzoa** (6 mana 5/5, warp: tap something with a stun counter) | Large warp creature. Fine top end; warp enables double-spell triggers and void. | retro |
-| **Reqquium Monolith** (2B artifact, tap target creature until end of turn and that creature deals damage to itself equal to its power if activated; also enables sacrifice synergies) | Broken rare per retro episode. "Better than all the commons and probably better than uncommons too." The card Ben knew was insane from pre-PT testing. | retro |
+| [**Virus Beetle**](https://scryfall.com/search?q=Virus%20Beetle) (1B 1/1 artifact insect, ETB each opponent discards a card) | Top-tier common. Confirmed "holy trinity" member by mid1 onward. Discard on a body is always relevant; also an artifact for synergy. Never cut. | retro, mid1, early, prev |
+| [**Embrace Oblivion**](https://scryfall.com/search?q=Embrace%20Oblivion) (B sorcery, sac a creature or artifact as additional cost, destroy target creature or spacecraft) | Premium black removal. Sacrifice cost is a feature (rebuys Cryogen Relic triggers, feeds void, clears out artifact fodder). High pick in any black deck. | retro, mid1, early |
+| [**Tragic Trajectory**](https://scryfall.com/search?q=Tragic%20Trajectory) (B sorcery, −2/−2; −10/−10 if void happened this turn) | "Fake" removal without void; an unconditional bomb with it. Build your deck to enable void consistently if you're leaning on this. | mid1, early, prev |
+| [**Faller's Faithful**](https://scryfall.com/search?q=Faller%27s%20Faithful) (2B 3/1, ETB: destroy a creature; if the creature wasn't damaged when it died, controller draws 2) | Strong black common. Kills a healthy creature and often draws two cards for your opponent — but you're the one that got the 3/1 and removal. Net positive. | early, mid1 |
+| [**Parig Becker**](https://scryfall.com/search?q=Parig%20Becker) (black creature) | Significantly under-rated in preview (barely mentioned) → called "second-best black common" by mid1/mid3. **Supersession: now a known quantity; take highly.** | mid1, mid3 |
+| [**Depressurize**](https://scryfall.com/search?q=Depressurize) (1B instant, −3/−0 then destroy if power is 0 or less) | Conditional removal that hits big creatures. Better than it reads; −3 puts a lot of threats in range. | retro, early |
+| [**Void Forge Titan**](https://scryfall.com/search?q=Void%20Forge%20Titan) (3B 5/4, end of turn: if something left the battlefield or was warped this turn, draw a card and lose a life) | Strong uncommon for sacrifice/void strategies. Provides repeatable card advantage if your deck reliably triggers void each turn. | retro |
+| [**Cicorian Voidorn**](https://scryfall.com/search?q=Cicorian%20Voidorn) (2B 2/2, cares about creatures or artifacts dying on your side) | Good value creature for sacrifice decks. Rewards building around things dying. | mid3 |
+| [**Lightless Evangel**](https://scryfall.com/search?q=Lightless%20Evangel) (1B 1/2, grows every time you sacrifice something) | Payoff for sacrifice strategy; grows quickly if you have fodder. | retro |
+| [**Mechzoa**](https://scryfall.com/search?q=Mechzoa) (6 mana 5/5, warp: tap something with a stun counter) | Large warp creature. Fine top end; warp enables double-spell triggers and void. | retro |
+| [**Reqquium Monolith**](https://scryfall.com/search?q=Reqquium%20Monolith) (2B artifact, tap target creature until end of turn and that creature deals damage to itself equal to its power if activated; also enables sacrifice synergies) | Broken rare per retro episode. "Better than all the commons and probably better than uncommons too." The card Ben knew was insane from pre-PT testing. | retro |
 
 ### Red (R)
 
 | Card | Take | Source |
 |------|------|--------|
-| **Plasma Bolt** (R sorcery, deal 2; deal 3 if void happened this turn) | Best red common per Ben. Better than Bombardment (the other frequently-discussed red removal) because Bombardment has a narrow window whereas Plasma Bolt shores up the early game. | retro, mid3 |
-| **Terrapact Intimidator** (1R 2/1, punisher: opponent takes 2 lander tokens or you get 2 +1/+1 counters) | Surprisingly reliable. Opponents rarely pay the lander tax, so you get counters most of the time. Key part of the "big red" strategy. | mid3, early |
-| **Orbital Plunge** (R removal, deal damage + make a lander) | Premium red removal. Kills anything, gets you a lander in the process. Always a high pick. | retro |
-| **Zookeeper Mechan** (1R 1/3, tap: add R; pay 7: give something +4/+0) | Critical red card for big-red/RG landfall. Provides mana acceleration and a pump outlet. Notably better than it looks for ramp-into-big-green strategies. Second-best red common behind Orbital Plunge per hosts. | retro |
-| **Bombardment** (red removal) | Ben: worse than Plasma Bolt. Ethan: fine, the screenshot-worthy hits vs. three-drops are real. Disagreement live but leaning Plasma Bolt. | retro, mid3 |
-| **Cavern Harrier** (red creature) | Filler. "If Cavern Harrier makes your deck, red wasn't open." Don't take; use as a signal — its availability late means red is being passed hard. | mid3 |
-| **Cut Propulsion** (R instant, creature deals damage to itself equal to its power; if it's a flyer it deals double) | Solid red removal. Kills flyers cleanly. Take in blue-red or any deck that needs cheap interaction. | retro |
-| **Sammy's Curiosity** (green one-drop that makes a lander, listed here for multi-deck context) | A zero in most contexts; good only if it enables a warp play or starts your lander-generating chain. | mid3 |
+| [**Plasma Bolt**](https://scryfall.com/search?q=Plasma%20Bolt) (R sorcery, deal 2; deal 3 if void happened this turn) | Best red common per Ben. Better than Bombardment (the other frequently-discussed red removal) because Bombardment has a narrow window whereas Plasma Bolt shores up the early game. | retro, mid3 |
+| [**Terrapact Intimidator**](https://scryfall.com/search?q=Terrapact%20Intimidator) (1R 2/1, punisher: opponent takes 2 lander tokens or you get 2 +1/+1 counters) | Surprisingly reliable. Opponents rarely pay the lander tax, so you get counters most of the time. Key part of the "big red" strategy. | mid3, early |
+| [**Orbital Plunge**](https://scryfall.com/search?q=Orbital%20Plunge) (R removal, deal damage + make a lander) | Premium red removal. Kills anything, gets you a lander in the process. Always a high pick. | retro |
+| [**Zookeeper Mechan**](https://scryfall.com/search?q=Zookeeper%20Mechan) (1R 1/3, tap: add R; pay 7: give something +4/+0) | Critical red card for big-red/RG landfall. Provides mana acceleration and a pump outlet. Notably better than it looks for ramp-into-big-green strategies. Second-best red common behind Orbital Plunge per hosts. | retro |
+| [**Bombardment**](https://scryfall.com/search?q=Bombardment) (red removal) | Ben: worse than Plasma Bolt. Ethan: fine, the screenshot-worthy hits vs. three-drops are real. Disagreement live but leaning Plasma Bolt. | retro, mid3 |
+| [**Cavern Harrier**](https://scryfall.com/search?q=Cavern%20Harrier) (red creature) | Filler. "If Cavern Harrier makes your deck, red wasn't open." Don't take; use as a signal — its availability late means red is being passed hard. | mid3 |
+| [**Cut Propulsion**](https://scryfall.com/search?q=Cut%20Propulsion) (R instant, creature deals damage to itself equal to its power; if it's a flyer it deals double) | Solid red removal. Kills flyers cleanly. Take in blue-red or any deck that needs cheap interaction. | retro |
+| [**Sammy's Curiosity**](https://scryfall.com/search?q=Sammy%27s%20Curiosity) (green one-drop that makes a lander, listed here for multi-deck context) | A zero in most contexts; good only if it enables a warp play or starts your lander-generating chain. | mid3 |
 
 ### Green (G)
 
 | Card | Take | Source |
 |------|------|--------|
-| **Galactic Wayfarer** (2G 3/3, ETB: make a lander) | Top-tier common. One of the "holy trinity" of commons per mid1/retro. Solid body that ramps. The backbone of every green deck. High pick always. | retro, mid1, early, prev |
-| **Gene Pollinator** (1G, tap target other permanent you control to add one mana of any color) | Top-tier common. Other holy trinity member. Enables soup by converting any creature into fixing. Pairs with everything. Sometimes a "zero" in the deck-strength evaluation, but almost always a high pick. | retro, mid1, early, prev |
-| **Glacier Godmar** (5GG 6/6 trample, ETB make a lander, landfall: everything gets +1/+1) | "Slam P1P1" per mid3. Once you play with it, embarrassing that it wasn't shouted out week one (per Ben in mid3). Lands heavily into green soup. | mid3 |
-| **Lash Whip Predator** (4GG 5/7 reach, costs 2 less if opponent has 3+ creatures) | Premium rare green finisher. Effectively 4 mana 5/7 reach in most games; out of range of Orbital Plunge because of 7 toughness. | retro |
-| **Icecape Crasher** (3G 4/4 trample, landfall: gets bigger) | Solid green medium. Hits hard with lander support; good Landfall trigger recipient. Take in RG or GU decks. | retro, early |
-| **Thawbringer** (2G 4/2, ETB or dies: surveil 1) | Standard green medium. Good rate, surveil smooths draws. Take it, don't snap it. | retro |
-| **Blooming Stinger** (green early creature) | Pick over Survey Mechan at P2P1 if you need early game (per retro). | retro |
-| **Tenderfoot / Intrepid Tenderfoot** (1G two-drop, can put a counter on itself for 3) | Better than Thawbringer per retro. Take if you need to fill out your two-drop slot. | retro |
-| **Broodguard Elite** (XG, enter with X +1/+1 counters, warp) | High-ceiling uncommon. Warp means you can reuse it for more counters or void triggers. Scales well into late game. Goes up in UW counters synergy (Diadin builds). | retro |
-| **Lash Whip Predator** | See above. |  |
+| [**Galactic Wayfarer**](https://scryfall.com/search?q=Galactic%20Wayfarer) (2G 3/3, ETB: make a lander) | Top-tier common. One of the "holy trinity" of commons per mid1/retro. Solid body that ramps. The backbone of every green deck. High pick always. | retro, mid1, early, prev |
+| [**Gene Pollinator**](https://scryfall.com/search?q=Gene%20Pollinator) (1G, tap target other permanent you control to add one mana of any color) | Top-tier common. Other holy trinity member. Enables soup by converting any creature into fixing. Pairs with everything. Sometimes a "zero" in the deck-strength evaluation, but almost always a high pick. | retro, mid1, early, prev |
+| [**Glacier Godmar**](https://scryfall.com/search?q=Glacier%20Godmar) (5GG 6/6 trample, ETB make a lander, landfall: everything gets +1/+1) | "Slam P1P1" per mid3. Once you play with it, embarrassing that it wasn't shouted out week one (per Ben in mid3). Lands heavily into green soup. | mid3 |
+| [**Lash Whip Predator**](https://scryfall.com/search?q=Lash%20Whip%20Predator) (4GG 5/7 reach, costs 2 less if opponent has 3+ creatures) | Premium rare green finisher. Effectively 4 mana 5/7 reach in most games; out of range of Orbital Plunge because of 7 toughness. | retro |
+| [**Icecape Crasher**](https://scryfall.com/search?q=Icecape%20Crasher) (3G 4/4 trample, landfall: gets bigger) | Solid green medium. Hits hard with lander support; good Landfall trigger recipient. Take in RG or GU decks. | retro, early |
+| [**Thawbringer**](https://scryfall.com/search?q=Thawbringer) (2G 4/2, ETB or dies: surveil 1) | Standard green medium. Good rate, surveil smooths draws. Take it, don't snap it. | retro |
+| [**Blooming Stinger**](https://scryfall.com/search?q=Blooming%20Stinger) (green early creature) | Pick over Survey Mechan at P2P1 if you need early game (per retro). | retro |
+| [**Tenderfoot / Intrepid Tenderfoot**](https://scryfall.com/search?q=Tenderfoot%20/%20Intrepid%20Tenderfoot) (1G two-drop, can put a counter on itself for 3) | Better than Thawbringer per retro. Take if you need to fill out your two-drop slot. | retro |
+| [**Broodguard Elite**](https://scryfall.com/search?q=Broodguard%20Elite) (XG, enter with X +1/+1 counters, warp) | High-ceiling uncommon. Warp means you can reuse it for more counters or void triggers. Scales well into late game. Goes up in UW counters synergy (Diadin builds). | retro |
+| [**Lash Whip Predator**](https://scryfall.com/search?q=Lash%20Whip%20Predator) | See above. |  |
 
 ### Multicolor / gold
 
 | Card | Take | Source |
 |------|------|--------|
-| **Diadrin Synthesis Amalgam** (GW X spell, 0/1 trample, ETB with X +1/+1 counters; attack → remove counter from each of two creatures, draw a card, make a 2/2 robot) | Strong GW build-around. Wants other counter-payoffs (Broodguard Elite, Dock Worker Drone, Dick's Fate Maker). Without counter support, it's just a big dumb creature. P1P1 in the right deck; questionable if you don't want to commit GW. | retro |
-| **Biomech and Engineer** (GU uncommon) | High on both hosts' pick orders. Enables green soup with blue. Both hosts said they'd take it over Station Monitor or Interceptor Meccan for the colors it opens. | retro |
-| **Interceptor Meccan** (BR 2/2 gravedigger) | Solid BR uncommon. Splashable in jun soup (per retro). Decent signal for whether to push into black-red sacrifice. | retro |
-| **Station Monitor** (1WU 2/2, double-spell → make a 1/1 flyer) | See White. Signpost for UW double-spell. | retro, mid3 |
-| **Sunstar Chaplain** (1W rare 3/2, two things tapped on end step gain 2 life; remove a counter from something to tap an artifact creature) | Premium white rare. Loves Gene Pollinator (tap, untap engine); combo with counters payoffs. | mid3 |
+| [**Diadrin Synthesis Amalgam**](https://scryfall.com/search?q=Diadrin%20Synthesis%20Amalgam) (GW X spell, 0/1 trample, ETB with X +1/+1 counters; attack → remove counter from each of two creatures, draw a card, make a 2/2 robot) | Strong GW build-around. Wants other counter-payoffs (Broodguard Elite, Dock Worker Drone, Dick's Fate Maker). Without counter support, it's just a big dumb creature. P1P1 in the right deck; questionable if you don't want to commit GW. | retro |
+| [**Biomech and Engineer**](https://scryfall.com/search?q=Biomech%20and%20Engineer) (GU uncommon) | High on both hosts' pick orders. Enables green soup with blue. Both hosts said they'd take it over Station Monitor or Interceptor Meccan for the colors it opens. | retro |
+| [**Interceptor Meccan**](https://scryfall.com/search?q=Interceptor%20Meccan) (BR 2/2 gravedigger) | Solid BR uncommon. Splashable in jun soup (per retro). Decent signal for whether to push into black-red sacrifice. | retro |
+| [**Station Monitor**](https://scryfall.com/search?q=Station%20Monitor) (1WU 2/2, double-spell → make a 1/1 flyer) | See White. Signpost for UW double-spell. | retro, mid3 |
+| [**Sunstar Chaplain**](https://scryfall.com/search?q=Sunstar%20Chaplain) (1W rare 3/2, two things tapped on end step gain 2 life; remove a counter from something to tap an artifact creature) | Premium white rare. Loves Gene Pollinator (tap, untap engine); combo with counters payoffs. | mid3 |
 
 ### Colorless / artifacts
 
 | Card | Take | Source |
 |------|------|--------|
-| **Command Bridge** (common fixing land, enters tapped, produces any color) | Essential in non-green multicolor decks. Roughly one per eight packs. Slam in soup builds; note that even with Command Bridge, green is more reliable for fixing. Snap-take once in a four-color shell. | mid1, early, prev |
-| **Auxiliary Boosters** (2 mana equipment, gives +1/+2 flying, re-equippable) | Good white two-drop. Goes deep into white; take if you're white. | retro |
-| **Plate Pengalin (?)** (1R 2/2 artifact that grows when an artifact enters) | Artifact payoff for UR artifact strategies. Niche but grows quickly in the right shell. | retro |
-| **Hull Carver** (B 1/1 deathtouch artifact) | Filler. "Can't beat down with it." Only in desperate need of removal. Paul Chian called it "best card in the pack with a Tractor Beam" in Pro Tour coverage; Ben strongly disagrees — Nanoform Sentinel is better there. | retro |
-| **Spacecraft generally** | Want at least one spacecraft per deck. Not always the best card in a pack but each deck needs one as a mana sink when you have untapped creatures. Best in blue (Scansship, Worm Wall Sweeper) and artifact strategies. | retro, mid1, early |
+| [**Command Bridge**](https://scryfall.com/search?q=Command%20Bridge) (common fixing land, enters tapped, produces any color) | Essential in non-green multicolor decks. Roughly one per eight packs. Slam in soup builds; note that even with Command Bridge, green is more reliable for fixing. Snap-take once in a four-color shell. | mid1, early, prev |
+| [**Auxiliary Boosters**](https://scryfall.com/search?q=Auxiliary%20Boosters) (2 mana equipment, gives +1/+2 flying, re-equippable) | Good white two-drop. Goes deep into white; take if you're white. | retro |
+| [**Plate Pengalin (?)**](https://scryfall.com/search?q=Plate%20Pengalin%20%28%3F%29) (1R 2/2 artifact that grows when an artifact enters) | Artifact payoff for UR artifact strategies. Niche but grows quickly in the right shell. | retro |
+| [**Hull Carver**](https://scryfall.com/search?q=Hull%20Carver) (B 1/1 deathtouch artifact) | Filler. "Can't beat down with it." Only in desperate need of removal. Paul Chian called it "best card in the pack with a Tractor Beam" in Pro Tour coverage; Ben strongly disagrees — Nanoform Sentinel is better there. | retro |
+| [**Spacecraft generally**](https://scryfall.com/search?q=Spacecraft%20generally) | Want at least one spacecraft per deck. Not always the best card in a pack but each deck needs one as a mana sink when you have untapped creatures. Best in blue (Scansship, Worm Wall Sweeper) and artifact strategies. | retro, mid1, early |
 
 ### Station lands (bonus sheet)
 
 | Card | Take | Source |
 |------|------|--------|
-| **Red station land / Utos Titanic God Core (?)** (the red mythic-rare variant land) | Ben: clearly better than the common holy trinity. High pick. | retro |
-| **White station land** | Ben: also clearly better than all commons. High pick. | retro |
-| **Blue station land** (Utos Titanic God Core / similar) | Below the red and white ones per Ben; still good — "below the holy trinity of commons" but worth taking. | retro |
-| **Waking Haven / Evano Do (?)** (green GG station land, Gaea's Cradle variant) | Powerful GG effect in a green-heavy deck. Below the red/white ones for general value; excellent in dedicated green ramp. | retro |
-| **Secluded Star Forge** (rare land, makes 2/2 robots for 5 mana) | Fine; rarely a deciding factor, but two-color decks should take it over marginal filler. | retro |
+| [**Red station land / Utos Titanic God Core (?)**](https://scryfall.com/search?q=Red%20station%20land%20/%20Utos%20Titanic%20God%20Core%20%28%3F%29) (the red mythic-rare variant land) | Ben: clearly better than the common holy trinity. High pick. | retro |
+| [**White station land**](https://scryfall.com/search?q=White%20station%20land) | Ben: also clearly better than all commons. High pick. | retro |
+| [**Blue station land**](https://scryfall.com/search?q=Blue%20station%20land) (Utos Titanic God Core / similar) | Below the red and white ones per Ben; still good — "below the holy trinity of commons" but worth taking. | retro |
+| [**Waking Haven / Evano Do (?)**](https://scryfall.com/search?q=Waking%20Haven%20/%20Evano%20Do%20%28%3F%29) (green GG station land, Gaea's Cradle variant) | Powerful GG effect in a green-heavy deck. Below the red/white ones for general value; excellent in dedicated green ramp. | retro |
+| [**Secluded Star Forge**](https://scryfall.com/search?q=Secluded%20Star%20Forge) (rare land, makes 2/2 robots for 5 mana) | Fine; rarely a deciding factor, but two-color decks should take it over marginal filler. | retro |
 
 ## Signals and seat reads
 

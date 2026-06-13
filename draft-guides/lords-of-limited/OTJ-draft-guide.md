@@ -99,110 +99,110 @@ Ranked by the retrospective (2025-01-28) and mid-format settled reads (2024-05-0
 Later/retro takes win over earlier takes. ⚠ = evaluation changed or notable flag.
 
 ### White
-- **Trained Arings** — Best white common (retro). Solid aggressive two-drop. Never skip in white aggro.
-- **Mystical Tether** — 2W exile enchantment. Point-and-click removal. Underrated early; came around by mid-format. Premium.
-- **Lassoed by the Law** — Strong white removal. Single-pip, flexible.
-- **Prairie Dog** — 2W 2/2 lifelink; can grow counters. Good in blue-white (not-from-hand synergy) but playable anywhere as a late-game mana sink.
-- **Wrangler of the Damned** — 1WU 1/4 flash. If you don't cast from hand at your end step, make a 2/2 spirit. Goes late (pick 6+). "If Wrangler is the last thing standing when the dust settles, that just wins." Great in UW control.
-- **Getaway Glamour** — White spree instant: +1 exile-and-return a creature, +2 destroy the biggest power creature. Excellent with Slickshot Lockpicker (flicker it on end step, cast a spell from yard on reentry).
-- **Eriette's Lullaby** — 1W kill a tapped creature, gain 2 life. Common removal; Ethan likes it more than Ben. Makes Nimble Brigand (crime unblockable) a cantrip-kill.
-- **Take Up the Shield** — Trick with indestructible; fine combat trick. ⚠ Not protection — "indestructible not protection" (relevant for targeting).
-- **Bounding Felidar** — 6-mana 4/7 saddle 2. When it attacks, gain life and put counters on each creature. ⚠ This card is nearly unbeatable once resolved; a bomb.
-- **Outlaw Medic** — Lifelink filler; fine speed bump.
-- **Holy Cow** — 2W instant gains life, scry 1; useful in UW not-from-hand for its timing (flash in, don't cast from hand, then trigger end-step payoffs).
+- [**Trained Arings**](https://scryfall.com/search?q=Trained%20Arings) — Best white common (retro). Solid aggressive two-drop. Never skip in white aggro.
+- [**Mystical Tether**](https://scryfall.com/search?q=Mystical%20Tether) — 2W exile enchantment. Point-and-click removal. Underrated early; came around by mid-format. Premium.
+- [**Lassoed by the Law**](https://scryfall.com/search?q=Lassoed%20by%20the%20Law) — Strong white removal. Single-pip, flexible.
+- [**Prairie Dog**](https://scryfall.com/search?q=Prairie%20Dog) — 2W 2/2 lifelink; can grow counters. Good in blue-white (not-from-hand synergy) but playable anywhere as a late-game mana sink.
+- [**Wrangler of the Damned**](https://scryfall.com/search?q=Wrangler%20of%20the%20Damned) — 1WU 1/4 flash. If you don't cast from hand at your end step, make a 2/2 spirit. Goes late (pick 6+). "If Wrangler is the last thing standing when the dust settles, that just wins." Great in UW control.
+- [**Getaway Glamour**](https://scryfall.com/search?q=Getaway%20Glamour) — White spree instant: +1 exile-and-return a creature, +2 destroy the biggest power creature. Excellent with Slickshot Lockpicker (flicker it on end step, cast a spell from yard on reentry).
+- [**Eriette's Lullaby**](https://scryfall.com/search?q=Eriette%27s%20Lullaby) — 1W kill a tapped creature, gain 2 life. Common removal; Ethan likes it more than Ben. Makes Nimble Brigand (crime unblockable) a cantrip-kill.
+- [**Take Up the Shield**](https://scryfall.com/search?q=Take%20Up%20the%20Shield) — Trick with indestructible; fine combat trick. ⚠ Not protection — "indestructible not protection" (relevant for targeting).
+- [**Bounding Felidar**](https://scryfall.com/search?q=Bounding%20Felidar) — 6-mana 4/7 saddle 2. When it attacks, gain life and put counters on each creature. ⚠ This card is nearly unbeatable once resolved; a bomb.
+- [**Outlaw Medic**](https://scryfall.com/search?q=Outlaw%20Medic) — Lifelink filler; fine speed bump.
+- [**Holy Cow**](https://scryfall.com/search?q=Holy%20Cow) — 2W instant gains life, scry 1; useful in UW not-from-hand for its timing (flash in, don't cast from hand, then trigger end-step payoffs).
 
 ### Blue
-- **Canyon Crab** — 1U 0/5. If you don't cast from hand at end step, loot. Pay 1U to give +2/-2. Goes pick 6–7+ routinely. "Criminal" how late it goes. Best in late-game control decks. Hosts love this card.
-- **Emergent Haunting** — 1U enchantment; surveil 2 activation, turns into 3/3 flyer at end step if you didn't cast from hand. Better in more assertive "not-from-hand" shells than pure control. Also goes very late.
-- **Slickshot Lockpicker** — 2U 2/3 plot for 2U; ETB gives an instant/sorcery in your yard flashback until end of turn (equal to mana cost). Snapcaster Mage impression. One of the best uncommons in the set. Synergizes with Getaway Glamour (flicker it) and Highway Robbery.
-- **Phantom Interference** — Blue spree counter/tempo. ⚠ Early Access liked it; by mid/late-format, hosts cooled on it: "Phantom interference is not it, going down for me." Narrow and punishing to leave up when your deck wants to do things.
-- **Stop Cold** — 4U exile a creature + it loses all abilities. Expensive but premium in control vs bombs; exile is relevant given format's recursion.
-- **This Town Ain't Big Enough** — 1U bounce two creatures (Peel from Reality variant). Came around on this card mid-format. Excellent in blue tempo/control.
-- **Seize the Secrets** — Draw 2 (costs 1 less if you committed a crime). Good in UB crimes.
-- **Plan the Heist** — 2UU surveil 3; if no cards in hand draw 3 (plot for 3U). "Three-for-ones are the new two-for-ones" (retro). Excellent card advantage.
-- **Visage Bandit** — Plot card that can clone your stuff. Goes late but is powerful in UW with Wrangler of the Damned (plot it, flash in Wrangler, copy Wrangler, double spirits).
-- **Kraum** — 2UR signpost 2/3 flyer. Second spell each turn: +1/+1 counter and draw. Strong signpost for UR.
-- **Malcolm** — UR 2/2 flyer haste. Second spell: investigate. Strong UR signpost. Both Kraum and Malcolm wheel when the table ignores blue-red.
-- **Nimble Brigand** — 2U or 2W 1/3; unblockable if you committed a crime, draw a card on combat damage. Ethan likes it more than Ben; much better with Eriette's Lullaby enabling the crime + draw trigger.
-- **Marauding Sphinx** — 5-mana 3/5 flying vigilance ward 2. "A house." Excellent in blue control.
+- [**Canyon Crab**](https://scryfall.com/search?q=Canyon%20Crab) — 1U 0/5. If you don't cast from hand at end step, loot. Pay 1U to give +2/-2. Goes pick 6–7+ routinely. "Criminal" how late it goes. Best in late-game control decks. Hosts love this card.
+- [**Emergent Haunting**](https://scryfall.com/search?q=Emergent%20Haunting) — 1U enchantment; surveil 2 activation, turns into 3/3 flyer at end step if you didn't cast from hand. Better in more assertive "not-from-hand" shells than pure control. Also goes very late.
+- [**Slickshot Lockpicker**](https://scryfall.com/search?q=Slickshot%20Lockpicker) — 2U 2/3 plot for 2U; ETB gives an instant/sorcery in your yard flashback until end of turn (equal to mana cost). Snapcaster Mage impression. One of the best uncommons in the set. Synergizes with Getaway Glamour (flicker it) and Highway Robbery.
+- [**Phantom Interference**](https://scryfall.com/search?q=Phantom%20Interference) — Blue spree counter/tempo. ⚠ Early Access liked it; by mid/late-format, hosts cooled on it: "Phantom interference is not it, going down for me." Narrow and punishing to leave up when your deck wants to do things.
+- [**Stop Cold**](https://scryfall.com/search?q=Stop%20Cold) — 4U exile a creature + it loses all abilities. Expensive but premium in control vs bombs; exile is relevant given format's recursion.
+- [**This Town Ain't Big Enough**](https://scryfall.com/search?q=This%20Town%20Ain%27t%20Big%20Enough) — 1U bounce two creatures (Peel from Reality variant). Came around on this card mid-format. Excellent in blue tempo/control.
+- [**Seize the Secrets**](https://scryfall.com/search?q=Seize%20the%20Secrets) — Draw 2 (costs 1 less if you committed a crime). Good in UB crimes.
+- [**Plan the Heist**](https://scryfall.com/search?q=Plan%20the%20Heist) — 2UU surveil 3; if no cards in hand draw 3 (plot for 3U). "Three-for-ones are the new two-for-ones" (retro). Excellent card advantage.
+- [**Visage Bandit**](https://scryfall.com/search?q=Visage%20Bandit) — Plot card that can clone your stuff. Goes late but is powerful in UW with Wrangler of the Damned (plot it, flash in Wrangler, copy Wrangler, double spirits).
+- [**Kraum**](https://scryfall.com/search?q=Kraum) — 2UR signpost 2/3 flyer. Second spell each turn: +1/+1 counter and draw. Strong signpost for UR.
+- [**Malcolm**](https://scryfall.com/search?q=Malcolm) — UR 2/2 flyer haste. Second spell: investigate. Strong UR signpost. Both Kraum and Malcolm wheel when the table ignores blue-red.
+- [**Nimble Brigand**](https://scryfall.com/search?q=Nimble%20Brigand) — 2U or 2W 1/3; unblockable if you committed a crime, draw a card on combat damage. Ethan likes it more than Ben; much better with Eriette's Lullaby enabling the crime + draw trigger.
+- [**Marauding Sphinx**](https://scryfall.com/search?q=Marauding%20Sphinx) — 5-mana 3/5 flying vigilance ward 2. "A house." Excellent in blue control.
 
 ### Black
-- **Vault Plunderer** — 2B 3/1. ETB: target player draws a card and loses a life. Three-one that draws and pings for three mana. Excellent; Ethan ended up with four in a deck.
-- **Desert's Due** — Black removal spell. Gets back to hand with Slickshot Lockpicker. Core removal piece.
-- **Consuming Ashes** — Black removal. Good in grindy decks.
-- **Shoot the Sheriff** — Destroy target non-Outlaw. ⚠ The "non-Outlaw" clause matters less than it looks because green-white mounts are the best deck, and mounts are not Outlaws.
-- **Lively Durge** — 3B sorcery; search your library for a creature with MV 3 or less, put it in your yard, then return two creatures from your yard to your hand. ⚠ Early Access underrated this; by game 3, Ethan declared "I owe Lively Durge a large apology — this card is real." Gets back key two-drops (Ravens, value creatures) or tutors for a bomb if it's 3-CMC or under.
-- **Mourner's Surprise** — 1B: return a creature from yard to hand + make a 1/1 mercenary. Good with Harvester of Misery (use Harvester as removal, get it back).
-- **Intimidation Campaign** — Black uncommon; goes very late but is "incredible once you're in the deck." Take it and build blue-black around it.
-- **Fake Your Own Death** — Black instant; gives a creature indestructible until end of turn, then on death exile and return it with two +1/+1 counters. Real card. Impressive with Slickshot Lockpicker (flash it in response to removal, trigger reentry, cast spell from yard).
-- **Skull Duggery** — 1B: give target creature +1/+1, then another gets -1/-1. ⚠ Retro says "absolute trash in this format." Understated crime card. Avoid.
-- **Raven of Fell Omen** — 2B crime trigger creature. ⚠ Retro calls this an "understated crime card" to be wary of; not as powerful as it looks. Was a "science experiment" pick in early access.
-- **Servant of the Stinger** — 2B 1/3 deathtouch; tutor option. Decent two-drop with deathtouch.
-- **Honest Rutstein** — 1BG 3/2. ETB: return a creature from yard to hand; creature spells cost 1 less. Goes in most green-black/Abzan shells. Standout uncommon; "making waves in constructed."
-- **Harvester of Misery** — 3BB 5/4 menace. ETB: creatures get -2/-2 until end of turn. Can pay 1B to discard it: target creature gets -2/-2. Premium bomb.
-- **Ruthless Lawbringer** — Black legend; "emerged as a late-format powerhouse." Splashable. Goes in most black decks.
+- [**Vault Plunderer**](https://scryfall.com/search?q=Vault%20Plunderer) — 2B 3/1. ETB: target player draws a card and loses a life. Three-one that draws and pings for three mana. Excellent; Ethan ended up with four in a deck.
+- [**Desert's Due**](https://scryfall.com/search?q=Desert%27s%20Due) — Black removal spell. Gets back to hand with Slickshot Lockpicker. Core removal piece.
+- [**Consuming Ashes**](https://scryfall.com/search?q=Consuming%20Ashes) — Black removal. Good in grindy decks.
+- [**Shoot the Sheriff**](https://scryfall.com/search?q=Shoot%20the%20Sheriff) — Destroy target non-Outlaw. ⚠ The "non-Outlaw" clause matters less than it looks because green-white mounts are the best deck, and mounts are not Outlaws.
+- [**Lively Durge**](https://scryfall.com/search?q=Lively%20Durge) — 3B sorcery; search your library for a creature with MV 3 or less, put it in your yard, then return two creatures from your yard to your hand. ⚠ Early Access underrated this; by game 3, Ethan declared "I owe Lively Durge a large apology — this card is real." Gets back key two-drops (Ravens, value creatures) or tutors for a bomb if it's 3-CMC or under.
+- [**Mourner's Surprise**](https://scryfall.com/search?q=Mourner%27s%20Surprise) — 1B: return a creature from yard to hand + make a 1/1 mercenary. Good with Harvester of Misery (use Harvester as removal, get it back).
+- [**Intimidation Campaign**](https://scryfall.com/search?q=Intimidation%20Campaign) — Black uncommon; goes very late but is "incredible once you're in the deck." Take it and build blue-black around it.
+- [**Fake Your Own Death**](https://scryfall.com/search?q=Fake%20Your%20Own%20Death) — Black instant; gives a creature indestructible until end of turn, then on death exile and return it with two +1/+1 counters. Real card. Impressive with Slickshot Lockpicker (flash it in response to removal, trigger reentry, cast spell from yard).
+- [**Skull Duggery**](https://scryfall.com/search?q=Skull%20Duggery) — 1B: give target creature +1/+1, then another gets -1/-1. ⚠ Retro says "absolute trash in this format." Understated crime card. Avoid.
+- [**Raven of Fell Omen**](https://scryfall.com/search?q=Raven%20of%20Fell%20Omen) — 2B crime trigger creature. ⚠ Retro calls this an "understated crime card" to be wary of; not as powerful as it looks. Was a "science experiment" pick in early access.
+- [**Servant of the Stinger**](https://scryfall.com/search?q=Servant%20of%20the%20Stinger) — 2B 1/3 deathtouch; tutor option. Decent two-drop with deathtouch.
+- [**Honest Rutstein**](https://scryfall.com/search?q=Honest%20Rutstein) — 1BG 3/2. ETB: return a creature from yard to hand; creature spells cost 1 less. Goes in most green-black/Abzan shells. Standout uncommon; "making waves in constructed."
+- [**Harvester of Misery**](https://scryfall.com/search?q=Harvester%20of%20Misery) — 3BB 5/4 menace. ETB: creatures get -2/-2 until end of turn. Can pay 1B to discard it: target creature gets -2/-2. Premium bomb.
+- [**Ruthless Lawbringer**](https://scryfall.com/search?q=Ruthless%20Lawbringer) — Black legend; "emerged as a late-format powerhouse." Splashable. Goes in most black decks.
 
 ### Red
-- **Explosive Derailment** — Red instant removal. Ben drafted 2x in Early Access second draft. Good two-for-one potential.
-- **Skewer the Critics** — 2R deal 3 (spectacle: R). Solid burn; can be cast for one red with spectacle.
-- **Highway Robbery** — 1R discard a card or sac a land; if you do draw 2 (has plot). Tormenting Voice variant. "Highway Robbery is great" — gives a cheap card for double-spelling, filters, and helps you get to the late game. Core of blue-red late game decks.
-- **Vile Smasher** — 3R 3/3 (affinity for outlaws). Strong aggressive uncommon for black-red. Listed as "really solid signpost" in retro.
-- **Reckless Lackey** — R 1/1 haste; makes a treasure when it enters. 1-drop aggressive outlaw for red-black.
-- **Outlaw's Fury** — Red instant giving +2/+0 to everything; good with Razzle Dazzler and aggro.
-- **Razzle Dazzler** — 1R enchantment; when you cast your second spell each turn, copy it and you may choose new targets (good for buffs). Key piece of blue-red aggro, but only if curve is properly low. ⚠ Blue-red aggro version is a trap for most drafters; only worth it if the whole deck is built around it.
-- **Hellspur Brute** — 4R 5/4 affinity for outlaws trample. Good in all-outlaw red aggro.
+- [**Explosive Derailment**](https://scryfall.com/search?q=Explosive%20Derailment) — Red instant removal. Ben drafted 2x in Early Access second draft. Good two-for-one potential.
+- [**Skewer the Critics**](https://scryfall.com/search?q=Skewer%20the%20Critics) — 2R deal 3 (spectacle: R). Solid burn; can be cast for one red with spectacle.
+- [**Highway Robbery**](https://scryfall.com/search?q=Highway%20Robbery) — 1R discard a card or sac a land; if you do draw 2 (has plot). Tormenting Voice variant. "Highway Robbery is great" — gives a cheap card for double-spelling, filters, and helps you get to the late game. Core of blue-red late game decks.
+- [**Vile Smasher**](https://scryfall.com/search?q=Vile%20Smasher) — 3R 3/3 (affinity for outlaws). Strong aggressive uncommon for black-red. Listed as "really solid signpost" in retro.
+- [**Reckless Lackey**](https://scryfall.com/search?q=Reckless%20Lackey) — R 1/1 haste; makes a treasure when it enters. 1-drop aggressive outlaw for red-black.
+- [**Outlaw's Fury**](https://scryfall.com/search?q=Outlaw%27s%20Fury) — Red instant giving +2/+0 to everything; good with Razzle Dazzler and aggro.
+- [**Razzle Dazzler**](https://scryfall.com/search?q=Razzle%20Dazzler) — 1R enchantment; when you cast your second spell each turn, copy it and you may choose new targets (good for buffs). Key piece of blue-red aggro, but only if curve is properly low. ⚠ Blue-red aggro version is a trap for most drafters; only worth it if the whole deck is built around it.
+- [**Hellspur Brute**](https://scryfall.com/search?q=Hellspur%20Brute) — 4R 5/4 affinity for outlaws trample. Good in all-outlaw red aggro.
 
 ### Green
-- **Throw from the Saddle** — Fight spell. **Best common in the set** (retro). Excellent removal that also functions as a trigger for mounts.
-- **Drover Grizzly** — 1G 2/2 creature, or maybe Prosperous Innkeeper (?) — reasonable 2-drop.
-- **Giant Beaver** — 3G 4/4. Excellent rate.
-- **Cactus Durantula (?)** — Often a 5-mana 6/5 reach that draws a card when targeted. "Brick wall." Top green common.
-- **Outcaster Greenblade** — 1G 1/2; ETB searches up a desert, then gets bigger for each desert you control. "Probably the best uncommon in the set" (retro). Fixing + growing threat in one.
-- **Spirewood Armadillo** — Green fixing uncommon. Searches up deserts and gets bigger. (Hosts reference this as good fixing and a growing threat.)
-- **Stubborn Burough Fiend (?)** — Good green threat (retro references it).
-- **Alo Alchemist** — Green uncommon threat. Good but not first-pick material.
-- **Spinewoods Paladin** — Green creature with plot. Fine but "you're never really wanting to plot this."
-- **Patient Naturalist** — 2G 2/3 ETB mill 3, get a land or treasure. ⚠ Retro says this is NOT the best green common and is "not really what you're trying to do." Hosst moved it down in pick order.
-- **Dance of the Tumbleweeds** — 3G spree: +3 search a land, +5 make an XX elemental. "Looks innocuous but is actually quite strong." Good mana efficiency when spreeing.
-- **Tumbleweed Rising** — 1G plot 2G; makes an XX green elemental where X = greatest power you control. Good payoff in go-wide.
+- [**Throw from the Saddle**](https://scryfall.com/search?q=Throw%20from%20the%20Saddle) — Fight spell. **Best common in the set** (retro). Excellent removal that also functions as a trigger for mounts.
+- [**Drover Grizzly**](https://scryfall.com/search?q=Drover%20Grizzly) — 1G 2/2 creature, or maybe Prosperous Innkeeper (?) — reasonable 2-drop.
+- [**Giant Beaver**](https://scryfall.com/search?q=Giant%20Beaver) — 3G 4/4. Excellent rate.
+- [**Cactus Durantula (?)**](https://scryfall.com/search?q=Cactus%20Durantula%20%28%3F%29) — Often a 5-mana 6/5 reach that draws a card when targeted. "Brick wall." Top green common.
+- [**Outcaster Greenblade**](https://scryfall.com/search?q=Outcaster%20Greenblade) — 1G 1/2; ETB searches up a desert, then gets bigger for each desert you control. "Probably the best uncommon in the set" (retro). Fixing + growing threat in one.
+- [**Spirewood Armadillo**](https://scryfall.com/search?q=Spirewood%20Armadillo) — Green fixing uncommon. Searches up deserts and gets bigger. (Hosts reference this as good fixing and a growing threat.)
+- [**Stubborn Burough Fiend (?)**](https://scryfall.com/search?q=Stubborn%20Burough%20Fiend%20%28%3F%29) — Good green threat (retro references it).
+- [**Alo Alchemist**](https://scryfall.com/search?q=Alo%20Alchemist) — Green uncommon threat. Good but not first-pick material.
+- [**Spinewoods Paladin**](https://scryfall.com/search?q=Spinewoods%20Paladin) — Green creature with plot. Fine but "you're never really wanting to plot this."
+- [**Patient Naturalist**](https://scryfall.com/search?q=Patient%20Naturalist) — 2G 2/3 ETB mill 3, get a land or treasure. ⚠ Retro says this is NOT the best green common and is "not really what you're trying to do." Hosst moved it down in pick order.
+- [**Dance of the Tumbleweeds**](https://scryfall.com/search?q=Dance%20of%20the%20Tumbleweeds) — 3G spree: +3 search a land, +5 make an XX elemental. "Looks innocuous but is actually quite strong." Good mana efficiency when spreeing.
+- [**Tumbleweed Rising**](https://scryfall.com/search?q=Tumbleweed%20Rising) — 1G plot 2G; makes an XX green elemental where X = greatest power you control. Good payoff in go-wide.
 
 ### Multicolor / Gold
-- **Congregation Griff (GW)** — 3/3 flyer; gains life when it enters saddled; key GW signpost. "Just phenomenal."
-- **Miriam, Herd Whisper (GW)** — GW signpost; recursion loop. "Phenomenal."
-- **Tai (WR/WB?) (?)** — Gold creature. "Tai is good" — hosts took it repeatedly. Draws cards on condition. Splashable.
-- **Jagged Barons (RB)** — Black-red signpost. "Very tempting," "strong."
-- **Kraum / Malcolm** — UR signposts. Wheel regularly when table ignores blue-red.
-- **Lazav, Familiar Stranger (UB)** — 1UB 1/4. Each crime: +1/+1 counter + maybe clone a creature from any graveyard. Good in UB crimes shell.
-- **Jasper Flint, Laughing (BR)** — 3BR 4/3. Mills them, you cast cards. "Broken on turn three." Must-answer snowball; run it out early and don't delay.
-- **Vile Smasher** — See Red above (BR gold); affinity for outlaws.
-- **Bonnie Paul (?)** — Retro: "windmill slams the game state when she enters." Premium bomb.
-- **Ornery Tumblewag (?)** — Green bomb that snowballs. Must-answer.
+- [**Congregation Griff (GW)**](https://scryfall.com/search?q=Congregation%20Griff%20%28GW%29) — 3/3 flyer; gains life when it enters saddled; key GW signpost. "Just phenomenal."
+- [**Miriam, Herd Whisper (GW)**](https://scryfall.com/search?q=Miriam%2C%20Herd%20Whisper%20%28GW%29) — GW signpost; recursion loop. "Phenomenal."
+- [**Tai (WR/WB?) (?)**](https://scryfall.com/search?q=Tai%20%28WR/WB%3F%29%20%28%3F%29) — Gold creature. "Tai is good" — hosts took it repeatedly. Draws cards on condition. Splashable.
+- [**Jagged Barons (RB)**](https://scryfall.com/search?q=Jagged%20Barons%20%28RB%29) — Black-red signpost. "Very tempting," "strong."
+- [**Kraum / Malcolm**](https://scryfall.com/search?q=Kraum%20/%20Malcolm) — UR signposts. Wheel regularly when table ignores blue-red.
+- [**Lazav, Familiar Stranger (UB)**](https://scryfall.com/search?q=Lazav%2C%20Familiar%20Stranger%20%28UB%29) — 1UB 1/4. Each crime: +1/+1 counter + maybe clone a creature from any graveyard. Good in UB crimes shell.
+- [**Jasper Flint, Laughing (BR)**](https://scryfall.com/search?q=Jasper%20Flint%2C%20Laughing%20%28BR%29) — 3BR 4/3. Mills them, you cast cards. "Broken on turn three." Must-answer snowball; run it out early and don't delay.
+- [**Vile Smasher**](https://scryfall.com/search?q=Vile%20Smasher) — See Red above (BR gold); affinity for outlaws.
+- [**Bonnie Paul (?)**](https://scryfall.com/search?q=Bonnie%20Paul%20%28%3F%29) — Retro: "windmill slams the game state when she enters." Premium bomb.
+- [**Ornery Tumblewag (?)**](https://scryfall.com/search?q=Ornery%20Tumblewag%20%28%3F%29) — Green bomb that snowballs. Must-answer.
 
 ### Colorless / Artifacts
-- **Grindstone (bonus sheet)** — 1-mana artifact; mills 2, keeps going if two cards share a color. Works as a win-con in UB control; "commits crimes for free." Good in grindy blue-black decks. Ethan: "If you give me a free win-con that commits crimes, I'll take it."
-- **Conduit Pylons** — Colorless common; surveil 1 on ETB, taps for colorless (filters). Solid multi-deck fixing.
-- **Boom Box** — Artifact creature; Ethan liked it with Eartha Joe combo (doubles damage effects). Generally a support piece.
-- **Unlicensed Hearse (bonus sheet)** — Commits a crime on either player's turn for no mana; very good for UB crimes enabling.
+- [**Grindstone (bonus sheet)**](https://scryfall.com/search?q=Grindstone%20%28bonus%20sheet%29) — 1-mana artifact; mills 2, keeps going if two cards share a color. Works as a win-con in UB control; "commits crimes for free." Good in grindy blue-black decks. Ethan: "If you give me a free win-con that commits crimes, I'll take it."
+- [**Conduit Pylons**](https://scryfall.com/search?q=Conduit%20Pylons) — Colorless common; surveil 1 on ETB, taps for colorless (filters). Solid multi-deck fixing.
+- [**Boom Box**](https://scryfall.com/search?q=Boom%20Box) — Artifact creature; Ethan liked it with Eartha Joe combo (doubles damage effects). Generally a support piece.
+- [**Unlicensed Hearse (bonus sheet)**](https://scryfall.com/search?q=Unlicensed%20Hearse%20%28bonus%20sheet%29) — Commits a crime on either player's turn for no mana; very good for UB crimes enabling.
 
 ### Lands
-- **Crime lands (cycle of 10 deserts)** — ETB, deal 1 damage to target opponent. Excellent dual fixing that also commits crimes. Take 2–4 in decks with crime payoffs. Never pass over a straight medium pick.
-- **Mirage Mesa** — Rare tri-land-type; choose the land type when it enters. "Really really strong" (retro). High pick.
-- **Bandits' Hall** — Legendary land; taps for colorless, can become a creature. Key crime trigger enabler. Better than it looks.
-- **Braided Bluffs / Sour Springs / Forlorn Flats** — Specific named crime lands. Each is an on-color (or near-on-color) pick. Take them for fixing + crime triggering.
-- **Arid Archway (?)** — ⚠ Retro: "colorless KW land, not where you want to be. Wouldn't be putting a colorless land like this in my deck." Trap.
+- [**Crime lands (cycle of 10 deserts)**](https://scryfall.com/search?q=Crime%20lands%20%28cycle%20of%2010%20deserts%29) — ETB, deal 1 damage to target opponent. Excellent dual fixing that also commits crimes. Take 2–4 in decks with crime payoffs. Never pass over a straight medium pick.
+- [**Mirage Mesa**](https://scryfall.com/search?q=Mirage%20Mesa) — Rare tri-land-type; choose the land type when it enters. "Really really strong" (retro). High pick.
+- [**Bandits' Hall**](https://scryfall.com/search?q=Bandits%27%20Hall) — Legendary land; taps for colorless, can become a creature. Key crime trigger enabler. Better than it looks.
+- [**Braided Bluffs / Sour Springs / Forlorn Flats**](https://scryfall.com/search?q=Braided%20Bluffs%20/%20Sour%20Springs%20/%20Forlorn%20Flats) — Specific named crime lands. Each is an on-color (or near-on-color) pick. Take them for fixing + crime triggering.
+- [**Arid Archway (?)**](https://scryfall.com/search?q=Arid%20Archway%20%28%3F%29) — ⚠ Retro: "colorless KW land, not where you want to be. Wouldn't be putting a colorless land like this in my deck." Trap.
 
 ### Rares & Bombs
-- **Bonnie Paul (?)** — Top-tier bomb; "windmill slams."
-- **Ornery Tumblewag (?)** — Must-answer snowball.
-- **Laughing Jasper Flint** — 3BR 4/3; mills them, you cast. "Broken on turn 3 when you cast it." Run it out early; don't hold it.
-- **Roxanne (?)** — Green bomb (retro); strong rare.
-- **Harvester of Misery** — 3BB 5/4 menace; ETB -2/-2 to everything. Premium bomb P1P1.
-- **Colossal Rattlesnake** — 2GG 6/5 flash (if you control a desert), trample. Can exile itself to search a desert. Likely the best card in a pack with Harvester (retro says close call).
-- **Bristling Bill** — 2W 2/2 landfall: put +1/+1 counters. Best when you can play it on turn 3 after a two-drop (guaranteed landfall trigger).
-- **Jace, Reawakened (UB?) (?)** — "Jace is real" (Early Access). +1 loot, -1 exile and plot, ultimate copies spells. Performed above expectations.
-- **Rush of Dread** — 6BB mass edict (half creatures, half cards); spree upgrades. "Quite impressed with this card." Better in control than aggro. "Mostly performed as thought" but very good when firing it off for multiple modes.
-- **Bounding Felidar** — See White above. Bomb.
-- **Calamity (?)** — Red rare 6-mana 4/6 haste; when it attacks saddled, copy a non-legendary creature that saddled it. Hosts regretted not taking it in Early Access. "Calamity is nuts."
+- [**Bonnie Paul (?)**](https://scryfall.com/search?q=Bonnie%20Paul%20%28%3F%29) — Top-tier bomb; "windmill slams."
+- [**Ornery Tumblewag (?)**](https://scryfall.com/search?q=Ornery%20Tumblewag%20%28%3F%29) — Must-answer snowball.
+- [**Laughing Jasper Flint**](https://scryfall.com/search?q=Laughing%20Jasper%20Flint) — 3BR 4/3; mills them, you cast. "Broken on turn 3 when you cast it." Run it out early; don't hold it.
+- [**Roxanne (?)**](https://scryfall.com/search?q=Roxanne%20%28%3F%29) — Green bomb (retro); strong rare.
+- [**Harvester of Misery**](https://scryfall.com/search?q=Harvester%20of%20Misery) — 3BB 5/4 menace; ETB -2/-2 to everything. Premium bomb P1P1.
+- [**Colossal Rattlesnake**](https://scryfall.com/search?q=Colossal%20Rattlesnake) — 2GG 6/5 flash (if you control a desert), trample. Can exile itself to search a desert. Likely the best card in a pack with Harvester (retro says close call).
+- [**Bristling Bill**](https://scryfall.com/search?q=Bristling%20Bill) — 2W 2/2 landfall: put +1/+1 counters. Best when you can play it on turn 3 after a two-drop (guaranteed landfall trigger).
+- [**Jace, Reawakened (UB?) (?)**](https://scryfall.com/search?q=Jace%2C%20Reawakened%20%28UB%3F%29%20%28%3F%29) — "Jace is real" (Early Access). +1 loot, -1 exile and plot, ultimate copies spells. Performed above expectations.
+- [**Rush of Dread**](https://scryfall.com/search?q=Rush%20of%20Dread) — 6BB mass edict (half creatures, half cards); spree upgrades. "Quite impressed with this card." Better in control than aggro. "Mostly performed as thought" but very good when firing it off for multiple modes.
+- [**Bounding Felidar**](https://scryfall.com/search?q=Bounding%20Felidar) — See White above. Bomb.
+- [**Calamity (?)**](https://scryfall.com/search?q=Calamity%20%28%3F%29) — Red rare 6-mana 4/6 haste; when it attacks saddled, copy a non-legendary creature that saddled it. Hosts regretted not taking it in Early Access. "Calamity is nuts."
 
 ## Signals & seat reads
 

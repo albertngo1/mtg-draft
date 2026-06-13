@@ -58,65 +58,65 @@
 > Single source. Later/retro overrides do not apply — all takes are from the same video. Caption garble is significant; see the caveats section.
 
 ### White
-- **Bound in Gold** — Taken late/passed early; host explicitly says Demonbolt is "not particularly close" over Bound in Gold. Filler removal.
-- **Clarion Spirit** — Called "one of the better uncommons in the set." Wheeled late pack one, which the host flagged as surprising/late signal.
+- [**Bound in Gold**](https://scryfall.com/search?q=Bound%20in%20Gold) — Taken late/passed early; host explicitly says Demonbolt is "not particularly close" over Bound in Gold. Filler removal.
+- [**Clarion Spirit**](https://scryfall.com/search?q=Clarion%20Spirit) — Called "one of the better uncommons in the set." Wheeled late pack one, which the host flagged as surprising/late signal.
 
 ### Blue
-- **Mistwalker** — Host's highest-praise common. "Play set of that card, it's really really good." 1/4 flyer, counts as a giant for Glimpse synergy, resilient on defense, triggers Calamity Bearer damage-doubling. Took four copies deliberately.
-- **Glimpse the Cosmos** — Premium card selection in giants decks. "Dig Through Time in a deck with changelings or giants" — recurs from graveyard for one blue with a giant in play. P1P1-quality take in blue-giants.
-- **Augury Raven** — "Meh." Below curve filler.
-- **Disdainful Stroke** — Taken late as a freeroll; the host doesn't expect to play it but notes "you certainly can."
-- **Strategic Planning** — Useful card flow, plays well with Port of Karfell (return a creature from yard). Sideboard/flex slot.
-- **Run Ashore** — "Bounce and top." Utility; resets Bloodline Pretender or answers Bound in Gold. Functional but clunky.
-- **Brinebarrow Intruder** — Mentioned as a possible pick (?) over Strategic Planning; the host takes Planning. Playable but lower priority.
+- [**Mistwalker**](https://scryfall.com/search?q=Mistwalker) — Host's highest-praise common. "Play set of that card, it's really really good." 1/4 flyer, counts as a giant for Glimpse synergy, resilient on defense, triggers Calamity Bearer damage-doubling. Took four copies deliberately.
+- [**Glimpse the Cosmos**](https://scryfall.com/search?q=Glimpse%20the%20Cosmos) — Premium card selection in giants decks. "Dig Through Time in a deck with changelings or giants" — recurs from graveyard for one blue with a giant in play. P1P1-quality take in blue-giants.
+- [**Augury Raven**](https://scryfall.com/search?q=Augury%20Raven) — "Meh." Below curve filler.
+- [**Disdainful Stroke**](https://scryfall.com/search?q=Disdainful%20Stroke) — Taken late as a freeroll; the host doesn't expect to play it but notes "you certainly can."
+- [**Strategic Planning**](https://scryfall.com/search?q=Strategic%20Planning) — Useful card flow, plays well with Port of Karfell (return a creature from yard). Sideboard/flex slot.
+- [**Run Ashore**](https://scryfall.com/search?q=Run%20Ashore) — "Bounce and top." Utility; resets Bloodline Pretender or answers Bound in Gold. Functional but clunky.
+- [**Brinebarrow Intruder**](https://scryfall.com/search?q=Brinebarrow%20Intruder) — Mentioned as a possible pick (?) over Strategic Planning; the host takes Planning. Playable but lower priority.
 
 ### Black
-- **Port of Karfell** — "Pretty strong land. Mill four, then return a creature from your graveyard to the battlefield tapped." Blue-black land; strong in grindy decks. Host notes "blue-black is a less desirable color pair" but the land's power pulled toward it briefly.
-- **Priest of the Haunted Edge** — Mentioned as a snow payoff in Sultai; not taken here (wrong colors).
-- **Draugr Thought Thief** — "Three mana 3/2 surveil one. It's playable — in that it has power and toughness." Barely-playable filler.
-- **Skull Cairn** — Listed but not discussed. Filler.
-- **Death Knell Berserker** — Listed but passed. Filler in non-black decks.
+- [**Port of Karfell**](https://scryfall.com/search?q=Port%20of%20Karfell) — "Pretty strong land. Mill four, then return a creature from your graveyard to the battlefield tapped." Blue-black land; strong in grindy decks. Host notes "blue-black is a less desirable color pair" but the land's power pulled toward it briefly.
+- [**Priest of the Haunted Edge**](https://scryfall.com/search?q=Priest%20of%20the%20Haunted%20Edge) — Mentioned as a snow payoff in Sultai; not taken here (wrong colors).
+- [**Draugr Thought Thief**](https://scryfall.com/search?q=Draugr%20Thought%20Thief) — "Three mana 3/2 surveil one. It's playable — in that it has power and toughness." Barely-playable filler.
+- [**Skull Cairn**](https://scryfall.com/search?q=Skull%20Cairn) — Listed but not discussed. Filler.
+- [**Death Knell Berserker**](https://scryfall.com/search?q=Death%20Knell%20Berserker) — Listed but passed. Filler in non-black decks.
 
 ### Red
-- **Demonbolt** — Premium removal; "definitely taking Demonbolt over Bound in Gold, not particularly close." Best red common for removal.
-- **Squash** — Conditional removal worth including with enough giants/shapeshifters. "I think we have to take Squash over the Amulet" — removal > artifact in this deck.
-- **Tundra Fumarole** — "Three mana deal four, add colorless for each snow spent." Called "totally fine" as difficult-to-cast but functional burn. Snow-mana upside rarely relevant; treat as 3-mana four damage.
-- **Berg Strider** — Giant-type creature; synergizes with Glimpse. Host picks it in pack one for the giants plan. Also has a snow-mana activated ability to tap something.
-- **Calamity Bearer** — "Four mana 3/4 — if a giant source you control deals damage, it deals double instead." Called a bomb payoff. "Plays extremely well with Mistwalkers." The premier uncommon/rare in the giants archetype.
-- **Basalt Ravager** — "Deals X damage equal to the greatest number of types you have." With three giants + three shapeshifters it can hit for 6-12. "Ravager's going to be swole, swoletastic." The damage-dealing giant that combos with Calamity Bearer for 12 damage in one shot.
-- **Cinderheart Giant** — Taken late as a large threat; gets it done in games.
-- **Battle of Frost and Fire** — **Do not take.** "Just not good enough. Green creatures are bigger. Changelings exist." Opened P1P1 three times across flashback drafts, never taken.
-- **Cavalry Firewalker** — Mentioned as a passable two-drop in RU; not taken here.
-- **Seize the Spoils** — "Don't think I'll play." Filler in non-sacrifice decks.
-- **Frostfire Arcanist** — "Need doubles of multiple instants/sorceries for this to really be good." Narrow; not taken.
-- **Dwarven Hammer** — Named "best card in the pack" in one pack, then passed for Glimpse (snow synergy preference). "Dwarven Hammer is the best card here" — very high pick in Boros equipment builds, just not taken due to deck direction.
-- **Dwarven Reinforcements** — Possible late pick; wheeled in the video.
-- **Run Amok** — "I don't think we're aggressive enough for Run Amok." Needs an aggressive shell.
+- [**Demonbolt**](https://scryfall.com/search?q=Demonbolt) — Premium removal; "definitely taking Demonbolt over Bound in Gold, not particularly close." Best red common for removal.
+- [**Squash**](https://scryfall.com/search?q=Squash) — Conditional removal worth including with enough giants/shapeshifters. "I think we have to take Squash over the Amulet" — removal > artifact in this deck.
+- [**Tundra Fumarole**](https://scryfall.com/search?q=Tundra%20Fumarole) — "Three mana deal four, add colorless for each snow spent." Called "totally fine" as difficult-to-cast but functional burn. Snow-mana upside rarely relevant; treat as 3-mana four damage.
+- [**Berg Strider**](https://scryfall.com/search?q=Berg%20Strider) — Giant-type creature; synergizes with Glimpse. Host picks it in pack one for the giants plan. Also has a snow-mana activated ability to tap something.
+- [**Calamity Bearer**](https://scryfall.com/search?q=Calamity%20Bearer) — "Four mana 3/4 — if a giant source you control deals damage, it deals double instead." Called a bomb payoff. "Plays extremely well with Mistwalkers." The premier uncommon/rare in the giants archetype.
+- [**Basalt Ravager**](https://scryfall.com/search?q=Basalt%20Ravager) — "Deals X damage equal to the greatest number of types you have." With three giants + three shapeshifters it can hit for 6-12. "Ravager's going to be swole, swoletastic." The damage-dealing giant that combos with Calamity Bearer for 12 damage in one shot.
+- [**Cinderheart Giant**](https://scryfall.com/search?q=Cinderheart%20Giant) — Taken late as a large threat; gets it done in games.
+- [**Battle of Frost and Fire**](https://scryfall.com/search?q=Battle%20of%20Frost%20and%20Fire) — **Do not take.** "Just not good enough. Green creatures are bigger. Changelings exist." Opened P1P1 three times across flashback drafts, never taken.
+- [**Cavalry Firewalker**](https://scryfall.com/search?q=Cavalry%20Firewalker) — Mentioned as a passable two-drop in RU; not taken here.
+- [**Seize the Spoils**](https://scryfall.com/search?q=Seize%20the%20Spoils) — "Don't think I'll play." Filler in non-sacrifice decks.
+- [**Frostfire Arcanist**](https://scryfall.com/search?q=Frostfire%20Arcanist) — "Need doubles of multiple instants/sorceries for this to really be good." Narrow; not taken.
+- [**Dwarven Hammer**](https://scryfall.com/search?q=Dwarven%20Hammer) — Named "best card in the pack" in one pack, then passed for Glimpse (snow synergy preference). "Dwarven Hammer is the best card here" — very high pick in Boros equipment builds, just not taken due to deck direction.
+- [**Dwarven Reinforcements**](https://scryfall.com/search?q=Dwarven%20Reinforcements) — Possible late pick; wheeled in the video.
+- [**Run Amok**](https://scryfall.com/search?q=Run%20Amok) — "I don't think we're aggressive enough for Run Amok." Needs an aggressive shell.
 
 ### Green
-- **Glittering Frost** — "I don't think there's any sequence where we end up Temur, but if there is, it's going to be with a card like that." Snow-fixing payoff for Temur builds.
-- **Sarulf's Packmate** — Mentioned as a gift being passed to neighbors. Presumably a solid body with upside.
-- **Elven Bow** — Mentioned alongside Dwarven Hammer as a pick consideration; Hammer rated higher.
+- [**Glittering Frost**](https://scryfall.com/search?q=Glittering%20Frost) — "I don't think there's any sequence where we end up Temur, but if there is, it's going to be with a card like that." Snow-fixing payoff for Temur builds.
+- [**Sarulf's Packmate**](https://scryfall.com/search?q=Sarulf%27s%20Packmate) — Mentioned as a gift being passed to neighbors. Presumably a solid body with upside.
+- [**Elven Bow**](https://scryfall.com/search?q=Elven%20Bow) — Mentioned alongside Dwarven Hammer as a pick consideration; Hammer rated higher.
 
 ### Multicolor
-- **Alrund, God of the Cosmos / Hakka, Whispering Raven** — "Alrund is excellent." The flip card: Hakka is a 2/3 that on combat damage returns to hand and scries two; Alrund is a 1/1 that grows with cards in hand and foretold cards, then draws by naming a card type. Host calls Alrund "excellent" and "Alrund's a babe, for sure" after seeing it win a game. A premium bomb.
+- [**Alrund, God of the Cosmos / Hakka, Whispering Raven**](https://scryfall.com/search?q=Alrund%2C%20God%20of%20the%20Cosmos%20/%20Hakka%2C%20Whispering%20Raven) — "Alrund is excellent." The flip card: Hakka is a 2/3 that on combat damage returns to hand and scries two; Alrund is a 1/1 that grows with cards in hand and foretold cards, then draws by naming a card type. Host calls Alrund "excellent" and "Alrund's a babe, for sure" after seeing it win a game. A premium bomb.
 
 ### Colorless / Artifacts
-- **Replicating Ring** — Taken over Helm (?) for snow-permanent count for Icebind Pillar activations. Also eventual 8-land payoff. "Another snow-producing permanent is nice to see."
-- **Giant's Amulet** — "Five mana 4/5 hexproof — holds the ground real well" but removal taken over it (Squash). Defensive tool; likely better in slower builds.
-- **Longboat (?) / Kol (?)** — Host says "love me a Kol" and takes it; unclear if this is a card name or caption garble for a two-drop.
+- [**Replicating Ring**](https://scryfall.com/search?q=Replicating%20Ring) — Taken over Helm (?) for snow-permanent count for Icebind Pillar activations. Also eventual 8-land payoff. "Another snow-producing permanent is nice to see."
+- [**Giant's Amulet**](https://scryfall.com/search?q=Giant%27s%20Amulet) — "Five mana 4/5 hexproof — holds the ground real well" but removal taken over it (Squash). Defensive tool; likely better in slower builds.
+- [**Longboat (?) / Kol (?)**](https://scryfall.com/search?q=Longboat%20%28%3F%29%20/%20Kol%20%28%3F%29) — Host says "love me a Kol" and takes it; unclear if this is a card name or caption garble for a two-drop.
 
 ### Lands
-- **Snow Mountain / Snow Island / Snow Plains** — Top priorities once in a snow deck. "We will be taking snow mountains and islands over basically everything." Snow Plains called "one of the weaker snow lands cuz the snow land stuff is really in Sultai."
-- **Sulfurous Mire** — Snow-producing dual (black-red); taken for Icebind Pillar snow-mana requirements.
-- **Port of Karfell** — "Pretty strong land." Blue-black; mill four + reanimate a creature. See Black section.
+- [**Snow Mountain / Snow Island / Snow Plains**](https://scryfall.com/search?q=Snow%20Mountain%20/%20Snow%20Island%20/%20Snow%20Plains) — Top priorities once in a snow deck. "We will be taking snow mountains and islands over basically everything." Snow Plains called "one of the weaker snow lands cuz the snow land stuff is really in Sultai."
+- [**Sulfurous Mire**](https://scryfall.com/search?q=Sulfurous%20Mire) — Snow-producing dual (black-red); taken for Icebind Pillar snow-mana requirements.
+- [**Port of Karfell**](https://scryfall.com/search?q=Port%20of%20Karfell) — "Pretty strong land." Blue-black; mill four + reanimate a creature. See Black section.
 
 ### Rares & Bombs
-- **Alrund, God of the Cosmos** — Premium bomb (see Multicolor above). Explicit "excellent" rating.
-- **Calamity Bearer** — Bomb-level uncommon in giants decks (see Red above).
-- **Bloodline Pretender** — Strong shapeshifter; "name giant" for all giant synergies. Three-mana pick in the giants shell. Takes all creature types in play, so improves with diverse creature types.
-- **Egon, God of Death** — "This card is not good." Hard pass.
-- **Ascent of the Worthy** — "Not a good card. Better than it reads, but still pretty bad." Avoid.
+- [**Alrund, God of the Cosmos**](https://scryfall.com/search?q=Alrund%2C%20God%20of%20the%20Cosmos) — Premium bomb (see Multicolor above). Explicit "excellent" rating.
+- [**Calamity Bearer**](https://scryfall.com/search?q=Calamity%20Bearer) — Bomb-level uncommon in giants decks (see Red above).
+- [**Bloodline Pretender**](https://scryfall.com/search?q=Bloodline%20Pretender) — Strong shapeshifter; "name giant" for all giant synergies. Three-mana pick in the giants shell. Takes all creature types in play, so improves with diverse creature types.
+- [**Egon, God of Death**](https://scryfall.com/search?q=Egon%2C%20God%20of%20Death) — "This card is not good." Hard pass.
+- [**Ascent of the Worthy**](https://scryfall.com/search?q=Ascent%20of%20the%20Worthy) — "Not a good card. Better than it reads, but still pretty bad." Avoid.
 
 ## Signals & seat reads
 

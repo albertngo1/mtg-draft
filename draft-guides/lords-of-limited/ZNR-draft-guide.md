@@ -68,192 +68,192 @@ All grades are blind predictions. Mark garbled names with (?).
 
 ### White
 
-- **Binding of Life's Grace (?)** ("hierarch's binding" — pacifism variant) — B-minus. Strong for the format; few enchantment punishers. Double-white is a restriction; play only if base-white.
-- **Luminarch Aspirant** — B. Puts a +1/+1 counter on any creature at start of combat each turn. "Very powerful" — strong two-drop, near must-kill.
-- **Fearless Fledgling** — B. Two-drop 1/1 flyer with landfall +1/+1 counter and gains flying. "Premium two-drop"; b-rated, one of the better early landfall payoffs.
-- **Canyon Jerboa** — B-minus. 2-mana 1/2 mouse (!) with landfall pump all your creatures. Fragile but "really impressive" — engine for go-wide landfall.
-- **Shepherd of Heroes** — C-plus. Five-mana 3/4 flying cleric; gain 2 life per party member on ETB. "Probably second-best white common" — racing tool with a 3/4 flying body.
-- **Maul of the Skyclaves** — A-minus / B-plus. Auto-equips, gives +2/+2, flying, first strike. "Best equipment in the set." Must-answer.
-- **Journey to Oblivion** — B. O-Ring effect; costs one less per party member. "Four-mana O-Ring is good." Solid removal.
-- **Squad Commander** — B-plus. Four-mana 3/3 warrior; make 1/1 tokens for each party member; team gets indestructible if full party. "Forgiving — even if it just makes two 1/1s it's very good."
-- **Sky Clave Apparition** — B / B-minus. Exile non-land non-token CMC 4-or-less ETB; opponent gets x/x illusion token when it leaves. Slightly worse than Journey to Oblivion per Ethan (illusion token risks), but still strong.
-- **Kor Blademaster** (?) ("core blade master") — C-plus. 1-mana 1/1 warrior double strike; equipped warriors get double strike. Strong in equipment/warrior builds.
-- **Allied Assault** — C-plus. Two-mana instant pump 2 creatures (scales with party). "Plus two plus two to two creatures is quite good."
-- **Attended Healer** — B. Four-mana 2/3 cleric; gain life each turn creates cat token; can give another cleric lifelink. "Engine in itself."
-- **Kabira Takedown** (MDFC) — B. White instant deals damage equal to creatures you control; flip is tapped white land. "Quite good."
-- **McKindy Stampede (?)** ("m'kindy stampede") — B-minus. Three white-white sorcery gives +2/+2 to team; flip is tapped white land. Situational finisher you never have to cast.
-- **Akoum Outrider** (?) ("kabir outrider") — C. Three-mana 3/3 warrior; ETB puts +1/+1 on a creature per party member. Good in aggro; usually a 4/4 pump.
-- **Practiced Tactics** — D-plus. One-white instant; deals damage = twice party count to attacker/blocker. Too unreliable; "considerably worse than Outflank."
-- **Resolute Strike** — C. One-white +2/+2 combat trick; warrior may attach an equipment. Solid one-mana trick.
-- **Expedition Healer** — C-plus. Two-mana 2/2 cleric; lifelink and vigilance as long as you control another cleric. "Good two-drop in cleric deck."
-- **Tazeem Raptor** — C-plus. Three-mana 2/2 flyer; ETB may return a land to hand (landfall trigger). Winddrake with upside.
-- **Farsight Adept** (?) ("far aside to death") — C / C-plus. Three-mana 3/3 wizard; ETB you and opponent each draw. Good in aggro (opponent gets extra card but you curve fast).
-- **Prowling Felidar** — C. Four-mana 2/3 vigilance cat; landfall gets +1/+1 counter. Grows but slow to impact the board.
-- **Arch-Priest of Iona** (?) ("archpriest of iona") — C-plus. One-mana cleric; power = party count; full party gives another creature +1/+0 and flying. Good one-drop in party-centric white.
-- **Drana's Silencer** — C (a mythic MDFC; return any number of creatures with different CMCs from graveyard); rated A-minus as the best MDFC bomb.
-- **Emeria's Call** — A. Mythic MDFC; three white-white makes two 4/4 flying angels + non-angel team gets indestructible. "Very good — you'll win a high percentage of games you cast this."
-- **Tazri, Beacon of Unity** — B-plus. Five-mana (costs less per party member) 4/6 legendary; activated ability searches top 6 for party members. Rarely costs five mana.
+- [**Binding of Life's Grace (?)**](https://scryfall.com/search?q=Binding%20of%20Life%27s%20Grace%20%28%3F%29) ("hierarch's binding" — pacifism variant) — B-minus. Strong for the format; few enchantment punishers. Double-white is a restriction; play only if base-white.
+- [**Luminarch Aspirant**](https://scryfall.com/search?q=Luminarch%20Aspirant) — B. Puts a +1/+1 counter on any creature at start of combat each turn. "Very powerful" — strong two-drop, near must-kill.
+- [**Fearless Fledgling**](https://scryfall.com/search?q=Fearless%20Fledgling) — B. Two-drop 1/1 flyer with landfall +1/+1 counter and gains flying. "Premium two-drop"; b-rated, one of the better early landfall payoffs.
+- [**Canyon Jerboa**](https://scryfall.com/search?q=Canyon%20Jerboa) — B-minus. 2-mana 1/2 mouse (!) with landfall pump all your creatures. Fragile but "really impressive" — engine for go-wide landfall.
+- [**Shepherd of Heroes**](https://scryfall.com/search?q=Shepherd%20of%20Heroes) — C-plus. Five-mana 3/4 flying cleric; gain 2 life per party member on ETB. "Probably second-best white common" — racing tool with a 3/4 flying body.
+- [**Maul of the Skyclaves**](https://scryfall.com/search?q=Maul%20of%20the%20Skyclaves) — A-minus / B-plus. Auto-equips, gives +2/+2, flying, first strike. "Best equipment in the set." Must-answer.
+- [**Journey to Oblivion**](https://scryfall.com/search?q=Journey%20to%20Oblivion) — B. O-Ring effect; costs one less per party member. "Four-mana O-Ring is good." Solid removal.
+- [**Squad Commander**](https://scryfall.com/search?q=Squad%20Commander) — B-plus. Four-mana 3/3 warrior; make 1/1 tokens for each party member; team gets indestructible if full party. "Forgiving — even if it just makes two 1/1s it's very good."
+- [**Sky Clave Apparition**](https://scryfall.com/search?q=Sky%20Clave%20Apparition) — B / B-minus. Exile non-land non-token CMC 4-or-less ETB; opponent gets x/x illusion token when it leaves. Slightly worse than Journey to Oblivion per Ethan (illusion token risks), but still strong.
+- [**Kor Blademaster**](https://scryfall.com/search?q=Kor%20Blademaster) (?) ("core blade master") — C-plus. 1-mana 1/1 warrior double strike; equipped warriors get double strike. Strong in equipment/warrior builds.
+- [**Allied Assault**](https://scryfall.com/search?q=Allied%20Assault) — C-plus. Two-mana instant pump 2 creatures (scales with party). "Plus two plus two to two creatures is quite good."
+- [**Attended Healer**](https://scryfall.com/search?q=Attended%20Healer) — B. Four-mana 2/3 cleric; gain life each turn creates cat token; can give another cleric lifelink. "Engine in itself."
+- [**Kabira Takedown**](https://scryfall.com/search?q=Kabira%20Takedown) (MDFC) — B. White instant deals damage equal to creatures you control; flip is tapped white land. "Quite good."
+- [**McKindy Stampede (?)**](https://scryfall.com/search?q=McKindy%20Stampede%20%28%3F%29) ("m'kindy stampede") — B-minus. Three white-white sorcery gives +2/+2 to team; flip is tapped white land. Situational finisher you never have to cast.
+- [**Akoum Outrider**](https://scryfall.com/search?q=Akoum%20Outrider) (?) ("kabir outrider") — C. Three-mana 3/3 warrior; ETB puts +1/+1 on a creature per party member. Good in aggro; usually a 4/4 pump.
+- [**Practiced Tactics**](https://scryfall.com/search?q=Practiced%20Tactics) — D-plus. One-white instant; deals damage = twice party count to attacker/blocker. Too unreliable; "considerably worse than Outflank."
+- [**Resolute Strike**](https://scryfall.com/search?q=Resolute%20Strike) — C. One-white +2/+2 combat trick; warrior may attach an equipment. Solid one-mana trick.
+- [**Expedition Healer**](https://scryfall.com/search?q=Expedition%20Healer) — C-plus. Two-mana 2/2 cleric; lifelink and vigilance as long as you control another cleric. "Good two-drop in cleric deck."
+- [**Tazeem Raptor**](https://scryfall.com/search?q=Tazeem%20Raptor) — C-plus. Three-mana 2/2 flyer; ETB may return a land to hand (landfall trigger). Winddrake with upside.
+- [**Farsight Adept**](https://scryfall.com/search?q=Farsight%20Adept) (?) ("far aside to death") — C / C-plus. Three-mana 3/3 wizard; ETB you and opponent each draw. Good in aggro (opponent gets extra card but you curve fast).
+- [**Prowling Felidar**](https://scryfall.com/search?q=Prowling%20Felidar) — C. Four-mana 2/3 vigilance cat; landfall gets +1/+1 counter. Grows but slow to impact the board.
+- [**Arch-Priest of Iona**](https://scryfall.com/search?q=Arch-Priest%20of%20Iona) (?) ("archpriest of iona") — C-plus. One-mana cleric; power = party count; full party gives another creature +1/+0 and flying. Good one-drop in party-centric white.
+- [**Drana's Silencer**](https://scryfall.com/search?q=Drana%27s%20Silencer) — C (a mythic MDFC; return any number of creatures with different CMCs from graveyard); rated A-minus as the best MDFC bomb.
+- [**Emeria's Call**](https://scryfall.com/search?q=Emeria%27s%20Call) — A. Mythic MDFC; three white-white makes two 4/4 flying angels + non-angel team gets indestructible. "Very good — you'll win a high percentage of games you cast this."
+- [**Tazri, Beacon of Unity**](https://scryfall.com/search?q=Tazri%2C%20Beacon%20of%20Unity) — B-plus. Five-mana (costs less per party member) 4/6 legendary; activated ability searches top 6 for party members. Rarely costs five mana.
 
 ### Blue
 
-- **Into the Royal** — B-minus. One-blue bounce with kicker (you draw a card). "Best blue common." Flexible, instant, enables ETB rebuys and kicker synergies.
-- **Bubble Snare** — C-plus (possibly B-minus later). One-blue aura tap enchantment with kicker; unkicked = tap a creature on ETB, kicked = tap when the enchantment enters. "Best version of this effect in a long time."
-- **Chilling Trap** (?) ("chilling trap") — C. One-blue instant; creature gets -4/-0 until end of turn; if you control a wizard, draw a card. "Good — one-mana befuddle-type effect with cantrip upside."
-- **Risen Riptide** (?) — C-plus. Three-mana 0/5 elemental; becomes 5/5 whenever you cast a kicked spell. Strong in kicker deck; "third-best blue common."
-- **Sea-Floor Stalker** (?) ("sea floor stalker") — C-plus. Three-mana 2/3 merfolk rogue; pay 3 to give +1/+1 and unblockable (costs less per party member). Win condition at common.
-- **Cunning Geyser Mage** (?) ("cunning geyser mage") — C-plus. Three-mana wizard 3/2; kicked (six total) = return a creature to hand. Good "man-o-war" variant with wizard type.
-- **Wind-Rider Wizard** (?) — C-plus / B-minus. Two-mana 2/2 flying wizard; when you cast instant/sorcery/wizard, loot. Strong in spell-heavy blue.
-- **Umara Wizard** (?) — B / B-plus. Five-mana 4/3 wizard; gains flying when you cast instant/sorcery/wizard. "Nothing bad to say." Called b-plus in context.
-- **Expedition Diviner** (?) ("expedition diviners") — C-plus. Four-mana 3/2 flying wizard; when it dies, draw if you control another wizard. Snapping Drake plus types.
-- **Inscription of Insight** — B. Four-mana sorcery with multiple modes (bounce, scry+draw, make illusion token); kicked = choose all three. "Solid B."
-- **Glass Pool Mimic** (?) ("glass pool mimics") — B-plus. Three-mana shapeshifter rogue clone (copies your creatures); ETB as tapped land. "Really really good."
-- **Jace, Mirror Mage** — B-plus. Three-mana (kicked five) planeswalker; kicked = creates token copy at 1 loyalty. "High loyalty, cheap, flexible — quite powerful."
-- **Thieving Skydiver** — B. Two-mana 2/1 flyer rogue with kicker; ETB if kicked = steal an artifact (equip it). Strong two-drop with types and relevant kicker.
-- **Coral Helm Chronicler** (?) — B-minus. Three-mana 2/2 wizard; on kicked spell, loot; ETB searches top 5 for a kicker card. "Definitely playing this in the kicker deck."
-- **Roost of Drakes** — Build-around B. One-mana enchantment; kicked = make a 2/2 drake; whenever you cast a kicked spell, make a 2/2 drake. "Build-around B" — powerful if kicker density is high.
-- **Rune Crab** — Synergy C-plus. One-mana 0/3 crab; landfall mills each opponent 3. Mill enabler; good in UG or synergy builds.
-- **Nimble Trapfinder** (?) — C-plus. Two-mana 2/1 rogue; can't be blocked if you have a full party; draw on combat damage. "Two-mana rogue with types" — decent.
-- **Seagate Stormcaller** — B-minus. Two-mana wizard; kicked = copy next instant/sorcery CMC 2 or less. Good limited card (cast Into the Royal, copy it).
-- **Concerted Defense** — F / Sideboard. Party-scaled counterspell; "too conditional even for sideboard."
-- **Merfolk Windrobber** (?) — Synergy C. One-mana 1/1 flyer rogue; on combat damage, mill 1; can sacrifice for draw when opponent has 8+ cards in grave. Enabler for rogue/mill theme.
-- **Jwar Isle Disruption** (?) — C-plus. One-mana conditional counterspell with kicker; land on the back. Good in tempo blue decks.
-- **Zulaport Duelist** — C-minus / D-plus. One-mana 1/1 flash rogue; ETB give creature -2/-1 and mill 2. Mill synergy but low impact.
+- [**Into the Royal**](https://scryfall.com/search?q=Into%20the%20Royal) — B-minus. One-blue bounce with kicker (you draw a card). "Best blue common." Flexible, instant, enables ETB rebuys and kicker synergies.
+- [**Bubble Snare**](https://scryfall.com/search?q=Bubble%20Snare) — C-plus (possibly B-minus later). One-blue aura tap enchantment with kicker; unkicked = tap a creature on ETB, kicked = tap when the enchantment enters. "Best version of this effect in a long time."
+- [**Chilling Trap**](https://scryfall.com/search?q=Chilling%20Trap) (?) ("chilling trap") — C. One-blue instant; creature gets -4/-0 until end of turn; if you control a wizard, draw a card. "Good — one-mana befuddle-type effect with cantrip upside."
+- [**Risen Riptide**](https://scryfall.com/search?q=Risen%20Riptide) (?) — C-plus. Three-mana 0/5 elemental; becomes 5/5 whenever you cast a kicked spell. Strong in kicker deck; "third-best blue common."
+- [**Sea-Floor Stalker**](https://scryfall.com/search?q=Sea-Floor%20Stalker) (?) ("sea floor stalker") — C-plus. Three-mana 2/3 merfolk rogue; pay 3 to give +1/+1 and unblockable (costs less per party member). Win condition at common.
+- [**Cunning Geyser Mage**](https://scryfall.com/search?q=Cunning%20Geyser%20Mage) (?) ("cunning geyser mage") — C-plus. Three-mana wizard 3/2; kicked (six total) = return a creature to hand. Good "man-o-war" variant with wizard type.
+- [**Wind-Rider Wizard**](https://scryfall.com/search?q=Wind-Rider%20Wizard) (?) — C-plus / B-minus. Two-mana 2/2 flying wizard; when you cast instant/sorcery/wizard, loot. Strong in spell-heavy blue.
+- [**Umara Wizard**](https://scryfall.com/search?q=Umara%20Wizard) (?) — B / B-plus. Five-mana 4/3 wizard; gains flying when you cast instant/sorcery/wizard. "Nothing bad to say." Called b-plus in context.
+- [**Expedition Diviner**](https://scryfall.com/search?q=Expedition%20Diviner) (?) ("expedition diviners") — C-plus. Four-mana 3/2 flying wizard; when it dies, draw if you control another wizard. Snapping Drake plus types.
+- [**Inscription of Insight**](https://scryfall.com/search?q=Inscription%20of%20Insight) — B. Four-mana sorcery with multiple modes (bounce, scry+draw, make illusion token); kicked = choose all three. "Solid B."
+- [**Glass Pool Mimic**](https://scryfall.com/search?q=Glass%20Pool%20Mimic) (?) ("glass pool mimics") — B-plus. Three-mana shapeshifter rogue clone (copies your creatures); ETB as tapped land. "Really really good."
+- [**Jace, Mirror Mage**](https://scryfall.com/search?q=Jace%2C%20Mirror%20Mage) — B-plus. Three-mana (kicked five) planeswalker; kicked = creates token copy at 1 loyalty. "High loyalty, cheap, flexible — quite powerful."
+- [**Thieving Skydiver**](https://scryfall.com/search?q=Thieving%20Skydiver) — B. Two-mana 2/1 flyer rogue with kicker; ETB if kicked = steal an artifact (equip it). Strong two-drop with types and relevant kicker.
+- [**Coral Helm Chronicler**](https://scryfall.com/search?q=Coral%20Helm%20Chronicler) (?) — B-minus. Three-mana 2/2 wizard; on kicked spell, loot; ETB searches top 5 for a kicker card. "Definitely playing this in the kicker deck."
+- [**Roost of Drakes**](https://scryfall.com/search?q=Roost%20of%20Drakes) — Build-around B. One-mana enchantment; kicked = make a 2/2 drake; whenever you cast a kicked spell, make a 2/2 drake. "Build-around B" — powerful if kicker density is high.
+- [**Rune Crab**](https://scryfall.com/search?q=Rune%20Crab) — Synergy C-plus. One-mana 0/3 crab; landfall mills each opponent 3. Mill enabler; good in UG or synergy builds.
+- [**Nimble Trapfinder**](https://scryfall.com/search?q=Nimble%20Trapfinder) (?) — C-plus. Two-mana 2/1 rogue; can't be blocked if you have a full party; draw on combat damage. "Two-mana rogue with types" — decent.
+- [**Seagate Stormcaller**](https://scryfall.com/search?q=Seagate%20Stormcaller) — B-minus. Two-mana wizard; kicked = copy next instant/sorcery CMC 2 or less. Good limited card (cast Into the Royal, copy it).
+- [**Concerted Defense**](https://scryfall.com/search?q=Concerted%20Defense) — F / Sideboard. Party-scaled counterspell; "too conditional even for sideboard."
+- [**Merfolk Windrobber**](https://scryfall.com/search?q=Merfolk%20Windrobber) (?) — Synergy C. One-mana 1/1 flyer rogue; on combat damage, mill 1; can sacrifice for draw when opponent has 8+ cards in grave. Enabler for rogue/mill theme.
+- [**Jwar Isle Disruption**](https://scryfall.com/search?q=Jwar%20Isle%20Disruption) (?) — C-plus. One-mana conditional counterspell with kicker; land on the back. Good in tempo blue decks.
+- [**Zulaport Duelist**](https://scryfall.com/search?q=Zulaport%20Duelist) — C-minus / D-plus. One-mana 1/1 flash rogue; ETB give creature -2/-1 and mill 2. Mill synergy but low impact.
 
 ### Black
 
-- **Deadly Allure** (?) ("deadly lines") — B-plus / B. Scalable murder (costs one less per party member); likely the best black common. "Usually costs 2-3 mana, sometimes 1 mana, it's absurd."
-- **Vanquish the Weak** — B-minus. Three-mana instant destroy creature with power 3 or less. "Has always been pretty good." Kills most things in aggressive formats.
-- **Blood Chief's Thirst** — B-plus. One-mana sorcery; kicked (three total) = unconditional destroy creature/walker. "Just fantastic — pick-off a two-drop or pick off anything for 4 mana."
-- **Hagra Mauling** (MDFC) — A-minus. Three-mana destroy creature (costs one less if opponent has no basics); flip is tapped black land. "Like an A-minus."
-- **Nighthawk Scavenger** — B / B-plus. Three-mana 1/3 vampire rogue; flying, death touch, lifelink; power = 1 + number of card types in opponent's graveyard. Better than Vampire Nighthawk and it's a rogue.
-- **Skyclave Shade** — B-minus. Two-mana 3/1 (no block); kicker gives it +1/+1 counters; landfall lets you recast it from your graveyard on your turn. "Very powerful recursive threat."
-- **Drana, the Last Blood Chief** (?) — B / A. Five-mana 4/4 vampire cleric flying; when it attacks, reanimate a non-legendary creature from your graveyard as a vampire. "Drana has to be busted every time — it's just the design philosophy."
-- **Acquisition Expert** (?) — C-plus. Two-mana 1/2 rogue; ETB opponent reveals X cards (= party count), you choose one to discard. "Baseline Burglar Rat with huge upside."
-- **Inscription of Ruin** — B. Three-mana sorcery charm (mind rot / reanimate CMC 2 / destroy CMC 3); kicked = choose all three. "Very good charm."
-- **Nullpriest of Oblivion** (?) ("null priest of oblivion") — B-plus. Two-mana 2/1 vampire cleric with menace and lifelink; kicked (five total) = reanimate a creature. "Wild — good rate on its own, then incredible when kicked."
-- **Scion of the Swarm** — B. Five-mana 3/3 flying vampire cleric; gains +1/+1 counter whenever you gain life. "Quite powerful — gets out of hand fast."
-- **Taborax, Hope's Demise** (?) — B-plus. Three-mana 2/2 demon cleric flying; when a non-token creature dies, get a counter; if it was a cleric, draw a card (lose 1 life). "Must-kill; card is seemingly nuts."
-- **Shadow Stinger** (?) — C-plus. Three-mana 1/4 vampire rogue; tap another rogue to give this death touch; on combat damage to player, opponent mills 3. Strong defensive rogue that turns on death-touch without needing to tap (usually).
-- **Malicious Bloodpriest (?)** ("malicious blood priest") — C. Two-mana 2/1 vampire cleric; ETB drain X (= party count). Good in cleric deck; "at least drains one."
-- **Soul Shatter** (?) ("soul shadow") — B. Three-mana instant; each opponent sacrifices creature or walker with highest CMC among their permanents. "Still a b for me."
-- **Coveted Prize** — C. Five-mana (costs less per party member) tutor; if full party, cast a CMC 4-or-less card for free. Fine when you have high party count; too conditional otherwise.
-- **Skyclave Shadowcat** — C-plus (synergy). Four-mana 3/3 cat horror; sack a creature to put a counter on it; whenever a creature with a counter dies, draw a card. Build-around for counters/sacrifice deck.
-- **Hagra Constrictor** (?) — C. Three-mana snake; ETB with two +1/+1 counters; creatures you control with counters have menace. "A little bit better than I thought."
-- **Feed the Swarm** — B-minus (first copy). One-black sorcery; destroy target creature or enchantment (you lose life equal to its CMC). "Black's first ever targeted enchantment removal — you want the first copy always."
-- **Worth of Grave** (?) ("wrath of grave" — context suggests a reanimate two creatures sorcery) — B. Four-mana (costs less per party) reanimate two creatures. "Cheaper than ever-after and you're very rarely not having a creature type."
-- **Inscription of Ruins** — B. Large MDFC mythic; return multiple creatures with different CMCs from graveyard; "possibly best of the inscriptions. A-minus."
+- [**Deadly Allure**](https://scryfall.com/search?q=Deadly%20Allure) (?) ("deadly lines") — B-plus / B. Scalable murder (costs one less per party member); likely the best black common. "Usually costs 2-3 mana, sometimes 1 mana, it's absurd."
+- [**Vanquish the Weak**](https://scryfall.com/search?q=Vanquish%20the%20Weak) — B-minus. Three-mana instant destroy creature with power 3 or less. "Has always been pretty good." Kills most things in aggressive formats.
+- [**Blood Chief's Thirst**](https://scryfall.com/search?q=Blood%20Chief%27s%20Thirst) — B-plus. One-mana sorcery; kicked (three total) = unconditional destroy creature/walker. "Just fantastic — pick-off a two-drop or pick off anything for 4 mana."
+- [**Hagra Mauling**](https://scryfall.com/search?q=Hagra%20Mauling) (MDFC) — A-minus. Three-mana destroy creature (costs one less if opponent has no basics); flip is tapped black land. "Like an A-minus."
+- [**Nighthawk Scavenger**](https://scryfall.com/search?q=Nighthawk%20Scavenger) — B / B-plus. Three-mana 1/3 vampire rogue; flying, death touch, lifelink; power = 1 + number of card types in opponent's graveyard. Better than Vampire Nighthawk and it's a rogue.
+- [**Skyclave Shade**](https://scryfall.com/search?q=Skyclave%20Shade) — B-minus. Two-mana 3/1 (no block); kicker gives it +1/+1 counters; landfall lets you recast it from your graveyard on your turn. "Very powerful recursive threat."
+- [**Drana, the Last Blood Chief**](https://scryfall.com/search?q=Drana%2C%20the%20Last%20Blood%20Chief) (?) — B / A. Five-mana 4/4 vampire cleric flying; when it attacks, reanimate a non-legendary creature from your graveyard as a vampire. "Drana has to be busted every time — it's just the design philosophy."
+- [**Acquisition Expert**](https://scryfall.com/search?q=Acquisition%20Expert) (?) — C-plus. Two-mana 1/2 rogue; ETB opponent reveals X cards (= party count), you choose one to discard. "Baseline Burglar Rat with huge upside."
+- [**Inscription of Ruin**](https://scryfall.com/search?q=Inscription%20of%20Ruin) — B. Three-mana sorcery charm (mind rot / reanimate CMC 2 / destroy CMC 3); kicked = choose all three. "Very good charm."
+- [**Nullpriest of Oblivion**](https://scryfall.com/search?q=Nullpriest%20of%20Oblivion) (?) ("null priest of oblivion") — B-plus. Two-mana 2/1 vampire cleric with menace and lifelink; kicked (five total) = reanimate a creature. "Wild — good rate on its own, then incredible when kicked."
+- [**Scion of the Swarm**](https://scryfall.com/search?q=Scion%20of%20the%20Swarm) — B. Five-mana 3/3 flying vampire cleric; gains +1/+1 counter whenever you gain life. "Quite powerful — gets out of hand fast."
+- [**Taborax, Hope's Demise**](https://scryfall.com/search?q=Taborax%2C%20Hope%27s%20Demise) (?) — B-plus. Three-mana 2/2 demon cleric flying; when a non-token creature dies, get a counter; if it was a cleric, draw a card (lose 1 life). "Must-kill; card is seemingly nuts."
+- [**Shadow Stinger**](https://scryfall.com/search?q=Shadow%20Stinger) (?) — C-plus. Three-mana 1/4 vampire rogue; tap another rogue to give this death touch; on combat damage to player, opponent mills 3. Strong defensive rogue that turns on death-touch without needing to tap (usually).
+- [**Malicious Bloodpriest (?)**](https://scryfall.com/search?q=Malicious%20Bloodpriest%20%28%3F%29) ("malicious blood priest") — C. Two-mana 2/1 vampire cleric; ETB drain X (= party count). Good in cleric deck; "at least drains one."
+- [**Soul Shatter**](https://scryfall.com/search?q=Soul%20Shatter) (?) ("soul shadow") — B. Three-mana instant; each opponent sacrifices creature or walker with highest CMC among their permanents. "Still a b for me."
+- [**Coveted Prize**](https://scryfall.com/search?q=Coveted%20Prize) — C. Five-mana (costs less per party member) tutor; if full party, cast a CMC 4-or-less card for free. Fine when you have high party count; too conditional otherwise.
+- [**Skyclave Shadowcat**](https://scryfall.com/search?q=Skyclave%20Shadowcat) — C-plus (synergy). Four-mana 3/3 cat horror; sack a creature to put a counter on it; whenever a creature with a counter dies, draw a card. Build-around for counters/sacrifice deck.
+- [**Hagra Constrictor**](https://scryfall.com/search?q=Hagra%20Constrictor) (?) — C. Three-mana snake; ETB with two +1/+1 counters; creatures you control with counters have menace. "A little bit better than I thought."
+- [**Feed the Swarm**](https://scryfall.com/search?q=Feed%20the%20Swarm) — B-minus (first copy). One-black sorcery; destroy target creature or enchantment (you lose life equal to its CMC). "Black's first ever targeted enchantment removal — you want the first copy always."
+- [**Worth of Grave**](https://scryfall.com/search?q=Worth%20of%20Grave) (?) ("wrath of grave" — context suggests a reanimate two creatures sorcery) — B. Four-mana (costs less per party) reanimate two creatures. "Cheaper than ever-after and you're very rarely not having a creature type."
+- [**Inscription of Ruins**](https://scryfall.com/search?q=Inscription%20of%20Ruins) — B. Large MDFC mythic; return multiple creatures with different CMCs from graveyard; "possibly best of the inscriptions. A-minus."
 
 ### Red
 
-- **Roil Eruption** — B. Two-mana sorcery; deal 3 to creature/player (kicked five = deal 5 to any target). "Pretty nice." Best red common. NOTE: it's a sorcery.
-- **Thundering Rebuke** — B / B-minus. Two-mana sorcery; deal 4 to creature or planeswalker. "Two mana deal four — clean and efficient."
-- **Rockslide Sorcerer** (?) ("rockslide source") — B-plus. Four-mana 3/3 human wizard; whenever you cast an instant/sorcery/wizard spell, deal 1 to any target. "Seems like such a house with all the x/1s in the format." One of the best uncommons.
-- **Magmatic Channeler** (?) — B / B-plus. Three-mana 1/3 human wizard; when 4+ instants/sorceries in grave, becomes 4/1 and can exile top 2 to choose one to play this turn. "Card advantage engine that becomes a big beater."
-- **Shatterskull Charger** (?) ("shatter skull charger") — B / B-plus. Three-mana (or kicked five) 4/3 giant warrior; without counter it returns to your hand end step; kicked enters with counter and doesn't bounce. "Great — attack for 4, they can't block, goes back to hand, kick later as a 5/4."
-- **Kazul's Fury** (?) ("kazul's furious") — Land MDFC. Three-mana instant fling (sac creature, deal damage = its power to any target); flip is tapped red land. "Much better than Fling." Build-around finisher.
-- **Leyline Tyrant** — A. Four-mana 4/4 dragon flying; you don't lose unspent red mana; when it dies, pay red mana to deal that much damage. "Opponent can't deal with the mana accumulation — it's nuts."
-- **Expedition Champion** — C. Three-mana 2/3 human warrior; gets +2/+0 while you control another warrior. Decent warrior payoff but "lord problem" (kill the lord in combat).
-- **Cargo Intimidator** (?) — B. Two-mana 3/1 warrior; cowards can't block warriors; pay 1 = give a creature +1/+0 or make a creature a coward or give a warrior trample. "Solid B, aggressive creature."
-- **Shatterskull Smashing** — A. X-red-red sorcery; deal X damage split between up to two targets; if exile = 6 or more, deal 2X instead; flip is tapped red land. "Backbreaking — that's gotta be one of the best cards in the set."
-- **Thundering Sparkmage** (?) ("thundering spark page") — B-minus. Four-mana 2/2 human wizard; ETB deals X damage to creature/walker where X = party count. "Good in black/blue too." Party payoff damage spell.
-- **Fireblade Charger** — C / C-plus. One-mana 1/1 warrior; haste while equipped; when it dies, deal damage equal to its power to any target. Goblin Arsonist with types.
-- **Ardent Electromancer** (?) ("arden electromancer") — C-plus. Three-mana 3/2 human wizard; ETB add R for each party member. "Nobody talking about this card — it's great." Free mana enables double-spelling.
-- **Skyclave Geopede** (?) — C-plus. Three-mana 3/1 insect trample; landfall +2/+2 until end of turn. "A five-three trample on turn four — that's a lot."
-- **Cinder Clasm** (?) ("cinder class") — C-plus. Two-mana instant (also kicked = two-mana more); deal 1 or 2 damage to each creature. "Instant-speed mini-sweeper — good against x/1s."
-- **Akum Hellhound** (?) ("akum hellhound") — D-plus / C-minus. One-mana 0/1 (can't block); landfall +2/+2 until end of turn. "Fine but not one of the more exciting one-drops."
-- **Relic Robber** (?) — C-plus / B-minus. Three-mana 2/2 goblin rogue haste; when it deals damage, opponent makes a 0/1 construct that pings them each upkeep. Weird snowball effect.
-- **Song-Mad Treachery** (MDFC) — B. Five-mana act-of-treason (gain control + haste); flip is tapped red land. "Party in the front, land in the back."
-- **Moraug, Fury of Akoum** (?) ("morag fury of acom") — B. Six-mana 6/6 legendary warrior; each creature gets +1/+0 for each time it attacked; landfall in main phase = additional combat. "I think this card is fine — it's powerful."
+- [**Roil Eruption**](https://scryfall.com/search?q=Roil%20Eruption) — B. Two-mana sorcery; deal 3 to creature/player (kicked five = deal 5 to any target). "Pretty nice." Best red common. NOTE: it's a sorcery.
+- [**Thundering Rebuke**](https://scryfall.com/search?q=Thundering%20Rebuke) — B / B-minus. Two-mana sorcery; deal 4 to creature or planeswalker. "Two mana deal four — clean and efficient."
+- [**Rockslide Sorcerer**](https://scryfall.com/search?q=Rockslide%20Sorcerer) (?) ("rockslide source") — B-plus. Four-mana 3/3 human wizard; whenever you cast an instant/sorcery/wizard spell, deal 1 to any target. "Seems like such a house with all the x/1s in the format." One of the best uncommons.
+- [**Magmatic Channeler**](https://scryfall.com/search?q=Magmatic%20Channeler) (?) — B / B-plus. Three-mana 1/3 human wizard; when 4+ instants/sorceries in grave, becomes 4/1 and can exile top 2 to choose one to play this turn. "Card advantage engine that becomes a big beater."
+- [**Shatterskull Charger**](https://scryfall.com/search?q=Shatterskull%20Charger) (?) ("shatter skull charger") — B / B-plus. Three-mana (or kicked five) 4/3 giant warrior; without counter it returns to your hand end step; kicked enters with counter and doesn't bounce. "Great — attack for 4, they can't block, goes back to hand, kick later as a 5/4."
+- [**Kazul's Fury**](https://scryfall.com/search?q=Kazul%27s%20Fury) (?) ("kazul's furious") — Land MDFC. Three-mana instant fling (sac creature, deal damage = its power to any target); flip is tapped red land. "Much better than Fling." Build-around finisher.
+- [**Leyline Tyrant**](https://scryfall.com/search?q=Leyline%20Tyrant) — A. Four-mana 4/4 dragon flying; you don't lose unspent red mana; when it dies, pay red mana to deal that much damage. "Opponent can't deal with the mana accumulation — it's nuts."
+- [**Expedition Champion**](https://scryfall.com/search?q=Expedition%20Champion) — C. Three-mana 2/3 human warrior; gets +2/+0 while you control another warrior. Decent warrior payoff but "lord problem" (kill the lord in combat).
+- [**Cargo Intimidator**](https://scryfall.com/search?q=Cargo%20Intimidator) (?) — B. Two-mana 3/1 warrior; cowards can't block warriors; pay 1 = give a creature +1/+0 or make a creature a coward or give a warrior trample. "Solid B, aggressive creature."
+- [**Shatterskull Smashing**](https://scryfall.com/search?q=Shatterskull%20Smashing) — A. X-red-red sorcery; deal X damage split between up to two targets; if exile = 6 or more, deal 2X instead; flip is tapped red land. "Backbreaking — that's gotta be one of the best cards in the set."
+- [**Thundering Sparkmage**](https://scryfall.com/search?q=Thundering%20Sparkmage) (?) ("thundering spark page") — B-minus. Four-mana 2/2 human wizard; ETB deals X damage to creature/walker where X = party count. "Good in black/blue too." Party payoff damage spell.
+- [**Fireblade Charger**](https://scryfall.com/search?q=Fireblade%20Charger) — C / C-plus. One-mana 1/1 warrior; haste while equipped; when it dies, deal damage equal to its power to any target. Goblin Arsonist with types.
+- [**Ardent Electromancer**](https://scryfall.com/search?q=Ardent%20Electromancer) (?) ("arden electromancer") — C-plus. Three-mana 3/2 human wizard; ETB add R for each party member. "Nobody talking about this card — it's great." Free mana enables double-spelling.
+- [**Skyclave Geopede**](https://scryfall.com/search?q=Skyclave%20Geopede) (?) — C-plus. Three-mana 3/1 insect trample; landfall +2/+2 until end of turn. "A five-three trample on turn four — that's a lot."
+- [**Cinder Clasm**](https://scryfall.com/search?q=Cinder%20Clasm) (?) ("cinder class") — C-plus. Two-mana instant (also kicked = two-mana more); deal 1 or 2 damage to each creature. "Instant-speed mini-sweeper — good against x/1s."
+- [**Akum Hellhound**](https://scryfall.com/search?q=Akum%20Hellhound) (?) ("akum hellhound") — D-plus / C-minus. One-mana 0/1 (can't block); landfall +2/+2 until end of turn. "Fine but not one of the more exciting one-drops."
+- [**Relic Robber**](https://scryfall.com/search?q=Relic%20Robber) (?) — C-plus / B-minus. Three-mana 2/2 goblin rogue haste; when it deals damage, opponent makes a 0/1 construct that pings them each upkeep. Weird snowball effect.
+- [**Song-Mad Treachery**](https://scryfall.com/search?q=Song-Mad%20Treachery) (MDFC) — B. Five-mana act-of-treason (gain control + haste); flip is tapped red land. "Party in the front, land in the back."
+- [**Moraug, Fury of Akoum**](https://scryfall.com/search?q=Moraug%2C%20Fury%20of%20Akoum) (?) ("morag fury of acom") — B. Six-mana 6/6 legendary warrior; each creature gets +1/+0 for each time it attacked; landfall in main phase = additional combat. "I think this card is fine — it's powerful."
 
 ### Green
 
-- **Rabid Bite** (back as sorcery) — B-minus. Two-mana sorcery fight spell. "Super solid; has basically never been bad."
-- **Vine Gecko** — B. Two-mana 2/2 elemental lizard; first kicked spell each turn costs 1 less; gains +1/+1 counter each time you cast a kicked spell. "Very powerful two-drop" — compared to Flourishing Fox (Ikoria). Must-kill in kicker deck.
-- **Balagan Recovery (?)** ("balagant recovery") — B. Two-mana sorcery Regrowth; flip is tapped green land. "In your opener it's a forest; when you topdeck it, it's the best card in your graveyard." One of the best MDFCs.
-- **Colony Ambush** (?) — B. Three-mana instant fight spell; flip is tapped green land. "This is the land that has a fight spell — it's a B."
-- **Inscription of Abundance** — B-plus. Two-mana instant with three modes (put counters, life gain, fight); kicked = choose any number. "Will blow out in multiple ways — very good."
-- **Kazandu Mammoth** (MDFC) — B / B-plus. Three-mana 3/3 elephant; landfall +2/+2 until end of turn; flip is tapped green land. "Attacking for five on turn four — powerful." You plan to cast this, not play as land.
-- **Swarm Shambler** — B / B-minus. One-mana 0/0 + starts with a counter; activates: add counter; when targeted by opponent's spell, make a 1/1 insect. "Chronomaton is back."
-- **Taunting Arborist** (?) ("taunting arbor mage") — C-plus. Three-mana 2/3 wizard; kicked (six total) = all blockers must block a target creature. Filler that sometimes wins games outright.
-- **Skyclave Pickaxe** — B-minus. One-mana equipment; auto-equips; landfall gives equipped creature +2/+2 until end of turn; equip 2G. "Adventuring Gear but uncommon — very powerful."
-- **Marasa Sproutling** (?) — B-minus. Three-mana 3/3 plant elemental; kicked = return a kicker card from graveyard to hand. Good in kicker deck; "nice little gravedigger/loop."
-- **Harrow** (? — described as "harrow but lands enter tapped") — B-minus. Three-mana instant; sacrifice a land, search for two basics, put them onto the battlefield tapped. Great in landfall and kicker; enables multi-color.
-- **Tangled Florohedron** (?) — B-minus. Two-mana 1/1 elemental; taps for green; flip is tapped green land. "One of the better MDFCs" because front side IS useful.
-- **Murasa Rootgrazer** (GW gold) — B. Three-mana 2/3 vigilance beast; can put basic land from hand into play or return basic land to hand. "Really good — enables multiple landfall triggers every turn."
-- **Territorial Scythecat** (?) — C / C-plus. Three-mana 2/1 trample cat; landfall +1/+1 counter. "Really good in theoretically every green deck."
-- **Iridescent Hornbeetle** (?) — Build-around B-minus. Five-mana 3/4 insect; beginning of your turn creates an insect token for each counter you put on creatures this turn. "Scary when it comes down." Build-around.
-- **Kazandu Stomper** — C. Six-mana 6/5 trample; ETB return two lands to hand (reuse MDFCs). "Nice but it's a six-drop."
-- **Sylva, Soul of the Wild** (?) ("shia soul of the wild") — A-minus. Five-mana mythic elemental; P/T = number of lands you control; your non-token creatures are also forest lands (triggers landfall + generates mana). "Wild — busted card."
-- **Turn // Timber (?)** (mythic MDFC sorcery) — B. Seven-mana sorcery (on the back of a rare/mythic land); look at top 7 and put a creature onto the battlefield. "Taking this as a land most of the time — b when you topdeck it."
-- **Oran-Rief Ooze** — B-minus. Three-mana 2/2 ooze; ETB puts a counter on a creature; when attacks, put counters on all attacking creatures with counters. Powerful but needs creature count support.
-- **Scute Swarm** (?) ("scoot swarm") — B-minus. Three-mana 1/1 insect; landfall = make a 1/1 insect; if you control 6+ lands, makes copies of Scute Swarm instead. Exponential but slow.
-- **Inscription of Abundance** — B-plus (see above, green rare).
-- **Vastwood Surge** (?) — Synergy C. Four-mana sorcery; search for two basics, put them onto the battlefield tapped; kicked = put two +1/+1 counters on each creature. "Blue-green kicker card."
-- **Reclaim the Wastes** — Synergy C / C-plus. One-green sorcery; search for basic land (kicked = two lands). "Better than Lay of the Land here — supports landfall, kicker, multi-color."
+- [**Rabid Bite**](https://scryfall.com/search?q=Rabid%20Bite) (back as sorcery) — B-minus. Two-mana sorcery fight spell. "Super solid; has basically never been bad."
+- [**Vine Gecko**](https://scryfall.com/search?q=Vine%20Gecko) — B. Two-mana 2/2 elemental lizard; first kicked spell each turn costs 1 less; gains +1/+1 counter each time you cast a kicked spell. "Very powerful two-drop" — compared to Flourishing Fox (Ikoria). Must-kill in kicker deck.
+- [**Balagan Recovery (?)**](https://scryfall.com/search?q=Balagan%20Recovery%20%28%3F%29) ("balagant recovery") — B. Two-mana sorcery Regrowth; flip is tapped green land. "In your opener it's a forest; when you topdeck it, it's the best card in your graveyard." One of the best MDFCs.
+- [**Colony Ambush**](https://scryfall.com/search?q=Colony%20Ambush) (?) — B. Three-mana instant fight spell; flip is tapped green land. "This is the land that has a fight spell — it's a B."
+- [**Inscription of Abundance**](https://scryfall.com/search?q=Inscription%20of%20Abundance) — B-plus. Two-mana instant with three modes (put counters, life gain, fight); kicked = choose any number. "Will blow out in multiple ways — very good."
+- [**Kazandu Mammoth**](https://scryfall.com/search?q=Kazandu%20Mammoth) (MDFC) — B / B-plus. Three-mana 3/3 elephant; landfall +2/+2 until end of turn; flip is tapped green land. "Attacking for five on turn four — powerful." You plan to cast this, not play as land.
+- [**Swarm Shambler**](https://scryfall.com/search?q=Swarm%20Shambler) — B / B-minus. One-mana 0/0 + starts with a counter; activates: add counter; when targeted by opponent's spell, make a 1/1 insect. "Chronomaton is back."
+- [**Taunting Arborist**](https://scryfall.com/search?q=Taunting%20Arborist) (?) ("taunting arbor mage") — C-plus. Three-mana 2/3 wizard; kicked (six total) = all blockers must block a target creature. Filler that sometimes wins games outright.
+- [**Skyclave Pickaxe**](https://scryfall.com/search?q=Skyclave%20Pickaxe) — B-minus. One-mana equipment; auto-equips; landfall gives equipped creature +2/+2 until end of turn; equip 2G. "Adventuring Gear but uncommon — very powerful."
+- [**Marasa Sproutling**](https://scryfall.com/search?q=Marasa%20Sproutling) (?) — B-minus. Three-mana 3/3 plant elemental; kicked = return a kicker card from graveyard to hand. Good in kicker deck; "nice little gravedigger/loop."
+- [**Harrow**](https://scryfall.com/search?q=Harrow) (? — described as "harrow but lands enter tapped") — B-minus. Three-mana instant; sacrifice a land, search for two basics, put them onto the battlefield tapped. Great in landfall and kicker; enables multi-color.
+- [**Tangled Florohedron**](https://scryfall.com/search?q=Tangled%20Florohedron) (?) — B-minus. Two-mana 1/1 elemental; taps for green; flip is tapped green land. "One of the better MDFCs" because front side IS useful.
+- [**Murasa Rootgrazer**](https://scryfall.com/search?q=Murasa%20Rootgrazer) (GW gold) — B. Three-mana 2/3 vigilance beast; can put basic land from hand into play or return basic land to hand. "Really good — enables multiple landfall triggers every turn."
+- [**Territorial Scythecat**](https://scryfall.com/search?q=Territorial%20Scythecat) (?) — C / C-plus. Three-mana 2/1 trample cat; landfall +1/+1 counter. "Really good in theoretically every green deck."
+- [**Iridescent Hornbeetle**](https://scryfall.com/search?q=Iridescent%20Hornbeetle) (?) — Build-around B-minus. Five-mana 3/4 insect; beginning of your turn creates an insect token for each counter you put on creatures this turn. "Scary when it comes down." Build-around.
+- [**Kazandu Stomper**](https://scryfall.com/search?q=Kazandu%20Stomper) — C. Six-mana 6/5 trample; ETB return two lands to hand (reuse MDFCs). "Nice but it's a six-drop."
+- [**Sylva, Soul of the Wild**](https://scryfall.com/search?q=Sylva%2C%20Soul%20of%20the%20Wild) (?) ("shia soul of the wild") — A-minus. Five-mana mythic elemental; P/T = number of lands you control; your non-token creatures are also forest lands (triggers landfall + generates mana). "Wild — busted card."
+- [**Turn // Timber (?)**](https://scryfall.com/search?q=Turn) (mythic MDFC sorcery) — B. Seven-mana sorcery (on the back of a rare/mythic land); look at top 7 and put a creature onto the battlefield. "Taking this as a land most of the time — b when you topdeck it."
+- [**Oran-Rief Ooze**](https://scryfall.com/search?q=Oran-Rief%20Ooze) — B-minus. Three-mana 2/2 ooze; ETB puts a counter on a creature; when attacks, put counters on all attacking creatures with counters. Powerful but needs creature count support.
+- [**Scute Swarm**](https://scryfall.com/search?q=Scute%20Swarm) (?) ("scoot swarm") — B-minus. Three-mana 1/1 insect; landfall = make a 1/1 insect; if you control 6+ lands, makes copies of Scute Swarm instead. Exponential but slow.
+- [**Inscription of Abundance**](https://scryfall.com/search?q=Inscription%20of%20Abundance) — B-plus (see above, green rare).
+- [**Vastwood Surge**](https://scryfall.com/search?q=Vastwood%20Surge) (?) — Synergy C. Four-mana sorcery; search for two basics, put them onto the battlefield tapped; kicked = put two +1/+1 counters on each creature. "Blue-green kicker card."
+- [**Reclaim the Wastes**](https://scryfall.com/search?q=Reclaim%20the%20Wastes) — Synergy C / C-plus. One-green sorcery; search for basic land (kicked = two lands). "Better than Lay of the Land here — supports landfall, kicker, multi-color."
 
 ### Multicolor
 
-- **Cleric of Life's Bond** (?) ("cleric of life spawn") — B. Two-mana WB vampire cleric; each other cleric ETB gains you 1 life; whenever you gain life for first time each turn, put a counter on this. "Does all the things — b or b-plus."
-- **Soaring Thief** (?) ("soaring thief") — B-plus. Three-mana UB 1/3 human rogue flash flying; rogues get +1/+0 if opponent has 8+ cards in grave; whenever rogues you control attack, each opponent mills 2. "Does everything you want."
-- **Little Mage's Familiar** (?) ("little mages familiar") — B-plus. Three-mana GU 2/4 beast; taps for green or blue; whenever you cast a kicked spell, gain 2 life. "Absolute house — great in kicker decks."
-- **Spoils of Adventure** — B. Five-mana WU instant (costs one less per party member); gain 3 life, draw 3 cards. "Very good — powerful effect at a fair cost."
-- **Ravager's Mace** — B-minus. Two-mana BR equipment; auto-equips; gets +1/+1 per party member and has menace; equip 2BR. "Glaive of the Guild Pact analogy — turns everything into a real threat."
-- **Kargan Warleader** (?) ("cargon war leader") — B. Three-mana RW 3/3 warrior; other warriors get +1/+1. "First warrior card I'm actually excited to play." Classic lord.
-- **Nahiri, Heir of the Ancients** — A-minus. Four-mana RW planeswalker; plus creates warrior token with equipment; minus searches for warrior or equipment; minus-3 deals damage = twice equipment count. "The reason to play warriors. A-minus."
-- **Cleric of Life's Bond** wins the "best cleric uncommon" slot.
-- **Zagras, Thief of Heartbeats** (?) ("zagros a thief of heartbeats") — A. Five-mana (costs less per party) BR vampire rogue; flying, death-touch, haste; other creatures get death-touch. "Gross — a hasty four-four with death-touch and your creatures also get it."
-- **Zareth San, the Trickster** (?) ("zarath son the trickster") — A. Five-mana UB 4/4 merfolk rogue flash; ninjutsu — return unblocked attacking rogue to hand; on combat damage, reanimate a permanent from opponent's graveyard. "Fallen Shinobi-esque — an A."
-- **Locus of Creation** — Build-around B-plus. Five-mana WUBRG 4/4 elemental; ETB draw a card; landfall gains life, then ramps, then deals 4 to opponents (triggers in sequence). Splashable in multi-color kicker builds.
-- **Phylath, World Sculptor** (?) ("philath world sculptors") — A. Six-mana RG 5/5 elemental; ETB create a 0/1 plant for each basic land you control; landfall puts 4 counters on a plant. "Splashing this in my kicker deck. A."
-- **Brushfire Elemental** — C-plus. Two-mana RG 1/1 haste; can't be blocked by power 2-or-less; landfall +2/+2 until end of turn. Decent aggressive common but "skeptical of the red-green landfall deck."
-- **Umar Mystics** (?) ("umar mystics") — B / B-minus. Three-mana UR 1/3 merfolk wizard flying; whenever you cast instant/sorcery/wizard, gets +2/+0 until end of turn. Strong in spell-heavy blue-red.
-- **Moss-Pit Skeleton** — B-minus / C-plus. Three-mana BG 2/2 plant skeleton; kicked (six total) = enters with three counters; whenever a counter is placed on any creature you control, if it's in your graveyard, put Moss-Pit Skeleton on top of your library. Recursive + counter synergy.
-- **Kazayu Royal Chaser** (?) ("kaza royal chaser") — C-plus. Three-mana UR 1/2 human wizard flying haste; tap = next instant/sorcery costs X less where X = wizards you control. "Like it more than I did on first read."
-- **Graceful Mastermind** (?) ("grace mall") — B-plus. Two-mana BG 0/0 enters with 3 counters; when another creature dies with a counter, add counter; when it dies, create a x/x hydra token. "B-plus — great value, three-mana three-three that trades into a three-three."
-- **Lin Sivvi, Rebel Leader** (?) ("lin valla shield of the seagate") — B-plus. Three-mana WU 3/3 wizard flying; beginning of combat with full party = detain a permanent; sacrifice it = team gets indestructible. Even if you ignore the abilities, "a three-mana three-three flyer is a b."
+- [**Cleric of Life's Bond**](https://scryfall.com/search?q=Cleric%20of%20Life%27s%20Bond) (?) ("cleric of life spawn") — B. Two-mana WB vampire cleric; each other cleric ETB gains you 1 life; whenever you gain life for first time each turn, put a counter on this. "Does all the things — b or b-plus."
+- [**Soaring Thief**](https://scryfall.com/search?q=Soaring%20Thief) (?) ("soaring thief") — B-plus. Three-mana UB 1/3 human rogue flash flying; rogues get +1/+0 if opponent has 8+ cards in grave; whenever rogues you control attack, each opponent mills 2. "Does everything you want."
+- [**Little Mage's Familiar**](https://scryfall.com/search?q=Little%20Mage%27s%20Familiar) (?) ("little mages familiar") — B-plus. Three-mana GU 2/4 beast; taps for green or blue; whenever you cast a kicked spell, gain 2 life. "Absolute house — great in kicker decks."
+- [**Spoils of Adventure**](https://scryfall.com/search?q=Spoils%20of%20Adventure) — B. Five-mana WU instant (costs one less per party member); gain 3 life, draw 3 cards. "Very good — powerful effect at a fair cost."
+- [**Ravager's Mace**](https://scryfall.com/search?q=Ravager%27s%20Mace) — B-minus. Two-mana BR equipment; auto-equips; gets +1/+1 per party member and has menace; equip 2BR. "Glaive of the Guild Pact analogy — turns everything into a real threat."
+- [**Kargan Warleader**](https://scryfall.com/search?q=Kargan%20Warleader) (?) ("cargon war leader") — B. Three-mana RW 3/3 warrior; other warriors get +1/+1. "First warrior card I'm actually excited to play." Classic lord.
+- [**Nahiri, Heir of the Ancients**](https://scryfall.com/search?q=Nahiri%2C%20Heir%20of%20the%20Ancients) — A-minus. Four-mana RW planeswalker; plus creates warrior token with equipment; minus searches for warrior or equipment; minus-3 deals damage = twice equipment count. "The reason to play warriors. A-minus."
+- [**Cleric of Life's Bond**](https://scryfall.com/search?q=Cleric%20of%20Life%27s%20Bond) wins the "best cleric uncommon" slot.
+- [**Zagras, Thief of Heartbeats**](https://scryfall.com/search?q=Zagras%2C%20Thief%20of%20Heartbeats) (?) ("zagros a thief of heartbeats") — A. Five-mana (costs less per party) BR vampire rogue; flying, death-touch, haste; other creatures get death-touch. "Gross — a hasty four-four with death-touch and your creatures also get it."
+- [**Zareth San, the Trickster**](https://scryfall.com/search?q=Zareth%20San%2C%20the%20Trickster) (?) ("zarath son the trickster") — A. Five-mana UB 4/4 merfolk rogue flash; ninjutsu — return unblocked attacking rogue to hand; on combat damage, reanimate a permanent from opponent's graveyard. "Fallen Shinobi-esque — an A."
+- [**Locus of Creation**](https://scryfall.com/search?q=Locus%20of%20Creation) — Build-around B-plus. Five-mana WUBRG 4/4 elemental; ETB draw a card; landfall gains life, then ramps, then deals 4 to opponents (triggers in sequence). Splashable in multi-color kicker builds.
+- [**Phylath, World Sculptor**](https://scryfall.com/search?q=Phylath%2C%20World%20Sculptor) (?) ("philath world sculptors") — A. Six-mana RG 5/5 elemental; ETB create a 0/1 plant for each basic land you control; landfall puts 4 counters on a plant. "Splashing this in my kicker deck. A."
+- [**Brushfire Elemental**](https://scryfall.com/search?q=Brushfire%20Elemental) — C-plus. Two-mana RG 1/1 haste; can't be blocked by power 2-or-less; landfall +2/+2 until end of turn. Decent aggressive common but "skeptical of the red-green landfall deck."
+- [**Umar Mystics**](https://scryfall.com/search?q=Umar%20Mystics) (?) ("umar mystics") — B / B-minus. Three-mana UR 1/3 merfolk wizard flying; whenever you cast instant/sorcery/wizard, gets +2/+0 until end of turn. Strong in spell-heavy blue-red.
+- [**Moss-Pit Skeleton**](https://scryfall.com/search?q=Moss-Pit%20Skeleton) — B-minus / C-plus. Three-mana BG 2/2 plant skeleton; kicked (six total) = enters with three counters; whenever a counter is placed on any creature you control, if it's in your graveyard, put Moss-Pit Skeleton on top of your library. Recursive + counter synergy.
+- [**Kazayu Royal Chaser**](https://scryfall.com/search?q=Kazayu%20Royal%20Chaser) (?) ("kaza royal chaser") — C-plus. Three-mana UR 1/2 human wizard flying haste; tap = next instant/sorcery costs X less where X = wizards you control. "Like it more than I did on first read."
+- [**Graceful Mastermind**](https://scryfall.com/search?q=Graceful%20Mastermind) (?) ("grace mall") — B-plus. Two-mana BG 0/0 enters with 3 counters; when another creature dies with a counter, add counter; when it dies, create a x/x hydra token. "B-plus — great value, three-mana three-three that trades into a three-three."
+- [**Lin Sivvi, Rebel Leader**](https://scryfall.com/search?q=Lin%20Sivvi%2C%20Rebel%20Leader) (?) ("lin valla shield of the seagate") — B-plus. Three-mana WU 3/3 wizard flying; beginning of combat with full party = detain a permanent; sacrifice it = team gets indestructible. Even if you ignore the abilities, "a three-mana three-three flyer is a b."
 
 ### Colorless / Artifacts
 
-- **Stonework Packbeast** — C / C-minus. Two-mana 2/1 artifact creature; is all four party types (cleric, rogue, warrior, wizard); taps for one mana of any color. "Two-mana mana dork that's all party types." Not as powerful as some claim (not best first pick) but plays well in party decks. Fixes mana slightly.
-- **Skyclave Sentinel** — C / C-plus. Three-mana 2/3 gargoyle flying defender; kicker (seven total) = enters with two counters; if it has a counter, can attack as though it doesn't have defender. "Decent in kicker and counters decks."
-- **Relic Vial** — Build-around B-minus. Three-mana artifact; pay 2, tap, sac a creature to draw; as long as you control a cleric, whenever a creature dies, opponent loses 1 / you gain 1. "Bastion of Remembrance-like; great for the cleric deck."
-- **Relic Axe** — C-plus. Two-mana auto-equip equipment; gives +1/+1 (warriors get +2/+1); equip 2. "The equipment for your warrior deck."
-- **Relic Amulet** — D-plus / Build-around C. Two-mana artifact; whenever you cast instant/sorcery/wizard, add charge counter; pay 2, tap, remove all counters = deal that much damage to a creature. Floor is literal nothing; ceiling is good in wizard decks. "Not excited."
-- **Relic Golem** (?) — C-plus. Three-mana 6/6; can't attack/block unless someone has 8+ cards in graveyard; tap for 2 = target player mills 2. "Win condition for the rogue deck."
-- **Spare Supplies** — D. Two-mana artifact; ETB draw a card (tapped); pay 2, tap, sac = draw a card. Slow and clunky.
-- **Utility Knife** — D-minus. One-mana auto-equip; gives +1/+0; equip 3. "Short sword without the flexibility — just bad."
-- **Skyclave Relic** — C. Three-mana indestructible mana rock; kicked (six total) = create two copies. Fixing + kicker payoff in kicker decks.
-- **Forsaken Monument** — F. Five-mana artifact; pumps colorless creatures, accelerates colorless mana, gains life on colorless spells. "Straight up F — close to zero applications."
-- **Sea Colossus** (?) — C. Seven-mana (costs one less per party member) 7/5 giant warrior; "five-mana seven-five is not bad at all." Filler top-end if you have party.
+- [**Stonework Packbeast**](https://scryfall.com/search?q=Stonework%20Packbeast) — C / C-minus. Two-mana 2/1 artifact creature; is all four party types (cleric, rogue, warrior, wizard); taps for one mana of any color. "Two-mana mana dork that's all party types." Not as powerful as some claim (not best first pick) but plays well in party decks. Fixes mana slightly.
+- [**Skyclave Sentinel**](https://scryfall.com/search?q=Skyclave%20Sentinel) — C / C-plus. Three-mana 2/3 gargoyle flying defender; kicker (seven total) = enters with two counters; if it has a counter, can attack as though it doesn't have defender. "Decent in kicker and counters decks."
+- [**Relic Vial**](https://scryfall.com/search?q=Relic%20Vial) — Build-around B-minus. Three-mana artifact; pay 2, tap, sac a creature to draw; as long as you control a cleric, whenever a creature dies, opponent loses 1 / you gain 1. "Bastion of Remembrance-like; great for the cleric deck."
+- [**Relic Axe**](https://scryfall.com/search?q=Relic%20Axe) — C-plus. Two-mana auto-equip equipment; gives +1/+1 (warriors get +2/+1); equip 2. "The equipment for your warrior deck."
+- [**Relic Amulet**](https://scryfall.com/search?q=Relic%20Amulet) — D-plus / Build-around C. Two-mana artifact; whenever you cast instant/sorcery/wizard, add charge counter; pay 2, tap, remove all counters = deal that much damage to a creature. Floor is literal nothing; ceiling is good in wizard decks. "Not excited."
+- [**Relic Golem**](https://scryfall.com/search?q=Relic%20Golem) (?) — C-plus. Three-mana 6/6; can't attack/block unless someone has 8+ cards in graveyard; tap for 2 = target player mills 2. "Win condition for the rogue deck."
+- [**Spare Supplies**](https://scryfall.com/search?q=Spare%20Supplies) — D. Two-mana artifact; ETB draw a card (tapped); pay 2, tap, sac = draw a card. Slow and clunky.
+- [**Utility Knife**](https://scryfall.com/search?q=Utility%20Knife) — D-minus. One-mana auto-equip; gives +1/+0; equip 3. "Short sword without the flexibility — just bad."
+- [**Skyclave Relic**](https://scryfall.com/search?q=Skyclave%20Relic) — C. Three-mana indestructible mana rock; kicked (six total) = create two copies. Fixing + kicker payoff in kicker decks.
+- [**Forsaken Monument**](https://scryfall.com/search?q=Forsaken%20Monument) — F. Five-mana artifact; pumps colorless creatures, accelerates colorless mana, gains life on colorless spells. "Straight up F — close to zero applications."
+- [**Sea Colossus**](https://scryfall.com/search?q=Sea%20Colossus) (?) — C. Seven-mana (costs one less per party member) 7/5 giant warrior; "five-mana seven-five is not bad at all." Filler top-end if you have party.
 
 ### Lands
 
-- **Pathway Duals** (Branchloft Pathway (?), etc.) — C-plus (overall). Allied and enemy color cycle; both sides are untapped basics of different colors; no ETB tapped. "If I'm in those colors I'm taking these over most things that aren't a top common or better." Pick high when on-color.
-- **Crawling Barrens** (?) ("crawling barons") — C-plus. Colorless land; tap for colorless; 4 = put two counters on it, may become 0/0 creature. Solid.
-- **Base Camp** — D-minus / F. Enters tapped; adds mana for party types only. "Unclaimed Territory — just don't do it."
-- **Throne of Makindi** (?) — D-minus. Stores mana for kicked spells. "Not worth a colorless land."
+- [**Pathway Duals**](https://scryfall.com/search?q=Pathway%20Duals) (Branchloft Pathway (?), etc.) — C-plus (overall). Allied and enemy color cycle; both sides are untapped basics of different colors; no ETB tapped. "If I'm in those colors I'm taking these over most things that aren't a top common or better." Pick high when on-color.
+- [**Crawling Barrens**](https://scryfall.com/search?q=Crawling%20Barrens) (?) ("crawling barons") — C-plus. Colorless land; tap for colorless; 4 = put two counters on it, may become 0/0 creature. Solid.
+- [**Base Camp**](https://scryfall.com/search?q=Base%20Camp) — D-minus / F. Enters tapped; adds mana for party types only. "Unclaimed Territory — just don't do it."
+- [**Throne of Makindi**](https://scryfall.com/search?q=Throne%20of%20Makindi) (?) — D-minus. Stores mana for kicked spells. "Not worth a colorless land."
 
 ### Rares & bombs
 
-- **Emeria's Call** — A (white mythic MDFC)
-- **Leyline Tyrant** — A (red rare dragon)
-- **Zareth San, the Trickster** — A (blue-black mythic rogue)
-- **Phylath, World Sculptor** — A (red-green mythic)
-- **Zagras, Thief of Heartbeats** — A (black-red rare)
-- **Nahiri, Heir of the Ancients** — A-minus (red-white planeswalker)
-- **Drana's Silencer / Against the Weakening** (?) ("against the weakening") — A-minus (black mythic MDFC; reanimate multiple creatures)
-- **Shatterskull Smashing** — A (red mythic MDFC mass removal spell)
-- **Sylva, Soul of the Wild** (?) — A-minus (green mythic)
-- **Hagra Mauling** — A-minus (black MDFC)
-- **Tazri, Beacon of Unity** — B-plus (white rare)
-- **Inscription of Abundance** — B-plus (green rare)
-- **Jace, Mirror Mage** — B-plus (blue rare planeswalker)
-- **Squad Commander** — B-plus (white rare)
-- **Maul of the Skyclaves** — A-minus / B-plus (white equipment rare)
-- **Soaring Thief** — B-plus (blue-black uncommon)
-- **Drana, the Last Blood Chief** — B (black rare)
-- **Nissa of the Shadowed Boughs** (?) — B-plus (black-green planeswalker)
-- **Locus of Creation** — Build-around B-plus (five-color rare)
+- [**Emeria's Call**](https://scryfall.com/search?q=Emeria%27s%20Call) — A (white mythic MDFC)
+- [**Leyline Tyrant**](https://scryfall.com/search?q=Leyline%20Tyrant) — A (red rare dragon)
+- [**Zareth San, the Trickster**](https://scryfall.com/search?q=Zareth%20San%2C%20the%20Trickster) — A (blue-black mythic rogue)
+- [**Phylath, World Sculptor**](https://scryfall.com/search?q=Phylath%2C%20World%20Sculptor) — A (red-green mythic)
+- [**Zagras, Thief of Heartbeats**](https://scryfall.com/search?q=Zagras%2C%20Thief%20of%20Heartbeats) — A (black-red rare)
+- [**Nahiri, Heir of the Ancients**](https://scryfall.com/search?q=Nahiri%2C%20Heir%20of%20the%20Ancients) — A-minus (red-white planeswalker)
+- [**Drana's Silencer / Against the Weakening**](https://scryfall.com/search?q=Drana%27s%20Silencer%20/%20Against%20the%20Weakening) (?) ("against the weakening") — A-minus (black mythic MDFC; reanimate multiple creatures)
+- [**Shatterskull Smashing**](https://scryfall.com/search?q=Shatterskull%20Smashing) — A (red mythic MDFC mass removal spell)
+- [**Sylva, Soul of the Wild**](https://scryfall.com/search?q=Sylva%2C%20Soul%20of%20the%20Wild) (?) — A-minus (green mythic)
+- [**Hagra Mauling**](https://scryfall.com/search?q=Hagra%20Mauling) — A-minus (black MDFC)
+- [**Tazri, Beacon of Unity**](https://scryfall.com/search?q=Tazri%2C%20Beacon%20of%20Unity) — B-plus (white rare)
+- [**Inscription of Abundance**](https://scryfall.com/search?q=Inscription%20of%20Abundance) — B-plus (green rare)
+- [**Jace, Mirror Mage**](https://scryfall.com/search?q=Jace%2C%20Mirror%20Mage) — B-plus (blue rare planeswalker)
+- [**Squad Commander**](https://scryfall.com/search?q=Squad%20Commander) — B-plus (white rare)
+- [**Maul of the Skyclaves**](https://scryfall.com/search?q=Maul%20of%20the%20Skyclaves) — A-minus / B-plus (white equipment rare)
+- [**Soaring Thief**](https://scryfall.com/search?q=Soaring%20Thief) — B-plus (blue-black uncommon)
+- [**Drana, the Last Blood Chief**](https://scryfall.com/search?q=Drana%2C%20the%20Last%20Blood%20Chief) — B (black rare)
+- [**Nissa of the Shadowed Boughs**](https://scryfall.com/search?q=Nissa%20of%20the%20Shadowed%20Boughs) (?) — B-plus (black-green planeswalker)
+- [**Locus of Creation**](https://scryfall.com/search?q=Locus%20of%20Creation) — Build-around B-plus (five-color rare)
 
 ## Signals & seat reads
 

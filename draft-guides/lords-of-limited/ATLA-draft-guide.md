@@ -148,41 +148,41 @@ Ranked by **2025-12-22 retrospective** final consensus.
 Deduped across episodes; retro takes win. ⚠ = prediction-vs-reality reversal or notable over/underrated flag.
 
 ### White
-- **Path to Redemption** — ⚠ Flagged as potentially unplayable in early access (airbending blows it out). Retro verdict: best white common, "Pacifism in 2025." The key insight: it's restrictive but cheap enchantment removal that stops attacking AND blocks — opponents can't just airbend a creature out of it profitably. Take it P1P1-viable.
-- **Ang the Last Airbender** — Strong 3W 3/2 flyer. The ETB airbend effect bounces a nonland permanent (your own or opponent's). Excellent in UW tempo.
-- **Invasion Reinforcements** — Flash + makes a 1/1 ally token at 1W. Underrated because it creates a creature for go-wide payoffs in Boros/Selesnya.
-- **Earth Kingdom Jailer** — Clean 2W 3/3 that exiles MV 3+ permanents. One of white's best uncommons for answering the format's bombs.
+- [**Path to Redemption**](https://scryfall.com/search?q=Path%20to%20Redemption) — ⚠ Flagged as potentially unplayable in early access (airbending blows it out). Retro verdict: best white common, "Pacifism in 2025." The key insight: it's restrictive but cheap enchantment removal that stops attacking AND blocks — opponents can't just airbend a creature out of it profitably. Take it P1P1-viable.
+- [**Ang the Last Airbender**](https://scryfall.com/search?q=Ang%20the%20Last%20Airbender) — Strong 3W 3/2 flyer. The ETB airbend effect bounces a nonland permanent (your own or opponent's). Excellent in UW tempo.
+- [**Invasion Reinforcements**](https://scryfall.com/search?q=Invasion%20Reinforcements) — Flash + makes a 1/1 ally token at 1W. Underrated because it creates a creature for go-wide payoffs in Boros/Selesnya.
+- [**Earth Kingdom Jailer**](https://scryfall.com/search?q=Earth%20Kingdom%20Jailer) — Clean 2W 3/3 that exiles MV 3+ permanents. One of white's best uncommons for answering the format's bombs.
 
 ### Blue
-- **Forecasting Fortune Teller** — Best common in the format. ~1UU 1/3 that makes a Clue on ETB. Enables both the control grind plan and the tempo attack plan. Never wrong to take highly.
-- **Invasion Submersible** — Vehicle that ETB bounces a creature (instant tempo). The exhaust mode is a kill condition. Best in UW.
-- **Benevolent River Spirit** — ⚠ Initially talked about as a bomb (4/5 flyer ward 2 for UU). Reality: the additional cost condition and the airbending vulnerability make it near-unplayable in most games. Downgraded significantly by retro.
-- **Qatara(?) Bending Prodigy** — Solid 2U 2/3 with an exhaust draw-a-card ability. Grindy card advantage in the blue tempo/control shell.
+- [**Forecasting Fortune Teller**](https://scryfall.com/search?q=Forecasting%20Fortune%20Teller) — Best common in the format. ~1UU 1/3 that makes a Clue on ETB. Enables both the control grind plan and the tempo attack plan. Never wrong to take highly.
+- [**Invasion Submersible**](https://scryfall.com/search?q=Invasion%20Submersible) — Vehicle that ETB bounces a creature (instant tempo). The exhaust mode is a kill condition. Best in UW.
+- [**Benevolent River Spirit**](https://scryfall.com/search?q=Benevolent%20River%20Spirit) — ⚠ Initially talked about as a bomb (4/5 flyer ward 2 for UU). Reality: the additional cost condition and the airbending vulnerability make it near-unplayable in most games. Downgraded significantly by retro.
+- [**Qatara(?) Bending Prodigy**](https://scryfall.com/search?q=Qatara%28%3F%29%20Bending%20Prodigy) — Solid 2U 2/3 with an exhaust draw-a-card ability. Grindy card advantage in the blue tempo/control shell.
 
 ### Black
-- **Deadly Precision** — Best black common. 1B sorcery: target creature's controller sacrifices it or pays 4. At common, this is exceptional. Take it early.
-- **Epic Downfall** — 1B exile for MV 3+ creatures. Clean and cheap. One of black's best uncommons.
-- **Heartless Act** — Premium removal if present. Take early.
+- [**Deadly Precision**](https://scryfall.com/search?q=Deadly%20Precision) — Best black common. 1B sorcery: target creature's controller sacrifices it or pays 4. At common, this is exceptional. Take it early.
+- [**Epic Downfall**](https://scryfall.com/search?q=Epic%20Downfall) — 1B exile for MV 3+ creatures. Clean and cheap. One of black's best uncommons.
+- [**Heartless Act**](https://scryfall.com/search?q=Heartless%20Act) — Premium removal if present. Take early.
 
 ### Red
-- **Firebending Lesson** — R instant Lesson: deal 2 to any target, or kicked deal 5. The lesson subtype is the bonus — feeds UR learn synergies. Best red common.
-- **Iro's Demonstration(?)** — 1R Lesson sorcery: deal 1 to each creature and player (board wipe mode), or deal 4 to one target. Amazing versatility. The best red uncommon.
-- **May Jaded Edge(?)** — 1R 1/3 prowess. Exhaust: put a double strike counter on it. Blocks everything toughness-2 or less for free, threatens 6 damage when the double strike counter lands.
-- **Fire Nation Attacks** — 4R instant with flashback: make two 2/2 red soldiers with Firebending 1. Provides wide attackers at instant speed plus a late-game threat via flashback.
+- [**Firebending Lesson**](https://scryfall.com/search?q=Firebending%20Lesson) — R instant Lesson: deal 2 to any target, or kicked deal 5. The lesson subtype is the bonus — feeds UR learn synergies. Best red common.
+- [**Iro's Demonstration(?)**](https://scryfall.com/search?q=Iro%27s%20Demonstration%28%3F%29) — 1R Lesson sorcery: deal 1 to each creature and player (board wipe mode), or deal 4 to one target. Amazing versatility. The best red uncommon.
+- [**May Jaded Edge(?)**](https://scryfall.com/search?q=May%20Jaded%20Edge%28%3F%29) — 1R 1/3 prowess. Exhaust: put a double strike counter on it. Blocks everything toughness-2 or less for free, threatens 6 damage when the double strike counter lands.
+- [**Fire Nation Attacks**](https://scryfall.com/search?q=Fire%20Nation%20Attacks) — 4R instant with flashback: make two 2/2 red soldiers with Firebending 1. Provides wide attackers at instant speed plus a late-game threat via flashback.
 
 ### Green
-- **Raka's Audience(?)** — 1G 2/1 that ramps on ETB. Two-drop mana creatures are always in demand. One of green's best commons.
-- **Ostrich Horse** — 2G 3/1: ETB mill 3, then take a basic land card from your graveyard OR put a +1/+1 counter on it. The 3/1 body is relevant for aggressive boards; the ETB triggers self-mill and fixing. Feeds waterbend/earthbend.
-- **Toph the Blind Bandit** — The earthbend payoff creature. Power equals the number of +1/+1 counters on your lands. Starts as a 0/3 and grows to 4/3, 6/3, etc. as Rumble Arena and other lands get counters. ETB earthbend 2 to your lands to start the engine.
-- **The Boulder Ready to Rumble** — 4/4 for 3G that earthbends X (where X = creatures you control with power 4+) when it attacks. In the right earthbend deck this is a Turn 4 bomb.
-- **Earth Kingdom General** — 2/2 for 3G: ETB earthbend 2, then life gain whenever +1/+1 counters are put on creatures you control. The earthbend deck's value engine.
-- **Suki Kyoshi Warrior** — GW, power = creatures you control. Attacks trigger: make a 1/1 ally tapped and attacking. In a wide board this is a 6/6 or 8/8 that makes a free attacker every combat. The Selesnya finisher.
+- [**Raka's Audience(?)**](https://scryfall.com/search?q=Raka%27s%20Audience%28%3F%29) — 1G 2/1 that ramps on ETB. Two-drop mana creatures are always in demand. One of green's best commons.
+- [**Ostrich Horse**](https://scryfall.com/search?q=Ostrich%20Horse) — 2G 3/1: ETB mill 3, then take a basic land card from your graveyard OR put a +1/+1 counter on it. The 3/1 body is relevant for aggressive boards; the ETB triggers self-mill and fixing. Feeds waterbend/earthbend.
+- [**Toph the Blind Bandit**](https://scryfall.com/search?q=Toph%20the%20Blind%20Bandit) — The earthbend payoff creature. Power equals the number of +1/+1 counters on your lands. Starts as a 0/3 and grows to 4/3, 6/3, etc. as Rumble Arena and other lands get counters. ETB earthbend 2 to your lands to start the engine.
+- [**The Boulder Ready to Rumble**](https://scryfall.com/search?q=The%20Boulder%20Ready%20to%20Rumble) — 4/4 for 3G that earthbends X (where X = creatures you control with power 4+) when it attacks. In the right earthbend deck this is a Turn 4 bomb.
+- [**Earth Kingdom General**](https://scryfall.com/search?q=Earth%20Kingdom%20General) — 2/2 for 3G: ETB earthbend 2, then life gain whenever +1/+1 counters are put on creatures you control. The earthbend deck's value engine.
+- [**Suki Kyoshi Warrior**](https://scryfall.com/search?q=Suki%20Kyoshi%20Warrior) — GW, power = creatures you control. Attacks trigger: make a 1/1 ally tapped and attacking. In a wide board this is a 6/6 or 8/8 that makes a free attacker every combat. The Selesnya finisher.
 
 ### Multi-color
-- **Hama the Bloodbender** — UB 3/3. ETB: mill 3, exile a non-creature nonland. You may cast that card using waterbend mana. The UB grind finisher. Needs waterbend density.
-- **Dragonfly Swarm** — UR flying ward 1 creature that draws a card when it dies if a Lesson is in your graveyard. The UR build-around piece.
-- **Jet Freedom Fighter** — RW 3/1. ETB: deal damage equal to your creature count to target creature or player. Dies: distribute +1/+1 counters equal to its power among remaining creatures. RW bomb.
-- **DY Agents(?)** — BG 3/4. ETB earthbend 1 to two different permanents (two separate triggers). Attacks: drain 1 life for each creature you control that has a +1/+1 counter. The BG bridge card.
+- [**Hama the Bloodbender**](https://scryfall.com/search?q=Hama%20the%20Bloodbender) — UB 3/3. ETB: mill 3, exile a non-creature nonland. You may cast that card using waterbend mana. The UB grind finisher. Needs waterbend density.
+- [**Dragonfly Swarm**](https://scryfall.com/search?q=Dragonfly%20Swarm) — UR flying ward 1 creature that draws a card when it dies if a Lesson is in your graveyard. The UR build-around piece.
+- [**Jet Freedom Fighter**](https://scryfall.com/search?q=Jet%20Freedom%20Fighter) — RW 3/1. ETB: deal damage equal to your creature count to target creature or player. Dies: distribute +1/+1 counters equal to its power among remaining creatures. RW bomb.
+- [**DY Agents(?)**](https://scryfall.com/search?q=DY%20Agents%28%3F%29) — BG 3/4. ETB earthbend 1 to two different permanents (two separate triggers). Attacks: drain 1 life for each creature you control that has a +1/+1 counter. The BG bridge card.
 
 ## Supersessions (early-to-late opinion reversals)
 

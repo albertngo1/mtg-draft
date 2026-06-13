@@ -74,103 +74,103 @@ Extracted from all three episodes. More-recently stated principles take preceden
 > Only cards explicitly discussed during the draft commentary are listed. Caption garble noted with (?).
 
 ### White
-- **Summary Judgment** — Best white common. "Best white common, best common in most packs it's in." Ethan first-picked it repeatedly when available. Two-mana over three-mana is relevant for tempo.
-- **Impassioned Orator** — Called "second-best white common." Life gain is significant in racing scenarios and with token strategies (Depose/Deploy). Strong two-drop.
-- **Tithe Taker** — Strong two-drop with relevant tax ability. Ben debated Tithe Taker vs. Orzhov Enforcer: concluded Enforcer is slightly better defensively but Tithe Taker "hits a little bit harder."
-- **Orzhov Enforcer** — Ben's conclusion: slightly better than Tithe Taker as a defensive wall vs. Gruul/Simic. Flying deathtouch afterlife creature that "literally says Gruul and Simic can't attack you on the ground."
-- **Imperious Oligarch** — "Bread and butter two-drop of the Orzhov deck." Ben and Ethan both first-picked it early. All three imperious oligarchs wheeled back to Ben in Showdown 1 at very late picks.
-- **Concordia Pegasus** — Cheap two-drop flyer; value goes up with Windstorm Drake and Depose/Deploy tokens.
-- **Watchful Giant** — "Useful big butt"; upside with Angelic Exaltation but otherwise just a defensive five-drop. Acceptable filler.
-- **Resolute Watchdog** — Sideboard in vs. Orzhov (blanks Oligarchs, protects against sacrifice/removal). Can be maindecked in High Alert builds.
-- **10th District Veteran** — Fine filler; noted as "much better than Haazda Officer" in Orzhov where High Alert is possible. Creature for Exaltation.
-- **Haazda Officer** — Called "low impact" and cut from Ethan's final Azorius deck. Not recommended as a maindeck card unless you have no other options.
+- [**Summary Judgment**](https://scryfall.com/search?q=Summary%20Judgment) — Best white common. "Best white common, best common in most packs it's in." Ethan first-picked it repeatedly when available. Two-mana over three-mana is relevant for tempo.
+- [**Impassioned Orator**](https://scryfall.com/search?q=Impassioned%20Orator) — Called "second-best white common." Life gain is significant in racing scenarios and with token strategies (Depose/Deploy). Strong two-drop.
+- [**Tithe Taker**](https://scryfall.com/search?q=Tithe%20Taker) — Strong two-drop with relevant tax ability. Ben debated Tithe Taker vs. Orzhov Enforcer: concluded Enforcer is slightly better defensively but Tithe Taker "hits a little bit harder."
+- [**Orzhov Enforcer**](https://scryfall.com/search?q=Orzhov%20Enforcer) — Ben's conclusion: slightly better than Tithe Taker as a defensive wall vs. Gruul/Simic. Flying deathtouch afterlife creature that "literally says Gruul and Simic can't attack you on the ground."
+- [**Imperious Oligarch**](https://scryfall.com/search?q=Imperious%20Oligarch) — "Bread and butter two-drop of the Orzhov deck." Ben and Ethan both first-picked it early. All three imperious oligarchs wheeled back to Ben in Showdown 1 at very late picks.
+- [**Concordia Pegasus**](https://scryfall.com/search?q=Concordia%20Pegasus) — Cheap two-drop flyer; value goes up with Windstorm Drake and Depose/Deploy tokens.
+- [**Watchful Giant**](https://scryfall.com/search?q=Watchful%20Giant) — "Useful big butt"; upside with Angelic Exaltation but otherwise just a defensive five-drop. Acceptable filler.
+- [**Resolute Watchdog**](https://scryfall.com/search?q=Resolute%20Watchdog) — Sideboard in vs. Orzhov (blanks Oligarchs, protects against sacrifice/removal). Can be maindecked in High Alert builds.
+- [**10th District Veteran**](https://scryfall.com/search?q=10th%20District%20Veteran) — Fine filler; noted as "much better than Haazda Officer" in Orzhov where High Alert is possible. Creature for Exaltation.
+- [**Haazda Officer**](https://scryfall.com/search?q=Haazda%20Officer) — Called "low impact" and cut from Ethan's final Azorius deck. Not recommended as a maindeck card unless you have no other options.
 
 ### Blue
-- **Senate Guild Mage** — "Ridiculous, ridiculous strong magic card." Ethan: "One of the best two-drops." The five-mana drain ability "closes out games so fast." Taking two is actively better — they provide consistency and life gain stacks. Snap first-pick.
-- **Skitter Eel** — Higher than most people think. Ethan: "Ben is gonna be so mad about this card, he hates this card so much." The 3/5 body after adapting holds the ground while flyers win the air, and the five-mana ability is relevant. Good in Azorius.
-- **Chill Bringer** — Good five-drop; tapping a blocker every attack is relevant for flying-heavy Azorius. Often preferable to Knight-Arbiter unless you have High Alert.
-- **Azorius Knight-Arbiter** — "Fine five-drop." Good with High Alert (8 toughness vigilance), okay without. Subject to the five-drop tax — don't prioritize early.
-- **Windstorm Drake** — "Really nice" for Azorius; turns all flying Depose/Deploy tokens into relevant two-power attackers and buffs Senate Courser to 2/4. Pick up when available.
-- **Depose/Deploy** — Premium Azorius split card. "Gasoline." Taking two is great; they provide tempo (Depose) and board development (Deploy tokens) with life gain. "Basically the wheel" early in format.
-- **Deputy of Detention** — "In the best color pair, like probably slightly worse than [Rakdos Fire-Wheeler] but I really like it." Blue's best rare/uncommon.
-- **Law-Mage's Binding** — Strong unconditional removal for blue. Note: enchantment removal makes it weak in Game 2 if opponent has Exposed to Daylight effects.
-- **Slimebind** — Ethan raised his opinion over time. "A card I'm much higher on than I was before." Best used on the most relevant creature on board; weak vs. large Orzhov creatures. Sideboard out vs. opponents with enchantment removal.
-- **Essence Capture** — "Pretty undervalued" per Ethan in Showdown 3. Don't sleep on it.
-- **Shimmer of Possibility** — "If you want, you can get a copy of and I generally don't want a copy." Ethan preferred it when actively digging for a specific payoff (e.g., High Alert, Dovan's Acuity), but not generically great.
-- **Sphinx's Insight** — Ethan debated Sphinx's Insight vs. Sage's Revenant (?): concluded card draw is better than the 2/1 body when you have multiple sources (Senate Guild Mage). Good in acuity-style decks.
-- **Code of Constraint** — Ethan took it over Shimmer in one draft while hoping for Dovan's Acuity. Said: "I don't really want Code of Constraint very much" — poor tempo orientation in a non-aggressive Azorius build. Wrestled Admonition often preferred.
-- **Swirling Torrent** — "A card I don't think I'll play" in control Azorius; "sort of a Simic card." Useful from the sideboard to bounce back stolen creatures (e.g., Mass Manipulation counter-play).
-- **Mass Manipulation** — Situational bomb; needs significant blue sources but "just gives you so much inevitability" in stalled board states. Game-ending in combination with Gate Colossus or large Orzhov threats.
-- **Emergency Powers** — "Not a good card." The symmetry is the problem; Ethan explicitly passed it.
-- **Senate Courier** — "Best blue common" — called that by both hosts. Fine 2/3 vigilance that attacks and blocks. Noted as a strong common despite not being flashy.
+- [**Senate Guild Mage**](https://scryfall.com/search?q=Senate%20Guild%20Mage) — "Ridiculous, ridiculous strong magic card." Ethan: "One of the best two-drops." The five-mana drain ability "closes out games so fast." Taking two is actively better — they provide consistency and life gain stacks. Snap first-pick.
+- [**Skitter Eel**](https://scryfall.com/search?q=Skitter%20Eel) — Higher than most people think. Ethan: "Ben is gonna be so mad about this card, he hates this card so much." The 3/5 body after adapting holds the ground while flyers win the air, and the five-mana ability is relevant. Good in Azorius.
+- [**Chill Bringer**](https://scryfall.com/search?q=Chill%20Bringer) — Good five-drop; tapping a blocker every attack is relevant for flying-heavy Azorius. Often preferable to Knight-Arbiter unless you have High Alert.
+- [**Azorius Knight-Arbiter**](https://scryfall.com/search?q=Azorius%20Knight-Arbiter) — "Fine five-drop." Good with High Alert (8 toughness vigilance), okay without. Subject to the five-drop tax — don't prioritize early.
+- [**Windstorm Drake**](https://scryfall.com/search?q=Windstorm%20Drake) — "Really nice" for Azorius; turns all flying Depose/Deploy tokens into relevant two-power attackers and buffs Senate Courser to 2/4. Pick up when available.
+- [**Depose/Deploy**](https://scryfall.com/search?q=Depose/Deploy) — Premium Azorius split card. "Gasoline." Taking two is great; they provide tempo (Depose) and board development (Deploy tokens) with life gain. "Basically the wheel" early in format.
+- [**Deputy of Detention**](https://scryfall.com/search?q=Deputy%20of%20Detention) — "In the best color pair, like probably slightly worse than [Rakdos Fire-Wheeler] but I really like it." Blue's best rare/uncommon.
+- [**Law-Mage's Binding**](https://scryfall.com/search?q=Law-Mage%27s%20Binding) — Strong unconditional removal for blue. Note: enchantment removal makes it weak in Game 2 if opponent has Exposed to Daylight effects.
+- [**Slimebind**](https://scryfall.com/search?q=Slimebind) — Ethan raised his opinion over time. "A card I'm much higher on than I was before." Best used on the most relevant creature on board; weak vs. large Orzhov creatures. Sideboard out vs. opponents with enchantment removal.
+- [**Essence Capture**](https://scryfall.com/search?q=Essence%20Capture) — "Pretty undervalued" per Ethan in Showdown 3. Don't sleep on it.
+- [**Shimmer of Possibility**](https://scryfall.com/search?q=Shimmer%20of%20Possibility) — "If you want, you can get a copy of and I generally don't want a copy." Ethan preferred it when actively digging for a specific payoff (e.g., High Alert, Dovan's Acuity), but not generically great.
+- [**Sphinx's Insight**](https://scryfall.com/search?q=Sphinx%27s%20Insight) — Ethan debated Sphinx's Insight vs. Sage's Revenant (?): concluded card draw is better than the 2/1 body when you have multiple sources (Senate Guild Mage). Good in acuity-style decks.
+- [**Code of Constraint**](https://scryfall.com/search?q=Code%20of%20Constraint) — Ethan took it over Shimmer in one draft while hoping for Dovan's Acuity. Said: "I don't really want Code of Constraint very much" — poor tempo orientation in a non-aggressive Azorius build. Wrestled Admonition often preferred.
+- [**Swirling Torrent**](https://scryfall.com/search?q=Swirling%20Torrent) — "A card I don't think I'll play" in control Azorius; "sort of a Simic card." Useful from the sideboard to bounce back stolen creatures (e.g., Mass Manipulation counter-play).
+- [**Mass Manipulation**](https://scryfall.com/search?q=Mass%20Manipulation) — Situational bomb; needs significant blue sources but "just gives you so much inevitability" in stalled board states. Game-ending in combination with Gate Colossus or large Orzhov threats.
+- [**Emergency Powers**](https://scryfall.com/search?q=Emergency%20Powers) — "Not a good card." The symmetry is the problem; Ethan explicitly passed it.
+- [**Senate Courier**](https://scryfall.com/search?q=Senate%20Courier) — "Best blue common" — called that by both hosts. Fine 2/3 vigilance that attacks and blocks. Noted as a strong common despite not being flashy.
 
 ### Black
-- **Grotesque Demise** — "Super strong removal spell." Exile clause is "really relevant against spectacle." Ethan called it the best black common. Priority pick in Orzhov.
-- **Consecrate/Consume** — "Absurdly powerful" removal in Orzhov. Ben: "There are not a lot of cards I would take over Consecrate/Consume in the set." Took it twice in Showdown 2 and once in Showdown 3.
-- **Final Payment** — Best black removal. Ben assumed opponents would first-pick it; noted as the reason to take Angelic Exaltation second in Showdown 2.
-- **Night of the Last Breath** — Good removal; exiles two creatures. Ben took it over Senate Guild Mage (two-way Azorius guild gate) because "I don't think I need to stretch my mana that much."
-- **Angelic Exaltation** — "Stone cold bomb" in Orzhov creature decks. Ben's key finisher. "The only way we're going to be in trouble is if Ethan drafted flyers." Best card to wheel if you can get it.
-- **Ill-Gotten Inheritance** — "First copy would be very good, I would run multiple copies in this deck." Card advantage + life drain; "people are finally starting to pick that card higher." Important long-game card for Rakdos.
-- **Blade Juggler** — "Card advantage, a creature for Angelic Exaltation." In Orzhov, needs ~15 creatures to get reliable value. Perfect pick in a creature-dense Orzhov build.
-- **Dead Revels** — "Really value the first copy pretty highly in a black deck." Returns creatures from graveyard — important with Imperious Oligarch and Blade Juggler in Orzhov.
-- **Syndicate Messenger** — Acceptable four-drop in Orzhov but "our four-drop slot gets super clogged in this format." Don't prioritize.
-- **Carrying Imp** — Fine body; Ben took it in Showdown 1 as defensive filler while waiting to establish his guild.
-- **Thirsting Shade** — Fringe playable in Orzhov; better if you have sacrifice outlets (e.g., Hero of Precinct One).
-- **Undercity Scavenger** — Good in Rakdos against enchantment removal decks; grows large via sac. Ben ran it main deck in Showdown 3 specifically because it triggers off the cavalcade package and is good against enchantment-based removal.
+- [**Grotesque Demise**](https://scryfall.com/search?q=Grotesque%20Demise) — "Super strong removal spell." Exile clause is "really relevant against spectacle." Ethan called it the best black common. Priority pick in Orzhov.
+- [**Consecrate/Consume**](https://scryfall.com/search?q=Consecrate/Consume) — "Absurdly powerful" removal in Orzhov. Ben: "There are not a lot of cards I would take over Consecrate/Consume in the set." Took it twice in Showdown 2 and once in Showdown 3.
+- [**Final Payment**](https://scryfall.com/search?q=Final%20Payment) — Best black removal. Ben assumed opponents would first-pick it; noted as the reason to take Angelic Exaltation second in Showdown 2.
+- [**Night of the Last Breath**](https://scryfall.com/search?q=Night%20of%20the%20Last%20Breath) — Good removal; exiles two creatures. Ben took it over Senate Guild Mage (two-way Azorius guild gate) because "I don't think I need to stretch my mana that much."
+- [**Angelic Exaltation**](https://scryfall.com/search?q=Angelic%20Exaltation) — "Stone cold bomb" in Orzhov creature decks. Ben's key finisher. "The only way we're going to be in trouble is if Ethan drafted flyers." Best card to wheel if you can get it.
+- [**Ill-Gotten Inheritance**](https://scryfall.com/search?q=Ill-Gotten%20Inheritance) — "First copy would be very good, I would run multiple copies in this deck." Card advantage + life drain; "people are finally starting to pick that card higher." Important long-game card for Rakdos.
+- [**Blade Juggler**](https://scryfall.com/search?q=Blade%20Juggler) — "Card advantage, a creature for Angelic Exaltation." In Orzhov, needs ~15 creatures to get reliable value. Perfect pick in a creature-dense Orzhov build.
+- [**Dead Revels**](https://scryfall.com/search?q=Dead%20Revels) — "Really value the first copy pretty highly in a black deck." Returns creatures from graveyard — important with Imperious Oligarch and Blade Juggler in Orzhov.
+- [**Syndicate Messenger**](https://scryfall.com/search?q=Syndicate%20Messenger) — Acceptable four-drop in Orzhov but "our four-drop slot gets super clogged in this format." Don't prioritize.
+- [**Carrying Imp**](https://scryfall.com/search?q=Carrying%20Imp) — Fine body; Ben took it in Showdown 1 as defensive filler while waiting to establish his guild.
+- [**Thirsting Shade**](https://scryfall.com/search?q=Thirsting%20Shade) — Fringe playable in Orzhov; better if you have sacrifice outlets (e.g., Hero of Precinct One).
+- [**Undercity Scavenger**](https://scryfall.com/search?q=Undercity%20Scavenger) — Good in Rakdos against enchantment removal decks; grows large via sac. Ben ran it main deck in Showdown 3 specifically because it triggers off the cavalcade package and is good against enchantment-based removal.
 
 ### Red
-- **Skewer the Critics** — Premium removal in both Rakdos and Gruul. "Ridiculous" tempo play when spectacle is active; still fine as a 3-mana sorcery. Better in Rakdos than Gruul.
-- **Light Up the Stage** — Ben initially took it over Titanic Brawl. Ethan: "I'm a little lower on Light Up the Stage in limited these days." In Gruul, usually the last spell cast (expensive stuff means you often miss). In Rakdos it's better — fires off after dealing early damage. Both hosts ultimately ran it.
-- **Scorchmark** — "That card is bad" (Ethan, Showdown 3, explicitly). Do not play.
-- **Rakdos Fire-Wheeler** — "Best card" in Rakdos, good with spectacle, high floor/ceiling. Ben drafted it highly in Showdown 3.
-- **Fire Blade Artist** — "Fine two-drop" but "gets blanked fairly early on" if the opponent has creatures. Good with Rakdos Trumpeter for spectacle enablement. "Inevitability" as a late-game source of chip damage.
-- **Footlight Fiend** — Rakdos spectacle/cavalcade enabler. Deals 1 when it dies — relevant for spectacle and Cavalcade of Calamity. Ben ran it in Showdown 3.
-- **Rakdos Trumpeter** — "Bread-and-butter type card of the Rakdos deck." Ben assumed he was "the only Rakdos drafter" when it wheeled last pick.
-- **Goblin Gathering** — Useful in Cavalcade of Calamity builds — provides three 1/1 bodies. Ben specifically drafted around it in Showdown 3. Two or more copies makes Cavalcade payoffs much better.
-- **Cult Guild Mage** — "Really just good at enabling spectacle, dealing some incidental damage." Discard ability is expensive. Good in Rakdos; worse in other archetypes.
-- **Cavalcade of Calamity** — Ben built around it in Showdown 3 with good results. "Nine to ten cards that work with it" is the right density. Needs Footlight Fiend, Rakdos Trumpeter, Fire Blade Artist, and Goblin Gatherings as the package.
-- **Act of Treason** — "Great pickup" in Gruul; "another card I'd like to try and find its way into this deck." Ben Showdown 3: considered it as a finisher-stealer.
-- **Burn Bright** — Sideboard-viable in Rakdos; more relevant in Go-Wide builds vs. decks with high-toughness blockers. Uncertain as main deck.
+- [**Skewer the Critics**](https://scryfall.com/search?q=Skewer%20the%20Critics) — Premium removal in both Rakdos and Gruul. "Ridiculous" tempo play when spectacle is active; still fine as a 3-mana sorcery. Better in Rakdos than Gruul.
+- [**Light Up the Stage**](https://scryfall.com/search?q=Light%20Up%20the%20Stage) — Ben initially took it over Titanic Brawl. Ethan: "I'm a little lower on Light Up the Stage in limited these days." In Gruul, usually the last spell cast (expensive stuff means you often miss). In Rakdos it's better — fires off after dealing early damage. Both hosts ultimately ran it.
+- [**Scorchmark**](https://scryfall.com/search?q=Scorchmark) — "That card is bad" (Ethan, Showdown 3, explicitly). Do not play.
+- [**Rakdos Fire-Wheeler**](https://scryfall.com/search?q=Rakdos%20Fire-Wheeler) — "Best card" in Rakdos, good with spectacle, high floor/ceiling. Ben drafted it highly in Showdown 3.
+- [**Fire Blade Artist**](https://scryfall.com/search?q=Fire%20Blade%20Artist) — "Fine two-drop" but "gets blanked fairly early on" if the opponent has creatures. Good with Rakdos Trumpeter for spectacle enablement. "Inevitability" as a late-game source of chip damage.
+- [**Footlight Fiend**](https://scryfall.com/search?q=Footlight%20Fiend) — Rakdos spectacle/cavalcade enabler. Deals 1 when it dies — relevant for spectacle and Cavalcade of Calamity. Ben ran it in Showdown 3.
+- [**Rakdos Trumpeter**](https://scryfall.com/search?q=Rakdos%20Trumpeter) — "Bread-and-butter type card of the Rakdos deck." Ben assumed he was "the only Rakdos drafter" when it wheeled last pick.
+- [**Goblin Gathering**](https://scryfall.com/search?q=Goblin%20Gathering) — Useful in Cavalcade of Calamity builds — provides three 1/1 bodies. Ben specifically drafted around it in Showdown 3. Two or more copies makes Cavalcade payoffs much better.
+- [**Cult Guild Mage**](https://scryfall.com/search?q=Cult%20Guild%20Mage) — "Really just good at enabling spectacle, dealing some incidental damage." Discard ability is expensive. Good in Rakdos; worse in other archetypes.
+- [**Cavalcade of Calamity**](https://scryfall.com/search?q=Cavalcade%20of%20Calamity) — Ben built around it in Showdown 3 with good results. "Nine to ten cards that work with it" is the right density. Needs Footlight Fiend, Rakdos Trumpeter, Fire Blade Artist, and Goblin Gatherings as the package.
+- [**Act of Treason**](https://scryfall.com/search?q=Act%20of%20Treason) — "Great pickup" in Gruul; "another card I'd like to try and find its way into this deck." Ben Showdown 3: considered it as a finisher-stealer.
+- [**Burn Bright**](https://scryfall.com/search?q=Burn%20Bright) — Sideboard-viable in Rakdos; more relevant in Go-Wide builds vs. decks with high-toughness blockers. Uncertain as main deck.
 
 ### Green
-- **Troll-Bred Guardian** — One of the best green commons. Ben took it first pick in Showdown 3 over the rare (Unbreakable Formation). "A really strong card, one of the better Riot commons in the set." Double Troll-Bred Guardian is an ideal Gruul endgame.
-- **Rhythm of the Wild** — "Very good card." Ethan initially said "I'm a lot lower on Rhythm than I used to be but it's still a very good card." Ben won multiple games with it on curve. Key Gruul uncommon — makes everything haste or countered.
-- **Biogenic Upgrade** — Better overrun finisher than Andrej's Four-Runners (?) in Gruul at six mana. Ben took it over the eight-drop. Can be a blowout with Troll-Bred Guardian.
-- **Andrej's Four-Runners (?)** — "I think Endres Forerunners is a trap" (Ethan, Showdown 2). Better in theory than in practice — too expensive. Ethan took Biogenic Upgrade over it.
-- **Savage Smash** — "Such a beating." Splash-worthy. Ben called the Savage Smash vs. Skewer the Critics pick "the most interesting pick by far" in Showdown 3 and took Savage Smash twice. Timur splash of Savage Smash is viable.
-- **Rubble Belt Runner** — "Nice" three-drop. Ben came around: "I think it's good in Gruul, you're happy to play that card as your three-drop in Gruul." Trample + haste from Rhythm makes it a clock.
-- **Soraform Hybrid (?)** (Sora-Form Hybrid) — Best Simic common. Ethan noted it as "rock solid, best common in most packs it exists in." Both drafters valued it very highly when in green.
-- **Steeple Creeper** — Fine three-drop in Gruul; better in Simic where the pump helps. Ben maindecked it when short on playables.
-- **Spike Wheel Acrobat (?)** (Spikewheeel Acrobat / Spike-Will Acrobat) — 2/2 with relevant triggered ability; took it over Stony Strength in one pick. Okay to include in gruel but not premium.
-- **Titanic Brawl** — Serviceable fight spell, worse than Savage Smash. "Goes a little late." Acceptable to run 1-2 copies; "kind of goes late" means you can wheel them.
-- **Stony Strength** — "I like this card a lot. Nice with the Clan Crusher." One-mana trick; wins combats and enables spectacle on turn 1. Better than Gift of Strength in Gruul.
-- **Gift of Strength** — Acceptable trick, but Stony Strength and Storm Strike preferred in Gruul.
-- **Burning Tree Vandal** — "I like Burning Tree Vandal quite a bit" as a rummage engine to smooth out land-heavy draws.
+- [**Troll-Bred Guardian**](https://scryfall.com/search?q=Troll-Bred%20Guardian) — One of the best green commons. Ben took it first pick in Showdown 3 over the rare (Unbreakable Formation). "A really strong card, one of the better Riot commons in the set." Double Troll-Bred Guardian is an ideal Gruul endgame.
+- [**Rhythm of the Wild**](https://scryfall.com/search?q=Rhythm%20of%20the%20Wild) — "Very good card." Ethan initially said "I'm a lot lower on Rhythm than I used to be but it's still a very good card." Ben won multiple games with it on curve. Key Gruul uncommon — makes everything haste or countered.
+- [**Biogenic Upgrade**](https://scryfall.com/search?q=Biogenic%20Upgrade) — Better overrun finisher than Andrej's Four-Runners (?) in Gruul at six mana. Ben took it over the eight-drop. Can be a blowout with Troll-Bred Guardian.
+- [**Andrej's Four-Runners (?)**](https://scryfall.com/search?q=Andrej%27s%20Four-Runners%20%28%3F%29) — "I think Endres Forerunners is a trap" (Ethan, Showdown 2). Better in theory than in practice — too expensive. Ethan took Biogenic Upgrade over it.
+- [**Savage Smash**](https://scryfall.com/search?q=Savage%20Smash) — "Such a beating." Splash-worthy. Ben called the Savage Smash vs. Skewer the Critics pick "the most interesting pick by far" in Showdown 3 and took Savage Smash twice. Timur splash of Savage Smash is viable.
+- [**Rubble Belt Runner**](https://scryfall.com/search?q=Rubble%20Belt%20Runner) — "Nice" three-drop. Ben came around: "I think it's good in Gruul, you're happy to play that card as your three-drop in Gruul." Trample + haste from Rhythm makes it a clock.
+- [**Soraform Hybrid (?)**](https://scryfall.com/search?q=Soraform%20Hybrid%20%28%3F%29) (Sora-Form Hybrid) — Best Simic common. Ethan noted it as "rock solid, best common in most packs it exists in." Both drafters valued it very highly when in green.
+- [**Steeple Creeper**](https://scryfall.com/search?q=Steeple%20Creeper) — Fine three-drop in Gruul; better in Simic where the pump helps. Ben maindecked it when short on playables.
+- [**Spike Wheel Acrobat (?)**](https://scryfall.com/search?q=Spike%20Wheel%20Acrobat%20%28%3F%29) (Spikewheeel Acrobat / Spike-Will Acrobat) — 2/2 with relevant triggered ability; took it over Stony Strength in one pick. Okay to include in gruel but not premium.
+- [**Titanic Brawl**](https://scryfall.com/search?q=Titanic%20Brawl) — Serviceable fight spell, worse than Savage Smash. "Goes a little late." Acceptable to run 1-2 copies; "kind of goes late" means you can wheel them.
+- [**Stony Strength**](https://scryfall.com/search?q=Stony%20Strength) — "I like this card a lot. Nice with the Clan Crusher." One-mana trick; wins combats and enables spectacle on turn 1. Better than Gift of Strength in Gruul.
+- [**Gift of Strength**](https://scryfall.com/search?q=Gift%20of%20Strength) — Acceptable trick, but Stony Strength and Storm Strike preferred in Gruul.
+- [**Burning Tree Vandal**](https://scryfall.com/search?q=Burning%20Tree%20Vandal) — "I like Burning Tree Vandal quite a bit" as a rummage engine to smooth out land-heavy draws.
 
 ### Multicolor
-- **Hero of Precinct One** — Good in gold-heavy decks (Orzhov 6+ gold cards). Ben: "That makes me wish I had taken Imperious Oligarch" when he opened it. Better the more gold cards you have. Getting a body off each gold spell with Angelic Exaltation is "super good."
-- **Dovan's Acuity (?)** (Dovin's Acuity) — "I don't get to play those and I feel like I'm pretty well set up for that right now." Both hosts described wanting it every time it wasn't in their deck. "I would have happily played Dovin's Acuity" — game-warping in Azorius.
-- **High Alert** — "If we can get a High Alert I will be thrilled." Transforms Knight-Arbiters, Skitter Eels, and Resolute Watchdogs into threats. Very build-around but powerful. Ben noted: "We didn't get the High Alert I passed."
-- **Kaya's Wrath** — "Good one" — both hosts respected it as a sweeper. Ben: "Let's snap that up, feels good to read signals correctly for Orzhov." Sideboard in if opponent is going wide; Orzhov can have it in main deck.
-- **Senate Guild Mage** — (see Blue section above; listed again — it's Azorius gold) Ethan described taking two of them as "so much consistency."
-- **Angelic Exaltation** — (see Black section above; it's Orzhov gold) "Stone cold bomb in our deck."
-- **Syndicate Guild Mage / Cult Guild Mage** — Each has a specific role. Syndicate Guild Mage (Orzhov) is "good" but Ethan: "I think it's the worst guild mage." The five-mana drain ability is what actually closes games though.
-- **Consecrate/Consume** — Reiterating: top-tier Orzhov removal. "There are not a lot of cards I would take over Consecrate/Consume in the set."
+- [**Hero of Precinct One**](https://scryfall.com/search?q=Hero%20of%20Precinct%20One) — Good in gold-heavy decks (Orzhov 6+ gold cards). Ben: "That makes me wish I had taken Imperious Oligarch" when he opened it. Better the more gold cards you have. Getting a body off each gold spell with Angelic Exaltation is "super good."
+- [**Dovan's Acuity (?)**](https://scryfall.com/search?q=Dovan%27s%20Acuity%20%28%3F%29) (Dovin's Acuity) — "I don't get to play those and I feel like I'm pretty well set up for that right now." Both hosts described wanting it every time it wasn't in their deck. "I would have happily played Dovin's Acuity" — game-warping in Azorius.
+- [**High Alert**](https://scryfall.com/search?q=High%20Alert) — "If we can get a High Alert I will be thrilled." Transforms Knight-Arbiters, Skitter Eels, and Resolute Watchdogs into threats. Very build-around but powerful. Ben noted: "We didn't get the High Alert I passed."
+- [**Kaya's Wrath**](https://scryfall.com/search?q=Kaya%27s%20Wrath) — "Good one" — both hosts respected it as a sweeper. Ben: "Let's snap that up, feels good to read signals correctly for Orzhov." Sideboard in if opponent is going wide; Orzhov can have it in main deck.
+- [**Senate Guild Mage**](https://scryfall.com/search?q=Senate%20Guild%20Mage) — (see Blue section above; listed again — it's Azorius gold) Ethan described taking two of them as "so much consistency."
+- [**Angelic Exaltation**](https://scryfall.com/search?q=Angelic%20Exaltation) — (see Black section above; it's Orzhov gold) "Stone cold bomb in our deck."
+- [**Syndicate Guild Mage / Cult Guild Mage**](https://scryfall.com/search?q=Syndicate%20Guild%20Mage%20/%20Cult%20Guild%20Mage) — Each has a specific role. Syndicate Guild Mage (Orzhov) is "good" but Ethan: "I think it's the worst guild mage." The five-mana drain ability is what actually closes games though.
+- [**Consecrate/Consume**](https://scryfall.com/search?q=Consecrate/Consume) — Reiterating: top-tier Orzhov removal. "There are not a lot of cards I would take over Consecrate/Consume in the set."
 
 ### Colorless
-- **Gate Colossus** — Snap pick in any gate-heavy deck. "There's a reason to start taking gates a little bit higher." Came around pick 8-9 in Showdown 1, signaling the gate archetype was underdrafted. Ben ran it in Orzhov splash-gate.
+- [**Gate Colossus**](https://scryfall.com/search?q=Gate%20Colossus) — Snap pick in any gate-heavy deck. "There's a reason to start taking gates a little bit higher." Came around pick 8-9 in Showdown 1, signaling the gate archetype was underdrafted. Ben ran it in Orzhov splash-gate.
 
 ### Lands
-- **Gateway Plaza** — "This gate is very very strong in conjunction with Open the Gates." Ethan called it one of the highest picks early; enables any color splash and counts for Gate Colossus. First pick from some packs.
-- **All guild gates** — Both hosts took guild gates proactively, especially in packs 1 and 2. "Gates are high picks." Orzhov Guildgate and Azorius Guildgate most valued for the two white guilds. In pack 3 take them less highly unless you have payoffs.
+- [**Gateway Plaza**](https://scryfall.com/search?q=Gateway%20Plaza) — "This gate is very very strong in conjunction with Open the Gates." Ethan called it one of the highest picks early; enables any color splash and counts for Gate Colossus. First pick from some packs.
+- [**All guild gates**](https://scryfall.com/search?q=All%20guild%20gates) — Both hosts took guild gates proactively, especially in packs 1 and 2. "Gates are high picks." Orzhov Guildgate and Azorius Guildgate most valued for the two white guilds. In pack 3 take them less highly unless you have payoffs.
 
 ### Rares & bombs
-- **Prime Speaker Vannifar** — Ben: "I don't think Prime Speaker is that good in draft. You're not going to draft a birthing-pod deck, that's hard to even do in cube." He first-picked it only because it was worth money and nothing else was clearly better.
-- **Wilderness Reclamation** — Ethan considered splashing it in Simic but decided against it. "There's no world where we're going to want to play Wilderness Reclamation" in a Gruul/Timur pile.
-- **Smothering Tithe** — "Could be really really good fixing" in a sideboard that goes wide with gates. Ben took it as a sideboard speculation only, not expecting to main deck it.
-- **Unbreakable Formation** — "Rock solid combat trick." Ben: "always playing this in any white deck with 13-plus creatures." Good instant-speed combat trick or protect-the-team play.
-- **Frilled Mystic** — "Definitely a card" if opponent is Simic. Respected but rarely drafted cleanly in these episodes.
-- **Deputy of Detention** — "In the best color pair." Takes out any permanent type; Ethan first-picked it over Rakdos Fire-Wheeler in Showdown 3 because of the color commitment.
+- [**Prime Speaker Vannifar**](https://scryfall.com/search?q=Prime%20Speaker%20Vannifar) — Ben: "I don't think Prime Speaker is that good in draft. You're not going to draft a birthing-pod deck, that's hard to even do in cube." He first-picked it only because it was worth money and nothing else was clearly better.
+- [**Wilderness Reclamation**](https://scryfall.com/search?q=Wilderness%20Reclamation) — Ethan considered splashing it in Simic but decided against it. "There's no world where we're going to want to play Wilderness Reclamation" in a Gruul/Timur pile.
+- [**Smothering Tithe**](https://scryfall.com/search?q=Smothering%20Tithe) — "Could be really really good fixing" in a sideboard that goes wide with gates. Ben took it as a sideboard speculation only, not expecting to main deck it.
+- [**Unbreakable Formation**](https://scryfall.com/search?q=Unbreakable%20Formation) — "Rock solid combat trick." Ben: "always playing this in any white deck with 13-plus creatures." Good instant-speed combat trick or protect-the-team play.
+- [**Frilled Mystic**](https://scryfall.com/search?q=Frilled%20Mystic) — "Definitely a card" if opponent is Simic. Respected but rarely drafted cleanly in these episodes.
+- [**Deputy of Detention**](https://scryfall.com/search?q=Deputy%20of%20Detention) — "In the best color pair." Takes out any permanent type; Ethan first-picked it over Rakdos Fire-Wheeler in Showdown 3 because of the color commitment.
 
 ## Signals & seat reads
 

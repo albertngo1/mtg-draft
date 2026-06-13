@@ -77,88 +77,88 @@ Extracted from both episodes. More recently stated principles (Showdown 2) take 
 > Only cards explicitly evaluated during draft commentary. Caption garble marked with (?).
 
 ### White
-- **Wanderer's Strike** — Removal spell praised as "the best card in the pack" when it appeared. Highly valued in white and splash-worthy. Ben called it "the best white common" contextually.
-- **Tenth District Legionnaire** — Premium aggressive two-drop for red-white. Wheels on pick 10+ if the lane is not occupied (Ben wheeled one in Showdown 2). Great with targeting spells.
-- **Trusted Pegasus** — Fine flying two-drop. Valued primarily for creature count and evasion. Not exciting but reliable.
-- **Enforcer Griffin** — Flying three-drop called "totally fine." Good in any blue or white deck as a flying threat.
-- **Martyr for the Cause** — Called "mediocre." A two-drop with proliferate synergy but "un-exciting" as a standalone. Gets better with Pledge of Unity and counter themes.
-- **Pledge of Unity** — Ethan hedged on it for green-white; called "better than most think" in a dedicated counter/aggro shell. Ben: "I'm not a huge fan — you already have to have a board presence, and if you do, you're probably winning anyway."
-- **Solar Blaze** — The "butt-wrath" as hosts called it. Potentially leaves your bigger creatures alive. Not maindecked in these drafts; evaluated as "fine but not what we want."
-- **Samet (?) / Samut Tyrant Smasher** — Ben was consistently skeptical. "My default in this format is when Planeswalkers don't protect themselves, don't play them." Ethan kept it in his red-white deck as a surprise haste-giver with synergy with Crank'o (?).
-- **Gideon's Triumph** — Called a "great pickup" for white in Showdown 2 by Ben. Useful as Planeswalker-conditional removal.
+- [**Wanderer's Strike**](https://scryfall.com/search?q=Wanderer%27s%20Strike) — Removal spell praised as "the best card in the pack" when it appeared. Highly valued in white and splash-worthy. Ben called it "the best white common" contextually.
+- [**Tenth District Legionnaire**](https://scryfall.com/search?q=Tenth%20District%20Legionnaire) — Premium aggressive two-drop for red-white. Wheels on pick 10+ if the lane is not occupied (Ben wheeled one in Showdown 2). Great with targeting spells.
+- [**Trusted Pegasus**](https://scryfall.com/search?q=Trusted%20Pegasus) — Fine flying two-drop. Valued primarily for creature count and evasion. Not exciting but reliable.
+- [**Enforcer Griffin**](https://scryfall.com/search?q=Enforcer%20Griffin) — Flying three-drop called "totally fine." Good in any blue or white deck as a flying threat.
+- [**Martyr for the Cause**](https://scryfall.com/search?q=Martyr%20for%20the%20Cause) — Called "mediocre." A two-drop with proliferate synergy but "un-exciting" as a standalone. Gets better with Pledge of Unity and counter themes.
+- [**Pledge of Unity**](https://scryfall.com/search?q=Pledge%20of%20Unity) — Ethan hedged on it for green-white; called "better than most think" in a dedicated counter/aggro shell. Ben: "I'm not a huge fan — you already have to have a board presence, and if you do, you're probably winning anyway."
+- [**Solar Blaze**](https://scryfall.com/search?q=Solar%20Blaze) — The "butt-wrath" as hosts called it. Potentially leaves your bigger creatures alive. Not maindecked in these drafts; evaluated as "fine but not what we want."
+- [**Samet (?) / Samut Tyrant Smasher**](https://scryfall.com/search?q=Samet%20%28%3F%29%20/%20Samut%20Tyrant%20Smasher) — Ben was consistently skeptical. "My default in this format is when Planeswalkers don't protect themselves, don't play them." Ethan kept it in his red-white deck as a surprise haste-giver with synergy with Crank'o (?).
+- [**Gideon's Triumph**](https://scryfall.com/search?q=Gideon%27s%20Triumph) — Called a "great pickup" for white in Showdown 2 by Ben. Useful as Planeswalker-conditional removal.
 
 ### Blue
-- **Aven Eternal** — "The best blue common" and "third-best common in the set" (Ethan, Showdown 2). A flying amass trigger makes it excellent. Both hosts prioritized it.
-- **Eternal Skylord** — Uncommon called "insanely good" in blue-red spells. Gives all Zombies flying; pairs with amass tokens. Ben: "thrilled to pick that up."
-- **Tammyo's Epiphany (?)** — "The best blue common, the number two blue common" depending on the episode. Card draw plus scry; Ben called it a "build-your-own Tammyo's epiphany" when comparing to Jace's Triumph (?). Maindeckable in any blue deck. Helps justify 18 lands.
-- **Burning Prophet** — Called "the glue that holds the blue-red spells deck together." A 1/3 first-strike looter that pumps each spell. Two-drop. Very hard to profitably block. Extremely high pick in blue-red.
-- **Commence the Endgame** — Ben called it a "bomb rare" but noted it's "a very good rare" as an instant-speed amass 4 + draw. Maindecked. Sets up winning turn 8+.
-- **Spell Keeper Weird** — Called out as one of the key blue-red payoffs. "We really need some Spell Keeper Weirds." Usually wheels; not always available.
-- **Spell Gorger Weird** — "People are finally warming up to how powerful that card is." A three-drop that grows each spell — can become a massive threat. "The perfect card" for blue-red spells. Also wheels more than it should early.
-- **Rescue Sphinx** — Called a "good card, not a great card" as a four-drop for blue-white. Valued for flying body and bounce ETB.
-- **Jace's Triumph (?)** — Essentially a Divination; "nowhere near as powerful as Tammyo's Epiphany but still a solid pickup for spell triggers." Ben played it as a budget Tammyo's Epiphany.
-- **Contentious Plan** — Ben took it over Dread Horde Arcanist in Showdown 1 as "a card I know is good — it's always going to do its thing." Proliferate plus cantrip is reliable blue-red value.
-- **Callous Dismissal** — Good blue removal/bounce for the amass decks. Ben noted it flowing to Ethan frequently, suggesting Ethan was in blue-black. Praised as a key common in Dimir.
-- **Dread Horde Arcanist** — Ben initially passed it ("I don't know how you get this thing's power up in blue-red"), later noted: "I might have totally missed the boat on Dread Horde Arcanist — people whose opinion I respect have been talking about it." Recast graveyard sorceries; requires pump to go deep but two-mana sorceries are the baseline payoff.
-- **Crush Dissent** — Counter with amass trigger. Ben ran one; called "fine" in blue-red as an on-plan counter. Better than it looks because the amass token is a real body.
+- [**Aven Eternal**](https://scryfall.com/search?q=Aven%20Eternal) — "The best blue common" and "third-best common in the set" (Ethan, Showdown 2). A flying amass trigger makes it excellent. Both hosts prioritized it.
+- [**Eternal Skylord**](https://scryfall.com/search?q=Eternal%20Skylord) — Uncommon called "insanely good" in blue-red spells. Gives all Zombies flying; pairs with amass tokens. Ben: "thrilled to pick that up."
+- [**Tammyo's Epiphany (?)**](https://scryfall.com/search?q=Tammyo%27s%20Epiphany%20%28%3F%29) — "The best blue common, the number two blue common" depending on the episode. Card draw plus scry; Ben called it a "build-your-own Tammyo's epiphany" when comparing to Jace's Triumph (?). Maindeckable in any blue deck. Helps justify 18 lands.
+- [**Burning Prophet**](https://scryfall.com/search?q=Burning%20Prophet) — Called "the glue that holds the blue-red spells deck together." A 1/3 first-strike looter that pumps each spell. Two-drop. Very hard to profitably block. Extremely high pick in blue-red.
+- [**Commence the Endgame**](https://scryfall.com/search?q=Commence%20the%20Endgame) — Ben called it a "bomb rare" but noted it's "a very good rare" as an instant-speed amass 4 + draw. Maindecked. Sets up winning turn 8+.
+- [**Spell Keeper Weird**](https://scryfall.com/search?q=Spell%20Keeper%20Weird) — Called out as one of the key blue-red payoffs. "We really need some Spell Keeper Weirds." Usually wheels; not always available.
+- [**Spell Gorger Weird**](https://scryfall.com/search?q=Spell%20Gorger%20Weird) — "People are finally warming up to how powerful that card is." A three-drop that grows each spell — can become a massive threat. "The perfect card" for blue-red spells. Also wheels more than it should early.
+- [**Rescue Sphinx**](https://scryfall.com/search?q=Rescue%20Sphinx) — Called a "good card, not a great card" as a four-drop for blue-white. Valued for flying body and bounce ETB.
+- [**Jace's Triumph (?)**](https://scryfall.com/search?q=Jace%27s%20Triumph%20%28%3F%29) — Essentially a Divination; "nowhere near as powerful as Tammyo's Epiphany but still a solid pickup for spell triggers." Ben played it as a budget Tammyo's Epiphany.
+- [**Contentious Plan**](https://scryfall.com/search?q=Contentious%20Plan) — Ben took it over Dread Horde Arcanist in Showdown 1 as "a card I know is good — it's always going to do its thing." Proliferate plus cantrip is reliable blue-red value.
+- [**Callous Dismissal**](https://scryfall.com/search?q=Callous%20Dismissal) — Good blue removal/bounce for the amass decks. Ben noted it flowing to Ethan frequently, suggesting Ethan was in blue-black. Praised as a key common in Dimir.
+- [**Dread Horde Arcanist**](https://scryfall.com/search?q=Dread%20Horde%20Arcanist) — Ben initially passed it ("I don't know how you get this thing's power up in blue-red"), later noted: "I might have totally missed the boat on Dread Horde Arcanist — people whose opinion I respect have been talking about it." Recast graveyard sorceries; requires pump to go deep but two-mana sorceries are the baseline payoff.
+- [**Crush Dissent**](https://scryfall.com/search?q=Crush%20Dissent) — Counter with amass trigger. Ben ran one; called "fine" in blue-red as an on-plan counter. Better than it looks because the amass token is a real body.
 
 ### Black
-- **Ob Nixilis's Cruelty** — The best black common. Ben: "the best common in the set is in black." Ethan drafted four copies. Hit creatures, Planeswalkers, and everything in between. First-pick quality.
-- **Lazav's (?) Reaper / Lazotep Reaver** — Good two-drop in amass decks. An "aggressive two" that makes a 1/1 Zombie plus a 2/1 body. High pick in blue-black or black amass strategies.
-- **Aid the Fallen** — Ethan was repeatedly "sad" about passing it; "aid the fallen ties the deck together" once Planeswalkers are in the pile. Best in sacrifice/Planeswalker decks. Goes late but gets exponentially better with Jayas and Tibalt in deck.
-- **Herald of the Dread Horde** — Called "better than Brassicas Finisher (?) for the four-drop slot" especially with sacrifice outlets. Generates a 1/1 on death.
-- **Heartfire / Heartless Act (?)** — Ben mentioned "Heart Fire" as good in dedicated red-black sacrifice "as a one-of maybe two-of with a lot of fodder." Not highly picked early.
-- **Dread Malkin (?)** — Ethan: "I'd much rather have a Dread Malkin in [sacrifice] decks" than Mayhem Devil. A recursive threat for sacrifice.
-- **Unlikely Aid** — Called "not a good card" by Ethan and passed without hesitation. Does not fit WAR archetypes.
+- [**Ob Nixilis's Cruelty**](https://scryfall.com/search?q=Ob%20Nixilis%27s%20Cruelty) — The best black common. Ben: "the best common in the set is in black." Ethan drafted four copies. Hit creatures, Planeswalkers, and everything in between. First-pick quality.
+- [**Lazav's (?) Reaper / Lazotep Reaver**](https://scryfall.com/search?q=Lazav%27s%20%28%3F%29%20Reaper%20/%20Lazotep%20Reaver) — Good two-drop in amass decks. An "aggressive two" that makes a 1/1 Zombie plus a 2/1 body. High pick in blue-black or black amass strategies.
+- [**Aid the Fallen**](https://scryfall.com/search?q=Aid%20the%20Fallen) — Ethan was repeatedly "sad" about passing it; "aid the fallen ties the deck together" once Planeswalkers are in the pile. Best in sacrifice/Planeswalker decks. Goes late but gets exponentially better with Jayas and Tibalt in deck.
+- [**Herald of the Dread Horde**](https://scryfall.com/search?q=Herald%20of%20the%20Dread%20Horde) — Called "better than Brassicas Finisher (?) for the four-drop slot" especially with sacrifice outlets. Generates a 1/1 on death.
+- [**Heartfire / Heartless Act (?)**](https://scryfall.com/search?q=Heartfire%20/%20Heartless%20Act%20%28%3F%29) — Ben mentioned "Heart Fire" as good in dedicated red-black sacrifice "as a one-of maybe two-of with a lot of fodder." Not highly picked early.
+- [**Dread Malkin (?)**](https://scryfall.com/search?q=Dread%20Malkin%20%28%3F%29) — Ethan: "I'd much rather have a Dread Malkin in [sacrifice] decks" than Mayhem Devil. A recursive threat for sacrifice.
+- [**Unlikely Aid**](https://scryfall.com/search?q=Unlikely%20Aid) — Called "not a good card" by Ethan and passed without hesitation. Does not fit WAR archetypes.
 
 ### Red
-- **Jaya's Greeting** — "Best common in the pack" and "safe first pick." Deals four damage to a creature, leaving flexibility. Both hosts prioritized it in pack 1. The gold standard of red commons.
-- **Tibalt's Rager** — "Great" two-drop in red. Ben: "Tibalt Rager is great — we're gonna slam that into our pile." A two-drop 2/1 menace that scales with fire. Good in sacrifice and aggressive decks.
-- **Honor the God-Pharaoh** — "The perfect card for [blue-red spells]." Ethan snapped it up twice. Amass one plus draw is strong spell synergy on the trigger.
-- **Raging Kronch (?)** — Three-drop 5/4 that requires another creature to attack. Ben ran it in blue-red; he initially valued it but later was on the fence: "Is this Raging Kronch even good in the deck? I'm not convinced."
-- **Goblin Assault Team** — Solid red two-drop in sacrifice strategies. Creates tokens on ETB to sacrifice. Pairs with Crop Invader and Tibalt.
-- **Grim Initiate** — "One-drop that we want more of" in red-black sacrifice. Creates a token on death. Good sacrifice fodder. Ben wanted 1–2 copies in most red-black decks.
-- **Crop Invader / Monstrous Onslaught (?)** — "A 2/4 with double strike and threat of activation has been pretty good." Ben noted three copies in his red-black deck. Pairs well with sacrifice fodder.
-- **Mayhem Devil** — Ben: "Cool but not that important to red-black sacrifice." Ethan: "I'd much rather have Dread Malkin in those decks." Not a priority pick despite synergy.
-- **Invading Manticore** — Six-drop that creates a hasty creature when it enters. Called a "good finisher" for blue-red. One copy is "probably fine to run."
+- [**Jaya's Greeting**](https://scryfall.com/search?q=Jaya%27s%20Greeting) — "Best common in the pack" and "safe first pick." Deals four damage to a creature, leaving flexibility. Both hosts prioritized it in pack 1. The gold standard of red commons.
+- [**Tibalt's Rager**](https://scryfall.com/search?q=Tibalt%27s%20Rager) — "Great" two-drop in red. Ben: "Tibalt Rager is great — we're gonna slam that into our pile." A two-drop 2/1 menace that scales with fire. Good in sacrifice and aggressive decks.
+- [**Honor the God-Pharaoh**](https://scryfall.com/search?q=Honor%20the%20God-Pharaoh) — "The perfect card for [blue-red spells]." Ethan snapped it up twice. Amass one plus draw is strong spell synergy on the trigger.
+- [**Raging Kronch (?)**](https://scryfall.com/search?q=Raging%20Kronch%20%28%3F%29) — Three-drop 5/4 that requires another creature to attack. Ben ran it in blue-red; he initially valued it but later was on the fence: "Is this Raging Kronch even good in the deck? I'm not convinced."
+- [**Goblin Assault Team**](https://scryfall.com/search?q=Goblin%20Assault%20Team) — Solid red two-drop in sacrifice strategies. Creates tokens on ETB to sacrifice. Pairs with Crop Invader and Tibalt.
+- [**Grim Initiate**](https://scryfall.com/search?q=Grim%20Initiate) — "One-drop that we want more of" in red-black sacrifice. Creates a token on death. Good sacrifice fodder. Ben wanted 1–2 copies in most red-black decks.
+- [**Crop Invader / Monstrous Onslaught (?)**](https://scryfall.com/search?q=Crop%20Invader%20/%20Monstrous%20Onslaught%20%28%3F%29) — "A 2/4 with double strike and threat of activation has been pretty good." Ben noted three copies in his red-black deck. Pairs well with sacrifice fodder.
+- [**Mayhem Devil**](https://scryfall.com/search?q=Mayhem%20Devil) — Ben: "Cool but not that important to red-black sacrifice." Ethan: "I'd much rather have Dread Malkin in those decks." Not a priority pick despite synergy.
+- [**Invading Manticore**](https://scryfall.com/search?q=Invading%20Manticore) — Six-drop that creates a hasty creature when it enters. Called a "good finisher" for blue-red. One copy is "probably fine to run."
 
 ### Green
-- **Pollen-Brood Druid** — A two-drop that proliferates on ETB. Called "the top green common replacing Band Together" (Ben, Showdown 1). Essential in green-white proliferate. Pairs with Pledge of Unity for explosive "+2 on everything."
-- **Bloom Hulk** — A 4/4 that proliferates on ETB. Called a good common by both hosts. Pick-worthy in green especially in counter-synergy decks.
-- **Paradise Druid** — Top uncommon in green. Called "the best" in its pack. Provides any color of mana and hexproof when untapped. Enables splashes in green decks.
-- **Band Together** — Formerly "the top green common" in format; replaced by Pollen-Brood Druid. Still a high pick when present; the format's best green removal.
-- **New Horizons** — Ramp plus +1/+1 counter. Ethan took it early as fixing. Enables splashes and feeds proliferate. Good but not premium.
-- **Centaur Nurturer** — Called "good early defense" and "lets you do whatever you want." Ben ran two in his green-white deck. A three-drop that ramps and gains life.
-- **Evolution Sage** — Good in counter decks; Ethan picked it for proliferate synergy with Pledge. Requires regular land drops to proc but "sage with the two pledges and pollen-brood druid" is strong.
-- **Vivian's Grizzly (?)** — Provides a 3/3 creature with reach plus Vivian trigger to fetch a creature. Praised by Ben as "really impressive" in multiple matches.
-- **Domri Anarch of Bolas** — Rare. "Domri might be the most powerful card [in a pack with Jaya's Greeting]" but Ben took Jaya's for flexibility. Called "the more powerful card" but requiring setup.
+- [**Pollen-Brood Druid**](https://scryfall.com/search?q=Pollen-Brood%20Druid) — A two-drop that proliferates on ETB. Called "the top green common replacing Band Together" (Ben, Showdown 1). Essential in green-white proliferate. Pairs with Pledge of Unity for explosive "+2 on everything."
+- [**Bloom Hulk**](https://scryfall.com/search?q=Bloom%20Hulk) — A 4/4 that proliferates on ETB. Called a good common by both hosts. Pick-worthy in green especially in counter-synergy decks.
+- [**Paradise Druid**](https://scryfall.com/search?q=Paradise%20Druid) — Top uncommon in green. Called "the best" in its pack. Provides any color of mana and hexproof when untapped. Enables splashes in green decks.
+- [**Band Together**](https://scryfall.com/search?q=Band%20Together) — Formerly "the top green common" in format; replaced by Pollen-Brood Druid. Still a high pick when present; the format's best green removal.
+- [**New Horizons**](https://scryfall.com/search?q=New%20Horizons) — Ramp plus +1/+1 counter. Ethan took it early as fixing. Enables splashes and feeds proliferate. Good but not premium.
+- [**Centaur Nurturer**](https://scryfall.com/search?q=Centaur%20Nurturer) — Called "good early defense" and "lets you do whatever you want." Ben ran two in his green-white deck. A three-drop that ramps and gains life.
+- [**Evolution Sage**](https://scryfall.com/search?q=Evolution%20Sage) — Good in counter decks; Ethan picked it for proliferate synergy with Pledge. Requires regular land drops to proc but "sage with the two pledges and pollen-brood druid" is strong.
+- [**Vivian's Grizzly (?)**](https://scryfall.com/search?q=Vivian%27s%20Grizzly%20%28%3F%29) — Provides a 3/3 creature with reach plus Vivian trigger to fetch a creature. Praised by Ben as "really impressive" in multiple matches.
+- [**Domri Anarch of Bolas**](https://scryfall.com/search?q=Domri%20Anarch%20of%20Bolas) — Rare. "Domri might be the most powerful card [in a pack with Jaya's Greeting]" but Ben took Jaya's for flexibility. Called "the more powerful card" but requiring setup.
 
 ### Multicolor
-- **Feather the Redeemed** — "My second Charm Stray" — Ethan picked it late in pack 2 and it redirected his entire draft into red-white. "Does not come late often — late Feather is a real signal."
-- **Tenth District Legionnaire** — Red-white gold card. Premium two-drop in dedicated Feather/targeting builds. "Wheeled" in Showdown 2 as a signal red-white was open.
-- **Mayhem Devil** (see Red above, also a gold sacrifice card)
-- **Casualties of War** — Rare multicolor spell. Passed by Ethan in Showdown 2 first pick; "a fairly powerful but fairly mana-restrictive rare." Not priority for splashes.
-- **Gleaming Overseer** — Blue-black uncommon. "A great card but unfortunately we don't have fixing to splash it." Called clearly strong in Dimir.
+- [**Feather the Redeemed**](https://scryfall.com/search?q=Feather%20the%20Redeemed) — "My second Charm Stray" — Ethan picked it late in pack 2 and it redirected his entire draft into red-white. "Does not come late often — late Feather is a real signal."
+- [**Tenth District Legionnaire**](https://scryfall.com/search?q=Tenth%20District%20Legionnaire) — Red-white gold card. Premium two-drop in dedicated Feather/targeting builds. "Wheeled" in Showdown 2 as a signal red-white was open.
+- [**Mayhem Devil**](https://scryfall.com/search?q=Mayhem%20Devil) (see Red above, also a gold sacrifice card)
+- [**Casualties of War**](https://scryfall.com/search?q=Casualties%20of%20War) — Rare multicolor spell. Passed by Ethan in Showdown 2 first pick; "a fairly powerful but fairly mana-restrictive rare." Not priority for splashes.
+- [**Gleaming Overseer**](https://scryfall.com/search?q=Gleaming%20Overseer) — Blue-black uncommon. "A great card but unfortunately we don't have fixing to splash it." Called clearly strong in Dimir.
 
 ### Colorless / Artifacts
-- **Guild Globe** — "Good fixer." Both hosts took it for splash-enabling. Ben valued it in three-color builds; Ethan used one in his would-be green-white splash deck. Slightly undervalued by opponents.
-- **Karn's Bastion** — Ben ran it as a colorless land in blue-red: "if we've got enough stuff with counters, it gives our deck a little bit more late-game punch. Don't super need double-colored requirements."
-- **Mobilized District** — Ethan: "a colorless land that impacts your mana base negatively and really needs to pull its weight. I don't feel it's worth it for just a creature land. Karn's Bastion and Blast Zone are worth running; Mobilized District is not."
-- **Iron Bully** — A "colorless 2/2 that puts a counter on something." Ben noted it as potentially useful with Grateful Apparition but not a high pick. Mentioned as a late filler.
+- [**Guild Globe**](https://scryfall.com/search?q=Guild%20Globe) — "Good fixer." Both hosts took it for splash-enabling. Ben valued it in three-color builds; Ethan used one in his would-be green-white splash deck. Slightly undervalued by opponents.
+- [**Karn's Bastion**](https://scryfall.com/search?q=Karn%27s%20Bastion) — Ben ran it as a colorless land in blue-red: "if we've got enough stuff with counters, it gives our deck a little bit more late-game punch. Don't super need double-colored requirements."
+- [**Mobilized District**](https://scryfall.com/search?q=Mobilized%20District) — Ethan: "a colorless land that impacts your mana base negatively and really needs to pull its weight. I don't feel it's worth it for just a creature land. Karn's Bastion and Blast Zone are worth running; Mobilized District is not."
+- [**Iron Bully**](https://scryfall.com/search?q=Iron%20Bully) — A "colorless 2/2 that puts a counter on something." Ben noted it as potentially useful with Grateful Apparition but not a high pick. Mentioned as a late filler.
 
 ### Lands
-- **Gateway Plaza** — "A good magic card" — Ethan. Both hosts took it as free splash fixing. Enables any two-color base to splash a third.
-- **Blast Zone** — Ben: "Blast Zone is worth running as a colorless land in your deck" — higher than Mobilized District, lower than Karn's Bastion.
+- [**Gateway Plaza**](https://scryfall.com/search?q=Gateway%20Plaza) — "A good magic card" — Ethan. Both hosts took it as free splash fixing. Enables any two-color base to splash a third.
+- [**Blast Zone**](https://scryfall.com/search?q=Blast%20Zone) — Ben: "Blast Zone is worth running as a colorless land in your deck" — higher than Mobilized District, lower than Karn's Bastion.
 
 ### Rares & Bombs
-- **God-Eternal Oketra** — Ben opened her in Showdown 2. "Hashtag Princes Format but not really — this format is pretty based on Commons and uncommons and synergy." Still very strong; token-generating zombie makes amass even more threatening.
-- **Domri Anarch of Bolas** — "The more powerful card" than Jaya's Greeting but requires setup. Good in Gruul. Passed for flexibility in Showdown 1.
-- **Nissa Who Shakes the World** — Ben opened/picked her in Showdown 2. "Hashtag Princes Format" was the joking call. She won a game immediately: "one of the best" and clearly game-ending. Ethan called her "one of the best [gods/walkers] I'd be taking this over any of the other god eternals."
-- **Commence the Endgame** — Called a "na-bomb rare" (near-bomb) but actually very good in blue-red at instant speed.
-- **Ignite the Beacon** — Ben ran it in his green-white-splash deck. A five-mana tutor for two Planeswalkers. Ben said "it's a bomb, all we need is fixing." Gets better with Arlin (?) who makes Planeswalkers arrive bigger.
-- **Tammyo Collector of Tales (?)** — A four-mana Planeswalker Ethan referenced as "very impressive." Recurring gas and a strong passive ability.
-- **Bio-Essence Hydra** — Referenced in Showdown 1. "A very strong card" but "doesn't line up with Jaya's Greeting at all — requires other good cards to be good." Conditional bomb.
-- **Jaya Ballard (Jaya)** — Uncommon. Called "very strong" and picked as "best card in the pack" on pick 4. Works well with sacrifice decks and Tibalt. Ben: "Jaya is so good — now I have two good Planeswalkers to get back with Aid the Fallen."
+- [**God-Eternal Oketra**](https://scryfall.com/search?q=God-Eternal%20Oketra) — Ben opened her in Showdown 2. "Hashtag Princes Format but not really — this format is pretty based on Commons and uncommons and synergy." Still very strong; token-generating zombie makes amass even more threatening.
+- [**Domri Anarch of Bolas**](https://scryfall.com/search?q=Domri%20Anarch%20of%20Bolas) — "The more powerful card" than Jaya's Greeting but requires setup. Good in Gruul. Passed for flexibility in Showdown 1.
+- [**Nissa Who Shakes the World**](https://scryfall.com/search?q=Nissa%20Who%20Shakes%20the%20World) — Ben opened/picked her in Showdown 2. "Hashtag Princes Format" was the joking call. She won a game immediately: "one of the best" and clearly game-ending. Ethan called her "one of the best [gods/walkers] I'd be taking this over any of the other god eternals."
+- [**Commence the Endgame**](https://scryfall.com/search?q=Commence%20the%20Endgame) — Called a "na-bomb rare" (near-bomb) but actually very good in blue-red at instant speed.
+- [**Ignite the Beacon**](https://scryfall.com/search?q=Ignite%20the%20Beacon) — Ben ran it in his green-white-splash deck. A five-mana tutor for two Planeswalkers. Ben said "it's a bomb, all we need is fixing." Gets better with Arlin (?) who makes Planeswalkers arrive bigger.
+- [**Tammyo Collector of Tales (?)**](https://scryfall.com/search?q=Tammyo%20Collector%20of%20Tales%20%28%3F%29) — A four-mana Planeswalker Ethan referenced as "very impressive." Recurring gas and a strong passive ability.
+- [**Bio-Essence Hydra**](https://scryfall.com/search?q=Bio-Essence%20Hydra) — Referenced in Showdown 1. "A very strong card" but "doesn't line up with Jaya's Greeting at all — requires other good cards to be good." Conditional bomb.
+- [**Jaya Ballard (Jaya)**](https://scryfall.com/search?q=Jaya%20Ballard%20%28Jaya%29) — Uncommon. Called "very strong" and picked as "best card in the pack" on pick 4. Works well with sacrifice decks and Tibalt. Ben: "Jaya is so good — now I have two good Planeswalkers to get back with Aid the Fallen."
 
 ## Signals & seat reads
 

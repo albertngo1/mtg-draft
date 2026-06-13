@@ -71,38 +71,38 @@ The following are inferred from draft and gameplay decisions in the single video
 Only cards mentioned with an explicit evaluation are listed. This is a gameplay episode — most evaluations are pick-order implied, not stated outright.
 
 ### Blue
-- **Behold the Unspeakable** — 63.1% GIH WR (data cited in video); P1P1 quality. The drafter took it first over Spring-Leaf Avenger.
-- **Sky Turtle** — taken P1P3; enables bounce/loop synergies with Season of Renewal. High value in recursive decks.
-- **Moon-Snare Specialist** — taken over Uncharted Haven (fixing) when already blue; good blue card, not the fix.
-- **Suit Up** — "actively good," taken twice. May underperform in some matchups but a main-deck card.
-- **Futurist Sentinel** — multiple copies valued; resilient threat in the GU grindy deck. Up to 4 played.
-- **Futurist Technician** — "fine," taken over Grove Archer in one spot.
+- [**Behold the Unspeakable**](https://scryfall.com/search?q=Behold%20the%20Unspeakable) — 63.1% GIH WR (data cited in video); P1P1 quality. The drafter took it first over Spring-Leaf Avenger.
+- [**Sky Turtle**](https://scryfall.com/search?q=Sky%20Turtle) — taken P1P3; enables bounce/loop synergies with Season of Renewal. High value in recursive decks.
+- [**Moon-Snare Specialist**](https://scryfall.com/search?q=Moon-Snare%20Specialist) — taken over Uncharted Haven (fixing) when already blue; good blue card, not the fix.
+- [**Suit Up**](https://scryfall.com/search?q=Suit%20Up) — "actively good," taken twice. May underperform in some matchups but a main-deck card.
+- [**Futurist Sentinel**](https://scryfall.com/search?q=Futurist%20Sentinel) — multiple copies valued; resilient threat in the GU grindy deck. Up to 4 played.
+- [**Futurist Technician**](https://scryfall.com/search?q=Futurist%20Technician) — "fine," taken over Grove Archer in one spot.
 
 ### Green
-- **Blossom Prancer** — 65.2% GIH WR (data cited); drafter called it "insane." Best green card in this deck and possibly format.
-- **Spring-Leaf Avenger** — 60.8% GIH WR; excellent, just below Prancer. Would have been P1P1 in most other packs.
-- **Grove Archer** — "consistently impressed by archer." Two-drop that blocks, taken multiple times. Drafter took three but likely playing two main.
-- **Bearer of Memory** — "happily" taken; fine three-drop. Two drafted.
-- **Careful Cultivation** — good in the GU value/loops archetype; mana acceleration + enchantment synergy.
-- **Season of Renewal** — highly desired ("we really want to get a Season of Renewal for our turtle loops"); enables infinite-value recursion with Sky Turtle. Never saw one in the draft.
-- **Jukai Preserver** — drafter "underwhelmed" by it specifically in this deck. Not a snap include.
-- **Tails of Valakut (?)** — preferred over Jukai Preserver; "pushes us over the top a little bit." Good in this deck.
+- [**Blossom Prancer**](https://scryfall.com/search?q=Blossom%20Prancer) — 65.2% GIH WR (data cited); drafter called it "insane." Best green card in this deck and possibly format.
+- [**Spring-Leaf Avenger**](https://scryfall.com/search?q=Spring-Leaf%20Avenger) — 60.8% GIH WR; excellent, just below Prancer. Would have been P1P1 in most other packs.
+- [**Grove Archer**](https://scryfall.com/search?q=Grove%20Archer) — "consistently impressed by archer." Two-drop that blocks, taken multiple times. Drafter took three but likely playing two main.
+- [**Bearer of Memory**](https://scryfall.com/search?q=Bearer%20of%20Memory) — "happily" taken; fine three-drop. Two drafted.
+- [**Careful Cultivation**](https://scryfall.com/search?q=Careful%20Cultivation) — good in the GU value/loops archetype; mana acceleration + enchantment synergy.
+- [**Season of Renewal**](https://scryfall.com/search?q=Season%20of%20Renewal) — highly desired ("we really want to get a Season of Renewal for our turtle loops"); enables infinite-value recursion with Sky Turtle. Never saw one in the draft.
+- [**Jukai Preserver**](https://scryfall.com/search?q=Jukai%20Preserver) — drafter "underwhelmed" by it specifically in this deck. Not a snap include.
+- [**Tails of Valakut (?)**](https://scryfall.com/search?q=Tails%20of%20Valakut%20%28%3F%29) — preferred over Jukai Preserver; "pushes us over the top a little bit." Good in this deck.
 
 ### Black
-- **Reckoner's Raid** — hate-drafted twice. Flagged as too powerful to pass. Premium black card, near-bomb.
-- **Dockside Chef (?)** — mentioned briefly; not in the drafter's deck but appeared in opponent's.
+- [**Reckoner's Raid**](https://scryfall.com/search?q=Reckoner%27s%20Raid) — hate-drafted twice. Flagged as too powerful to pass. Premium black card, near-bomb.
+- [**Dockside Chef (?)**](https://scryfall.com/search?q=Dockside%20Chef%20%28%3F%29) — mentioned briefly; not in the drafter's deck but appeared in opponent's.
 
 ### Red
-- **Fable of the Mirror-Breaker (?)** — flagged as "too good, this card is too good" when considering whether to hate-draft vs. take another card. Bomb-level rare saga.
+- [**Fable of the Mirror-Breaker (?)**](https://scryfall.com/search?q=Fable%20of%20the%20Mirror-Breaker%20%28%3F%29) — flagged as "too good, this card is too good" when considering whether to hate-draft vs. take another card. Bomb-level rare saga.
 
 ### Colorless / Artifacts
-- **Automaton** — "not surprising to see automaton going late." Signals the card is not premium; low pick order.
+- [**Automaton**](https://scryfall.com/search?q=Automaton) — "not surprising to see automaton going late." Signals the card is not premium; low pick order.
 
 ### Rares & bombs
-- **Blossom Prancer** — 65.2% GIH WR; top rare/uncommon in the format at time of recording.
-- **Farewell** — bomb sweeper (exile enchantments, artifacts, graveyards — opponent had one); warps deckbuilding around it.
-- **Fable of the Mirror-Breaker (?)** — rare saga; bomb-level, drafter considered taking just to deny opponent.
-- **Reckoner's Raid** — bomb-level black rare; hate-drafted twice.
+- [**Blossom Prancer**](https://scryfall.com/search?q=Blossom%20Prancer) — 65.2% GIH WR; top rare/uncommon in the format at time of recording.
+- [**Farewell**](https://scryfall.com/search?q=Farewell) — bomb sweeper (exile enchantments, artifacts, graveyards — opponent had one); warps deckbuilding around it.
+- [**Fable of the Mirror-Breaker (?)**](https://scryfall.com/search?q=Fable%20of%20the%20Mirror-Breaker%20%28%3F%29) — rare saga; bomb-level, drafter considered taking just to deny opponent.
+- [**Reckoner's Raid**](https://scryfall.com/search?q=Reckoner%27s%20Raid) — bomb-level black rare; hate-drafted twice.
 
 ## Signals & seat reads
 

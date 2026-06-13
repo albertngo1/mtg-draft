@@ -26,10 +26,12 @@ def load_grades_any(set_code):
         if g:
             return g, label
     return {}, ""
-_GUIDE_NOTE_RX = re.compile(r"^\s*-\s*\*\*(.+?)\*\*\s*[—–-]\s*(.+?)\s*$")
+# Both regexes tolerate an optional Markdown link wrapper around the bolded card name —
+# `[**Card**](url)` (added in the Scryfall-linking pass) parses identically to plain `**Card**`.
+_GUIDE_NOTE_RX = re.compile(r"^\s*-\s*\[?\*\*(.+?)\*\*\](?:\([^)]*\))?\s*[—–-]\s*(.+?)\s*$")
 # Table form `| **Card** (parenthetical) | take | source |` — col1 bolded name, col2 the note.
 # (SOS and other guides put their Card-notes section in a per-color table, not bullets.)
-_GUIDE_TABLE_RX = re.compile(r"^\s*\|\s*\*\*(.+?)\*\*[^|]*\|\s*(.+?)\s*\|")
+_GUIDE_TABLE_RX = re.compile(r"^\s*\|\s*\[?\*\*(.+?)\*\*\](?:\([^)]*\))?[^|]*\|\s*(.+?)\s*\|")
 def load_guide_notes(set_code):
     """Per-card expert notes from draft-guides/lords-of-limited/<SET>-draft-guide.md's '## Card notes' section.
     Reads BOTH bullet rows (`- **Card** — note`) and table rows (`| **Card** | note | … |`); a guide may

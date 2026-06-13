@@ -79,79 +79,79 @@ Ranked by the most recent/settled evidence (2025-01-16 joint episode + 2025-01-0
 Later episode takes supersede earlier ones. (?) marks garbled names from auto-captions.
 
 ### White
-- **Sun Grace Pegasus** — 1/2 flyer with lifelink for 2 mana; "stars in my eyes" with auras; evasive lifelink threat that racing nearly impossible against; excellent in heroic/bestow decks (preview)
-- **Ardenvale Tactician** — 2/3 flyer for 3 with adventure "Dizzying Swoop" (1W: tap up to two creatures); heroic enabler + blocker + threat; one of Ethan's favorites; "best commons in the set" (preview)
-- **Finkleader (?)** — WW 1/1 heroic: put a +1/+1 counter on each creature you control; "counter for everybody — something I can get behind" (preview); requires heroic enablers to be live
-- **Sphere of Safety** — Defensive enchantment build-around; opponent's creatures must pay X where X is your enchantment count; Ethan excited about it as a "pillow fort" counter-strategy to the go-tall plan (preview); thin gameplay evidence
-- **Hopeful Idolon (?)** — 1/1 lifelink for 1; excellent bestow target for +1/+1 lifelink for 4; 4-mana bestow cost is the sweet spot (preview)
+- [**Sun Grace Pegasus**](https://scryfall.com/search?q=Sun%20Grace%20Pegasus) — 1/2 flyer with lifelink for 2 mana; "stars in my eyes" with auras; evasive lifelink threat that racing nearly impossible against; excellent in heroic/bestow decks (preview)
+- [**Ardenvale Tactician**](https://scryfall.com/search?q=Ardenvale%20Tactician) — 2/3 flyer for 3 with adventure "Dizzying Swoop" (1W: tap up to two creatures); heroic enabler + blocker + threat; one of Ethan's favorites; "best commons in the set" (preview)
+- [**Finkleader (?)**](https://scryfall.com/search?q=Finkleader%20%28%3F%29) — WW 1/1 heroic: put a +1/+1 counter on each creature you control; "counter for everybody — something I can get behind" (preview); requires heroic enablers to be live
+- [**Sphere of Safety**](https://scryfall.com/search?q=Sphere%20of%20Safety) — Defensive enchantment build-around; opponent's creatures must pay X where X is your enchantment count; Ethan excited about it as a "pillow fort" counter-strategy to the go-tall plan (preview); thin gameplay evidence
+- [**Hopeful Idolon (?)**](https://scryfall.com/search?q=Hopeful%20Idolon%20%28%3F%29) — 1/1 lifelink for 1; excellent bestow target for +1/+1 lifelink for 4; 4-mana bestow cost is the sweet spot (preview)
 
 ### Blue
-- **Cloudfin Raptor (?)** — 0/1 flyer with evolve for 1; grows quickly if you have varied power/toughness; "aggressive blue start" in an otherwise slow format; can become 2/3s and 3/4s in the right deck (preview)
-- **T-Crop Skirmisher (?)** — 2/1 for 2, embalm for 4; plays well with self-mill and sacrifice; "kind of annoying" with graveyard synergies; role player in many decks (preview, EA)
-- **Treasure Cruise** — Ancestral Recall at common; the format's best blue payoff; delve fueled by Undead Butler, Fagi Archaeologist (?), self-mill; Ethan: "there's always time for ancestral recall" (preview, EA)
-- **Fagi Archaeologist (?)** — Mill 3, grab a creature card from your graveyard; fuels Treasure Cruise AND triggers Cloudfin Raptor evolve; excellent engine card (preview)
-- **Jesse and Thief (?)** / **Jace's Thief (?)** — Strong if you have instants/sorceries; doesn't synergize in creature-heavy green decks; Ben passes it in most decks (Jan-09)
-- **Dinrova Horror** — 4/4 for 6: ETB bounce a permanent, that player discards a card; "big and bad" two-for-one at the top of the curve; splashable off Gates (EA draft, Jan-11)
+- [**Cloudfin Raptor (?)**](https://scryfall.com/search?q=Cloudfin%20Raptor%20%28%3F%29) — 0/1 flyer with evolve for 1; grows quickly if you have varied power/toughness; "aggressive blue start" in an otherwise slow format; can become 2/3s and 3/4s in the right deck (preview)
+- [**T-Crop Skirmisher (?)**](https://scryfall.com/search?q=T-Crop%20Skirmisher%20%28%3F%29) — 2/1 for 2, embalm for 4; plays well with self-mill and sacrifice; "kind of annoying" with graveyard synergies; role player in many decks (preview, EA)
+- [**Treasure Cruise**](https://scryfall.com/search?q=Treasure%20Cruise) — Ancestral Recall at common; the format's best blue payoff; delve fueled by Undead Butler, Fagi Archaeologist (?), self-mill; Ethan: "there's always time for ancestral recall" (preview, EA)
+- [**Fagi Archaeologist (?)**](https://scryfall.com/search?q=Fagi%20Archaeologist%20%28%3F%29) — Mill 3, grab a creature card from your graveyard; fuels Treasure Cruise AND triggers Cloudfin Raptor evolve; excellent engine card (preview)
+- [**Jesse and Thief (?)**](https://scryfall.com/search?q=Jesse%20and%20Thief%20%28%3F%29) / **Jace's Thief (?)** — Strong if you have instants/sorceries; doesn't synergize in creature-heavy green decks; Ben passes it in most decks (Jan-09)
+- [**Dinrova Horror**](https://scryfall.com/search?q=Dinrova%20Horror) — 4/4 for 6: ETB bounce a permanent, that player discards a card; "big and bad" two-for-one at the top of the curve; splashable off Gates (EA draft, Jan-11)
 
 ### Black
-- **Undead Butler** — 1/2 for 2, mills 3 on ETB, recurs a creature on death; keystone of black decks; "going to be a key common"; enables delve, exploit fodder, and recursion simultaneously (preview, EA)
-- **Heartpiercer Manticore** — 4/3 for 2RR, ETB sacrifice another creature to deal power damage to any target, has embalm; "excellent" and "this card is awesome"; sacks Undead Butler for 1 damage plus recursion loop (EA draft)
-- **Blood Tithe Harvester** — 2-mana 2/1 that makes a blood token on ETB; "rock solid two drop"; among the best Rakdos commons/uncommons (preview, Jan-11)
-- **Keepsake Gorgon** — 2/5 deathtouch for 3BB, monstrosity kills another creature; "brick wall" and "absolute banger"; holds off huge creatures then kills one via monstrosity activation; Ben responds to Ethan's early skepticism: "Keepsake Gorgon holds up!" (Jan-09)
-- **Gmag Angler (?)** — Delve 5/5 for 4BB (base cost); pairs with Undead Butler to fill the yard quickly; "big baddy with delve" (preview, EA)
-- **Cruel Revival** — Destroy non-zombie, return a zombie; Ethan's deck had 7 zombies (Butler, Butcher, Husk, Horror) making this "kill a thing, get a thing back" reliably (EA draft)
-- **Dreadbore** — 2-mana destroy creature or Planeswalker; premium removal; "downshift from rare" is a banger; "dreadbore I think is going to be so premium" because it handles large bodies (preview, EA, Jan-11)
-- **Devour Flesh** — Edict effect; generally weak but premium in PIOM for its ability to hit hexproof creatures (Glade Cover Scout) (EA draft, Jan-11)
+- [**Undead Butler**](https://scryfall.com/search?q=Undead%20Butler) — 1/2 for 2, mills 3 on ETB, recurs a creature on death; keystone of black decks; "going to be a key common"; enables delve, exploit fodder, and recursion simultaneously (preview, EA)
+- [**Heartpiercer Manticore**](https://scryfall.com/search?q=Heartpiercer%20Manticore) — 4/3 for 2RR, ETB sacrifice another creature to deal power damage to any target, has embalm; "excellent" and "this card is awesome"; sacks Undead Butler for 1 damage plus recursion loop (EA draft)
+- [**Blood Tithe Harvester**](https://scryfall.com/search?q=Blood%20Tithe%20Harvester) — 2-mana 2/1 that makes a blood token on ETB; "rock solid two drop"; among the best Rakdos commons/uncommons (preview, Jan-11)
+- [**Keepsake Gorgon**](https://scryfall.com/search?q=Keepsake%20Gorgon) — 2/5 deathtouch for 3BB, monstrosity kills another creature; "brick wall" and "absolute banger"; holds off huge creatures then kills one via monstrosity activation; Ben responds to Ethan's early skepticism: "Keepsake Gorgon holds up!" (Jan-09)
+- [**Gmag Angler (?)**](https://scryfall.com/search?q=Gmag%20Angler%20%28%3F%29) — Delve 5/5 for 4BB (base cost); pairs with Undead Butler to fill the yard quickly; "big baddy with delve" (preview, EA)
+- [**Cruel Revival**](https://scryfall.com/search?q=Cruel%20Revival) — Destroy non-zombie, return a zombie; Ethan's deck had 7 zombies (Butler, Butcher, Husk, Horror) making this "kill a thing, get a thing back" reliably (EA draft)
+- [**Dreadbore**](https://scryfall.com/search?q=Dreadbore) — 2-mana destroy creature or Planeswalker; premium removal; "downshift from rare" is a banger; "dreadbore I think is going to be so premium" because it handles large bodies (preview, EA, Jan-11)
+- [**Devour Flesh**](https://scryfall.com/search?q=Devour%20Flesh) — Edict effect; generally weak but premium in PIOM for its ability to hit hexproof creatures (Glade Cover Scout) (EA draft, Jan-11)
 
 ### Red
-- **Wild Slash** — Initial prediction: "will not be one of red's top commons" because auras/bestow/combat tricks push creatures out of 2-damage range; confirmed in gameplay: frequently too small (preview; confirmed mid-format)
-- **Coordinated Assault** — 1R instant: target two creatures get +1/+0 and first strike; triggers heroic on both; "putting money down on Coordinated Assault doing well" in heroic format (preview)
-- **Humble Defector** — 1R 2/1, tap to draw 2 and give to opponent; excellent in sacrifice shells — sack it with the trigger on stack via Heartpiercer Manticore or Nuoku Husk (?) (preview)
-- **Boundary Lands Ranger** — 2/2 for 2, rummages if you have ferocious (4+ power creature); hand-smoothing in mid-late game; underplayed (preview, EA)
+- [**Wild Slash**](https://scryfall.com/search?q=Wild%20Slash) — Initial prediction: "will not be one of red's top commons" because auras/bestow/combat tricks push creatures out of 2-damage range; confirmed in gameplay: frequently too small (preview; confirmed mid-format)
+- [**Coordinated Assault**](https://scryfall.com/search?q=Coordinated%20Assault) — 1R instant: target two creatures get +1/+0 and first strike; triggers heroic on both; "putting money down on Coordinated Assault doing well" in heroic format (preview)
+- [**Humble Defector**](https://scryfall.com/search?q=Humble%20Defector) — 1R 2/1, tap to draw 2 and give to opponent; excellent in sacrifice shells — sack it with the trigger on stack via Heartpiercer Manticore or Nuoku Husk (?) (preview)
+- [**Boundary Lands Ranger**](https://scryfall.com/search?q=Boundary%20Lands%20Ranger) — 2/2 for 2, rummages if you have ferocious (4+ power creature); hand-smoothing in mid-late game; underplayed (preview, EA)
 
 ### Green
-- **Narback Rhino (?)** / **Garback Rhino (?)** — 4/4 for 4, heroic trigger draws a card; "really powerful way to keep the gas flowing"; excellent in any green deck; one of the format's best 4-drops (preview, EA, Jan-09)
-- **Leaf Crown Dryad** — 2/2 reach for 2, bestow +2/+2 reach for 4; exemplary bestow card — cheap on both modes; "overperformer" from original Theros; works as early threat and late aura pump (preview)
-- **District Guide** — 2/2 for 3, ETB search up a land or Gate; invaluable in multi-color and Gates decks; enables Courier's Briefcase cracking and color fixing; "excellent to see" (Jan-11, Jan-20)
-- **Sky Rider Elf** — Dorks up as 3/3 for 3 if you have 2+ Gates (or casts for GG as a 2/2 then grows); Ben's primary early-curve card in blue-green; frequently cast for 4 as a 5/5; core of Simic beatdown (Jan-09)
-- **Seed Guardian** — 3/4 reach for 4, makes X/X token when it dies where X = creature cards in graveyard; great defensive threat that leaves a body; good in grindy decks (Jan-09, Jan-11)
-- **Honored Hydra** — 6/6 trample for 5G, embalm for 3G; powerful finisher; "excellent" (Jan-11, Jan-16)
-- **Voyaging Satyr** — 1/2 for 2, tap to untap a land; Ethan initially underwhelmed (wanted Gift of Paradise synergy); useful in Gates deck to untap tapped lands; Ben values it in Gates for not losing a tempo (Dec-20, Jan-09)
-- **Courier's Briefcase** — 2-mana artifact, tap and spend mana to search up a basic land or Gate; excellent in multi-color decks; enables splashing off-color bombs; "triple briefcase" valued for late-game card advantage cracking; sleeper card of the format (Dec-11, Dec-20)
-- **Catacomb Sifter** — 2/3 for 3, makes 1/1 that taps for colorless on ETB, scry 1 whenever a creature dies; "really good" value engine in black-green (Dec-11, Dec-20)
-- **Possessed Scab (?)** — Return target instant, sorcery, or creature from your graveyard to your hand; one of the best uncommons; Ethan ran 5 copies and described cutting one as Criminal; engine card for value loops (Dec-11)
-- **Progenitor Mimic** — 6-mana 6-drop, makes a copy of any creature on upkeep; "busted card"; bomb that "demands a removal spell the turn it comes down"; centerpiece of Ben's January arena open prep deck (Jan-09)
+- [**Narback Rhino (?)**](https://scryfall.com/search?q=Narback%20Rhino%20%28%3F%29) / **Garback Rhino (?)** — 4/4 for 4, heroic trigger draws a card; "really powerful way to keep the gas flowing"; excellent in any green deck; one of the format's best 4-drops (preview, EA, Jan-09)
+- [**Leaf Crown Dryad**](https://scryfall.com/search?q=Leaf%20Crown%20Dryad) — 2/2 reach for 2, bestow +2/+2 reach for 4; exemplary bestow card — cheap on both modes; "overperformer" from original Theros; works as early threat and late aura pump (preview)
+- [**District Guide**](https://scryfall.com/search?q=District%20Guide) — 2/2 for 3, ETB search up a land or Gate; invaluable in multi-color and Gates decks; enables Courier's Briefcase cracking and color fixing; "excellent to see" (Jan-11, Jan-20)
+- [**Sky Rider Elf**](https://scryfall.com/search?q=Sky%20Rider%20Elf) — Dorks up as 3/3 for 3 if you have 2+ Gates (or casts for GG as a 2/2 then grows); Ben's primary early-curve card in blue-green; frequently cast for 4 as a 5/5; core of Simic beatdown (Jan-09)
+- [**Seed Guardian**](https://scryfall.com/search?q=Seed%20Guardian) — 3/4 reach for 4, makes X/X token when it dies where X = creature cards in graveyard; great defensive threat that leaves a body; good in grindy decks (Jan-09, Jan-11)
+- [**Honored Hydra**](https://scryfall.com/search?q=Honored%20Hydra) — 6/6 trample for 5G, embalm for 3G; powerful finisher; "excellent" (Jan-11, Jan-16)
+- [**Voyaging Satyr**](https://scryfall.com/search?q=Voyaging%20Satyr) — 1/2 for 2, tap to untap a land; Ethan initially underwhelmed (wanted Gift of Paradise synergy); useful in Gates deck to untap tapped lands; Ben values it in Gates for not losing a tempo (Dec-20, Jan-09)
+- [**Courier's Briefcase**](https://scryfall.com/search?q=Courier%27s%20Briefcase) — 2-mana artifact, tap and spend mana to search up a basic land or Gate; excellent in multi-color decks; enables splashing off-color bombs; "triple briefcase" valued for late-game card advantage cracking; sleeper card of the format (Dec-11, Dec-20)
+- [**Catacomb Sifter**](https://scryfall.com/search?q=Catacomb%20Sifter) — 2/3 for 3, makes 1/1 that taps for colorless on ETB, scry 1 whenever a creature dies; "really good" value engine in black-green (Dec-11, Dec-20)
+- [**Possessed Scab (?)**](https://scryfall.com/search?q=Possessed%20Scab%20%28%3F%29) — Return target instant, sorcery, or creature from your graveyard to your hand; one of the best uncommons; Ethan ran 5 copies and described cutting one as Criminal; engine card for value loops (Dec-11)
+- [**Progenitor Mimic**](https://scryfall.com/search?q=Progenitor%20Mimic) — 6-mana 6-drop, makes a copy of any creature on upkeep; "busted card"; bomb that "demands a removal spell the turn it comes down"; centerpiece of Ben's January arena open prep deck (Jan-09)
 
 ### Multicolor
-- **Dinrova Horror** — UB 4/4 bounce + discard for 6; splashable top-end; "big and bad"; key payoff for Dimir (EA)
-- **Blood Tithe Harvester** — BR 2/1 blood token maker for 2; see Black section
-- **Dreadbore** — BR instant destroy creature or planeswalker for 2; see Black section; "downshift banger" (preview)
-- **Swift War Kite** — RB, returns a small creature temporarily on ETB; "really good" in value decks — gets back District Guide for another land fetch (Dec-11)
-- **Anax and Cymede (?)** — RW 3/2 first strike vigilance heroic — pumps your team; "would shout out" per Jan-16 joint episode
-- **Celesia Charm / Selesnya Charm** — GW instant with modes; "I'm obsessed with celesia charm in this format"; Ben considers it worth splashing; good in creature-heavy decks (Jan-09)
-- **Celestia Charm / Cenia Charm (?)** — GW modes including bounce/pump; multiple references as "really good card" (Jan-09)
+- [**Dinrova Horror**](https://scryfall.com/search?q=Dinrova%20Horror) — UB 4/4 bounce + discard for 6; splashable top-end; "big and bad"; key payoff for Dimir (EA)
+- [**Blood Tithe Harvester**](https://scryfall.com/search?q=Blood%20Tithe%20Harvester) — BR 2/1 blood token maker for 2; see Black section
+- [**Dreadbore**](https://scryfall.com/search?q=Dreadbore) — BR instant destroy creature or planeswalker for 2; see Black section; "downshift banger" (preview)
+- [**Swift War Kite**](https://scryfall.com/search?q=Swift%20War%20Kite) — RB, returns a small creature temporarily on ETB; "really good" in value decks — gets back District Guide for another land fetch (Dec-11)
+- [**Anax and Cymede (?)**](https://scryfall.com/search?q=Anax%20and%20Cymede%20%28%3F%29) — RW 3/2 first strike vigilance heroic — pumps your team; "would shout out" per Jan-16 joint episode
+- [**Celesia Charm / Selesnya Charm**](https://scryfall.com/search?q=Celesia%20Charm%20/%20Selesnya%20Charm) — GW instant with modes; "I'm obsessed with celesia charm in this format"; Ben considers it worth splashing; good in creature-heavy decks (Jan-09)
+- [**Celestia Charm / Cenia Charm (?)**](https://scryfall.com/search?q=Celestia%20Charm%20/%20Cenia%20Charm%20%28%3F%29) — GW modes including bounce/pump; multiple references as "really good card" (Jan-09)
 
 ### Colorless/Artifacts
-- **Courier's Briefcase** — See Green section; often more colorless-artifact than anything
-- **Gate Colossus** — 8/8 for 8, costs 1 less per Gate you control, unblockable by creatures with power 2 or less, recurs from graveyard when a Gate ETBs; legitimate finisher in Gates decks (Dec-11, Dec-20)
-- **Pilgrim's Eye** — 1/1 flyer for 3, ETB search basic land; "honorary land" that fixes mana and enables splashes; run like a land in multi-color decks (EA, Dec-11, Jan-09)
+- [**Courier's Briefcase**](https://scryfall.com/search?q=Courier%27s%20Briefcase) — See Green section; often more colorless-artifact than anything
+- [**Gate Colossus**](https://scryfall.com/search?q=Gate%20Colossus) — 8/8 for 8, costs 1 less per Gate you control, unblockable by creatures with power 2 or less, recurs from graveyard when a Gate ETBs; legitimate finisher in Gates decks (Dec-11, Dec-20)
+- [**Pilgrim's Eye**](https://scryfall.com/search?q=Pilgrim%27s%20Eye) — 1/1 flyer for 3, ETB search basic land; "honorary land" that fixes mana and enables splashes; run like a land in multi-color decks (EA, Dec-11, Jan-09)
 
 ### Lands / Gates
-- **Evolving Wilds** — Core fixing common; "assume it's an actual common" (preview)
-- **Courier's Briefcase** — Functions as a Gate-finder (see above)
-- **Opal Lake Gatekeepers** — 2/4 for 4, draws a card on ETB if you control 2+ Gates; value common in Gates decks (Dec-20)
-- **Ubar Gatekeepers** — Shrinks/kills a creature on ETB if you control 2+ Gates; premium removal trigger in Gates decks (preview)
-- **Gates Ablaze** — Sweeper that deals X damage where X = number of Gates you control; excellent defensive tool and "one of my favorite things to do in this format"; combo with Hornet's Nest (Jan-09)
-- **Archway Angel** — 3/4 flyer for 6, gain 3 life per Gate you control on ETB; powerful life stabilizer; good payoff for Gate-heavy decks; "exactly what we need in this deck" (Dec-20, Jan-09)
-- **Hornet's Nest** — 0/2 for 3, makes 1/1 deathtouch Insects when dealt damage; "great card with fight spells"; excellent against aggro decks; Ben: "slows down all the red based aggro decks running around" (Jan-09)
-- **Maze's End** — Colorless land, fetch a Gate on ETB, win if you control 10 differently-named Gates; "true disaster" to assemble — Ethan tried and failed to find Orzhov guildgate in Dec-20 draft; "never letting myself get pack 1 pick 1 Maze's End again" sentiment after failed attempt (Dec-20)
+- [**Evolving Wilds**](https://scryfall.com/search?q=Evolving%20Wilds) — Core fixing common; "assume it's an actual common" (preview)
+- [**Courier's Briefcase**](https://scryfall.com/search?q=Courier%27s%20Briefcase) — Functions as a Gate-finder (see above)
+- [**Opal Lake Gatekeepers**](https://scryfall.com/search?q=Opal%20Lake%20Gatekeepers) — 2/4 for 4, draws a card on ETB if you control 2+ Gates; value common in Gates decks (Dec-20)
+- [**Ubar Gatekeepers**](https://scryfall.com/search?q=Ubar%20Gatekeepers) — Shrinks/kills a creature on ETB if you control 2+ Gates; premium removal trigger in Gates decks (preview)
+- [**Gates Ablaze**](https://scryfall.com/search?q=Gates%20Ablaze) — Sweeper that deals X damage where X = number of Gates you control; excellent defensive tool and "one of my favorite things to do in this format"; combo with Hornet's Nest (Jan-09)
+- [**Archway Angel**](https://scryfall.com/search?q=Archway%20Angel) — 3/4 flyer for 6, gain 3 life per Gate you control on ETB; powerful life stabilizer; good payoff for Gate-heavy decks; "exactly what we need in this deck" (Dec-20, Jan-09)
+- [**Hornet's Nest**](https://scryfall.com/search?q=Hornet%27s%20Nest) — 0/2 for 3, makes 1/1 deathtouch Insects when dealt damage; "great card with fight spells"; excellent against aggro decks; Ben: "slows down all the red based aggro decks running around" (Jan-09)
+- [**Maze's End**](https://scryfall.com/search?q=Maze%27s%20End) — Colorless land, fetch a Gate on ETB, win if you control 10 differently-named Gates; "true disaster" to assemble — Ethan tried and failed to find Orzhov guildgate in Dec-20 draft; "never letting myself get pack 1 pick 1 Maze's End again" sentiment after failed attempt (Dec-20)
 
 ### Rares & Bombs
-- **Progenitor Mimic** — See Green section; absolute bomb (Jan-09)
-- **Dragon Lord Ojutai (?)** — 5/4 flying for 3UW, can't be countered, draws a card when it attacks unblocked; "wins so hard for us"; cornerstone of Ben's blue-green deck (Jan-09)
-- **Polukranos World Eater (?)** — 5/5 for GGGG base, monstrosity X XX; Jan-16 episode title ("Is Polukranos A Bad P1P1?") suggests mixed read; Ben took it P1P1 but notes trample is critical (needs Audacity) and "not nearly as good as in original format" (Jan-16)
-- **Garrick Apex Predator (?)** — 7-mana Planeswalker with 33 beast deathtouch maker and steal abilities; last-pick bomb; excellent in value decks that can ramp to 7 (Dec-11)
-- **Damoka (?)** — 5/7 flying lifelink hexproof for 6, opponents can't cast spells during your turn; "super bomb"; if in pack, take over Gates of Blaze even if building Gates (Jan-09)
+- [**Progenitor Mimic**](https://scryfall.com/search?q=Progenitor%20Mimic) — See Green section; absolute bomb (Jan-09)
+- [**Dragon Lord Ojutai (?)**](https://scryfall.com/search?q=Dragon%20Lord%20Ojutai%20%28%3F%29) — 5/4 flying for 3UW, can't be countered, draws a card when it attacks unblocked; "wins so hard for us"; cornerstone of Ben's blue-green deck (Jan-09)
+- [**Polukranos World Eater (?)**](https://scryfall.com/search?q=Polukranos%20World%20Eater%20%28%3F%29) — 5/5 for GGGG base, monstrosity X XX; Jan-16 episode title ("Is Polukranos A Bad P1P1?") suggests mixed read; Ben took it P1P1 but notes trample is critical (needs Audacity) and "not nearly as good as in original format" (Jan-16)
+- [**Garrick Apex Predator (?)**](https://scryfall.com/search?q=Garrick%20Apex%20Predator%20%28%3F%29) — 7-mana Planeswalker with 33 beast deathtouch maker and steal abilities; last-pick bomb; excellent in value decks that can ramp to 7 (Dec-11)
+- [**Damoka (?)**](https://scryfall.com/search?q=Damoka%20%28%3F%29) — 5/7 flying lifelink hexproof for 6, opponents can't cast spells during your turn; "super bomb"; if in pack, take over Gates of Blaze even if building Gates (Jan-09)
 
 ## Signals & seat reads
 

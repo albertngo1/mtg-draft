@@ -64,114 +64,114 @@ Episode shorthand: **show1** = M20 Showdown Video 1 (2019-08-11); **gp** = GP Ve
 
 ### White
 
-- **Raise the Alarm** — "best white common," "best common" overall in Ethan's opinion (gp). High pick. Creates two bodies that enable Griffin Protector and Inspired Charge finishers. Wheels when white is open.
-- **Griffin Protector** — solid white common, rewards going wide (gp, show1).
-- **Daybreak Chaplain** — playable one-drop but low ceiling; value depends on life-link role (gp).
-- **Griffin Sentinel** — three Griffins all made Ethan's GP deck; strong with Empyrean Eagle (gp).
-- **Inspired Charge** — powerful finisher for go-wide decks; two copies wheeled in GP Vegas, confirming open lane (gp).
-- **Inspired Captain** — fine go-wide payoff, playable but not exciting (show1).
-- **Ancestral Blade** — "very very very good," called possibly the best white uncommon by Ben (gp). Instant +1/+1 and equipment on ETB is efficient.
-- **Pacifism** — premium removal; Ben corrects himself for taking Master Splicer over Pacifism and calls it a miss pick (gp).
-- **Eternal Isolation** — sideboard-quality removal; brought in vs. Attempts (?) (gp).
-- **Devout Decree** — powerful sideboard card, not a maindeck card (show1, gp).
-- **Warden of Evos Isle** — both hosts express little enthusiasm for this card (show1).
-- **Daunting Angel** — decent pick up; goes in a white fliers deck but lower priority than the above (show1).
+- [**Raise the Alarm**](https://scryfall.com/search?q=Raise%20the%20Alarm) — "best white common," "best common" overall in Ethan's opinion (gp). High pick. Creates two bodies that enable Griffin Protector and Inspired Charge finishers. Wheels when white is open.
+- [**Griffin Protector**](https://scryfall.com/search?q=Griffin%20Protector) — solid white common, rewards going wide (gp, show1).
+- [**Daybreak Chaplain**](https://scryfall.com/search?q=Daybreak%20Chaplain) — playable one-drop but low ceiling; value depends on life-link role (gp).
+- [**Griffin Sentinel**](https://scryfall.com/search?q=Griffin%20Sentinel) — three Griffins all made Ethan's GP deck; strong with Empyrean Eagle (gp).
+- [**Inspired Charge**](https://scryfall.com/search?q=Inspired%20Charge) — powerful finisher for go-wide decks; two copies wheeled in GP Vegas, confirming open lane (gp).
+- [**Inspired Captain**](https://scryfall.com/search?q=Inspired%20Captain) — fine go-wide payoff, playable but not exciting (show1).
+- [**Ancestral Blade**](https://scryfall.com/search?q=Ancestral%20Blade) — "very very very good," called possibly the best white uncommon by Ben (gp). Instant +1/+1 and equipment on ETB is efficient.
+- [**Pacifism**](https://scryfall.com/search?q=Pacifism) — premium removal; Ben corrects himself for taking Master Splicer over Pacifism and calls it a miss pick (gp).
+- [**Eternal Isolation**](https://scryfall.com/search?q=Eternal%20Isolation) — sideboard-quality removal; brought in vs. Attempts (?) (gp).
+- [**Devout Decree**](https://scryfall.com/search?q=Devout%20Decree) — powerful sideboard card, not a maindeck card (show1, gp).
+- [**Warden of Evos Isle**](https://scryfall.com/search?q=Warden%20of%20Evos%20Isle) — both hosts express little enthusiasm for this card (show1).
+- [**Daunting Angel**](https://scryfall.com/search?q=Daunting%20Angel) — decent pick up; goes in a white fliers deck but lower priority than the above (show1).
 
 ### Blue
 
-- **Cloud-Kin Seer (?)** — Ben's P1P1 in GP Vegas. Strong uncommon/rare for blue-white or blue-based tempo; considered better than a color split early.
-- **Sleep Paralysis** — playable removal-ish; Ethan takes Pattern Matcher over it P1P2 to stay mono-blue, suggesting Sleep Paralysis is only a medium pick (gp).
-- **Empyrean Eagle** — windmill-slam in blue-white fliers; very late pick in pack 2 that locks in the blue-white strategy (gp).
-- **Pattern Matcher** — Ethan's P1P2; good when you have duplicates. The deck building payoff requires multiples of a creature (gp). Works with Griffin Sentinels.
-- **Winged Words** — card draw that goes well in a fliers deck; "much-needed card advantage" (gp).
-- **Yaro's Wave Crasher (?)** / Yargle's Wave Crasher (?) — 4/4 for 4 blue; "more powerful for 4 mana" in blue-black, but Ben calls the pack "stinky" (gp).
-- **Sage's Row Denizen** — Ethan flirts with the mill plan but repeatedly acknowledges it rarely comes together (gp). Mostly a filler 2/1.
-- **Anticipate** — meaningful enabler in Scholar of the Ages loops (gp).
-- **Frost Lynx** — Ethan comments he doesn't like it very much, then concedes it's a decent pickup (gp, show1).
-- **Boreal Elemental** — blue elemental, hard to cast; Air Elemental considered better (show1).
-- **Air Elemental** — 4/4 flier, strong standalone but color-intensive (show1).
-- **Master Splicer** — Ben took it over Pacifism and called that a mistake (gp).
+- [**Cloud-Kin Seer (?)**](https://scryfall.com/search?q=Cloud-Kin%20Seer%20%28%3F%29) — Ben's P1P1 in GP Vegas. Strong uncommon/rare for blue-white or blue-based tempo; considered better than a color split early.
+- [**Sleep Paralysis**](https://scryfall.com/search?q=Sleep%20Paralysis) — playable removal-ish; Ethan takes Pattern Matcher over it P1P2 to stay mono-blue, suggesting Sleep Paralysis is only a medium pick (gp).
+- [**Empyrean Eagle**](https://scryfall.com/search?q=Empyrean%20Eagle) — windmill-slam in blue-white fliers; very late pick in pack 2 that locks in the blue-white strategy (gp).
+- [**Pattern Matcher**](https://scryfall.com/search?q=Pattern%20Matcher) — Ethan's P1P2; good when you have duplicates. The deck building payoff requires multiples of a creature (gp). Works with Griffin Sentinels.
+- [**Winged Words**](https://scryfall.com/search?q=Winged%20Words) — card draw that goes well in a fliers deck; "much-needed card advantage" (gp).
+- [**Yaro's Wave Crasher (?)**](https://scryfall.com/search?q=Yaro%27s%20Wave%20Crasher%20%28%3F%29) / Yargle's Wave Crasher (?) — 4/4 for 4 blue; "more powerful for 4 mana" in blue-black, but Ben calls the pack "stinky" (gp).
+- [**Sage's Row Denizen**](https://scryfall.com/search?q=Sage%27s%20Row%20Denizen) — Ethan flirts with the mill plan but repeatedly acknowledges it rarely comes together (gp). Mostly a filler 2/1.
+- [**Anticipate**](https://scryfall.com/search?q=Anticipate) — meaningful enabler in Scholar of the Ages loops (gp).
+- [**Frost Lynx**](https://scryfall.com/search?q=Frost%20Lynx) — Ethan comments he doesn't like it very much, then concedes it's a decent pickup (gp, show1).
+- [**Boreal Elemental**](https://scryfall.com/search?q=Boreal%20Elemental) — blue elemental, hard to cast; Air Elemental considered better (show1).
+- [**Air Elemental**](https://scryfall.com/search?q=Air%20Elemental) — 4/4 flier, strong standalone but color-intensive (show1).
+- [**Master Splicer**](https://scryfall.com/search?q=Master%20Splicer) — Ben took it over Pacifism and called that a mistake (gp).
 
 ### Black
 
-- **Murder** — "fantastic follow-up," best black common (gp). Snap P1P2 after Disfigure.
-- **Disfigure** — Ben's P1P1 at GP Vegas over Looming Shaman. "Responsible pick" even if the shaman is tempting (gp).
-- **Agonizing Siphon** — premium common removal / burn. Ben and Ethan both note passing these feels bad (gp, show1).
-- **Gravedigger** — "awesome" two-for-one in blue-black; good with Wave Crasher recursion, Bone Clad Necromancer (gp).
-- **Blood Burglar** — Ethan specifically praises it in red-black/black aggro: "blood burglar into goblin smuggler is a nice little 2→3 hit" gaining lifelink every turn, forcing opponents to remove Smuggler first (gp).
-- **Audacious Thief** — Ethan's bread-and-butter card in black; combos with Goblin Smuggler for unblockable card draw (gp, show1).
-- **Rotting Regisaur** — Ethan goes back and forth on this card (show1). "Went up, went down, now back to B." Good in aggro (black-red/black-white where you empty your hand), bad in grindy black-green where you want cards in hand.
-- **Bone Splinters** — best black common for entering black early; don't want multiples unless you have sacrifice fodder (Sanitarium Skeleton) (show1).
-- **Blood for Bones** — nice 2-for-1, enables discard synergies with Kelton Raider (?)/Chandra's Regulator; locks you into black (show1 Ethan).
-- **Gorging Vulture** — playable in blue-black; can trade down and gains life; feeds graveyard (gp).
-- **Blood-Soaked Altar** — both hosts mention this as a significant card-disadvantage cost; only playable with Sanitarium Skeleton (gp, show1).
-- **Sanitarium Skeleton** — important combo piece with Blood-Soaked Altar and Rotting Regisaur; Ethan actively looks for them when he has discard outlets (gp).
-- **Bone Clad Necromancer** — "much better" than Gruesome Scourger; can make multiple bodies, recurs with Gravedigger and Soul Salvage (gp).
-- **Scholar of the Ages** — engine card for blue-black; loops Disfigure + Murder with Anticipate. Ben notes he took it knowing he'd "like to play" it even if blue doesn't materialize (gp). Warrants 18 lands.
-- **Fathom Fleet Cutthroat** — functional; "like a Sage's Row Denizen" but different trigger (gp).
-- **Villainous Wealth (?)** / Villus, Broker of Blood (?) — Ethan sees it, considers taking it, passes, immediately regrets it (gp).
+- [**Murder**](https://scryfall.com/search?q=Murder) — "fantastic follow-up," best black common (gp). Snap P1P2 after Disfigure.
+- [**Disfigure**](https://scryfall.com/search?q=Disfigure) — Ben's P1P1 at GP Vegas over Looming Shaman. "Responsible pick" even if the shaman is tempting (gp).
+- [**Agonizing Siphon**](https://scryfall.com/search?q=Agonizing%20Siphon) — premium common removal / burn. Ben and Ethan both note passing these feels bad (gp, show1).
+- [**Gravedigger**](https://scryfall.com/search?q=Gravedigger) — "awesome" two-for-one in blue-black; good with Wave Crasher recursion, Bone Clad Necromancer (gp).
+- [**Blood Burglar**](https://scryfall.com/search?q=Blood%20Burglar) — Ethan specifically praises it in red-black/black aggro: "blood burglar into goblin smuggler is a nice little 2→3 hit" gaining lifelink every turn, forcing opponents to remove Smuggler first (gp).
+- [**Audacious Thief**](https://scryfall.com/search?q=Audacious%20Thief) — Ethan's bread-and-butter card in black; combos with Goblin Smuggler for unblockable card draw (gp, show1).
+- [**Rotting Regisaur**](https://scryfall.com/search?q=Rotting%20Regisaur) — Ethan goes back and forth on this card (show1). "Went up, went down, now back to B." Good in aggro (black-red/black-white where you empty your hand), bad in grindy black-green where you want cards in hand.
+- [**Bone Splinters**](https://scryfall.com/search?q=Bone%20Splinters) — best black common for entering black early; don't want multiples unless you have sacrifice fodder (Sanitarium Skeleton) (show1).
+- [**Blood for Bones**](https://scryfall.com/search?q=Blood%20for%20Bones) — nice 2-for-1, enables discard synergies with Kelton Raider (?)/Chandra's Regulator; locks you into black (show1 Ethan).
+- [**Gorging Vulture**](https://scryfall.com/search?q=Gorging%20Vulture) — playable in blue-black; can trade down and gains life; feeds graveyard (gp).
+- [**Blood-Soaked Altar**](https://scryfall.com/search?q=Blood-Soaked%20Altar) — both hosts mention this as a significant card-disadvantage cost; only playable with Sanitarium Skeleton (gp, show1).
+- [**Sanitarium Skeleton**](https://scryfall.com/search?q=Sanitarium%20Skeleton) — important combo piece with Blood-Soaked Altar and Rotting Regisaur; Ethan actively looks for them when he has discard outlets (gp).
+- [**Bone Clad Necromancer**](https://scryfall.com/search?q=Bone%20Clad%20Necromancer) — "much better" than Gruesome Scourger; can make multiple bodies, recurs with Gravedigger and Soul Salvage (gp).
+- [**Scholar of the Ages**](https://scryfall.com/search?q=Scholar%20of%20the%20Ages) — engine card for blue-black; loops Disfigure + Murder with Anticipate. Ben notes he took it knowing he'd "like to play" it even if blue doesn't materialize (gp). Warrants 18 lands.
+- [**Fathom Fleet Cutthroat**](https://scryfall.com/search?q=Fathom%20Fleet%20Cutthroat) — functional; "like a Sage's Row Denizen" but different trigger (gp).
+- [**Villainous Wealth (?)**](https://scryfall.com/search?q=Villainous%20Wealth%20%28%3F%29) / Villus, Broker of Blood (?) — Ethan sees it, considers taking it, passes, immediately regrets it (gp).
 
 ### Red
 
-- **Cavalier of Flame** — clear P1P1 bomb; 6/5 haste, ETB discards and draws, dies to deal X damage equal to lands (show1). Wants you to be heavy red.
-- **Chandra's Regulator** — strong uncommon in a heavy red deck; Ben goes all-in when he opens it (show1). Weak if you're spread across colors.
-- **Goblin Smuggler** — very high pick; makes a creature unblockable until end of turn. "I blame the discord for letting everyone know how good goblin smuggler is" (show1 Ben). Combos with Pack Mastiff, Audacious Thief, Fencing Ace.
-- **Pack Mastiff** — Ben takes 5 copies across show1 draft; each one buffs all others, go-wide snowball with Goblin Smuggler. Synergy is "so good" (show1).
-- **Lavakin Brawler** — Ben takes 3; synergizes with other elementals. "3/4 for 3 red" and gets a bonus power/toughness for each elemental you control (show1).
-- **Ember Cat** — good 2-drop in red; helps cast Cavalier of Flame; synergizes as an elemental. Ben regrets not having more of these vs. Pack Mastiffs (show1).
-- **Scampering Scorcher** — excellent with triple Lavakin Brawler; haste, makes hasty tokens, all elementals (show1). Ben takes it and is happy.
-- **Infuriate** — "very good 1-mana combat trick, will almost always make the cut in my red decks" (show1 Ben). Multiple copies desirable, especially with Season of Growth.
-- **Shock** — premium common; seen very late in show1, suggesting red was contested. First-pick quality if the red seat is open.
-- **Chandra's Outrage** — one of the top 3 red commons alongside Shock and Lavakin Brawler; Ben notes he never got one despite being deep in red (show1).
-- **Flame Sweep** — sideboard card in aggro decks; Ben trusts a tweet from Venelius (?) saying always run it, then concedes it kills his own two-drops and cuts it to the side (show1). Bring in vs. go-wide opponents.
-- **Tectonic Rift** — situational closer; playable in desperate situations (show1 Ben takes it late).
-- **Rip-Scale Predator (?)** — good common finisher in mono-red; "one of the better common finishers" (show1 Ben). Takes three copies.
-- **Fencing Ace** — "awesome with smuggler" — double strike on an unblockable creature is a game-ender (show1 Ethan).
-- **Fire Elemental** — "not good but not awful"; synergizes with Lavakin Brawler but expensive (show1).
-- **Goblin Bird-Grabber** — filler flier; both hosts are reluctant to play it (show1).
+- [**Cavalier of Flame**](https://scryfall.com/search?q=Cavalier%20of%20Flame) — clear P1P1 bomb; 6/5 haste, ETB discards and draws, dies to deal X damage equal to lands (show1). Wants you to be heavy red.
+- [**Chandra's Regulator**](https://scryfall.com/search?q=Chandra%27s%20Regulator) — strong uncommon in a heavy red deck; Ben goes all-in when he opens it (show1). Weak if you're spread across colors.
+- [**Goblin Smuggler**](https://scryfall.com/search?q=Goblin%20Smuggler) — very high pick; makes a creature unblockable until end of turn. "I blame the discord for letting everyone know how good goblin smuggler is" (show1 Ben). Combos with Pack Mastiff, Audacious Thief, Fencing Ace.
+- [**Pack Mastiff**](https://scryfall.com/search?q=Pack%20Mastiff) — Ben takes 5 copies across show1 draft; each one buffs all others, go-wide snowball with Goblin Smuggler. Synergy is "so good" (show1).
+- [**Lavakin Brawler**](https://scryfall.com/search?q=Lavakin%20Brawler) — Ben takes 3; synergizes with other elementals. "3/4 for 3 red" and gets a bonus power/toughness for each elemental you control (show1).
+- [**Ember Cat**](https://scryfall.com/search?q=Ember%20Cat) — good 2-drop in red; helps cast Cavalier of Flame; synergizes as an elemental. Ben regrets not having more of these vs. Pack Mastiffs (show1).
+- [**Scampering Scorcher**](https://scryfall.com/search?q=Scampering%20Scorcher) — excellent with triple Lavakin Brawler; haste, makes hasty tokens, all elementals (show1). Ben takes it and is happy.
+- [**Infuriate**](https://scryfall.com/search?q=Infuriate) — "very good 1-mana combat trick, will almost always make the cut in my red decks" (show1 Ben). Multiple copies desirable, especially with Season of Growth.
+- [**Shock**](https://scryfall.com/search?q=Shock) — premium common; seen very late in show1, suggesting red was contested. First-pick quality if the red seat is open.
+- [**Chandra's Outrage**](https://scryfall.com/search?q=Chandra%27s%20Outrage) — one of the top 3 red commons alongside Shock and Lavakin Brawler; Ben notes he never got one despite being deep in red (show1).
+- [**Flame Sweep**](https://scryfall.com/search?q=Flame%20Sweep) — sideboard card in aggro decks; Ben trusts a tweet from Venelius (?) saying always run it, then concedes it kills his own two-drops and cuts it to the side (show1). Bring in vs. go-wide opponents.
+- [**Tectonic Rift**](https://scryfall.com/search?q=Tectonic%20Rift) — situational closer; playable in desperate situations (show1 Ben takes it late).
+- [**Rip-Scale Predator (?)**](https://scryfall.com/search?q=Rip-Scale%20Predator%20%28%3F%29) — good common finisher in mono-red; "one of the better common finishers" (show1 Ben). Takes three copies.
+- [**Fencing Ace**](https://scryfall.com/search?q=Fencing%20Ace) — "awesome with smuggler" — double strike on an unblockable creature is a game-ender (show1 Ethan).
+- [**Fire Elemental**](https://scryfall.com/search?q=Fire%20Elemental) — "not good but not awful"; synergizes with Lavakin Brawler but expensive (show1).
+- [**Goblin Bird-Grabber**](https://scryfall.com/search?q=Goblin%20Bird-Grabber) — filler flier; both hosts are reluctant to play it (show1).
 
 ### Green
 
-- **Rabid Bite** — Ben calls this his number-one common in the format at one point, above Leaf Kin Druid (show1). Works excellently with Season of Growth. Efficient removal that scales up with big creatures.
-- **Leaf Kin Druid (?)** / Leafkin Druid — high pick in green; Ben says Rabid Bite is better than it because Cavalier of Flame wants heavy red while Leafkin wants heavy green, creating tension (show1).
-- **Season of Growth** — strong synergy engine in red-green; combos with Rabid Bite and Infuriate to draw cards. Ben notes it's better in his deck than Ember Cat would have been (show1).
-- **Woodland Champion** — fine to medium; both hosts mention it but don't take it early (show1, gp).
-- **Brightwood Tracker** — mana-sink that provides card advantage; Ben cuts it to run more mountains for Chandra's Regulator (show1).
-- **Net-Caster Spider** — mentioned multiple times as a reasonable consideration but rarely taken (show1).
-- **Thrashing Brontodon** — taken late as a hate/value card; strong artifact/enchantment answer (show1 Ethan).
-- **Silverback Shaman** — Ben P1P1s a draft at GP Vegas with it from the blue perspective; solid rare/uncommon (gp).
-- **Overgrown Elemental** — Ethan passes it at GP Vegas in favor of Shared Summons; considered a second-tier pick (gp).
-- **Mammoth Spider** — playable; both hosts mention it as a consideration but filler (gp).
+- [**Rabid Bite**](https://scryfall.com/search?q=Rabid%20Bite) — Ben calls this his number-one common in the format at one point, above Leaf Kin Druid (show1). Works excellently with Season of Growth. Efficient removal that scales up with big creatures.
+- [**Leaf Kin Druid (?)**](https://scryfall.com/search?q=Leaf%20Kin%20Druid%20%28%3F%29) / Leafkin Druid — high pick in green; Ben says Rabid Bite is better than it because Cavalier of Flame wants heavy red while Leafkin wants heavy green, creating tension (show1).
+- [**Season of Growth**](https://scryfall.com/search?q=Season%20of%20Growth) — strong synergy engine in red-green; combos with Rabid Bite and Infuriate to draw cards. Ben notes it's better in his deck than Ember Cat would have been (show1).
+- [**Woodland Champion**](https://scryfall.com/search?q=Woodland%20Champion) — fine to medium; both hosts mention it but don't take it early (show1, gp).
+- [**Brightwood Tracker**](https://scryfall.com/search?q=Brightwood%20Tracker) — mana-sink that provides card advantage; Ben cuts it to run more mountains for Chandra's Regulator (show1).
+- [**Net-Caster Spider**](https://scryfall.com/search?q=Net-Caster%20Spider) — mentioned multiple times as a reasonable consideration but rarely taken (show1).
+- [**Thrashing Brontodon**](https://scryfall.com/search?q=Thrashing%20Brontodon) — taken late as a hate/value card; strong artifact/enchantment answer (show1 Ethan).
+- [**Silverback Shaman**](https://scryfall.com/search?q=Silverback%20Shaman) — Ben P1P1s a draft at GP Vegas with it from the blue perspective; solid rare/uncommon (gp).
+- [**Overgrown Elemental**](https://scryfall.com/search?q=Overgrown%20Elemental) — Ethan passes it at GP Vegas in favor of Shared Summons; considered a second-tier pick (gp).
+- [**Mammoth Spider**](https://scryfall.com/search?q=Mammoth%20Spider) — playable; both hosts mention it as a consideration but filler (gp).
 
 ### Multicolor / Gold
 
-- **Empyrean Eagle (Blue-White)** — "windmill slam" uncommon; pushes you hard into blue-white and enables multiple Griffin Sentinels (gp). Very high pick.
+- [**Empyrean Eagle (Blue-White)**](https://scryfall.com/search?q=Empyrean%20Eagle%20%28Blue-White%29) — "windmill slam" uncommon; pushes you hard into blue-white and enables multiple Griffin Sentinels (gp). Very high pick.
 
 ### Colorless / Artifacts
 
-- **Manifold Key** — "does a reasonable Goblin Smuggler impression if you don't have one" (show1 Ben); Ben cuts it after deciding Goblin Smuggler's evasion is redundant. Playable as unblockable enabler.
-- **Ancestral Blade** — see White above.
-- **Marauder's Axe** — "not great but good" in white; pairs well with Griffin Sentinels and Empyrean Eagle; makes white's weak creatures more threatening (gp).
-- **Steel Overseer** — "irreplaceable two-drop; good early and late" — Ben snaps it in his GP Vegas blue-white deck without hesitation over Sleep Paralysis (gp).
-- **Meteor Golem** — Ben takes it as a seven-drop "not afraid of seven-drops in this format"; fine top-end in a grindy deck (gp).
-- **Colossus Hammer** — "I'm never playing that" (Ethan, gp).
-- **Scuttle Mutt** — taken twice by Ethan in GP Vegas; good fixer/ramp in a two-color deck with high top-end; flexible early pick when colors aren't committed (gp).
+- [**Manifold Key**](https://scryfall.com/search?q=Manifold%20Key) — "does a reasonable Goblin Smuggler impression if you don't have one" (show1 Ben); Ben cuts it after deciding Goblin Smuggler's evasion is redundant. Playable as unblockable enabler.
+- [**Ancestral Blade**](https://scryfall.com/search?q=Ancestral%20Blade) — see White above.
+- [**Marauder's Axe**](https://scryfall.com/search?q=Marauder%27s%20Axe) — "not great but good" in white; pairs well with Griffin Sentinels and Empyrean Eagle; makes white's weak creatures more threatening (gp).
+- [**Steel Overseer**](https://scryfall.com/search?q=Steel%20Overseer) — "irreplaceable two-drop; good early and late" — Ben snaps it in his GP Vegas blue-white deck without hesitation over Sleep Paralysis (gp).
+- [**Meteor Golem**](https://scryfall.com/search?q=Meteor%20Golem) — Ben takes it as a seven-drop "not afraid of seven-drops in this format"; fine top-end in a grindy deck (gp).
+- [**Colossus Hammer**](https://scryfall.com/search?q=Colossus%20Hammer) — "I'm never playing that" (Ethan, gp).
+- [**Scuttle Mutt**](https://scryfall.com/search?q=Scuttle%20Mutt) — taken twice by Ethan in GP Vegas; good fixer/ramp in a two-color deck with high top-end; flexible early pick when colors aren't committed (gp).
 
 ### Lands
 
-- **Evolving Wilds** — very high priority for two-color decks; fixing for splashes. Ben notes five green sources (one Evolving Wilds + four Forests) is enough for three green cards (show1).
-- **Swiftwater Cliffs / Dismal Backwater** — functional tapped duals; take them when committed to the two-color pair (gp).
+- [**Evolving Wilds**](https://scryfall.com/search?q=Evolving%20Wilds) — very high priority for two-color decks; fixing for splashes. Ben notes five green sources (one Evolving Wilds + four Forests) is enough for three green cards (show1).
+- [**Swiftwater Cliffs / Dismal Backwater**](https://scryfall.com/search?q=Swiftwater%20Cliffs%20/%20Dismal%20Backwater) — functional tapped duals; take them when committed to the two-color pair (gp).
 
 ### Rares & Bombs
 
-- **Cavalier of Flame** — clear P1P1; rewards heavy red; discussed extensively (show1).
-- **Chandra's Regulator** — "quite good" if you're deep red; trash if you're splashing (show1).
-- **Empyrean Eagle** — see Multicolor. Forces you into blue-white (gp).
-- **Scholar of the Ages** — engine rare for blue-black grindy decks; Ethan builds around him (gp). With Disfigure + Murder + Soul Salvage = near-infinite value.
-- **Field of the Dead** — Ethan considers and immediately discards it as "not about that life" even at P1P6 (gp).
-- **Looming Shaman** — Ben considers but calls it irresponsible P1P1 since he's trying to win (gp).
-- **Rotting Regisaur** — rated B uncommon; Ethan oscillates on it (show1).
-- **Cavalier of Dawn** — Ben windmill-slams it as a "mythic rare" reward for being in white (gp). Context: pack 3, late pick in a GP Vegas draft.
+- [**Cavalier of Flame**](https://scryfall.com/search?q=Cavalier%20of%20Flame) — clear P1P1; rewards heavy red; discussed extensively (show1).
+- [**Chandra's Regulator**](https://scryfall.com/search?q=Chandra%27s%20Regulator) — "quite good" if you're deep red; trash if you're splashing (show1).
+- [**Empyrean Eagle**](https://scryfall.com/search?q=Empyrean%20Eagle) — see Multicolor. Forces you into blue-white (gp).
+- [**Scholar of the Ages**](https://scryfall.com/search?q=Scholar%20of%20the%20Ages) — engine rare for blue-black grindy decks; Ethan builds around him (gp). With Disfigure + Murder + Soul Salvage = near-infinite value.
+- [**Field of the Dead**](https://scryfall.com/search?q=Field%20of%20the%20Dead) — Ethan considers and immediately discards it as "not about that life" even at P1P6 (gp).
+- [**Looming Shaman**](https://scryfall.com/search?q=Looming%20Shaman) — Ben considers but calls it irresponsible P1P1 since he's trying to win (gp).
+- [**Rotting Regisaur**](https://scryfall.com/search?q=Rotting%20Regisaur) — rated B uncommon; Ethan oscillates on it (show1).
+- [**Cavalier of Dawn**](https://scryfall.com/search?q=Cavalier%20of%20Dawn) — Ben windmill-slams it as a "mythic rare" reward for being in white (gp). Context: pack 3, late pick in a GP Vegas draft.
 
 ## Signals & seat reads
 

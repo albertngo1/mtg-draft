@@ -94,74 +94,74 @@ Only non-obvious evaluations and trajectory changes are listed. Cards the hosts 
 
 | Card | Take | Source |
 |------|------|--------|
-| **Salt Road Packbeast (?)** | Best common in white. Absurdly high ceiling. **Key:** play it for as cheaply as possible (wait for cost reduction), not as quickly as possible (don't force turn 4). Miles better than comparable green three-drops. | 50t |
-| **Mardu Devotee** | Best common in white and one of the best in the format. Format-defining. Take as many as you can if you're in white-based aggro. | 50t |
-| **Storm Plane Detainment (?)** | Strong competitor for best white common (only Mardu Devotee edges it out by "public outcry"). Premium removal. | 50t |
-| **War Effort (?)** | Strong enchantment for Boros/Mardu go-wide. Designer confirmed it's "the right level of strong for a four-mana build-around." Not broken, but excellent when on plan. | EL7L8ec, nO4 |
-| **White exhale (life-gain exhale)** | Excellent splash for off-color decks; top removal even though it doesn't fit white's primary go-wide plan. The life gain is load-bearing. | 50t |
-| **Sun Pearl Kiran (?)** | Underplayed by the hosts. Does a lot: picks up Mobilize tokens, picks up sagas at chapter three. A sneaky performer. | 50t |
-| **Dalovan Encampment (?)** | Best white utility land (makes Mobilize tokens when attacking). Playable, but most utility lands are low picks in this format. | 50t |
+| [**Salt Road Packbeast (?)**](https://scryfall.com/search?q=Salt%20Road%20Packbeast%20%28%3F%29) | Best common in white. Absurdly high ceiling. **Key:** play it for as cheaply as possible (wait for cost reduction), not as quickly as possible (don't force turn 4). Miles better than comparable green three-drops. | 50t |
+| [**Mardu Devotee**](https://scryfall.com/search?q=Mardu%20Devotee) | Best common in white and one of the best in the format. Format-defining. Take as many as you can if you're in white-based aggro. | 50t |
+| [**Storm Plane Detainment (?)**](https://scryfall.com/search?q=Storm%20Plane%20Detainment%20%28%3F%29) | Strong competitor for best white common (only Mardu Devotee edges it out by "public outcry"). Premium removal. | 50t |
+| [**War Effort (?)**](https://scryfall.com/search?q=War%20Effort%20%28%3F%29) | Strong enchantment for Boros/Mardu go-wide. Designer confirmed it's "the right level of strong for a four-mana build-around." Not broken, but excellent when on plan. | EL7L8ec, nO4 |
+| [**White exhale (life-gain exhale)**](https://scryfall.com/search?q=White%20exhale%20%28life-gain%20exhale%29) | Excellent splash for off-color decks; top removal even though it doesn't fit white's primary go-wide plan. The life gain is load-bearing. | 50t |
+| [**Sun Pearl Kiran (?)**](https://scryfall.com/search?q=Sun%20Pearl%20Kiran%20%28%3F%29) | Underplayed by the hosts. Does a lot: picks up Mobilize tokens, picks up sagas at chapter three. A sneaky performer. | 50t |
+| [**Dalovan Encampment (?)**](https://scryfall.com/search?q=Dalovan%20Encampment%20%28%3F%29) | Best white utility land (makes Mobilize tokens when attacking). Playable, but most utility lands are low picks in this format. | 50t |
 
 ### Blue
 
 | Card | Take | Source |
 |------|------|--------|
-| **Sibig Appraiser (?)** | Best blue common, and clearly so. Blocks early aggression, hits land drops, finds dragons. Designer explicitly wanted it to be one of the best commons. Moved from skeptical early takes to consensus top common. | 50t, nO4 |
-| **Dispelling Exhale** | Second-best exhale in the format (behind Molten Exhale). Counter magic that scales: paying four for it was genuinely oppressive. Best with dragons for Behold discount. | 50t |
-| **Riverwalk Technique (?)** | "Imperial Oath Award" winner — clunky-looking overperformer. Best four-mana counterspell the hosts have seen in limited. Most blue decks want exactly one. | 50t |
-| **Spectral Denial (?)** | Good counter magic but below Dispelling Exhale and Riverwalk Technique. Would have been ranked #1 entering the format; finished #3. | 50t |
-| **Sonic Shrier (?)** | Premium uncommon dragon; take very early. | 50t |
-| **Jess Sky Shrine Keeper (?)** | Premium uncommon dragon; take very early. | 50t |
-| **Mering River Regent (?)** | Mythic-level rare. Ben never opened it all format and lost to it constantly. The "most obnoxious rare" on his list. | 50t |
-| **Narcissist Rebuke (?) + Focus the Mind (?)** | Individually neither is a particularly high pick; the hosts got too high on them in week one from a good early experience. Do not overvalue either in isolation. | 50t |
-| **Kisha Skimmer (?)** | Fine as a 2/2 flyer in blue-green, but never reached the power level of similar uncommons from other formats. The "graveyard matters" archetype built around it and Essence Anchor (?) fell flat. | 50t |
+| [**Sibig Appraiser (?)**](https://scryfall.com/search?q=Sibig%20Appraiser%20%28%3F%29) | Best blue common, and clearly so. Blocks early aggression, hits land drops, finds dragons. Designer explicitly wanted it to be one of the best commons. Moved from skeptical early takes to consensus top common. | 50t, nO4 |
+| [**Dispelling Exhale**](https://scryfall.com/search?q=Dispelling%20Exhale) | Second-best exhale in the format (behind Molten Exhale). Counter magic that scales: paying four for it was genuinely oppressive. Best with dragons for Behold discount. | 50t |
+| [**Riverwalk Technique (?)**](https://scryfall.com/search?q=Riverwalk%20Technique%20%28%3F%29) | "Imperial Oath Award" winner — clunky-looking overperformer. Best four-mana counterspell the hosts have seen in limited. Most blue decks want exactly one. | 50t |
+| [**Spectral Denial (?)**](https://scryfall.com/search?q=Spectral%20Denial%20%28%3F%29) | Good counter magic but below Dispelling Exhale and Riverwalk Technique. Would have been ranked #1 entering the format; finished #3. | 50t |
+| [**Sonic Shrier (?)**](https://scryfall.com/search?q=Sonic%20Shrier%20%28%3F%29) | Premium uncommon dragon; take very early. | 50t |
+| [**Jess Sky Shrine Keeper (?)**](https://scryfall.com/search?q=Jess%20Sky%20Shrine%20Keeper%20%28%3F%29) | Premium uncommon dragon; take very early. | 50t |
+| [**Mering River Regent (?)**](https://scryfall.com/search?q=Mering%20River%20Regent%20%28%3F%29) | Mythic-level rare. Ben never opened it all format and lost to it constantly. The "most obnoxious rare" on his list. | 50t |
+| [**Narcissist Rebuke (?) + Focus the Mind (?)**](https://scryfall.com/search?q=Narcissist%20Rebuke%20%28%3F%29%20%2B%20Focus%20the%20Mind%20%28%3F%29) | Individually neither is a particularly high pick; the hosts got too high on them in week one from a good early experience. Do not overvalue either in isolation. | 50t |
+| [**Kisha Skimmer (?)**](https://scryfall.com/search?q=Kisha%20Skimmer%20%28%3F%29) | Fine as a 2/2 flyer in blue-green, but never reached the power level of similar uncommons from other formats. The "graveyard matters" archetype built around it and Essence Anchor (?) fell flat. | 50t |
 
 ### Black
 
 | Card | Take | Source |
 |------|------|--------|
-| **Caustic Exhale** | Best black common, probably best black removal. Very good. | 50t |
-| **Dragons Prey (?)** | Strong competitor for best black common. Also excellent removal. | 50t |
-| **Aggressive Negotiations (?)** | A Coercion variant that was surprisingly important — and historically good (last comparable was Toll of the Invasion in WAR). Key to mid-range black decks not auto-losing to bomb rares (Urani (?), Elspeth, Mering River Regent). Take it when in black mid-range. | 50t |
-| **Worthy Cost (?)** | Sacrifice outlet that also answers planeswalkers (an important niche given the format's busted rares). Situational but real. | 50t |
-| **Feral Death Gorger (?)** | Three-mana 3/5 deathtouch common black dragon. Ben was high on it early, dialed back. Designer loves it. Beats all other dragons in combat; respectable. The exile-two-cards from graveyard mode is a "grinds my gears" complaint for Ethan — it randomly savages your Harmonize/Renew cards. | 50t, nO4 |
-| **Caustic Exhale / Dragon's Prey** | Black's best tools, but the overall black commons are weak. Ben warns you can go "deep into black" and find four atrocious cards in a pack. Avoid unless hooked on gold cards or rare power. | 50t |
+| [**Caustic Exhale**](https://scryfall.com/search?q=Caustic%20Exhale) | Best black common, probably best black removal. Very good. | 50t |
+| [**Dragons Prey (?)**](https://scryfall.com/search?q=Dragons%20Prey%20%28%3F%29) | Strong competitor for best black common. Also excellent removal. | 50t |
+| [**Aggressive Negotiations (?)**](https://scryfall.com/search?q=Aggressive%20Negotiations%20%28%3F%29) | A Coercion variant that was surprisingly important — and historically good (last comparable was Toll of the Invasion in WAR). Key to mid-range black decks not auto-losing to bomb rares (Urani (?), Elspeth, Mering River Regent). Take it when in black mid-range. | 50t |
+| [**Worthy Cost (?)**](https://scryfall.com/search?q=Worthy%20Cost%20%28%3F%29) | Sacrifice outlet that also answers planeswalkers (an important niche given the format's busted rares). Situational but real. | 50t |
+| [**Feral Death Gorger (?)**](https://scryfall.com/search?q=Feral%20Death%20Gorger%20%28%3F%29) | Three-mana 3/5 deathtouch common black dragon. Ben was high on it early, dialed back. Designer loves it. Beats all other dragons in combat; respectable. The exile-two-cards from graveyard mode is a "grinds my gears" complaint for Ethan — it randomly savages your Harmonize/Renew cards. | 50t, nO4 |
+| [**Caustic Exhale / Dragon's Prey**](https://scryfall.com/search?q=Caustic%20Exhale%20/%20Dragon%27s%20Prey) | Black's best tools, but the overall black commons are weak. Ben warns you can go "deep into black" and find four atrocious cards in a pack. Avoid unless hooked on gold cards or rare power. | 50t |
 
 ### Red
 
 | Card | Take | Source |
 |------|------|--------|
-| **Molten Exhale** | Best exhale in the format, best red common. A+. | 50t |
-| **Jeskai Devotee** | "Golden Egg Award" — the common that glued the most archetypes together. The single card whose pick value rose the most over the format. Manifixes (!) and flexes across Boros, Jeskai control, Jeskai tempo, RG aggro. Take as many as you can in any red deck. Also causes annoying Arena pauses as opponents wonder "what's that single red mana?" | 50t |
-| **Shock Brigade (?)** | Premium 1-drop. Designer specifically said he would not nerf it. Take highly in Boros/Mardu. | nO4 |
-| **Seize Opportunity (?)** | Red card-advantage spell ("Elkin Bottle (?)"). Real card in the format. | nO4 |
-| **Wild Ride** | Narrow "give biggest creature haste, sacrifice at end of turn" effect. Best in: Jeskai tempo with Wingblade Disciple, or as a combo with Meticulous Artisan (?) for "cast on turn 4, attack for 7/4 haste"). Not a build-around but a real role-player in its correct home. The designer was worried about it being broken — glad it was not. | 50t, WPizty |
-| **Channel Dragonfire (?)** | Underperformed. Sorcery speed means you cannot steal a playback; the 1-mana deal-2 is frequently embarrassed by toughness-3 bodies. | 50t |
-| **Breaching Dragon Storm (?)** | Looked like a "random cascade" throwaway. Was actually rock-solid in the right dragons deck. One of the format's cards that "usually is bad, but wasn't." | 50t |
-| **Coreway Mountain Stalwart (?)** | Good in Jeskai mid-range low-curve double-spell decks. Undervalued by the market. | 50t |
+| [**Molten Exhale**](https://scryfall.com/search?q=Molten%20Exhale) | Best exhale in the format, best red common. A+. | 50t |
+| [**Jeskai Devotee**](https://scryfall.com/search?q=Jeskai%20Devotee) | "Golden Egg Award" — the common that glued the most archetypes together. The single card whose pick value rose the most over the format. Manifixes (!) and flexes across Boros, Jeskai control, Jeskai tempo, RG aggro. Take as many as you can in any red deck. Also causes annoying Arena pauses as opponents wonder "what's that single red mana?" | 50t |
+| [**Shock Brigade (?)**](https://scryfall.com/search?q=Shock%20Brigade%20%28%3F%29) | Premium 1-drop. Designer specifically said he would not nerf it. Take highly in Boros/Mardu. | nO4 |
+| [**Seize Opportunity (?)**](https://scryfall.com/search?q=Seize%20Opportunity%20%28%3F%29) | Red card-advantage spell ("Elkin Bottle (?)"). Real card in the format. | nO4 |
+| [**Wild Ride**](https://scryfall.com/search?q=Wild%20Ride) | Narrow "give biggest creature haste, sacrifice at end of turn" effect. Best in: Jeskai tempo with Wingblade Disciple, or as a combo with Meticulous Artisan (?) for "cast on turn 4, attack for 7/4 haste"). Not a build-around but a real role-player in its correct home. The designer was worried about it being broken — glad it was not. | 50t, WPizty |
+| [**Channel Dragonfire (?)**](https://scryfall.com/search?q=Channel%20Dragonfire%20%28%3F%29) | Underperformed. Sorcery speed means you cannot steal a playback; the 1-mana deal-2 is frequently embarrassed by toughness-3 bodies. | 50t |
+| [**Breaching Dragon Storm (?)**](https://scryfall.com/search?q=Breaching%20Dragon%20Storm%20%28%3F%29) | Looked like a "random cascade" throwaway. Was actually rock-solid in the right dragons deck. One of the format's cards that "usually is bad, but wasn't." | 50t |
+| [**Coreway Mountain Stalwart (?)**](https://scryfall.com/search?q=Coreway%20Mountain%20Stalwart%20%28%3F%29) | Good in Jeskai mid-range low-curve double-spell decks. Undervalued by the market. | 50t |
 
 ### Green
 
 | Card | Take | Source |
 |------|------|--------|
-| **Sagu Wildling (?)** | Best green common. Clearly ahead of Inoch Wayfairer (?) for the hosts; team Wildling firmly established late-format. | 50t |
-| **Champion of Ducson (?)** | Teal-green (?) 4/2 trample; Renew it from graveyard to put a +1/+1 counter + trample on a creature. The best non-rare Renew cost in the format. Sleeper early in the format, now caught up. Best offramp for green decks cut from soup. | 50t |
-| **Snakeskin Veil** | Powerhouse in a bomb-heavy format. One-mana hexproof protects your threats, counters exhales with pure efficiency. Ethan's renaissance card of the format — took him a long time to accept combat tricks, now "primo primo." | 50t |
-| **Dragon Storm Globe** | The Manalith variant that was actually excellent. Key enabler for the dragon soup deck; accelerates mana, fixes colors, a payoff in dragons decks via its own dragon synergy. Low pick early in the format → consensus first-tier role-player. | 50t |
-| **Rhor's Routine (?)** | Three-mana rampant growth. Not bad but clearly below Dragon Storm Globe in the ramp slot; would rather have a Globe in the dragon soup deck. | 50t |
-| **Inoch Wayfairer (?)** | Hyped in the preview/early-access episodes as a premium fixer. Settled as mediocre. *Superseded* — do not take highly on the basis of early takes. | EL7L8ec |
-| **Saron's Resolve (?)** | Excellent modal combat trick in green. "+3/+3 or destroy a flyer" was relevant enough that it was borderline worth playing even in decks that don't want tricks; closest thing to Plummet + Giant Growth in one. | 50t |
-| **Snowmelt Stag (?)** | *Superseded* — heavily hyped in preview, settled at replacement level by week one. | EL7L8ec |
+| [**Sagu Wildling (?)**](https://scryfall.com/search?q=Sagu%20Wildling%20%28%3F%29) | Best green common. Clearly ahead of Inoch Wayfairer (?) for the hosts; team Wildling firmly established late-format. | 50t |
+| [**Champion of Ducson (?)**](https://scryfall.com/search?q=Champion%20of%20Ducson%20%28%3F%29) | Teal-green (?) 4/2 trample; Renew it from graveyard to put a +1/+1 counter + trample on a creature. The best non-rare Renew cost in the format. Sleeper early in the format, now caught up. Best offramp for green decks cut from soup. | 50t |
+| [**Snakeskin Veil**](https://scryfall.com/search?q=Snakeskin%20Veil) | Powerhouse in a bomb-heavy format. One-mana hexproof protects your threats, counters exhales with pure efficiency. Ethan's renaissance card of the format — took him a long time to accept combat tricks, now "primo primo." | 50t |
+| [**Dragon Storm Globe**](https://scryfall.com/search?q=Dragon%20Storm%20Globe) | The Manalith variant that was actually excellent. Key enabler for the dragon soup deck; accelerates mana, fixes colors, a payoff in dragons decks via its own dragon synergy. Low pick early in the format → consensus first-tier role-player. | 50t |
+| [**Rhor's Routine (?)**](https://scryfall.com/search?q=Rhor%27s%20Routine%20%28%3F%29) | Three-mana rampant growth. Not bad but clearly below Dragon Storm Globe in the ramp slot; would rather have a Globe in the dragon soup deck. | 50t |
+| [**Inoch Wayfairer (?)**](https://scryfall.com/search?q=Inoch%20Wayfairer%20%28%3F%29) | Hyped in the preview/early-access episodes as a premium fixer. Settled as mediocre. *Superseded* — do not take highly on the basis of early takes. | EL7L8ec |
+| [**Saron's Resolve (?)**](https://scryfall.com/search?q=Saron%27s%20Resolve%20%28%3F%29) | Excellent modal combat trick in green. "+3/+3 or destroy a flyer" was relevant enough that it was borderline worth playing even in decks that don't want tricks; closest thing to Plummet + Giant Growth in one. | 50t |
+| [**Snowmelt Stag (?)**](https://scryfall.com/search?q=Snowmelt%20Stag%20%28%3F%29) | *Superseded* — heavily hyped in preview, settled at replacement level by week one. | EL7L8ec |
 
 ### Multi-color / Colorless
 
 | Card | Take | Source |
 |------|------|--------|
-| **Dragon Storm Forecaster (?)** | "Looked cute, was actually excellent" in the five-color soup deck with Dragon Storm Globes. Ideal configuration: ~2 Forecasters, 2 Globes, 2 Boulderorn Dragons. Not a synergy engine so much as a density play — each piece is independently strong. | 50t |
-| **Boulderorn Dragon (?)** | Excellent role-player as the 22nd–23rd card in dragon soup; enters as a 4/4 off the Forecaster or a 5/5 off a Globe. Looks underpowered; plays strong. | 50t |
-| **Monuments (cycle)** | Good mana-fixing and color-filtering. Ranked: Mardu 1st, Jeskai 2nd, Sultai 3rd, Teamer 4th, Abzan 5th. Not game-winners. The hosts entered the format overrating them and settled on: take for fixing, never take highly. | 50t |
-| **Devotees (cycle)** | Mana-fixing creatures. Mardu Devotee is the best (top common), Jeskai Devotee is the golden-egg glue. **Teamer Devotee: do not play it.** The format's biggest "C-minus stat, why do you hate it?" debate — but the 50t episode is unequivocal: it is not good; stop putting it in your decks. | 50t |
-| **Coreway Mountain Monastery (?)** | Best rare utility land and it's not close. Jeskai control's card-engine in the late game. A real reason to draft a control deck. Most other utility lands are irrelevant (take-aways: utility lands largely dead in this power era). | 50t |
+| [**Dragon Storm Forecaster (?)**](https://scryfall.com/search?q=Dragon%20Storm%20Forecaster%20%28%3F%29) | "Looked cute, was actually excellent" in the five-color soup deck with Dragon Storm Globes. Ideal configuration: ~2 Forecasters, 2 Globes, 2 Boulderorn Dragons. Not a synergy engine so much as a density play — each piece is independently strong. | 50t |
+| [**Boulderorn Dragon (?)**](https://scryfall.com/search?q=Boulderorn%20Dragon%20%28%3F%29) | Excellent role-player as the 22nd–23rd card in dragon soup; enters as a 4/4 off the Forecaster or a 5/5 off a Globe. Looks underpowered; plays strong. | 50t |
+| [**Monuments (cycle)**](https://scryfall.com/search?q=Monuments%20%28cycle%29) | Good mana-fixing and color-filtering. Ranked: Mardu 1st, Jeskai 2nd, Sultai 3rd, Teamer 4th, Abzan 5th. Not game-winners. The hosts entered the format overrating them and settled on: take for fixing, never take highly. | 50t |
+| [**Devotees (cycle)**](https://scryfall.com/search?q=Devotees%20%28cycle%29) | Mana-fixing creatures. Mardu Devotee is the best (top common), Jeskai Devotee is the golden-egg glue. **Teamer Devotee: do not play it.** The format's biggest "C-minus stat, why do you hate it?" debate — but the 50t episode is unequivocal: it is not good; stop putting it in your decks. | 50t |
+| [**Coreway Mountain Monastery (?)**](https://scryfall.com/search?q=Coreway%20Mountain%20Monastery%20%28%3F%29) | Best rare utility land and it's not close. Jeskai control's card-engine in the late game. A real reason to draft a control deck. Most other utility lands are irrelevant (take-aways: utility lands largely dead in this power era). | 50t |
 
 ## Draft signals
 

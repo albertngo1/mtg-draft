@@ -78,122 +78,122 @@ Grades in plain words. Episode shorthand: **50t**=schools-out-for-summer (50 tak
 ### White (W)
 | Card | Take | Source |
 |------|------|--------|
-| **Elite Interceptor** | Top-tier common / "premier common." 1-drop that draws + disrupts; poster child for midrange. Over-performed everywhere. | 50t, 478, soup, early, bw, pre |
-| **Quillblade Laureate** (prepared, +1/+1 & double strike) | Top-3 white uncommon. Repeatable, great Repartee enabler + sandbag finisher; happily take multiples. | bw, pre, 478 |
-| **Eager Glyph Mage** (3-mana, brings a 1/1 flyer) | OVER-RATED, near last-pick (retro 06-01) — *superseded* its prerelease 04-13 / bw 04-16 billing as a powerhouse. The "can't believe it isn't great" white card. (Ben mild defender.) | 50t, SOS-draft, bw, pre |
-| **Scolding Administrator** (WB 2-drop that grows) | Good — grows out of burn range; fits the assertive plan. | 478, pre |
-| **Scheming Silverquill** | Solid value/card-advantage piece for the assertive deck. | 478 |
-| **Stirring Honormancer** | Card-advantage piece for the assertive/midrange deck. | 478 |
-| **Ascendant Dust Speaker** (3/4 flyer, exiles graveyard cards each combat) | UNDER-RATED, big mover-up. A "Rooftop Percher of the set" — filler-plus that's always good; wrecks graveyard/flashback plans; must be answered. (Some notes call it Ascendant Spirit Speaker — same card.) | 50t, SOS-draft |
-| **Ajani's Response** (cost-reduced removal) | Filler interaction; moves down unless a 4c control deck. Solid but not a high pick. | bw, early, pre |
-| **Repel Calamity** (destroy creature power/toughness 4+) | UNDER-whelmed. Conditional, fine not high (only in early-access bw 04-16 / lore 04-17 — may be stale). | bw, lore |
-| **Studious First Year** (G — listed W in some notes; it's the prepared Rampant Growth) | See Green. | — |
-| **Practiced Scrollsmith** (RW, 5-mana, leaves-graveyard payoff) | Good payoff density for Lorehold; rated above competing 5-mana enchantments. | lore, pre, 479 |
+| [**Elite Interceptor**](https://scryfall.com/search?q=Elite%20Interceptor) | Top-tier common / "premier common." 1-drop that draws + disrupts; poster child for midrange. Over-performed everywhere. | 50t, 478, soup, early, bw, pre |
+| [**Quillblade Laureate**](https://scryfall.com/search?q=Quillblade%20Laureate) (prepared, +1/+1 & double strike) | Top-3 white uncommon. Repeatable, great Repartee enabler + sandbag finisher; happily take multiples. | bw, pre, 478 |
+| [**Eager Glyph Mage**](https://scryfall.com/search?q=Eager%20Glyph%20Mage) (3-mana, brings a 1/1 flyer) | OVER-RATED, near last-pick (retro 06-01) — *superseded* its prerelease 04-13 / bw 04-16 billing as a powerhouse. The "can't believe it isn't great" white card. (Ben mild defender.) | 50t, SOS-draft, bw, pre |
+| [**Scolding Administrator**](https://scryfall.com/search?q=Scolding%20Administrator) (WB 2-drop that grows) | Good — grows out of burn range; fits the assertive plan. | 478, pre |
+| [**Scheming Silverquill**](https://scryfall.com/search?q=Scheming%20Silverquill) | Solid value/card-advantage piece for the assertive deck. | 478 |
+| [**Stirring Honormancer**](https://scryfall.com/search?q=Stirring%20Honormancer) | Card-advantage piece for the assertive/midrange deck. | 478 |
+| [**Ascendant Dust Speaker**](https://scryfall.com/search?q=Ascendant%20Dust%20Speaker) (3/4 flyer, exiles graveyard cards each combat) | UNDER-RATED, big mover-up. A "Rooftop Percher of the set" — filler-plus that's always good; wrecks graveyard/flashback plans; must be answered. (Some notes call it Ascendant Spirit Speaker — same card.) | 50t, SOS-draft |
+| [**Ajani's Response**](https://scryfall.com/search?q=Ajani%27s%20Response) (cost-reduced removal) | Filler interaction; moves down unless a 4c control deck. Solid but not a high pick. | bw, early, pre |
+| [**Repel Calamity**](https://scryfall.com/search?q=Repel%20Calamity) (destroy creature power/toughness 4+) | UNDER-whelmed. Conditional, fine not high (only in early-access bw 04-16 / lore 04-17 — may be stale). | bw, lore |
+| [**Studious First Year**](https://scryfall.com/search?q=Studious%20First%20Year) (G — listed W in some notes; it's the prepared Rampant Growth) | See Green. | — |
+| [**Practiced Scrollsmith**](https://scryfall.com/search?q=Practiced%20Scrollsmith) (RW, 5-mana, leaves-graveyard payoff) | Good payoff density for Lorehold; rated above competing 5-mana enchantments. | lore, pre, 479 |
 
 ### Blue (U)
 | Card | Take | Source |
 |------|------|--------|
-| **Render Speechless** | UNDER-RATED, biggest mover-up (confirmed 06-01 retro). **Best non-rare answer to soup** — counter + hand peek + team pump + push damage. Bridges value & off-balance plans. (Wish it exiled.) | 50t, SOS-draft, 478, lore |
-| **Disdainful Stroke** (bonus sheet) | Excellent vs. soup; mystical archive over-performer. Great in late-game mirror, liability vs. aggro. | 50t, 478, soup |
-| **Spell Pierce** (bonus sheet) | Cheap interaction that shines vs. soup's expensive removal. | 50t, soup |
-| **Essence Scatter** | Solid counter; sequence around it, don't pass to it (478 05-11). The prerelease 04-13 "high creature counts" hype was tempered once games proved low-creature — *moderated*, not broken. | pre, 478, early |
-| **Exhibition Tide-Hauler** (0/2, mill 3 on cast / mill 10 if MV5+; aka "Tide Holler" / "Tidecaller") | One of the best soup endgame cards; arguably P1P1-level, close to Snarl Song. Don't run out T1 — time as a must-answer threat. | 479, soup, 50t |
-| **Campus Composer** (3/4 ward 2, prepared 5-mana make a 3/3 flyer) | OVER-RATED (retro 06-01) — *superseded* the prerelease 04-13 read that it looked great. The "can't believe it isn't great" blue card. | 50t, pre |
-| **Run Behind** (bounce) | Fine bounce; good vs. fractals. Banishing Betrayal (see B/Multi) often preferred for being cheaper. | 50t, early, pre |
-| **Brush Off** (Negate-plus, costs less vs. instant/sorcery) | Biggest mover-up for soup mirrors per soup ep; counters real spells too. | soup |
-| **Encouraging Aviator** (2U flyer, bankable jump) | Good — repeatable Opus trigger in Prismari; "asks nothing, does a lot." | early, pre |
-| **Orisa Tide Choreographer** | NOT Mulldrifter; closer to (and maybe worse than) Landscape Painter. Modest. | 50t |
-| **Visionary's Dance** (UR common: 2-mana discard/dig + later 5BR make two 3/3s) | UNDER-RATED clunky over-performer. Both halves great; value rises with rebuy (Wisdom of Ages). One of few cards whose value changes mid-draft. | 50t, 479, soup |
+| [**Render Speechless**](https://scryfall.com/search?q=Render%20Speechless) | UNDER-RATED, biggest mover-up (confirmed 06-01 retro). **Best non-rare answer to soup** — counter + hand peek + team pump + push damage. Bridges value & off-balance plans. (Wish it exiled.) | 50t, SOS-draft, 478, lore |
+| [**Disdainful Stroke**](https://scryfall.com/search?q=Disdainful%20Stroke) (bonus sheet) | Excellent vs. soup; mystical archive over-performer. Great in late-game mirror, liability vs. aggro. | 50t, 478, soup |
+| [**Spell Pierce**](https://scryfall.com/search?q=Spell%20Pierce) (bonus sheet) | Cheap interaction that shines vs. soup's expensive removal. | 50t, soup |
+| [**Essence Scatter**](https://scryfall.com/search?q=Essence%20Scatter) | Solid counter; sequence around it, don't pass to it (478 05-11). The prerelease 04-13 "high creature counts" hype was tempered once games proved low-creature — *moderated*, not broken. | pre, 478, early |
+| [**Exhibition Tide-Hauler**](https://scryfall.com/search?q=Exhibition%20Tide-Hauler) (0/2, mill 3 on cast / mill 10 if MV5+; aka "Tide Holler" / "Tidecaller") | One of the best soup endgame cards; arguably P1P1-level, close to Snarl Song. Don't run out T1 — time as a must-answer threat. | 479, soup, 50t |
+| [**Campus Composer**](https://scryfall.com/search?q=Campus%20Composer) (3/4 ward 2, prepared 5-mana make a 3/3 flyer) | OVER-RATED (retro 06-01) — *superseded* the prerelease 04-13 read that it looked great. The "can't believe it isn't great" blue card. | 50t, pre |
+| [**Run Behind**](https://scryfall.com/search?q=Run%20Behind) (bounce) | Fine bounce; good vs. fractals. Banishing Betrayal (see B/Multi) often preferred for being cheaper. | 50t, early, pre |
+| [**Brush Off**](https://scryfall.com/search?q=Brush%20Off) (Negate-plus, costs less vs. instant/sorcery) | Biggest mover-up for soup mirrors per soup ep; counters real spells too. | soup |
+| [**Encouraging Aviator**](https://scryfall.com/search?q=Encouraging%20Aviator) (2U flyer, bankable jump) | Good — repeatable Opus trigger in Prismari; "asks nothing, does a lot." | early, pre |
+| [**Orisa Tide Choreographer**](https://scryfall.com/search?q=Orisa%20Tide%20Choreographer) | NOT Mulldrifter; closer to (and maybe worse than) Landscape Painter. Modest. | 50t |
+| [**Visionary's Dance**](https://scryfall.com/search?q=Visionary%27s%20Dance) (UR common: 2-mana discard/dig + later 5BR make two 3/3s) | UNDER-RATED clunky over-performer. Both halves great; value rises with rebuy (Wisdom of Ages). One of few cards whose value changes mid-draft. | 50t, 479, soup |
 
 ### Black (B)
 | Card | Take | Source |
 |------|------|--------|
-| **Cost of Brilliance** | Excellent for **aggressive black** (Silverquill/Witherbloom midrange) — draws + counter + Repartee triggers; keeps aggro from running out of gas. **Bad in soup/control** (better card draw exists). Better than Killian's Confidence. | 50t, SOS-draft, 479, 478, 477 |
-| **Last Gasp** (-3/-3) | Premium cheap in-color removal; great for converge/Witherbloom. | early, pre, 477 |
-| **Arcane Omens** (Converge discard; "Mind Twist back") | UNDER-RATED. 5-mana discard 3 is good; discard 5 is broken. Snap-concede card. Speculate late to keep Converge alive. | 50t, 479, soup |
-| **Eternal Student** (4/2 reanimate / makes 1/1 flyers at instant speed) | **TRAP (confirmed 06-01 retro, called every episode from soup 04-27 on) — *superseded* the prerelease 04-13 / early 04-20 "broken" prediction.** "Great Magic card that's homeless" — too small-ball for a format where midrange is dead. Its badness *defines* the format. Take format-relevant cards over it. | 50t, SOS-draft, 477, soup; (over-hyped at: early, pre) |
-| **Wander Off** (3B exile a creature) | Solid exile removal (matters vs. recursion). | early, pre, bw |
-| **Cheerful Osteomancer** (4-mana 4/2 gravedigger) | UNDER-performed — black wasn't a creature-focused late-game base; ended up filler. | 50t |
-| **Necroscribe / Forum Necroscribe** | Engine under-performed in soup (not creature-focused), BUT Forum Necroscribe is a strong **Witherbloom top-end** — take over Noxious Newt. | 50t, 477 |
-| **Send in the Pest** (Virus Beetle variant) | TERRIBLE — "worst Virus Beetle we've seen." Wants a small game; games went huge. | 50t |
-| **Bitter Triumph** | Cheap black removal in the answer-density pool. | SOS-draft |
-| **Mind Rot** (1BG, discard 2 + ramp a land) | Decent Witherbloom pull (B-); good 2-drop→Mind Rot→threats curve (only in pre 04-13 / early 04-20 — may be stale, and Witherbloom finished last). | early, pre |
-| **Decorum Dissertation** (black Paradigm — draw 2/lose 2 each turn) | WEAKER paradigm; can backfire vs. lifegain. You don't have to keep casting paradigms. | 477, 50t |
+| [**Cost of Brilliance**](https://scryfall.com/search?q=Cost%20of%20Brilliance) | Excellent for **aggressive black** (Silverquill/Witherbloom midrange) — draws + counter + Repartee triggers; keeps aggro from running out of gas. **Bad in soup/control** (better card draw exists). Better than Killian's Confidence. | 50t, SOS-draft, 479, 478, 477 |
+| [**Last Gasp**](https://scryfall.com/search?q=Last%20Gasp) (-3/-3) | Premium cheap in-color removal; great for converge/Witherbloom. | early, pre, 477 |
+| [**Arcane Omens**](https://scryfall.com/search?q=Arcane%20Omens) (Converge discard; "Mind Twist back") | UNDER-RATED. 5-mana discard 3 is good; discard 5 is broken. Snap-concede card. Speculate late to keep Converge alive. | 50t, 479, soup |
+| [**Eternal Student**](https://scryfall.com/search?q=Eternal%20Student) (4/2 reanimate / makes 1/1 flyers at instant speed) | **TRAP (confirmed 06-01 retro, called every episode from soup 04-27 on) — *superseded* the prerelease 04-13 / early 04-20 "broken" prediction.** "Great Magic card that's homeless" — too small-ball for a format where midrange is dead. Its badness *defines* the format. Take format-relevant cards over it. | 50t, SOS-draft, 477, soup; (over-hyped at: early, pre) |
+| [**Wander Off**](https://scryfall.com/search?q=Wander%20Off) (3B exile a creature) | Solid exile removal (matters vs. recursion). | early, pre, bw |
+| [**Cheerful Osteomancer**](https://scryfall.com/search?q=Cheerful%20Osteomancer) (4-mana 4/2 gravedigger) | UNDER-performed — black wasn't a creature-focused late-game base; ended up filler. | 50t |
+| [**Necroscribe / Forum Necroscribe**](https://scryfall.com/search?q=Necroscribe%20/%20Forum%20Necroscribe) | Engine under-performed in soup (not creature-focused), BUT Forum Necroscribe is a strong **Witherbloom top-end** — take over Noxious Newt. | 50t, 477 |
+| [**Send in the Pest**](https://scryfall.com/search?q=Send%20in%20the%20Pest) (Virus Beetle variant) | TERRIBLE — "worst Virus Beetle we've seen." Wants a small game; games went huge. | 50t |
+| [**Bitter Triumph**](https://scryfall.com/search?q=Bitter%20Triumph) | Cheap black removal in the answer-density pool. | SOS-draft |
+| [**Mind Rot**](https://scryfall.com/search?q=Mind%20Rot) (1BG, discard 2 + ramp a land) | Decent Witherbloom pull (B-); good 2-drop→Mind Rot→threats curve (only in pre 04-13 / early 04-20 — may be stale, and Witherbloom finished last). | early, pre |
+| [**Decorum Dissertation**](https://scryfall.com/search?q=Decorum%20Dissertation) (black Paradigm — draw 2/lose 2 each turn) | WEAKER paradigm; can backfire vs. lifegain. You don't have to keep casting paradigms. | 477, 50t |
 
 ### Red (R)
 | Card | Take | Source |
 |------|------|--------|
-| **Tome Blast** (Firebolt-style burn, flashback) | Top common. Firebolt's still great in 2026. A **litmus test** for aggro creature-sizing — if your creatures get 2-for-1'd by it, bad time. (Some notes: "Tone Blast" — same card.) | 50t, 478, soup, early, pre |
-| **Rubble Rouser** | Top common. Brick-walls aggro; solves the dead-removal problem; leaves-graveyard synergy. Also a Prismari card. | 50t, 478, soup, lore, pre |
-| **Unsettle Mockery** (2R, deal 4 to creature + surveil 1) | Top common. Surveil 1 great for smoothing + graveyard fodder. (Aka "Unsubtle Mockery.") | 50t, early, pre |
-| **Bombard** | "They finally made Bombard good." Solid removal this time. | 50t |
-| **Charging Strife Knight** | OVER-RATED (retro 06-01) — *superseded* prerelease 04-13 hype. The "can't believe it isn't great" red card; would play it, but it under-delivered. | 50t, soup, pre |
-| **Molten Note** (X-damage to a creature + untap your team, 8-mana flashback) | Premium RW removal/reach. High pick. | lore, pre |
-| **Artistic Process** (modal: usually "deal 6," sometimes 2-to-each sweeper, rarely 3/3 haste flyer) | Strong flexible UR-adjacent red card; the red answer to big creatures (Slumbering Trudge). | 479 |
-| **Zealous Lorecaster** (5-mana 4/4, rebuys an instant/sorcery) | Solid; silly infinite-ish loops with Applied Geometry / Moment of Reckoning / blue Paradigm. | 50t, pre |
-| **Expressive Fire Dancer** | Good prowess-tempo creature that grows out of burn range; combos with Deluge Virtuoso. | 50t, 478, soup, early |
-| **Deluge Virtuoso** | Prowess tempo payoff (with Expressive Fire Dancer, even makes Bulk Up worth it). But a trap pick if it locks you into blue. | 50t, soup |
-| **Impractical Joke** (cheap removal) | Good cheap red removal; part of red's removal redundancy. | 478, pre, 479 |
-| **Abrade** (bonus sheet) | Mystical archive over-performer; incidental artifact removal valuable (Trove/Loot/Arc everywhere). | 50t, soup |
+| [**Tome Blast**](https://scryfall.com/search?q=Tome%20Blast) (Firebolt-style burn, flashback) | Top common. Firebolt's still great in 2026. A **litmus test** for aggro creature-sizing — if your creatures get 2-for-1'd by it, bad time. (Some notes: "Tone Blast" — same card.) | 50t, 478, soup, early, pre |
+| [**Rubble Rouser**](https://scryfall.com/search?q=Rubble%20Rouser) | Top common. Brick-walls aggro; solves the dead-removal problem; leaves-graveyard synergy. Also a Prismari card. | 50t, 478, soup, lore, pre |
+| [**Unsettle Mockery**](https://scryfall.com/search?q=Unsettle%20Mockery) (2R, deal 4 to creature + surveil 1) | Top common. Surveil 1 great for smoothing + graveyard fodder. (Aka "Unsubtle Mockery.") | 50t, early, pre |
+| [**Bombard**](https://scryfall.com/search?q=Bombard) | "They finally made Bombard good." Solid removal this time. | 50t |
+| [**Charging Strife Knight**](https://scryfall.com/search?q=Charging%20Strife%20Knight) | OVER-RATED (retro 06-01) — *superseded* prerelease 04-13 hype. The "can't believe it isn't great" red card; would play it, but it under-delivered. | 50t, soup, pre |
+| [**Molten Note**](https://scryfall.com/search?q=Molten%20Note) (X-damage to a creature + untap your team, 8-mana flashback) | Premium RW removal/reach. High pick. | lore, pre |
+| [**Artistic Process**](https://scryfall.com/search?q=Artistic%20Process) (modal: usually "deal 6," sometimes 2-to-each sweeper, rarely 3/3 haste flyer) | Strong flexible UR-adjacent red card; the red answer to big creatures (Slumbering Trudge). | 479 |
+| [**Zealous Lorecaster**](https://scryfall.com/search?q=Zealous%20Lorecaster) (5-mana 4/4, rebuys an instant/sorcery) | Solid; silly infinite-ish loops with Applied Geometry / Moment of Reckoning / blue Paradigm. | 50t, pre |
+| [**Expressive Fire Dancer**](https://scryfall.com/search?q=Expressive%20Fire%20Dancer) | Good prowess-tempo creature that grows out of burn range; combos with Deluge Virtuoso. | 50t, 478, soup, early |
+| [**Deluge Virtuoso**](https://scryfall.com/search?q=Deluge%20Virtuoso) | Prowess tempo payoff (with Expressive Fire Dancer, even makes Bulk Up worth it). But a trap pick if it locks you into blue. | 50t, soup |
+| [**Impractical Joke**](https://scryfall.com/search?q=Impractical%20Joke) (cheap removal) | Good cheap red removal; part of red's removal redundancy. | 478, pre, 479 |
+| [**Abrade**](https://scryfall.com/search?q=Abrade) (bonus sheet) | Mystical archive over-performer; incidental artifact removal valuable (Trove/Loot/Arc everywhere). | 50t, soup |
 
 ### Green (G)
 | Card | Take | Source |
 |------|------|--------|
-| **Snarl Song** (Converge payoff, single-pip green) | Premium uncommon / P1P1 build-around. Splashable even in base-Lorehold/Jeskai because single green pip. #2 Converge payoff. Two by P1P4 ≈ locked into Converge. Better vs. aggro than vs. other late-game. | soup, pre, 479, 477, 50t |
-| **Environmental Scientist** (premium fixing + curve) | Excellent — fixing for converge ("easy mode" into Proctor's Gaze). Take when mana is shaky. | soup, pre, 479, 478 |
-| **Studious First Year** (prepared Rampant Growth) | Good — close to "next Potioner's Trove" (retro 06-01 raised it), *superseding* the lower prerelease 04-13 read; caveat is you had to sign up base green. | 50t, pre |
-| **Root Manipulation** (3BG, +2/+2 and menace overrun) | UNDER-RATED. **Best overrun in a while** — menace beats trample here because creature counts are so low. Witherbloom's best top-end; steals games. | 50t, SOS-draft, 478 |
-| **Tenured Concocter** (4/5) | Good — big body bullies the board; Witherbloom lifegain enabler; steals games vs. soup. | early, SOS-draft |
-| **Knockout Maneuver** (green fight/removal) | Premium green removal — take over the harder-to-set-up Withering Curse. | 477 |
-| **Cuboid Colony** (strong T2 play, poor topdeck) | Good Quandrix two-drop; the increment-counter bodies enable tempo. | soup, early, pre, 479 |
-| **Bog Barrage / Colonnion Tackle** (fight/bite) | Under-whelmed — require a creature on board, which the best decks didn't want. | 50t |
-| **Wild Growth Archaic** | Best as a T2 GG play (grows creatures); mediocre as a 4-mana 2/2 elsewhere. | 50t |
-| **Triumph of the Hordes** | **TRAP.** No blight/poison support — if it doesn't kill, it just fogs you. Don't take. | 478 |
-| **Bramble Barrage** (fight/pump) | One of the ~10 interaction commons that matter (only in 04-20 early impressions — may be stale; note fight effects soured later as creature counts fell). | early |
+| [**Snarl Song**](https://scryfall.com/search?q=Snarl%20Song) (Converge payoff, single-pip green) | Premium uncommon / P1P1 build-around. Splashable even in base-Lorehold/Jeskai because single green pip. #2 Converge payoff. Two by P1P4 ≈ locked into Converge. Better vs. aggro than vs. other late-game. | soup, pre, 479, 477, 50t |
+| [**Environmental Scientist**](https://scryfall.com/search?q=Environmental%20Scientist) (premium fixing + curve) | Excellent — fixing for converge ("easy mode" into Proctor's Gaze). Take when mana is shaky. | soup, pre, 479, 478 |
+| [**Studious First Year**](https://scryfall.com/search?q=Studious%20First%20Year) (prepared Rampant Growth) | Good — close to "next Potioner's Trove" (retro 06-01 raised it), *superseding* the lower prerelease 04-13 read; caveat is you had to sign up base green. | 50t, pre |
+| [**Root Manipulation**](https://scryfall.com/search?q=Root%20Manipulation) (3BG, +2/+2 and menace overrun) | UNDER-RATED. **Best overrun in a while** — menace beats trample here because creature counts are so low. Witherbloom's best top-end; steals games. | 50t, SOS-draft, 478 |
+| [**Tenured Concocter**](https://scryfall.com/search?q=Tenured%20Concocter) (4/5) | Good — big body bullies the board; Witherbloom lifegain enabler; steals games vs. soup. | early, SOS-draft |
+| [**Knockout Maneuver**](https://scryfall.com/search?q=Knockout%20Maneuver) (green fight/removal) | Premium green removal — take over the harder-to-set-up Withering Curse. | 477 |
+| [**Cuboid Colony**](https://scryfall.com/search?q=Cuboid%20Colony) (strong T2 play, poor topdeck) | Good Quandrix two-drop; the increment-counter bodies enable tempo. | soup, early, pre, 479 |
+| [**Bog Barrage / Colonnion Tackle**](https://scryfall.com/search?q=Bog%20Barrage%20/%20Colonnion%20Tackle) (fight/bite) | Under-whelmed — require a creature on board, which the best decks didn't want. | 50t |
+| [**Wild Growth Archaic**](https://scryfall.com/search?q=Wild%20Growth%20Archaic) | Best as a T2 GG play (grows creatures); mediocre as a 4-mana 2/2 elsewhere. | 50t |
+| [**Triumph of the Hordes**](https://scryfall.com/search?q=Triumph%20of%20the%20Hordes) | **TRAP.** No blight/poison support — if it doesn't kill, it just fogs you. Don't take. | 478 |
+| [**Bramble Barrage**](https://scryfall.com/search?q=Bramble%20Barrage) (fight/pump) | One of the ~10 interaction commons that matter (only in 04-20 early impressions — may be stale; note fight effects soured later as creature counts fell). | early |
 
 ### Multicolor / gold
 | Card | Take | Source |
 |------|------|--------|
-| **Together as One** (Converge: draw X / deal X / gain X by colors) | **#1 Converge payoff** — a "Cruel Ultimatum." Goes way over the top of everything (even turn-1 Library). | 50t, soup, SOS-draft, 479 |
-| **Sundering Archaic** (Converge 3/3, exile a permanent + graveyard-bottom) | #4 Converge payoff but **best card in its pack regardless of path** — worth splashing. Hits artifacts/enchantments; great disruption. | 50t, 479, soup |
-| **Transcendent Archaic** (7-mana 6/6 vigilance, Converge) | #5 Converge payoff. Late-format appreciation; solid finisher. | 50t |
-| **Archaic Agony** (Converge) | Honorable-mention Converge payoff — great when it kills an engine/value 2-drop + draws 2. | 50t |
-| **Arc of Hunger** (2RW artifact) | Great Lorehold leaves-graveyard payoff; pings/drains, recurs cards, splashable. | soup, SOS-draft, 50t |
-| **Wisdom of Ages** (4UUU rare, return all instants/sorceries, no max hand) | Best payoff for control/Prismari soup. Insane with Visionary's Dance. Goes over the top of turn-1 Library. | soup, 50t, SOS-draft, 479 |
-| **Mathematics** (rare) | SURPRISE premium — its goodness tells you how slow/grindy the format is (win by decking, go over the top). P1P1-worthy soup finisher. | 50t, SOS-draft |
-| **Mind into Matter / Mind Over Matter** (GUX: draw X, put a permanent MV≤X into play tapped) | Strong ramp-soup payoff; pushes board-focused GU ramp; weak as a UR splash. | soup, SOS-draft |
-| **Mizzix** (UUXX, draw 2-to-the-X) | Best ramp-soup payoff; wins at X=5, usually lethal X=4. | soup |
-| **Resonating Loot** (2UR artifact, mana doubler + Library draw) | Strong Prismari-control engine, but doesn't win on its own — needs support; also a "sinking feeling" threat. | soup, 50t |
-| **The Paradigm cycle** | Mostly all good. **Red Paradigm = clear best** (get ahead, then stop casting before you deck). Blue good. Black (Decorum Dissertation) weak. | 50t, SOS-draft, 477 |
-| **Snarl Song / Arcane Omens / Divergent Equation** | Uncommon-tier Converge payoffs (a notch below the rares). | soup |
-| **Quillblade Laureate / Abigail (re-prepares)** | Top WB Silverquill gold; Abigail re-prepares creatures. | pre, bw |
-| **Spirit Call Enthusiast** (tokens payoff) | Strong Lorehold tokens payoff — also triggers off treasure tokens (Glassright, treasure goblin), not just creatures. | lore, pre |
-| **Group Project** (rare mass team pump) | Good in go-wide Lorehold; scales with board + minor leaves-graveyard synergy. | lore, 478, pre |
-| **Return the Favor (RTF)** | Excellent UR soup tech — copy/redirect removal for a blowout; copy their Wisdom of Ages in the mirror. Easy to pitch in red. | 479 |
-| **Slumbering Trudge** (4-mana 6/6, no ETB) | Beatdown/midrange card. Awkward in Prismari, weak in soup — don't splash for it. Red answers it poorly (6 toughness); every other color handles it. | 479 |
-| **Grave Researcher** (BG) | Reads better than it plays in soup — best Witherbloom/Silverquill want creatures to stay/trade, not feed it. Often a glorified Centaur Courser. (One emailer defends it.) | 479, SOS-draft |
-| **Practiced Scrollsmith** (RW) | Multiple white rares could push you off Converge, then play Lorehold-leaning Converge. | 479, lore |
-| **Bogwater Luminary / Black Loafing Pest / Leech Collector / Shopkeeper's Bane** | Witherbloom lifegain/pest payoffs — take aggressively when committed to lifegain; fight over them (Pest Mascot count is the signal). | 477, pre |
-| **Cost of Brilliance** | (see Black) — the defining aggressive-black gold-adjacent card. | multiple |
-| **Together-class rares broadly** | Most SOS rares/mythics read "I win in ~7 turns" (Arc of Hunger, Paradigm cycle, Emeritus cycle, Mathematics, Mind into Matter, Moment of Reckoning, Resonating Loot, Splatter Technique, Together as One, Wisdom of Ages). Pushed; define games; cause the sameness. | SOS-draft, 478 |
+| [**Together as One**](https://scryfall.com/search?q=Together%20as%20One) (Converge: draw X / deal X / gain X by colors) | **#1 Converge payoff** — a "Cruel Ultimatum." Goes way over the top of everything (even turn-1 Library). | 50t, soup, SOS-draft, 479 |
+| [**Sundering Archaic**](https://scryfall.com/search?q=Sundering%20Archaic) (Converge 3/3, exile a permanent + graveyard-bottom) | #4 Converge payoff but **best card in its pack regardless of path** — worth splashing. Hits artifacts/enchantments; great disruption. | 50t, 479, soup |
+| [**Transcendent Archaic**](https://scryfall.com/search?q=Transcendent%20Archaic) (7-mana 6/6 vigilance, Converge) | #5 Converge payoff. Late-format appreciation; solid finisher. | 50t |
+| [**Archaic Agony**](https://scryfall.com/search?q=Archaic%20Agony) (Converge) | Honorable-mention Converge payoff — great when it kills an engine/value 2-drop + draws 2. | 50t |
+| [**Arc of Hunger**](https://scryfall.com/search?q=Arc%20of%20Hunger) (2RW artifact) | Great Lorehold leaves-graveyard payoff; pings/drains, recurs cards, splashable. | soup, SOS-draft, 50t |
+| [**Wisdom of Ages**](https://scryfall.com/search?q=Wisdom%20of%20Ages) (4UUU rare, return all instants/sorceries, no max hand) | Best payoff for control/Prismari soup. Insane with Visionary's Dance. Goes over the top of turn-1 Library. | soup, 50t, SOS-draft, 479 |
+| [**Mathematics**](https://scryfall.com/search?q=Mathematics) (rare) | SURPRISE premium — its goodness tells you how slow/grindy the format is (win by decking, go over the top). P1P1-worthy soup finisher. | 50t, SOS-draft |
+| [**Mind into Matter / Mind Over Matter**](https://scryfall.com/search?q=Mind%20into%20Matter%20/%20Mind%20Over%20Matter) (GUX: draw X, put a permanent MV≤X into play tapped) | Strong ramp-soup payoff; pushes board-focused GU ramp; weak as a UR splash. | soup, SOS-draft |
+| [**Mizzix**](https://scryfall.com/search?q=Mizzix) (UUXX, draw 2-to-the-X) | Best ramp-soup payoff; wins at X=5, usually lethal X=4. | soup |
+| [**Resonating Loot**](https://scryfall.com/search?q=Resonating%20Loot) (2UR artifact, mana doubler + Library draw) | Strong Prismari-control engine, but doesn't win on its own — needs support; also a "sinking feeling" threat. | soup, 50t |
+| [**The Paradigm cycle**](https://scryfall.com/search?q=The%20Paradigm%20cycle) | Mostly all good. **Red Paradigm = clear best** (get ahead, then stop casting before you deck). Blue good. Black (Decorum Dissertation) weak. | 50t, SOS-draft, 477 |
+| [**Snarl Song / Arcane Omens / Divergent Equation**](https://scryfall.com/search?q=Snarl%20Song%20/%20Arcane%20Omens%20/%20Divergent%20Equation) | Uncommon-tier Converge payoffs (a notch below the rares). | soup |
+| [**Quillblade Laureate / Abigail (re-prepares)**](https://scryfall.com/search?q=Quillblade%20Laureate%20/%20Abigail%20%28re-prepares%29) | Top WB Silverquill gold; Abigail re-prepares creatures. | pre, bw |
+| [**Spirit Call Enthusiast**](https://scryfall.com/search?q=Spirit%20Call%20Enthusiast) (tokens payoff) | Strong Lorehold tokens payoff — also triggers off treasure tokens (Glassright, treasure goblin), not just creatures. | lore, pre |
+| [**Group Project**](https://scryfall.com/search?q=Group%20Project) (rare mass team pump) | Good in go-wide Lorehold; scales with board + minor leaves-graveyard synergy. | lore, 478, pre |
+| [**Return the Favor (RTF)**](https://scryfall.com/search?q=Return%20the%20Favor%20%28RTF%29) | Excellent UR soup tech — copy/redirect removal for a blowout; copy their Wisdom of Ages in the mirror. Easy to pitch in red. | 479 |
+| [**Slumbering Trudge**](https://scryfall.com/search?q=Slumbering%20Trudge) (4-mana 6/6, no ETB) | Beatdown/midrange card. Awkward in Prismari, weak in soup — don't splash for it. Red answers it poorly (6 toughness); every other color handles it. | 479 |
+| [**Grave Researcher**](https://scryfall.com/search?q=Grave%20Researcher) (BG) | Reads better than it plays in soup — best Witherbloom/Silverquill want creatures to stay/trade, not feed it. Often a glorified Centaur Courser. (One emailer defends it.) | 479, SOS-draft |
+| [**Practiced Scrollsmith**](https://scryfall.com/search?q=Practiced%20Scrollsmith) (RW) | Multiple white rares could push you off Converge, then play Lorehold-leaning Converge. | 479, lore |
+| [**Bogwater Luminary / Black Loafing Pest / Leech Collector / Shopkeeper's Bane**](https://scryfall.com/search?q=Bogwater%20Luminary%20/%20Black%20Loafing%20Pest%20/%20Leech%20Collector%20/%20Shopkeeper%27s%20Bane) | Witherbloom lifegain/pest payoffs — take aggressively when committed to lifegain; fight over them (Pest Mascot count is the signal). | 477, pre |
+| [**Cost of Brilliance**](https://scryfall.com/search?q=Cost%20of%20Brilliance) | (see Black) — the defining aggressive-black gold-adjacent card. | multiple |
+| [**Together-class rares broadly**](https://scryfall.com/search?q=Together-class%20rares%20broadly) | Most SOS rares/mythics read "I win in ~7 turns" (Arc of Hunger, Paradigm cycle, Emeritus cycle, Mathematics, Mind into Matter, Moment of Reckoning, Resonating Loot, Splatter Technique, Together as One, Wisdom of Ages). Pushed; define games; cause the sameness. | SOS-draft, 478 |
 
 ### Colorless / artifacts
 | Card | Take | Source |
 |------|------|--------|
-| **Potioner's Trove** (3-mana any-color rock + 2 life after each instant/sorcery) | **GOAT common / the glue of the format.** The life gain (2/4/6) dodges burn + alpha strikes; keeps a manalith relevant late. Better than 2025's Dragonstorm Globe / Starting Column. Pick over almost everything once you have a payoff. | 50t (Golden Egg award), soup, 477, all |
-| **Strixhaven Sky Coach** (vehicle, 3/2 flyer, finds a land) | Two-for-one that helps assertive decks hit land drops; dodges Essence Scatter + Disdainful Stroke. Needs creatures around it to crew — worse at low (~10) creature counts. | 50t, 478 |
-| **Sonar** (UR 0/4, makes treasure) | Engine with Micah, Reader of Ruins (treasure → double spells). Niche but the host loved it. | 50t |
-| **Resonating Loot / Arc of Hunger** | (see Multicolor) | — |
-| **Library of Alexandria** (mystical archive) | "WASHED" in this format — T1 Library isn't good enough; soup goes way over the top (Together as One, Wisdom of Ages, blue Paradigm). Fine only in a low-curve opener with boxes checked. | 50t |
-| **Fix What's Broken** | Aptly named — it's broken; "they forgot the words 'or less.'" Great in low-curve decks (read the card first!). | 50t |
+| [**Potioner's Trove**](https://scryfall.com/search?q=Potioner%27s%20Trove) (3-mana any-color rock + 2 life after each instant/sorcery) | **GOAT common / the glue of the format.** The life gain (2/4/6) dodges burn + alpha strikes; keeps a manalith relevant late. Better than 2025's Dragonstorm Globe / Starting Column. Pick over almost everything once you have a payoff. | 50t (Golden Egg award), soup, 477, all |
+| [**Strixhaven Sky Coach**](https://scryfall.com/search?q=Strixhaven%20Sky%20Coach) (vehicle, 3/2 flyer, finds a land) | Two-for-one that helps assertive decks hit land drops; dodges Essence Scatter + Disdainful Stroke. Needs creatures around it to crew — worse at low (~10) creature counts. | 50t, 478 |
+| [**Sonar**](https://scryfall.com/search?q=Sonar) (UR 0/4, makes treasure) | Engine with Micah, Reader of Ruins (treasure → double spells). Niche but the host loved it. | 50t |
+| [**Resonating Loot / Arc of Hunger**](https://scryfall.com/search?q=Resonating%20Loot%20/%20Arc%20of%20Hunger) | (see Multicolor) | — |
+| [**Library of Alexandria**](https://scryfall.com/search?q=Library%20of%20Alexandria) (mystical archive) | "WASHED" in this format — T1 Library isn't good enough; soup goes way over the top (Together as One, Wisdom of Ages, blue Paradigm). Fine only in a low-curve opener with boxes checked. | 50t |
+| [**Fix What's Broken**](https://scryfall.com/search?q=Fix%20What%27s%20Broken) | Aptly named — it's broken; "they forgot the words 'or less.'" Great in low-curve decks (read the card first!). | 50t |
 
 ### Lands
 | Card | Take | Source |
 |------|------|--------|
-| **Terramorphic Expanse** | Omnipresent soup fixing + great Lorehold graveyard-exile fodder. BUT for Converge, the true 5c land is better (Terramorphic yields one color + eats basics). | 50t, 479 |
-| **Great Hall of the Biblioplex** (true 5c land, becomes 2/4) | Best fixing for Converge — keeps all colors live + becomes a body. Take over Terramorphic in converge. | 479 |
-| **Spectacle Summit / Titan's Grave** (tapped duals) | Snap them once committed to Converge — flagged not taking these (for removal) as a key misplay; removal comes later, fixing doesn't. | 479 |
-| **College duals** | Take highly once your college is open — gold 2-drops wheel, so grab the land now (pick 14 the body). | 50t, 22-point |
+| [**Terramorphic Expanse**](https://scryfall.com/search?q=Terramorphic%20Expanse) | Omnipresent soup fixing + great Lorehold graveyard-exile fodder. BUT for Converge, the true 5c land is better (Terramorphic yields one color + eats basics). | 50t, 479 |
+| [**Great Hall of the Biblioplex**](https://scryfall.com/search?q=Great%20Hall%20of%20the%20Biblioplex) (true 5c land, becomes 2/4) | Best fixing for Converge — keeps all colors live + becomes a body. Take over Terramorphic in converge. | 479 |
+| [**Spectacle Summit / Titan's Grave**](https://scryfall.com/search?q=Spectacle%20Summit%20/%20Titan%27s%20Grave) (tapped duals) | Snap them once committed to Converge — flagged not taking these (for removal) as a key misplay; removal comes later, fixing doesn't. | 479 |
+| [**College duals**](https://scryfall.com/search?q=College%20duals) | Take highly once your college is open — gold 2-drops wheel, so grab the land now (pick 14 the body). | 50t, 22-point |
 
 ### Mystical archive / bonus-sheet over-performers
 **Hop to It, Brain Freeze, Disdainful Stroke, Spell Pierce, Stock Up, Abrade** (Stock Up = exactly as busted as expected). Cheap protection vs. soup's expensive removal: **Royal Treatment** (G), **Masterful Flourish**, **Chase Inspiration** (U) — niche, only good when you go counter-culture and play to the board. Note: hosts wish such cheap protection existed in *white* (God's Willing / Feat of Resistance would break the format).

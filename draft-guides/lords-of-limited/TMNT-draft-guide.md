@@ -61,69 +61,69 @@ Derived exclusively from early-access play; treat as provisional and likely to s
 Single source: Ethan Sachs, early-access double feature (2026-02-27). Ben Warney absent — no comparative takes.
 
 ### White
-- **Grounded for Life** — Premium removal. 5 mana normally or 2 mana if creature is tapped. Very high pick. [early]
-- **Mighty Mutanimals** — 4-mana 2/1 that brings a 2/2, then pumps a creature whenever another creature enters. Solid Alliance payoff. Played multiples. [early]
-- **Foot Elite** — 3-mana 2/4, when it attacks another creature you control gets +1/+1 and indestructible. Called "filler." Ended up in deck by default. [early]
-- **Foot Mystic** — 4-mana 2/4 lifelink with Disappear (flicker), makes a 1/1. Called "filler." [early]
-- **Leonardo Big Brother** — 3-mana 1/3 Sneak 1W, gets +1/+1 for each other creature you control. Filler-level in the Sneak deck, ended up on the cut list. [early]
-- **Leonardo Sewer Samurai** — 3W 3/3 double strike, Sneak 2WW. During your turn may cast creature spells with power or toughness 1 or less from graveyard; enters with finality counter. Strong rare in WB. [early]
-- **Prehistoric Pet** — 1W 1/2, can't be blocked by creatures with greater power. Returns another creature to hand. Saw in pack but not taken. [early]
-- **Uneasy Alliance** — Pacifism that also makes a 1/1 when the enchanted creature dies. Solid removal. [early]
+- [**Grounded for Life**](https://scryfall.com/search?q=Grounded%20for%20Life) — Premium removal. 5 mana normally or 2 mana if creature is tapped. Very high pick. [early]
+- [**Mighty Mutanimals**](https://scryfall.com/search?q=Mighty%20Mutanimals) — 4-mana 2/1 that brings a 2/2, then pumps a creature whenever another creature enters. Solid Alliance payoff. Played multiples. [early]
+- [**Foot Elite**](https://scryfall.com/search?q=Foot%20Elite) — 3-mana 2/4, when it attacks another creature you control gets +1/+1 and indestructible. Called "filler." Ended up in deck by default. [early]
+- [**Foot Mystic**](https://scryfall.com/search?q=Foot%20Mystic) — 4-mana 2/4 lifelink with Disappear (flicker), makes a 1/1. Called "filler." [early]
+- [**Leonardo Big Brother**](https://scryfall.com/search?q=Leonardo%20Big%20Brother) — 3-mana 1/3 Sneak 1W, gets +1/+1 for each other creature you control. Filler-level in the Sneak deck, ended up on the cut list. [early]
+- [**Leonardo Sewer Samurai**](https://scryfall.com/search?q=Leonardo%20Sewer%20Samurai) — 3W 3/3 double strike, Sneak 2WW. During your turn may cast creature spells with power or toughness 1 or less from graveyard; enters with finality counter. Strong rare in WB. [early]
+- [**Prehistoric Pet**](https://scryfall.com/search?q=Prehistoric%20Pet) — 1W 1/2, can't be blocked by creatures with greater power. Returns another creature to hand. Saw in pack but not taken. [early]
+- [**Uneasy Alliance**](https://scryfall.com/search?q=Uneasy%20Alliance) — Pacifism that also makes a 1/1 when the enchanted creature dies. Solid removal. [early]
 
 ### Blue
-- **Sewervelliance Cam** — 1U flash artifact. When it enters or leaves, tap/untap target creature. Pay 3U, sack: draw two. Good in UR artifacts. [early]
-- **Fugitive Droid** — 1U 1/1. Can't be blocked if an artifact entered this turn. Sac: counter a spell targeting an artifact. Nice dual-purpose role in UR. [early]
-- **Return to the Sewers** — 3U instant. Tops or bottoms a spell AND makes a Mutagen token. Getting an artifact at instant speed is excellent. High pick in UR. [early]
-- **Donatello's Technique** — Divination for a single blue if Sneak cost was paid, otherwise more expensive. Noted but passed over for better options. [early]
-- **Mind Transfer Protocol** — 2U instant. Target artifact or creature becomes a 4/5 artifact creature until end of turn, draw a card. Called "that seems great." [early]
-- **Henchbots** — 4-mana 2/3. Exile target tapped creature until this creature leaves. Solid removal-on-a-stick for UR. [early]
+- [**Sewervelliance Cam**](https://scryfall.com/search?q=Sewervelliance%20Cam) — 1U flash artifact. When it enters or leaves, tap/untap target creature. Pay 3U, sack: draw two. Good in UR artifacts. [early]
+- [**Fugitive Droid**](https://scryfall.com/search?q=Fugitive%20Droid) — 1U 1/1. Can't be blocked if an artifact entered this turn. Sac: counter a spell targeting an artifact. Nice dual-purpose role in UR. [early]
+- [**Return to the Sewers**](https://scryfall.com/search?q=Return%20to%20the%20Sewers) — 3U instant. Tops or bottoms a spell AND makes a Mutagen token. Getting an artifact at instant speed is excellent. High pick in UR. [early]
+- [**Donatello's Technique**](https://scryfall.com/search?q=Donatello%27s%20Technique) — Divination for a single blue if Sneak cost was paid, otherwise more expensive. Noted but passed over for better options. [early]
+- [**Mind Transfer Protocol**](https://scryfall.com/search?q=Mind%20Transfer%20Protocol) — 2U instant. Target artifact or creature becomes a 4/5 artifact creature until end of turn, draw a card. Called "that seems great." [early]
+- [**Henchbots**](https://scryfall.com/search?q=Henchbots) — 4-mana 2/3. Exile target tapped creature until this creature leaves. Solid removal-on-a-stick for UR. [early]
 
 ### Black
-- **Death in the Family** — 1B instant. Exile target creature with MV3 or less. Premium cheap removal; auto-include. [early]
-- **Karai** — 3-mana 3/3. When it connects, return a creature from your graveyard to hand; if you paid Sneak cost, put it directly onto the battlefield. Core WB ninja payoff. [early]
-- **Splinter, Ninja Lord** — 3-mana 3/1. Deals combat damage to player: draw card, lose life. Ninja synergy lord. Took over Grounded for Life. [early]
-- **Bebop** — 5-mana 5/4 menace. Works with Rocksteady (6-mana 7/7 can only be blocked by one creature) to make each other effectively unblockable (menace + can't be blocked by more than one). Called out as a cute combo. [early]
-- **Rocksteady** — 6-mana 7/7, can only be blocked by one creature. Expensive but formidable with Bebop. [early]
-- **Foot Ninjas** — 6-mana 5/5 Sneak. When it enters, gain 3 life. Called expensive filler; Ethan drafted several but didn't expect to play them. [early]
-- **Shredder's Avenger** — Mind Rot or "Draw Two, Lose Two" split card. Noted as fine. [early]
-- **Dark Leo and Shredder** — WB 1/3. Attacking ninjas get deathtouch. When it deals combat damage to player, make a 1/1; if you control 5+ ninjas, that player loses half their life. Strong WB rare. [early]
-- **Pain 101** — When this creature dies, return it to the battlefield tapped under owner's control. Noted as "pretty good with Mighty Mutanimals" — opponent's going to want to block. [early]
+- [**Death in the Family**](https://scryfall.com/search?q=Death%20in%20the%20Family) — 1B instant. Exile target creature with MV3 or less. Premium cheap removal; auto-include. [early]
+- [**Karai**](https://scryfall.com/search?q=Karai) — 3-mana 3/3. When it connects, return a creature from your graveyard to hand; if you paid Sneak cost, put it directly onto the battlefield. Core WB ninja payoff. [early]
+- [**Splinter, Ninja Lord**](https://scryfall.com/search?q=Splinter%2C%20Ninja%20Lord) — 3-mana 3/1. Deals combat damage to player: draw card, lose life. Ninja synergy lord. Took over Grounded for Life. [early]
+- [**Bebop**](https://scryfall.com/search?q=Bebop) — 5-mana 5/4 menace. Works with Rocksteady (6-mana 7/7 can only be blocked by one creature) to make each other effectively unblockable (menace + can't be blocked by more than one). Called out as a cute combo. [early]
+- [**Rocksteady**](https://scryfall.com/search?q=Rocksteady) — 6-mana 7/7, can only be blocked by one creature. Expensive but formidable with Bebop. [early]
+- [**Foot Ninjas**](https://scryfall.com/search?q=Foot%20Ninjas) — 6-mana 5/5 Sneak. When it enters, gain 3 life. Called expensive filler; Ethan drafted several but didn't expect to play them. [early]
+- [**Shredder's Avenger**](https://scryfall.com/search?q=Shredder%27s%20Avenger) — Mind Rot or "Draw Two, Lose Two" split card. Noted as fine. [early]
+- [**Dark Leo and Shredder**](https://scryfall.com/search?q=Dark%20Leo%20and%20Shredder) — WB 1/3. Attacking ninjas get deathtouch. When it deals combat damage to player, make a 1/1; if you control 5+ ninjas, that player loses half their life. Strong WB rare. [early]
+- [**Pain 101**](https://scryfall.com/search?q=Pain%20101) — When this creature dies, return it to the battlefield tapped under owner's control. Noted as "pretty good with Mighty Mutanimals" — opponent's going to want to block. [early]
 
 ### Red
-- **Manhole Missile** — 1R, deal 3. You can put a card from your hand on the bottom of your library; if you do, draw a card. Premium cheap removal that cantrips. [early]
-- **Purple Dragon Punks** — 1R 2/2. Add R, but only to cast an artifact or activate an ability. Fuels artifact synergy; ran multiple copies but questioned whether they're truly good. [early]
-- **Bot Bashing Time** — 3R, deal 6. Expensive but efficient removal at rate. [early]
-- **Mouser Attack** — 1R. Make a 1/1 or give target creature +3/+0 and first strike until end of turn. Flexible; called "fine." [early]
-- **General Traj (?)** — 3RR 4/3 trample. When it enters, sack another artifact to deal 4 to target creature. Strong UR artifact payoff. [early]
+- [**Manhole Missile**](https://scryfall.com/search?q=Manhole%20Missile) — 1R, deal 3. You can put a card from your hand on the bottom of your library; if you do, draw a card. Premium cheap removal that cantrips. [early]
+- [**Purple Dragon Punks**](https://scryfall.com/search?q=Purple%20Dragon%20Punks) — 1R 2/2. Add R, but only to cast an artifact or activate an ability. Fuels artifact synergy; ran multiple copies but questioned whether they're truly good. [early]
+- [**Bot Bashing Time**](https://scryfall.com/search?q=Bot%20Bashing%20Time) — 3R, deal 6. Expensive but efficient removal at rate. [early]
+- [**Mouser Attack**](https://scryfall.com/search?q=Mouser%20Attack) — 1R. Make a 1/1 or give target creature +3/+0 and first strike until end of turn. Flexible; called "fine." [early]
+- [**General Traj (?)**](https://scryfall.com/search?q=General%20Traj%20%28%3F%29) — 3RR 4/3 trample. When it enters, sack another artifact to deal 4 to target creature. Strong UR artifact payoff. [early]
 
 ### Green
-- **Genghis Frog (Gengis Frog?)** — GU 1/3 trample. When it or another mutant you control enters, make a Mutagen token. Called "great." Key GU card. [early]
-- **Party Dude** — 1G. Each player gets a food. Level up: whenever an artifact an opponent controls is put into a graveyard, draw a card. 5-mana ability: attacking creature gets +X/+X where X is cards in hand. Called "pretty good." [early]
-- **Cowabunga** — 1G sorcery. Impulse for a land, mutant, ninja, or turtle. Solid fixing/tutoring. [early]
-- **Michelangelo (Weirdness to 11)** — 2-mana 1/1, brings a Mutagen token, gains +1/+1 counter when you put counters on things. Core GU counter synergy card. [early]
+- [**Genghis Frog (Gengis Frog?)**](https://scryfall.com/search?q=Genghis%20Frog%20%28Gengis%20Frog%3F%29) — GU 1/3 trample. When it or another mutant you control enters, make a Mutagen token. Called "great." Key GU card. [early]
+- [**Party Dude**](https://scryfall.com/search?q=Party%20Dude) — 1G. Each player gets a food. Level up: whenever an artifact an opponent controls is put into a graveyard, draw a card. 5-mana ability: attacking creature gets +X/+X where X is cards in hand. Called "pretty good." [early]
+- [**Cowabunga**](https://scryfall.com/search?q=Cowabunga) — 1G sorcery. Impulse for a land, mutant, ninja, or turtle. Solid fixing/tutoring. [early]
+- [**Michelangelo (Weirdness to 11)**](https://scryfall.com/search?q=Michelangelo%20%28Weirdness%20to%2011%29) — 2-mana 1/1, brings a Mutagen token, gains +1/+1 counter when you put counters on things. Core GU counter synergy card. [early]
 
 ### Multicolor
-- **Mondo Gecko** — (UR?) Discard a card: until end of turn, Mondo Gecko becomes the color of your choice and gains hexproof from that color. When it deals combat damage, draw a card for each color among permanents you control. Called "pretty crazy card" and "seems sweet, yo." Mythic-level. [early]
-- **Raphael, Most Attitude** — 4-mana 4/3 menace, Alliance. When it attacks, exile the top card of your library until end of turn, may play it. Strong UR card; drafted but uncertain whether to include. [early]
-- **Raff and Leo, Sibling Rivals** — When they attack (first combat phase of turn), untap one or two target attacking creatures; after this phase, there's an additional combat phase. Rare bomb — extra combat. [early]
-- **Donatello, Gadget Master** — Create a token copy of target artifact you control. Yes please in UR; noted for copying Metalhead (though Metalhead is legendary — doesn't work). [early]
+- [**Mondo Gecko**](https://scryfall.com/search?q=Mondo%20Gecko) — (UR?) Discard a card: until end of turn, Mondo Gecko becomes the color of your choice and gains hexproof from that color. When it deals combat damage, draw a card for each color among permanents you control. Called "pretty crazy card" and "seems sweet, yo." Mythic-level. [early]
+- [**Raphael, Most Attitude**](https://scryfall.com/search?q=Raphael%2C%20Most%20Attitude) — 4-mana 4/3 menace, Alliance. When it attacks, exile the top card of your library until end of turn, may play it. Strong UR card; drafted but uncertain whether to include. [early]
+- [**Raff and Leo, Sibling Rivals**](https://scryfall.com/search?q=Raff%20and%20Leo%2C%20Sibling%20Rivals) — When they attack (first combat phase of turn), untap one or two target attacking creatures; after this phase, there's an additional combat phase. Rare bomb — extra combat. [early]
+- [**Donatello, Gadget Master**](https://scryfall.com/search?q=Donatello%2C%20Gadget%20Master) — Create a token copy of target artifact you control. Yes please in UR; noted for copying Metalhead (though Metalhead is legendary — doesn't work). [early]
 
 ### Colorless / Artifacts
-- **Mouser Foundry** — 2-mana artifact. When it enters or leaves, make a 1/1 artifact token. Sac: deal 3 to target creature. Called out as excellent — pads artifact count, generates tokens, and provides a removal mode. [early]
-- **Metalhead** — 5-mana 4/4. When it enters, bounce something. Pay R, sac an artifact: put a +1/+1 counter on Metalhead, gain menace until end of turn. "Let's go" — strong UR finisher. [early]
-- **Technodrome** — Likely expensive rare. Called "seems sweet but probably too slow." Appeared in every early draft; the subject of curiosity rather than confidence. [early]
-- **Mutagen Token** — Colorless artifact creature, generated by many cards. Called "legit, very powerful." Core resource in the format. [early]
-- **Ooze (?)** — 2-mana artifact. Whenever a creature you control with a +1/+1 counter on it leaves the battlefield, make a Mutagen token for each counter on it. Also: exile a card from a graveyard, create a Mutagen. Noted as potentially great in GU counters deck. [early]
-- **Casey Jones** — 2-mana 2/1 haste. When it enters, impulse for an artifact. Called out as something Ethan regretted not taking. [early]
-- **Stockman, Mad Flyentist (?)** — 5-mana 3/4 flyer. Enters with a loot. Solid UR card. [early]
+- [**Mouser Foundry**](https://scryfall.com/search?q=Mouser%20Foundry) — 2-mana artifact. When it enters or leaves, make a 1/1 artifact token. Sac: deal 3 to target creature. Called out as excellent — pads artifact count, generates tokens, and provides a removal mode. [early]
+- [**Metalhead**](https://scryfall.com/search?q=Metalhead) — 5-mana 4/4. When it enters, bounce something. Pay R, sac an artifact: put a +1/+1 counter on Metalhead, gain menace until end of turn. "Let's go" — strong UR finisher. [early]
+- [**Technodrome**](https://scryfall.com/search?q=Technodrome) — Likely expensive rare. Called "seems sweet but probably too slow." Appeared in every early draft; the subject of curiosity rather than confidence. [early]
+- [**Mutagen Token**](https://scryfall.com/search?q=Mutagen%20Token) — Colorless artifact creature, generated by many cards. Called "legit, very powerful." Core resource in the format. [early]
+- [**Ooze (?)**](https://scryfall.com/search?q=Ooze%20%28%3F%29) — 2-mana artifact. Whenever a creature you control with a +1/+1 counter on it leaves the battlefield, make a Mutagen token for each counter on it. Also: exile a card from a graveyard, create a Mutagen. Noted as potentially great in GU counters deck. [early]
+- [**Casey Jones**](https://scryfall.com/search?q=Casey%20Jones) — 2-mana 2/1 haste. When it enters, impulse for an artifact. Called out as something Ethan regretted not taking. [early]
+- [**Stockman, Mad Flyentist (?)**](https://scryfall.com/search?q=Stockman%2C%20Mad%20Flyentist%20%28%3F%29) — 5-mana 3/4 flyer. Enters with a loot. Solid UR card. [early]
 
 ### Lands
-- **Northampton Farm (?)** — Colorless mana, exile target creature you own. Sac the land, return a creature exiled with it to the battlefield; return each other card to its owner's hand. Utility land with interesting Sneak synergies. [early]
+- [**Northampton Farm (?)**](https://scryfall.com/search?q=Northampton%20Farm%20%28%3F%29) — Colorless mana, exile target creature you own. Sac the land, return a creature exiled with it to the battlefield; return each other card to its owner's hand. Utility land with interesting Sneak synergies. [early]
 
 ### Rares & bombs
-- **Sally Bright (?)** — Saw opponent cast this: when it enters, create X 2/2 red mutant creature tokens where X is the number of non-token creatures you control. When it attacks, put a counter on each creature you control. Called "crazy," "what the heck." [early]
-- **Raphael is Cool But Rude** — 2-mana 1/3. Whenever another creature you control enters, choose one effect (not chosen this turn). Appears to be a flexible Alliance-style trigger card. [early]
-- **Ground Chuck and Dirt Bag (?)** — 6-mana 8/8 trample. Whenever you tap a land for mana, add G. Ramp enabler/bomb. [early]
+- [**Sally Bright (?)**](https://scryfall.com/search?q=Sally%20Bright%20%28%3F%29) — Saw opponent cast this: when it enters, create X 2/2 red mutant creature tokens where X is the number of non-token creatures you control. When it attacks, put a counter on each creature you control. Called "crazy," "what the heck." [early]
+- [**Raphael is Cool But Rude**](https://scryfall.com/search?q=Raphael%20is%20Cool%20But%20Rude) — 2-mana 1/3. Whenever another creature you control enters, choose one effect (not chosen this turn). Appears to be a flexible Alliance-style trigger card. [early]
+- [**Ground Chuck and Dirt Bag (?)**](https://scryfall.com/search?q=Ground%20Chuck%20and%20Dirt%20Bag%20%28%3F%29) — 6-mana 8/8 trample. Whenever you tap a land for mana, add G. Ramp enabler/bomb. [early]
 
 ## Signals & seat reads
 
