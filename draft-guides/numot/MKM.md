@@ -159,92 +159,104 @@ Ranked by the strength evidence in the notes (Kenji's win rates + how emphatical
 
 ## Card tips
 
-### Premium picks
+### White (W)
 - **Novice Inspector** — "Basically the best one-drop in the format." First-pickable, splashable, never cut. Turn-1 Novice Inspector ≈ a great hand. (Consistent early→late: "premium near-auto P1P1, so good," 03-11.)
-- **Gadget Technician** — Kenji's "favorite of the common disguise creatures." Hard-cast on 4 or disguise + flip for double-red into a 1/1 thopter. Top common; flexes into UR/RG/RW.
-- **Dog Walker** — **"One of the best commons" (confirmed end-of-format 03-23; "11th pick dog walker is absolutely busted").** Disguise into multiple 2/2 dogs; X/1 dodges the no-1-toughness-removal gap; qualifies for Assemble face-down. "Best with the doggies" go-wide. (Early notes called it conflicted/"bad on defense" — that read is **superseded**; the late verdict is a strong, very-takeable common.)
-- **Shock** — First-pickable. Kills face-down 2/2s for 1 less than Galvanize; instant. "You would rather have a Shock in this format than the Murder."
-- **Get a Leg Up** — "One of the best combat tricks in the format... can lead to a plus five plus five or greater." Cheap, blowout-prone.
 - **On the Job** — Go-wide Overrun and the Boros win-con. "Cast On the Job, win." Also draws a Clue.
 - **Perimeter Enforcer** — Top-tier uncommon two-drop; 1/1 flying lifelink that snowballs with detectives. Premium in WU/Boros.
-- **Vein Ripper** — Mythic, "one of the biggest bombs in the format... a broken card." Drain on every creature death; sac-on-block; win-on-cast.
-- **Cryptic Coat** — "One of the best rares in the format." Recastable ward creature; transfers unblockable/hexproof; combos with Bubble Smuggler. "Nuts."
-- **Aurelia, the Law Above / Aurelia's Vindicator** — 4/2 flying lifelink ward 2 for four; "one of the best rares you can open."
-- **Extract a Confession** — "Black's best common, even better than Murder." Edict bypasses ward 2 and fuels Collect Evidence.
-- **Out Cold** — Above average; instant, taps two, makes a Clue. Best in blue; "draft multiple Out Colds if I can." (Confirmed end-of-format: "fantastic"/"amazing" tempo removal.)
-- **Private Eye** — 3/3 detective anthem. Two copies is game-winning.
-- **Long Goodbye** — Black's best uncommon; uncounterable, kills face-down for 2. Caveat: can't kill a flipped MV-4+ creature.
-- **Forensic Researcher** — ⚠ **UP significantly end-of-format (03-18): "gone up a lot on researcher... does overtime work even if you don't have collect evidence synergies."** High pick; take over Crimestopper Sprite. Also turns on a mana ability (ramp/fixing). (See Supersessions.)
-- **Reckless Detective** — "One of the better two-drops"; 3 toughness blocks early garbage, sac clues for free draws on attack. (Kenji has "come down on Sprite and gone up a lot on Researcher/Reckless.")
-- **Jaded Analyst** — 1/3 fantastic blocker + looter; great two-drop.
-- **Glint-Weaver** — 7-mana 6/6 lifegain stabilizer; "if you can resolve it you're generally winning." (Double copies deck-defining, late.)
-- **Vannifar, Evolved Enigma** — One of the best cards in the format end-of-format; "just way too good" (03-14). Locks you green.
 - **Haazda Vigilante** — "One of the best top-end cards in the Boros beats decks."
-- **Lost in the Maze** — "Fantastic in this format." 1-mana instant; tap + grant hexproof to protect a key creature mid-combat. (Caveat end-of-format: disguise/cloak creatures resist it, 03-14.)
-- **Killer Among Us** — "Really really impressive." 5-mana three 1/1s with a 4/4-attacker mode; insane when even/ahead, weak on defense.
 - **Case of the Gateway Express** — Premium white go-wide case: taps blockers, mass-pumps, doubles as removal. "So good." Won't wheel.
-- **Push // Pull** — Premium hybrid removal; want both halves (Pull alone is weak).
-- **Person of Interest** — "One of the best red commons" (confirmed end-of-format); excellent 4-drop, two bodies.
-
-### Role-players / conditional
-- **Tunnel Tipster** — "One of the best green commons / premium two-drop." Turn-2 it often runs away with the game.
-- **Tin Street Gossip** — Gruul signpost; 4/4 vigilance + R/G fixing for flip costs.
-- **Granite Witness** — Reliable WU 3/4 disguise body that draws on flip; wheels = WU open.
 - **Seasoned Consultant** — Good 2-drop detective, 3 toughness; "want to be starting the game on turn two with it."
 - **Inside Source** — 3-mana 2/2 token + drain 2 + pumps detectives; great in WB.
-- **Gore Hound / Snarling Gorehound** — "Surprisingly great" / "so good" surveil 2-drop in graveyard/aggro shells (late 03-xx); but Kenji warns it needs enough power-2-or-less attackers and is weak in non-synergy control ("I don't feel like I have enough power two or less" in some decks).
-- **Sanguine Savior** — Lifelink flying disguise closer; good Boros/WB.
-- **Rubblebelt Maverick** — Premium one-drop for the green graveyard deck (late read); take over removal in that shell. Surveil + self-exile triggers Roots.
-- **Gravestone Strider** — "Underrated all-star" in graveyard decks (late read): fixing + graveyard removal, self-exiles for a clean Roots trigger.
-- **Chalk Outline** — Strong low-bar graveyard payoff; **"better than Insidious Roots"** (late read). 2/2 detective + investigate on each yard-leave.
-- **Auspicious Arrival / Convenient Target / Fuss // Bother** — cheap white/token tricks; "combat tricks... often better even than removal." Convenient Target also suspects (Menace) to push damage (and combos with Agrus Kos).
-- **Fugitive Codebreaker** — Baseline 2/1 haste; prowess + cheaper flips with instants/sorceries in yard.
-- **Rune-Brand Juggler** — 2/2 menace turn 2 + loot; good aggressive filler.
-- **Thinking Cap** — Wants ~5–6 detectives; equip-for-1 strong, equip-for-3 bad. Over-committing to augmentation is a trap.
+- **Faith Flight** — Permanent flying; Kenji likes it more than most ("probably not as good as I give it credit for"). Niche, decent on Private Eye.
+- **Assemble the Players** — Mixed; Kenji "stands behind it" but it bricked repeatedly (revealed only lands). Needs 12+ qualifying creatures (disguise count at disguise cost); high-variance.
+- **Karlov / Carav Watchdog (?)** — 4-mana 3/2, "awful when behind"; only good attacking; "cards good half the time aren't worthwhile."
+- **Case of the Pilfered Proof** — "Have to play it out before your detectives to get value — often really awkward."
+
+### Blue (U)
+- **Cryptic Coat** — "One of the best rares in the format." Recastable ward creature; transfers unblockable/hexproof; combos with Bubble Smuggler. "Nuts."
+- **Out Cold** — Above average; instant, taps two, makes a Clue. Best in blue; "draft multiple Out Colds if I can." (Confirmed end-of-format: "fantastic"/"amazing" tempo removal.)
+- **Forensic Researcher** — ⚠ **UP significantly end-of-format (03-18): "gone up a lot on researcher... does overtime work even if you don't have collect evidence synergies."** High pick; take over Crimestopper Sprite. Also turns on a mana ability (ramp/fixing). (See Supersessions.)
+- **Jaded Analyst** — 1/3 fantastic blocker + looter; great two-drop.
+- **Lost in the Maze** — "Fantastic in this format." 1-mana instant; tap + grant hexproof to protect a key creature mid-combat. (Caveat end-of-format: disguise/cloak creatures resist it, 03-14.)
 - **Exit Specialist** — "One of the better uncommons." Bounce + surveil detective; bounce = pseudo-removal that also resets their disguise investment.
-- **Drag the Canal** — Solid UB instant 2/2 detective with easy upside.
+- **Surveillance Monitor** — Collect-evidence token engine; good in Golgari and as a CE enabler. Multiples late = lane open.
+- **Curious Inquiry** — "Surprisingly good," especially on a face-down creature they can't interact with; combos with Private Eye.
+- **Intrude on the Mind (?)** — "Card draw plus a Thopter — it's amazing" for control decks.
+- **Crimestopper Sprite** — ⚠ **DOWN end-of-format (03-18): "come down a bit on Sprite"; take Forensic Researcher over it.** Still technically an 8-mana spell in the yard for Collect Evidence (Push//Pull combo), but no longer a priority pick. (See Supersessions.)
+- **Reenact the Crime** — "Not very good."
+- **Dramatic Accusation** — "Not a big fan anymore but okay in a pinch."
+- **Curious Inquiry** — situationally good (above) but Kenji has cut it when artifacts/other synergies made it redundant.
+
+### Black (B)
+- **Vein Ripper** — Mythic, "one of the biggest bombs in the format... a broken card." Drain on every creature death; sac-on-block; win-on-cast.
+- **Extract a Confession** — "Black's best common, even better than Murder." Edict bypasses ward 2 and fuels Collect Evidence.
+- **Long Goodbye** — Black's best uncommon; uncounterable, kills face-down for 2. Caveat: can't kill a flipped MV-4+ creature.
+- **Gore Hound / Snarling Gorehound** — "Surprisingly great" / "so good" surveil 2-drop in graveyard/aggro shells (late 03-xx); but Kenji warns it needs enough power-2-or-less attackers and is weak in non-synergy control ("I don't feel like I have enough power two or less" in some decks).
+- **Case of the Stashed Skeleton** — ⚠ **DOWN end-of-format (03-23): "I used to think this card was fantastic but it doesn't usually play out how you want."** The 2/1 can't block and is ignorable in a get-on-board format. Early "extremely high win rate on turn two" read is **superseded** — now "kind of bad." (See Supersessions.)
+- **Cerebral Confiscation** — ⚠ **Early misread: rated a top black common, self-admitted wrong by day 3** ("probably did not come to pass," 02-08). Don't draft it on the early hype. (See Supersessions.)
+- **Deadly Cover-Up** — BB wrath; "better as a land," "effectively a mulligan" in aggressive decks. Only run in a control shell built to survive to it. Never run wraths in aggro.
+- **Polygraph Orb** — "Way too slow / way too weak."
+- **Snarling Gorehound** — Conditionally good; trigger count (power-2-or-less attackers) is often lower than expected.
+
+### Red (R)
+- **Shock** — First-pickable. Kills face-down 2/2s for 1 less than Galvanize; instant. "You would rather have a Shock in this format than the Murder."
+- **Reckless Detective** — "One of the better two-drops"; 3 toughness blocks early garbage, sac clues for free draws on attack. (Kenji has "come down on Sprite and gone up a lot on Researcher/Reckless.")
+- **Person of Interest** — "One of the best red commons" (confirmed end-of-format); excellent 4-drop, two bodies.
+- **Fugitive Codebreaker** — Baseline 2/1 haste; prowess + cheaper flips with instants/sorceries in yard.
 - **Concealed Weapon** — Turns a token/1-power flyer into a 4-power flyer; "disgusting" with Satchel tokens.
 - **Lamplight Phoenix** — Recurring 3/3 flyer; "really annoying threat" with graveyard fodder.
 - **Torch the Witness** — Scales 2/4/6 — **remember it's a sorcery.**
-- **Topiary Panther** — Golgari premium: cycles to yard (CE fuel) AND is a Plant that grows off Roots. "Every piece of the buffalo" exemplar.
-- **Gravestone Strider / Rubblebelt Maverick / Presume Dead / Leering Onlooker** — Golgari self-exilers that trigger Roots.
-- **Surveillance Monitor** — Collect-evidence token engine; good in Golgari and as a CE enabler. Multiples late = lane open.
-- **Curious Inquiry** — "Surprisingly good," especially on a face-down creature they can't interact with; combos with Private Eye.
-- **Urgent Necropsy (?)** — Collect-evidence removal; destroys up to one artifact/creature/enchantment/planeswalker. "At worst you're getting a creature."
-- **Gorgon's Kiss** — Destroy a creature dealt damage this turn; pushes attacks, good in Boros.
-- **Nervous Gardener** — "One of green's better commons"; disguise body that fetches any basic. Free fixing, splash enabler.
-- **Escape Tunnel** — Undervalued premium fixing; enables double-color/splashes. "Best fixing if I'm splashing"; secondary unblockable mode won a game.
-- **Ill-Timed Explosion** — UR wrath; "always good versus white," doubles as a discard outlet.
-- **Intrude on the Mind (?)** — "Card draw plus a Thopter — it's amazing" for control decks.
-- **Faith Flight** — Permanent flying; Kenji likes it more than most ("probably not as good as I give it credit for"). Niche, decent on Private Eye.
-- **Surveil dual lands (Rakish Reveler et al.)** — Take for fixing + surveil value, not just mana.
-
-### Traps / overrated / downgraded
-- **Case of the Stashed Skeleton** — ⚠ **DOWN end-of-format (03-23): "I used to think this card was fantastic but it doesn't usually play out how you want."** The 2/1 can't block and is ignorable in a get-on-board format. Early "extremely high win rate on turn two" read is **superseded** — now "kind of bad." (See Supersessions.)
-- **Crimestopper Sprite** — ⚠ **DOWN end-of-format (03-18): "come down a bit on Sprite"; take Forensic Researcher over it.** Still technically an 8-mana spell in the yard for Collect Evidence (Push//Pull combo), but no longer a priority pick. (See Supersessions.)
 - **Galvanize** — "Come down on this — Shock is generally better" (1 less mana vs disguise creatures). Average, not top-tier. (⚠ Early VODs hyped it — "Galvanize and shock is kind of nuts," 02-11 — that read is superseded; it settled as average.)
 - **Red Herring** — "Fishy." Repeatedly mocked early ("I hate red herring," 02-08) then reversed in-format to running 3-4 copies ("red herring so op," 02-11). Net: only good in dedicated aggro with pump or sac-fodder shells (Crook); "not the deck for Red Herring" most of the time. (See Supersessions — in-format flip.)
-- **Cerebral Confiscation** — ⚠ **Early misread: rated a top black common, self-admitted wrong by day 3** ("probably did not come to pass," 02-08). Don't draft it on the early hype. (See Supersessions.)
-- **Deadly Cover-Up** — BB wrath; "better as a land," "effectively a mulligan" in aggressive decks. Only run in a control shell built to survive to it. Never run wraths in aggro.
-- **Assemble the Players** — Mixed; Kenji "stands behind it" but it bricked repeatedly (revealed only lands). Needs 12+ qualifying creatures (disguise count at disguise cost); high-variance.
-- **Polygraph Orb** — "Way too slow / way too weak."
-- **Karlov / Carav Watchdog (?)** — 4-mana 3/2, "awful when behind"; only good attacking; "cards good half the time aren't worthwhile."
-- **Snarling Gorehound** — Conditionally good; trigger count (power-2-or-less attackers) is often lower than expected.
-- **Mask Breaker** — Weak ("in Arena leagues you're generally not playing people in your same draft pod").
 - **Expose the Culprit** — Cut it; needs 8+ disguise creatures, complex, underwhelms. "Play other cards instead."
+
+### Green (G)
+- **Get a Leg Up** — "One of the best combat tricks in the format... can lead to a plus five plus five or greater." Cheap, blowout-prone.
+- **Glint-Weaver** — 7-mana 6/6 lifegain stabilizer; "if you can resolve it you're generally winning." (Double copies deck-defining, late.)
+- **Tunnel Tipster** — "One of the best green commons / premium two-drop." Turn-2 it often runs away with the game.
+- **Rubblebelt Maverick** — Premium one-drop for the green graveyard deck (late read); take over removal in that shell. Surveil + self-exile triggers Roots.
+- **Chalk Outline** — Strong low-bar graveyard payoff; **"better than Insidious Roots"** (late read). 2/2 detective + investigate on each yard-leave.
+- **Topiary Panther** — Golgari premium: cycles to yard (CE fuel) AND is a Plant that grows off Roots. "Every piece of the buffalo" exemplar.
+- **Nervous Gardener** — "One of green's better commons"; disguise body that fetches any basic. Free fixing, splash enabler.
+- **Audience with Tristani** — "Quite weak overall" in draft.
+
+### Multicolor / gold
+- **Gadget Technician** — Kenji's "favorite of the common disguise creatures." Hard-cast on 4 or disguise + flip for double-red into a 1/1 thopter. Top common; flexes into UR/RG/RW.
+- **Dog Walker** — **"One of the best commons" (confirmed end-of-format 03-23; "11th pick dog walker is absolutely busted").** Disguise into multiple 2/2 dogs; X/1 dodges the no-1-toughness-removal gap; qualifies for Assemble face-down. "Best with the doggies" go-wide. (Early notes called it conflicted/"bad on defense" — that read is **superseded**; the late verdict is a strong, very-takeable common.)
+- **Aurelia, the Law Above / Aurelia's Vindicator** — 4/2 flying lifelink ward 2 for four; "one of the best rares you can open."
+- **Private Eye** — 3/3 detective anthem. Two copies is game-winning.
+- **Vannifar, Evolved Enigma** — One of the best cards in the format end-of-format; "just way too good" (03-14). Locks you green.
+- **Push // Pull** — Premium hybrid removal; want both halves (Pull alone is weak).
+- **Tin Street Gossip** — Gruul signpost; 4/4 vigilance + R/G fixing for flip costs.
+- **Granite Witness** — Reliable WU 3/4 disguise body that draws on flip; wheels = WU open.
+- **Sanguine Savior** — Lifelink flying disguise closer; good Boros/WB.
+- **Auspicious Arrival / Convenient Target / Fuss // Bother** — cheap white/token tricks; "combat tricks... often better even than removal." Convenient Target also suspects (Menace) to push damage (and combos with Agrus Kos).
+- **Rune-Brand Juggler** — 2/2 menace turn 2 + loot; good aggressive filler.
+- **Drag the Canal** — Solid UB instant 2/2 detective with easy upside.
+- **Gravestone Strider / Rubblebelt Maverick / Presume Dead / Leering Onlooker** — Golgari self-exilers that trigger Roots.
+- **Urgent Necropsy (?)** — Collect-evidence removal; destroys up to one artifact/creature/enchantment/planeswalker. "At worst you're getting a creature."
+- **Ill-Timed Explosion** — UR wrath; "always good versus white," doubles as a discard outlet.
 - **Elusive Masquerade** — "I do not think is any good."
-- **Kylock / Wield the Kylocks (?)** — "Just garbage." 7-mana 4/4 menace haste is not where you want to be.
 - **Hustle // Bustle** — "I don't like this card."
 - **Leyline of the Guildpact** — "More a fun card than a good card. Would not recommend."
-- **Conundrum** — "We will not be playing Conundrum."
-- **Reenact the Crime** — "Not very good."
-- **Scene of the Crime** — "Not a big fan for fixing"; 18th-land at best.
-- **Dramatic Accusation** — "Not a big fan anymore but okay in a pinch."
 - **Meddling Youths** — 4/5 haste for 5 in RW; "awkward stat line / mana cost"; a non-premium top-end.
-- **Curious Inquiry** — situationally good (above) but Kenji has cut it when artifacts/other synergies made it redundant.
-- **Case of the Pilfered Proof** — "Have to play it out before your detectives to get value — often really awkward."
 - **Judith, Carnage Connoisseur** — "Just okay generally." Weak rare for draft.
-- **Audience with Tristani** — "Quite weak overall" in draft.
+
+### Colorless / artifacts
+- **Gravestone Strider** — "Underrated all-star" in graveyard decks (late read): fixing + graveyard removal, self-exiles for a clean Roots trigger.
+- **Thinking Cap** — Wants ~5–6 detectives; equip-for-1 strong, equip-for-3 bad. Over-committing to augmentation is a trap.
+
+### Lands
+- **Escape Tunnel** — Undervalued premium fixing; enables double-color/splashes. "Best fixing if I'm splashing"; secondary unblockable mode won a game.
+- **Scene of the Crime** — "Not a big fan for fixing"; 18th-land at best.
+
+### Unmatched / caption-garbled
+- **Killer Among Us** — "Really really impressive." 5-mana three 1/1s with a 4/4-attacker mode; insane when even/ahead, weak on defense.
+- **Gorgon's Kiss** — Destroy a creature dealt damage this turn; pushes attacks, good in Boros.
+- **Surveil dual lands (Rakish Reveler et al.)** — Take for fixing + surveil value, not just mana.
+- **Mask Breaker** — Weak ("in Arena leagues you're generally not playing people in your same draft pod").
+- **Kylock / Wield the Kylocks (?)** — "Just garbage." 7-mana 4/4 menace haste is not where you want to be.
+- **Conundrum** — "We will not be playing Conundrum."
 - **Watchdog** — Bad when behind / on defense; only an offensive tool to prevent flip-ups. (And it stops YOU flipping if it's yours — see pitfalls.)
 
 ## Pitfalls

@@ -25,17 +25,31 @@
 - **Geralf + Blue-Black spell chain**: Geralf (makes zombies whenever you cast instants/sorceries?) led to one game where Kenji made "four or five 4/4 zombies off the Geralf chain." Described as "insane crime deck" draw.
 
 ## Card tips
-- **Spirewoods Armadillo (Spikewoods Armadillo ?)**: "Best card by far. Very, very good green card. Very hard to pass up." First-pickable. Also cycles, which gives it upside in multicolor decks.
-- **Marchesa**: Initially Kenji was "bored of the green-white mount deck" and took Marchesa as a fun pick. At end of format treated it as a premium rare — "Marchesa is the fun pick-up." Requires crimes to chain but pays off immediately.
-- **Mirage Mesa**: Better than Carnation Vista because Mesa is a desert for Desert's Due synergy. "Mirage Mesa is a desert for synergies."
-- **Oasis Gardener**: A 3/3 for 3 that also fetches a land of any type when it ETBs — core fixer for 5-color. Kenji took multiple copies and called them foundational.
-- **Bandit's Hall**: Sacrifice a land, commit a crime and draw a card (?). Low opportunity cost in multicolor decks with excess lands.
-- **Desert's Due**: Strong removal that also commits a crime. Requires a desert but Mirage Mesa / Lush Oasis / Bandit's Hall all count. "Definitely strong enough removal."
+
+### White (W)
 - **Homestead Roving Rancher (?)**: "When you high roll with the Homestead it feels like you can't lose — just a 3/3 for two that draws extra cards." High priority in Boros.
-- **Lasso of the Longarm (?)**: Gives a creature double strike while attacking. Makes a 1/1 Vigilante into a 3/3 double strike every turn starting on turn 3. "Vigilant with the lasso is a 3/3 double strike every turn starting on turn three — kind of great."
+
+### Black (B)
+- **Desert's Due**: Strong removal that also commits a crime. Requires a desert but Mirage Mesa / Lush Oasis / Bandit's Hall all count. "Definitely strong enough removal."
+
+### Red (R)
 - **Great Train Heist**: Untaps all your creatures and gives First Strike. In the late game with 5+ power creatures, this is near-unstoppable. "If you have any reasonable board state all right nice round-one victory."
 - **Cunning Coyote (?)**: Dodge (flash in) to ambush or protect a creature. Kenji considered but ultimately passed it; noted it "wrecks combat" with multiple creatures.
 - **Return the Favor**: Strong sideboard card in BO3 — "Return the Favor as a sideboard card was really good for us in the last Arena Open."
+
+### Multicolor / gold
+- **Marchesa**: Initially Kenji was "bored of the green-white mount deck" and took Marchesa as a fun pick. At end of format treated it as a premium rare — "Marchesa is the fun pick-up." Requires crimes to chain but pays off immediately.
+
+### Colorless / artifacts
+- **Oasis Gardener**: A 3/3 for 3 that also fetches a land of any type when it ETBs — core fixer for 5-color. Kenji took multiple copies and called them foundational.
+
+### Lands
+- **Mirage Mesa**: Better than Carnation Vista because Mesa is a desert for Desert's Due synergy. "Mirage Mesa is a desert for synergies."
+
+### Unmatched / caption-garbled
+- **Spirewoods Armadillo (Spikewoods Armadillo ?)**: "Best card by far. Very, very good green card. Very hard to pass up." First-pickable. Also cycles, which gives it upside in multicolor decks.
+- **Bandit's Hall**: Sacrifice a land, commit a crime and draw a card (?). Low opportunity cost in multicolor decks with excess lands.
+- **Lasso of the Longarm (?)**: Gives a creature double strike while attacking. Makes a 1/1 Vigilante into a 3/3 double strike every turn starting on turn 3. "Vigilant with the lasso is a 3/3 double strike every turn starting on turn three — kind of great."
 - **Contagion Engine**: "Too slow in this format, it's like a fine sideboard card if your opponent's playing Outlaws because they will often have a bunch of small creatures."
 
 ## Pitfalls

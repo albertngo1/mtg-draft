@@ -25,21 +25,37 @@
 - **Grond (?) fling:** Kenji observed opponents throwing Grond at his creatures — a legitimate line in red with sacrifice outlets.
 
 ## Card tips
-- **Lorien Revealed:** "Best card in the pack, not close" as a P1P1 if nothing is better. Never feel bad cycling it early for mana fixing; hardcasting for draw-3 at 6+ mana is a late-game luxury. The #1 most-drafted card in Kenji's format data.
-- **Aomer (Eomer (?)):** "As close to an uncommon bomb as you're getting" — generates massive immediate board presence, repeatedly described as a game-changer when top-decked.
-- **Nazgul (Survivor / "Gollum" (?)):** Premium 2-drop; Kenji calls it his preferred ring bearer for Call of the Ring and the first thing he builds around in blue-black.
-- **Coral's End:** #1 most-drafted card per Kenji's stated data. Flexible instant-speed exile removal.
-- **Lash of the Balrog:** Strong removal requiring sac; Kenji always wants 1-2 in his black decks. "Double Lash is fantastic."
-- **Grima's Patrol (?):** Underrated sacrifice outlet that also provides a blocker; Kenji notes it as a clean way to fuel Lash and get tempt value.
+
+### White (W)
 - **Muster the Rohirrim (?):** Good token producer; works well with Club (?) for sacrifice fodder.
-- **Bilbo (Bilbo Baggins):** Win-condition legendary with Mithril Coat — can become indestructible. There and Back Again combo: Bilbo makes a treasure that fuels replay. Kenji refers to it as "trilbo" dream (cast 3 times in a game).
-- **There and Back Again:** Solid source of extra tempt triggers; not always great early on.
-- **Gothmog:** Consistently noted as weakest of the 5-drops Kenji runs — "four mana pass" energy; he keeps it but would cut it first.
-- **Mithril Coat:** Kenji flip-flops on this ("hate the coat") but includes it when he has multiple legendaries. Good with Bilbo; prevents claim/kill on key threats.
+
+### Blue (U)
+- **Lorien Revealed:** "Best card in the pack, not close" as a P1P1 if nothing is better. Never feel bad cycling it early for mana fixing; hardcasting for draw-3 at 6+ mana is a late-game luxury. The #1 most-drafted card in Kenji's format data.
 - **Birthday Escape (?):** Cheap spell with cycling; Kenji regrets not cycling it on turn 1 in some games to dig toward Survivor/torment.
-- **Rohirrim Lancer:** Premium 1-drop — triggers tempt and attacks through. Kenji's default first ring bearer.
+
+### Black (B)
+- **Nazgul (Survivor / "Gollum" (?)):** Premium 2-drop; Kenji calls it his preferred ring bearer for Call of the Ring and the first thing he builds around in blue-black.
+- **Lash of the Balrog:** Strong removal requiring sac; Kenji always wants 1-2 in his black decks. "Double Lash is fantastic."
+- **Gothmog:** Consistently noted as weakest of the 5-drops Kenji runs — "four mana pass" energy; he keeps it but would cut it first.
 - **Fell Beast (?):** "Beast is lethal by itself" — strong flying threat in blue; Kenji references it as a top blue uncommon.
+
+### Red (R)
+- **There and Back Again:** Solid source of extra tempt triggers; not always great early on.
+- **Rohirrim Lancer:** Premium 1-drop — triggers tempt and attacks through. Kenji's default first ring bearer.
+
+### Green (G)
 - **Radagast:** Opponent's Radagast is called out as "completely ruined my life" — it tutors creatures continuously and must be killed immediately.
+
+### Multicolor / gold
+- **Bilbo (Bilbo Baggins):** Win-condition legendary with Mithril Coat — can become indestructible. There and Back Again combo: Bilbo makes a treasure that fuels replay. Kenji refers to it as "trilbo" dream (cast 3 times in a game).
+
+### Colorless / artifacts
+- **Mithril Coat:** Kenji flip-flops on this ("hate the coat") but includes it when he has multiple legendaries. Good with Bilbo; prevents claim/kill on key threats.
+
+### Unmatched / caption-garbled
+- **Aomer (Eomer (?)):** "As close to an uncommon bomb as you're getting" — generates massive immediate board presence, repeatedly described as a game-changer when top-decked.
+- **Coral's End:** #1 most-drafted card per Kenji's stated data. Flexible instant-speed exile removal.
+- **Grima's Patrol (?):** Underrated sacrifice outlet that also provides a blocker; Kenji notes it as a clean way to fuel Lash and get tempt value.
 
 ## Pitfalls
 - **Don't pass Lorien Revealed late:** It's so impactful that Kenji says he feels bad land-cycling it, but it's correct when you need mana. Never let it table — take it even 3rd or 4th pick.

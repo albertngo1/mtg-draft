@@ -28,18 +28,30 @@
 - **Borrowed Time + Cigarda:** Cigarda's trigger is "dies" so Borrowed Time being destroyed returns the exiled creature — only relevant in removal-heavy opponents but worth tracking.
 
 ## Card tips
+
+### White (W)
+- **Search Party Captain:** Lowers spell costs but is weaker on the draw; consider cutting some for sideboard games where opponents have interactive cards.
+- **Ritual of Hope:** Better than Bramble Armor as a finisher; the all-creatures pump wins combat completely. Pick it over less synergistic creatures in coven decks.
+- **Borrowed Time:** Priority removal in Green-White that handles anything non-land; curves well under the four-drops.
+
+### Blue (U)
 - **Organ Hoarder:** Take it over most things early; mills four then lets you pick the best card type. Wants 18 lands in green-black because you need black for it.
+- **Falcon Abomination:** Taken as the "too good to pass" three-drop in Blue-White; tapping something and making a 1/1 Zombie is immediate value.
+
+### Red (R)
+- **Dual Craft Trainer (?):** Pump + trigger engine; Kenji leads with it to get value before playing Cigarda.
+
+### Green (G)
 - **Harvest Tide Sentry:** Kenji says "I take every single sentry I see" in Green-White; the repeating tap-down that turns on at coven is oppressive.
 - **Clear Shot:** "Removal is not easy in green-white" — pick it high.
-- **Search Party Captain:** Lowers spell costs but is weaker on the draw; consider cutting some for sideboard games where opponents have interactive cards.
 - **Rise of the Ants:** Title-worthy card — the deck is literally named after it. Pick it early in green-black, build around it.
-- **Dual Craft Trainer (?):** Pump + trigger engine; Kenji leads with it to get value before playing Cigarda.
-- **Ritual of Hope:** Better than Bramble Armor as a finisher; the all-creatures pump wins combat completely. Pick it over less synergistic creatures in coven decks.
-- **Falcon Abomination:** Taken as the "too good to pass" three-drop in Blue-White; tapping something and making a 1/1 Zombie is immediate value.
-- **Borrowed Time:** Priority removal in Green-White that handles anything non-land; curves well under the four-drops.
-- **Farmhand (Sungold Farmhand):** Fixing + recurring land searching; Kenji laments not finding Farmers in multiple drafts — they upgrade every green-white build significantly.
 - **Plummet (sideboard):** Bring in one vs blue-red or any deck with Interlopers / large flyers; "I definitely should bring in one seeing at least two interlopers."
+
+### Lands
 - **Evolving Wilds:** Take it for fixing if splashing; also enables Locked in the Cemetery in the self-mill deck (sacrifice it, trigger landfall-style effects).
+
+### Unmatched / caption-garbled
+- **Farmhand (Sungold Farmhand):** Fixing + recurring land searching; Kenji laments not finding Farmers in multiple drafts — they upgrade every green-white build significantly.
 - **Larger Zombie:** Underrated in the self-mill deck — comes back from the graveyard and provides a threat that survives most removal.
 
 ## Pitfalls

@@ -23,17 +23,29 @@ Streets of New Capenna is a 3-color (shard/wedge) format dominated by connive an
 - **Masked Bandits blitz + corpse explosion**: Blitz Bandits (they die, leave 2/2), use the corpse explosion immediately after for big damage based on Bandits' 5 power.
 
 ## Card tips
+
+### White (W)
 - **Raffine's Informant**: Top 2-drop in the format. Draft 3+ copies without guilt. "After starting with two informants I don't think you're supposed to pass the third." Pairs with: dagger, metamorphosis, bypass, guidance.
-- **Disciplined Duelist**: "That duelist was just an A+ pickup" at pick 6. Underrated because of how hard it is to block — double-strike + shield counter means trading is nearly impossible without two cards.
+- **Hold for Ransom**: Solid aura removal that costs the opponent mana to pay off. Worth taking over filler; even wheeled in pack 3 in the tournament VOD.
+
+### Blue (U)
 - **Rooftop Nuisance**: "Nuisance has been a huge huge all-star in these type of decks." Taps down a creature temporarily — pseudo-removal and tempo piece. Take it over most filler at any pick.
-- **Cleanup Crew**: "I'd call cleanup crew bomb-adjacent" — baseline gain 4 life plus modes that kill enchantments/artifacts or give trample. 6/6 body dominates most boards. Kenji first-picks it repeatedly.
-- **Celestial Regulator**: "A two-three flyer for three that tempos down the opponent which just lets me keep the race pressure up and protects us from cards like [Disciplined Duelist]." Kenji says his first loss came from not having one. Highly underrated.
+- **Security Bypass**: "All the security bypass did was like a glorified looting mechanism" in one game — connive outlet, but also makes a creature unblockable. Enabler rather than standalone.
+
+### Black (B)
 - **Murder**: Specifically undervalued in SNC — "murder is so much worse in this format" because opponents' creatures generate value on ETB. Spot removal is less efficient than tempo/pressure.
 - **Dig Up the Body**: "I like having one dig up the body if I'm playing black." The recursion pays off in attrition games. Worth taking over lands in late picks when in black.
 - **Girder Goons**: 4/3 that blitzes for 2 and leaves a 2/2 token — one of the best blitz creatures. Take 2 copies easily; they synergize with corpse explosion and involuntary employment.
-- **Security Bypass**: "All the security bypass did was like a glorified looting mechanism" in one game — connive outlet, but also makes a creature unblockable. Enabler rather than standalone.
-- **Hold for Ransom**: Solid aura removal that costs the opponent mana to pay off. Worth taking over filler; even wheeled in pack 3 in the tournament VOD.
+
+### Green (G)
+- **Cleanup Crew**: "I'd call cleanup crew bomb-adjacent" — baseline gain 4 life plus modes that kill enchantments/artifacts or give trample. 6/6 body dominates most boards. Kenji first-picks it repeatedly.
+
+### Multicolor / gold
+- **Disciplined Duelist**: "That duelist was just an A+ pickup" at pick 6. Underrated because of how hard it is to block — double-strike + shield counter means trading is nearly impossible without two cards.
+- **Celestial Regulator**: "A two-three flyer for three that tempos down the opponent which just lets me keep the race pressure up and protects us from cards like [Disciplined Duelist]." Kenji says his first loss came from not having one. Highly underrated.
 - **Brokers Charm**: Versatile instant — removal, draw, or pump. "Take another charm even though the other one wheeled." Take multiple.
+
+### Unmatched / caption-garbled
 - **Eerie Sorin (?)** / **Shakedown Heavy (?)**: Heavy (3-power 1-drop menace?) "was drawing too many extra cards a turn now" for the opponent. One of the scariest aggressive cards.
 
 ## Pitfalls

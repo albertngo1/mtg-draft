@@ -20,17 +20,29 @@ Ikoria (IKO) is a medium-speed format dominated by the cycling deck when assembl
 - **Giganta as companion (Jiganth? — large green companion)**: Adds three colors for Ruinous Ultimatum; Kenji tried it in a non-cycling deck to enable the Ultimatum splash.
 
 ## Card tips
-- **One-mana cyclers**: Never correctly passed once you are in the cycling deck. "It might not even be correct to take every single cycling card, but I'm not sure — take them anyway." Only consider passing if you already have 17+ cyclers.
-- **Zenith Flare**: "The best rare in the format" for cycling. Multiple Flares = redundancy; three is the target.
+
+### White (W)
 - **Snare Tactician**: Strong in cycling decks as both enabler and threat; less good if you only have a few cyclers.
-- **Fire Prophecy**: Preferred removal for cycling — cycles unwanted cards while killing; don't Fire Prophecy your own crystal (?) because losing a cycling card in graveyard matters.
 - **Coordinated Charge**: Wheels frequently; hold it to pair with a wide board and end the game.
-- **Reconnaissance Mission**: Strong card-advantage enchantment; note it requires creatures to deal combat damage, so the cycling deck prefers attacking before cycling to trigger it.
-- **Shredded Sails**: "Should cycle it more often rather than keeping in hand as a dead card."
 - **Divine Arrow**: Reliable white removal; worth taking over most two-mana cyclers once you have enough cyclers.
+
+### Blue (U)
+- **Reconnaissance Mission**: Strong card-advantage enchantment; note it requires creatures to deal combat damage, so the cycling deck prefers attacking before cycling to trigger it.
+
+### Red (R)
+- **Fire Prophecy**: Preferred removal for cycling — cycles unwanted cards while killing; don't Fire Prophecy your own crystal (?) because losing a cycling card in graveyard matters.
+- **Shredded Sails**: "Should cycle it more often rather than keeping in hand as a dead card."
 - **Forbidden Friendship**: Generally not good enough; Kenji passed most copies.
-- **Ambush**: Good early creature for a non-cycling midrange build.
+
+### Multicolor / gold
+- **Zenith Flare**: "The best rare in the format" for cycling. Multiple Flares = redundancy; three is the target.
+
+### Colorless / artifacts
 - **Crystalline Giant**: Artifact threat that opponents should prioritize removing with Appetite for the Unnatural.
+
+### Unmatched / caption-garbled
+- **One-mana cyclers**: Never correctly passed once you are in the cycling deck. "It might not even be correct to take every single cycling card, but I'm not sure — take them anyway." Only consider passing if you already have 17+ cyclers.
+- **Ambush**: Good early creature for a non-cycling midrange build.
 - **Land count for cycling**: 13–14 is correct; going to 4 lands in actual play is common and intended.
 
 ## Pitfalls

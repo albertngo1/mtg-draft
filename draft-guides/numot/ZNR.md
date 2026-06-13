@@ -60,21 +60,28 @@
 
 ## Card tips
 
+### White (W)
 - **Maul of the Skyclayes**: highest-impact rare in the format; near-game-winning by itself. Snap-first-pick.
-- **DFCs (double-faced land spells)**: always take them early regardless of archetype. They're a free roll — "kind of like a free roll in your deck."
-- **Feed the Swarm**: black removal that can hit enchantments — premium. "That was a good removal spell so we'll just take that here."
-- **Deadly Alliance**: cost-reducing removal; multiple copies are excellent. Going fourth pick when black is clearly open is a great sign.
-- **Shadow Stinger**: late pick value card (9th pick here); mills 2 on attack. "This card is just stupid annoying."
-- **Subtle Strike**: combat trick that gives a creature +1/+1 and death touch. Premium instant. Kenji wheeled multiple copies and took all of them.
 - **Shepherd of Heroes**: 5-mana 3/4 flyer that gains significant life — Kenji called it "the best card in the pack" over other options.
+
+### Blue (U)
 - **Skyclave Plunder**: "Big card draw effect. Baseline 5-mana draw 3, and as long as you have some party member cards you can look at more and choose." Value scales hard with party count.
-- **Pack Beast**: provides all four party types in one card. Great for enabling Spoils of Adventure and Skyclave Plunder.
-- **Thwart the Grave**: graveyard hate/recursion; wheeled 9th pick in one draft — "insane" late pick.
-- **Nectar Pot** (?): repeatedly mentioned as bad. "This is why you don't play nectar pots — not very good."
 - **Shell Shield**: free-roll protection spell (pay 0 or 2 for hexproof). Fine as a late cut in decks that want to protect a key creature.
 - **Ruin Crab**: "I am not big on Ruin Crab" — only draft it if you have a dedicated mill-win plan and other mill enablers; don't just drop it in a Rogues deck hoping it helps.
 - 16 lands is fine in blue-black (Kenji played it); can go 15 or 16 in aggressive kicker decks with good DFC fixer coverage.
 - In bot draft, kicker synergy cards (Vine Gekko, Roost of Drakes) go later than they would in human draft — pick them up.
+
+### Black (B)
+- **Feed the Swarm**: black removal that can hit enchantments — premium. "That was a good removal spell so we'll just take that here."
+- **Deadly Alliance**: cost-reducing removal; multiple copies are excellent. Going fourth pick when black is clearly open is a great sign.
+- **Shadow Stinger**: late pick value card (9th pick here); mills 2 on attack. "This card is just stupid annoying."
+- **Subtle Strike**: combat trick that gives a creature +1/+1 and death touch. Premium instant. Kenji wheeled multiple copies and took all of them.
+- **Thwart the Grave**: graveyard hate/recursion; wheeled 9th pick in one draft — "insane" late pick.
+
+### Unmatched / caption-garbled
+- **DFCs (double-faced land spells)**: always take them early regardless of archetype. They're a free roll — "kind of like a free roll in your deck."
+- **Pack Beast**: provides all four party types in one card. Great for enabling Spoils of Adventure and Skyclave Plunder.
+- **Nectar Pot** (?): repeatedly mentioned as bad. "This is why you don't play nectar pots — not very good."
 
 ## Pitfalls
 

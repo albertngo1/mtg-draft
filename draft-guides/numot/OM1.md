@@ -50,11 +50,16 @@
 
 ## Card tips
 
+### White (W)
 - **Spectacular Tactics is the best white common by a wide margin.** "I'm pretty sure this is just the best white common because the two supported archetypes for white are blue-white and green-white, and both of those are just heavy creature-based decks." Take every copy.
+
+### Black (B)
+- **Villainous Wrath is the only wrath.** Take it early as a one-of; it's critical against wide boards. "I'm going to go for it" — he almost always ends up casting it as a 3-for-1 or better.
+
+### Unmatched / caption-garbled
 - **Principled Referee is a premium 3-drop.** "Curving two-drop, three-drop into Referee is backbreaking often times." Take it over most other 3-drops.
 - **Mothwing Aerialist is the most important common for blue-white.** The two-mana hybrid creature with ward 2 that gains flying is irreplaceable. Kenji went 0-for-4 drafts without finding one; adjust drafting to grab it in pack 1.
 - **Watcher on the Road is the best blue rare.** "Even if you have no other villains, cast it on turn four — two three-threes on turn four." First pick.
-- **Villainous Wrath is the only wrath.** Take it early as a one-of; it's critical against wide boards. "I'm going to go for it" — he almost always ends up casting it as a 3-for-1 or better.
 - **Scorpion Sting is the best black common for blue-black.** "Blue-black really wants its early interaction." A second copy is a great pickup.
 - **Rouse the Swarm (?) / Scout the City (?) are excellent fixing/token generators.** "Scout the City can help dig for a non-green-white land as well." Run at least 2 in green decks.
 - **Xan (mana dork that ramps into 5-drops?)** is a critical support piece. Enables through-the-omen-paths and other 5-drops on turn 4. "They had Xan for the ramp."

@@ -25,19 +25,29 @@
 - **Pennant + Elf/Goblin/Changeling graveyard**: Pennant can name the relevant tribe and buy back key pieces (Grave Shifter, Grub); in Vivid/elemental builds naming Elementals retrieves Ashling's Command.
 
 ## Card tips
-- **Goblin Glutton** (Gristle Glutton?): One of the best Goblin cards; the rummage effect is crucial for filtering draws. Kenji considers running up to three copies. Without card draw/filter, Goblin decks "run out of action."
-- **Morcant's Eyes** (More Cat's Eyes? — tribal scry/draw): Described as an insane uncommon for Elves, sets up draws and acts as a late-game win condition. First-pickable in a weak pack.
+
+### Blue (U)
+- **Blossom Bind**: Cheap removal/tap enchantment; Kenji runs it happily in Vivid builds.
+
+### Black (B)
 - **Unbury**: Best card in its pack by a wide margin; especially powerful in Elves for graveyard recursion but good in any tribe-heavy deck. "Not close."
+- **Iron Shield Elf**: Fine two-drop filler, cuts when better options arrive.
+
+### Red (R)
 - **Cinder Strike**: Best or near-best red common; instant-speed kills most relevant creatures.
 - **Boulder Dash**: Premium red removal; can be splash-worthy. Three copies is too many — prioritize the first two.
-- **Assert Perfection** (?): Near-bomb rarity; take over most other cards.
-- **Goblin Sharpshooter**: Old-card reprint; pings for one whenever a creature dies and untaps with each death. Devastating with deathtouch (Scarblades' Malice?). Kenji had never seen it in play before finally facing it — respect it as a near-game-winner.
-- **Blossom Bind**: Cheap removal/tap enchantment; Kenji runs it happily in Vivid builds.
-- **Midnight Tilling** (self-mill instant/sorcery): Enables Unbury and graveyard payoffs; run 1–2 in Elf builds, which allows cutting to 16 lands.
 - **Burning Curiosity**: Draw engine in Goblins; not listed as essential but fills the card-advantage gap Goblins struggles with.
-- **Eclipse Bogart**: Late-pick eclipsed creature that signals Goblins is open; getting one 8th pick is a strong signal.
 - **Guttersnipe Gang** (?): Good Goblin 4-drop when you have synergies for the 1/1 counter package; weaker without counters to exploit.
-- **Iron Shield Elf**: Fine two-drop filler, cuts when better options arrive.
+
+### Green (G)
+- **Morcant's Eyes** (More Cat's Eyes? — tribal scry/draw): Described as an insane uncommon for Elves, sets up draws and acts as a late-game win condition. First-pickable in a weak pack.
+- **Assert Perfection** (?): Near-bomb rarity; take over most other cards.
+- **Midnight Tilling** (self-mill instant/sorcery): Enables Unbury and graveyard payoffs; run 1–2 in Elf builds, which allows cutting to 16 lands.
+
+### Unmatched / caption-garbled
+- **Goblin Glutton** (Gristle Glutton?): One of the best Goblin cards; the rummage effect is crucial for filtering draws. Kenji considers running up to three copies. Without card draw/filter, Goblin decks "run out of action."
+- **Goblin Sharpshooter**: Old-card reprint; pings for one whenever a creature dies and untaps with each death. Devastating with deathtouch (Scarblades' Malice?). Kenji had never seen it in play before finally facing it — respect it as a near-game-winner.
+- **Eclipse Bogart**: Late-pick eclipsed creature that signals Goblins is open; getting one 8th pick is a strong signal.
 - **Oversized Goblin Prankster** (?): Weak late-game draw, cut easily.
 
 ## Pitfalls

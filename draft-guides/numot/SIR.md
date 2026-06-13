@@ -23,16 +23,28 @@ Shadows over Innistrad Remastered is a midrange-to-synergy format with multiple 
 - **Moonlight Hunt + multiple wolves/werewolves**: Each wolf/werewolf you control adds +1/+1 to the fight target — with 5-6 wolves you fight for +5/+5, which is a 2-for-1 removal spell.
 
 ## Card tips
-- **Olivia's Dragoon**: "One of the reasons why Olivia's dragon is so good is because it's two mana and a free discard outlet" — premium pick in any black deck, especially madness.
+
+### Blue (U)
 - **Manic Scribe**: Take it early. "Manic scribe is greatest wincon of all time." Even as a defensive body it's useful; once you have delirium it ends games fast.
+
+### Black (B)
+- **Olivia's Dragoon**: "One of the reasons why Olivia's dragon is so good is because it's two mana and a free discard outlet" — premium pick in any black deck, especially madness.
+
+### Red (R)
 - **Galvanic Bombardment**: "Blue red spells being the bees knees" — Bombardment gets better with each copy you play (scales to 1/2/3 damage). Take multiples.
-- **Clear Shot**: Kenji calls it "great, often a two-for-one." One of the best non-rare removal spells in the format. Pick it highly.
 - **Incendiary Flow**: 2-mana deal 3 exile if creature — "completely forgot about that one, that's a good pickup." Exile clause matters against recursion decks.
+- **Village Messenger**: "If the opponent doesn't have anything to do against it [on turn 1] you know... it flips into a 2/2 Menace which generally hits them for quite a bit of damage." Aggressive 1-drop, can snowball hard.
+
+### Green (G)
+- **Clear Shot**: Kenji calls it "great, often a two-for-one." One of the best non-rare removal spells in the format. Pick it highly.
 - **Tireless Tracker**: "One of the better green cards in the format." Synergizes with Moonlight Hunt, game trail, and basically everything in RG.
+- **Hamlet Captain**: "10 humans" were in the deck — Captain pumps them all. Synergizes with white-green human count from wolves overlapping.
+
+### Colorless / artifacts
 - **Epitaph Golem**: "First Epitaph Golem is important; having two is not even that bad." Two different card types (artifact + creature) helps delirium; second copy is a safety net. Common in remastered (was uncommon in original).
 - **Neglected Heirloom**: Pairs perfectly with cheap flip creatures — equip for 1, transform, suddenly a first strike/double strike equipment. Take it when you're in RG werewolves.
-- **Village Messenger**: "If the opponent doesn't have anything to do against it [on turn 1] you know... it flips into a 2/2 Menace which generally hits them for quite a bit of damage." Aggressive 1-drop, can snowball hard.
-- **Hamlet Captain**: "10 humans" were in the deck — Captain pumps them all. Synergizes with white-green human count from wolves overlapping.
+
+### Unmatched / caption-garbled
 - **Spider Spawning** (opponent's): "Spider spawning deck was one of the best things you could be doing" — can run more than 40 cards if you have enough instants/sorceries. Watch for it as a late-pack signal.
 - **Kindly Strangers**: "Really strong delirium card, pick 1 pack 1 quality for sure." Take it over generic cards when you're in delirium strategies.
 - **Sever the Bloodline**: "This used to be a rare too by the way, now it's uncommon" — devastating exile-all spell, watch for it.

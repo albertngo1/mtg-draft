@@ -129,96 +129,109 @@ Ranked by the settled Sunset Show (#743) read, cross-checked against the mid-for
 
 ## Card tips
 
+
 Grades below are LR's **release-week set-review predictions** (#735 commons/uncommons, #736 rares/mythics) on roughly an A+→F scale (split grades shown as Marshall/LSV). The Sunset Show (#743) late verdict wins on conflict and is flagged.
 
-### Premium picks
+### White (W)
 - **Novice Inspector** — B (review) but the **#1 common in the format end-of-format**. 1-mana detective that makes a Clue; auto-pick, splashable, never cut. "A messed up card."
 - **Aurelia's Vindicator** — A+. "Almost certainly the best card in the set." 4/2 flying lifelink ward 2; disguise hides the cost, flips to exile multiple creatures (they return to YOUR hand if it leaves). LR's best bomb.
-- **Aurelia, the Law Above** — A. 4/4 flying vigilance haste for 5 that draws and pings; LSV's personal favorite card of the format.
-- **Vein Ripper** — A+. Triple-black 6/5 flyer; ward = they sac a creature, drains 2 on every creature death. Absolute bomb (triple-black is the only caveat).
-- **Cryptic Coat** — A+. Near-infinite ward-2 unblockable threats for 3 mana; one of the best Limited cards LSV has seen.
-- **Ezrim, Agency Chief** — A+. WWUU 5/5 flyer; investigates twice, sac artifacts to gain vigilance/lifelink/hexproof. Near-impossible to beat once set up.
-- **Tolsimir, Midnight's Light** — A+. 5-mana 3/2 lifelink that also makes a 5/5 trample wolf and forces blocks. Nearly impossible to survive.
-- **Rakdos, Patron of Chaos** — A+. 5-mana 6/6 flying trample; each end step they sac two permanents OR you draw two. Either way you win.
-- **Incinerator of the Guilty** — A/A+. 6/6 flying trample; on combat damage, Collect Evidence X to deal X to all their creatures/planeswalkers. Trample = it almost always connects = it ends games.
-- **Teysa, Opulent Oligarch** — A. Orzhov snowball engine (see Archetypes); the slow-but-inevitable groan test.
-- **Massacre Girl, Known Killer** — A. 2BB 4/4 menace, your creatures have wither, draw when their creatures die small. Punishes combat AND removal.
-- **Trostani, Three Whispers** — A/A-. 3-mana 4/4 that threatens deathtouch/vigilance/double strike; nearly unkillable in combat.
-- **Yarus, Roar of the Old Gods** — A-. RG disguise engine; LSV rates it P1P1-worthy.
-- **Vannifar, Evolved Enigma** — A. Free cloak from hand each combat, then buff colorless creatures; "completely absurd."
-- **Sharp-Eyed Rookie** — A. 2-mana 2/2 vigilance that grows + investigates when a bigger creature enters; miserable to face.
-- **Homicide Investigator** — A-. 1B 2/2; investigate whenever a non-token creature you control dies (once/turn). Trivial to trigger, repeated card advantage.
 - **Wojek Investigator** — A. 2/4 flying vigilance angel that blocks everything and draws continuously.
-- **Hide in Plain Sight** — A. 3G sorcery; look at 5, cloak 2 — "a Collected Company that always hits." Worst case two ward-2 2/2s for 4.
-- **Axebane Ferox** — A-. 2GG 4/4 deathtouch haste, ward = Collect Evidence 4; sometimes flat unkillable early.
-- **Doppelgang** — A. Clone at 5, game-over at 8 (Simic finisher; LSV's favorite).
-- **Kellan, Inquisitive Prodigy** — A-. 3/4 flyer for 4 that draws off cracking your own artifacts.
-- **Torch the Witness** — B (review) → **LR's "mythic uncommon of the format"** (#743). XR scalable removal + investigate; 1 color = goes in every red deck. Premium.
 - **Makeshift Binding** — B. 2W O-Ring + gain 2 life; the extra value beats ward-2 evaluation; first-pick removal.
 - **On the Job** — D+ (#735, wildly low) → **breakout uncommon, top tier** (#738/#743). The early grade is **superseded** — pseudo-Overrun that makes a Clue; "put 17 creatures in your deck and it works."
-- **Extract a Confession** — C+ (review) → **black's best common** (over a point higher than Murder on 17Lands, #743). Edict bypasses ward 2 and fuels Collect Evidence.
-- **Shock** — B-/C+. Best red common conversation; kills disguise 2/2s for 1 mana, instant. LSV ran 3 at the PT and "was closer to wanting a fourth than cutting one." Never side it out.
-- **Person of Interest** — C+ (review) → **most powerful red common by 17Lands** (#743). 4 mana for a 2/2 + a 2/2 detective token.
-- **Maverick Thopterist** — A-. 5 mana for a 2/2 + two 1/1 flyers, improvise pays with Clues. Excellent.
-- **Lamplight Phoenix** — A-. Recurring 3/3 flyer; great stats + Collect-Evidence recursion (don't cast under 4 evidence).
-- **Pyrotechnic Performer** — A-. See combos; LSV's "best red card by win rate" from the PT.
-
-### Role-players / conditional
 - **Perimeter Enforcer** — B. 1/1 flying lifelink that grows with detectives; hard to cut in WU/Boros.
-- **Reckless Detective** — B/B-. 2-mana 0/3 that filters cards and taxes trades; the "nut curve" partner to Novice Inspector; "cracked." Don't run it in decks already flush with early plays.
 - **Inside Source** — C+ (review) but a top-pick token-maker in white aggro (1/1 + a 2/2 token + a detective pump for 3 mana).
-- **Dog Walker** — C+. One of the better commons; X/1 dodges the no-1-toughness-removal gap; makes multiple 2/2 dogs; qualifies face-down for power-2-or-less synergies.
-- **Private Eye** — C+ floor → B+ payoff. 3/3 detective lord; cracking a Clue makes detectives unblockable. Top WU uncommon.
+- **Make Your Move** — main-deck 1+ (2 in BoX); destroys artifact/enchantment/power-4+ creature — hits a huge share of MKM's rares and big disguise flips.
+- **Defenestrated Phantom** — C (review) → "one of the worst disguise creatures" (#743). 5 mana to flip into a 3-toughness 4/3 flyer isn't enough. Avoid.
+- **No Witnesses** — C. White 5-mana wrath, but the opponent (most creatures) usually gets a Clue back; weak wrath.
+- **Doorkeeper Thrull** — D/F. Doesn't even stop disguise reveals; wrong set for the effect.
+
+### Blue (U)
+- **Cryptic Coat** — A+. Near-infinite ward-2 unblockable threats for 3 mana; one of the best Limited cards LSV has seen.
 - **Cold Case Cracker** — B-. 3/3 flyer for 4 + Clue on death; perfect statline for WU/GU defense; happy to trade into anything.
 - **Out Cold** — C. Uncounterable tap-two + investigate; want multiples in blue tempo. "Finish off the game."
 - **Deduce** — C- (review) but a "really pushed" cantrip in practice (#737): 2-mana draw + Clue; double Deduce = pass with 2 up and don't care which you draw.
 - **Reasonable Doubt** — C+/C. 2-mana counter (pay 2 + suspect); "good in every format"; core Simic piece; combos with holding Clue mana. Cut extras in removal-flush decks.
 - **Unauthorized Exit** — bounce + surveil 1; premium Simic tempo, blows out tricks, bounces a disguise creature at 4.
 - **Jaded Analyst** — D (review) → underplayed-but-good 2/3 defender in Simic (LSV's favorite blocker). Skip it in aggressive/removal-flush decks.
-- **Long Goodbye** — C+. 1B uncounterable removal (MV≤3); great vs. cheap disguise flips, awkward vs. a flipped MV-4+ creature. Black's best removal common but don't take black early for it.
-- **Galvanize** — B (review). 2-mana deal 3 (5 if you drew 2+). Fine removal trick; **Shock is often better** (1 less vs. disguise, instant).
-- **Tunnel Tipster** — B-. Green premium 2-drop; grows off face-down ETBs and ramps.
-- **Wisp-Drinker Vampire** — B+. WB drain payoff; 2/4 flyer that pings on power-2-or-less ETBs.
-- **Gleaming Geardrake** — B → "really strong, happy first-pick" (#743). The uncommon that opens UR artifacts.
-- **Gadget Technician** — C+. Flexes a 3-drop or 4-drop in UR; 3/2 face-up + a thopter.
-- **Krenko, Baron of Tin Street** — B+. Snowballs goblins off artifacts/Clues.
-- **A Killer Among Us** — C+/B- (review) → "easily the pick, better than most rares" (#738). 5 mana, ~6 power of stats across three bodies with a deathtouch mode; insane when even/ahead, weak on defense.
-- **Lightning Helix** — B+. Reprint; great Boros removal + reach, color-committing.
-- **Buried in the Garden** — A-. GW O-Ring + ramp aura; a real reason to be Selesnya.
-- **Repulsive Mutation** — pump + counter; a top GW/GU gold uncommon (#743).
-- **Nervous Gardener** — C+. Fixing + body; unlocks splashes; one of green's better commons.
 - **Hard Evidence** — "best blue common" (a reprint, #739); cheap card-flow + a Clue.
-- **Ill-Timed Explosion** — B/B+. UR 4-mana flexible sweeper-or-Divination; best wrath in the set used right.
+- **Crimestopper Sprite** — C/C+ (review) → **DOWN** (#743): poor stats vs. disguise, CE 6 too high, stays a 2/2. (See Supersessions.)
+- **Benthic Criminologists** — D. 4UU 4/5 that sacs artifacts to draw — redundant with Clues already drawing; "just bad" (but a "pleasant surprise" as a clue-deck 5-drop late, #743).
+- **Living Conundrum** — Build-around B (review) → "after extensive testing, not really a thing" (#739/#743); LSV loved it conceptually, it never worked.
+- **Behind the Mask** — D. Two bad modes stapled together.
+
+### Black (B)
+- **Vein Ripper** — A+. Triple-black 6/5 flyer; ward = they sac a creature, drains 2 on every creature death. Absolute bomb (triple-black is the only caveat).
+- **Massacre Girl, Known Killer** — A. 2BB 4/4 menace, your creatures have wither, draw when their creatures die small. Punishes combat AND removal.
+- **Homicide Investigator** — A-. 1B 2/2; investigate whenever a non-token creature you control dies (once/turn). Trivial to trigger, repeated card advantage.
+- **Extract a Confession** — C+ (review) → **black's best common** (over a point higher than Murder on 17Lands, #743). Edict bypasses ward 2 and fuels Collect Evidence.
+- **Long Goodbye** — C+. 1B uncounterable removal (MV≤3); great vs. cheap disguise flips, awkward vs. a flipped MV-4+ creature. Black's best removal common but don't take black early for it.
 - **Deadly Cover-Up** — B. 5-mana BB wrath; reliable, the bonus hand/library exile rarely matters. Control shells only.
-- **Make Your Move** — main-deck 1+ (2 in BoX); destroys artifact/enchantment/power-4+ creature — hits a huge share of MKM's rares and big disguise flips.
+- **Unscrupulous Agent** — C+/B- (review) → **DOWN** (#743): good pedigree, but black being bad suppressed it. (See Supersessions.)
+- **Murder** — C+/B-. Serviceable but passive; "you never feel ahead." Below Extract a Confession; black is bad anyway.
+- **Polygraph Orb** — F. 5-mana Read the Bones with a weak ability; bad even in black.
+
+### Red (R)
+- **Incinerator of the Guilty** — A/A+. 6/6 flying trample; on combat damage, Collect Evidence X to deal X to all their creatures/planeswalkers. Trample = it almost always connects = it ends games.
+- **Torch the Witness** — B (review) → **LR's "mythic uncommon of the format"** (#743). XR scalable removal + investigate; 1 color = goes in every red deck. Premium.
+- **Shock** — B-/C+. Best red common conversation; kills disguise 2/2s for 1 mana, instant. LSV ran 3 at the PT and "was closer to wanting a fourth than cutting one." Never side it out.
+- **Person of Interest** — C+ (review) → **most powerful red common by 17Lands** (#743). 4 mana for a 2/2 + a 2/2 detective token.
+- **Lamplight Phoenix** — A-. Recurring 3/3 flyer; great stats + Collect-Evidence recursion (don't cast under 4 evidence).
+- **Pyrotechnic Performer** — A-. See combos; LSV's "best red card by win rate" from the PT.
+- **Reckless Detective** — B/B-. 2-mana 0/3 that filters cards and taxes trades; the "nut curve" partner to Novice Inspector; "cracked." Don't run it in decks already flush with early plays.
+- **Galvanize** — B (review). 2-mana deal 3 (5 if you drew 2+). Fine removal trick; **Shock is often better** (1 less vs. disguise, instant).
+- **Krenko, Baron of Tin Street** — B+. Snowballs goblins off artifacts/Clues.
 - **Felonious Rage** — **UP end-of-format** (#743) — "looks kind of bad" so it flowed; LSV played multiples at the PT. Underrated trick that makes a detective token if the creature dies.
 - **Red Herring** — C (review) → **UP** (#743): real in aggro/sac shells (haste, sac-as-blocker, replaces itself).
 - **Goblin Maskmaker** — **UP** (#743) in disguise-dense decks (ramp; 2 = build-around).
-- **Surveil dual lands** — B-/C+. Take for the surveil + fixing even when mono-color (Thundering Falls etc.); becomes excellent if you land in the pair.
-- **Escape Tunnel** — C+ (review, undervalued). Best fixing for splashes/double-color; secondary unblockable mode is real.
-- **Chalk Outline** — B/A in a built graveyard deck (but the whole lane is too slow for the format — see Golgari).
-
-### Traps / overrated / downgraded
-- **Crimestopper Sprite** — C/C+ (review) → **DOWN** (#743): poor stats vs. disguise, CE 6 too high, stays a 2/2. (See Supersessions.)
-- **Unscrupulous Agent** — C+/B- (review) → **DOWN** (#743): good pedigree, but black being bad suppressed it. (See Supersessions.)
-- **Judith, Carnage Connoisseur** — B (review) → **biggest underperformer**, 50.1% GIH WR; the spells package + black both failed her. (#743)
-- **Murder** — C+/B-. Serviceable but passive; "you never feel ahead." Below Extract a Confession; black is bad anyway.
-- **Defenestrated Phantom** — C (review) → "one of the worst disguise creatures" (#743). 5 mana to flip into a 3-toughness 4/3 flyer isn't enough. Avoid.
 - **Suspicious Detonation** — D+/C-. Aim for 0; the pay-5 mode is terrible; only in artifact-sac shells that cast it for 2.
-- **Benthic Criminologists** — D. 4UU 4/5 that sacs artifacts to draw — redundant with Clues already drawing; "just bad" (but a "pleasant surprise" as a clue-deck 5-drop late, #743).
-- **Living Conundrum** — Build-around B (review) → "after extensive testing, not really a thing" (#739/#743); LSV loved it conceptually, it never worked.
 - **Connecting the Dots** — D/F (Marshall D, LSV F). Too much setup, too inconsistent.
+
+### Green (G)
+- **Sharp-Eyed Rookie** — A. 2-mana 2/2 vigilance that grows + investigates when a bigger creature enters; miserable to face.
+- **Hide in Plain Sight** — A. 3G sorcery; look at 5, cloak 2 — "a Collected Company that always hits." Worst case two ward-2 2/2s for 4.
+- **Axebane Ferox** — A-. 2GG 4/4 deathtouch haste, ward = Collect Evidence 4; sometimes flat unkillable early.
+- **Tunnel Tipster** — B-. Green premium 2-drop; grows off face-down ETBs and ramps.
+- **A Killer Among Us** — C+/B- (review) → "easily the pick, better than most rares" (#738). 5 mana, ~6 power of stats across three bodies with a deathtouch mode; insane when even/ahead, weak on defense.
+- **Nervous Gardener** — C+. Fixing + body; unlocks splashes; one of green's better commons.
+- **Chalk Outline** — B/A in a built graveyard deck (but the whole lane is too slow for the format — see Golgari).
 - **Slime Against Humanity** — F. Beloved idea, never does anything useful.
-- **Polygraph Orb** — F. 5-mana Read the Bones with a weak ability; bad even in black.
-- **Cryptex** — F. A mana rock that needs ~15 Collect-Evidence activations to pay off; doesn't do the thing.
-- **Behind the Mask** — D. Two bad modes stapled together.
+- **Audience with Trostani** — D. Almost never draws more than one extra card.
+
+### Multicolor / gold
+- **Aurelia, the Law Above** — A. 4/4 flying vigilance haste for 5 that draws and pings; LSV's personal favorite card of the format.
+- **Ezrim, Agency Chief** — A+. WWUU 5/5 flyer; investigates twice, sac artifacts to gain vigilance/lifelink/hexproof. Near-impossible to beat once set up.
+- **Tolsimir, Midnight's Light** — A+. 5-mana 3/2 lifelink that also makes a 5/5 trample wolf and forces blocks. Nearly impossible to survive.
+- **Rakdos, Patron of Chaos** — A+. 5-mana 6/6 flying trample; each end step they sac two permanents OR you draw two. Either way you win.
+- **Teysa, Opulent Oligarch** — A. Orzhov snowball engine (see Archetypes); the slow-but-inevitable groan test.
+- **Trostani, Three Whispers** — A/A-. 3-mana 4/4 that threatens deathtouch/vigilance/double strike; nearly unkillable in combat.
+- **Yarus, Roar of the Old Gods** — A-. RG disguise engine; LSV rates it P1P1-worthy.
+- **Vannifar, Evolved Enigma** — A. Free cloak from hand each combat, then buff colorless creatures; "completely absurd."
+- **Doppelgang** — A. Clone at 5, game-over at 8 (Simic finisher; LSV's favorite).
+- **Kellan, Inquisitive Prodigy** — A-. 3/4 flyer for 4 that draws off cracking your own artifacts.
+- **Maverick Thopterist** — A-. 5 mana for a 2/2 + two 1/1 flyers, improvise pays with Clues. Excellent.
+- **Dog Walker** — C+. One of the better commons; X/1 dodges the no-1-toughness-removal gap; makes multiple 2/2 dogs; qualifies face-down for power-2-or-less synergies.
+- **Private Eye** — C+ floor → B+ payoff. 3/3 detective lord; cracking a Clue makes detectives unblockable. Top WU uncommon.
+- **Wisp-Drinker Vampire** — B+. WB drain payoff; 2/4 flyer that pings on power-2-or-less ETBs.
+- **Gleaming Geardrake** — B → "really strong, happy first-pick" (#743). The uncommon that opens UR artifacts.
+- **Gadget Technician** — C+. Flexes a 3-drop or 4-drop in UR; 3/2 face-up + a thopter.
+- **Lightning Helix** — B+. Reprint; great Boros removal + reach, color-committing.
+- **Buried in the Garden** — A-. GW O-Ring + ramp aura; a real reason to be Selesnya.
+- **Repulsive Mutation** — pump + counter; a top GW/GU gold uncommon (#743).
+- **Ill-Timed Explosion** — B/B+. UR 4-mana flexible sweeper-or-Divination; best wrath in the set used right.
+- **Judith, Carnage Connoisseur** — B (review) → **biggest underperformer**, 50.1% GIH WR; the spells package + black both failed her. (#743)
 - **Kylox, Visionary Inventor** — F. 7-drop with conflicting requirements; "really missed."
 - **Leyline of the Guildpact / Niv-Mizzet** — F / build-around-C. Do nothing useful in Limited; last-picked territory.
 - **Undergrowth Reconnaissance / Relive the Past / Reenact the Crime / Conspiracy Unraveler / Anzrag's Rampage / The Pride of Hull Clade(?)** — F. Too much setup or too narrow; unplayable build-arounds.
-- **No Witnesses** — C. White 5-mana wrath, but the opponent (most creatures) usually gets a Clue back; weak wrath.
-- **Audience with Trostani** — D. Almost never draws more than one extra card.
+
+### Colorless / artifacts
+- **Cryptex** — F. A mana rock that needs ~15 Collect-Evidence activations to pay off; doesn't do the thing.
+
+### Lands
+- **Escape Tunnel** — C+ (review, undervalued). Best fixing for splashes/double-color; secondary unblockable mode is real.
 - **Public Thoroughfare** — near-unplayable; a tap-land that taxes you is fatal in a die-roll format.
-- **Doorkeeper Thrull** — D/F. Doesn't even stop disguise reveals; wrong set for the effect.
+
+### Unmatched / caption-garbled
+- **Surveil dual lands** — B-/C+. Take for the surveil + fixing even when mono-color (Thundering Falls etc.); becomes excellent if you land in the pair.
 
 ## Pitfalls
 

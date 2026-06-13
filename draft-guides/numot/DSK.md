@@ -31,21 +31,37 @@
 - **Norin + Patched Plaything(?):** Norin(?) exiles permanents temporarily. If you exile Patched Plaything with Norin and return it, the play thing re-enters without the minus counters (it only gets those when cast from hand) — effectively a 4/3.
 
 ## Card tips
-- **Roller Crusher Ride:** Take it over almost everything; "one of the best cards in the format." Splashable. Even without delirium it's 3 mana deal 3 and kill a creature; with delirium all non-combat damage doubles.
-- **Scorching Dragonfire:** "One of the better red commons." Take multiples; Kenji had 5 in one draft and called it "anything's possible." Hits creatures AND enchantments.
-- **Shroud Stomper:** Top-end black-white. 6-mana 4/5 flyer that returns from graveyard under certain conditions. Dream reanimate target.
+
+### White (W)
 - **Unsettling Twins:** High pick in any deck that wants graveyard action. Manifest two is powerful setup.
-- **Doll (split-skin doll?):** Good 2-drop loot effect. Pairs with Surgical Suite and Norin for flickering tricks.
-- **Horde Caller:** 5-mana 4/4 haste that generates Gremlins on each attack — it doesn't have to attack itself. Very strong. "Horde Caller was really good."
-- **Glimmer Light:** 2-mana 1/1 that makes a 1/1 Gremlin on attack (doesn't have to attack itself). Core of the white-blue enchantment deck.
-- **Meat Locker (room):** Blue common room, taken highly. Taps a creature when the room is opened. Kenji noted missing it specifically in the rooms deck draft.
 - **Grand Entryway (room):** Makes multiple enchantments, triggers enchantment-matters effects.
-- **Murder:** Always good. Take it over almost all on-color two-drops.
 - **Unsettling Twins + manifest:** Value in any deck that discards. Good with Fanatic of Harrowing(?) to pitch large creatures.
-- **Pyroclasm:** Good in rooms deck to clear small creatures (0/2 and 1/1s). Also red-blue rooms use it.
-- **Defiant Survivor:** "One of the most annoying cards to face." 3/2 that makes tokens/pumps on each enchantment entering. Kenji dreaded seeing it and lost multiple games to it.
+
+### Blue (U)
+- **Meat Locker (room):** Blue common room, taken highly. Taps a creature when the room is opened. Kenji noted missing it specifically in the rooms deck draft.
+
+### Black (B)
+- **Murder:** Always good. Take it over almost all on-color two-drops.
 - **Final Vengeance:** Black 3-mana exile removal. Kenji played it at high pick rate, mentions it as reliable removal. Can sacrifice an enchantment to cast it (enabling delirium).
 - **Nowhere to Run:** Solid black removal, "the correct pick" often when ahead on enchantments.
+
+### Red (R)
+- **Scorching Dragonfire:** "One of the better red commons." Take multiples; Kenji had 5 in one draft and called it "anything's possible." Hits creatures AND enchantments.
+- **Pyroclasm:** Good in rooms deck to clear small creatures (0/2 and 1/1s). Also red-blue rooms use it.
+
+### Green (G)
+- **Defiant Survivor:** "One of the most annoying cards to face." 3/2 that makes tokens/pumps on each enchantment entering. Kenji dreaded seeing it and lost multiple games to it.
+
+### Multicolor / gold
+- **Shroud Stomper:** Top-end black-white. 6-mana 4/5 flyer that returns from graveyard under certain conditions. Dream reanimate target.
+
+### Colorless / artifacts
+- **Glimmer Light:** 2-mana 1/1 that makes a 1/1 Gremlin on attack (doesn't have to attack itself). Core of the white-blue enchantment deck.
+
+### Unmatched / caption-garbled
+- **Roller Crusher Ride:** Take it over almost everything; "one of the best cards in the format." Splashable. Even without delirium it's 3 mana deal 3 and kill a creature; with delirium all non-combat damage doubles.
+- **Doll (split-skin doll?):** Good 2-drop loot effect. Pairs with Surgical Suite and Norin for flickering tricks.
+- **Horde Caller:** 5-mana 4/4 haste that generates Gremlins on each attack — it doesn't have to attack itself. Very strong. "Horde Caller was really good."
 
 ## Pitfalls
 - **Red-blue rooms without enough different room names:** Need 4 different room names (each card has 2) to enable Promising Stairs. Common rooms (Meat Locker, Underwater Tunnel, Bottomless Pool) are heavily contested. If you miss them, the win-con doesn't work. Backup plan: 5 Dragonfires.

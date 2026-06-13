@@ -45,18 +45,29 @@
 
 ## Card tips
 
+### White (W)
+- **Imperial Oath (6G, saga — 3×scry + make 2/2 samurai) is massively overperforming** as a "win con" and "removal vacuum." "Sweeping up value while they're flooding." Take it; it wheels less than you'd expect.
+
+### Black (B)
+- **Life of Toshiro Umezawa is one of the best uncommons.** "So so brutal — it's not even necessary on turn two, although if you have it on turn two, it's the nuts." Gain life baseline, pump or drain depending on board state.
+
+### Green (G)
 - **Kappa Tech-Wrecker is one of the top uncommons in the format** regardless of archetype. "This is just one of the top uncommons in the format — it doesn't really put you into a straightforward archetype. Doesn't matter whether you're in ninjas or Kami War." Take it over most non-bombs.
 - **Bamboo Grove Archer (2G, 3/3 defender with reach) is one of the best two-drops.** Pick it early as a defensive anchor in any green deck. "Turn-two Bamboo Grove Archer can just stop them in their tracks."
-- **Life of Toshiro Umezawa is one of the best uncommons.** "So so brutal — it's not even necessary on turn two, although if you have it on turn two, it's the nuts." Gain life baseline, pump or drain depending on board state.
-- **Imperial Oath (6G, saga — 3×scry + make 2/2 samurai) is massively overperforming** as a "win con" and "removal vacuum." "Sweeping up value while they're flooding." Take it; it wheels less than you'd expect.
-- **Cheap sagas play better than they look.** Kenji consistently notes this across multiple picks. "Azusa's Many Journeys doesn't look all that powerful but it plays out better than it looks — true again of the majority of cheaper sagas."
 - **Season of Renewal must be respected.** It recovers from mill, recycles key enchantments, and invalidates a mill win. Draft it highly if building a long-game plan.
+- **Grafted Growth goes on your most-represented basic type.** "You always want to put a Grafted Growth on your most abundant type." Don't put it on the splash color's basic.
+
+### Multicolor / gold
 - **Colossal Sky-Turtle** is one of the best cards in the format for value decks ("one of the most insane value cards in the format"). A huge flyer that cycles from graveyard.
+
+### Lands
+- **Roadside Reliquary (land that draws if you have artifact + enchantment):** "Roadside Reliquary — kind of a free-roll card-draw land." Run one in any enchantment deck.
+
+### Unmatched / caption-garbled
+- **Cheap sagas play better than they look.** Kenji consistently notes this across multiple picks. "Azusa's Many Journeys doesn't look all that powerful but it plays out better than it looks — true again of the majority of cheaper sagas."
 - **Specialist (?) and Prowler (Nezumi Prowler)** are the best ninja commons. Pick 2 Specialists minimum.
 - **17 lands is correct for ninja decks**, not 16. "I think people usually run too few in their ninja decks — we still have a lot of stuff to do with our mana." Use the extra land to enable your ninjutsu activations on curve.
-- **Grafted Growth goes on your most-represented basic type.** "You always want to put a Grafted Growth on your most abundant type." Don't put it on the splash color's basic.
 - **Terrarium (2-mana artifact that taps for a color you're missing):** A must-run in 3+ color decks. Also an artifact for Roadside Reliquary activation.
-- **Roadside Reliquary (land that draws if you have artifact + enchantment):** "Roadside Reliquary — kind of a free-roll card-draw land." Run one in any enchantment deck.
 - **The Ratosai Sentinel (2-mana artifact that mills 3 on tap):** Good for setting up Brilliant Restoration targets. "Sometimes you can end up decking yourself in this format, so having access to sentinel is awkwardly pretty good — it does have synergy: target player mills three cards."
 
 ## Pitfalls

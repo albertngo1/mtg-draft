@@ -25,18 +25,28 @@
 - **Nahiri's +1 (force attack) + 3/3 blocker**: Forces opponent's 2/2 to attack into your 3/3, eating it. Kenji called this "a way to protect herself or even be used as a removal spell."
 
 ## Card tips
-- **Rebel Salvo**: Costs 1 mana if a creature with a +1/+1 counter attacked this turn (Helm of the Host reduces equip cost). Key common in Red-White. Take it over Hex Gold Slash early ("obviously we're not passing Wanderer there" — but Salvo-over-Slash is an exception explained by deck context).
-- **Experimental Augury**: Take as many as you can in Blue decks — it digs for bombs AND it proliferates. "I'd probably run as many auguries as we can pick up just to dig for our bombs, plus they proliferate."
+
+### White (W)
 - **Swooping Lookout**: "Not a card that looks like much but it actually is okay" — blocks all mites, has vigilance, can attack for 1 with Batter Fist.
+- **Planar Disruption**: Top-tier white removal. Kenji passed Disruption to take Nahiri P1P1 but actively wanted it in pack 3.
+
+### Blue (U)
+- **Experimental Augury**: Take as many as you can in Blue decks — it digs for bombs AND it proliferates. "I'd probably run as many auguries as we can pick up just to dig for our bombs, plus they proliferate."
+- **Glistener Seer**: Fine early drop but "does nothing the turn you play it unless you have Cultivators generally." Don't prioritize past pick 5-6.
+
+### Red (R)
+- **Rebel Salvo**: Costs 1 mana if a creature with a +1/+1 counter attacked this turn (Helm of the Host reduces equip cost). Key common in Red-White. Take it over Hex Gold Slash early ("obviously we're not passing Wanderer there" — but Salvo-over-Slash is an exception explained by deck context).
 - **Saw-Blade Scamp**: Not good in Red-White (requires artifacts). Lean & Lightbringer is better there even as a 3-drop.
 - **Chimney Rabble**: Always good, especially late when you can trigger it multiple times. Kenji ran 2 in Blue-Red.
-- **Prophetic Prism / Thirsting Roots**: Key fixing enablers for splash colors. Scrap Gorger also provides black fixing (exiles from graveyard, gains oil counter, searches up any land type).
 - **Free From Flesh**: Good removal/counter removal, especially if you need to put counters on a creature for Scrap Gorger or proliferate synergy.
-- **Cultivators of Blades (?)**: Underrated — they add oil counters to themselves and provide ramp. Core to Red-Green. "Don't underestimate the Cultivators."
-- **Glistener Seer**: Fine early drop but "does nothing the turn you play it unless you have Cultivators generally." Don't prioritize past pick 5-6.
-- **Battle Chair (Sylvac Battle Chair ?)**: "Generally going to be the biggest thing on the battlefield." Even just as a value piece, the moving equipment ability is relevant occasionally but not always.
-- **Planar Disruption**: Top-tier white removal. Kenji passed Disruption to take Nahiri P1P1 but actively wanted it in pack 3.
 - **Hex Gold Slash**: Best or near-best common removal in the format. Always take it over most commons.
+
+### Green (G)
+- **Prophetic Prism / Thirsting Roots**: Key fixing enablers for splash colors. Scrap Gorger also provides black fixing (exiles from graveyard, gains oil counter, searches up any land type).
+
+### Unmatched / caption-garbled
+- **Cultivators of Blades (?)**: Underrated — they add oil counters to themselves and provide ramp. Core to Red-Green. "Don't underestimate the Cultivators."
+- **Battle Chair (Sylvac Battle Chair ?)**: "Generally going to be the biggest thing on the battlefield." Even just as a value piece, the moving equipment ability is relevant occasionally but not always.
 
 ## Pitfalls
 - **Over-relying on BO1 keep standards**: Kenji kept several slow hands and got punished. In ONE specifically, curving out fast is critical — "you can't come back if you fall behind."

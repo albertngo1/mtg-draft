@@ -51,15 +51,24 @@
 
 ## Card tips
 
-- **Sarken's Resolve (?) / Sarin's Resolve (?)**: "If you're still not main decking this card, I think you're doing it wrong. Basically, every deck is going to have at least one flyer of some variety. And oftentimes they have multiple and it's still a combat trick in the scenarios where they don't currently have a flyer." — must-play in almost every deck.
+### Blue (U)
 - **Roiling Dragonstorm**: Playable even with few/no dragons. "Even if you don't have dragons, it's still good enough. And then if you do have dragons, it just becomes a lot better."
+
+### Red (R)
+- **Twin Bolt**: Was in the format (multicolor set overlap?). Kenji initially discards it and immediately regrets it: "Uber punished for discarding that twin bolt." Cheap two-target removal is extremely valuable vs. Mardu's early curve.
+
+### Green (G)
+- **Piercing Exhale (?)**: Kenji says "I just don't like piercing exhale" — conditional removal that doesn't hit enough. Avoid or use as filler only.
+
+### Multicolor / gold
+- **Evolving Wilds / Thornwood Falls / tap lands**: Prioritize early for mana stability. "Let's just be smart and take lands for a bit." In five-color, taking a land over a playable is often correct.
+
+### Unmatched / caption-garbled
+- **Sarken's Resolve (?) / Sarin's Resolve (?)**: "If you're still not main decking this card, I think you're doing it wrong. Basically, every deck is going to have at least one flyer of some variety. And oftentimes they have multiple and it's still a combat trick in the scenarios where they don't currently have a flyer." — must-play in almost every deck.
 - **Botist** (?): "This card is just really good." Consistently undervalued late in the format. Tap to look at top card, put land in hand or put it in graveyard. Synergizes with everything in Sultai.
 - **Fang Keeper Familiar** (?): Removal spell that costs 2 more when targeting a dragon — awkward in dragon mirrors. "Three mana to kill any non-dragon creature, but then five mana to kill a dragon. This card could often times be awkward."
 - **Teaming Dragonstorm** (Jeskai version): Fixes mana and can enable multi-color splashes. The devotee version fixes for all three Jeskai colors.
-- **Evolving Wilds / Thornwood Falls / tap lands**: Prioritize early for mana stability. "Let's just be smart and take lands for a bit." In five-color, taking a land over a playable is often correct.
 - **Cotus (?)**: A 5/5 indestructible creature that mills cards and can cast what it mills — "five power Cotus" is a bomb rare that can run away with games.
-- **Piercing Exhale (?)**: Kenji says "I just don't like piercing exhale" — conditional removal that doesn't hit enough. Avoid or use as filler only.
-- **Twin Bolt**: Was in the format (multicolor set overlap?). Kenji initially discards it and immediately regrets it: "Uber punished for discarding that twin bolt." Cheap two-target removal is extremely valuable vs. Mardu's early curve.
 - **Runnable land count**: With heavy fixing (7 tap lands), 16 lands is fine. With normal fixing, 17 is standard. Kenji considered dropping to 16 to fit Sarken's Resolve when flooding.
 
 ## Pitfalls

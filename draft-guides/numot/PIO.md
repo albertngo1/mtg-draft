@@ -26,19 +26,29 @@
 - **Whip of Erebos**: "Don't sleep on Whip of Erebos even just the four mana giving all of your creatures lifelink — very strong." The recursion is bonus; the lifelink alone stabilizes races.
 
 ## Card tips
+
+### Black (B)
+- **Ob Nixilis's Cruelty**: "One of the best removal spells available." -3/-3 plus the creature can't be regenerated or returned from the graveyard. Splashable for 1 black.
+
+### Red (R)
 - **Rimrock Knight**: "One of if not the best red common in the format. Just does everything you want it to and more." Take it early, take multiples.
-- **Witches' Mark (?)**: Listed as one of the best red commons alongside Rimrock Knight. Key card draw for mono-red. "I think Witch's Mark is one of the best cards in red at common."
 - **Draconic Roar**: Better than Oath of Chandra in most builds because it's instant speed and doesn't require a Dragon in hand to be effective. "Draconic Roar is actually just better in this format unless you can plan on triggering the Oath of Chandra."
 - **Goblin Rabblemaster**: "Great at pushing pressure and especially if you have any ways to back up the tokens." First or second pickable in red.
 - **Akroan Crusader**: "First pick a 1-mana 1/1." In context — it's that good with heroic payoffs around it.
+- **Gates Ablaze**: Sweeps all non-Gate creatures for X (equal to the number of Gates you control). Can take out entire boards while leaving Gate Colossus and Gatebreaker Ram alive. Take these as high priorities in the Gates deck — "double Gates Ablaze is nuts."
+
+### Green (G)
 - **Gatebreaker Ram**: "By far the easy pick" as a 2/4 vigilance that gets +1/+1 for each gate you control, and has hexproof from targeting while you have 3+ gates. Core Gates card.
 - **District Guide**: "2/3 for 2 that searches any Gate or basic" — key tutor for the Gates deck. Prioritize it. Kenji passed it once early and regretted it.
-- **Gates Ablaze**: Sweeps all non-Gate creatures for X (equal to the number of Gates you control). Can take out entire boards while leaving Gate Colossus and Gatebreaker Ram alive. Take these as high priorities in the Gates deck — "double Gates Ablaze is nuts."
 - **Savage Punch**: "Nice little removal spell, can actually push a ton of damage as well if you have ferocious online" (ferocious = controlling a creature with 4+ power). Cheap fight spell in green.
-- **Gore-Clan Rampager**: "This card is just so good every time." A 4/4 for 4 with trample that can be cast for surprise in response to blocks. One of the best uncommons in red-green.
-- **Catacomb Sifter**: Scries every time a creature you control dies, and makes a 1/1 Eldrazi Scion token. Excellent in any black deck and fantastic Progenitor Mimic target.
 - **Avatar of the Resolute (new inclusion)**: Two mana 3/2 reach trample, enters with a +1/+1 counter for each other creature you control with a counter on it. Strong curve-filler in any green counter deck.
-- **Ob Nixilis's Cruelty**: "One of the best removal spells available." -3/-3 plus the creature can't be regenerated or returned from the graveyard. Splashable for 1 black.
+
+### Multicolor / gold
+- **Catacomb Sifter**: Scries every time a creature you control dies, and makes a 1/1 Eldrazi Scion token. Excellent in any black deck and fantastic Progenitor Mimic target.
+
+### Unmatched / caption-garbled
+- **Witches' Mark (?)**: Listed as one of the best red commons alongside Rimrock Knight. Key card draw for mono-red. "I think Witch's Mark is one of the best cards in red at common."
+- **Gore-Clan Rampager**: "This card is just so good every time." A 4/4 for 4 with trample that can be cast for surprise in response to blocks. One of the best uncommons in red-green.
 
 ## Pitfalls
 - **Not playing land when Peros is active**: Kenji lost a game because he held a land (saving it for card synergy) while Peros was on the battlefield. "I should have played land number eight after drawing it because I had Peros on the battlefield — if I drew land number nine I would be able to triple activate the ability giving my creatures +3/+3 and because I had a trampler it became very relevant." Always play your land when Peros is active unless there is a very clear reason not to.

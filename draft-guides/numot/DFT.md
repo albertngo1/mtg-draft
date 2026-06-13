@@ -25,18 +25,28 @@
 - **Serpent Ace(?) + Crew / Max Speed:** 2-mana 3/3 that gets huge once activated, makes it very hard to lose once online.
 
 ## Card tips
+
+### White (W)
+- **Spectacular Pile-Up(?):** White board wipe (AoE); people heavily avoid white, so you can often 5th pick a cycling wrath. Cycling makes it always playable.
+- **Collision Course:** Blue instant, good interaction especially when opponent has artifacts.
+
+### Blue (U)
 - **Serpent Ace(?):** One of the best blue uncommons/commons. Activate early and it just takes over games.
+- **Bounce Off:** Always-playable blue interaction. Hits vehicles mid-crew attempt for a free "kill."
+- **Flood the Engine(?):** Blue instant with multiple modes (can tap a vehicle, good interaction). Consistently useful.
+
+### Red (R)
+- **Push the Limit:** Needs 9+ total mounts and vehicles to be reliably good. Don't force it.
+- **Road Rage(?):** Strong red combat trick; scales with number of vehicles in deck.
+
+### Green (G)
 - **Brood Wagon:** Probably the best uncommon in the format. Has it all — makes tokens, triggers on entry, strong stats. "Just as good as Ketron(?) if not better."
 - **Hazard of the Dunes:** Better than first impression. Kenji says it rivals Regal Imperiosa(?) for best green card in packs.
+
+### Unmatched / caption-garbled
 - **Pack Doll Terror(?):** The repeatable drain effect with artifacts is the real engine. Getting two of these online is "drain 8 in my hand." These are the MVP of the Esper shell.
-- **Bounce Off:** Always-playable blue interaction. Hits vehicles mid-crew attempt for a free "kill."
-- **Spectacular Pile-Up(?):** White board wipe (AoE); people heavily avoid white, so you can often 5th pick a cycling wrath. Cycling makes it always playable.
-- **Flood the Engine(?):** Blue instant with multiple modes (can tap a vehicle, good interaction). Consistently useful.
-- **Push the Limit:** Needs 9+ total mounts and vehicles to be reliably good. Don't force it.
 - **Katchon(?):** Green rare/mythic — Kenji says "if your opponent resolves Katchon versus you it's just like is that the end?" Context suggests this is a large creature with game-ending impact.
 - **Gilded Goa(?):** Good red 2-drop that generates a Treasure, then becomes a 4/4 when saddled. Excellent Boros curve card.
-- **Road Rage(?):** Strong red combat trick; scales with number of vehicles in deck.
-- **Collision Course:** Blue instant, good interaction especially when opponent has artifacts.
 - **Mult Tender(?):** Green 1-drop, best in green-black due to graveyard synergies.
 
 ## Pitfalls

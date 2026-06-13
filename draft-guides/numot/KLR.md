@@ -24,21 +24,33 @@ Kaladesh Remastered (KLR) is a fast-to-medium format built around energy and art
 - **Sky Skiff + Night Market Lookout**: 2-mana 2/3 flier crew 1 — crew with Lookout, drain for 1, attack for 2/3 flying. The ideal opening two turns of the Night Market deck.
 
 ## Card tips
-- **Either Swooper (Aether Swooper — 2/1 flier makes 1/1 servo on attack for 2 energy)**: "One of Blue's best commons... I say it every single time I see it." Take high.
-- **Voltaic Brawler (2-mana 3/2 trample haste, exile energy on attacks)**: "Turn two Voltaic Brawler is real good" — one of the format's best two-drops. Red-green's aggro cornerstone.
+
+### White (W)
 - **Revoke Privileges (2-mana enchantment: pacifism that also stops crewing vehicles)**: "This one stops the creature you're enchanting from crewing vehicles. Often times pacifism effects are awkward in a vehicle format — but this one stops it." Premium white removal.
+
+### Black (B)
 - **Daring Demolition (4-mana: destroy artifact or creature)**: "The bread-and-butter black removal spell in the format. Kills vehicles, kills creatures, even if the vehicle isn't crewed." Always maindeck.
 - **Die Young (2-mana: target creature gets -X/-X where X = energy you paid, you get 1 energy)**: Strong with energy producers; note it is a sorcery — sequencing matters.
-- **Harness Lightning (2-mana instant: deal X damage to target creature where X is energy paid)**: Good removal; can hit big creatures with enough energy banked.
+- **Night Market Lookout (1/1: when becomes tapped, opponent loses 1 life)**: Entire archetype built around it. Worth picking up multiples; needs cheap vehicles (especially Sky Skiff) to trigger without attacking.
+- **Fretwork Colony**: "I would not recommend playing that card." Only good turn 2 and can never block — a liability otherwise.
+
+### Green (G)
 - **Servant of the Conduit (2-mana 2/2: ETB 2 energy; tap pay 1 energy for any color mana)**: Fixing plus pressure; "fantastic."
 - **Long-Tusk Cub (2-mana 2/2: pay 2 energy put +1/+1 counter on it)**: "What a freaking two-drop" — grows quickly with energy; forces trade or races past opponent.
-- **Puzzle Knot (2-mana artifact: ETB get 2 energy, sac pay 1 get 2 more energy)**: Six energy for two mana; core improvise enabler and energy filler. "Puzzle knots are six energy by themselves."
-- **Night Market Lookout (1/1: when becomes tapped, opponent loses 1 life)**: Entire archetype built around it. Worth picking up multiples; needs cheap vehicles (especially Sky Skiff) to trigger without attacking.
+- **Unbridled Growth (1-mana enchant land: tap for any color + mana + card-draw when sacked)**: "Very fun" — enables revolt and fixing simultaneously; run in any green deck that splashes.
+
+### Multicolor / gold
+- **Voltaic Brawler (2-mana 3/2 trample haste, exile energy on attacks)**: "Turn two Voltaic Brawler is real good" — one of the format's best two-drops. Red-green's aggro cornerstone.
+- **Harness Lightning (2-mana instant: deal X damage to target creature where X is energy paid)**: Good removal; can hit big creatures with enough energy banked.
+
+### Colorless / artifacts
 - **Sky Skiff (2-mana artifact, crew 1: 2/3 flier)**: "Most important vehicle for the Night Market deck." Also independently strong in any deck.
 - **Renegade Map (1-mana artifact: sac to search for basic land)**: Shaves a land, enables revolt, fixes mana, counts for improvise. Run in any deck that wants to splash.
-- **Unbridled Growth (1-mana enchant land: tap for any color + mana + card-draw when sacked)**: "Very fun" — enables revolt and fixing simultaneously; run in any green deck that splashes.
 - **Fabrication Module (3-mana artifact: whenever you get 1+ energy, put a +1/+1 counter on a creature)**: "So nice" — every energy source is also a counter; exponentially grows a threat over time.
-- **Fretwork Colony**: "I would not recommend playing that card." Only good turn 2 and can never block — a liability otherwise.
+
+### Unmatched / caption-garbled
+- **Either Swooper (Aether Swooper — 2/1 flier makes 1/1 servo on attack for 2 energy)**: "One of Blue's best commons... I say it every single time I see it." Take high.
+- **Puzzle Knot (2-mana artifact: ETB get 2 energy, sac pay 1 get 2 more energy)**: Six energy for two mana; core improvise enabler and energy filler. "Puzzle knots are six energy by themselves."
 
 ## Pitfalls
 - **Not revoking / arresting the key flier early**: Kenji lost a game "why did I not revoke privilege the Windkin Rider — that is a question I will be asking myself when I lose to it." Identify the must-answer threat and answer it before it gets out of hand.

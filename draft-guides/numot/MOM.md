@@ -38,18 +38,25 @@
 
 ## Card tips
 
-- **Invasion of Amonkhet is the best uncommon in the format.** Take every copy. Provides hand disruption, card draw, mills both players for setup, and flips into a 4/4 that copies any creature in a graveyard — including your own Hoarding Broodlord or opponent's best creature. "Triple Invasion of Amonkhet — can't complain about that."
-- **Invasion of Tolvada (five mana; returns a non-battle permanent, flips into token generator) is the best black-white Invasion.** Flipping it means every end step you get a 2/1 flying lifelink. "Flipped Invasion of Tolvada is just so gross — the broken sky."
+### Blue (U)
 - **Preening Champion (3-mana 2/2 flyer that makes a 1/1 knight) is the best common in the format** (Kenji calls it "the common of the format"). Take early.
+- **Eyes of Gitaxias (3 mana, incubate 3, draw a card) is solid** value; Kenji played multiple copies.
+- **Ethersworn Adjudicator (?) / Inga Rune-Eyes (aftermath card)** are solid late picks; Inga especially wheels in MOM aftermath drafts.
+
+### Black (B)
 - **Render Inert** (pay mana to remove counters from a battle, flipping it immediately) is a critical enabler for the Battle plan. "Would've been a nice way to insta-flip our invasions." Take it earlier than feels right; it wheels less often than you'd think.
 - **Phyrexian Gargantua** (six mana 4/4 that draws two cards on ETB; "Phyrexian Gargantua is amazing") — a must-pick finisher in black decks. Wheels occasionally as a 13th pick; always play it.
-- **Glissa, Herald of Predation (5/5 at beginning of combat that incubates 2 twice, then gives incubators first strike + death touch) is one of the biggest bombs** — "that card was absurd." Prioritize early.
-- **Talarian Contempt (?)** (enchantment that puts rejection counters on opponent's creatures, then tucks one per turn) — "that card was so brutal, so disgusting." Very high pick in blue-black.
-- **Eyes of Gitaxias (3 mana, incubate 3, draw a card) is solid** value; Kenji played multiple copies.
 - **Deadly Derision** (destroy creature or planeswalker + make a treasure): "Deadly Derision was good, right?" Also provides fixing for color splashes via the treasure.
+
+### Multicolor / gold
+- **Invasion of Amonkhet is the best uncommon in the format.** Take every copy. Provides hand disruption, card draw, mills both players for setup, and flips into a 4/4 that copies any creature in a graveyard — including your own Hoarding Broodlord or opponent's best creature. "Triple Invasion of Amonkhet — can't complain about that."
+- **Invasion of Tolvada (five mana; returns a non-battle permanent, flips into token generator) is the best black-white Invasion.** Flipping it means every end step you get a 2/1 flying lifelink. "Flipped Invasion of Tolvada is just so gross — the broken sky."
+- **Glissa, Herald of Predation (5/5 at beginning of combat that incubates 2 twice, then gives incubators first strike + death touch) is one of the biggest bombs** — "that card was absurd." Prioritize early.
+
+### Unmatched / caption-garbled
+- **Talarian Contempt (?)** (enchantment that puts rejection counters on opponent's creatures, then tucks one per turn) — "that card was so brutal, so disgusting." Very high pick in blue-black.
 - **18 lands is correct in slower control builds.** Kenji repeatedly ran 18 or 41 cards. "I think 18 lands might even be right in this deck."
 - **Convoke cards let you cast expensive spells earlier.** Count your creatures before building mana base; "hard to pass up an 7/6 flyer, especially when it has convoke."
-- **Ethersworn Adjudicator (?) / Inga Rune-Eyes (aftermath card)** are solid late picks; Inga especially wheels in MOM aftermath drafts.
 
 ## Pitfalls
 

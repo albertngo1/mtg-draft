@@ -29,20 +29,32 @@
 - **Ice Till Explorer + land-heavy graveyard**: Allows casting lands from graveyard; helps recover from flood and generate virtual card advantage late.
 
 ## Card tips
-- **Orbital Plunge**: First-rank removal; also creates a Lander token (land-based creature). Take early; key payoff enabler for lander synergies.
+
+### Blue (U)
+- **Weft Walking**: Powerful card-draw sorcery that works best when you can empty your hand first. Draft cheap spells to enable it; don't take it and then draft expensive cards.
+
+### Black (B)
 - **Dubious Delicacy**: Described multiple times as "too good" to pass. 2-mana removal that gives opponent 2 cards is still worth it in a format where tempo matters. Run 2+ copies whenever available.
-- **Grab Kill**: Cheap interactive kill spell; run as many as you can.
 - **Perigee Beckoner**: "Whenever you're playing black, get as many of these as you can." Consistent value engine.
-- **Scrapper**: Best single card for the Manufacturing deck. Repeatable sacrifice outlet + draws a card per activation. "Might be the best because it does both things."
 - **Dubious Delicacy + Father's Faithful (1-mana artifact)**: Faithful is a key 1-mana artifact for Tesarette tutoring; the combination of cheap artifacts makes the deck function.
+- **Virus Beetle (1/1 infect that forces discard when it deals damage?)**: Makes opponents discard key cards; good in poison builds and as hand disruption in Red-Black. "Beetle was huge" / "beetle might have just saved us."
+
+### Red (R)
+- **Orbital Plunge**: First-rank removal; also creates a Lander token (land-based creature). Take early; key payoff enabler for lander synergies.
+- **Grab Kill**: Cheap interactive kill spell; run as many as you can.
+- **Scrapper**: Best single card for the Manufacturing deck. Repeatable sacrifice outlet + draws a card per activation. "Might be the best because it does both things."
+- **Lava Claw Reaches** (BoP-style dual land?): "A pretty looking land and I don't lose much." Always run it.
+
+### Green (G)
+- **Biosynthic Burst**: Good combat trick / fight effect; hold up vs. big threats rather than using offensively into removal.
+
+### Multicolor / gold
+- **Interceptor Mecha**: "Nothing in this pack is even remotely close to it" — described as format's best uncommon/rare on its power level.
+
+### Unmatched / caption-garbled
 - **Strip Mine**: "There is very little downside and usually just upside to running Strip Mine." Rarely cut it.
 - **Godma / Reverse Godma** (?): Named repeatedly as the scary finisher; being on the wrong end of it is almost always fatal. Respect it as a high-priority removal target.
 - **Tanic** (?): "Great" when you have double Lander triggers (hitting the ability twice). Much weaker without lander production.
-- **Virus Beetle (1/1 infect that forces discard when it deals damage?)**: Makes opponents discard key cards; good in poison builds and as hand disruption in Red-Black. "Beetle was huge" / "beetle might have just saved us."
-- **Lava Claw Reaches** (BoP-style dual land?): "A pretty looking land and I don't lose much." Always run it.
-- **Interceptor Mecha**: "Nothing in this pack is even remotely close to it" — described as format's best uncommon/rare on its power level.
-- **Weft Walking**: Powerful card-draw sorcery that works best when you can empty your hand first. Draft cheap spells to enable it; don't take it and then draft expensive cards.
-- **Biosynthic Burst**: Good combat trick / fight effect; hold up vs. big threats rather than using offensively into removal.
 
 ## Pitfalls
 - **Weapons Manufacturing without enough sacrifice outlets**: The biggest failure mode. You need 4–5 sacrifice outlets, at least 3 of them repeatable (Scrapper, Umbral Collar Zealot, Swarm Color). If you can't assemble that, don't run the card. Kenji ran it anyway multiple times for fun and went 2-3 repeatedly.

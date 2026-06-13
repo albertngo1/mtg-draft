@@ -54,30 +54,39 @@
 
 ## Card tips
 
-- **Disinformation Campaign** — Best blue-black uncommon. Surveil 2 every upkeep + 1 life drain + 1 discard. "Card's very good." First pick.
-- **Notion Rain** — "Both amazing." Draw 2 surveil 2 for 2B. Excellent rate. Take over Muse Drake early.
-- **Thief of Sanity** — 2/2 flying deathtouch that lets you cast opponent's cards on damage. "I'm going to take the thief even though it's two colors." First-pick worthy.
+### White (W)
+- **Sunhome Stalwart** — 1/2 first strike for 1W. "One of the best two-drops." Mentor trigger on attack.
+- **Healer's Hawk** — 1/1 flying lifelink for W. Strong 1-drop for Boros; gains life while mentoring up other creatures.
+- **Tenth District Guard** — "10th district guard did something again for like the second time in recorded history." Very weak — only note it for how rare its trigger fires.
+
+### Blue (U)
+- **Enhanced Surveillance** — "Very good" — resets graveyard, doubles all future surveil. In long games, recycling your deck is relevant.
+- **Murmuring Mystic** — 1/3 flying that makes 1/1 birds on each instant/sorcery. "Murmuring Mystic and spells it's good." Premium in Izzet.
+- **Wall of Mist** — 0/5 defender. "I'm hoping not to" run it. Dead card against control. Only main-deck against heavy aggro.
+- **Enhanced Surveillance** — While good in grindy games, "I don't think I need the surveillance in this deck" when already winning on surveil count.
+
+### Black (B)
 - **Dead Weight** — Best common black removal. -2/-2 kills most early threats and the 2/2 Boros staples. "Easy."
 - **Ritual of Soot** — 4-mana wrath (power 2 or less), surveil 2. "Pretty hard to pass." Main deck it.
 - **Mephitic Vapors** — 2B sorcery deal 1 to all + surveil 2. "In this format I just main deck it." Handles tokens and small creatures while keeping your Walls alive.
 - **Price of Fame** — 2B kill legendary + surveil 2. Or "price of fame over nothing" — even as a pure 4-mana kill spell with surveil it's fine. Better vs. legendary-heavy opponents.
-- **Dark Blade Agent** — 1UB 2/2 deathtouch + gains keywords from surveil spells. "The agents are just amazing." Pick up multiple.
-- **Cosmotronic Wave** — 3R make your creatures unblockable this turn + all opponent's creatures can't block. Closes games instantly. One of the best Boros closers.
-- **Skyknight Legionnaire** — 2/2 haste flyer for RRW. Best Boros 3-drop. Takes over games quickly.
-- **Sunhome Stalwart** — 1/2 first strike for 1W. "One of the best two-drops." Mentor trigger on attack.
-- **Direct Current** — 1R deal 2 to any target. "One of the best cards in the Boros mirror." Double mode (face or creature) makes it extremely flexible.
-- **Banneret(?)** — "Banneret's very good" — Kenji first-picks a second copy. Strong mentor enabler.
-- **Healer's Hawk** — 1/1 flying lifelink for W. Strong 1-drop for Boros; gains life while mentoring up other creatures.
-- **Enhanced Surveillance** — "Very good" — resets graveyard, doubles all future surveil. In long games, recycling your deck is relevant.
-- **Murmuring Mystic** — 1/3 flying that makes 1/1 birds on each instant/sorcery. "Murmuring Mystic and spells it's good." Premium in Izzet.
-
-### Cards that underperform
 - **Barrier of Bones** — 0/3 skeleton surveil 1 on death. Playable but Kenji cuts 2 of 3 in most builds. "Highly unlikely I'm running three barrier bones." Only play 1-2 if aggro is dominant.
-- **Wall of Mist** — 0/5 defender. "I'm hoping not to" run it. Dead card against control. Only main-deck against heavy aggro.
-- **Enhanced Surveillance** — While good in grindy games, "I don't think I need the surveillance in this deck" when already winning on surveil count.
-- **Halberdier** — "I'm definitely not running Halberdier." Just a vanilla beater without upside in these synergy decks.
-- **Tenth District Guard** — "10th district guard did something again for like the second time in recorded history." Very weak — only note it for how rare its trigger fires.
+
+### Red (R)
+- **Cosmotronic Wave** — 3R make your creatures unblockable this turn + all opponent's creatures can't block. Closes games instantly. One of the best Boros closers.
+- **Direct Current** — 1R deal 2 to any target. "One of the best cards in the Boros mirror." Double mode (face or creature) makes it extremely flexible.
+
+### Multicolor / gold
+- **Disinformation Campaign** — Best blue-black uncommon. Surveil 2 every upkeep + 1 life drain + 1 discard. "Card's very good." First pick.
+- **Notion Rain** — "Both amazing." Draw 2 surveil 2 for 2B. Excellent rate. Take over Muse Drake early.
+- **Thief of Sanity** — 2/2 flying deathtouch that lets you cast opponent's cards on damage. "I'm going to take the thief even though it's two colors." First-pick worthy.
+- **Dark Blade Agent** — 1UB 2/2 deathtouch + gains keywords from surveil spells. "The agents are just amazing." Pick up multiple.
+- **Skyknight Legionnaire** — 2/2 haste flyer for RRW. Best Boros 3-drop. Takes over games quickly.
 - **Thought Erasure** — Kenji takes it over blanks but notes it doesn't advance Disinformation Campaign directly. Discard without surveil. "Not huge on Thought Erasure."
+
+### Unmatched / caption-garbled
+- **Banneret(?)** — "Banneret's very good" — Kenji first-picks a second copy. Strong mentor enabler.
+- **Halberdier** — "I'm definitely not running Halberdier." Just a vanilla beater without upside in these synergy decks.
 
 ## Pitfalls
 

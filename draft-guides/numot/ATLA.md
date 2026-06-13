@@ -42,17 +42,28 @@
 
 ## Card tips
 
+### Blue (U)
 - **Divide Guide is the best common/uncommon in the format.** "This card is just incredible every time — two mana, a 2/3 that fixes ramps and makes everything else fix and ramp." Never pass it. It does triple duty: ramps, fixes your 5-color mana base, and bodies up well.
+- **Watery Grasp / Quench:** Blue interaction spells. Quench is good in this format because many opponents are ramping up and leaving mana open; a 2-mana counter that says "pay 2 or counter" hits at the right moment. Kenji identifies opponents sitting on quench multiple times: "I'm very much under the assumption they have quench."
+
+### Black (B)
+- **Raven Eagle (?):** Powerful card worth a splash; "definitely worth a splash. However, Shared Roots is premium basically" — the ramp/fixing beats the power card here.
+
+### Red (R)
+- **Combustion Technique:** Blue/white(?) exile removal that exiles — crucial for token/recursion opponents. "Combustion technique for exile" is the high-value application.
+
+### Green (G)
 - **Audience of the Restless Ones (?) is how you curve into shrines.** Turn-2 acceleration into a turn-3 shrine is the ideal line. Kenji takes it over almost everything in the first few picks if going shrines.
 - **Wall-Top Sentries (?): "Blocks everything early, trades with most things, gains you some life — perfect for a shrine deck."** Premium for slowing down aggressive opponents while shrines accumulate. Take them late.
-- **Barrels of Blasting Jelly (?):** 2-mana instant "barrel" effect (exile target creature/land?); Kenji's go-to early removal. "More barreling in, cool." Fires off lands too in emergency.
-- **Ang's Journey:** Ramp and fixing rolled into one lesson spell. Take all you can see; the third copy is where you consider stopping. "Three Ang's Journeys" is the standard count in Kenji's lesson builds.
-- **Watery Grasp / Quench:** Blue interaction spells. Quench is good in this format because many opponents are ramping up and leaving mana open; a 2-mana counter that says "pay 2 or counter" hits at the right moment. Kenji identifies opponents sitting on quench multiple times: "I'm very much under the assumption they have quench."
 - **Rocky Rebuke (?):** Removal that hits attacking/blocking creatures; also can target lands Kenji calls it out for hitting an earthbent land: "go for the rocky rebuke on their land." Niche but real.
+
+### Colorless / artifacts
+- **Barrels of Blasting Jelly (?):** 2-mana instant "barrel" effect (exile target creature/land?); Kenji's go-to early removal. "More barreling in, cool." Fires off lands too in emergency.
+
+### Unmatched / caption-garbled
+- **Ang's Journey:** Ramp and fixing rolled into one lesson spell. Take all you can see; the third copy is where you consider stopping. "Three Ang's Journeys" is the standard count in Kenji's lesson builds.
 - **Grand (?):** Blue card-draw creature; good when you want more card selection. "The grand-grand would have put us in such good shape" — losing it on an error was a key blunder. With lessons, Grand reduces costs.
 - **Opa (?):** Bounce/return spell; flashy in the shrine deck to recycle shrines. "Opa's a good one."
-- **Combustion Technique:** Blue/white(?) exile removal that exiles — crucial for token/recursion opponents. "Combustion technique for exile" is the high-value application.
-- **Raven Eagle (?):** Powerful card worth a splash; "definitely worth a splash. However, Shared Roots is premium basically" — the ramp/fixing beats the power card here.
 - **Mechanist vs Submersible:** Kenji takes Submersible over Mechanist in the shrine deck: "I think this is better, or at least more synergistic, in a shrine deck." Mechanist is "a very good card but not a Katara or Iro or something."
 - **Tooff (?):** Black removal creature; recurs itself. Kenji mentions it multiple times as a key draw. Splash target.
 

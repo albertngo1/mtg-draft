@@ -50,20 +50,31 @@
 
 ## Card tips
 
-- **Environmental Sciences**: Best lesson in the format. "The number one lesson" — 2-mana colorless, gain 2 life and tutor any basic land. Makes five-color possible and provides fixing whenever you learn.
-- **Mascot Exhibition**: "The number one lesson, might even be the best card in the format." Lesson that makes a 2/1, 3/2, and 4/4 simultaneously. Goes in every deck that learns.
-- **Campus lands** (all five schools): "campuses are insane in this format though." They all ETB tapped, tap for two colors, and activate to scry 1 (? — "Silverquill that's the black white and they all enter tap they all add the two colors of that school and they also have the ability to describe one"). Late-game filtering is extremely valuable.
-- **Cram Session**: Rate it much higher than others — in aggressive/learn-heavy decks it's good, in five-color it's game-winning. "I take cram session a lot higher than the majority of people."
-- **Prioritize learn cards over lessons**: "it's more important to get the learn cards than it is to get the lessons right because if you end up with Five Lessons but then only one way to learn well then you're only going to be able to grab one of them... if you have like five learn cards and then one lesson you can always seemingly grab that lesson." Asymmetry is important — lessons are useless without ways to fetch them.
-- **Learn as rummage safety valve**: "with learn if you don't have a card to go grab from your sideboard you can instead choose to rummage so discard a card that's already in your hand and then grab a new one so it's never truly a dead card."
+### White (W)
 - **Professor of Symbology** (?): one of the better two-drops in the format — 2-mana 2/1 that learns on ETB.
-- **Introduction to Annihilation**: "if you're able to quote unquote tutor for it with a learned card well then it gets a lot better" — maindecking it is bad but as a lesson it's live removal.
+
+### Blue (U)
+- **Bury in Books** (?): "Bury" — bounce effect, key tempo play in blue decks.
+
+### Black (B)
 - **Necrotic Fumes**: Strong lesson removal (exile target creature, they sacrifice a creature). One of the better lessons to have in sideboard.
+
+### Multicolor / gold
+- **Cram Session**: Rate it much higher than others — in aggressive/learn-heavy decks it's good, in five-color it's game-winning. "I take cram session a lot higher than the majority of people."
 - **Inkling Summoning**: 3-mana lesson, makes a 2/1 flying inklings. Strong for aggressive lesson packages.
 - **Vanishing Verse**: Exile target mono-colored permanent — "pretty sweet" mystical archive card, one of the better removal spells.
 - **Lorehold / other campus lands**: Worth running even off-color as late-game mana sinks / scry engines, especially in slower decks. "Not for fixing but just as an additional land that can scry later on."
 - **Torrent Sculptor** (?): Can be cast as a big creature OR used as a rummage + removal spell. Double-duty makes it consistently playable.
-- **Bury in Books** (?): "Bury" — bounce effect, key tempo play in blue decks.
+
+### Colorless / artifacts
+- **Environmental Sciences**: Best lesson in the format. "The number one lesson" — 2-mana colorless, gain 2 life and tutor any basic land. Makes five-color possible and provides fixing whenever you learn.
+- **Mascot Exhibition**: "The number one lesson, might even be the best card in the format." Lesson that makes a 2/1, 3/2, and 4/4 simultaneously. Goes in every deck that learns.
+- **Introduction to Annihilation**: "if you're able to quote unquote tutor for it with a learned card well then it gets a lot better" — maindecking it is bad but as a lesson it's live removal.
+
+### Unmatched / caption-garbled
+- **Campus lands** (all five schools): "campuses are insane in this format though." They all ETB tapped, tap for two colors, and activate to scry 1 (? — "Silverquill that's the black white and they all enter tap they all add the two colors of that school and they also have the ability to describe one"). Late-game filtering is extremely valuable.
+- **Prioritize learn cards over lessons**: "it's more important to get the learn cards than it is to get the lessons right because if you end up with Five Lessons but then only one way to learn well then you're only going to be able to grab one of them... if you have like five learn cards and then one lesson you can always seemingly grab that lesson." Asymmetry is important — lessons are useless without ways to fetch them.
+- **Learn as rummage safety valve**: "with learn if you don't have a card to go grab from your sideboard you can instead choose to rummage so discard a card that's already in your hand and then grab a new one so it's never truly a dead card."
 
 ## Pitfalls
 

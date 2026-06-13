@@ -26,22 +26,36 @@
 - **Bladebrand (?) + Purifying Dragon (?)[BLB context unclear — may be Blade Brand]**: Death-touch + ping ability for pseudo-removal.
 
 ## Card tips
-- **Cash Grab**: Premium pickup at any point in the draft; Kenji hates passing it and says "every time I play this card I am very pleased." Especially crucial for squirrels to dig to payoffs. With 3 copies "should be fine with 16 lands."
-- **Baker's Bane Duo / Dagger-Fang Duo**: Best 2-drop Commons in the format, essentially tied for top common slot. Take extremely early.
+
+### White (W)
+- **Carrot Cake**: Core enabler for white-black; Kenji ended a draft with five copies ("penta-cake"). Worth taking over competing on-color cards.
+- **Warren Elder / War Leader**: Key late-game payoffs for go-wide white token strategies; hard to beat when left unanswered.
+
+### Black (B)
 - **Savor (?)**: "One of my favorite common removal spells." Functions as instant-speed exile + protection; very flexible. Mana-efficient early answer to key threats.
 - **Dark Star Augur**: Fantastic, but do not run it without Offspring if possible. "You don't normally want to play these type of cards without being able to Offspring them."
 - **Nocturnal Hunger**: Best common black removal; always want at least one, ideally more.
-- **Poly Wallop**: Acceptable if you have frogs (becomes conditional 2-mana removal), but "if I don't have any frogs, it's always going to be a four-mana removal spell." Often the worst card in a non-frog hand.
-- **Overprotect**: Strong combat trick but often cut for efficiency; Kenji repeatedly wheels it late, signaling it's lower priority than it looks.
-- **Short Bow**: "Been a really big fan of Short Bow" — underrated equipment, especially in squirrel decks wanting to pump.
 - **Dagger-Fang Duo vs. Cash Grab at P1P8**: "I think the creature is generally going to be a little bit better but maybe Cash Grab is the better card" — situation-dependent.
-- **Carrot Cake**: Core enabler for white-black; Kenji ended a draft with five copies ("penta-cake"). Worth taking over competing on-color cards.
-- **Treetop Sentry (?) / Sentries**: Always want at least one in squirrel decks; provides a meaningful body.
+
+### Green (G)
+- **Overprotect**: Strong combat trick but often cut for efficiency; Kenji repeatedly wheels it late, signaling it's lower priority than it looks.
 - **Heaped Harvest**: Artifact that fixes mana AND counts as a food for foraging payoffs; solid utility piece.
-- **Haven (?)**: Free off-color fixing; take it when you want to splash.
 - **Keen-Eyed Curator**: Good 2-mana 7/7 trample eventually; "easy to turn it into a 2-mana win-con" — but Kenji ranked it behind Wix Patrol (?) at P1P3.
+
+### Multicolor / gold
+- **Baker's Bane Duo / Dagger-Fang Duo**: Best 2-drop Commons in the format, essentially tied for top common slot. Take extremely early.
+
+### Colorless / artifacts
+- **Short Bow**: "Been a really big fan of Short Bow" — underrated equipment, especially in squirrel decks wanting to pump.
+
+### Lands
+- **Haven (?)**: Free off-color fixing; take it when you want to splash.
+
+### Unmatched / caption-garbled
+- **Cash Grab**: Premium pickup at any point in the draft; Kenji hates passing it and says "every time I play this card I am very pleased." Especially crucial for squirrels to dig to payoffs. With 3 copies "should be fine with 16 lands."
+- **Poly Wallop**: Acceptable if you have frogs (becomes conditional 2-mana removal), but "if I don't have any frogs, it's always going to be a four-mana removal spell." Often the worst card in a non-frog hand.
+- **Treetop Sentry (?) / Sentries**: Always want at least one in squirrel decks; provides a meaningful body.
 - **Bodyguard ("bushy bodyguard")**: Token-generating creature for food synergies; combine with Cultivator for board presence.
-- **Warren Elder / War Leader**: Key late-game payoffs for go-wide white token strategies; hard to beat when left unanswered.
 
 ## Pitfalls
 - **Over-relying on double Poly Wallop**: Kenji explicitly blames "the double poly wallup was the biggest issue" in his last Bloomburrow loss — too many expensive reactive spells strands you with a clunky hand.

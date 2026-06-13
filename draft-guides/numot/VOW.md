@@ -56,18 +56,29 @@
 
 ## Card tips
 
-- **Child of the Pack ("Puppy")**: First-pick material. "First picked a puppy over what — not too much." Grows with every wolf/werewolf you play. In a 14-wolf deck it becomes very large, very fast.
-- **Lantern Bearer**: "Lantern bear guaranteed two wins" (Kenji's heuristic about value of the card). 1-drop flyer that gives flying upside — always play, always play multiple.
-- **Rending Flame**: Draft aggressively in red. "I see a flame I take a flame."
-- **Abrade**: One of the best removal spells — "kills artifacts. You know what's an artifact? Freakin knife." Kills equipment that would otherwise be very problematic.
-- **Taxidermist (?)**: Strong 2-drop ramper. "Having a two mana ramper is so much more important... Going from instead of three to five in this format — it's gross." In green, Taxidermist is a high pick.
-- **Bleed Dry (?)**: Blue removal that Kenji respects highly — "bleed dry" at 5th pick or later is a strong signal for open blue.
-- **Cradle of Safety**: Better than it looks if you have Lantern Bearers or other flyers. Run 2 if you have 3 Lantern Bearers.
-- **Scattered Thoughts (?)**: 3-mana scry 1 draw 1 (or similar) — solid blue card draw. "Three mana scry one draw one" — good tempo.
+### White (W)
 - **Fierce Retribution (?)**: Conditional white removal — Kenji hates it but picks it as necessary filler: "I'll take a stupid removal spell." Play 1, not 2.
 - **Piercing Light**: "I hate this card" but it serves a role. Pick it late as needed filler only.
+
+### Blue (U)
+- **Lantern Bearer**: "Lantern bear guaranteed two wins" (Kenji's heuristic about value of the card). 1-drop flyer that gives flying upside — always play, always play multiple.
+- **Cradle of Safety**: Better than it looks if you have Lantern Bearers or other flyers. Run 2 if you have 3 Lantern Bearers.
+- **Scattered Thoughts (?)**: 3-mana scry 1 draw 1 (or similar) — solid blue card draw. "Three mana scry one draw one" — good tempo.
 - **Syncopate (?)**: "I can pick them up later and I'm not going to play more than one or two so I'd rather take basically any other blue card any other card that is blue." Don't prioritize early; it's a late-pick filler.
 - **Impulse (?)**: "I think we're gonna take the card draw this time." Solid cantrip in Izzet tempo.
+
+### Black (B)
+- **Bleed Dry (?)**: Blue removal that Kenji respects highly — "bleed dry" at 5th pick or later is a strong signal for open blue.
+
+### Red (R)
+- **Rending Flame**: Draft aggressively in red. "I see a flame I take a flame."
+- **Abrade**: One of the best removal spells — "kills artifacts. You know what's an artifact? Freakin knife." Kills equipment that would otherwise be very problematic.
+
+### Multicolor / gold
+- **Child of the Pack ("Puppy")**: First-pick material. "First picked a puppy over what — not too much." Grows with every wolf/werewolf you play. In a 14-wolf deck it becomes very large, very fast.
+
+### Unmatched / caption-garbled
+- **Taxidermist (?)**: Strong 2-drop ramper. "Having a two mana ramper is so much more important... Going from instead of three to five in this format — it's gross." In green, Taxidermist is a high pick.
 - **Anya (?)**: "I think Anya is better than dreadfeast demon... it just comes down way too early." On the play vs. any uncommon, Anya is better.
 - **Manabase**: Izzet blue-red with 10 islands, 7 mountains works. "Seven mountains, by the way" — Kenji tends to go 10/7 split for blue-heavy decks.
 

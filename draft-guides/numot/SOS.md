@@ -154,77 +154,87 @@ Ranked by Kenji's evidence (end-of-format verdict): Soup (S) > Prismari (A) > Lo
 
 ## Card tips
 
-### Premium picks / bombs
-- **Arcane Omens** (Converge discard rare) — **the late soup MVP and "the mirror breaker" (05-26/05-29)**, "the most complained-about card." Discard 3 is strong, discard 5 is "snap-concede." "Never cast it for converge less than 3." Laments it going 7th pick (others undervalue it). NOTE he sometimes says he'd "delete it from the format" — that's frustration at FACING it, not a downgrade; speculate on it late to keep converge alive. **This is the headline soup payoff; pick it accordingly.**
-- **Arc of Hunger** (2RW artifact) — top rare; "do not pass." Good even outside RW. Wins games "over any length of time"; triggers off any card leaving your graveyard. P1P1 lock if RW looks open. Protect from artifact removal. (⚠ early hyped as THE soup MVP — late that role belongs to Arcane Omens; Arc is now primarily a Lorehold card. Still elite.)
-- **Together as One** (Converge rare) — **#1 converge payoff**, "Cruel Ultimatum." Excellent at 3-4 colors, devastating at 5; can target opponent to deck them. 17L drawn WR ~65.5%.
-- **Potioner's Trove** (artifact, GOAT common/uncommon glue) — fixes, ramps, and the 2-life-per-instant/sorcery dodges burn + alpha strikes. Universally good, even in two-color. "Where are the freaking troves?" is a recurring lament — missing it makes soup underpowered. Take over almost everything once you have a payoff. (Consistent early→late: "hunts multiples.")
+### White (W)
 - **Stirring Hopesinger** (rare) — first-pick quality, "busted," grows all your creatures on every targeting spell. 17L drawn WR ~62.8%.
-- **Mathematics / Math Magics** (rare) — surprise premium; a primary mill win-con and a top soup-mirror bomb (most late losses were to it, 06-01). "This is the format now." P1P1-caliber; snap-concede in the mirror.
-- **Wisdom of Ages** (4UUU) — **defining mirror-breaker (confirmed end-of-format 06-01)**; returns all instants/sorceries, no hand limit. ⚠ Kenji DISMISSED it early ("not going to call it good"), then reversed hard — best control/Prismari payoff. ("Why do they get to have the dang Wisdom of Ages?")
-- **Snarl Song** (single-pip green converge) — P1P1 build-around; "two by P1P4 ≈ locked into converge." At 5 colors "two 5/5s, gain 5" (caption varies to two 3/3s + 5 life — either way premium); bad below 4 colors. People are "still sleeping on it." Lorecaster rebuys it. (Premier soup finisher — consistent early→late.)
-- **Divergent Equation** (UUX) — premium graveyard recursion / win-from-nowhere; rebuys removal and payoffs. "One more like a Divergent Equation would've been sick."
-- **Prismari, the Inspiration** (M) — 7/7 fly ward-5, all spells get storm. Bomb; pained to pass it for Cyclonic Rift.
-- **Quandrix, the Proof / Quandrix Apex** (M) — 6/6 fly trample cascade. "Neat win con." (Quandrix's strong top-end — confirmed late, but the deck still needs a removal splash.)
-- **Wildgrowth Archaic** (rare) — 0/0 trample reach; enters with a counter per color spent AND every later creature enters with that many counters too. "This card is insane"; worth first-picking even outside converge.
-- **Sundering Archaic** (Converge 3/3) — multi-VOD all-star; exile a permanent (artifact/enchant/creature/Trove) + bottom a card from their hand, leaving a body. Best card in its pack regardless of path; worth splashing.
-- **Bertha** (?) (4-mana 1/4 Increment fractal engine) — "kill on sight"; the Quandrix/Temur win con.
-- **Pensive Professor** (3-mana 0/2 Increment) — "mini blue bomb"; draws on nearly every spell. Kill-on-sight; protect it.
-- **Forum Necroscribe** (6-mana 5/4 ward) — "mythic uncommon" Silverquill/Witherbloom top-end; recurs creatures on targeting spells. Must be killed or it floods the board.
-- **Cyclonic Rift** (special guest) — extremely good; with Prismari's storm it copies itself ("most disgusting Cyclonic Rift you've ever seen"). Even fair, a clutch soup stabilizer. People still misread it.
-- **Disdainful Stroke** (special guest) — premium in soup mirrors; counters the 4+ mana payoffs (Wisdom, Divergent, big Snarl Song). "I can't pass the Disdainful Stroke."
-
-### Strong commons / uncommons / role-players
-- **Render Speechless** (U) — the #1 Silverquill card AND **Silverquill's key anti-soup tool — the best non-rare answer to soup (confirmed end-of-format 05-29): counter + hand peek + discard + team pump; "the card that hoses soup."** "Always get at least one." Soup players must play around it constantly. (Wishes it exiled.)
 - **Elite Interceptor** (white 1-drop) — "one of the best commons in the format," ~"Thraben Inspector." Premier white/aggro common; P1P2-caliber.
+- **Reprieve** — overperformer in soup mirrors, "so good" (05-29).
+- **Sonar** (UR 0/4 treasure-maker) — "huge" late pickup; defensive body + treasure + engine with Micah, Reader of Ruins (?).
+- **Stone Docent** (C) — "very good," underplayed common; graveyard synergy.
+- **Eager Glyph Mage** — overrated; near last-pick despite looking like a powerhouse. "Best in Silverquill" at most.
+- **Quillblade Laureate** — "whatever" in Lorehold (good in Silverquill via Abigail loop). **Requisition Raid** — "fine, unexciting." **Quandrix/Lorehold Charms** — "the least exciting" of the charm cycle.
+
+### Blue (U)
+- **Wisdom of Ages** (4UUU) — **defining mirror-breaker (confirmed end-of-format 06-01)**; returns all instants/sorceries, no hand limit. ⚠ Kenji DISMISSED it early ("not going to call it good"), then reversed hard — best control/Prismari payoff. ("Why do they get to have the dang Wisdom of Ages?")
+- **Divergent Equation** (UUX) — premium graveyard recursion / win-from-nowhere; rebuys removal and payoffs. "One more like a Divergent Equation would've been sick."
+- **Pensive Professor** (3-mana 0/2 Increment) — "mini blue bomb"; draws on nearly every spell. Kill-on-sight; protect it.
+- **Disdainful Stroke** (special guest) — premium in soup mirrors; counters the 4+ mana payoffs (Wisdom, Divergent, big Snarl Song). "I can't pass the Disdainful Stroke."
+- **Matter Bending Mage** (?) — "safe good pick," runs triple (05-29).
+- **Campus Composer** (7-mana 6/6 vig, draw 3 discard 2) — "doesn't seem that good." Passed for Fractal Mascot.
+- **Library of Alexandria** (Mystic Archive) — "washed"; soup goes over the top of a turn-1 Library.
+
+### Black (B)
+- **Arcane Omens** (Converge discard rare) — **the late soup MVP and "the mirror breaker" (05-26/05-29)**, "the most complained-about card." Discard 3 is strong, discard 5 is "snap-concede." "Never cast it for converge less than 3." Laments it going 7th pick (others undervalue it). NOTE he sometimes says he'd "delete it from the format" — that's frustration at FACING it, not a downgrade; speculate on it late to keep converge alive. **This is the headline soup payoff; pick it accordingly.**
+- **Forum Necroscribe** (6-mana 5/4 ward) — "mythic uncommon" Silverquill/Witherbloom top-end; recurs creatures on targeting spells. Must be killed or it floods the board.
+- **Cost of Brilliance** (U) — excellent in *aggressive black* (Silverquill/Witherbloom): draw + counter + Repartee trigger, keeps aggro from running out of gas. Weak in soup (better draw exists). Better than Killian's Confidence.
+- **Send in the Pest** (U) — Kenji rates it "Ravenous Rats with upside, especially in Witherbloom" (NB: LoL pans it — see vs LoL). Disruption + pest + graveyard fodder.
+- **"Bad soup"** — converge with no early interaction (or fixing but no payoffs). "Loses to everything." The single worst place to be.
+- **Necroscribe / Melancholic Poet** — mediocre without targeting density; "filler 3-drop." First 2-drop Kenji cuts from Witherbloom (the Biomancer/Poet).
+- **Decorum Dissertation** (black Paradigm) — weakest paradigm; backfires vs. lifegain. Good only in a low-curve aggressive build with its own lifegain.
+
+### Red (R)
 - **Rubble Rouser** (R common) — Lorehold backbone; brick-walls aggro, fixes the dead-removal problem, feeds Arc of Hunger. Want 3+; can pitch lands. Also a Prismari card.
 - **Tome Blast / "Tone Blast"** (1R, flashback) — top common; **a litmus test for creature-sizing** — if your creatures die to it, you're in a bad spot. Flashback doubles value; save for key targets when you can.
 - **Unsettle / Unsubtle Mockery** (2R, 4 dmg + surveil 1) — top Boros common; surveil smooths + feeds graveyard.
+- **Expressive Fire Dancer / Tackle Artist** — the two best UR two-drops; grow on spells. "Get every one I see." (The pillars of the pump/tempo Prismari build, his favorite to pilot — 05-30.)
+- **Garrison Excavator** (U) — always-want Lorehold uncommon; tutors land + feeds the graveyard engine. Take over Impractical Joke.
+- **Living History** (C) — Lorehold recursion engine; returns MV≤3 nonland permanents and draws if a card left the yard.
+- **Charging Strife Knight** — overrated; under-delivers.
+
+### Green (G)
+- **Snarl Song** (single-pip green converge) — P1P1 build-around; "two by P1P4 ≈ locked into converge." At 5 colors "two 5/5s, gain 5" (caption varies to two 3/3s + 5 life — either way premium); bad below 4 colors. People are "still sleeping on it." Lorecaster rebuys it. (Premier soup finisher — consistent early→late.)
+- **Wildgrowth Archaic** (rare) — 0/0 trample reach; enters with a counter per color spent AND every later creature enters with that many counters too. "This card is insane"; worth first-picking even outside converge.
 - **Environmental Scientist** ("one of the best cards in the set regardless of rarity") — fixing + a body; the converge mana-base glue. Take when mana is shaky.
 - **Studious First-Year** ("noot") — prepared Rampant Growth on a creature; "turn-1 first year, turn-2 ramp + growth is the best feeling in the world." Wizard (synergy with Mana Sculpt). Premium soup/ramp enabler (consistent early→late — "dream turn-1").
-- **Splatter Technique** — mass removal that draws ~4 in soup. "Hard to pull me away from that" / "too good to pass" (05-30).
-- **Resonating Loot** — overperformer / workhorse card advantage in soup (05-29).
-- **Matter Bending Mage** (?) — "safe good pick," runs triple (05-29).
-- **Reprieve** — overperformer in soup mirrors, "so good" (05-29).
-- **Cost of Brilliance** (U) — excellent in *aggressive black* (Silverquill/Witherbloom): draw + counter + Repartee trigger, keeps aggro from running out of gas. Weak in soup (better draw exists). Better than Killian's Confidence.
-- **Snarl Song / Arcane Omens / Divergent Equation** — uncommon-tier converge payoffs, a notch under the rares but format-defining (Arcane Omens now the headline of this group — see above).
-- **Expressive Fire Dancer / Tackle Artist** — the two best UR two-drops; grow on spells. "Get every one I see." (The pillars of the pump/tempo Prismari build, his favorite to pilot — 05-30.)
-- **Sanar/Cenar (?) ("Nar")** — premium Prismari 2-drop; treasure + tutors instant/sorcery; Wild Idea prepared spell is absurd.
-- **Skywhaler / Spectacular Sky Whale (?)** — "perfect win con" for spell-matters; 7-mana two 3/3 flyers, or grows +3/+3 per targeting spell.
-- **Color-Storm Stallion** (?) — strong soup top-end (self-copy), but answered by Render Speechless (05-29).
-- **Garrison Excavator** (U) — always-want Lorehold uncommon; tutors land + feeds the graveyard engine. Take over Impractical Joke.
-- **Pursue the Past** ("Pursuer the Past") — "people aren't giving it enough credit"; the gain-2 is good beyond graveyard synergy, and it discards dead matchup cards. ⚠ He initially said "this card sucks," then recanted within the early window ("I take that back," 04-25).
-- **Living History** (C) — Lorehold recursion engine; returns MV≤3 nonland permanents and draws if a card left the yard.
-- **Root Manipulation** (3BG) — "best overrun in a while"; **menace > trample** here due to low creature counts. Witherbloom's best top-end (but Witherbloom is still dead-last as an archetype).
 - **Thornfist Striker** (U) — "real good"; team trample while gaining life. Often missed and regretted.
-- **Snooping Page / Abigail (?) / Dig Site Inventory / Scheming Silverquill / Mozio (?)** — Silverquill core; Snooping Page is an unblockable draw-engine connector; Abigail re-prepares creatures (but late LUKEWARM — "not huge on Abigail," 05-29).
-- **Fractal Mascot** — strong, especially as an Echo/copy target (05-29).
-- **Sonar** (UR 0/4 treasure-maker) — "huge" late pickup; defensive body + treasure + engine with Micah, Reader of Ruins (?).
-- **Stone Docent** (C) — "very good," underplayed common; graveyard synergy.
-- **Send in the Pest** (U) — Kenji rates it "Ravenous Rats with upside, especially in Witherbloom" (NB: LoL pans it — see vs LoL). Disruption + pest + graveyard fodder.
-- **Counter suite:** Disdainful Stroke > Brush Off > Essence Scatter > Spell Pierce (all playable; "all the counters in this format are good," because expensive spells define it). Spell Pierce shines vs. soup's pricey removal.
-- **Other role-players:** Heated Argument, Seize the Spoils (draw + treasure fixing), Last Gasp (-3/-3), Bitter Triumph, Wander Off / exile removal (premium vs. recursion), Impractical Joke, Bombard, Molten Note, Artistic Process, Return the Favor, Procrastinate, Stock Up ("insane how late it always goes"), Flow State, Hydro Channeler, Fractal Mascot, Paradox Surveyor ("basically never bricks"), Mana Worm (?), Emeritus of Abundance (?) (3/4 vig prepared regrowth — "goes into every deck"), Maelstrom Artisan (?), Sloth.
-
-### Traps / overrated / situational
-- **"Bad soup"** — converge with no early interaction (or fixing but no payoffs). "Loses to everything." The single worst place to be.
-- **Eager Glyph Mage** — overrated; near last-pick despite looking like a powerhouse. "Best in Silverquill" at most.
-- **Campus Composer** (7-mana 6/6 vig, draw 3 discard 2) — "doesn't seem that good." Passed for Fractal Mascot.
-- **Fractal Tender** — "fine, but I just don't care for it"; filler in soup.
-- **Cuboid Colony** — okay 2-drop, not exciting. **Sleight of Hand** — okay 2-drop, usually a final-build cut.
-- **Charging Strife Knight** — overrated; under-delivers.
 - **Colonial / Chelonian Tackle, Bog Barrage** — "horrendous"/under-whelming; fight effects soured as creature counts fell (still fine in Witherbloom with deathtouch).
 - **Triumph of the Hordes** (special guest) — "not actually that good"/"not even good"; no poison support, just a fog if it doesn't kill. **Hop to It** (special guest) — "not good in the format."
-- **Necroscribe / Melancholic Poet** — mediocre without targeting density; "filler 3-drop." First 2-drop Kenji cuts from Witherbloom (the Biomancer/Poet).
-- **Abigail (?)** — late DOWNGRADE: "not huge on Abigail" (05-29). Good in the Quillblade re-prepare loop, lukewarm otherwise.
-- **Diary of Dreams** — engine when fueled, but a frequent CUT in Silverquill late (not enough permanents, 05-29).
-- **Quillblade Laureate** — "whatever" in Lorehold (good in Silverquill via Abigail loop). **Requisition Raid** — "fine, unexciting." **Quandrix/Lorehold Charms** — "the least exciting" of the charm cycle.
-- **Archaic Agony** (?) — "still don't like it"; kill a small creature + draw 2 is okay, not exciting.
-- **Decorum Dissertation** (black Paradigm) — weakest paradigm; backfires vs. lifegain. Good only in a low-curve aggressive build with its own lifegain.
+
+### Multicolor / gold
+- **Prismari, the Inspiration** (M) — 7/7 fly ward-5, all spells get storm. Bomb; pained to pass it for Cyclonic Rift.
+- **Quandrix, the Proof / Quandrix Apex** (M) — 6/6 fly trample cascade. "Neat win con." (Quandrix's strong top-end — confirmed late, but the deck still needs a removal splash.)
+- **Render Speechless** (U) — the #1 Silverquill card AND **Silverquill's key anti-soup tool — the best non-rare answer to soup (confirmed end-of-format 05-29): counter + hand peek + discard + team pump; "the card that hoses soup."** "Always get at least one." Soup players must play around it constantly. (Wishes it exiled.)
+- **Splatter Technique** — mass removal that draws ~4 in soup. "Hard to pull me away from that" / "too good to pass" (05-30).
+- **Resonating Loot** — overperformer / workhorse card advantage in soup (05-29).
+- **Snarl Song / Arcane Omens / Divergent Equation** — uncommon-tier converge payoffs, a notch under the rares but format-defining (Arcane Omens now the headline of this group — see above).
+- **Skywhaler / Spectacular Sky Whale (?)** — "perfect win con" for spell-matters; 7-mana two 3/3 flyers, or grows +3/+3 per targeting spell.
+- **Color-Storm Stallion** (?) — strong soup top-end (self-copy), but answered by Render Speechless (05-29).
+- **Pursue the Past** ("Pursuer the Past") — "people aren't giving it enough credit"; the gain-2 is good beyond graveyard synergy, and it discards dead matchup cards. ⚠ He initially said "this card sucks," then recanted within the early window ("I take that back," 04-25).
+- **Root Manipulation** (3BG) — "best overrun in a while"; **menace > trample** here due to low creature counts. Witherbloom's best top-end (but Witherbloom is still dead-last as an archetype).
+- **Snooping Page / Abigail (?) / Dig Site Inventory / Scheming Silverquill / Mozio (?)** — Silverquill core; Snooping Page is an unblockable draw-engine connector; Abigail re-prepares creatures (but late LUKEWARM — "not huge on Abigail," 05-29).
+- **Fractal Mascot** — strong, especially as an Echo/copy target (05-29).
+- **Fractal Tender** — "fine, but I just don't care for it"; filler in soup.
+- **Cuboid Colony** — okay 2-drop, not exciting. **Sleight of Hand** — okay 2-drop, usually a final-build cut.
 - **Cauldron of Essence** — cool Recurring-Nightmare effect, but often a non-bo on lands; games end before it matters; shut off by exile removal.
+- **Mind Roots (active-player risk)** — opponent can discard their whole hand to redraw ("the reverse"); only good vs. a small hand.
+
+### Colorless / artifacts
+- **Arc of Hunger** (2RW artifact) — top rare; "do not pass." Good even outside RW. Wins games "over any length of time"; triggers off any card leaving your graveyard. P1P1 lock if RW looks open. Protect from artifact removal. (⚠ early hyped as THE soup MVP — late that role belongs to Arcane Omens; Arc is now primarily a Lorehold card. Still elite.)
+- **Together as One** (Converge rare) — **#1 converge payoff**, "Cruel Ultimatum." Excellent at 3-4 colors, devastating at 5; can target opponent to deck them. 17L drawn WR ~65.5%.
+- **Potioner's Trove** (artifact, GOAT common/uncommon glue) — fixes, ramps, and the 2-life-per-instant/sorcery dodges burn + alpha strikes. Universally good, even in two-color. "Where are the freaking troves?" is a recurring lament — missing it makes soup underpowered. Take over almost everything once you have a payoff. (Consistent early→late: "hunts multiples.")
+- **Sundering Archaic** (Converge 3/3) — multi-VOD all-star; exile a permanent (artifact/enchant/creature/Trove) + bottom a card from their hand, leaving a body. Best card in its pack regardless of path; worth splashing.
+- **Diary of Dreams** — engine when fueled, but a frequent CUT in Silverquill late (not enough permanents, 05-29).
+
+### Unmatched / caption-garbled
+- **Mathematics / Math Magics** (rare) — surprise premium; a primary mill win-con and a top soup-mirror bomb (most late losses were to it, 06-01). "This is the format now." P1P1-caliber; snap-concede in the mirror.
+- **Bertha** (?) (4-mana 1/4 Increment fractal engine) — "kill on sight"; the Quandrix/Temur win con.
+- **Cyclonic Rift** (special guest) — extremely good; with Prismari's storm it copies itself ("most disgusting Cyclonic Rift you've ever seen"). Even fair, a clutch soup stabilizer. People still misread it.
+- **Sanar/Cenar (?) ("Nar")** — premium Prismari 2-drop; treasure + tutors instant/sorcery; Wild Idea prepared spell is absurd.
+- **Counter suite:** Disdainful Stroke > Brush Off > Essence Scatter > Spell Pierce (all playable; "all the counters in this format are good," because expensive spells define it). Spell Pierce shines vs. soup's pricey removal.
+- **Other role-players:** Heated Argument, Seize the Spoils (draw + treasure fixing), Last Gasp (-3/-3), Bitter Triumph, Wander Off / exile removal (premium vs. recursion), Impractical Joke, Bombard, Molten Note, Artistic Process, Return the Favor, Procrastinate, Stock Up ("insane how late it always goes"), Flow State, Hydro Channeler, Fractal Mascot, Paradox Surveyor ("basically never bricks"), Mana Worm (?), Emeritus of Abundance (?) (3/4 vig prepared regrowth — "goes into every deck"), Maelstrom Artisan (?), Sloth.
+- **Abigail (?)** — late DOWNGRADE: "not huge on Abigail" (05-29). Good in the Quillblade re-prepare loop, lukewarm otherwise.
+- **Archaic Agony** (?) — "still don't like it"; kill a small creature + draw 2 is okay, not exciting.
 - **Cody (?)** — fun and powerful but can't cast permanents → can lose you the game; dedicated near-all-spells builds only.
 - **2-mana 2/2s with no synergy / 2-toughness 3+ drops that can't grow** — fold to Tome Blast; Kenji cuts the "2/2 for 2 with no synergy" from Lorehold.
-- **Library of Alexandria** (Mystic Archive) — "washed"; soup goes over the top of a turn-1 Library.
-- **Mind Roots (active-player risk)** — opponent can discard their whole hand to redraw ("the reverse"); only good vs. a small hand.
 
 ## Pitfalls
 

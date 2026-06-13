@@ -29,17 +29,27 @@
 - **Giant Opportunity + food token**: Sacrifice any food for a 7/7. With Goose/Curious Pair/Savvy Hunter/Witchstalker already making food, this can come down turn 3–4 as a 7/7 for 4 effectively.
 
 ## Card tips
-- **Gilded Goose**: First-pickable; fixing, food production, blocker vs. 1/1 fliers, fuels Oko. "The goose does it all."
-- **Oko, Thief of Crowns**: Strongest rare in format; +2 makes food, +1 makes a creature a 3/3 (removes abilities), -1 trades creature/artifact for an Elk 3/3. Generates enormous value even without the combo.
+
+### Blue (U)
 - **Midnight Clock**: Kenji says "every time I have access to a clock I want to play it." Always play it; try to resolve under opponent's countermagic by waiting for them to be tapped out.
 - **Folio of Fancies**: Wins games in the Mill deck but is slow and loses to pressure. Not a card Kenji drafts by choice but respects its win rate. Works best when opponent stumbles.
-- **Drown in the Loch**: The only thing that can counter the Clock is "the two-mana card that puts creatures back on top of library" (i.e. the blue instant bounce); most other counterspells are irrelevant vs. Clock.
+
+### Black (B)
+- **Revenge of Ravens**: One of the most hated cards to face — lifelink/drain enchantment that punishes attacking. Kenji says "revenge of Ravens was one of the most annoying cards in this format." Plan to have Return to Nature or just race through it.
+
+### Red (R)
 - **Witchstalker** (Fierce Witchstalker: 4/4 trample for 4 that makes food): Best or near-best green four-drop. Especially good with Deathless Knight because the food trigger enables recursion.
+
+### Green (G)
+- **Gilded Goose**: First-pickable; fixing, food production, blocker vs. 1/1 fliers, fuels Oko. "The goose does it all."
 - **Garenbrig Carver** (Ardenvale Tactician? / "Carver": 4-mana 4/4 trample?): Described as a "surprise all-star in green" and "basically a removal spell and a creature."
 - **Beanstalk Giant**: Adventure for ramp (basic land to hand) + 6/6 for 7. Excellent fixing for splashes; the Giant body closes games.
 - **Rose Thorn Acolyte**: "Really need to find these" — it's fixing + ramp + an adventure creature for Innkeeper. First priority in any green deck.
 - **Return to Nature**: Main-deckable in this format; hits Revenge of Ravens, Lucky Clover, foods, and other key enchantments/artifacts.
-- **Revenge of Ravens**: One of the most hated cards to face — lifelink/drain enchantment that punishes attacking. Kenji says "revenge of Ravens was one of the most annoying cards in this format." Plan to have Return to Nature or just race through it.
+
+### Multicolor / gold
+- **Oko, Thief of Crowns**: Strongest rare in format; +2 makes food, +1 makes a creature a 3/3 (removes abilities), -1 trades creature/artifact for an Elk 3/3. Generates enormous value even without the combo.
+- **Drown in the Loch**: The only thing that can counter the Clock is "the two-mana card that puts creatures back on top of library" (i.e. the blue instant bounce); most other counterspells are irrelevant vs. Clock.
 - **Deathless Knight**: Recursion with lifelink; keep food around to replay it from graveyard.
 
 ## Pitfalls

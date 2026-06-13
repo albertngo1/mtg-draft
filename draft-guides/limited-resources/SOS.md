@@ -150,48 +150,135 @@ Ranked by the settled Sunset Show (#857) read, cross-checked against week-one 17
 
 ## Card tips
 
+
 Grades below are LR's **release-week set-review predictions** (#849 commons/uncommons, #850 rares/mythics) on roughly an A+ → F scale (split grades shown as Marshall/LSV). The Sunset Show (#857) late verdict wins on conflict and is flagged.
 
-### Premium picks (the A's — first-pickable)
-- **Together as One** — A. **The best card in the set.** 6-mana converge sorcery: target player draws X, deals X, gain X. "Even at X=4 it kills their 4/4, draws 4, gains 4 — game-over single card." LSV: "The goat. Bombiest bomb."
+### White (W)
 - **Practiced Offense** — A. 2W flashback sorcery: pump each of your creatures + give one double-strike or lifelink. "If you have just one creature, even just one sometimes is enough. With any evasion it's just dead. Complete game-ending card for 5 mana." Marshall's "biggest groan-test" pick.
-- **Arcane Omens** — review: **build-around D → A in soup** (#857). 4B converge sorcery: target player discards X. Splashable; the converge payoff. **The card LSV loses to most with his Prismari deck.**
-- **Practiced Scrollsmith** — B+. 3-mana 3/2 first-strike exile-target-non-creature-card-from-yard at ETB. "Hallmark card — if this isn't good the deck doesn't work." Lorehold engine.
-- **Snarl Song** — B+/A−. 5G converge sorcery: create two X/X tokens + gain X life. "Just a great card — finisher AND life-gain. Brutal recurred via Divergent Equation."
-- **Stirring Honormancer** — B+. 5-mana 2/(W/B/B) Rhino Bard, can't-trip. Premium Silverquill 5-drop.
 - **Stirring Hopesinger** — B+/A. 2W 1/3 lifelink-flier reparte, pumps your entire board on every reparte trigger. "Absolutely absurd."
 - **Informed Ink-Treader (Informed Inkwright)** — B+. 1W 2/2 vigilance — makes a 1/1 flier on every reparte. Stacks with Hopesinger to take over games.
-- **Emeritus of Ideation** — A+. 3UU 4/4 mythic that comes with literal Ancestral Recall stapled on. "One of the most powerful fun unbelievably awesome cards in a while."
-- **Emeritus of Woe** — A+. 3B mythic 5/4 with Demonic Tutor as the prepared spell. **The demonic tutor is JUST upside** — it's an extra card on top of a 5/4 body.
-- **Emeritus of Conflict** — A−. 1R 2/2 first strike with Lightning Bolt as the spell (after 3 spells cast).
-- **Emeritus of Abundance** — A−. 2G with Regrowth.
 - **Emeritus of Truce** — B/B+. 1WW 3/3 with Swords to Plowshares — but conditional on opponent controlling more creatures (#857: "I don't think the black or white Emeritus cycle is good enough" for cube — but in Limited they're real).
 - **Erode** — A−. W instant: destroy creature/planeswalker, controller may search basic land. "Path to Exile with planeswalker upside."
 - **Antiquities on the Loose** — A−. 1WW sorcery: two 2/2 tokens, flashback for 4WW with permanent counters. "Army-in-a-can — one of the better ones we've ever seen."
+- **Elite Interceptor** — C+ (#849)/B−. W 1/2 prepares Rejoinder (1W tap/untap target creature + draw card). **#1 white common.** "If you never pass Elite Interceptor you're well on your way to drafting this right."
+- **Honorbound Page** — common 3W 3/1 first strike prepared (1W: pump + flying). "The kind of card that always shows up well."
+- **Stone Docent** — common 1W 3/1. "The cards that ask nothing of you" — solid floor.
+- **Eager Glyph Mage** — common 3W 3/3 that ETBs a 1/1 inkling. "Filler that's pretty good these days."
+- **Shattered Acolyte** — C++. 1W 2/2 lifelink + sac to destroy artifact/enchantment. Common with sideboard punch.
+- **Stand Up for Yourself** — C+. 2W instant: destroy creature with power 3+. Reliable.
+- **Ajani's Response** — common 4W instant: destroy creature; costs 3 less if it's tapped. "These play out fine — always good."
+- **Inkshape Demonstrator** — B. 3W 3/4 ward-2 reparte + pump+lifelink. "Even better in Silverquill."
+- **Daydream** — C++ (#849) → DOWN (#857). 1W exile-and-rejoin-your-creature with flashback. **Trap** — wrong with Reparte counters, weak in Lorehold.
+- **Practiced Offense** — A (see above).
+- **Restoration Seminar** — D. 5WW paradigm — return permanent. "Easily the highest setup cost; not convinced."
+- **Erode** — A− (rare W instant — "Path to Exile + lifegain on opponent").
+- **Ajani's Response** — C/C+.
+- **Stand Up for Yourself** — C+.
+- **Daydream** — DOWN. "Got tricked."
+- **Restoration Seminar** — D. Paradigm with highest setup cost.
+- **Graduation Day** — built-around-only. "Bad."
+
+### Blue (U)
+- **Emeritus of Ideation** — A+. 3UU 4/4 mythic that comes with literal Ancestral Recall stapled on. "One of the most powerful fun unbelievably awesome cards in a while."
 - **Wisdom of the Ages** — initially D → A in spells decks. 4UUU "return all instants and sorceries to hand, no max hand size, exile this." The Prismari engine.
-- **Math &amp; Magic's** (Mathemagics) — XXUU mythic: target player draws 2X cards. **12 mana always lethal**, 10 mana usually lethal. The triple-check-the-math finisher.
 - **Echocasting Symposium** — B+ paradigm. 4UU mythic; the blue paradigm — recasts itself every turn.
+- **Skycoach Conductor** — B+. 2U 2/3 flier — at start of combat, exile target creature you control, return it (Eldrazi Displacer for free). "The kind of design I really love to see."
+- **Stock Up** — Premium (bonus sheet). The card draw bar everyone else fails to clear.
+- **Banishing Betrayal** — C− → C+ (#852 — "buying time always great"). 1U bounce + surveil 1.
+- **Exhibition Tidecaller** — initially mocked → 61.4% GIH WR. **DON'T cast it before turn 6 — keep waiting longer than you think.**
+- **Wisdom of the Ages** — see above.
+- **Divergent Equation** — XXU: variable X-spell + recur.
+- **Mathemagics** — see above.
+- **Echocasting Symposium** — B+ blue paradigm.
+- **Procrastinate** — C− → fringe playable (#851). Locks a creature for several turns; "actually one of your best late-game removal spells."
+- **Banishing Betrayal** — C+. Bounce + surveil 1.
+- **Essence Scatter** — premium counter for spell decks.
+- **Brush Off** — premium 1U-when-countering-instant counter.
+- **Disdainful Stroke** — C+. Bonus sheet, "misses enough to be annoying" but core in mirror.
+- **Spell Pierce** — main-deckable.
+- **Library of Alexandria** (bonus sheet reprint!) — surprisingly high WR. "I played that thing like a fiddle."
+- **Deluge Virtuoso** — DOWN with the prowess suite.
+- **Muse Seeker** — DOWN. 1U 2/1 looter when you cast 5-mana spell. Two-toughness creature in a removal-heavy spell deck.
+- **Harmonized Trio** — DOWN. Free Brainstorm on a 1/2 dies for free.
+- **Orysa, Tide Choreographer** — DOWN. "Bad but I love it anyway."
+- **Stock Up** — best card draw in the format.
+- **Disdainful Stroke** — see above.
+- **Brush Off** — see above.
+- **Library of Alexandria** — surprisingly good in regular Limited.
+- **Pre-Ordain** — strong cantrip.
+
+### Black (B)
+- **Arcane Omens** — review: **build-around D → A in soup** (#857). 4B converge sorcery: target player discards X. Splashable; the converge payoff. **The card LSV loses to most with his Prismari deck.**
+- **Emeritus of Woe** — A+. 3B mythic 5/4 with Demonic Tutor as the prepared spell. **The demonic tutor is JUST upside** — it's an extra card on top of a 5/4 body.
+- **Ral Zarek, Guest Lecturer** — 1BB 3-loyalty mythic PW. Mid-range Witherbloom/Silverquill engine.
+- **Cost of Brilliance** — C+ → B− (#857). 2B sorcery — target player draws 2 + loses 2 + put counter on creature. "Saw tons of play." Solid removal-with-upside.
+- **Last Gasp** — B−. 1B instant: -3/-3 until eot. "There's no deck that doesn't want it."
+- **Wander Off** — C/C+. 3B instant: exile creature. Reliable common removal.
+- **Pull from the Grave** — C. 2B sorcery: return up to 2 creature cards + gain 2. "Really back-breaking — gets your two best creatures back. First copy is great, second is a D."
+- **Send in the Pest** — C+. 1B: discard a card + make a pest. Witherbloom fuel.
+- **Locust Spray** — uncommon RW(?) cheap interaction.
+- **Forum Necroscribe** — D in practice (#851 win-rate 51%). 5B 5/4. Disappointing.
+- **Stargaze** — D. BB-X sorcery — "you don't really have time for it."
+- **Pull from the Grave** — see above.
+- **Pox Plague** — F. BBBBB. "There's really no reason to ever put that card in your deck."
+- **Withering Curse** — B (mythic). 1BB - all minus 2/2; if you gained life, destroy instead. "Not wrath when you really need it" but real.
+- **Decorum Dissertation** — paradigm. 3BB — draw 2 + lose 2 + scaling mythic.
+- **Tragedy Feaster** — rare. 2BB 7/6 trample ward 1 (sac unless gained life). "Fine in Witherbloom — extremely powerful when active, can sac pests and lands to keep it going, but easy to screw up."
+- **Cost of Brilliance** — B−.
+- **Last Gasp** — B−.
+- **Wander Off** — C.
+- **Withering Curse** — B (conditional sweeper).
+- **Forum Necroscribe** — DOWN. 51% win rate.
+- **Rabid Attack** — DOWN. "Card looks good when you read it, just doesn't deliver."
+- **Stargaze** — DOWN. Doesn't have time.
+- **Pox Plague** — F.
+- **Bitter Triumph** — B-equivalent black removal.
+- **Last Gasp** — see above.
+
+### Red (R)
+- **Emeritus of Conflict** — A−. 1R 2/2 first strike with Lightning Bolt as the spell (after 3 spells cast).
+- **Unsubtle Mockery (Unsuttle Mockery)** — B−. 2R instant removal — the red common LSV took most often when he had the option.
+- **Rubble Rouser** — common. 2R 1/4 — discard/draw + tap-yard-for-1-damage. "The best red card if your deck can use it" — but not every deck can.
+- **Tome Blast** — B. 1R sorcery: 2 damage + flashback 4R. "Firebolt-ish; pretty much excellent."
+- **Steal the Show** — B. 2R sorcery — discard then draw / deal damage equal to instants/sorceries in graveyard.
+- **Improvisation Capstone** — B+ paradigm. 5RR exile-cast cards up to MV 4.
+- **Tome Blast** — B (Firebolt-ish).
+- **Unsubtle Mockery** — B−.
+- **Heated Argument** — C. 4R instant: 6 damage + 2 to controller. "Playable, not exciting." (LSV: rare-low priority due to mana cost.)
+- **Impractical Joke** — solid R sorcery: 3 damage. "Cheap removal is king."
+- **Charging Strife Knight** — uncommon 2R 2/3 haste + tap-to-loot. Solid 3-drop.
+- **Tablet of Discovery** — uncommon 2R artifact, taps for 2 of any color (instants/sorceries only). "If you know your deck is blue-red spells, tablet is a little stronger than Trove; but early in draft take the Trove."
+- **Expressive Firedancer** — C−. UR aggro deck never materialized.
+- **Choreographed Sparks** — F. "Not interested."
+- **Burst Lightning** — premium R removal.
+
+### Green (G)
+- **Snarl Song** — B+/A−. 5G converge sorcery: create two X/X tokens + gain X life. "Just a great card — finisher AND life-gain. Brutal recurred via Divergent Equation."
+- **Emeritus of Abundance** — A−. 2G with Regrowth.
+- **Ambitious Augmenter** — B+. G 1/1 increment — when it dies, makes a fractal token with its counters. "One of the scariest cards to open a game with."
+- **Studious First-Year** — B− (#849)/C+. G 1/1 prepares Rampant Growth. **Best green common.** "Did it all."
+- **Slumbering Trudge** — B. XG: 6/6 plant beast at sorcery speed.
+- **Vastlands Scavenger** — rare 1GG 4/4 deathtouch + prepare Bind to Life (4G: 7 life + may put creature from yard onto battlefield).
+- **Germination Practicum** — green paradigm.
+- **Studious First-Year** — see above.
+- **Environmental Scientist** — uncommon 1G 2/2 + search basic. "Somehow free."
+- **Shared Roots** — bonus-sheet Rampant Growth.
+- **Comforting Counsel** — F-tier build-around. "Really bad green enchantment that nobody plays."
+- **Audience(?), Library of Lang(?) and other 1-mana hand-size artifacts** — situational at best.
+
+### Multicolor / gold
+- **Practiced Scrollsmith** — B+. 3-mana 3/2 first-strike exile-target-non-creature-card-from-yard at ETB. "Hallmark card — if this isn't good the deck doesn't work." Lorehold engine.
+- **Stirring Honormancer** — B+. 5-mana 2/(W/B/B) Rhino Bard, can't-trip. Premium Silverquill 5-drop.
 - **Conciliator's Duelist** — B+. WWBB 4/3 — draw + 1 life loss each player + blink-on-reparte. Mana-base hurdle is real but worth it.
 - **Stirring Honormancer** — see above.
 - **Moment of Reckoning** — 3WWBB sorcery: choose-up-to-4 from {destroy non-land, return non-land card from yard}. "Turns any board state into a win."
 - **Vicious Rivalry** — A. 2BG sweeper-ish; one of the only sweepers in the format and life-gain triggered.
 - **Hardened Academic** — B+. RW 2/1 flying haste + discard-to-life-link + counters when cards leave graveyard. "Enabler + payoff + good body — you don't get more for 2 mana."
 - **Resonating Lute (Loot?)** — A in spells decks. 2UR artifact: lands tap for 2 of any color (spend on instants/sorceries) + draw card if 7+ in hand. "Mana Flare + Library of Alexandria. Every game I played it I won in a landslide."
-- **Skycoach Conductor** — B+. 2U 2/3 flier — at start of combat, exile target creature you control, return it (Eldrazi Displacer for free). "The kind of design I really love to see."
-- **Ambitious Augmenter** — B+. G 1/1 increment — when it dies, makes a fractal token with its counters. "One of the scariest cards to open a game with."
-- **Cody** — build-around B (Strixhaven reprint on the bonus sheet). 3-mana artifact creature — while you control no other creatures, lands tap for any color. The all-spells deck enabler.
 - **Pterafractyl (Terafractyl, dinosaur fractal)** — fine in soup; the great card name in the set. XGU flier that enters with X+1 counters.
-- **Burda(?), Wise Extrapolator** — fine; not the bomb LR initially feared.
-- **Ral Zarek, Guest Lecturer** — 1BB 3-loyalty mythic PW. Mid-range Witherbloom/Silverquill engine.
 - **Conciliator's Duelist** — see above.
 - **Aziza, Mage Tower Captain** — B+. RW 2/2 — tap 3 untapped creatures to copy an instant/sorcery. Threatening even sitting in play.
-
-### Strong commons / role-players
-- **Studious First-Year** — B− (#849)/C+. G 1/1 prepares Rampant Growth. **Best green common.** "Did it all."
-- **Elite Interceptor** — C+ (#849)/B−. W 1/2 prepares Rejoinder (1W tap/untap target creature + draw card). **#1 white common.** "If you never pass Elite Interceptor you're well on your way to drafting this right."
 - **Pursue the Past** — C (#849) → **#1 common in the format by win rate** (#857). RW gain 2 life / may discard for draw 2 + flashback 1RW. The Lorehold engine.
-- **Potioner's Trove** — **D (#849) → #1 most important common (#857).** 3-mana any-color rock + tap to gain 2 if you cast an instant/sorcery this turn. **Reorders the entire draft.**
-- **Stock Up** — Premium (bonus sheet). The card draw bar everyone else fails to clear.
 - **Killian's Confidence** — B. 2WB sorcery: pump + draw card + recur from graveyard for B/W on combat damage. Top Silverquill common.
 - **Silverquill Charm** — B+. WB instant: 2 counters / exile power-2 / 3-life drain. **The best charm.**
 - **Quandrix Charm** — UG instant: pump+pumpcounter / scry / destroy enchantment. Power-level top.
@@ -200,151 +287,67 @@ Grades below are LR's **release-week set-review predictions** (#849 commons/unco
 - **Witherbloom Charm** — BG instant: sac for 2 / 5 life / kill MV2-or-less. "Fine, not exciting."
 - **Vibrant Outburst** — UR instant: 3 damage + tap one creature. "One of the better uncommons for Prismari — kills and tempos at the same time." **Can hit face!**
 - **Stress Dream** — UR instant deal 5 + slight-of-hand. Both removal AND card draw — "really good." Don't underrate.
-- **Cost of Brilliance** — C+ → B− (#857). 2B sorcery — target player draws 2 + loses 2 + put counter on creature. "Saw tons of play." Solid removal-with-upside.
-- **Unsubtle Mockery (Unsuttle Mockery)** — B−. 2R instant removal — the red common LSV took most often when he had the option.
-- **Rubble Rouser** — common. 2R 1/4 — discard/draw + tap-yard-for-1-damage. "The best red card if your deck can use it" — but not every deck can.
-- **Tome Blast** — B. 1R sorcery: 2 damage + flashback 4R. "Firebolt-ish; pretty much excellent."
-- **Last Gasp** — B−. 1B instant: -3/-3 until eot. "There's no deck that doesn't want it."
-- **Wander Off** — C/C+. 3B instant: exile creature. Reliable common removal.
-- **Banishing Betrayal** — C− → C+ (#852 — "buying time always great"). 1U bounce + surveil 1.
 - **Grapple with Death** — B+. 1BG sorcery: destroy artifact or creature + 1 life. Flexible removal in BG.
 - **Mind Roots** — uncommon. 1BG: target player discards 2 + plus-1/+1 counters. Solid.
-- **Pull from the Grave** — C. 2B sorcery: return up to 2 creature cards + gain 2. "Really back-breaking — gets your two best creatures back. First copy is great, second is a D."
 - **Inkling Mascot** — C. WB 2/2 reparte (flying + surveil 1 on reparte). "Classic C, won't cut it from Silverquill very often."
 - **Scolding Administrator** — B+. WB 2/2 menace reparte: put counter on; when it dies with counters, transfer them. "Pushed card."
-- **Send in the Pest** — C+. 1B: discard a card + make a pest. Witherbloom fuel.
 - **Render Speechless** — D+ (#849) → "underrated, I splash it" (#857). 2WB sorcery: discard hand-look-at + counter-on-creature. **Splashable into Prismari.**
 - **Wilt in the Heat** — C+/B (in Lorehold). 2RW instant: 5 damage and exile if it would die; cost 2 less if a card left graveyard this turn. "Build-around terminate."
 - **Spirit Mascot** — C− (Marshall start) → C+ (LSV "I hope"). RW 2/2: counter when card leaves graveyard. Worked OK.
-- **Honorbound Page** — common 3W 3/1 first strike prepared (1W: pump + flying). "The kind of card that always shows up well."
-- **Stone Docent** — common 1W 3/1. "The cards that ask nothing of you" — solid floor.
-- **Eager Glyph Mage** — common 3W 3/3 that ETBs a 1/1 inkling. "Filler that's pretty good these days."
 - **Imperious Ink Mage** — common. 1WB 3/3 reparte. "I see no problem with playing it." LSV: C+.
-- **Locust Spray** — uncommon RW(?) cheap interaction.
-- **Shattered Acolyte** — C++. 1W 2/2 lifelink + sac to destroy artifact/enchantment. Common with sideboard punch.
-- **Stand Up for Yourself** — C+. 2W instant: destroy creature with power 3+. Reliable.
-- **Ajani's Response** — common 4W instant: destroy creature; costs 3 less if it's tapped. "These play out fine — always good."
 - **Snooping Page** — B. 1WB 2/3 reparte + can't-be-blocked + draw + lose 1 on combat damage. "How do you feel if your opponent casts this on turn 3? Bad."
-- **Abigail, Poet Laureate** — B+. 1WB 2/3 flying, prepares Heroic Stanza on every creature you cast. "Just a steady plus-one-plus-one engine."
-- **Inkshape Demonstrator** — B. 3W 3/4 ward-2 reparte + pump+lifelink. "Even better in Silverquill."
 - **Cuboid Colony** — B. UG 1/1 flash + flying + trample at 2. "I love it already."
-- **Daydream** — C++ (#849) → DOWN (#857). 1W exile-and-rejoin-your-creature with flashback. **Trap** — wrong with Reparte counters, weak in Lorehold.
-- **Diary of Dreams** — D in practice (#851). 2-mana book; activates for 5, scales down. "Don't put it in your deck."
-- **Forum Necroscribe** — D in practice (#851 win-rate 51%). 5B 5/4. Disappointing.
-- **Stargaze** — D. BB-X sorcery — "you don't really have time for it."
-- **Pull from the Grave** — see above.
-- **Pox Plague** — F. BBBBB. "There's really no reason to ever put that card in your deck."
-- **Withering Curse** — B (mythic). 1BB - all minus 2/2; if you gained life, destroy instead. "Not wrath when you really need it" but real.
-
-### Win conditions & bomb finishers
-- **Together as One** — A (see above).
-- **Practiced Offense** — A (see above).
-- **Exhibition Tidecaller** — initially mocked → 61.4% GIH WR. **DON'T cast it before turn 6 — keep waiting longer than you think.**
-- **Brain Freeze** — best UR mirror card; "live in fear of it." 1U mill for X+X based on spells cast.
-- **Wisdom of the Ages** — see above.
-- **Divergent Equation** — XXU: variable X-spell + recur.
-- **Mathemagics** — see above.
 - **Traumatic Critique** — XUR instant: kill creature + draw 2 / discard 1. Finisher in cube too.
 - **Splatter Technique** — 1UURR sorcery, late-game closer.
-- **Together as One** — see above.
 - **Resonating Lute** — A in spells (see above).
 - **Mind into Matter** — XGU sorcery: draw X + put permanent of MV X onto battlefield tapped. "Weird but excellent finisher."
-- **Slumbering Trudge** — B. XG: 6/6 plant beast at sorcery speed.
-- **Vastlands Scavenger** — rare 1GG 4/4 deathtouch + prepare Bind to Life (4G: 7 life + may put creature from yard onto battlefield).
-- **Steal the Show** — B. 2R sorcery — discard then draw / deal damage equal to instants/sorceries in graveyard.
-- **Improvisation Capstone** — B+ paradigm. 5RR exile-cast cards up to MV 4.
-- **Restoration Seminar** — D. 5WW paradigm — return permanent. "Easily the highest setup cost; not convinced."
-- **Decorum Dissertation** — paradigm. 3BB — draw 2 + lose 2 + scaling mythic.
-- **Germination Practicum** — green paradigm.
-- **Echocasting Symposium** — B+ blue paradigm.
-- **Tragedy Feaster** — rare. 2BB 7/6 trample ward 1 (sac unless gained life). "Fine in Witherbloom — extremely powerful when active, can sac pests and lands to keep it going, but easy to screw up."
-- **The Dawning Archaic** — mythic 10-mana 7/7 reach — cost reduced by instants/sorceries in graveyard.
-- **Sundering Archaic** — uncommon — exiles opposing graveyard. Critical in spell mirrors AND stops you from decking.
-
-### Removal / interaction
-- **Erode** — A− (rare W instant — "Path to Exile + lifegain on opponent").
-- **Tome Blast** — B (Firebolt-ish).
-- **Unsubtle Mockery** — B−.
-- **Cost of Brilliance** — B−.
-- **Last Gasp** — B−.
-- **Wander Off** — C.
 - **Wilt in the Heat** — C+/B-in-Lorehold.
 - **Grapple with Death** — B+.
-- **Ajani's Response** — C/C+.
-- **Stand Up for Yourself** — C+.
 - **Vibrant Outburst** — B.
 - **Stress Dream** — B+.
-- **Heated Argument** — C. 4R instant: 6 damage + 2 to controller. "Playable, not exciting." (LSV: rare-low priority due to mana cost.)
-- **Impractical Joke** — solid R sorcery: 3 damage. "Cheap removal is king."
-- **Charging Strife Knight** — uncommon 2R 2/3 haste + tap-to-loot. Solid 3-drop.
-- **Procrastinate** — C− → fringe playable (#851). Locks a creature for several turns; "actually one of your best late-game removal spells."
-- **Banishing Betrayal** — C+. Bounce + surveil 1.
-- **Essence Scatter** — premium counter for spell decks.
-- **Brush Off** — premium 1U-when-countering-instant counter.
-- **Disdainful Stroke** — C+. Bonus sheet, "misses enough to be annoying" but core in mirror.
-- **Daze** — premium when on play in heavy-island deck.
-- **Spell Pierce** — main-deckable.
 - **Vicious Rivalry** — A (BG sweeper).
-- **Withering Curse** — B (conditional sweeper).
-
-### Mana / fixing
-- **Potioner's Trove** — see Supersessions. **The card of the format.**
-- **Tablet of Discovery** — uncommon 2R artifact, taps for 2 of any color (instants/sorceries only). "If you know your deck is blue-red spells, tablet is a little stronger than Trove; but early in draft take the Trove."
-- **Studious First-Year** — see above.
-- **Environmental Scientist** — uncommon 1G 2/2 + search basic. "Somehow free."
-- **Shared Roots** — bonus-sheet Rampant Growth.
-- **Surveil duals** — Fields of Strife (RW), Titan's Grave (BG), Spectacle Summit (UR — most-prized), Petrified Hamlet, etc. "Good to have. Not really going to take them super highly."
-- **Skycoach Waypoint** — uncommon land that prepares. "All right Magic career on the line — once it hit the battlefield I sat up straight."
 - **Form of Amity** — common BW land.
 - **Paradox Gardens** — common UG land.
-- **Terramorphic Expanse** — premium fixing for splashes.
-
-### Artifacts / colorless / lands
-- **Cody** — build-around B (see above).
 - **Cauldron of Essence** — B (rare 1BG: drain 1 on creature death + sac-to-recur). "Some Witherbloom decks would play this; needs creatures."
 - **Ark of Hunger** — rare 2RW artifact (1 damage to each opponent + 1 life each time card leaves graveyard + tap to mill-and-play). **"My least favorite card — I always lose to it. Just literally never beat the card."** (LSV)
 - **Resonating Lute** — see above.
-- **Library of Alexandria** (bonus sheet reprint!) — surprisingly high WR. "I played that thing like a fiddle."
+- **Elemental Mascot** — C++ (#849) → DOWN (#857). 1UR 1/4 flying vigilance opus. "It really is just not that impressive — even when I'm playing against it." The UR aggro deck that justifies it doesn't exist.
+- **Spectacular Skywhale** — B− (#849) → DOWN. 2UR 1/4 flying opus. Bounce blowouts it; "you watch them put it on the bottom of their library."
+
+### Colorless / artifacts
+- **Together as One** — A. **The best card in the set.** 6-mana converge sorcery: target player draws X, deals X, gain X. "Even at X=4 it kills their 4/4, draws 4, gains 4 — game-over single card." LSV: "The goat. Bombiest bomb."
+- **Potioner's Trove** — **D (#849) → #1 most important common (#857).** 3-mana any-color rock + tap to gain 2 if you cast an instant/sorcery this turn. **Reorders the entire draft.**
+- **Diary of Dreams** — D in practice (#851). 2-mana book; activates for 5, scales down. "Don't put it in your deck."
+- **Together as One** — A (see above).
+- **Brain Freeze** — best UR mirror card; "live in fear of it." 1U mill for X+X based on spells cast.
+- **Together as One** — see above.
+- **The Dawning Archaic** — mythic 10-mana 7/7 reach — cost reduced by instants/sorceries in graveyard.
+- **Sundering Archaic** — uncommon — exiles opposing graveyard. Critical in spell mirrors AND stops you from decking.
+- **Potioner's Trove** — see Supersessions. **The card of the format.**
 - **Page, Loose Leaf** — common legendary artifact creature.
 - **Mage Tower Referee** — common 2-mana 2/2 artifact creature.
 - **Biblioplex Tomekeeper** — D ("the worst card — teased synergy with the set mechanic, never did anything").
 - **Diary of Dreams** — D.
 - **Strixhaven Skycoach** — uncommon vehicle.
 - **Rancorous Archaic** — common 5-mana converge avatar. "Begrudgingly playable" — Marshall played it 3 times as the last card when short.
-
-### Traps / overrated / downgraded
-- **Elemental Mascot** — C++ (#849) → DOWN (#857). 1UR 1/4 flying vigilance opus. "It really is just not that impressive — even when I'm playing against it." The UR aggro deck that justifies it doesn't exist.
-- **Spectacular Skywhale** — B− (#849) → DOWN. 2UR 1/4 flying opus. Bounce blowouts it; "you watch them put it on the bottom of their library."
-- **Expressive Firedancer** — C−. UR aggro deck never materialized.
-- **Deluge Virtuoso** — DOWN with the prowess suite.
-- **Muse Seeker** — DOWN. 1U 2/1 looter when you cast 5-mana spell. Two-toughness creature in a removal-heavy spell deck.
-- **Daydream** — DOWN. "Got tricked."
 - **Diary of Dreams** — DOWN. Too slow.
-- **Forum Necroscribe** — DOWN. 51% win rate.
-- **Rabid Attack** — DOWN. "Card looks good when you read it, just doesn't deliver."
-- **Harmonized Trio** — DOWN. Free Brainstorm on a 1/2 dies for free.
-- **Orysa, Tide Choreographer** — DOWN. "Bad but I love it anyway."
-- **Stargaze** — DOWN. Doesn't have time.
-- **Choreographed Sparks** — F. "Not interested."
-- **Pox Plague** — F.
-- **Comforting Counsel** — F-tier build-around. "Really bad green enchantment that nobody plays."
-- **Restoration Seminar** — D. Paradigm with highest setup cost.
-- **Graduation Day** — built-around-only. "Bad."
-- **Audience(?), Library of Lang(?) and other 1-mana hand-size artifacts** — situational at best.
 
-### Bonus sheet (Mystical-Archive-style, one in every pack)
-- **Stock Up** — best card draw in the format.
-- **Disdainful Stroke** — see above.
-- **Brush Off** — see above.
-- **Burst Lightning** — premium R removal.
-- **Bitter Triumph** — B-equivalent black removal.
-- **Last Gasp** — see above.
+### Lands
+- **Skycoach Waypoint** — uncommon land that prepares. "All right Magic career on the line — once it hit the battlefield I sat up straight."
+- **Terramorphic Expanse** — premium fixing for splashes.
+
+### Unmatched / caption-garbled
+- **Math &amp; Magic's** (Mathemagics) — XXUU mythic: target player draws 2X cards. **12 mana always lethal**, 10 mana usually lethal. The triple-check-the-math finisher.
+- **Cody** — build-around B (Strixhaven reprint on the bonus sheet). 3-mana artifact creature — while you control no other creatures, lands tap for any color. The all-spells deck enabler.
+- **Burda(?), Wise Extrapolator** — fine; not the bomb LR initially feared.
+- **Abigail, Poet Laureate** — B+. 1WB 2/3 flying, prepares Heroic Stanza on every creature you cast. "Just a steady plus-one-plus-one engine."
+- **Daze** — premium when on play in heavy-island deck.
+- **Surveil duals** — Fields of Strife (RW), Titan's Grave (BG), Spectacle Summit (UR — most-prized), Petrified Hamlet, etc. "Good to have. Not really going to take them super highly."
+- **Cody** — build-around B (see above).
 - **Rampant Growth (Shared Roots)** — premium fixing.
 - **Sign in Blood, Brainstorm, Lightning Bolt, Ancestral Recall, Demonic Tutor, Regrowth, Swords to Plowshares** — appear as the Emeritus prepared spells (cards within cards).
-- **Library of Alexandria** — surprisingly good in regular Limited.
 - **Reanimate** — bonus sheet.
 - **Cody** — build-around.
-- **Pre-Ordain** — strong cantrip.
 
 ## General format tips
 

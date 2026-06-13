@@ -25,18 +25,30 @@
 - **In the Presence of Ages + land cyclers:** Presence digs toward Bringer and can grab a land in addition to finding cards, unlike Another Chance which is pure tutor. Kenji notes running 3-4 Presences is correct in the turbo-mill build.
 
 ## Card tips
+
+### Blue (U)
 - **Spy Glass Siren:** One of the best uncommons in the format — 1-mana 1/1 flyer that makes a map artifact. Kenji takes it over Petrify P1P1.
+- **Pirate Hat (equipment):** Overperforms in aggressive decks with multiple small creatures — gives rummage, enabling card quality filtering throughout the game.
+
+### Black (B)
 - **Deep Cavern Bat:** Called "stupid good" uncommon; even without turn-two deployment it provides value later.
 - **Bitter Triumph:** Highly splashable black removal. Take early and often.
 - **Dead Weight:** Cheap permanent-based removal that also fuels descend. Kenji regrets not prioritizing it.
-- **Loadstone Needle (uncommon):** "Format is so fast it effectively acts as a removal spell on a creature" with the tap, then you get explore value paying 1 repeatedly. Has synergy with Sawblades.
-- **Pirate Hat (equipment):** Overperforms in aggressive decks with multiple small creatures — gives rummage, enabling card quality filtering throughout the game.
-- **Appraiser (Geological Appraiser):** Notable that it's banned in other formats; in this limited context it's a solid card advantage piece.
 - **Defossilize (?):** Best when you have land cyclers or a self-mill deck; awkward in pure aggro.
-- **Compass Gnome:** Useful fixing for splashes and puts an artifact in the graveyard.
+
+### Red (R)
 - **Panicked Altisaur (?):** 7-mana reach dinosaur — late-game finisher, fine to include if curve is low elsewhere.
+
+### Green (G)
 - **In the Presence of Ages:** Versatile dig spell — grabs permanents AND can find a land, superior to Another Chance for the turbo-bringer deck as a result (Another Chance only finds non-land cards).
+
+### Colorless / artifacts
+- **Compass Gnome:** Useful fixing for splashes and puts an artifact in the graveyard.
 - **Treasure Map:** Kenji's stated favorite card printed in years; keeps you open, generates treasure for fixing, and flips into a draw engine.
+
+### Unmatched / caption-garbled
+- **Loadstone Needle (uncommon):** "Format is so fast it effectively acts as a removal spell on a creature" with the tap, then you get explore value paying 1 repeatedly. Has synergy with Sawblades.
+- **Appraiser (Geological Appraiser):** Notable that it's banned in other formats; in this limited context it's a solid card advantage piece.
 
 ## Pitfalls
 - **Don't take O'Hare Tusk / Deepest Foundation (6/6 vigilance rare) over Staunch Crewmate or Spy Glass Siren:** Kenji made this choice and repeatedly noted he was punished for it — "it's cheaper in this more aggressive format; basically a 2-mana 2/1 draw card."

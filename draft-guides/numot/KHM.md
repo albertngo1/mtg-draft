@@ -22,16 +22,24 @@ Kaldheim (KHM) is a midrange-to-slow format with a strong snow-matters theme. Sn
 - **Seize the Spoils + Frostpire**: Seize (draw a card, discard a card) triggers Frostpire copy; gives card selection plus extra removal.
 
 ## Card tips
+
+### Blue (U)
 - **Mist Walker**: "One of the best three-drops in the format. What does Mist Walker not good with? Nothing." Take every copy. Hex-proof while untapped means it only dies at instant speed after you tap it.
-- **Bears of Lujara (?)**: First-pick slam even on a splash; still good late-game, not just a turn-3 play. The third chapter (kill a creature) provides removal value even without the creature pump.
-- **Demon Bolt**: Premium removal; "second Bolt over Avalanche Caller" is correct — prioritize safe, flexible cards over synergies.
-- **Sculptor of Winter**: "I have to take Sculptor, I think taking this is too important." A snow-generating two-drop that becomes a blocker doubles as mana fixing.
-- **Glittering Frost**: Not early priority but with double copies provides enough fixing to splash any color freely.
 - **Pilfering Hawk**: One-mana looter; "pilpering Hawk into Mist Walker into Basalt Ravager" is the optimal curve.
 - **Giants Amulet**: Gives hexproof ONLY while the creature is untapped. "Do not forget about that" — critical for sequencing attacks vs. holding up combat tricks.
-- **Lindworm (Ravenous Lindworm)**: Seventh-eighth pick value; large body that draws a card when it dies, strong in green snow midrange.
-- **Blizzard Brawl**: "Brawl's really good" — fight spell that requires a snow permanent; early pick in snow decks.
+
+### Red (R)
+- **Demon Bolt**: Premium removal; "second Bolt over Avalanche Caller" is correct — prioritize safe, flexible cards over synergies.
 - **Crush the Weak**: Situationally good (kills aggressive tokens and 1-toughness creatures), bad against snow mirrors — run 0–1; can swap in/out based on matchup.
+
+### Green (G)
+- **Sculptor of Winter**: "I have to take Sculptor, I think taking this is too important." A snow-generating two-drop that becomes a blocker doubles as mana fixing.
+- **Glittering Frost**: Not early priority but with double copies provides enough fixing to splash any color freely.
+- **Blizzard Brawl**: "Brawl's really good" — fight spell that requires a snow permanent; early pick in snow decks.
+
+### Unmatched / caption-garbled
+- **Bears of Lujara (?)**: First-pick slam even on a splash; still good late-game, not just a turn-3 play. The third chapter (kill a creature) provides removal value even without the creature pump.
+- **Lindworm (Ravenous Lindworm)**: Seventh-eighth pick value; large body that draws a card when it dies, strong in green snow midrange.
 - **Sees the Spoils**: "Just ask and you get what you need" — reliable looting that digs for missing colors or key spells.
 - **Snow lands**: "Taking snow lands is good, why would that be your bad" — always draft them when available; all snow synergies require snow permanents.
 

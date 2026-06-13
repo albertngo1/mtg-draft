@@ -59,25 +59,40 @@
 
 ## Card tips
 
-- **Side Quest (Hunt the Mark)** — "Probably the best individual card" in one pack. Treasure generation + large threat. First-pick worthy.
-- **Gladiololis** — Strong green 2-drop ("Gladiololis is great"). Also a human (relevant for Winota). Also not just in green decks — splashable.
+### White (W)
 - **Dragoon's Lance** — 61.4% win rate per 17Lands (highest Kenji checked). Excellent equipment for blue-using decks.
-- **White Arasite(?)** — 59.2% win rate per 17Lands. Strong white common.
-- **Cloud of Darkness** — 60% win rate per 17Lands. Blue/black? top-end. Kenji noted it was the highest raw WR in the pack he checked.
-- **Chocobo Comet** — Damage spell that also has flashback. "One of the cards that can win you the game when you're flooding out in these type of decks." High pick in red decks.
-- **Emperor of Palamecia(?)** — Blue 2-drop, most important card in Dimir. "Is this what it's like to draw your emperor on turn two? The nuts." Miss this and your deck underperforms.
+
+### Blue (U)
 - **Syncopate** — 1-mana counter (unless they pay extra). Best cheap interaction in blue. Always run; never leave pack.
 - **Swallowed by Leviathan** — Large blue removal/counter. Kenji ran multiple copies. Counters unless pay 3+.
-- **Atraxa** — Auto first-pick. Kenji went 7-0 three times with it. Demands multicolor mana fixing but treasures solve it.
-- **Gala Cat** — Artifact payoff — "surprised at how good the Gala Cat has been." Run 1-2 in artifact-dense builds (6+ artifacts).
-- **Coral Sword** — Red-white equipment with combat trick function. "Think of it more of a combat trick." Cheap and relevant.
-- **Buster Sword** — Powerful equipment (2 to equip — "pretty good"). Makes your sword carrier a significant threat. "If you are going to play Boros, this is a good reason to do so."
 - **Combat Tutorial** — Kenji runs it as a cheap flash creature; "first play of the game" option.
 - **Retrieve the Esper(?)** — Blue sorcery that ETBs two 3/3s (and maybe draws/reanimates?). "Retrieve crew. Tap. No." — used as a finisher. Good in late-game blue control.
+- **Travel the Overworld / World Map(?)** — Under-valued. "I was mentioning people not valuing the lands high enough and then here I am not taking the lands presumably high enough." Take them earlier when running a towns-focused build.
+
+### Black (B)
+- **Side Quest (Hunt the Mark)** — "Probably the best individual card" in one pack. Treasure generation + large threat. First-pick worthy.
+- **Emperor of Palamecia(?)** — Blue 2-drop, most important card in Dimir. "Is this what it's like to draw your emperor on turn two? The nuts." Miss this and your deck underperforms.
+
+### Red (R)
+- **Coral Sword** — Red-white equipment with combat trick function. "Think of it more of a combat trick." Cheap and relevant.
+
+### Green (G)
+- **Chocobo Comet** — Damage spell that also has flashback. "One of the cards that can win you the game when you're flooding out in these type of decks." High pick in red decks.
+- **Gala Cat** — Artifact payoff — "surprised at how good the Gala Cat has been." Run 1-2 in artifact-dense builds (6+ artifacts).
+
+### Multicolor / gold
+- **Cloud of Darkness** — 60% win rate per 17Lands. Blue/black? top-end. Kenji noted it was the highest raw WR in the pack he checked.
+- **Atraxa** — Auto first-pick. Kenji went 7-0 three times with it. Demands multicolor mana fixing but treasures solve it.
+
+### Colorless / artifacts
+- **Buster Sword** — Powerful equipment (2 to equip — "pretty good"). Makes your sword carrier a significant threat. "If you are going to play Boros, this is a good reason to do so."
+
+### Unmatched / caption-garbled
+- **Gladiololis** — Strong green 2-drop ("Gladiololis is great"). Also a human (relevant for Winota). Also not just in green decks — splashable.
+- **White Arasite(?)** — 59.2% win rate per 17Lands. Strong white common.
 - **Queen Bronhy(?)** — Low win rate (52.2% per 17Lands). Kenji: "Terrible stats. Yeah I am going way far down for Queen." Avoid. "Whenever my opponent has this card, I can't kill it. Whenever I play it, it's just absolute dead."
 - **Primal Garuda** — Kenji: "I am not a fan of Primal Garuda. Primal Garuda is probably real bad."
 - **Aith Gainsboro(?)** — "It's an okay card. I don't think it's actually as good as say Travel the Overworld, Cloud of Darkness." Do not over-value — seems stronger than it is.
-- **Travel the Overworld / World Map(?)** — Under-valued. "I was mentioning people not valuing the lands high enough and then here I am not taking the lands presumably high enough." Take them earlier when running a towns-focused build.
 
 ## Pitfalls
 

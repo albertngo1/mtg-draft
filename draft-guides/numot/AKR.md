@@ -39,18 +39,29 @@
 
 ## Card tips
 
+### White (W)
+- **Shefet Dunes / Sheltered Thicket / Irrigated Farmland:** The cycling dual-type lands are premium picks — they enable Struggle and count as deserts for Sand Strangler. "Get them when they were on sale" is the sentiment.
+
+### Black (B)
+- **Ruthless Sniper (blue-black):** "Very very fun" in a cycling/discard deck; noted as a consideration but not pursued in these drafts.
+
+### Red (R)
 - **Glorybringer is the best card in the format** and should be forced into every RW or RX build that can support it. "You just curve out into Glorybringer."
-- **Black Cartouche of Ambition** swings games. In an aggro format killing a creature and slapping lifelink onto your own attacker is frequently 6+ life swings per turn. "The black cartouche swings games in this format so hard."
-- **Green cartouche vs blue cartouche:** Green (reach/+1/+1) is better as a splash if you have the trial; blue trial ("slow" and bouncing it is "too slow" in aggro) was rated the worst trial.
-- **Struggle // Survive:** Instant-speed fight with aftermath +1/+1 counter cycle is the best green removal. "Good removal" — first pick in most RG/GW packs.
 - **Sand Strangler** is only good with deserts; with 2+ deserts it's a 3/3 that kills a creature = premium; with 0 deserts it's unplayable. Pick up basic deserts proactively.
 - **Magma Spray over Open Fire** when you have recursive creatures to fight (embalm, aftermath). Otherwise both are fine; Magma Spray always answered the Anointer Priest problems.
 - **Pathmaker Initiate:** Niche but real — makes a creature you control unblockable for a turn. Used to sneak in Burning Fist Minotaur and Glorybringer for decisive damage.
 - **Burning Fist Minotaur:** First-strike 2/1 that can grow; "going to solo them next turn" is a frequent comment. Good with Cartouche of Zeal giving haste.
-- **Shefet Dunes / Sheltered Thicket / Irrigated Farmland:** The cycling dual-type lands are premium picks — they enable Struggle and count as deserts for Sand Strangler. "Get them when they were on sale" is the sentiment.
-- **Monuments (red, black):** "The black and red monuments are unplayable." Red monument is ranked "second best" sarcastically by a viewer; Kenji confirms "sure, sure, we'll go with that." Only the white (Oketra's) and green (Rhonas's) monuments are worth running.
+
+### Green (G)
 - **Initiates' Companion (green):** "All of the other colors have better two-drops — even green has better two-drops right? We have the Ronises already." Below-rate and cuttable.
-- **Ruthless Sniper (blue-black):** "Very very fun" in a cycling/discard deck; noted as a consideration but not pursued in these drafts.
+
+### Multicolor / gold
+- **Struggle // Survive:** Instant-speed fight with aftermath +1/+1 counter cycle is the best green removal. "Good removal" — first pick in most RG/GW packs.
+
+### Unmatched / caption-garbled
+- **Black Cartouche of Ambition** swings games. In an aggro format killing a creature and slapping lifelink onto your own attacker is frequently 6+ life swings per turn. "The black cartouche swings games in this format so hard."
+- **Green cartouche vs blue cartouche:** Green (reach/+1/+1) is better as a splash if you have the trial; blue trial ("slow" and bouncing it is "too slow" in aggro) was rated the worst trial.
+- **Monuments (red, black):** "The black and red monuments are unplayable." Red monument is ranked "second best" sarcastically by a viewer; Kenji confirms "sure, sure, we'll go with that." Only the white (Oketra's) and green (Rhonas's) monuments are worth running.
 
 ## Pitfalls
 

@@ -26,19 +26,31 @@
 - **Ill-Tempered Loner combat tricks**: "Pretty hard not to two-for-one" — the Loner flips into a 7/6 or so and becomes a punishing blocker/attacker. Kenji lost to opponent double-Loner: "I couldn't have beaten that."
 
 ## Card tips
-- **Abrupt Caretaker**: "One of the best cards you can open — 4/4 hexproof, basically never dies." P1P1 slam in green. Hard to remove without sacrifice effects.
+
+### Blue (U)
+- **Mysterious Tome**: "I take higher than others, love the value." Card advantage looting tool; relevant in any blue deck and especially good in UR Spells.
+- **Dissipate**: Gets better in this format because Day/Night incentivizes passing turns without casting spells — Dissipate fits naturally into a plan of passing to trigger Night. "Dissipate is getting better actually — you're obviously not always going to be able to pass" but it flows with the Day/Night rhythm.
+
+### Black (B)
+- **Blood Fountain**: "Always want at least one in black." Provides recursion and life gain; especially relevant for fueling graveyard-based vampires and keeping pace with aggressive decks.
+- **Voldaren Bloodcaster**: Strong vampire payoff — "she flips pretty fast." Good P2P1 or early-pack pickup in RB Vampires.
+
+### Red (R)
 - **Moonveil Regent**: "Pick one pack one easy, splashable." Worth splashing a third color for. One of the best rares in the set.
 - **Light Up the Night**: "Kills players, creatures, planeswalkers — does everything, splashable." P1P1 quality. The X cost makes it flexible from turn 2 onward.
 - **Ill-Tempered Loner**: "Bomb adjacent — pretty hard not to two-for-one." Drafters often underestimate it; Kenji rates it extremely highly.
-- **Blood Fountain**: "Always want at least one in black." Provides recursion and life gain; especially relevant for fueling graveyard-based vampires and keeping pace with aggressive decks.
-- **Mysterious Tome**: "I take higher than others, love the value." Card advantage looting tool; relevant in any blue deck and especially good in UR Spells.
-- **Hound Tamer**: "Fantastic 3-drop, trample above average." The flip side can find creatures, which snowballs in a creature-heavy board.
-- **Foreboding Statue (?)**: Ramps and fixes for splashes. Good for reaching a splash bomb like Halana and Alena or Moonveil Regent. "Foreboding statue also ramps us up and fixes our mana."
-- **Dissipate**: Gets better in this format because Day/Night incentivizes passing turns without casting spells — Dissipate fits naturally into a plan of passing to trigger Night. "Dissipate is getting better actually — you're obviously not always going to be able to pass" but it flows with the Day/Night rhythm.
 - **Cathartic Pyre**: Solid removal that also replaces itself; Kenji frequently runs it as primary cheap removal.
 - **Alluring Suitor**: Strong aggressive rare in red-white; "definitely one of the better rares I've picked first" (when better picks weren't available).
-- **Voldaren Bloodcaster**: Strong vampire payoff — "she flips pretty fast." Good P2P1 or early-pack pickup in RB Vampires.
 - **Neonate's Rush (?)**: Good removal if you have enough 1-toughness targets to clear. Synergizes with black's small vampire tokens.
+
+### Green (G)
+- **Hound Tamer**: "Fantastic 3-drop, trample above average." The flip side can find creatures, which snowballs in a creature-heavy board.
+
+### Colorless / artifacts
+- **Foreboding Statue (?)**: Ramps and fixes for splashes. Good for reaching a splash bomb like Halana and Alena or Moonveil Regent. "Foreboding statue also ramps us up and fixes our mana."
+
+### Unmatched / caption-garbled
+- **Abrupt Caretaker**: "One of the best cards you can open — 4/4 hexproof, basically never dies." P1P1 slam in green. Hard to remove without sacrifice effects.
 
 ## Pitfalls
 - **Day/Night tracking errors**: Kenji attacked with Aberbruck (?) werewolf at the wrong time, missing double damage trigger. "I attacked with aberbruck at the wrong time — got to remember the double damage thing." Day/Night state changes mid-combat can create wrong assumptions.

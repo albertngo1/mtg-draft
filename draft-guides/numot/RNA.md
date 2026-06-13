@@ -19,18 +19,32 @@ RNA is a multi-color format where gates enable fixing across 2–3 color combina
 - **Clear the Mind + creature-light deck**: Running multiple copies of this in decks with lots of removal but few creatures; recycles the removal engine. Kenji wanted to force an entire "creature-less wins with Clear the Mind" deck.
 
 ## Card tips
+
+### White (W)
 - **Raffine's Informant (Senate Courier? actually Raffine's Informant is SNC — this set's equivalent)**: Senate Guildmage(?) — Kenji values it over almost everything, saying "Senate Gill mage is so good."
+- **Summary Judgment**: One of the best removal spells; "an easy Summary Judgment over the gate."
+
+### Blue (U)
+- **Faerie Duelist**: Important defensive 1/2 flash creature; "one three illusion is opie little cute squid thingy" — refers to Sharktocrab(?). Notably: Faerie Duelist stops most early threats cold.
+- **Quench**: Opponents running this — play around it when you have important 2-drops.
+
+### Black (B)
 - **Grotesque Demise**: Strong removal even without deathtouch; Kenji takes it over Skewer #3 in some spots.
-- **Skewer the Critics**: Spectacle is easy to enable in Rakdos; 3 copies were drafted without hesitation. Cycles of "skewer skewer skewer" in early picks.
-- **Footlight Fiend**: "So important to get good one drops like the Fiend." Wheels surprisingly often; grab it.
 - **Blade Juggler**: Value discard 2-drop; synergizes with spectacle enabling and Cavalcade.
+
+### Red (R)
+- **Skewer the Critics**: Spectacle is easy to enable in Rakdos; 3 copies were drafted without hesitation. Cycles of "skewer skewer skewer" in early picks.
+
+### Green (G)
 - **Crocodile of the Crossing (?)**: Blocks so much in this format — "the crocodile might be better, it blocks so much in this format." Take it over most filler.
+
+### Multicolor / gold
+- **Footlight Fiend**: "So important to get good one drops like the Fiend." Wheels surprisingly often; grab it.
+- **Final Payment**: Excellent cheap removal; keep mana open for it but don't overextend.
+
+### Unmatched / caption-garbled
 - **Absolution**: Late-game engine that makes attacks unprofitable; Kenji first-picks it and builds around it. Against it, can be blanked with enough non-white, non-black creatures.
 - **Lockets**: Running double locket is fine in slow decks; they provide fixing and late-game card draw. Don't justify them with Anticipate(?) or Shimmer if you have better threats.
-- **Faerie Duelist**: Important defensive 1/2 flash creature; "one three illusion is opie little cute squid thingy" — refers to Sharktocrab(?). Notably: Faerie Duelist stops most early threats cold.
-- **Summary Judgment**: One of the best removal spells; "an easy Summary Judgment over the gate."
-- **Final Payment**: Excellent cheap removal; keep mana open for it but don't overextend.
-- **Quench**: Opponents running this — play around it when you have important 2-drops.
 
 ## Pitfalls
 - **Playing Gate Colossus without gates**: "I've played Gate Colossus without any gates but that's not recommended." Draft gates deliberately if you want the payoff.

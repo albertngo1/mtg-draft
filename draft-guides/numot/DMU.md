@@ -25,17 +25,27 @@
 - **Wingmantle Chaplain + Barricade + Conscripts:** Chaplain makes birds each time another defender enters, then Conscripts(?) sac for value and return. "This is the one stain on the format."
 
 ## Card tips
+
+### White (W)
+- **Destroy Evil:** Called out as "one of the best cards you can have in these decks" for RW. Missing it is a major hole.
+
+### Black (B)
+- **Shadow Prophecy:** Good draw spell in domain. Also gives delirium points.
+- **Extinguish the Light / Tribute to Urburzur(?):** Black removal; essential for domain decks. Kenji noted not seeing any extinguishes or tributes in one draft as "really bad signs."
+
+### Red (R)
+- **Dual lands / gain lands:** Draft every single one you see. Missing lands late means your domain never fires. Kenji regretted not taking duals when he could wheel them.
+
+### Multicolor / gold
+- **Sacred Peaks:** Worth running in 2-color domain decks as a weird "colorless" source that still adds domain count. "I don't think I cut Sacred Peaks as weird as it looks in this deck."
+- **Lagomos(?) (RW rare):** "Actively bad for them" when he had Namata — made tokens that died to Namata repeatedly. Interesting combo.
+
+### Unmatched / caption-garbled
 - **Root Walla:** Take as 2-drop of choice in domain builds. Even without full domain, pumping it to 4/4 is a great rate. MVPs of Kenji's domain drafts.
 - **Sojourner:** Take "every single dual we see." Three Sojourners is the target. Each one gives domain, life gain, and makes War Leech bigger.
-- **Dual lands / gain lands:** Draft every single one you see. Missing lands late means your domain never fires. Kenji regretted not taking duals when he could wheel them.
-- **Sacred Peaks:** Worth running in 2-color domain decks as a weird "colorless" source that still adds domain count. "I don't think I cut Sacred Peaks as weird as it looks in this deck."
 - **Nashoba Brawler(?):** Very strong 2-drop. Kenji takes it highly, notes three Brawlers in a pool is "pretty freaking sick."
-- **Shadow Prophecy:** Good draw spell in domain. Also gives delirium points.
 - **Herbalist (red-white):** "Really really good in red-white when you have the enlisters." With 6-8 enlisters, Herbalist's team pump is substantial.
-- **Destroy Evil:** Called out as "one of the best cards you can have in these decks" for RW. Missing it is a major hole.
-- **Extinguish the Light / Tribute to Urburzur(?):** Black removal; essential for domain decks. Kenji noted not seeing any extinguishes or tributes in one draft as "really bad signs."
 - **Urban Repossession / Herb Org Repossession:** Recursive tool. Use modes: return creature + land (getting back a domain piece is huge). Also can kick for more value.
-- **Lagomos(?) (RW rare):** "Actively bad for them" when he had Namata — made tokens that died to Namata repeatedly. Interesting combo.
 
 ## Pitfalls
 - **Drafting domain without enough lands:** If you can't wheel dual lands, the 3-Sojourner dream collapses. Prioritize lands heavily in pack 2-3.

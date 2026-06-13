@@ -26,16 +26,26 @@
 - **Brain Surge (?) / contaminated landscape sequencing:** Kenji lost a game because he brain-surged and discarded the wrong card — should keep the good cards and shuffle away bad ones, not the reverse.
 
 ## Card tips
-- **Writhing Chrysalis:** First-pickable common. If you see it late, Eldrazi is contested; if you see it early and consistently, commit.
-- **Nightshade Dryad:** Best two-drop in the Eldrazi deck. Pick it like it's a rare.
-- **Malevolent Rumble:** Best green common overall (alongside Dryad); ideal turn-two play in any green deck.
+
+### White (W)
+- **Wrath of the Skies:** Keep for the effect even if you'll blow up your own stuff; the energy payoff (getting energy for each thing destroyed) can refill the tank.
+
+### Blue (U)
 - **Petrifying Meddler:** "Fantastic brick wall" for Eldrazi; the stun counter on entry buys a turn even against large threats.
 - **Consign to Memory:** Always main-deckable in this format — denies three cards, denies tokens, and can counter triggered abilities.
-- **Amp Raptor:** "Modern-playable, very good" — reliable 6/6 flyer in energy decks.
-- **Gargoyle (Riddle Gate Gargoyle? / Obstinate Gargoyle):** Core two-drop in Jeskai and White-Black; the persist means it comes back as a modified creature for pump synergies.
-- **Wrath of the Skies:** Keep for the effect even if you'll blow up your own stuff; the energy payoff (getting energy for each thing destroyed) can refill the tank.
-- **Autotapper warning:** Arena prioritizes leaving colorless lands untapped for their sac ability even when it is not correct. Manually tap during your declare-attackers step when using colorless sources.
+
+### Green (G)
+- **Nightshade Dryad:** Best two-drop in the Eldrazi deck. Pick it like it's a rare.
+- **Malevolent Rumble:** Best green common overall (alongside Dryad); ideal turn-two play in any green deck.
 - **Royal Cartographer:** Only good with dedicated energy production beyond just landfall; don't run it unless you have six or more other energy sources.
+
+### Multicolor / gold
+- **Writhing Chrysalis:** First-pickable common. If you see it late, Eldrazi is contested; if you see it early and consistently, commit.
+- **Gargoyle (Riddle Gate Gargoyle? / Obstinate Gargoyle):** Core two-drop in Jeskai and White-Black; the persist means it comes back as a modified creature for pump synergies.
+
+### Unmatched / caption-garbled
+- **Amp Raptor:** "Modern-playable, very good" — reliable 6/6 flyer in energy decks.
+- **Autotapper warning:** Arena prioritizes leaving colorless lands untapped for their sac ability even when it is not correct. Manually tap during your declare-attackers step when using colorless sources.
 - **Ral (planeswalker):** Explicitly bad in Limited — Kenji passes it multiple times.
 - **DFC land spells:** Even if you only play one of the two colors, the DFC is free value — play them over basics to thin the deck; can replace up to five lands in the count.
 

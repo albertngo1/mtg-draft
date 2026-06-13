@@ -29,17 +29,24 @@
 
 ## Card tips
 
+### Black (B)
 - **Vampire Spawn is the best black common by a wide margin.** 2/3 drain-2 is undervalued by the pod; Kenji wheeled it at pick 8 in one draft. "Taking every Vampire Spawn we see because that card is great — a 2/3, it's a vampire, and it drains for two — literally everything you could ever want. And it's a common."
 - **Warlock Class is premium removal.** It's categorically removal and a win condition in one package; Kenji rates it "third, maybe second behind Bounty" among black cards but plays it over many alternatives due to how much it over-performs.
-- **Magic Missile vs Dragon's Fire:** Magic Missile (?) preferred slightly overall for flexibility; Dragon's Fire is better when you have 2+ dragons. Having the first Magic Missile in hand is the cut-off: "normally I take Magic Missile over Dragon's Fire, but if I already have one Magic Missile, I don't know — who knows."
 - **Check for Traps (?):** A sideboard-able enchantment-hate card that Kenji maindecked. "I like this card, it's good." He waited multiple turns to get maximum value before casting it (hitting 3 enchantments in one game).
 - **Feign Death:** The one-mana protection spell; he picks it up but not urgently. "I do want to pick up a Feign Death eventually."
-- **Classes (most) are bad:** "Most of the classes are pretty bad" — only Warlock Class consistently appeared as a main-deck card across transcripts. Bard Class and Rogue Class were mentioned as unplayed or narrow.
+
+### Red (R)
+- **Magic Missile vs Dragon's Fire:** Magic Missile (?) preferred slightly overall for flexibility; Dragon's Fire is better when you have 2+ dragons. Having the first Magic Missile in hand is the cut-off: "normally I take Magic Missile over Dragon's Fire, but if I already have one Magic Missile, I don't know — who knows."
 - **Hobgoblin Bandit Lord (?):** Low-end two-drop for RB; not exciting but fills the curve.
 - **Zalto / Hobgoblin Captain (?):** "Zalto sucks," "I don't really care for Hobgoblin Captain" — avoid as picks.
+
+### Green (G)
+- **Long Rest** was called out once as "very strong" even though slow — relevant in control-ish builds.
+
+### Unmatched / caption-garbled
+- **Classes (most) are bad:** "Most of the classes are pretty bad" — only Warlock Class consistently appeared as a main-deck card across transcripts. Bard Class and Rogue Class were mentioned as unplayed or narrow.
 - **Equipment density matters:** Running 2+ Morning Stars enables Armory Veteran (?) as a legitimate 2-drop. Otherwise cut it.
 - **16 lands is the right number** for RB with Treasures. Grim Bounty and Deadly Dispute generate enough mana that 17 is frequently one too many.
-- **Long Rest** was called out once as "very strong" even though slow — relevant in control-ish builds.
 
 ## Pitfalls
 

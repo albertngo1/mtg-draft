@@ -25,22 +25,36 @@
 - **Emergency Weld loops**: Weld reanimates from graveyard to the battlefield. With multiple recursion targets, black decks grind past opponents who run out of removal.
 
 ## Card tips
-- **Portal to Phyrexia**: "Instant scoop" when cast. If you open it, you are in red-black or you splash it. Kenji says "that card should just be banned in this format" (said as hyperbole, but signals how busted it is).
+
+### White (W)
 - **Siege Veteran**: P1P1 material. "One of the best rares in the format." Powers up Scrapwork Cohort, Chaplain of Arms, every creature in the deck.
 - **Keening Stone**: Strong standalone win-con. Mill 4 → 8 → 16. Draft it if you're green-black and don't have another win condition.
-- **Brotherhood's End**: "Should almost always maindeck it" in white-based decks. Kenji forgot to sideboard it in multiple games in the Decathlon and always regretted it. Main deckable in the right shell.
-- **Emergency Weld**: "Insane in black" — recurring threats for free is always powerful. Take it very high in any black deck.
 - **Scrapwork Cohort**: "One of the best commons in the set." Haste is invaluable; Cohort recurs and fills the Mutt hand efficiently.
 - **Recommission**: Only hits MV 3 or less — important constraint. In the right deck it is a must-have, but do not draft it without viable targets.
-- **Ichor Wellspring**: Great early pick; draws two cards over its life and counts as an artifact for synergies.
-- **Boulder Branch Golem**: Almost never cast as a 3/3 for prototype cost. Cast for 7 as a 6/6 life gain body. "Never wanted to prototype it."
+
+### Blue (U)
 - **Mightstone's Animation**: Premium blue card — any artifact becomes a 4/4 flyer and draws a card. Three copies is not too many.
-- **Excavation Explosion**: Best red removal common in the set. Take it over most commons.
-- **Argothian Sprite (?)**: Good in GB; the flier provides evasion the archetype otherwise lacks.
-- **Tyrant of Kher Ridges**: Second bomb-level rare behind Siege Veteran in red-white. If you wheel it, take it immediately.
+
+### Black (B)
+- **Emergency Weld**: "Insane in black" — recurring threats for free is always powerful. Take it very high in any black deck.
 - **Overwhelming Remorse**: Exile removal that can cost 1 mana if opponent has creatures in graveyard. Scales extremely well.
-- **Centennial Stalwarts**: Useful in GU ramp for the body and Power Stone generation.
+
+### Red (R)
+- **Brotherhood's End**: "Should almost always maindeck it" in white-based decks. Kenji forgot to sideboard it in multiple games in the Decathlon and always regretted it. Main deckable in the right shell.
+- **Excavation Explosion**: Best red removal common in the set. Take it over most commons.
+- **Tyrant of Kher Ridges**: Second bomb-level rare behind Siege Veteran in red-white. If you wheel it, take it immediately.
+
+### Green (G)
+- **Boulder Branch Golem**: Almost never cast as a 3/3 for prototype cost. Cast for 7 as a 6/6 life gain body. "Never wanted to prototype it."
+- **Argothian Sprite (?)**: Good in GB; the flier provides evasion the archetype otherwise lacks.
+
+### Colorless / artifacts
+- **Portal to Phyrexia**: "Instant scoop" when cast. If you open it, you are in red-black or you splash it. Kenji says "that card should just be banned in this format" (said as hyperbole, but signals how busted it is).
 - **Thran Power Suit (?)**: Gives a creature Ward 4 — note that with Ward 4 on a creature, opponents burning removal are taking a significant tempo hit. Strong protection piece in go-wide decks.
+
+### Unmatched / caption-garbled
+- **Ichor Wellspring**: Great early pick; draws two cards over its life and counts as an artifact for synergies.
+- **Centennial Stalwarts**: Useful in GU ramp for the body and Power Stone generation.
 
 ## Pitfalls
 - **Casting Prototype creatures at reduced cost when full cost is better**: "Boulder branch golem never wanted to prototype it." Evaluate every Prototype creature at the start of the turn — can you afford full cost? If yes, usually do it.

@@ -53,25 +53,33 @@
 
 ## Card tips
 
+### White (W)
 - **Dazzling Angel** — Best white common by Kenji's evaluation. "Very very good. Not in my deck maybe but very very good." 3-mana 2/3 flyer that gains 1 whenever another creature ETBs. Pairs with any token production or creature-dense strategy.
-- **Snare Spinner** — "1/4 reach deathtouch, put a +1/+1 counter on a creature you control [on ETB]. That card was so so good. That was like the best green common in the format." Extremely high value for its mana cost.
 - **Youthful Valkyrie** — Strong two-drop flyer in any white deck that runs other angels. 1/3 baseline with growth potential. "Being a 1/3 flyer has been really good."
 - **Helpful Hunter** — "One of the best white Commons." Standard pick early.
-- **Hungry Ghoul** — "One of Black's better two-drops." 5-pick in pack one across multiple drafts — always taken when available.
-- **Spectral Sailor** — 1-drop flash flyer with activated loot. "Spectral Sailor was great." Triggers Brineborn Cutthroat on opponent's turn.
-- **Bake into a Pie** — Black removal + food. "Kill a creature, make a food. Can't go wrong with that." Consistently passed too late when in the wrong seat.
-- **Vampire Nighthawk** — 3-mana flying deathtouch lifelink. "Yikes. That is a card." First-pick-worthy in any black deck.
-- **Refute** — 2-mana counterspell with upside. "Refute was good." Multiple copies playable in flash-heavy Dimir builds.
 - **Banishing Light / Luminous Rebuke** — White exile. "No banishing lights [and] no stabs, the deck was weak." Don't skip these when available.
-- **Imperian Eagle** — Strong blue flyer (3-mana 2/2 flying, "other creatures with flying get +1/+1"?). First-picked multiple times; "Eagles looking op." Worth high picks in WU.
 - **Guardian of the Air / Guarded Air** — 6-mana white card making two 3/3s with a 1/1 lifelinker. "Gives a lot of value off one card." Not splashy but reliably good.
-- **Campus Guide** — 2-mana 2/1 that tutors a basic land. "Fine" two-drop that fixes mana in multicolor or splash builds.
-- **Solemn Simulacrum** — 4-mana artifact that ramps and draws. "Kind of hard to pass up the value of Solemn since it just goes into every deck."
-- **Brineborn Cutthroat** — 2-mana flash creature that grows when you cast spells on opponent's turn. Strong in flash/instant-heavy Dimir. "Zero instances currently... not looking great" — needs a full spell-based build.
 - **Day of Judgment** — White wrath at 4 mana. "Pulled its weight" multiple times. "Devastating" life total swings when followed up with threats.
 
-### Pitfalls
+### Blue (U)
+- **Spectral Sailor** — 1-drop flash flyer with activated loot. "Spectral Sailor was great." Triggers Brineborn Cutthroat on opponent's turn.
+- **Refute** — 2-mana counterspell with upside. "Refute was good." Multiple copies playable in flash-heavy Dimir builds.
+- **Brineborn Cutthroat** — 2-mana flash creature that grows when you cast spells on opponent's turn. Strong in flash/instant-heavy Dimir. "Zero instances currently... not looking great" — needs a full spell-based build.
 
+### Black (B)
+- **Hungry Ghoul** — "One of Black's better two-drops." 5-pick in pack one across multiple drafts — always taken when available.
+- **Bake into a Pie** — Black removal + food. "Kill a creature, make a food. Can't go wrong with that." Consistently passed too late when in the wrong seat.
+- **Vampire Nighthawk** — 3-mana flying deathtouch lifelink. "Yikes. That is a card." First-pick-worthy in any black deck.
+
+### Green (G)
+- **Snare Spinner** — "1/4 reach deathtouch, put a +1/+1 counter on a creature you control [on ETB]. That card was so so good. That was like the best green common in the format." Extremely high value for its mana cost.
+
+### Colorless / artifacts
+- **Campus Guide** — 2-mana 2/1 that tutors a basic land. "Fine" two-drop that fixes mana in multicolor or splash builds.
+- **Solemn Simulacrum** — 4-mana artifact that ramps and draws. "Kind of hard to pass up the value of Solemn since it just goes into every deck."
+
+### Unmatched / caption-garbled
+- **Imperian Eagle** — Strong blue flyer (3-mana 2/2 flying, "other creatures with flying get +1/+1"?). First-picked multiple times; "Eagles looking op." Worth high picks in WU.
 - **Drafting half a synergy deck.** In VODs 1 and 2, Kenji ends up halfway between blue-white flyers and blue-black instants because he didn't commit. "My deck doesn't really have as much cohesion." In FDN, committing to a clear archetype by pack two is important.
 - **Missing targeted removal.** Decks with no Stab / Bake / Banishing Light struggle badly. "No stabs kind of sucks. No banishing lights... the day of judgment pulled its weight but." Always prioritize at least 2-3 pieces of targeted removal.
 - **Overvaluing late-game bombs without support.** Curator of Destinies (6-mana 5/5 flyer that looks at top 5) was never cast in an entire run; Leyline Axe never started in opening hand. Expensive bombs without fixing or acceleration are dead weight.

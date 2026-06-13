@@ -55,22 +55,33 @@
 
 ## Card tips
 
-- **Candy Grapple**: "There are not four better cards you could take in the opening pack over Candy Grapple [other than a rare/Mythic or Imodane's Recruiter]." Going fifth pick pack one is deeply wrong; always prioritize.
-- **Imodane's Recruiter**: "Best uncommon in the format. Basically a one-card win con." 3-mana 2/2; Adventure makes two 2/2s with vigilance for 5. High first-pick priority.
-- **Torch the Tower**: "Premium one-mana removal spell." First-pickable.
-- **Gingerbread Hunter**: "Removal AND a 5/5 that makes a food card" — called "insane."
-- **Gumdrop Poisoner** (?): "Really really good. Makes a food, is a 3/2 Lifelink that often kills a creature." High pick priority.
-- **Welcome to Sweet Tooth**: "Another insane card — two-mana Saga that just does a bunch of good stuff."
-- **Tough Cookie**: "Really good. Two-mana 2/2 that makes a food, can turn a non-creature artifact into a 4/4."
-- **Hopeless Nightmare**: good early-game discard/bargain setup in grindy decks. Kenji sideboarded it to bargain away early for Scry 2.
+### White (W)
 - **Archon's Glory**: "Decent white trick." Also valuable as a bargain source to remove a Role from your own creature.
-- **Titanic Growth** / pump spells in GW: opponent's deck had these; always play around them when blocking.
-- **Rats don't block** in this format — account for this in combat math.
-- **Young Hero Role**: attached to a creature with toughness 3 or less; it attacks, gets a +1/+1 counter. Useful to grow small creatures before they exceed the threshold. Put it on a 2/2 Celebrant that will attack as a 4/3 — still in range.
-- **Royal Roll**: gives Ward 1 — opponent needs two things to enter to beat it. Useful on key threats like Spellbook Vendor.
 - **Cooped Up**: passivism effect (can't attack or block). Solid removal.
 - Cutting lands: "16 lands is totally fine" for aggressive red-white. Five-color green should go to 17 or add more fixing sources rather than land count.
 - In aggro, "hold open tap-down > putting a counter on your creature" — don't waste tempo on role assignment when you can tap their blocker.
+
+### Black (B)
+- **Candy Grapple**: "There are not four better cards you could take in the opening pack over Candy Grapple [other than a rare/Mythic or Imodane's Recruiter]." Going fifth pick pack one is deeply wrong; always prioritize.
+- **Gumdrop Poisoner** (?): "Really really good. Makes a food, is a 3/2 Lifelink that often kills a creature." High pick priority.
+- **Hopeless Nightmare**: good early-game discard/bargain setup in grindy decks. Kenji sideboarded it to bargain away early for Scry 2.
+
+### Red (R)
+- **Torch the Tower**: "Premium one-mana removal spell." First-pickable.
+
+### Green (G)
+- **Welcome to Sweet Tooth**: "Another insane card — two-mana Saga that just does a bunch of good stuff."
+- **Tough Cookie**: "Really good. Two-mana 2/2 that makes a food, can turn a non-creature artifact into a 4/4."
+- **Titanic Growth** / pump spells in GW: opponent's deck had these; always play around them when blocking.
+- **Royal Roll**: gives Ward 1 — opponent needs two things to enter to beat it. Useful on key threats like Spellbook Vendor.
+
+### Multicolor / gold
+- **Imodane's Recruiter**: "Best uncommon in the format. Basically a one-card win con." 3-mana 2/2; Adventure makes two 2/2s with vigilance for 5. High first-pick priority.
+- **Gingerbread Hunter**: "Removal AND a 5/5 that makes a food card" — called "insane."
+
+### Unmatched / caption-garbled
+- **Rats don't block** in this format — account for this in combat math.
+- **Young Hero Role**: attached to a creature with toughness 3 or less; it attacks, gets a +1/+1 counter. Useful to grow small creatures before they exceed the threshold. Put it on a 2/2 Celebrant that will attack as a 4/3 — still in range.
 
 ## Pitfalls
 
