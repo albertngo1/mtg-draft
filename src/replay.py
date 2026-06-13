@@ -50,6 +50,11 @@ def grade_of(c):
 def text_of(c):
     return (scry.get(str(c["id"]), {}).get("text", "") or "").replace("\n", " ").strip()
 
+def image_of(c):
+    """Front-face Scryfall image URL for `c`, or '' if cache is pre-v3 / lookup failed.
+    Renders as a floated thumbnail next to each pick block — degrades cleanly to no-image."""
+    return (scry.get(str(c["id"]), {}).get("image_url", "") or "").strip()
+
 def mark(c, taken_id, colors):
     if c["id"] == taken_id: return "✅"
     return "▸" if oncolor(c, colors) else " "
@@ -213,6 +218,12 @@ for p in draft["picks"]:
     tk = p["taken"]
     colors_at = (prev_run or {}).get("colors", "") or ""         # colors committed going into this pick
     out.append(f"\n### P{p['pack']}P{p['pick']}" + (f" — took {tk['name']}" if tk else "") + "\n")
+    # Float the taken-card image to the right of the pick block so the table flows next to it.
+    # Falls back silently when the cache predates v3 (no `image_url`) — no image, no error.
+    if tk:
+        img = image_of(tk)
+        if img:
+            out.append(f'<img src="{img}" alt="{tk["name"]}" width="220" align="right">\n')
     # table of the pack (top cards) — always include the card actually taken, even if it ranks low
     rows = p["offered"][:8]
     if tk and not any(cc["id"] == tk["id"] for cc in rows):

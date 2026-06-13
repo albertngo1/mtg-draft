@@ -4,21 +4,17 @@ from .config import CACHE, SCRY_CACHE, UA
 # Scryfall cache entry schema version. Bump whenever _scry_rec() starts storing new fields
 # so older thin entries (cached before the change) are treated as cache misses and lazily
 # re-fetched + re-enriched. v2 added type_line/types/subtypes/keywords/loyalty/color_identity.
-SCRYFALL_SCHEMA = 2
+# v3 adds image_url (front-face normal Scryfall image) so replay.md can embed card images.
+SCRYFALL_SCHEMA = 3
 
 def is_fresh(rec):
     """True if a cached Scryfall record is at the current schema and safe to serve.
-    A record is fresh if it stamps the current schema (`_v` >= SCRYFALL_SCHEMA) OR — for
-    entries written just before the version stamp existed (e.g. the freshly re-warmed MKM
-    set) — it already carries the rich v2 fields. Anything else is stale: missing/old `_v`
-    and lacking the enriched fields, so it re-fetches. A failed-lookup placeholder
-    (no `type_line`) is also treated as stale so it self-heals on a later pass."""
+    A record is fresh if it stamps the current schema (`_v` >= SCRYFALL_SCHEMA). Anything
+    else is stale and re-fetches — including v2 entries that predate `image_url`, and
+    failed-lookup placeholders (no `type_line`)."""
     if not isinstance(rec, dict):
         return False
-    if rec.get("_v", 0) >= SCRYFALL_SCHEMA:
-        return True
-    # Back-compat: rich entries from the re-warm that predate the `_v` stamp.
-    return "subtypes" in rec and bool(rec.get("type_line"))
+    return rec.get("_v", 0) >= SCRYFALL_SCHEMA
 
 def stale_ids(scry, ids):
     """Subset of `ids` that need a (re)fetch: absent from cache or holding a stale entry."""
@@ -78,6 +74,10 @@ def _scry_rec(d):
     loyalty = d.get("loyalty")
     if loyalty is None and faces:
         loyalty = next((f.get("loyalty") for f in faces if f.get("loyalty") is not None), None)
+    # Front-face card image (Scryfall CDN). For split / MDFC cards the top-level image_uris
+    # is absent — fall back to the first face. `normal` is ~488x680, the right size for embed.
+    imgs = d.get("image_uris") or (faces[0].get("image_uris") if faces else None) or {}
+    image_url = imgs.get("normal", "") or imgs.get("large", "") or imgs.get("small", "")
     return {
         "_v": SCRYFALL_SCHEMA,                      # schema stamp; stale entries lacking it re-fetch
         "name": (d.get("name", "?").split("//")[0].strip()),
@@ -95,6 +95,7 @@ def _scry_rec(d):
         "keywords": d.get("keywords", []),
         "loyalty": loyalty,
         "text": text.replace("\n", " "),
+        "image_url": image_url,                    # front-face normal image; replay.md embeds it
     }
 def resolve_ids(ids):
     """Return {id: {name, cmc, color, type}} resolving misses via Scryfall (cached, 1-by-1)."""
