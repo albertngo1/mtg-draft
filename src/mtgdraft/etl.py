@@ -406,21 +406,39 @@ def refresh_current(cfg):
             best[fp] = d
     drafts = [best[fp] for fp in order]
     os.makedirs(DRAFTS, exist_ok=True)
-    latest = None
-    for idx, d in enumerate(drafts):
-        is_latest = idx == len(drafts) - 1
+    # Precompute each draft's deterministic bundle metadata (set/fingerprint/date). The date is
+    # parsed from the EventName (raw.log mtime fallback for malformed dates), so it — NOT list
+    # position — is the right key for "which draft is most recent." reconstruct_drafts returns ALL
+    # Quick (BotDraft) drafts before ALL Premier segments, so an old Premier re-dump always lands
+    # last; choosing latest by position would then mirror that stale draft into current.json.
+    # Pick the chronologically newest instead (tiebreak: later stream position wins on equal dates).
+    meta = []
+    for d in drafts:
         dcfg = _draft_cfg(cfg, d)
         fp = _draft_fingerprint(d)
-        # Bundle name carries the draft's date (deterministic, parsed from EventName; see
-        # _draft_date) so it sorts/reads chronologically while staying the idempotency key.
-        # For the mtime fallback we point at an ALREADY-bundled raw.log for this set+fingerprint
-        # (if one exists) so a re-run reuses the same date and overwrites the same folder.
         existing = _find_bundle(dcfg["set"], fp)
         date = _draft_date(d, existing and os.path.join(existing, "raw.log"))
+        meta.append((dcfg, fp, date))
+    latest_idx = max(range(len(drafts)), key=lambda i: (meta[i][2], i)) if drafts else -1
+    latest = None
+    for idx, d in enumerate(drafts):
+        is_latest = idx == latest_idx
+        dcfg, fp, date = meta[idx]
+        # Bundle name carries the draft's date (deterministic; see _draft_date) so it sorts/reads
+        # chronologically while staying the idempotency key.
         folder = os.path.join(DRAFTS, f"{dcfg['set']}_{date}_{fp}")
         draft_json = os.path.join(folder, "draft.json")
         if not is_latest and os.path.exists(draft_json):
-            continue                                # older draft already bundled; won't change
+            # Skip re-bundling an already-written draft ONLY when it can't have grown. A bundle
+            # first written early (e.g. 1 pick) and later treated as "not latest" would otherwise
+            # stay frozen; re-enrich it when this pass reconstructed MORE picks.
+            try:
+                with open(draft_json) as jf:
+                    stored_n = json.load(jf).get("n_picks", 0)
+            except Exception:
+                stored_n = 0
+            if stored_n >= len(d.get("picks") or []):
+                continue                            # already bundled at full length; won't change
         os.makedirs(folder, exist_ok=True)
         raw = d.pop("raw", "")                       # keep raw out of the enriched JSON
         state = enrich_draft(dcfg, d)
