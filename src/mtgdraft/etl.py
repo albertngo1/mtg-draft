@@ -33,8 +33,48 @@ def _botdraft_payloads(text):
                  "EventName": ev.group(1) if ev else ""}
         out.append((p, ln))                            # keep the raw line for per-draft raw.log slicing
     return out
+_PREM_NOTIFY_RX = re.compile(
+    r'"draftId":"([0-9a-f-]+)","SelfPick":(\d+),"SelfPack":(\d+),"PackCards":"([0-9,]+)"')
+_PREM_PICK_RX = re.compile(
+    r'MakePick .*?\\"DraftId\\":\\"([0-9a-f-]+)\\",\\"GrpIds\\":\[(\d+)\],\\"Pack\\":(\d+),\\"Pick\\":(\d+)')
+def _premier_segments(text):
+    """Premier / human drafts log packs as `Draft.Notify` with a `PackCards` CSV (NOT the BotDraft
+    `DraftPack` array), and picks as `MakePick` with `GrpIds`, both keyed by `draftId`. `SelfPack`,
+    `SelfPick` and MakePick `Pick` are all 1-INDEXED and equal (SelfPick:1 == P1P1). SOS packs hold
+    14 cards, so a pick at SelfPick:N has 15-N cards and a complete draft is 3*14 = 42 picks (no
+    missing P1P1). Reconstruct the SAME normalized {event, picks, pool, raw} shape
+    `reconstruct_drafts` emits so the rest of the pipeline (enrich/analyze/replay) is format-agnostic."""
+    order, offers, takes, raws = [], {}, {}, {}
+    for ln in text.splitlines():
+        if "Draft.Notify" in ln and "PackCards" in ln:
+            for did, spick, spack, cards in _PREM_NOTIFY_RX.findall(ln):
+                if did not in raws:
+                    raws[did] = []; order.append(did)
+                offers.setdefault(did, {})[(int(spack), int(spick))] = re.findall(r"\d{5,7}", cards)
+                raws[did].append(ln)
+        elif "MakePick" in ln and "GrpIds" in ln:
+            for did, gid, pack, pk in _PREM_PICK_RX.findall(ln):
+                if did not in raws:
+                    raws[did] = []; order.append(did)
+                takes.setdefault(did, {})[(int(pack), int(pk))] = gid
+                raws[did].append(ln)
+    drafts = []
+    for did in order:
+        off = offers.get(did)
+        if not off:                                    # MakePick-only id with no captured packs
+            continue
+        tk = takes.get(did, {})
+        picks = [{"pack": spack, "pick": spick, "offered": off[(spack, spick)],
+                  "taken": tk.get((spack, spick))}
+                 for (spack, spick) in sorted(off)]
+        drafts.append({"event": "", "picks": picks,
+                       "pool": [p["taken"] for p in picks if p["taken"]],
+                       "raw": "\n".join(raws.get(did, []))})
+    return drafts
 def reconstruct_drafts(text):
     """Segment the stream into drafts and reconstruct each pick (offered + what was taken).
+    Handles BOTH the BotDraft (Quick) `DraftPack` shape and the Premier/human `Draft.Notify`
+    `PackCards` shape (appended via `_premier_segments`).
     Returns a list of {event, picks:[{pack,pick,offered:[ids],taken:id|None}], pool:[ids]}."""
     drafts, cur = [], None
     for p, ln in _botdraft_payloads(text):
@@ -76,7 +116,7 @@ def reconstruct_drafts(text):
         d["pool"] = seq[-1]["PickedCards"] if seq else []
         d["raw"] = "\n".join(d.get("raw", []))         # join the draft's raw stream lines
         d.pop("entries", None); d.pop("_last", None)
-    return drafts
+    return drafts + _premier_segments(text)            # Quick (BotDraft) + Premier (Draft.Notify)
 def _card_enricher(cfg, ids):
     """Return (fn id -> {name,color,rarity,cmc,gih,iwd,alsa,n,ds}, ratings_fmt) using 17Lands+Scryfall.
     If the live format has no win-rate data yet (e.g. a Quick-Draft re-run early in its window),
