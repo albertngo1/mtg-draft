@@ -204,7 +204,10 @@ Paths resolve relative to the repo root regardless of where you invoke from, so
 
 ## How it works
 
-1. `pull` reads the last `DraftPack` array out of `Player.log` (locally by default).
+1. `pull` reads the current pack out of `Player.log` (locally by default). Quick Draft logs it as a
+   `DraftPack` array (carrying `PickedCards` + `EventName` on the same line); Premier/Traditional
+   (human) drafts have no `DraftPack` — there the pack is the last `Draft.Notify` (`PackCards` CSV),
+   the pool is rebuilt from `MakePick` (`GrpIds`), and set/fmt come from the event-join course line.
 2. 17Lands `card_ratings/data` for the set+format provides GIH WR / IWD / ALSA **and** the
    `mtga_id` for every card — so packs join to stats directly by ID (no fragile name-matching).
    Cached 24h in `data/cache/`.

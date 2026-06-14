@@ -158,7 +158,7 @@ If the live read ever fails, fall back to the manual flow: have the player read 
 | command | what it does |
 |---|---|
 | `python3 src/mtg-draft.py warm` | pre-cache the whole set's text + mana value (run once per set) |
-| `python3 src/mtg-draft.py pull` | read latest `DraftPack` from `Player.log`, rank it + show card text |
+| `python3 src/mtg-draft.py pull` | read the current pack from `Player.log` (Quick `DraftPack` or Premier `Draft.Notify`), rank it + show card text |
 | `python3 src/mtg-draft.py pool` | audit picks so far: creatures/spells/lands, curve, CABS check |
 | `python3 src/mtg-draft.py watch` | stream the ranked table standalone each time a new pack appears |
 | `python3 src/mtg-draft.py rank ID...` | rank an explicit list of Arena card IDs |
@@ -200,9 +200,15 @@ set/fmt from the pack payload's `"EventName":"<FMT>_<SET>_<date>"`. Just `warm -
 
 - Log: read locally by default from the per-OS `Player.log` path (override with `MTG_LOG`); the
   ARCHITECTURE.md lists the default path for each platform. SSH mode is opt-in (`--ssh`/`--ssh-key`).
-- The current pack is the **last** line matching `DraftPack`. Shape:
+- Quick Draft (vs bots): the current pack is the **last** line matching `DraftPack`. Shape:
   `{"CurrentModule":"...Draft","Payload":"{...\"DraftPack\":[\"<id>\",...],\"PickedCards\":[...]}"}`
   `PackNumber`/`PickNumber` are 0-indexed; `PickedCards` is everything taken so far.
+- Premier / Traditional Draft (vs humans): there is **no `DraftPack`**. The pack is the last
+  `Draft.Notify` (plain JSON, `PackCards` is a CSV, `SelfPack`/`SelfPick` are **1-indexed**); picks
+  are `MakePick` (escaped JSON `GrpIds`, logged twice per pick — dedupe by `(Pack, Pick)`); there is
+  no cumulative pool, so it's rebuilt from `MakePick`, and the event/set/fmt come from the event-join
+  course line (`…EventName…:"PremierDraft_<SET>_<date>"`), not the pack line. `pull` falls back to
+  this shape automatically when no `DraftPack` is present, reading the local log/stream blob.
 - IDs are MTGA grpIds = Scryfall Arena IDs: `https://api.scryfall.com/cards/arena/<id>`
   (needs `Accept: application/json` or you get HTTP 400).
 - 17Lands: `https://www.17lands.com/card_ratings/data?expansion=<SET>&format=<FMT>&start_date=..&end_date=..`

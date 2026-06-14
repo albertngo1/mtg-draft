@@ -2,7 +2,7 @@ import sys, os, json, re, time
 from .config import DRAFTS, HERE
 from .sources import load_scry, ratings, resolve_ids, stale_ids
 from .grades import load_grades_any
-from .logread import _last_log_line, _parse_array, _read_mode, apply_event, event_from_line, infer_colors
+from .logread import _read_mode, apply_event, infer_colors, pull_pack
 
 def print_deck_state():
     """Print the FULL strategic deck-state dashboard read from the structured store
@@ -96,26 +96,25 @@ def watch(cfg):
     last = None
     while True:
         try:
-            line = _last_log_line(cfg, "DraftPack")
+            ids, pk, pi, picked, event = pull_pack(cfg)   # handles both Quick (DraftPack) and Premier
+        except SystemExit:                                # no pack yet / draft not open — keep polling
+            time.sleep(cfg["poll"])
+            continue
         except Exception as e:
             print(f"  (log read failed: {e} — retrying)")
             time.sleep(cfg["poll"])
             continue
-        ids = _parse_array(line, "DraftPack")
-        if ids:
-            pk = re.search(r'PackNumber\\?":(\d+)', line)
-            pi = re.search(r'PickNumber\\?":(\d+)', line)
-            key = (pk.group(1) if pk else "?", pi.group(1) if pi else "?", tuple(ids))
-            if key != last:
-                last = key
-                apply_event(cfg, event_from_line(line))   # set/fmt from the event, unless explicit
-                if not cfg["colors_explicit"]:        # re-infer as the pool clarifies
-                    cfg["colors"] = infer_colors(_parse_array(line, "PickedCards") or [], cfg)
-                label = (f"P{int(pk.group(1))+1}P{int(pi.group(1))+1}" if pk and pi else "pack")
-                auto = "" if cfg["colors_explicit"] else f"   (colors auto: {cfg['colors'] or '—'})"
-                print("\n" + "=" * 74 + f"\n  >> {label}{auto}")
-                print_deck_state()                # lead with the deck-state dashboard (if store present)
-                print_table(ids, cfg, show_text=not cfg["brief"])
+        key = (pk, pi, tuple(ids))
+        if key != last:
+            last = key
+            apply_event(cfg, event)                   # set/fmt from the event, unless explicit
+            if not cfg["colors_explicit"]:            # re-infer as the pool clarifies
+                cfg["colors"] = infer_colors(picked, cfg)
+            label = f"P{pk+1}P{pi+1}" if pk >= 0 else "pack"
+            auto = "" if cfg["colors_explicit"] else f"   (colors auto: {cfg['colors'] or '—'})"
+            print("\n" + "=" * 74 + f"\n  >> {label}{auto}")
+            print_deck_state()                        # lead with the deck-state dashboard (if store present)
+            print_table(ids, cfg, show_text=not cfg["brief"])
         time.sleep(cfg["poll"])
 def print_pool(ids, cfg):
     data, _ = ratings(cfg["set"], cfg["fmt"], cfg["days"], cfg["refresh"])
