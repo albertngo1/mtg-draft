@@ -162,6 +162,15 @@ python3 src/mtg-draft.py pull \
 SSH mode is **opt-in** — it activates only when `--ssh`/`MTG_SSH` is set. With no SSH target the
 tool always reads the local log.
 
+> **The key must run a normal login shell — don't reuse a forced-command key.** The tool reads the
+> log by sending a remote command (`tail … | grep DraftPack`). If `--ssh-key` points at a key that's
+> pinned to a fixed command on the remote (an `authorized_keys` entry with `command="…"`, as a
+> reverse-tunnel / port-forward-only key usually is), the remote ignores the command the tool sends
+> and runs its own — so `pull` returns **"No DraftPack found"** (or a bare exit 1) even though
+> authentication succeeds and the host is up. Use a key whose `authorized_keys` entry has **no**
+> `command=` restriction. Quick check: `ssh -i ~/.ssh/your_key user@host 'echo ok'` must print `ok`
+> — if it prints nothing and exits 1, the key is forced-command and won't work here.
+
 ## Repository layout
 
 ```

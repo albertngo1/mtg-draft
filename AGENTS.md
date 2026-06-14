@@ -172,7 +172,8 @@ set/fmt **auto-detect from the live draft's EventName**; precedence is flag > Ev
 default (so a stale `MTG_SET` can't silently rank against the wrong set). The fmt slot is adopted
 only when it's a real 17Lands format — special events (`MWM_SOS_...`) put junk there. Reading the
 log from another machine is opt-in via `--ssh` / `--ssh-key` (or `MTG_SSH` / `MTG_SSH_KEY`) — see
-the README's "Advanced" section.
+ARCHITECTURE.md's "Advanced: read the log from another machine (SSH)" section (and its warning that
+the key must run a normal login shell, **not** a forced-command / reverse-tunnel key).
 
 **Caching (so you don't re-query every pick):** the pack→stats join is by `mtga_id`, which 17Lands
 already provides — so Scryfall is only needed for cost/oracle-text. `warm` pulls the whole set from
@@ -198,7 +199,7 @@ set/fmt from the pack payload's `"EventName":"<FMT>_<SET>_<date>"`. Just `warm -
 ## How the live read works (for when the script breaks)
 
 - Log: read locally by default from the per-OS `Player.log` path (override with `MTG_LOG`); the
-  README lists the default path for each platform. SSH mode is opt-in (`--ssh`/`--ssh-key`).
+  ARCHITECTURE.md lists the default path for each platform. SSH mode is opt-in (`--ssh`/`--ssh-key`).
 - The current pack is the **last** line matching `DraftPack`. Shape:
   `{"CurrentModule":"...Draft","Payload":"{...\"DraftPack\":[\"<id>\",...],\"PickedCards\":[...]}"}`
   `PackNumber`/`PickNumber` are 0-indexed; `PickedCards` is everything taken so far.
