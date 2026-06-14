@@ -417,7 +417,15 @@ def refresh_current(cfg):
         dcfg = _draft_cfg(cfg, d)
         fp = _draft_fingerprint(d)
         existing = _find_bundle(dcfg["set"], fp)
-        date = _draft_date(d, existing and os.path.join(existing, "raw.log"))
+        # Date is deterministic: REUSE the existing bundle's own folder-embedded date once written
+        # (it never changes), so a reprocess can't re-date the same draft into a second folder.
+        # Only compute fresh on first creation — clean 8-digit EventName date, else today() (the
+        # capture-day, since live drafts are bundled the day they happen; MKM's malformed 7-digit
+        # date can't be parsed). raw.log mtime is a poor key (rewritten every refresh), so it's gone.
+        if existing:
+            date = _bundle_parts(os.path.basename(existing))[1] or _draft_date(d)
+        else:
+            date = _draft_date(d)
         meta.append((dcfg, fp, date))
     latest_idx = max(range(len(drafts)), key=lambda i: (meta[i][2], i)) if drafts else -1
     latest = None
