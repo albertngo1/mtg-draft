@@ -37,6 +37,9 @@ _PREM_NOTIFY_RX = re.compile(
     r'"draftId":"([0-9a-f-]+)","SelfPick":(\d+),"SelfPack":(\d+),"PackCards":"([0-9,]+)"')
 _PREM_PICK_RX = re.compile(
     r'MakePick .*?\\"DraftId\\":\\"([0-9a-f-]+)\\",\\"GrpIds\\":\[(\d+)\],\\"Pack\\":(\d+),\\"Pick\\":(\d+)')
+# Event-join/course line: draft-style EventName (plain or escaped) + the draftId as a bare UUID.
+_PREM_EVENT_RX = re.compile(r'EventName\\?":\\?"([A-Za-z]+Draft[A-Za-z0-9_]*)')
+_UUID_RX = re.compile(r'[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}')
 def _premier_segments(text):
     """Premier / human drafts log packs as `Draft.Notify` with a `PackCards` CSV (NOT the BotDraft
     `DraftPack` array), and picks as `MakePick` with `GrpIds`, both keyed by `draftId`. `SelfPack`,
@@ -44,6 +47,15 @@ def _premier_segments(text):
     14 cards, so a pick at SelfPick:N has 15-N cards and a complete draft is 3*14 = 42 picks (no
     missing P1P1). Reconstruct the SAME normalized {event, picks, pool, raw} shape
     `reconstruct_drafts` emits so the rest of the pipeline (enrich/analyze/replay) is format-agnostic."""
+    # Draft.Notify carries no EventName, so set/fmt come from the event-join/course line — which
+    # holds the draft-style InternalEventName AND the draftId (as a UUID) on the same line. Map
+    # draftId -> event so each Premier draft auto-detects its set (else it falls back to default).
+    did_event = {}
+    for ln in text.splitlines():
+        ev = _PREM_EVENT_RX.search(ln)
+        if ev:
+            for u in _UUID_RX.findall(ln):
+                did_event.setdefault(u, ev.group(1))
     order, offers, takes, raws = [], {}, {}, {}
     for ln in text.splitlines():
         if "Draft.Notify" in ln and "PackCards" in ln:
@@ -67,7 +79,7 @@ def _premier_segments(text):
         picks = [{"pack": spack, "pick": spick, "offered": off[(spack, spick)],
                   "taken": tk.get((spack, spick))}
                  for (spack, spick) in sorted(off)]
-        drafts.append({"event": "", "picks": picks,
+        drafts.append({"event": did_event.get(did, ""), "picks": picks,
                        "pool": [p["taken"] for p in picks if p["taken"]],
                        "raw": "\n".join(raws.get(did, []))})
     return drafts

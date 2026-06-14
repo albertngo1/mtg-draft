@@ -184,8 +184,14 @@ def tail_follow(cfgpath):
     enrich_cfg.update({"set_explicit": False, "fmt_explicit": False,
                        "colors_explicit": False, "refresh": False})
     auto_enrich = c.get("enrich", True)
+    # Re-enrich when a chunk carries a draft signal: Quick Draft emits `DraftPack`; Premier/human
+    # drafts emit no DraftPack at all, so also fire on their pack (`Draft.Notify`) and pick
+    # (`MakePick`) markers — otherwise current.json (the deck-state store) is never built live.
+    DRAFT_MARKERS = (b"DraftPack", b"Draft.Notify", b"MakePick")
     def on_data(buf):
-        if not auto_enrich or b"DraftPack" not in buf or not os.path.exists(SCRY_CACHE):
+        if not auto_enrich or not os.path.exists(SCRY_CACHE):
+            return
+        if not any(m in buf for m in DRAFT_MARKERS):
             return
         try:
             refresh_current(enrich_cfg)
