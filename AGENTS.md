@@ -70,7 +70,7 @@ surfaces mechanics), the open-color signal, premiums passed by color, and a `NEE
 line of **progress-scaled** gaps (so it reads as a live priority, not end-state alarm-bells at
 pick 3) — so the live deck picture is in front of you every pick; (b) a table ranked by GIH WR with
 on-color cards marked `▸`; and (c) a **"what each card does"** section with oracle text + P/T.
-**Lead with the `DECK` line** and let its `NEED` steer the pick (creature-priority when bodies
+**NEVER state a card count or how many copies of a card you have from memory — read the `POOL (N): …` line `pull` prints (the exact taken cards, live-sourced) every pick.** **Lead with the `DECK` line** and let its `NEED` steer the pick (creature-priority when bodies
 are below target, stop stacking removal once at the cap, lean toward the open colors).
 
 **Draft history (so you don't forget earlier picks):** a side-car capture mirrors the whole

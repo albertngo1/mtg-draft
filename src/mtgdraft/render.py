@@ -4,6 +4,21 @@ from .sources import load_scry, ratings, resolve_ids, stale_ids
 from .grades import load_grades_any
 from .logread import _read_mode, apply_event, infer_colors, pull_pack
 
+def print_pool_line(picked):
+    """POOL line listing every card taken so far, with `xN` for duplicates. Built from the LIVE
+    picked-card IDs (pull_pack's `picked`) — the same fresh source as the pack itself — so it can
+    NEVER go stale the way current.json can when the daemon lags. Resolves names from the warm
+    Scryfall cache (no fetch). The point: the agent reads the exact pool every pick, never recalls
+    card counts from memory. Best-effort: silent if there are no picks / cache is cold."""
+    if not picked:
+        return
+    from collections import Counter
+    scry = load_scry()
+    names = Counter((scry.get(str(i), {}).get("name") or f"<{i}?>").split("//")[0].strip()
+                    for i in picked)
+    parts = [f"{n} x{k}" if k > 1 else n for n, k in sorted(names.items())]
+    print(f"  POOL ({sum(names.values())}): " + " · ".join(parts))
+
 def print_deck_state():
     """Print the FULL strategic deck-state dashboard read from the structured store
     (data/drafts/current.json, kept fresh by the capture daemon): counts/curve, archetype lean,

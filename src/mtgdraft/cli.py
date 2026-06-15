@@ -5,7 +5,7 @@ from .sources import resolve_ids, warm_set
 from .logread import apply_event, infer_colors, pull_pack, pull_picked
 from .capture import capture_status, ensure_capture, stop_capture, tail_follow
 from .etl import refresh_current, export_cards
-from .render import print_deck_state, print_draft_summary, print_pool, print_table, watch
+from .render import print_deck_state, print_draft_summary, print_pool, print_pool_line, print_table, watch
 
 def main():
     args = sys.argv[1:]
@@ -114,6 +114,7 @@ def main():
         except Exception:
             pass
         print_deck_state()                        # LEAD with the deck-state dashboard every pick
+        print_pool_line(picked)                   # exact pool (live IDs) so counts are never guessed
         print_table(pack, cfg, show_text=not cfg["brief"])
     elif cmd == "rank":
         if not ids:
