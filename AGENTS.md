@@ -7,11 +7,20 @@ reads, and honest recommendations.
 
 ## Quick start
 
-**At the start of each draft**, do two one-time prep steps so every pick is fast:
+**At the start of each draft**, do these one-time prep steps so every pick is fast:
 
 ```bash
-python3 src/mtg-draft.py warm --set <SET>        # caches card text + mana value for the whole set
+python3 src/mtg-draft.py warm  --set <SET>       # caches card text + mana value for the whole set
+python3 src/mtg-draft.py cards --set <SET>       # whole-set lean data as JSON → LOAD INTO CONTEXT
 ```
+
+**Load that `cards` JSON into context and keep it for the whole draft.** It's one record per card —
+`id, name, color, cmc, pt, type, grade, gih, alsa, iwd, n, text, guide, inflation` — i.e. every
+card's stats AND oracle text AND expert note, all of it *static* for the draft (so it prompt-caches
+cleanly). With it loaded, each pick is a **lookup against in-context data**, not a re-fetch: run
+`pull --brief` (just the pack's IDs + the deck-state line — a tiny payload), then resolve those IDs
+against the cards JSON you already hold. This kills per-pick oracle-text streaming and every "let me
+read the card" second fetch — the main time-to-turn cost. (~34k tokens for a ~320-card set; one-time.)
 
 …and **fetch a tier list ONCE and keep the grades in context for the whole draft** — e.g.
 `WebFetch https://cardgamebase.com/<set>-draft-tier-list/` asking for *every* card's letter grade
@@ -158,6 +167,7 @@ If the live read ever fails, fall back to the manual flow: have the player read 
 | command | what it does |
 |---|---|
 | `python3 src/mtg-draft.py warm` | pre-cache the whole set's text + mana value (run once per set) |
+| `python3 src/mtg-draft.py cards` | dump the whole set's lean per-card data as JSON — load into context once per draft so each pick is a lookup, not a re-fetch |
 | `python3 src/mtg-draft.py pull` | read the current pack from `Player.log` (Quick `DraftPack` or Premier `Draft.Notify`), rank it + show card text |
 | `python3 src/mtg-draft.py pool` | audit picks so far: creatures/spells/lands, curve, CABS check |
 | `python3 src/mtg-draft.py watch` | stream the ranked table standalone each time a new pack appears |

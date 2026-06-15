@@ -166,6 +166,35 @@ def _card_enricher(cfg, ids):
             c["guide"] = note
         return c
     return card, ratings_fmt
+def export_cards(cfg):
+    """Lean per-card data for the WHOLE set, emitted once so the coaching agent can load it at
+    draft start and resolve each pick's IDs against in-context data — no per-pick oracle-text
+    streaming and no second 'let me read the card' fetch. Static during a draft (17Lands/Scryfall/
+    grades/guide don't change), so it caches cleanly. Fields: id,name,color,cmc,pt,type,grade,
+    gih,alsa,iwd,n,text,(guide),(inflation)."""
+    data, ratings_fmt = ratings(cfg["set"], cfg["fmt"], cfg["days"], cfg["refresh"])
+    ids = [str(c["mtga_id"]) for c in data if c.get("mtga_id")]
+    card, _ = _card_enricher(cfg, ids)
+    scry = load_scry()
+    out, seen = [], set()
+    for cid in ids:
+        c = card(cid)
+        if c["name"] in seen:                      # one row per card (drop alt-art id duplicates)
+            continue
+        seen.add(c["name"])
+        meta = scry.get(cid, {})
+        rnd = lambda v, p: round(v, p) if isinstance(v, (int, float)) else v
+        rec = {"id": c["id"], "name": c["name"], "color": c["color"], "cmc": c["cmc"],
+               "pt": meta.get("pt"), "type": c.get("type_line") or c.get("type", ""),
+               "grade": c.get("ds"), "gih": rnd(c["gih"], 4), "alsa": rnd(c["alsa"], 2),
+               "iwd": rnd(c["iwd"], 3), "n": c["n"], "text": (meta.get("text") or "").strip()}
+        if c.get("guide"):
+            rec["guide"] = c["guide"]
+        if c.get("inflation"):
+            rec["inflation"] = c["inflation"]
+        out.append(rec)
+    out.sort(key=lambda r: r["name"])
+    return out, ratings_fmt
 def analyze_pool(pool, picks, colors):
     """Deckbuilding metrics over the picked pool: composition, curve, two-drops, removal estimate,
     signals (on-color premiums available late = open lane), and target-vs-actual flags."""
