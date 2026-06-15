@@ -15,7 +15,8 @@ python3 src/mtg-draft.py cards --set <SET> > data/cache/cards_<SET>.ndjson   # w
 ```
 
 **Build the `cards` NDJSON once, then grep the pack's IDs out of it per pick.** It's one JSON record
-*per line* — `id, name, color, cmc, pt, type, grade, gih, alsa, iwd, n, text, guide, inflation` —
+*per line* — `id, name, color, cmc, pt, type, grade, gih, gp, pr, alsa, iwd, n, text, guide, inflation`
+(where **gp** = Games Played win rate and **pr** = play rate, the % of decks that maindeck it) —
 i.e. every card's stats AND oracle text AND **expert guide note AND inflation flag** (the last two
 the live `pull` table does *not* print inline). It's all *static* for the draft, so it never needs
 re-fetching. Each pick: run `pull --brief` (just the pack's IDs + the deck-state line — tiny), then

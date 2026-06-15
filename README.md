@@ -48,6 +48,10 @@ git clone https://github.com/albertngo1/mtg-draft && cd mtg-draft
 # Use the set's 17Lands code (e.g. FIN, DSK, MKM).
 python3 src/mtg-draft.py warm --set FIN
 
+# Optional: dump the whole set's lean per-card data (stats + text + grade + guide
+# note) as NDJSON — load/grep it for fast per-pick lookups without re-fetching.
+python3 src/mtg-draft.py cards --set FIN > data/cache/cards_FIN.ndjson
+
 # During the draft: read the current pack and rank it. Set, format, and your
 # colors are all auto-detected from the live draft.
 python3 src/mtg-draft.py pull
@@ -82,6 +86,8 @@ the other way around.
   log-reading and caching work, the draft-history reconstruction, repo layout, and more.
 - **[AGENTS.md](./AGENTS.md)** — the operating manual for the AI coaching layer: universal limited
   theory plus how to drive this tool pick-by-pick.
+- **[card-reference/](./card-reference/)** — a one-file visual grid of every card in a set (image +
+  17Lands ratings + Draftsim grade + expert-guide notes + an AI take). See its README to regenerate.
 
 ## Credits
 

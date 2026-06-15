@@ -95,6 +95,11 @@ python3 src/mtg-draft.py rank --set FIN --colors UR 102690 102462 102498
 # Resolve IDs to name|cmc|color|type (handy for deck audits)
 python3 src/mtg-draft.py resolve 102690 102462
 
+# Whole-set lean data as NDJSON — one card per line: stats + oracle text + guide note + inflation
+# flag. Build once per draft, then grep the pack's IDs out of it per pick (instant, local) instead
+# of re-streaming oracle text. Surfaces the guide/inflation the live `pull` table doesn't print.
+python3 src/mtg-draft.py cards --set FIN > data/cache/cards_FIN.ndjson
+
 # Capture: show the background log-capture status (see "Recording the raw log stream" below)
 python3 src/mtg-draft.py capture          # start (if needed) + status   ·   `capture stop` to end it
 
@@ -162,6 +167,12 @@ python3 src/mtg-draft.py pull \
 SSH mode is **opt-in** — it activates only when `--ssh`/`MTG_SSH` is set. With no SSH target the
 tool always reads the local log.
 
+**The `mtg-draft.sh` wrapper auto-wires SSH from the capture config.** If the capture daemon's
+`data/logs/.capture.json` carries an `ssh` / `ssh_key` / `log` (it does once you've run `capture`
+against a remote — see "Keeping capture always-on"), the wrapper exports `MTG_SSH` / `MTG_SSH_KEY` /
+`MTG_LOG` from it before invoking Python, so `./mtg-draft.sh pull` reaches the remote log with **no
+flags**. It only fills blanks — anything you set in the environment still wins.
+
 > **The key must run a normal login shell — don't reuse a forced-command key.** The tool reads the
 > log by sending a remote command (`tail … | grep DraftPack`). If `--ssh-key` points at a key that's
 > pinned to a fixed command on the remote (an `authorized_keys` entry with `command="…"`, as a
@@ -194,8 +205,8 @@ mtg-draft/
 │  ├─ lords-of-limited/           #   Lords of Limited <SET>-draft-guide.md (one per set)
 │  └─ numot/                      #   NumotTheNummy VOD-distilled <SET>.md notes (+ manifest.json)
 └─ data/                          # generated, gitignored
-   ├─ cache/                      # 17Lands + Scryfall caches
-   ├─ drafts/                     # per-draft bundles <set>_<fp>/{draft.json,raw.log,replay.md} + current.json
+   ├─ cache/                      # 17Lands + Scryfall caches, + cards_<SET>.ndjson exports
+   ├─ drafts/                     # per-draft bundles <set>_<date>_<fp>/{draft.json,raw.log,replay.md} + current.json
    └─ logs/                       # raw Player.log capture stream
 ```
 
@@ -357,8 +368,13 @@ the pack (`⚠ passed ...`). This lets a coach answer "what did I pass at P1P5?"
 creature count healthy?" from one small file instead of re-scraping the multi-MB live log.
 
 **Per-draft bundles.** Every draft in the stream is persisted as a self-contained **bundle folder**,
-`data/drafts/<set>_<fingerprint>/` (fingerprint = hash of the P1P1 pack, so re-runs overwrite the same
-folder rather than piling up), holding three artifacts:
+`data/drafts/<set>_<YYYY-MM-DD_HHMM>_<fingerprint>/`. The **fingerprint** = hash of the P1P1 pack
+(the real identity key, so re-runs overwrite the same folder rather than piling up). The **stamp** is
+`YYYY-MM-DD_HHMM`: the day comes from the EventName's date (or first-creation day if it's malformed —
+MKM Quick Draft logs a garbled 7-digit date), and the `HHMM` time is stamped once at first creation so
+**multiple drafts on the same day get distinct, chronologically-ordered folders**. The stamp is
+**reused from the existing folder name** on every later run, so it stays a stable idempotency key (it
+can't drift to wall-clock "now" and mint a second folder). Each bundle holds three artifacts:
 
 | file | what |
 |---|---|
@@ -366,9 +382,13 @@ folder rather than piling up), holding three artifacts:
 | `raw.log` | just **this draft's** slice of the rolling stream (its `BotDraft` lines), spliced out by the P1P1 segmentation |
 | `replay.md` | the coached audit/playback — **auto-generated once the draft completes** (final pack drafted to its last pick) |
 
-The most recent draft's `draft.json` is also mirrored to `data/drafts/current.json`. The capture daemon
-refreshes all of this automatically each pick (or you can run `draft`/`pull`). So a draft is preserved
-permanently once seen — bundle and all — even after it ages out of the rolling capture stream.
+The **chronologically newest** draft's `draft.json` (max bundle date, NOT list position — the
+reconstructor emits all Quick drafts before all Premier ones, so position would pick a stale Premier
+re-dump) is mirrored to `data/drafts/current.json`. A bundle also **self-heals**: if a later pass
+reconstructs more picks than the one on disk (e.g. it was first written mid-draft at 1 pick), it's
+re-enriched rather than skipped. The capture daemon refreshes all of this automatically each pick (or
+you can run `draft`/`pull`). So a draft is preserved permanently once seen — bundle and all — even
+after it ages out of the rolling capture stream.
 Completion is detected from the log itself (pick count reaches the final pack's last pick), so the
 replay fires whether or not you ever drove the tool. `data/drafts/` is gitignored (local archive).
 

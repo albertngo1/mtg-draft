@@ -153,6 +153,8 @@ def _card_enricher(cfg, ids):
              "types": meta.get("types", []), "subtypes": meta.get("subtypes", []),
              "keywords": meta.get("keywords", []), "loyalty": meta.get("loyalty"),
              "gih": s.get("ever_drawn_win_rate") if s else None,
+             "gp": s.get("win_rate") if s else None,           # Games Played WIN RATE
+             "pr": s.get("play_rate") if s else None,          # play rate = % of decks that maindeck it
              "iwd": s.get("drawn_improvement_win_rate") if s else None,
              "alsa": s.get("avg_seen") if s else None,
              "n": (s.get("ever_drawn_game_count") if s else 0) or 0,
@@ -186,8 +188,9 @@ def export_cards(cfg):
         rnd = lambda v, p: round(v, p) if isinstance(v, (int, float)) else v
         rec = {"id": c["id"], "name": c["name"], "color": c["color"], "cmc": c["cmc"],
                "pt": meta.get("pt"), "type": c.get("type_line") or c.get("type", ""),
-               "grade": c.get("ds"), "gih": rnd(c["gih"], 4), "alsa": rnd(c["alsa"], 2),
-               "iwd": rnd(c["iwd"], 3), "n": c["n"], "text": (meta.get("text") or "").strip()}
+               "grade": c.get("ds"), "gih": rnd(c["gih"], 4), "gp": rnd(c["gp"], 4),
+               "pr": rnd(c["pr"], 3), "alsa": rnd(c["alsa"], 2), "iwd": rnd(c["iwd"], 3),
+               "n": c["n"], "text": (meta.get("text") or "").strip()}
         if c.get("guide"):
             rec["guide"] = c["guide"]
         if c.get("inflation"):

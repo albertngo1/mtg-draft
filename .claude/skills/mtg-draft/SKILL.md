@@ -16,9 +16,13 @@ macOS/Linux `python3 src/mtg-draft.py` or `./mtg-draft.sh`.
 
 1. **Once per draft**, pre-cache the set so picks are instant:
    ```bash
-   python3 src/mtg-draft.py warm --set <SET>
+   python3 src/mtg-draft.py warm  --set <SET>
+   python3 src/mtg-draft.py cards --set <SET> > data/cache/cards_<SET>.ndjson
    ```
-   Find `<SET>` in the log's `EventName:"PremierDraft_<SET>_<date>"` (it's the 17Lands expansion
+   The `cards` NDJSON is one lean record per card (stats + oracle text + grade + guide note +
+   inflation flag) — grep the pack's IDs out of it per pick (`grep '"id": "<id>"'`) for instant
+   local lookups instead of re-streaming card text. Find `<SET>` in the log's
+   `EventName:"PremierDraft_<SET>_<date>"` (it's the 17Lands expansion
    code). Then **fetch the set's tier list ONCE** (`WebFetch
    cardgamebase.com/<set>-draft-tier-list/` — every card's grade + the color-pair archetypes) and
    **load this set's guide** if present (`draft-guides/lords-of-limited/<SET>-draft-guide.md` and
