@@ -10,17 +10,20 @@ reads, and honest recommendations.
 **At the start of each draft**, do these one-time prep steps so every pick is fast:
 
 ```bash
-python3 src/mtg-draft.py warm  --set <SET>       # caches card text + mana value for the whole set
-python3 src/mtg-draft.py cards --set <SET>       # whole-set lean data as JSON → LOAD INTO CONTEXT
+python3 src/mtg-draft.py warm  --set <SET>                      # caches card text + mana value
+python3 src/mtg-draft.py cards --set <SET> > data/cache/cards_<SET>.ndjson   # whole-set lean data
 ```
 
-**Load that `cards` JSON into context and keep it for the whole draft.** It's one record per card —
-`id, name, color, cmc, pt, type, grade, gih, alsa, iwd, n, text, guide, inflation` — i.e. every
-card's stats AND oracle text AND expert note, all of it *static* for the draft (so it prompt-caches
-cleanly). With it loaded, each pick is a **lookup against in-context data**, not a re-fetch: run
-`pull --brief` (just the pack's IDs + the deck-state line — a tiny payload), then resolve those IDs
-against the cards JSON you already hold. This kills per-pick oracle-text streaming and every "let me
-read the card" second fetch — the main time-to-turn cost. (~34k tokens for a ~320-card set; one-time.)
+**Build the `cards` NDJSON once, then grep the pack's IDs out of it per pick.** It's one JSON record
+*per line* — `id, name, color, cmc, pt, type, grade, gih, alsa, iwd, n, text, guide, inflation` —
+i.e. every card's stats AND oracle text AND **expert guide note AND inflation flag** (the last two
+the live `pull` table does *not* print inline). It's all *static* for the draft, so it never needs
+re-fetching. Each pick: run `pull --brief` (just the pack's IDs + the deck-state line — tiny), then
+`grep '"id": "<id>"' data/cache/cards_<SET>.ndjson` for those IDs → the full card data, instant and
+local. This kills per-pick oracle-text streaming and every "let me read the card" second fetch — the
+main time-to-turn cost — AND surfaces the guide/inflation that the table omits. (A ~320-card set is
+~34k tokens / one giant payload, so grep-per-pick beats loading it all into context; if you do want
+it resident, the NDJSON reads in chunks by line.)
 
 …and **fetch a tier list ONCE and keep the grades in context for the whole draft** — e.g.
 `WebFetch https://cardgamebase.com/<set>-draft-tier-list/` asking for *every* card's letter grade

@@ -125,7 +125,12 @@ def main():
                   f"{rec.get('type_line') or rec.get('type','')}")
     elif cmd == "cards":
         recs, rfmt = export_cards(cfg)                # whole-set lean data — load once at draft start
-        print(json.dumps({"set": cfg["set"], "fmt": cfg["fmt"], "ratings_fmt": rfmt,
-                          "n": len(recs), "cards": recs}, ensure_ascii=False))
+        # NDJSON: one card per line (+ a leading _meta line). One-per-line so it can be read in
+        # chunks (a 320-card set is ~34k tokens, over a single read cap) AND grepped by id/name
+        # per pick — `grep '"id": "<id>"'` pulls just the pack's cards, instant, no re-fetch.
+        print(json.dumps({"_meta": {"set": cfg["set"], "fmt": cfg["fmt"],
+                                    "ratings_fmt": rfmt, "n": len(recs)}}, ensure_ascii=False))
+        for r in recs:
+            print(json.dumps(r, ensure_ascii=False))
     else:
         print(__doc__)
