@@ -330,23 +330,24 @@ def _draft_fingerprint(draft):
     first = sorted(draft["picks"][0]["offered"]) if draft["picks"] else []
     return hashlib.sha1((",".join(first)).encode()).hexdigest()[:8]
 def _draft_date(draft, raw_log=None):
-    """Deterministic YYYY-MM-DD for a draft, used in the bundle folder name. MUST return the SAME
-    string every run for the same draft so re-running `draft`/`pull` overwrites the same folder
-    (the dated name is the idempotency key — so it can't be wall-clock 'now').
-    Primary: parse the 8-digit YYYYMMDD suffix out of the EventName, e.g.
-      'QuickDraft_MKM_20260611' -> '2026-06-11', 'MWM_SOS_Cascade_BotDraft_20260609' -> '2026-06-09'.
-    Fallback (no parseable 8-digit date — e.g. a malformed '0260608'): the raw.log mtime, stable
-    enough for archives. `raw_log` defaults to raw.log inside the draft's own bundle folder."""
+    """'YYYY-MM-DD_HHMM' stamp for a draft's bundle folder name. The DAY is the EventName's 8-digit
+    date when present (e.g. 'QuickDraft_MKM_20260611' -> 2026-06-11), else the first-creation day.
+    The HHMM time-of-day is stamped once at first creation — so MULTIPLE DRAFTS ON THE SAME DAY get
+    distinct, chronologically-ordered folders (the day alone collided before). It is NOT recomputed
+    afterwards: refresh_current reuses the existing folder's stamp for a known draft, so the name
+    stays a stable idempotency key (a re-run overwrites the same folder) while still sorting by time.
+    `raw_log`, when given, sources the time from its mtime instead of now()."""
+    import datetime
     event = draft.get("event", "") or ""
+    day = None
     m = re.search(r"(\d{8})(?:\D|$)", event)
     if m:
         y, mo, da = m.group(1)[:4], m.group(1)[4:6], m.group(1)[6:8]
         if "2000" <= y <= "2099" and "01" <= mo <= "12" and "01" <= da <= "31":
-            return f"{y}-{mo}-{da}"
-    import datetime
-    if raw_log and os.path.exists(raw_log):
-        return datetime.date.fromtimestamp(os.path.getmtime(raw_log)).isoformat()
-    return datetime.date.today().isoformat()
+            day = f"{y}-{mo}-{da}"
+    when = (datetime.datetime.fromtimestamp(os.path.getmtime(raw_log))
+            if raw_log and os.path.exists(raw_log) else datetime.datetime.now())
+    return f"{day or when.date().isoformat()}_{when.strftime('%H%M')}"
 def _bundle_parts(name):
     """Split a bundle folder name into (set, date, fingerprint). The fingerprint is the LAST
     '_'-segment, the set is the FIRST, and the date (if any) is the middle. Robust to both the new
