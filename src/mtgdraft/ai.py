@@ -42,10 +42,34 @@ give a one-line take. Principles to apply:
   (low = take now, won't wheel) — the primary 17Lands read. 8-seat pod: a card returns at pick N+8.
   Wheeling cards = that lane is open.
 - Quick Draft is vs BOTS: hate-drafting does nothing; signals are softer and good cards wheel more.
+- WEIGH THE RUNNING DECK COMPOSITION: every take must judge the pick against the `deck_going_in` state at
+  THAT point — creatures / spells / removal / two_drops / five_plus counts, the curve, themes, and the
+  stated `needs`. A card's value is RELATIVE to what the deck already has: credit a pick that fills a real
+  gap (creatures below ~15-18, two_drops below ~5-7, removal below ~3-4, an empty curve slot, or a listed
+  `need`), and ding one that stacks an already-full slot (a 6th two-drop, a 5th card at 5+ MV, the 5th
+  removal) or ignores the `needs`. Say which gap it fills or which glut it worsens.
 - Judge EACH pick at decision-time using ONLY the `deck_going_in` state given. NEVER use hindsight about
   how the draft ended (you'll see the final colors, but a pick made at P1P4 didn't know them).
 Give a GENUINE take: endorse a good pick briefly, or push back when it was a mistake and name the specific
 better card. 1-2 sentences, concrete (cite the card / number / signal). No fluff, never just restate the table."""
+
+# Appended to DOCTRINE only when the draft's event name flags a "cascade emblem" event
+# (e.g. QuickDraftEmblem_SOS / MWM_SOS_Cascade). Without this, takes wrongly assume normal SOS.
+CASCADE_NOTE = """
+
+CASCADE-EMBLEM EVENT (auto-detected from the event name): this draft was played under the SOS "cascade
+emblem" — you cascade ONCE PER TURN, on the FIRST spell cast that turn (NOT every spell, and it does not
+chain). Adjust takes accordingly, but keep the guide/archetype read as the lead:
+- It is a MODEST ~1-card/turn value bump, NOT a snowball. Do NOT credit "cascade value" as a reason to go
+  removal-light or to overvalue raw card advantage.
+- Value a FEW high-MV cards as turn-openers (the spell you lead a turn with gets the one cascade), but do
+  NOT reward OVER-drafting top-end — only one fires per turn and a 2nd expensive spell that turn does
+  nothing. A pile of 5+ drops is still the trap; a low curve with a few openers is correct.
+- Cheap cards are GOOD cascade hits (what the one cascade flips into); don't penalize cheap on-plan cards
+  as "bad in cascade." A normal aggressive curve is still what you want.
+- Net: the emblem barely changes correct draft picks vs normal SOS — it rewards a coherent low-curve deck
+  with a few bombs/openers, which is the normal good-deck shape. Do not invoke cascade to justify greedy
+  top-end or thin removal."""
 
 def _token():
     t = os.environ.get("CLAUDE_CODE_OAUTH_TOKEN")
@@ -88,22 +112,31 @@ def pick_takes(draft, top=6):
     for p in draft.get("picks", []):
         run = prev or {}
         tk = p.get("taken")
+        curve = run.get("curve", {}) or {}
+        five_plus = sum(v for k, v in curve.items() if str(k).isdigit() and int(k) >= 5)
         payload.append({
             "pick": f"P{p['pack']}P{p['pick']}",
             "deck_going_in": {"n": run.get("n", 0), "colors": run.get("colors", ""),
-                              "curve": run.get("curve", {}), "needs": run.get("needs", []),
+                              "creatures": run.get("creatures", 0), "spells": run.get("spells", 0),
+                              "removal": run.get("removal_est", 0), "two_drops": run.get("two_drops", 0),
+                              "five_plus": five_plus, "curve": curve,
+                              "themes": run.get("themes", {}),
+                              "needs": run.get("needs_readable") or run.get("needs", []),
                               "premiums_passed": run.get("premiums_passed_readable", "")},
             "took": _slim(_enrich(tk)) if tk else None,
             "options": [_slim(_enrich(c)) for c in p.get("offered", [])[:top]],
         })
         prev = p.get("running") or prev
+    ev = (draft.get("event_name") or draft.get("event") or "").lower()
+    is_cascade = "cascade" in ev or "emblem" in ev
+    doctrine = DOCTRINE + (CASCADE_NOTE if is_cascade else "")
     user = (f"Set/format: {draft.get('set')} {draft.get('fmt')} (ratings source: "
-            f"{draft.get('ratings_fmt')}). Final deck colors: "
-            f"{draft.get('analysis', {}).get('colors')}.\nFor EACH pick below give your take. "
-            f"Output ONLY a JSON object mapping the pick label to the take string — nothing else.\n\n"
+            f"{draft.get('ratings_fmt')}){' — CASCADE-EMBLEM EVENT' if is_cascade else ''}. "
+            f"Final deck colors: {draft.get('analysis', {}).get('colors')}.\nFor EACH pick below give "
+            f"your take. Output ONLY a JSON object mapping the pick label to the take string — nothing else.\n\n"
             + json.dumps(payload))
     try:
-        r = subprocess.run([claude, "-p", DOCTRINE + "\n\n" + user],
+        r = subprocess.run([claude, "-p", doctrine + "\n\n" + user],
                            env={**os.environ, "CLAUDE_CODE_OAUTH_TOKEN": tok},
                            stdin=subprocess.DEVNULL, capture_output=True, text=True, timeout=240)
         out = r.stdout.strip()
@@ -111,3 +144,62 @@ def pick_takes(draft, top=6):
         return json.loads(out[s:e + 1]) if s >= 0 else {}
     except Exception:
         return {}
+
+def draft_summary(draft):
+    """One more claude -p call → the CLOSING AUDIT (arc / what went right / marginal calls / final 40 /
+    the lever / how-to-play) as a markdown string appended after the per-pick takes. '' on any failure."""
+    from collections import Counter
+    claude, tok = shutil.which("claude"), _token()
+    if not claude or not tok:
+        return ""
+    gnotes = load_guide_notes(draft.get("set", ""))
+    def _enrich(c):
+        if c and not c.get("guide"):
+            g = gnotes.get(c["name"].split("//")[0].strip().lower())
+            if g:
+                return {**c, "guide": g}
+        return c
+    picks = [{"pick": f"P{p['pack']}P{p['pick']}", "took": (p["taken"]["name"] if p.get("taken") else None)}
+             for p in draft.get("picks", [])]
+    names = Counter(c["name"] for c in draft.get("pool", []))
+    seen, pool = set(), []
+    for c in draft.get("pool", []):
+        if c["name"] in seen:
+            continue
+        seen.add(c["name"])
+        pool.append({"n": names[c["name"]], **_slim(_enrich(c)), "cmc": c.get("cmc"), "type": c.get("type")})
+    a = draft.get("analysis", {}) or {}
+    final = next((p["running"] for p in reversed(draft.get("picks", [])) if p.get("running")), {})
+    ev = (draft.get("event_name") or draft.get("event") or "").lower()
+    doctrine = DOCTRINE + (CASCADE_NOTE if ("cascade" in ev or "emblem" in ev) else "")
+    instr = (
+        "The draft is COMPLETE. Write a CLOSING AUDIT in GitHub-flavored markdown with EXACTLY these "
+        "sections, using the '## ' headers verbatim and in this order:\n\n"
+        "## \U0001F3C1 The arc\n2-4 sentences: how the draft developed — what the P1P1 set up, when and "
+        "why the colors locked, the open lane you read.\n\n"
+        "## ✅ What went right\n3-5 bullets, each citing a specific pick label + card.\n\n"
+        "## ⚠️ Marginal calls\n2-4 bullets on the questionable/close picks, each citing the pick "
+        "label and naming the better alternative if there was one. If the draft was clean, say so and list "
+        "the 1-2 closest spots.\n\n"
+        "## \U0001F0CF Final 40\nThe recommended 40-card build from the POOL ONLY (target ~17 lands, ~23 "
+        "nonland, 15-18 creatures, 5-7 two-drops, 3-4+ removal, cap ~5-6 cards at 5+ MV; remember disguise "
+        "cards deploy at 3 so they don't bloat the top end). List lands (count + split), creatures by mana "
+        "value, then spells. End with a one-line 'Cuts:' on the notable sideboard cards and why.\n\n"
+        "## \U0001F3AF The lever\n1-2 sentences: the single most important decision that shaped this deck.\n\n"
+        "## ▶️ How to play it\n3-5 bullets: the deck's role/plan, mulligan guidance, a key "
+        "sequencing note, and matchup context (when you're the beatdown vs. the control). Build the 40 ONLY "
+        "from cards in the pool. Be concrete and concise — this is a post-draft review the player learns from."
+    )
+    user = (f"Set/format: {draft.get('set')} {draft.get('fmt')}. Final colors: {a.get('colors')}. "
+            f"Archetype lean: {a.get('archetype_lean') or a.get('archetype') or '—'}. "
+            f"Final deck-state: creatures {final.get('creatures')}, spells {final.get('spells')}, "
+            f"removal~{final.get('removal_est')}, two-drops {final.get('two_drops')}, "
+            f"curve {final.get('curve')}.\n\nPICKS (in order):\n{json.dumps(picks)}\n\n"
+            f"FINAL POOL (build the 40 from these; n = copies owned):\n{json.dumps(pool)}")
+    try:
+        r = subprocess.run([claude, "-p", doctrine + "\n\n" + instr + "\n\n" + user],
+                           env={**os.environ, "CLAUDE_CODE_OAUTH_TOKEN": tok},
+                           stdin=subprocess.DEVNULL, capture_output=True, text=True, timeout=240)
+        return r.stdout.strip()
+    except Exception:
+        return ""

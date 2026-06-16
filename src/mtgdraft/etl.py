@@ -403,8 +403,7 @@ def _make_replay(draft_json, out_md):
     replay failure can never disturb the ETL/capture path. With AI takes enabled this is one
     claude -p call (~2 min) — callers gate on replay.md not existing, so it runs ONCE per draft."""
     cmd = [sys.executable, REPLAY, draft_json, out_md]
-    if _replay_ai_enabled():
-        cmd.append("--ai")
+    cmd.append("--ai" if _replay_ai_enabled() else "--no-ai")   # explicit: replay now defaults AI on
     try:
         subprocess.run(cmd, check=False, capture_output=True, timeout=300)
     except Exception:

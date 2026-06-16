@@ -3,8 +3,11 @@
 replay. Pure post-hoc narration over the structured ETL data — every number/grade/oracle detail
 is read from the draft JSON + the scryfall/grades caches, never invented.
 
-Usage:  python3 src/replay.py [draft.json] [out.md] [--ai]
-        --ai adds a model-written "🤖 Take" per pick (one claude -p call; needs CLAUDE_CODE_OAUTH_TOKEN).
+Usage:  python3 src/replay.py [draft.json] [out.md] [--no-ai]
+        Model-written "🤖 Take" per pick is ON BY DEFAULT whenever an auth token is available
+        (CLAUDE_CODE_OAUTH_TOKEN env or a gitignored claude-token.txt at the repo root; one claude -p
+        call). MTG_REPLAY_AI=0 or --no-ai disables it; --ai force-enables. With no token it silently
+        falls back to the deterministic replay.
 """
 import json, os, sys, re
 
@@ -15,8 +18,18 @@ sys.path.insert(0, SRC)
 from mtgdraft.grades import load_grades_any
 from mtgdraft.analysis import COLOR_NAMES
 
-AI = "--ai" in sys.argv                                            # opt-in model commentary per pick
-argv = [a for a in sys.argv[1:] if a != "--ai"]
+def _ai_default():
+    """AI takes default ON: MTG_REPLAY_AI overrides (1/0), else on when an auth token is present."""
+    v = os.environ.get("MTG_REPLAY_AI")
+    if v is not None:
+        return v.lower() not in ("", "0", "false", "no")
+    from mtgdraft.ai import _token
+    return _token() is not None
+
+FORCE_AI = "--ai" in sys.argv                                      # back-compat flag — force on
+NO_AI = "--no-ai" in sys.argv                                      # opt-out
+argv = [a for a in sys.argv[1:] if a not in ("--ai", "--no-ai")]
+AI = FORCE_AI or (not NO_AI and _ai_default())                    # takes are now the DEFAULT
 PATH = argv[0] if argv else os.path.join(DATA, "drafts", "current.json")
 draft = json.load(open(PATH))
 scry = json.load(open(os.path.join(DATA, "cache", "scryfall_arena.json")))
@@ -24,7 +37,7 @@ grades, glabel = load_grades_any(draft.get("set", ""))
 takes = {}
 if AI:
     from mtgdraft.ai import pick_takes
-    takes = pick_takes(draft)
+    takes = pick_takes(draft)   # returns {} if claude/token missing → silent deterministic fallback
 
 COLORS = draft.get("analysis", {}).get("colors", "") or ""        # deck's final colors, e.g. "WB"
 
@@ -264,6 +277,13 @@ for pk in (1, 2, 3):
                    f"premiums passed → {r.get('premiums_passed_readable') or '—'}")
 if a.get("open_color_readable"):
     out.append(f"- **Open-color read (premiums flowing late):** {a['open_color_readable']}")
+
+# ---- closing audit: model-written summary + how-to-play (one more claude call; on with AI) ----
+if AI:
+    from mtgdraft.ai import draft_summary
+    summary = draft_summary(draft)
+    if summary:
+        out.append("\n\n---\n\n" + summary)
 
 dest = argv[1] if len(argv) > 1 \
     else os.path.join(DATA, "drafts", f"{draft.get('set','draft')}-replay.md")
