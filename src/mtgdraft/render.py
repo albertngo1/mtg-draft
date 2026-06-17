@@ -131,7 +131,7 @@ def watch(cfg):
             print_deck_state()                        # lead with the deck-state dashboard (if store present)
             print_table(ids, cfg, show_text=not cfg["brief"])
         time.sleep(cfg["poll"])
-def print_pool(ids, cfg):
+def print_pool(ids, cfg, noun="picks"):
     data, _ = ratings(cfg["set"], cfg["fmt"], cfg["days"], cfg["refresh"])
     by_id = {str(c["mtga_id"]): c for c in data if c.get("mtga_id")}
     scry = load_scry()
@@ -176,7 +176,7 @@ def print_pool(ids, cfg):
                 else:
                     nspell += n
 
-    print(f"\n  YOUR POOL — {len(ids)} picks" + (f"  (on-color = {cfg['colors']})" if on else "") + "\n")
+    print(f"\n  YOUR POOL — {len(ids)} {noun}" + (f"  (on-color = {cfg['colors']})" if on else "") + "\n")
     for cat in ("Creatures", "Spells", "Other", "Lands"):
         rows = sorted(cats[cat], key=lambda r: (r[0] if isinstance(r[0], int) else 99))
         if not rows:

@@ -6,20 +6,25 @@ STREAM_FRESH_SECS = 8.0   # trust the local capture stream only if the daemon wr
 KNOWN_FMTS = ("PremierDraft", "QuickDraft", "TradDraft", "Sealed", "TradSealed")  # real 17Lands formats
 
 def event_from_line(line):
-    """EventName from a raw DraftPack log line (escaped or plain JSON), or ''."""
+    """Event name from a raw log line (escaped or plain JSON), or ''. Drafts carry `EventName`;
+    the Sealed deck-build Course line carries `InternalEventName` ('MWM_SOS_Sealed_<date>')."""
     m = re.search(r'EventName\\":\\"([^\\"]*)', line or "") \
-        or re.search(r'"EventName":"([^"]*)"', line or "")
+        or re.search(r'"(?:Internal)?EventName":"([^"]*)"', line or "")
     return m.group(1) if m else ""
 def apply_event(cfg, event):
-    """Adopt set/fmt auto-detected from a draft EventName ('QuickDraft_MKM_20260608' -> fmt, set)
-    unless given explicitly. The fmt slot is adopted only when it's a real 17Lands format — special
-    events (e.g. 'MWM_SOS_Cascade_BotDraft') put junk there, which would query a dataset that
-    doesn't exist; the ratings proxy fallback covers whatever format we keep."""
+    """Adopt set/fmt auto-detected from an event name unless given explicitly. Draft events lead
+    with the format ('QuickDraft_MKM_20260608'); Sealed events prefix it ('MWM_SOS_Sealed_<date>'),
+    so we scan ALL underscore parts for a real 17Lands format rather than only the first. Junk-fmt
+    special events (e.g. 'MWM_SOS_Cascade_BotDraft') match nothing here and keep the default; the
+    ratings proxy fallback covers whatever format we keep. The set is the 2nd part by convention."""
     parts = (event or "").split("_")
     if len(parts) >= 2 and parts[1] and not cfg.get("set_explicit"):
         cfg["set"] = parts[1]
-    if parts and parts[0] in KNOWN_FMTS and not cfg.get("fmt_explicit"):
-        cfg["fmt"] = parts[0]
+    if not cfg.get("fmt_explicit"):
+        for p in parts:
+            if p in KNOWN_FMTS:
+                cfg["fmt"] = p
+                break
 
 def _last_stream_line(needle, max_age=STREAM_FRESH_SECS):
     """Return the last line containing `needle` from the LOCAL capture stream — but only if the
@@ -187,3 +192,48 @@ def pull_picked(cfg):
         raise SystemExit("No PickedCards (Quick) or MakePick history (Premier) in Player.log. "
                          "Has the draft started?")
     return picked, _premier_event(text)
+def _scan_file_sealed(path):
+    """Stream `path` line by line and return (ids, event) for the LAST sealed deck-build pool: the
+    singular deck-select Course payload (`{"Course":{...}`) carrying a top-level `"CardPool":[...]`.
+    Filtering to `"Course":{` excludes the plural `{"Courses":[...]}` event-hub list (whose first
+    CardPool belongs to whatever course is listed first, e.g. a ColorChallenge) and the bare
+    `{"CourseId":...}` echo. Line-streamed (not slurped) so a multi-hundred-MB capture stream stays
+    memory-light. Returns (None, '') if no such line exists."""
+    best = (None, "")
+    try:
+        with open(path, "r", encoding="utf-8", errors="replace") as f:
+            for line in f:
+                if '"Course":{' in line and '"CardPool":[' in line:
+                    ids = _parse_array(line, "CardPool")
+                    if ids:
+                        best = (ids, event_from_line(line))   # keep the most recent match
+    except OSError:
+        return (None, "")
+    return best
+
+def pull_sealed(cfg):
+    """Return (pool_ids, event) for a Sealed deck-build pool. Sealed has no DraftPack/Draft.Notify
+    and no pick stream — the entire 6-pack pool (84 cards, with duplicates) is granted at once on the
+    deck-builder's Course line as a top-level `"CardPool":[id,...]` array. That line is logged ONCE
+    when the builder opens and then scrolls out of the live log tail as you play, so we read the
+    capture daemon's full-history STREAM mirror first (it retains far more, and in SSH mode the daemon
+    has already pulled the remote bytes locally), then the live log. Set/fmt come from the course's
+    `InternalEventName` ('MWM_SOS_Sealed_<date>')."""
+    paths = ([STREAM] if os.path.exists(STREAM) else []) \
+        + ([os.path.expanduser(cfg["log"])] if _read_mode(cfg) == "local" else [])
+    for path in paths:
+        ids, event = _scan_file_sealed(path)
+        if ids:
+            return ids, event
+    # SSH last resort: the allowlisted tail|grep|tail-1 — only finds the pool if it's still in the
+    # live tail (i.e. the builder was just opened). The STREAM path above is the reliable one.
+    if _read_mode(cfg) == "ssh":
+        line = _last_log_line(cfg, "CardPool")
+        if '"Course":{' in (line or ""):
+            ids = _parse_array(line, "CardPool")
+            if ids:
+                return ids, event_from_line(line)
+    raise SystemExit("No Sealed CardPool found in the log/capture. Open the sealed event's deck "
+                     "builder in Arena (with Detailed Logs / Plugin Support enabled) so the pool is "
+                     "written to the log; if reading over SSH, make sure the capture daemon is "
+                     "running (it mirrors the pool even after it scrolls out of the live tail).")

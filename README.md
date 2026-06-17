@@ -63,6 +63,10 @@ there's a `./mtg-draft.sh` wrapper too. Nothing to `pip install` — it's standa
 Want it to update on its own? Run **`watch`** in a side pane and it reprints the ranked table every
 time a new pack appears.
 
+Playing **Sealed** instead? Open the event's deck builder in Arena, then run
+`python3 src/mtg-draft.py sealed` — it reads your whole 84-card pool from the log, ranks every card,
+and prints a category/curve breakdown (with copy counts) to build from.
+
 ## Two ways to use it
 
 **🧍 Solo — no AI, no API key.** The whole ranking engine is plain Python over cached 17Lands +

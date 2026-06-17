@@ -86,6 +86,10 @@ python3 src/mtg-draft.py pull
 # Audit your picks so far: creatures/spells/lands split, curve, on/off-color, CABS check
 python3 src/mtg-draft.py pool
 
+# Sealed: read your whole 6-pack pool from the log (deck-builder open in Arena), rank it + show
+# oracle text, then a category/curve breakdown that keeps copy counts ("Tackle Artist x3")
+python3 src/mtg-draft.py sealed
+
 # Stream: auto-print the ranked table every time a new pack appears (run in its own terminal)
 python3 src/mtg-draft.py watch
 
@@ -219,6 +223,11 @@ Paths resolve relative to the repo root regardless of where you invoke from, so
    `DraftPack` array (carrying `PickedCards` + `EventName` on the same line); Premier/Traditional
    (human) drafts have no `DraftPack` — there the pack is the last `Draft.Notify` (`PackCards` CSV),
    the pool is rebuilt from `MakePick` (`GrpIds`), and set/fmt come from the event-join course line.
+   **Sealed** has neither — `sealed` reads the deck-builder's `"Course":{…"CardPool":[…]…}` line
+   (the whole 84-card pool at once; set/fmt from its `InternalEventName`). That line is logged once
+   when the builder opens and scrolls out of the live tail quickly, so `sealed` scans the capture
+   daemon's full-history stream mirror first (filtering to the singular `"Course":{` payload so the
+   plural `"Courses":[…]` event-hub list — whose first `CardPool` may be another event — is ignored).
 2. 17Lands `card_ratings/data` for the set+format provides GIH WR / IWD / ALSA **and** the
    `mtga_id` for every card — so packs join to stats directly by ID (no fragile name-matching).
    Cached 24h in `data/cache/`.

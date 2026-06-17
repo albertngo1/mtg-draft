@@ -174,6 +174,7 @@ If the live read ever fails, fall back to the manual flow: have the player read 
 | `python3 src/mtg-draft.py cards` | dump the whole set's lean per-card data as JSON — load into context once per draft so each pick is a lookup, not a re-fetch |
 | `python3 src/mtg-draft.py pull` | read the current pack from `Player.log` (Quick `DraftPack` or Premier `Draft.Notify`), rank it + show card text |
 | `python3 src/mtg-draft.py pool` | audit picks so far: creatures/spells/lands, curve, CABS check |
+| `python3 src/mtg-draft.py sealed` | read a **Sealed** pool from the log and print the ranked table + pool counts (deckbuild) |
 | `python3 src/mtg-draft.py watch` | stream the ranked table standalone each time a new pack appears |
 | `python3 src/mtg-draft.py rank ID...` | rank an explicit list of Arena card IDs |
 | `python3 src/mtg-draft.py resolve ID...` | `name\|cmc\|color\|type` for IDs (handy for deck audits) |
@@ -188,6 +189,21 @@ only when it's a real 17Lands format — special events (`MWM_SOS_...`) put junk
 log from another machine is opt-in via `--ssh` / `--ssh-key` (or `MTG_SSH` / `MTG_SSH_KEY`) — see
 ARCHITECTURE.md's "Advanced: read the log from another machine (SSH)" section (and its warning that
 the key must run a normal login shell, **not** a forced-command / reverse-tunnel key).
+
+**Sealed (`sealed` command):** Sealed has no pack/pick stream — the whole 6-pack pool (84 cards
+with duplicates) is granted at once on the deck-builder's `"Course":{…"CardPool":[…]…}` log line,
+which is written **once when the builder opens** and then scrolls out of the live tail as you play.
+So `sealed` reads the **capture daemon's full-history STREAM mirror** first (in SSH mode the daemon
+has already pulled the remote bytes locally, so no round-trip) and falls back to the live log — keep
+the capture running. It prints the same GIH-WR-ranked table + "what each card does" as `pull`,
+followed by a `pool`-style category/curve breakdown that **keeps copy counts** (so you can see
+"Tackle Artist x3"). set/fmt auto-detect from the event's `InternalEventName`
+(`MWM_SOS_Sealed_<date>` → set SOS, fmt Sealed; the Sealed dataset auto-proxies to PremierDraft
+history if 17Lands has none for the set). The whole pool is all five colors, so it prints with **no
+on-color marks** — pass `--colors WB` etc. once you've picked a build to mark it. Then build to the
+same targets as draft (~17 lands / 14–16 creatures / rest removal+bombs); in Sealed you play the
+best deck the pool supports, so weight raw card quality + bombs + removal density over the format's
+draft-archetype tiers.
 
 **Caching (so you don't re-query every pick):** the pack→stats join is by `mtga_id`, which 17Lands
 already provides — so Scryfall is only needed for cost/oracle-text. `warm` pulls the whole set from
