@@ -334,6 +334,17 @@ These are the most common drafting mistakes; watch the player's pool for them an
 - **Splashing:** only impactful 4–6 drops, and only with real fixing. **Never splash a 2-drop** (it
   wants to be cast on curve; a splash can't deliver early mana). Watch the greedy base — double-pip
   cards (e.g. `1UURR`) already strain a 2-color manabase.
+- **Run the splash check at deckbuild — don't wait to lose first.** Before locking a 2-color build,
+  do three passes so a near-free splash isn't missed: **(1)** list the best cards you're leaving in
+  the sideboard — if a premium removal spell or bomb is among them, it's a splash candidate; **(2)**
+  count the fixing *already in the build* (basic-land fetchers, mana rocks, duals) — if ≥3 sources
+  point at that color, a **single-pip reactive** card (removal) is nearly free, so take it (this is
+  the Splash Rule of Three's exception — the fixing is sunk cost, the splash rides it); **(3)** the
+  splash replaces your **worst filler**, never a real playable, so it costs nothing. Corollary for
+  in-game diagnosis: when a built deck keeps getting **outclassed / can't answer their bombs**, the
+  fix is **more removal — including an off-color splash if the fixing's already there — not more
+  bodies.** A "clean two-color / be boring" bias is right by default but must not veto a near-free
+  premium-removal splash.
 - **Deckbuild target:** ~17 lands, ~14–16 creatures, the rest removal/tempo + bombs.
 
 ## Drafting craft (Reid Duke, "Level One" — drafting only, not gameplay)
@@ -485,6 +496,11 @@ and it's the antidote to the "answer-heavy / can't-close, too many durdle spells
 
 ## Notes / gotchas
 
+- **Legend rule at deckbuild:** before running multiple copies of a card to pad creature/spell
+  count, check whether it's **Legendary** — extra copies are dead draws (you can only keep one on
+  the battlefield), so a 2nd/3rd copy is a non-card, not a body. Cut to one and fill the slot with a
+  real card. (`resolve`/`cards` print the full type line, e.g. `Legendary Creature — …`.) Sealed
+  pools especially tempt this, since they hand you duplicate copies of a legend.
 - Scryfall `cards/arena` returns the front face for MDFCs; the script strips `//` for matching.
 - The **17Lands client app records drafts only — it gives no live pick suggestions.** This tool is
   the live layer; the client is for post-draft review.
