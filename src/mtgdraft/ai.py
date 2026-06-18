@@ -34,6 +34,18 @@ give a one-line take. Principles to apply:
   MKM's clean two-color guilds concentrate less (more cards transfer). Judge the CARD — cost, role, fit.
 - GIH is INFLATED for payoff / Converge / build-around cards (flagged `inflated`): the win rate reflects
   decks built to abuse them, so discount them hard for a plain 2-color deck.
+- TYPAL / TRIBAL SETS — tribal CONCENTRATION is a primary build axis, not a footnote. When the deck-state
+  carries a `tribal` read (dominant tribe, how many creatures FEED it, payoffs and whether they're fed) or a
+  card is flagged `changeling` / `tribal_payoff`, judge the pick through it — this is the typal instance of
+  the archetype-conditional rule:
+  * Credit a pick that ADDS to the dominant tribe, and value `changeling` cards UP — they count as every
+    creature type, so they're pure tribal glue that feeds every payoff.
+  * A `tribal_payoff` (lord / anthem / "whenever a <Type> enters" / Patchwork-Banner "chosen type") is only
+    worth its number when the tribe is DENSE enough to turn it on (~3+ of that type); unfed, it's a stranded
+    build-around — its GIH is the number of decks that HAD the tribe, not yours, so discount hard.
+  * DING an OFF-TRIBE creature (a Mouse in a Birds deck): a "false friend" whose tribal upside is dead even
+    when its raw GIH looks fine — name the mechanism (its number came from the deck that was actually that
+    tribe). A coherent fed tribe is a real closer; a scatter of five mini-tribes turns on nothing.
 - BREAD priority: bombs > premium removal > evasion > efficient creatures > filler. Threats beat answers;
   stop taking removal past ~3-4. Bias toward proactive threats and a real closer (evasion), not a 9th answer.
 - Deck shape (Be Boring / CABS): ~15-18 creatures, 5-7 two-drops, 3-4 removal, cap ~5-6 at 5+ MV;
@@ -90,6 +102,10 @@ def _slim(c):
     if c.get("gih"):       d["gih"] = c["gih"]            # tiebreaker only — listed last
     if c.get("tags"):      d["tags"] = c["tags"]
     if c.get("inflation"): d["inflated"] = c["inflation"]["kind"]
+    if c.get("changeling"): d["changeling"] = True       # counts as every tribe — glue, value up
+    if c.get("tribal_payoff"):                           # rewards a tribe — only on if that tribe is dense
+        tp = c["tribal_payoff"]
+        d["tribal_payoff"] = "/".join(tp.get("tribes") or []) + ("/chosen" if tp.get("flex") else "")
     if c.get("wheel"):     d["wheeled"] = True
     return d
 
@@ -121,6 +137,7 @@ def pick_takes(draft, top=6):
                               "removal": run.get("removal_est", 0), "two_drops": run.get("two_drops", 0),
                               "five_plus": five_plus, "curve": curve,
                               "themes": run.get("themes", {}),
+                              "tribal": run.get("tribal_readable", ""),
                               "needs": run.get("needs_readable") or run.get("needs", []),
                               "premiums_passed": run.get("premiums_passed_readable", "")},
             "took": _slim(_enrich(tk)) if tk else None,
@@ -190,8 +207,17 @@ def draft_summary(draft):
         "sequencing note, and matchup context (when you're the beatdown vs. the control). Build the 40 ONLY "
         "from cards in the pool. Be concrete and concise — this is a post-draft review the player learns from."
     )
+    tribal = a.get("tribal") or {}
+    tribal_line = a.get("tribal_readable") or "—"
+    if tribal.get("payoffs"):
+        unfed = [p["name"] for p in tribal["payoffs"] if not p.get("fed")]
+        if unfed:
+            tribal_line += f" (UNFED payoffs: {', '.join(unfed)})"
+        if tribal.get("off_tribe"):
+            tribal_line += f" — off-tribe bodies: {', '.join(tribal['off_tribe'][:6])}"
     user = (f"Set/format: {draft.get('set')} {draft.get('fmt')}. Final colors: {a.get('colors')}. "
             f"Archetype lean: {a.get('archetype_lean') or a.get('archetype') or '—'}. "
+            f"Tribal coherence: {tribal_line}. "
             f"Final deck-state: creatures {final.get('creatures')}, spells {final.get('spells')}, "
             f"removal~{final.get('removal_est')}, two-drops {final.get('two_drops')}, "
             f"curve {final.get('curve')}.\n\nPICKS (in order):\n{json.dumps(picks)}\n\n"

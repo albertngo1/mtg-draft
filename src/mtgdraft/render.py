@@ -14,10 +14,16 @@ def print_pool_line(picked):
         return
     from collections import Counter
     scry = load_scry()
-    names = Counter((scry.get(str(i), {}).get("name") or f"<{i}?>").split("//")[0].strip()
-                    for i in picked)
-    parts = [f"{n} x{k}" if k > 1 else n for n, k in sorted(names.items())]
-    print(f"  POOL ({sum(names.values())}): " + " · ".join(parts))
+    cnt, color = Counter(), {}
+    for i in picked:
+        rec = scry.get(str(i), {})
+        n = (rec.get("name") or f"<{i}?>").split("//")[0].strip()
+        cnt[n] += 1
+        color[n] = rec.get("color") or "C"
+    # color tag per card so on/off-color is visible at a glance (the auto-detected colors in the
+    # table can be polluted by stray off-color picks — the agent judges on/off from these tags).
+    parts = [f"{n}({color[n]})" + (f"x{k}" if k > 1 else "") for n, k in sorted(cnt.items())]
+    print(f"  POOL ({sum(cnt.values())}): " + " · ".join(parts))
 
 def print_deck_state():
     """Print the FULL strategic deck-state dashboard read from the structured store
@@ -41,7 +47,9 @@ def print_deck_state():
         themes = a.get("themes") or {}
         if themes:
             print("  THEMES: " + " · ".join(f"{k} {v}" for k, v in list(themes.items())[:6]))
-        if a.get("tribes_readable"):
+        if a.get("tribal_readable"):                # coherence read (dominant tribe fed-count + payoffs)
+            print(f"  TRIBES: {a['tribal_readable']}")
+        elif a.get("tribes_readable"):
             print(f"  TRIBES: {a['tribes_readable']}")
         if a.get("open_color_readable"):
             print(f"  OPEN (premiums flowing late): {a['open_color_readable']}")
@@ -81,7 +89,9 @@ def print_draft_summary(state, n_drafts, path):
         if a.get("themes"):
             th = "  ".join(f"{t}:{n}" for t, n in list(a["themes"].items())[:8])
             print(f"  THEMES:  {th}")
-        if a.get("tribes_readable"):
+        if a.get("tribal_readable"):
+            print(f"  TRIBES:  {a['tribal_readable']}")
+        elif a.get("tribes_readable"):
             print(f"  TRIBES:  {a['tribes_readable']}")
         if a.get("archetype_lean"):
             print(f"  ARCHETYPE LEAN:  {'  ·  '.join(a['archetype_lean'])}")

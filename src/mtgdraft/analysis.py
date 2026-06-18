@@ -64,6 +64,59 @@ _TAG_RX = [
     ("fractal",         re.compile(r"\bfractal\b", re.I)),                  # Quandrix 0/0 +1/+1-counter token
     ("flashback",       re.compile(r"\bflashback\b|cast .{0,30}from your graveyard", re.I)),  # Lorehold gy value
 ]
+# --- Typal / tribal detection (set-agnostic) -----------------------------------------------------
+# In MTG oracle text creature types are Capitalized when used as a type ("other Squirrels you
+# control", "whenever a Bird enters"), so we capture Capitalized tokens inside genuinely typal
+# phrasings and drop the non-type words a capitalized-token grab would otherwise catch.
+_NOT_A_TRIBE = {"Creature", "Creatures", "Token", "Tokens", "Permanent", "Permanents", "Player",
+                "Players", "Opponent", "Opponents", "Card", "Cards", "Spell", "Spells", "Land",
+                "Lands", "Color", "Colors", "Counter", "Counters", "Artifact", "Enchantment",
+                "This", "Whenever", "When", "Target", "Each", "Another", "Other", "Attacking",
+                "Blocking", "Blocked", "Tapped", "Untapped", "Defending", "Nonland", "Nontoken",
+                "Legendary", "Basic", "Snow", "Modified", "Equipped", "Enchanted", "Saddled",
+                "Chosen", "Named", "Up", "All", "Any", "Until", "Their", "Your", "Damage",
+                "Noncreature", "Nonland", "Sacrificed", "Attacked"}
+_IRREGULAR = {"mice": "Mouse", "wolves": "Wolf", "elves": "Elf", "dwarves": "Dwarf",
+              "thieves": "Thief", "leeches": "Leech", "foxes": "Fox", "sphinxes": "Sphinx"}
+def _norm_tribe(s):
+    """Normalize a captured payoff-tribe token to its canonical singular Capitalized form so it
+    matches Scryfall subtypes ('Squirrels'->'Squirrel', 'Mice'->'Mouse'). Leaves -ss/-us singulars
+    (Fungus) alone."""
+    k = (s or "").strip().lower()
+    if k in _IRREGULAR:
+        return _IRREGULAR[k]
+    if k.endswith("s") and not k.endswith(("ss", "us")) and len(k) > 3:
+        k = k[:-1]
+    return k.capitalize()
+_CHANGELING_RX = re.compile(r"is every creature type|\bchangeling\b", re.I)
+# Typal-payoff phrasings → capture the referenced creature type(s). Patchwork-Banner-style
+# "of the chosen type" is a FLEX anthem (names whatever your dominant tribe is).
+_PAYOFF_RXS = [
+    re.compile(r"\b([A-Z][a-z]+)s?\s+(?:creatures?\s+)?you control\s+(?:get|gets|gain|gains|have|has)\b"),
+    re.compile(r"whenever (?:a|an|another)\s+([A-Z][a-z]+)(?:\s+or\s+(?:a|an|another)?\s*([A-Z][a-z]+))?\b"),
+    re.compile(r"for each (?:other\s+)?([A-Z][a-z]+)\b"),
+    re.compile(r"\b([A-Z][a-z]+)\s+spells?\s+you cast\b"),
+]
+def _changeling(meta):
+    return bool(_CHANGELING_RX.search(meta.get("text", "") or ""))
+def _tribal_payoff(meta):
+    """If the card rewards a creature type (lord/anthem/typal-ETB/count/cast payoff), return
+    {tribes:[...], flex:bool, kind:str}; else None. `flex` = names "the chosen type" (Patchwork
+    Banner), so it serves whatever tribe you're densest in. Set-agnostic — works off oracle text."""
+    text = meta.get("text", "") or ""
+    if not text:
+        return None
+    flex = bool(re.search(r"of the chosen type", text, re.I))
+    tribes = set()
+    for rx in _PAYOFF_RXS:
+        for m in rx.finditer(text):
+            for g in m.groups():
+                if g:
+                    tribes.add(g)
+    tribes = {_norm_tribe(t) for t in (tribes - _NOT_A_TRIBE)}
+    if not tribes and not flex:
+        return None
+    return {"tribes": sorted(tribes), "flex": flex, "kind": "anthem" if flex else "typal"}
 def _card_tags(meta):
     """Tag a card by mechanic/theme + role so pool-wide archetype leanings can be aggregated."""
     text = meta.get("text", "") or ""
@@ -71,6 +124,10 @@ def _card_tags(meta):
     tags = [name for name, rx in _TAG_RX if rx.search(text)]
     if _REMOVAL_RX.search(text):
         tags.append("removal")
+    if _changeling(meta):
+        tags.append("changeling")
+    if _tribal_payoff(meta):
+        tags.append("tribal-payoff")
     if _kind(tl) == "creature" and isinstance(cmc, int):
         if cmc <= 2:
             tags.append("early-creature")
@@ -94,6 +151,80 @@ def _tribes_readable(tribes, minimum=3):
     """Plain-English top tribes worth coaching on: 'Detective 5, Human 4'. Empty when no
     subtype reaches `minimum` (a 1-of isn't a tribe)."""
     return ", ".join(f"{st} {n}" for st, n in tribes.items() if n >= minimum)
+_TRIBE_LIVE = 3   # a tribe is "live" (turns on its payoffs) at this many members (incl. changelings)
+def _castable_in(card, colors):
+    """True if `card` is playable in a deck of `colors` (every colored pip is on-color; colorless
+    always qualifies). `colors` None/empty = no filter (whole pool)."""
+    if not colors:
+        return True
+    on = set(colors.upper())
+    return all(ch in on for ch in (card.get("color") or "") if ch in "WUBRG")
+def tribal_read(cards, colors=None):
+    """Tribal-COHERENCE read over a set of (enriched) cards — the axis that actually decides value in
+    a typal set (BLB Squirrels/Birds, etc.), which raw color/curve metrics miss. Returns the dominant
+    tribe, how many creatures FEED it (changelings count as every tribe — pure glue), the tribal
+    PAYOFFS present and whether each is fed enough to turn on, and the off-tribe 'false friend' count.
+    Pass `colors` to read only the cards castable in the deck's colors — without it, off-color cuts in
+    the pool pollute the dominant tribe (a WU Birds deck reads as 'Mouse' off its cut red Mice). Empty
+    dict when there's no tribal axis (no tribe reaches _TRIBE_LIVE and no payoff) — so non-typal
+    decks/sets stay quiet and this never invents synergy that isn't there."""
+    from collections import Counter
+    cards = [c for c in cards if _castable_in(c, colors)]
+    creatures = [c for c in cards if _kind(c.get("type_line") or c.get("type")) == "creature"]
+    tribes = Counter()
+    changelings = []
+    for c in creatures:
+        if c.get("changeling") or "changeling" in (c.get("tags") or []):
+            changelings.append(c["name"])
+        for st in c.get("subtypes") or []:
+            tribes[st] += 1
+    n_change = len(changelings)
+    payoffs = [c for c in cards if c.get("tribal_payoff") or "tribal-payoff" in (c.get("tags") or [])]
+    dominant, dom_count = (tribes.most_common(1)[0] if tribes else (None, 0))
+    fed = dom_count + n_change
+    if (fed < _TRIBE_LIVE) and not payoffs:
+        return {}
+    def _fed(tp):
+        if not tp:
+            return None
+        if tp.get("flex"):
+            return True
+        return any((tribes.get(t, 0) + n_change) >= _TRIBE_LIVE for t in tp.get("tribes") or [])
+    payoff_rows = []
+    for c in payoffs:
+        tp = c.get("tribal_payoff") or {"tribes": [], "flex": True, "kind": "typal"}
+        payoff_rows.append({"name": c["name"], "tribes": tp.get("tribes") or [],
+                            "flex": bool(tp.get("flex")), "kind": tp.get("kind"),
+                            "fed": bool(_fed(tp))})
+    off = [c["name"] for c in creatures
+           if dominant and not (c.get("changeling") or "changeling" in (c.get("tags") or []))
+           and dominant not in (c.get("subtypes") or [])]
+    return {
+        "dominant": dominant, "dominant_count": dom_count, "changelings": changelings,
+        "fed": fed, "creatures": len(creatures),
+        "concentration": round(fed / len(creatures), 2) if creatures else 0.0,
+        "payoffs": payoff_rows, "payoffs_fed": sum(1 for p in payoff_rows if p["fed"]),
+        "off_tribe": off,
+    }
+def tribal_readable(read):
+    """Plain-English tribal coherence: 'Squirrel 11/16 (incl 2 changelings) · 3 payoffs fed'. ''
+    when there's no tribal axis or no dominant tribe worth coaching on."""
+    if not read or not read.get("dominant"):
+        return ""
+    parts = [f"{read['dominant']} {read['fed']}/{read['creatures']}"]
+    nch = len(read.get("changelings") or [])
+    if nch:
+        parts[0] += f" (incl {nch} changeling{'s' if nch > 1 else ''})"
+    pcount = len(read.get("payoffs") or [])
+    if pcount:
+        fedp = read.get("payoffs_fed", 0)
+        tail = f"{pcount} payoff{'s' if pcount > 1 else ''}"
+        tail += " fed" if fedp == pcount else f", {fedp}/{pcount} fed"
+        parts.append(tail)
+    noff = len(read.get("off_tribe") or [])
+    if noff:
+        parts.append(f"{noff} off-tribe")
+    return " · ".join(parts)
 def _archetype_lean(themes, curve, counts):
     """Rank the pool's strongest archetype signals (themes manifest, not prescribe). Aggro is a
     curve/creature read; the rest are scored by theme density and only the top couple are returned."""

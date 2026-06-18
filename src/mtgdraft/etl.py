@@ -3,8 +3,9 @@ from .config import DRAFTS, REPLAY, ROOT, STREAM
 from .sources import load_scry, ratings, resolve_ids, stale_ids
 from .grades import load_grades_any, load_guide_notes
 from .analysis import (COLOR_NAMES, PREMIUM_GIH, _REMOVAL_RX, _archetype_lean, _card_tags,
-                       _color_phrase, _deck_needs, _inflation, _kind, _open_color_signal,
-                       _premiums_seen_by_color, _tribes, _tribes_readable)
+                       _changeling, _color_phrase, _deck_needs, _inflation, _kind,
+                       _open_color_signal, _premiums_seen_by_color, _tribal_payoff, _tribes,
+                       _tribes_readable, tribal_read, tribal_readable)
 from .logread import apply_event, infer_colors
 
 def _botdraft_payloads(text):
@@ -163,6 +164,11 @@ def _card_enricher(cfg, ids):
         inflation = _inflation(meta, tags)
         if inflation:                              # only present when the GIH is selection-bias-inflated
             c["inflation"] = inflation
+        if _changeling(meta):                      # counts as every creature type — tribal glue
+            c["changeling"] = True
+        payoff = _tribal_payoff(meta)
+        if payoff:                                 # lord/anthem/typal payoff → which tribe it rewards
+            c["tribal_payoff"] = payoff
         note = guide.get(name.lower())
         if note:                                   # expert per-card note from the LoL set guide, if any
             c["guide"] = note
@@ -232,6 +238,7 @@ def analyze_pool(pool, picks, colors):
     themes = Counter(t for c in pool for t in c.get("tags", []))
     lean = _archetype_lean(themes, curve, counts)
     tribes = _tribes(pool)                          # creature-subtype counts (Detective tribal etc.)
+    tribal = tribal_read(pool, colors)               # coherence: on-color dominant tribe + payoffs fed
     # open-color read: premium cards (GIH >= 55%) still SEEN late (pick >= 5) by color — taken +
     # passed, NOT just passed. A premium surviving to pick 5+ means the color is underdrafted upstream
     # whether or not you took it; reading off *passed* would be blind to your own drafted colors (you
@@ -248,6 +255,7 @@ def analyze_pool(pool, picks, colors):
                     "lands": 17, "five_plus_cap": "~5-6"},
         "themes": dict(themes.most_common()), "archetype_lean": lean,
         "tribes": tribes, "tribes_readable": _tribes_readable(tribes),
+        "tribal": tribal, "tribal_readable": tribal_readable(tribal),
         "open_color_signal": open_signal, "open_color_readable": open_readable,
         "signals": signals[:12], "flags": flags,
     }
@@ -275,6 +283,7 @@ def _running_metrics(taken_cards, passed_cards, seen_cards, scry):
     seen_prem_by_color = _premiums_seen_by_color(seen_cards)
     themes = Counter(t for c in taken_cards for t in c.get("tags", []))
     tribes = _tribes(taken_cards)                   # creature-subtype counts in the pool so far
+    tribal = tribal_read(taken_cards, colors)        # coherence: on-color dominant tribe + payoffs
     curve_d = {str(mv): curve[mv] for mv in sorted(curve)}
     needs = _deck_needs(len(taken_cards), counts.get("creature", 0), curve.get(2, 0), removal, curve_d)
     return {"n": len(taken_cards), "colors": colors,
@@ -289,7 +298,8 @@ def _running_metrics(taken_cards, passed_cards, seen_cards, scry):
             "premiums_seen_by_color": dict(seen_prem_by_color),
             "premiums_seen_readable": _color_phrase(seen_prem_by_color),
             "themes": dict(themes.most_common()),
-            "tribes": tribes, "tribes_readable": _tribes_readable(tribes)}
+            "tribes": tribes, "tribes_readable": _tribes_readable(tribes),
+            "tribal": tribal, "tribal_readable": tribal_readable(tribal)}
 def enrich_draft(cfg, draft):
     """Resolve every id in a reconstructed draft to names+ratings; offered lists sorted by GIH WR.
     Each pick carries (a) a cumulative `running` deck-state and (b) `wheel` flags on offered cards
@@ -400,14 +410,44 @@ def _replay_ai_enabled():
     return os.path.exists(os.path.join(ROOT, "claude-token.txt"))
 def _make_replay(draft_json, out_md):
     """Best-effort: render the coached replay for a completed draft into its folder. Subprocess so a
-    replay failure can never disturb the ETL/capture path. With AI takes enabled this is one
-    claude -p call (~2 min) — callers gate on replay.md not existing, so it runs ONCE per draft."""
+    replay failure can never disturb the ETL/capture path. With AI takes enabled this is TWO sequential
+    claude -p calls (per-pick takes + closing audit, ~2 min each, 240s inner timeout apiece), so the
+    outer cap must exceed their sum — 300s used to kill a slow render mid-flight, silently dropping the
+    AI commentary that the render-once guard then locked in forever (see _needs_replay)."""
     cmd = [sys.executable, REPLAY, draft_json, out_md]
     cmd.append("--ai" if _replay_ai_enabled() else "--no-ai")   # explicit: replay now defaults AI on
     try:
-        subprocess.run(cmd, check=False, capture_output=True, timeout=300)
+        subprocess.run(cmd, check=False, capture_output=True, timeout=600)
     except Exception:
         pass
+
+def _needs_replay(folder, replay_md, max_ai_retries=3):
+    """Should we (re)render this draft's replay.md? Yes when none exists yet. Additionally SELF-HEAL:
+    if AI takes are enabled but a prior render produced none (a transient claude failure — timeout,
+    401 during a token refresh, network blip — silently yields an AI-less replay that the old
+    render-once guard would lock in permanently), re-render to backfill the takes. Bounded by a sidecar
+    attempt counter so a *persistent* AI outage can't loop a multi-minute claude call on every poll."""
+    if not os.path.exists(replay_md):
+        return True
+    if not _replay_ai_enabled():
+        return False                                  # AI off → deterministic replay is final
+    try:
+        if "\U0001f916" in open(replay_md, encoding="utf-8").read():
+            return False                              # 🤖 takes already present — done
+    except Exception:
+        return False
+    marker = os.path.join(folder, ".replay_ai_attempts")
+    try:
+        n = int(open(marker).read().strip())
+    except Exception:
+        n = 0
+    if n >= max_ai_retries:
+        return False                                  # gave up — keep the AI-less deterministic replay
+    try:
+        open(marker, "w").write(str(n + 1))
+    except Exception:
+        pass
+    return True
 
 def refresh_current(cfg):
     """Parse the capture stream and persist every draft in it as a self-contained BUNDLE folder:
@@ -489,13 +529,14 @@ def refresh_current(cfg):
                 f.write(raw + "\n")
         except Exception:
             pass
-        # Render the replay ONCE, when the draft is first seen complete. Never re-render an
-        # existing replay.md: the latest complete draft stays "latest" until the next draft
-        # starts, and every refresh in that window would otherwise clobber it (losing AI takes,
-        # and with takes enabled, burning a ~2-min claude call per refresh). To re-render after
-        # a code change, run src/replay.py on the bundle by hand.
+        # Render the replay when the draft is first seen complete. We do NOT re-render a replay that
+        # already has its content (the latest complete draft stays "latest" until the next draft
+        # starts, and every refresh in that window would otherwise clobber it / burn a claude call) —
+        # but _needs_replay DOES retry, bounded, when AI takes were requested yet a transient failure
+        # produced an AI-less replay, so a missed run self-heals instead of locking in forever. To
+        # force a re-render after a code change, run src/replay.py on the bundle by hand.
         replay_md = os.path.join(folder, "replay.md")
-        if ((not is_latest) or _is_complete(state["picks"])) and not os.path.exists(replay_md):
+        if ((not is_latest) or _is_complete(state["picks"])) and _needs_replay(folder, replay_md):
             _make_replay(draft_json, replay_md)
         if is_latest:
             cur_path = os.path.join(DRAFTS, "current.json")

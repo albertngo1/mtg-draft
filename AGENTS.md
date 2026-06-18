@@ -64,9 +64,16 @@ python3 src/mtg-draft.py pull                  # set/fmt auto-detect from the dr
 
 That reads the **current** pack from `Player.log` (locally by default), and prints (a) a **`DECK`
 deck-state line** read from `data/drafts/current.json` — creature/spell counts, removal, two-drops,
-curve, archetype lean, top themes (`THEMES:`), a `TRIBES:` line of creature-subtype counts
-(e.g. `Detective 5`, only subtypes at ≥3 shown — surfaces an emergent tribal lane the way `THEMES:`
-surfaces mechanics), the open-color signal, premiums passed by color, and a `NEED`
+curve, archetype lean, top themes (`THEMES:`), a `TRIBES:` **tribal-coherence** line —
+the on-color dominant tribe and how many creatures FEED it (changelings count as every type, so
+they're shown as `incl N changelings`), how many tribal PAYOFFS (lords / anthems / "whenever a
+`<Type>` enters" / Patchwork-Banner "chosen type") you have and whether they're fed enough to turn
+on (~3+), and the count of OFF-TRIBE "false friend" bodies (e.g. `Bird 9/16 (incl 2 changelings) ·
+2 payoffs fed · 7 off-tribe`). In a typal set (BLB Squirrels/Birds, etc.) this is a **primary build
+axis, not a footnote** — a fed tribe is a real closer, a scatter of mini-tribes turns nothing on,
+and an off-tribe high-GIH card is a false friend whose number came from the deck that was actually
+that tribe. (Falls back to the old raw `Detective 5` subtype counts for non-typal pools.) Also the
+open-color signal, premiums passed by color, and a `NEED`
 line of **progress-scaled** gaps (so it reads as a live priority, not end-state alarm-bells at
 pick 3) — so the live deck picture is in front of you every pick; (b) a table ranked by GIH WR with
 on-color cards marked `▸`; and (c) a **"what each card does"** section with oracle text + P/T.
@@ -113,8 +120,13 @@ pick toward these gaps), offered cards carry `wheel` (true only on a real 8-play
 `tags`, and — when applicable — **`inflation`** (the card's GIH WR is selection-bias-inflated; a
 Converge/colors-of-mana or `{X}` card whose number reflects soup/big-X pilots, NOT your 2-color
 deck — the Snarl Song trap, with a plain-English caveat to read it well below the headline) and
-**`guide`** (the LoL set guide's expert one-liner on that card). The pool rolls up into `themes` +
-`archetype_lean` + `open_color_signal` (colors with premiums still SEEN — taken + passed — late,
+**`guide`** (the LoL set guide's expert one-liner on that card), plus the typal flags **`changeling`**
+(counts as every creature type — tribal glue, value it up) and **`tribal_payoff`** (`{tribes, flex,
+kind}` — the card rewards a creature type; `flex` = Patchwork-Banner "chosen type"). The `running`
+block also carries **`tribal` / `tribal_readable`** — the on-color tribal-coherence read (dominant
+tribe, fed count incl. changelings, payoffs and whether fed, off-tribe count) so you can lead with
+tribal fit on every pick of a typal set. The pool rolls up into `themes` +
+`archetype_lean` + `tribal` / `tribal_readable` + `open_color_signal` (colors with premiums still SEEN — taken + passed — late,
 pick≥5) — use these for signal reads and deckbuilding, don't recompute them.
 **Read openness from premiums SEEN late, NOT from premiums *passed*.** A premium surviving to pick
 5+ means that color is underdrafted upstream *whether or not you took it*. `passed_by_color` /
