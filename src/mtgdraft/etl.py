@@ -149,7 +149,7 @@ def _card_enricher(cfg, ids):
         c = {"id": cid, "name": name,
              "color": (s.get("color") if s else meta.get("color")) or "C",
              "rarity": ((s.get("rarity") if s else meta.get("rarity")) or "?")[:1].upper(),
-             "cmc": meta.get("cmc"), "type": meta.get("type", ""),
+             "cmc": meta.get("cmc"), "mana": meta.get("mana"), "type": meta.get("type", ""),
              "type_line": meta.get("type_line", ""),
              "types": meta.get("types", []), "subtypes": meta.get("subtypes", []),
              "keywords": meta.get("keywords", []), "loyalty": meta.get("loyalty"),

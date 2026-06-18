@@ -152,12 +152,24 @@ def _tribes_readable(tribes, minimum=3):
     subtype reaches `minimum` (a 1-of isn't a tribe)."""
     return ", ".join(f"{st} {n}" for st, n in tribes.items() if n >= minimum)
 _TRIBE_LIVE = 3   # a tribe is "live" (turns on its payoffs) at this many members (incl. changelings)
+_PIP_RX = re.compile(r"\{([^}]+)\}")
 def _castable_in(card, colors):
-    """True if `card` is playable in a deck of `colors` (every colored pip is on-color; colorless
-    always qualifies). `colors` None/empty = no filter (whole pool)."""
+    """True if `card` is playable in a deck of `colors`. HYBRID-AWARE: parses the mana cost when
+    present so a hybrid pip ({W/B}, {2/R}) is castable if EITHER side is available (or it's
+    generic/Phyrexian), not treated as needing both colors. Falls back to the card's color letters
+    when no mana string is stored (older cache). `colors` None/empty = no filter (whole pool)."""
     if not colors:
         return True
     on = set(colors.upper())
+    mana = card.get("mana")
+    if mana:
+        for g in _PIP_RX.findall(mana):
+            parts = g.split("/")
+            # a pip is satisfiable if any option is generic/X/snow/Phyrexian (non WUBRG) or on-color
+            if any(p not in "WUBRG" for p in parts) or any(p in on for p in parts):
+                continue
+            return False                            # every option is an off-color colored pip
+        return True
     return all(ch in on for ch in (card.get("color") or "") if ch in "WUBRG")
 def tribal_read(cards, colors=None):
     """Tribal-COHERENCE read over a set of (enriched) cards — the axis that actually decides value in
