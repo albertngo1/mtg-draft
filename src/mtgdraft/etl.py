@@ -499,7 +499,20 @@ def refresh_current(cfg):
         else:
             date = _draft_date(d)
         meta.append((dcfg, fp, date))
-    latest_idx = max(range(len(drafts)), key=lambda i: (meta[i][2], i)) if drafts else -1
+    # "Latest" = the draft whose bytes sit LAST in the live stream (the actively-drafted one is always
+    # at the tail). This is TRUE physical recency, robust where the older keys fail: the EventName date
+    # ties across every same-day Quick draft (so position decided — fragile), and a bundle's frozen
+    # folder date embeds its CREATION clock-time, so a stale draft first written at 23:11 days ago would
+    # permanently outrank one written 16:09 today. The fingerprint-collapse above already kept each
+    # draft's most-complete instance, so a truncated re-dump of an old draft (short → dropped) can't
+    # hijack the tail. Tiebreak by list position. (Folder naming still uses the frozen date for
+    # idempotency — only the latest/current.json choice changed.)
+    def _end_off(d):
+        raw = d.get("raw") or ""
+        anchor = raw.rsplit("\n", 1)[-1] or raw
+        return text.rfind(anchor) if anchor else -1
+    ends = [_end_off(d) for d in drafts]
+    latest_idx = max(range(len(drafts)), key=lambda i: (ends[i], i)) if drafts else -1
     latest = None
     for idx, d in enumerate(drafts):
         is_latest = idx == latest_idx
