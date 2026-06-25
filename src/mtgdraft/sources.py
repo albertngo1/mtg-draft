@@ -170,7 +170,19 @@ def seventeen(set_code, fmt, days, refresh=False):
     start = end - datetime.timedelta(days=days)
     url = (f"https://www.17lands.com/card_ratings/data?expansion={set_code}"
            f"&format={fmt}&start_date={start}&end_date={end}")
-    data = json.loads(_get(url))
+    try:
+        data = json.loads(_get(url))
+    except Exception as e:
+        # 17Lands outage / network error: fall back to a stale cache if we have
+        # one, otherwise surface a clear error instead of an opaque URLError.
+        if os.path.exists(path):
+            print(f"  ⚠ 17Lands fetch failed ({e}); using stale cache "
+                  f"{os.path.basename(path)}")
+            with open(path) as f:
+                return json.load(f)
+        raise RuntimeError(
+            f"17Lands unavailable and no cache for {set_code}/{fmt}: {e}"
+        ) from e
     _atomic_json(path, data)
     return data
 def ratings(set_code, fmt, days, refresh=False):
