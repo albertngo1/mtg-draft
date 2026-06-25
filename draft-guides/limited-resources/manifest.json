@@ -3,11 +3,23 @@
   "scope": "audio podcast on YouTube: card-by-card set reviews (letter grades) + format overviews",
   "note": "Fingerprint of distilled scrape. sha1 = sha1 of the cleaned transcript .txt.",
   "counts": {
-    "sets": 2,
-    "videos_distilled": 12,
+    "sets": 4,
+    "videos_distilled": 19,
     "videos_no_captions": 0
   },
   "sets": {
+    "BLB": {
+      "tier": null,
+      "file": "BLB.md",
+      "video_ids": [
+        "2TOh-okDLcI",
+        "4NaGx5wf4j0",
+        "HwM8pIzhBB4",
+        "Ku1d5-hrqwc",
+        "NhnBSZyp8H8",
+        "ZXCGks2b5yU"
+      ]
+    },
     "MKM": {
       "tier": 1,
       "file": "MKM.md",
@@ -18,6 +30,13 @@
         "hUYXa1aOPck",
         "jSmDFHLHDcI",
         "lK8O-nmlVWE"
+      ]
+    },
+    "MSH": {
+      "tier": 1,
+      "file": "MSH.md",
+      "video_ids": [
+        "JM3Lz3tu7jY"
       ]
     },
     "SOS": {
@@ -34,16 +53,52 @@
     }
   },
   "videos": {
+    "2TOh-okDLcI": {
+      "set": "BLB",
+      "sha1": "9558a9396b842fa71b3eb03d4facb9be2b241d99",
+      "words": 12584,
+      "distilled": true
+    },
     "4FHYlsnnlnE": {
       "set": "MKM",
       "sha1": "f3e04b4feb7dd4fa317565a6789b7485a0d74ca4",
       "words": 16115,
       "distilled": true
     },
+    "4NaGx5wf4j0": {
+      "set": "BLB",
+      "sha1": "11c5aae39199d240f0228c9049857600dd8c4248",
+      "words": 48989,
+      "distilled": true
+    },
+    "HwM8pIzhBB4": {
+      "set": "BLB",
+      "sha1": "8962869432a3872297de6baba5c74af20024ea4d",
+      "words": 15796,
+      "distilled": true
+    },
+    "JM3Lz3tu7jY": {
+      "set": "MSH",
+      "sha1": "038fd9f4cfef59da02a706d3b3e35857d94cb527",
+      "words": 59639,
+      "distilled": true
+    },
+    "Ku1d5-hrqwc": {
+      "set": "BLB",
+      "sha1": "604e76653a7ff73503a84255802e35dd550ead75",
+      "words": 18997,
+      "distilled": true
+    },
     "NBxFmlK0Bho": {
       "set": "MKM",
       "sha1": "c2f3474f81e254768541446b4fa5957819747cfc",
       "words": 18074,
+      "distilled": true
+    },
+    "NhnBSZyp8H8": {
+      "set": "BLB",
+      "sha1": "52fb6cd6ff2c573913b26159a22d1da84c19285a",
+      "words": 16065,
       "distilled": true
     },
     "O1Up-bcloFM": {
@@ -62,6 +117,12 @@
       "set": "SOS",
       "sha1": "edf8ab9183ae2505cb038abab13fadcea2abf832",
       "words": 48006,
+      "distilled": true
+    },
+    "ZXCGks2b5yU": {
+      "set": "BLB",
+      "sha1": "b6b2f454fe2b1650d5c9ada7cf1043b3e4597da2",
+      "words": 29624,
       "distilled": true
     },
     "bsBoYVrt-mI": {

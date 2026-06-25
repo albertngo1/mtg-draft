@@ -3,8 +3,8 @@
   "scope": "draft-gameplay + set-strategy videos",
   "note": "Fingerprint of distilled scrape. sha1 = sha1 of the cleaned transcript .txt.",
   "counts": {
-    "sets": 31,
-    "videos_distilled": 145,
+    "sets": 32,
+    "videos_distilled": 148,
     "videos_no_captions": 1
   },
   "sets": {
@@ -214,6 +214,15 @@
         "ZrTcWpqC8s8",
         "oPLh3hNJDuM",
         "rmmOWYVAzbw"
+      ]
+    },
+    "MSH": {
+      "tier": null,
+      "file": "MSH-draft-guide.md",
+      "video_ids": [
+        "RpGwE20YyMU",
+        "SHVELf7oPL0",
+        "hXwSIsPU7B4"
       ]
     },
     "NEO": {
@@ -714,6 +723,12 @@
       "words": 8746,
       "distilled": true
     },
+    "RpGwE20YyMU": {
+      "set": "MSH",
+      "sha1": "57c460e31110d767d65ad06bdfdbfca68b70aaac",
+      "words": 17624,
+      "distilled": true
+    },
     "S1RN_A7F_ac": {
       "set": "MOM",
       "sha1": "0a70d222893506f200fb8fd897f134bd8fa7c5a0",
@@ -724,6 +739,12 @@
       "set": "ECL",
       "sha1": "d374b2af3797f7f69f882d1468d26f00b1aa9dc7",
       "words": 11316,
+      "distilled": true
+    },
+    "SHVELf7oPL0": {
+      "set": "MSH",
+      "sha1": "25ad600a093a2b33330a1f383e931eb3cbf4182f",
+      "words": 15813,
       "distilled": true
     },
     "STVSlZ0FYnA": {
@@ -976,6 +997,12 @@
       "set": "LTR",
       "sha1": "92f92b86e32fce65554c1640f56ee7ecdd6a7808",
       "words": 13512,
+      "distilled": true
+    },
+    "hXwSIsPU7B4": {
+      "set": "MSH",
+      "sha1": "814979016c85367aa6d883d9fd1980e910198a4b",
+      "words": 14803,
       "distilled": true
     },
     "haKoOwB8g9s": {

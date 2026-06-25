@@ -18,3 +18,4 @@ lens, and every WR in a soup format like SOS is archetype-conditional (multicolo
 | Set | Guide | Source | Captured |
 |-----|-------|--------|----------|
 | Secrets of Strixhaven (SOS) | [SOS.md](./SOS.md) | [mtg-sos-draft-guide](https://draftsim.com/mtg-sos-draft-guide/) | 2026-06-21 |
+| Marvel Super Heroes (MSH) | [MSH.md](./MSH.md) | [mtg-msh-draft-archetypes](https://draftsim.com/mtg-msh-draft-archetypes-6-3-26/) | 2026-06-23 |

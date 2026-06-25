@@ -107,7 +107,7 @@ def cell(c):
     parts.append(f'<b>{esc(name)}</b><br><sub>{badge}</sub><br>')
     # compact stat lines
     parts.append(f'<sub>GIH <b>{pct(gih(c))}</b> · IWD {signed(c.get("drawn_improvement_win_rate"))} '
-                 f'· ALSA {c.get("avg_seen",0):.1f} · {GLABEL} {ds_grade(c)}</sub><br>')
+                 f'· ALSA {(c.get("avg_seen") or 0):.1f} · {GLABEL} {ds_grade(c)}</sub><br>')
     parts.append(f'<sub>OH {pct(c.get("opening_hand_win_rate"))} · GD {pct(c.get("drawn_win_rate"))} '
                  f'· Play {pct(c.get("play_rate"))}</sub><br>')
     # AI take
@@ -139,6 +139,10 @@ CAVEAT = {
     "MKM": "> MKM is a grindy 2-color guild-midrange format, so GIH WR transfers honestly (little soup "
            "inflation). Ratings are 2024 MKM PremierDraft historical data. White pairs (Boros best) sit "
            "on top; black is the weakest color.\n",
+    "MSH": "> ⚠ EARLY DATA (updated 2026-06-25): MSH 17Lands data is filling in fast — **258 of 334 cards** "
+           "now have a GIH WR off ~1.4M PremierDraft games, but the format is still young so numbers keep "
+           "moving. Cards still lacking WR show blank stats; lean on the **CGB letter grade** + expert notes "
+           "for those. Treat WR as a real-but-provisional signal, not gospel — re-pull as samples grow.\n",
 }
 L.append(CAVEAT.get(SET, ""))
 L.append("## Contents\n")

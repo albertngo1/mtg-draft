@@ -1,0 +1,97 @@
+{
+  "channel": "Limited Level-Ups (Alex / Chord_O_Calls)",
+  "scope": "Limited-focused podcast/video: per-color card-by-card set reviews (letter grades) + rare/mythic review + prerelease/first-impressions guides + occasional early-access draft gameplay + weekly strategy deep-dives",
+  "note": "Fingerprint of distilled scrape. sha1 = sha1 of the cleaned transcript .txt.",
+  "counts": {
+    "sets": 1,
+    "videos_distilled": 11,
+    "videos_no_captions": 0
+  },
+  "sets": {
+    "MSH": {
+      "tier": 1,
+      "file": "MSH.md",
+      "video_ids": [
+        "G9kQKcUxWKA",
+        "HU-5U2k0Jww",
+        "HdxkWvtEphA",
+        "Ov5xyQBD3ww",
+        "STg2UF-x61I",
+        "X33UM8qKyYY",
+        "ZS223zzDB0Y",
+        "nOHD6VMQDOU",
+        "qb9q7F4rFA8",
+        "xAPh8JcXjUc",
+        "zGVOVbSYcwQ"
+      ]
+    }
+  },
+  "videos": {
+    "G9kQKcUxWKA": {
+      "set": "MSH",
+      "sha1": "d489bc3ef807d7a165a30e9e7dcc04699cc70c30",
+      "words": 13883,
+      "distilled": true
+    },
+    "HU-5U2k0Jww": {
+      "set": "MSH",
+      "sha1": "f7ab12c52bcc3bbc80905a14a9c4a38ba7f367c8",
+      "words": 6343,
+      "distilled": true
+    },
+    "HdxkWvtEphA": {
+      "set": "MSH",
+      "sha1": "c8ff3e0a7b0ce9056a57ffab1bffbbe71964e86f",
+      "words": 2767,
+      "distilled": true
+    },
+    "Ov5xyQBD3ww": {
+      "set": "MSH",
+      "sha1": "6e6529d7dc62dd09a2e6a68d83abb11a05487773",
+      "words": 28327,
+      "distilled": true
+    },
+    "STg2UF-x61I": {
+      "set": "MSH",
+      "sha1": "21facf50d826022a8fd92586b7d233caff30c56b",
+      "words": 8606,
+      "distilled": true
+    },
+    "X33UM8qKyYY": {
+      "set": "MSH",
+      "sha1": "41f1dd4360c167c517d7e32d170645f9a5ad2259",
+      "words": 8136,
+      "distilled": true
+    },
+    "ZS223zzDB0Y": {
+      "set": "MSH",
+      "sha1": "acd52f2f348eabadfa8b993063c3d5c7e6c68406",
+      "words": 6903,
+      "distilled": true
+    },
+    "nOHD6VMQDOU": {
+      "set": "MSH",
+      "sha1": "20b5fcf598e677cb09e812bef5622bdfc8f8b0c9",
+      "words": 9121,
+      "distilled": true
+    },
+    "qb9q7F4rFA8": {
+      "set": "MSH",
+      "sha1": "237f923af0d76b9042b5ff68722e5f7bd011eae5",
+      "words": 7479,
+      "distilled": true
+    },
+    "xAPh8JcXjUc": {
+      "set": "MSH",
+      "sha1": "fc75968c76ed699c51ac0d0248947d1c436e577a",
+      "words": 10105,
+      "distilled": true
+    },
+    "zGVOVbSYcwQ": {
+      "set": "MSH",
+      "sha1": "cb22852a8d1bf9a82c290ce2a9e9888308ab9f97",
+      "words": 9276,
+      "distilled": true
+    }
+  }
+}

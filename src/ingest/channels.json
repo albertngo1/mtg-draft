@@ -100,6 +100,41 @@
           "The Supersessions section (which release-week grades flipped, and by how much) is the single highest-leverage product of this channel — never omit it."
         ]
       }
+    },
+    "limited-level-ups": {
+      "name": "Limited Level-Ups (Alex / Chord_O_Calls)",
+      "youtube": "https://www.youtube.com/@limitedlevel-ups",
+      "content_type": "Limited-focused podcast/video: per-color card-by-card set reviews (letter grades) + rare/mythic review + prerelease/first-impressions guides + occasional early-access draft gameplay + weekly strategy deep-dives",
+      "guide_dir": "draft-guides/limited-level-ups",
+      "guide_filename": "<SET>.md",
+      "notes": "Channel #4 (added 2026-06). Theory/review lens like limited-resources but split into per-color set-review episodes (W/U/B/R/G + Multicolor/Colorless + Rare/Mythic), so coverage is unusually deep per set. Preserves Alex's per-card letter grades. Audio auto-captions (names mangled, mark (?)).",
+      "distill_format": {
+        "house_style": "shared",
+        "per_set_file": "<SET>.md",
+        "flat_in_guide_dir": true,
+        "channel_files": [],
+        "sections": [
+          "## ⚠ Recency rule (read first)",
+          "### Source timeline (dated table, Phase prerelease/early/mid/late + Weight Weakest→Strongest)",
+          "## Supersessions (grade/opinion flips between first-impressions and later reviews)",
+          "## Format speed / meta read",
+          "## Archetypes (10 two-color pairs, ranked)",
+          "## Card tips"
+        ],
+        "card_bullets": {
+          "heading": "## Card tips",
+          "format": "- **Card** — grade (color review). Note.",
+          "machine_parsed": false,
+          "grouping": "by color W/U/B/R/G, then multicolor, then colorless/artifacts, then lands",
+          "preserve": "Alex's per-card letter grade inline on every card bullet — this channel grades every card in dedicated per-color review episodes, so coverage should be near-complete"
+        },
+        "recency": "first-impressions/prerelease takes are predictions made before games (weakest); the per-color set reviews are the core graded product; early-access draft gameplay shows which cards actually played well",
+        "manifest": true,
+        "special_rules": [
+          "This channel splits its set review across per-color episodes — distill ALL of them into one <SET>.md grouped by color, attributing each grade to its color-review episode.",
+          "Preserve the letter grade on every card bullet; coverage should be near-complete since every card gets reviewed."
+        ]
+      }
     }
   }
 }

@@ -3,7 +3,7 @@
   "scope": "web-prose draft strategy guides (written articles), NOT YouTube transcripts; outside the src/ingest ETL",
   "note": "Each set's guide is hand-captured from a Draftsim article URL. sha1 = shasum of the committed <SET>.md. Distinct from grades/draftsim_<SET>.json, which holds Draftsim's numeric pick-order grades.",
   "counts": {
-    "sets": 1
+    "sets": 2
   },
   "sets": {
     "SOS": {
@@ -13,6 +13,14 @@
       "captured": "2026-06-21",
       "sha1": "89c506c678594b85b64d8e4c4ad758f08d85df1e",
       "words": 1072
+    },
+    "MSH": {
+      "tier": 1,
+      "file": "MSH.md",
+      "source_url": "https://draftsim.com/mtg-msh-draft-archetypes-6-3-26/",
+      "captured": "2026-06-23",
+      "sha1": "0662d5bc4a9f0a2cfa8789d9105063449a6244fe",
+      "words": 960
     }
   }
 }

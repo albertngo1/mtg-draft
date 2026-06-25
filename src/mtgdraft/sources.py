@@ -32,6 +32,17 @@ def load_scry():
         return {}
 def save_scry(d):
     _atomic_json(SCRY_CACHE, d)
+def merge_scry(updates):
+    """Reload-and-merge: re-read the on-disk cache immediately before writing and overlay only
+    the freshly-fetched `updates` (id -> rec) on top, then write atomically. Avoids the lost-update
+    race where the capture daemon's enrich and a concurrent CLI command each load the cache, mutate
+    their own copy, and the last writer clobbers the other's new entries. We re-read late so we
+    overwrite the smallest possible window; the atomic os.replace makes the write itself indivisible."""
+    if not updates:
+        return
+    merged = load_scry()
+    merged.update(updates)
+    _atomic_json(SCRY_CACHE, merged)
 def _atomic_json(path, obj):
     """Write JSON atomically, pid-suffixed tmp so concurrent writers (capture daemon + a CLI
     command both refreshing) can't interleave into the same tmp file."""
@@ -100,7 +111,7 @@ def _scry_rec(d):
 def resolve_ids(ids):
     """Return {id: {name, cmc, color, type}} resolving misses via Scryfall (cached, 1-by-1)."""
     cache = load_scry()
-    out, dirty = {}, False
+    out, fetched = {}, {}
     for cid in ids:
         cid = str(cid)
         if is_fresh(cache.get(cid)):  # served from cache; stale/missing entries fall through to fetch
@@ -113,10 +124,9 @@ def resolve_ids(ids):
                    "rarity": "?", "type": f"(lookup failed: {e})"}
         cache[cid] = rec
         out[cid] = rec
-        dirty = True
+        fetched[cid] = rec     # only the freshly-fetched entries; merged in late to avoid clobbering
         time.sleep(0.06)  # be polite to Scryfall
-    if dirty:
-        save_scry(cache)
+    merge_scry(fetched)        # reload-and-merge so a concurrent writer's new entries survive
     return out
 def set_fetch(set_code):
     """Page the whole set from Scryfall's search endpoint, caching each printing by arena_id
