@@ -131,9 +131,9 @@ def resolve_ids(ids):
 def set_fetch(set_code):
     """Page the whole set from Scryfall's search endpoint, caching each printing by arena_id
     (cost + oracle text + P/T). One paginated walk (~2-3 requests) instead of 1-per-card."""
-    cache = load_scry()
     url = (f"https://api.scryfall.com/cards/search?q=e:{set_code.lower()}"
            f"&unique=prints&format=json")
+    fetched = {}
     n = 0
     while url:
         resp = json.loads(_get(url))
@@ -141,12 +141,12 @@ def set_fetch(set_code):
             aid = d.get("arena_id")
             if aid is None:
                 continue
-            cache[str(aid)] = _scry_rec(d)
+            fetched[str(aid)] = _scry_rec(d)
             n += 1
         url = resp.get("next_page") if resp.get("has_more") else None
         if url:
             time.sleep(0.1)
-    save_scry(cache)
+    merge_scry(fetched)        # reload-and-merge so a concurrent writer's new entries survive
     return n
 def warm_set(cfg):
     """Pre-cache the whole set so live drafts make ZERO per-card queries.

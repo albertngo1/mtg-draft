@@ -31,8 +31,20 @@ NO_AI = "--no-ai" in sys.argv                                      # opt-out
 argv = [a for a in sys.argv[1:] if a not in ("--ai", "--no-ai")]
 AI = FORCE_AI or (not NO_AI and _ai_default())                    # takes are now the DEFAULT
 PATH = argv[0] if argv else os.path.join(DATA, "drafts", "current.json")
-draft = json.load(open(PATH))
-scry = json.load(open(os.path.join(DATA, "cache", "scryfall_arena.json")))
+
+def _load_json(path, what):
+    """Load a JSON file, exiting with a clear message instead of a raw traceback if it's
+    missing or corrupt."""
+    try:
+        with open(path) as f:
+            return json.load(f)
+    except FileNotFoundError:
+        sys.exit(f"error: {what} not found: {path}")
+    except (json.JSONDecodeError, OSError) as e:
+        sys.exit(f"error: could not read {what} ({path}): {e}")
+
+draft = _load_json(PATH, "draft")
+scry = _load_json(os.path.join(DATA, "cache", "scryfall_arena.json"), "Scryfall cache")
 grades, glabel = load_grades_any(draft.get("set", ""))
 takes = {}
 if AI:
@@ -287,5 +299,6 @@ if AI:
 
 dest = argv[1] if len(argv) > 1 \
     else os.path.join(DATA, "drafts", f"{draft.get('set','draft')}-replay.md")
-open(dest, "w").write("\n".join(out))
+with open(dest, "w") as f:
+    f.write("\n".join(out))
 print("wrote", os.path.relpath(dest, HERE), f"({len(draft['picks'])} picks)")
