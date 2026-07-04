@@ -156,10 +156,11 @@ CAVEAT = {
     "MKM": "> MKM is a grindy 2-color guild-midrange format, so GIH WR transfers honestly (little soup "
            "inflation). Ratings are 2024 MKM PremierDraft historical data. White pairs (Boros best) sit "
            "on top; black is the weakest color.\n",
-    "MSH": "> ⚠ EARLY DATA (updated 2026-06-27): MSH 17Lands data is filling in fast — **270 of 334 cards** "
-           "now have a GIH WR off PremierDraft games, but the format is still young so numbers keep "
-           "moving. Cards still lacking WR show blank stats; lean on the **CGB letter grade** + expert notes "
-           "for those. Treat WR as a real-but-provisional signal, not gospel — re-pull as samples grow.\n",
+    "MSH": "> ⚠ EARLY DATA (updated 2026-07-04): MSH 17Lands data is filling in fast — **273 of 334 cards** "
+           "now have a GIH WR off ~8.2M PremierDraft games, and QuickDraft has gone live (95 cards / ~330K "
+           "games), but the format is still young so numbers keep moving. Cards still lacking WR show blank "
+           "stats; lean on the **CGB letter grade** + expert notes for those. Treat WR as a real-but-"
+           "provisional signal, not gospel — re-pull as samples grow.\n",
     "BLB": "> BLB is a finished format (Aug-Sep 2024) — the 17Lands GIH WR is **mature and full-format**, and the "
            "expert notes are end-of-format retrospectives (LoL's '50 Takes' finale, LR's Sunset Show, Kenji's "
            "last BLB VODs), so this reference is settled, not provisional. Big caveat: it's a **typal/synergy "

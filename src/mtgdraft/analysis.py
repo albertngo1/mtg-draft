@@ -63,6 +63,15 @@ _TAG_RX = [
     ("paradigm",        re.compile(r"\bparadigm\b", re.I)),                 # recast the spell from exile
     ("fractal",         re.compile(r"\bfractal\b", re.I)),                  # Quandrix 0/0 +1/+1-counter token
     ("flashback",       re.compile(r"\bflashback\b|cast .{0,30}from your graveyard", re.I)),  # Lorehold gy value
+
+    # --- MSH (Marvel Super Heroes) ---
+    ("teamwork",      re.compile(r"\bteamwork\b", re.I)),                   # WU: tap creatures to pay teamwork costs
+    ("power-up",      re.compile(r"\bpower-up\b", re.I)),                   # RG: once-per-game activated abilities
+    ("villain",       re.compile(r"\bvillain\b", re.I)),                    # BR: Villain creature type / payoffs
+    ("hero",          re.compile(r"\bhero\b", re.I)),                       # GW: Hero creature type / payoffs
+    ("plan-counter",  re.compile(r"\bplan counter\b", re.I)),               # WR/WB: plan-counter enchantments
+    ("attacks-alone", re.compile(r"attacks? alone", re.I)),                   # WB: solo-attacker payoffs
+    ("draw-two",      re.compile(r"second card you draw|draw your second card", re.I)),  # UB: draw-two payoffs
 ]
 # --- Typal / tribal detection (set-agnostic) -----------------------------------------------------
 # In MTG oracle text creature types are Capitalized when used as a type ("other Squirrels you
@@ -258,6 +267,14 @@ def _archetype_lean(themes, curve, counts):
          themes.get("spells-matter", 0) + themes.get("paradigm", 0)),
         # soup is rare-but-loud: a few Converge/paradigm payoffs already signal the multicolor plan.
         ("soup / Converge (multicolor value)", themes.get("converge", 0) * 2 + themes.get("paradigm", 0)),
+        # --- MSH archetypes ---
+        ("heroes (GW — ETB / attack payoffs)", themes.get("hero", 0) * 2),
+        ("villains (BR — tribal ETBs)",        themes.get("villain", 0) * 2),
+        ("teamwork (WU — tap-to-pump spells)", themes.get("teamwork", 0) * 2),
+        ("power-up stompy (RG — once-only activated)", themes.get("power-up", 0)),
+        ("draw-two (UB — second-card payoffs)", themes.get("draw-two", 0) * 2),
+        ("attacks-alone (WB — solo attacker)",  themes.get("attacks-alone", 0) * 3),
+        ("plans (WB/WR — plan-counter value)",  themes.get("plan-counter", 0) * 2),
     ]
     strong = sorted((x for x in scored if x[1] >= 6), key=lambda x: -x[1])
     leans += [name for name, _ in strong[:2]]
