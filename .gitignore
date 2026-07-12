@@ -2,3 +2,5 @@ data/
 __pycache__/
 *.pyc
 claude-token.txt
+card-reference/*.local.md
+card-reference/*.embedded.md

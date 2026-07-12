@@ -161,17 +161,34 @@ def warm_set(cfg):
         resolve_ids([str(c["mtga_id"]) for c in data if c.get("mtga_id")])
     print("  Done — future `pull`/`rank` for this set = 0 live queries "
           "(17Lands itself caches 24h).\n")
+def _time_period(days):
+    """Map a days-window to 17Lands' time_period enum (the new /api/card_data endpoint
+    takes an enum, not arbitrary dates). The default 120d and the 1200d historical-proxy
+    window both collapse to ALL_TIME — which is the richest sample, so that's the right
+    default for an active set."""
+    d = int(days)
+    if d <= 1:
+        return "LAST_DAY"
+    if d <= 7:
+        return "LAST_WEEK"
+    if d <= 14:
+        return "LAST_TWO_WEEKS"
+    return "ALL_TIME"
 def seventeen(set_code, fmt, days, refresh=False):
     path = os.path.join(CACHE, f"17lands_{set_code}_{fmt}_{days}d.json")
     if not refresh and os.path.exists(path) and (time.time() - os.path.getmtime(path) < 86400):
         with open(path) as f:
             return json.load(f)
-    end = datetime.date.today()
-    start = end - datetime.timedelta(days=days)
-    url = (f"https://www.17lands.com/card_ratings/data?expansion={set_code}"
-           f"&format={fmt}&start_date={start}&end_date={end}")
+    # 17Lands moved the live card-stats feed to /api/card_data (event_type + time_period).
+    # The old /card_ratings/data endpoint still answers but now returns the card list with
+    # every win-rate/seen stat nulled — so it must not be used. The new payload wraps the
+    # rows in {"copyright","notes","data":[...]}; we unwrap and cache the bare list so all
+    # downstream callers (and pre-existing bare-list caches) keep working unchanged.
+    url = (f"https://www.17lands.com/api/card_data?expansion={set_code}"
+           f"&event_type={fmt}&time_period={_time_period(days)}")
     try:
-        data = json.loads(_get(url))
+        raw = json.loads(_get(url))
+        data = raw["data"] if isinstance(raw, dict) and "data" in raw else raw
     except Exception as e:
         # 17Lands outage / network error: fall back to a stale cache if we have
         # one, otherwise surface a clear error instead of an opaque URLError.

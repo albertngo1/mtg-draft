@@ -12,13 +12,92 @@ Sources (relative to the mtg-draft repo root):
 Usage: python3 build_card_reference.py [SET]   (default SET=SOS)
 Output: card-reference/<SET>-card-reference.md
 """
-import json, os, re, html, sys
+import json, os, re, html, sys, time, base64, urllib.request
 
-SET = (sys.argv[1] if len(sys.argv) > 1 else "SOS").upper()
+# Image modes (default = hotlink cards.scryfall.io, fine on GitHub where images are proxied):
+#   --local-images  download each image once into data/card-images/<SET>/ and reference it by
+#                   relative path; writes <SET>-card-reference.local.md.
+#   --embed-images  inline every image as a base64 data: URI so the .md is ONE self-contained file
+#                   (no external folder, works offline anywhere); writes <SET>-card-reference.embedded.md.
+# Both exist because VS Code's markdown preview pre-loads the whole doc at once (it ignores
+# loading="lazy"), bursting ~300 concurrent image requests. For a brand-new set whose images aren't
+# yet warm at Scryfall's CDN edges, that burst 404s a large fraction, showing broken "?" boxes.
+# Not hotlinking (local or embedded) removes every remote request, so the preview is reliable.
+ARGS = [a for a in sys.argv[1:] if not a.startswith("--")]
+LOCAL_IMAGES = "--local-images" in sys.argv[1:]
+EMBED_IMAGES = "--embed-images" in sys.argv[1:]
+SET = (ARGS[0] if ARGS else "SOS").upper()
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
-OUT  = os.path.join(HERE, f"{SET}-card-reference.md")
+_suffix = ".embedded.md" if EMBED_IMAGES else ".local.md" if LOCAL_IMAGES else ".md"
+OUT  = os.path.join(HERE, f"{SET}-card-reference{_suffix}")
+IMGDIR = os.path.join(ROOT, "data", "card-images", SET)  # download cache (gitignored via data/)
 COLS = 3  # cards per row
+
+# Optional alternate image host, keyed by mtga_id. Committed as card-reference/alt_images_<SET>.json.
+# Used for a brand-new set whose images are cold at Scryfall's CDN edge (so VS Code's ~300-request
+# preview burst 404s half of them): ECL points at TCGplayer's CDN, which is fully warm and serves the
+# burst at 100%. This keeps the default committed .md a single remote-hotlink file (no local folder,
+# no 34MB embed) that loads reliably in BOTH VS Code and GitHub.
+ALT_IMAGES = {}
+_alt_path = os.path.join(HERE, f"alt_images_{SET}.json")
+if os.path.exists(_alt_path):
+    with open(_alt_path) as _f:
+        ALT_IMAGES = json.load(_f)
+
+def _local_path(c):
+    return os.path.join(IMGDIR, f'{c.get("mtga_id") or norm(c["name"])}.jpg')
+
+def _img_bytes(c):
+    """Return the card image bytes, or None. Reuses data/card-images/<SET>/ as a download cache
+    (so --embed-images after --local-images is instant); otherwise fetches Scryfall's `normal`
+    size (~60-90KB, sharp at 240px) and caches it. Retries because a brand-new set's images can be
+    cold at Scryfall's edge and 404 on first hit, succeeding once the edge fills."""
+    dest = _local_path(c)
+    if os.path.exists(dest) and os.path.getsize(dest) > 0:
+        with open(dest, "rb") as f:
+            return f.read()
+    url = c["url"].replace("/large/", "/normal/")
+    req = urllib.request.Request(url, headers={"User-Agent": "mtg-draft-card-reference"})
+    for attempt in range(6):
+        try:
+            data = urllib.request.urlopen(req, timeout=30).read()
+            if data:
+                os.makedirs(IMGDIR, exist_ok=True)
+                with open(dest, "wb") as f:
+                    f.write(data)
+                return data
+        except Exception:
+            pass
+        time.sleep(0.4 * (attempt + 1))  # back off; cold-edge 404s clear once the fill completes
+    return None
+
+def predownload(cards):
+    """Pre-fetch every image with a small thread pool BEFORE rendering. 6 workers stays under the
+    per-host burst that makes Scryfall 404 a new set's cold images, while being ~6x faster than
+    one-at-a-time. Returns the count that failed after all retries."""
+    import concurrent.futures
+    failed = 0
+    with concurrent.futures.ThreadPoolExecutor(max_workers=6) as ex:
+        for data in ex.map(_img_bytes, cards):
+            if not data:
+                failed += 1
+    return failed
+
+def img_src(c):
+    """Default: remote Scryfall URL. --local-images: relative path. --embed-images: base64 data URI.
+    Any per-image failure falls back to the remote URL."""
+    if EMBED_IMAGES:
+        data = _img_bytes(c)
+        if data:
+            return "data:image/jpeg;base64," + base64.b64encode(data).decode("ascii")
+        return c["url"]
+    if LOCAL_IMAGES:
+        dest = _local_path(c)
+        if os.path.exists(dest) and os.path.getsize(dest) > 0:
+            return os.path.relpath(dest, HERE)  # relative to the .md in card-reference/
+    # default remote: prefer the alternate host (TCGplayer for ECL) over Scryfall when mapped
+    return ALT_IMAGES.get(str(c.get("mtga_id"))) or c["url"]
 
 # ---- load 17Lands (primary: image + ratings) --------------------------------
 cards = json.load(open(f"{ROOT}/data/cache/17lands_{SET}_PremierDraft_1200d.json"))
@@ -93,21 +172,14 @@ def ds_grade(c):
     v = ds.get(norm(c["name"])); return f"{v}" if v is not None else "—"
 
 
-_all_alsa = [c["avg_seen"] for c in cards if c.get("avg_seen")]
-_alsa_min = min(_all_alsa) if _all_alsa else 1.0
-_alsa_max = max(_all_alsa) if _all_alsa else 8.0
-
-def combined_score(c):
-    play = c.get("play_rate") or 0.0
-    alsa = c.get("avg_seen") or _alsa_max
-    alsa_norm = 1.0 - (alsa - _alsa_min) / (_alsa_max - _alsa_min)
-    return (play + alsa_norm) / 2
+def play_score(c):
+    return c.get("play_rate") or 0.0
 
 groups = {}
 for c in cards:
     groups.setdefault(group_of(c), []).append(c)
 for g in groups.values():
-    g.sort(key=combined_score, reverse=True)
+    g.sort(key=play_score, reverse=True)  # order each color group by play rate (play %), highest first
 
 def esc(s): return html.escape(str(s))
 
@@ -118,7 +190,12 @@ def cell(c):
     badge = f'{esc(col)} · {c["rarity"].capitalize()}'
     parts = [f'<td width="33%" valign="top">']
     if c.get("url"):
-        parts.append(f'<img src="{c["url"]}" width="240" alt="{esc(name)}"><br>')
+        # loading="lazy" + decoding="async": these references hold 270-340 images; without
+        # lazy-loading every <img> fires at once when the file opens, blowing past the browser's
+        # per-host connection cap and Scryfall's burst throttle, so some images time out and show
+        # broken. Lazy-loading requests them only as they scroll into view.
+        parts.append(f'<img src="{esc(img_src(c))}" width="240" alt="{esc(name)}" '
+                     f'loading="lazy" decoding="async"><br>')
     parts.append(f'<b>{esc(name)}</b><br><sub>{badge}</sub><br>')
     # compact stat lines
     parts.append(f'<sub>GIH <b>{pct(gih(c))}</b> · IWD {signed(c.get("drawn_improvement_win_rate"))} '
@@ -136,6 +213,14 @@ def cell(c):
             parts.append(f'<br><sub><b>{label}:</b> {esc(note)}</sub>')
     parts.append('</td>')
     return "".join(parts)
+
+# ---- pre-download images (under --local-images / --embed-images) -------------
+if LOCAL_IMAGES or EMBED_IMAGES:
+    _how = "embedding" if EMBED_IMAGES else "downloading"
+    print(f"  {_how} {len(cards)} {SET} images (6 workers, normal size)...")
+    _failed = predownload(cards)
+    print(f"  images ready: {len(cards) - _failed}/{len(cards)}"
+          + (f"  ({_failed} fell back to remote URL)" if _failed else ""))
 
 # ---- emit -------------------------------------------------------------------
 total = len(cards)
@@ -156,11 +241,18 @@ CAVEAT = {
     "MKM": "> MKM is a grindy 2-color guild-midrange format, so GIH WR transfers honestly (little soup "
            "inflation). Ratings are 2024 MKM PremierDraft historical data. White pairs (Boros best) sit "
            "on top; black is the weakest color.\n",
-    "MSH": "> ⚠ EARLY DATA (updated 2026-07-04): MSH 17Lands data is filling in fast — **273 of 334 cards** "
-           "now have a GIH WR off ~8.2M PremierDraft games, and QuickDraft has gone live (95 cards / ~330K "
-           "games), but the format is still young so numbers keep moving. Cards still lacking WR show blank "
-           "stats; lean on the **CGB letter grade** + expert notes for those. Treat WR as a real-but-"
-           "provisional signal, not gospel — re-pull as samples grow.\n",
+    "MSH": "> MSH 17Lands data is now mature (updated 2026-07-12): **275 of 334 cards** have a GIH WR off "
+           "~11.6M PremierDraft games, with QuickDraft (242 cards / ~1.9M games) and Sealed (252 cards / ~1.2M "
+           "games) both live. Cards still lacking WR show blank stats; lean on the **CGB letter grade** + "
+           "expert notes for those. WR is now a settled signal.\n",
+    "ECL": "> ECL (Lorwyn Eclipsed) is a **tribal-synergy, midrange-to-grindy** format that plays slower than "
+           "it looks — two-drops get blanked by high-toughness bodies and games often start on turn three. "
+           "The 17Lands GIH WR is mature and full (**273 of 288 cards** off ~22.2M PremierDraft games). Big "
+           "caveats: GIH WR **underrates efficient removal** (Cinder Strike doesn't win by being drawn) and "
+           "**overrates tribal/blight/Vivid payoffs** (their number comes from the built-around deck) — the AI "
+           "take + guide notes decode which deck a number belongs to. No reviewer-grade file exists for ECL, so "
+           "WR + notes carry the read. **Five toughness** is the magic number (dodges Blight Rot, Seer, and "
+           "Cinder Strike-on-blight).\n",
     "BLB": "> BLB is a finished format (Aug-Sep 2024) — the 17Lands GIH WR is **mature and full-format**, and the "
            "expert notes are end-of-format retrospectives (LoL's '50 Takes' finale, LR's Sunset Show, Kenji's "
            "last BLB VODs), so this reference is settled, not provisional. Big caveat: it's a **typal/synergy "
@@ -214,6 +306,30 @@ ARCHETYPES = {
            "online). Want a turn-2 play; better drafters run a U-shaped curve (lots of 1-2s + 5-6s). Removal is "
            "scarce — prioritize cheap instant-speed (Savor, Nocturnal Hunger, Sonar Strike, Scales of Shale). "
            "**Talents are the best build-arounds** — open one, jam it. The Villages (type dual lands) are a trap.\n",
+    "ECL": "### The archetypes (color-pair guilds)\n\n"
+           "ECL is a **tribal-synergy** format — five two-color tribes plus real Vivid, Blight, and Fairies "
+           "off-ramps. Being in a supported pair unlocks gold lords, Eclipsed cards, and Commands, so more good "
+           "cards flow your way — but a **contested** tribal lane makes your deck atrocious, so read the signals "
+           "and be willing to pivot to Vivid/Blight. **Changelings keep you open** (they satisfy every typal "
+           "payoff and count Vivid pips). Ranked by Lords of Limited's 2026-03-23 retrospective.\n\n"
+           "| Tier | Pair | Tribe / plan | Key cards |\n"
+           "|------|------|--------------|-----------|\n"
+           "| **S** | **BG** | Elves — well-sized bodies + graveyard-as-resource; Morcan's Eyes floods 2/2 elf tokens for inevitability | Morcan's Eyes · Dawnhand Eulogist · Nameless Inversion |\n"
+           "| **A** | **UW** | Merfolk — tempo/convoke, tap synergies + flash; close before turn 8 (highest floor) | Deepchannel Duelist · Merrow Skyswimmer · Unexpected Assistance |\n"
+           "| **A-** | **UR** | Elementals — midrange ETB power + land-cyclers; season-long riser | Flamebraider (kill on sight) · Ashling's Command · Flaring Cinder |\n"
+           "| **A-** | **2c Vivid** | Two-color base deploying off-color payoffs late; loves a board stall (NOT 5-color) | Shine Striker · Prisma Basher · Shimmer Wild's Growth |\n"
+           "| **B** | **RB** | Goblins — GRINDY not aggro; win via blight-drain + triggers | Champion of the Weird · Sour Bread Auntie · Gristle Glutton |\n"
+           "| **B** | **BW** | Blight — grindy counter value; high-toughness bodies absorb counters | Reaping Willow · Moonlit Mentor · Bog Slither's Embrace |\n"
+           "| **B** | **UB** | Fairies/Flash — act on the opponent's turn; can trophy with no rares | Voracious Tome Skimmer · Mischievous Sneakling · Glamour Gifter |\n"
+           "| **C** | **GW** | Kithkin — weenie aggro + pump lords; predicted #1, FINISHED LAST (one removal stops it) | Thought-Weft Lieutenant · Clacken Festival · Mist Meadow Council |\n"
+           "| **C** | **RW** | Blight/Giants — beatdown; less refined than BW blight | Brambleback Brute · Cinder Strike |\n"
+           "| **C** | **RG** | Treasure — really just a Temur Vivid base, not a pure pair | Nogggle Robber |\n\n"
+           "**Removal benchmarks:** Cinder Strike (R, 1-mana deal-4 on blight — best common), Bog Slither's "
+           "Embrace (B), Luminal Hold (W), Nameless Inversion / Sear / Feed the Flames (uncommons). **Format "
+           "rules:** hold removal for lords/engines (don't push 2 damage); creature counts run 15–20 even in "
+           "Vivid/Blight; two-drops without synergy are dead weight (curve starts on three); high flash density "
+           "punishes slamming into open mana; **Blight is upside only when you build for it** (Narho Bark Elm, "
+           "Spiral into Solitude are traps otherwise).\n",
 }
 L.append(ARCHETYPES.get(SET, ""))
 L.append("## Contents\n")
