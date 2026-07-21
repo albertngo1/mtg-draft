@@ -92,6 +92,9 @@ the other way around.
   theory plus how to drive this tool pick-by-pick.
 - **[card-reference/](./card-reference/)** — a one-file visual grid of every card in a set (image +
   17Lands ratings + Draftsim grade + expert-guide notes + an AI take). See its README to regenerate.
+- **[overlay/](./overlay/)** — an optional transparent, click-through, always-on-top Electron window
+  that floats the current pack (GIH · grade · wheel · tags · AI take) over Arena. Reads the same
+  `current.json` the tool already produces — no extra game-reading. See its README to run.
 
 ## Credits
 

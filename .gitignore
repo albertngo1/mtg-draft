@@ -4,3 +4,7 @@ __pycache__/
 claude-token.txt
 card-reference/*.local.md
 card-reference/*.embedded.md
+
+# overlay Electron deps
+overlay/node_modules/
+overlay/dist/
