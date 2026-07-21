@@ -80,6 +80,11 @@ analyst-agent fan-out under a per-set doctrine written from that set's draft gui
 
 Cards within each color group are ordered by **play rate (play %)**, highest first.
 
+**AI takes regenerated 2026-07-12** for all five sets after the prep record began carrying each card's
+**oracle text + P/T + mana** (joined from Scryfall — MSH by name, since its cards have no `arena_id`) — so
+the takes now read what each card actually does and ground the verdict in the expert notes, not just the
+stat columns. All five are 100% covered.
+
 - **SOS** — 341/341 cards with image + 17Lands ratings + DS grade + AI take; 155/341 with ≥1 expert note.
 - **MKM** — 321/321 cards with image + 17Lands ratings + CGB grade + AI take; 142/321 with ≥1 expert note.
 - **MSH** — 334/334 cards with image + AI take, 275/334 with live GIH WR (mature: ~11.6M PremierDraft games,
@@ -92,3 +97,12 @@ Cards within each color group are ordered by **play rate (play %)**, highest fir
   103/288 with ≥1 expert note (LoL + Numot; no reviewer-grade file exists yet). Header carries the tribal
   color-pair map. Takes under the ECL tribal-synergy doctrine; GIH WR decoded for removal-underrating and
   payoff-inflation.
+- **DFT** — 281/281 cards with image + AI take, 277/281 with live GIH WR (finished format, Feb–Mar 2025);
+  271/281 with CGB grade (the 10 without are special-guest reprints); 76/281 with ≥1 expert note (LoL + Numot).
+  Header carries a 9-row color-pair archetype map. Takes under the DFT slow-vehicles doctrine (Green ≥ Black
+  best at common, blue-uncommons elite); GIH WR decoded for green-fatty inflation and cheap-removal underrating.
+- **OTJ** — 376/376 cards with image + AI take, 364/376 with live GIH WR (finished format, 2024); 376/376 with
+  CGB grade; 61/376 with ≥1 expert note (LoL + Numot). Header carries a 10-row color-pair archetype map + a
+  Big Score (OTP) bonus-sheet note. Takes under the OTJ bombs-and-removal doctrine (Green best / GW mounts,
+  blue underrated/open, red weakest); GIH WR decoded for multicolor-soup + build-around-payoff inflation and
+  efficient-removal underrating.
