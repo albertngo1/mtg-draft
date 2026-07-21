@@ -208,6 +208,9 @@ mtg-draft/
 ├─ draft-guides/                  # committed expert set guides (two channels)
 │  ├─ lords-of-limited/           #   Lords of Limited <SET>-draft-guide.md (one per set)
 │  └─ numot/                      #   NumotTheNummy VOD-distilled <SET>.md notes (+ manifest.json)
+├─ card-reference/                # visual card-reference builder + ai_takes_<SET>.json + <SET>-card-reference.md
+├─ overlay/                       # optional Electron overlay (TypeScript): floats the current pack over Arena
+│                                 #   src/ → dist/ via tsc; reads data/drafts/current.json, no extra game-reading
 └─ data/                          # generated, gitignored
    ├─ cache/                      # 17Lands + Scryfall caches, + cards_<SET>.ndjson exports
    ├─ drafts/                     # per-draft bundles <set>_<date>_<fp>/{draft.json,raw.log,replay.md} + current.json
