@@ -1,5 +1,5 @@
 import os, json, re
-from .config import GRADES, GUIDES
+from .config import GRADES, GUIDES, NUMOT
 
 def load_grades(source, set_code):
     """External reviewer grades (e.g. draftsim) keyed by lowercased card name.
@@ -58,3 +58,22 @@ def load_guide_notes(set_code):
     except Exception:
         pass
     return notes
+
+def load_expert_guides(set_code, cap=40000):
+    """The full set-level expert guides — BOTH experts — as one context block for the take model, so
+    takes reflect the experts' meta/archetype/card reads and not just the per-card LoL one-liner that
+    `load_guide_notes` extracts. Reads draft-guides/lords-of-limited/<SET>-draft-guide.md and
+    draft-guides/numot/<SET>.md (either may be absent). Each guide is capped at `cap` chars so a
+    batched `claude -p` prompt stays bounded. Returns '' if neither guide exists."""
+    blocks = []
+    for label, path in (("Lords of Limited", os.path.join(GUIDES, f"{set_code}-draft-guide.md")),
+                        ("NumotTheNummy (Kenji Egashira) VOD notes", os.path.join(NUMOT, f"{set_code}.md"))):
+        try:
+            with open(path, encoding="utf-8") as f:
+                body = f.read().strip()
+            if len(body) > cap:
+                body = body[:cap] + "\n…(truncated)"
+            blocks.append(f"### Expert guide — {label}\n\n{body}")
+        except Exception:
+            pass
+    return "\n\n".join(blocks)

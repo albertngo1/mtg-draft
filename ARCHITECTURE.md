@@ -405,7 +405,12 @@ replay fires whether or not you ever drove the tool. `data/drafts/` is gitignore
 Pass `--ai` to `replay.py` (`python3 src/replay.py <draft.json> <out.md> --ai`) to add a model-written
 **`🤖 Take`** under each pick — one batched `claude -p` call that's fed each pick's *point-in-time*
 deck state (no hindsight) plus the tool's coaching doctrine, so the takes match the same philosophy as
-the rest of the tool. It needs a long-lived `CLAUDE_CODE_OAUTH_TOKEN` (env, or a gitignored
+the rest of the tool. Each card in the payload carries its **oracle text + P/T** (joined back on at
+take-time from the Scryfall cache by id — the model reads what the card actually *does*, not just its
+stat columns) and its **per-card LoL guide note** (joined from the guide by name); the prompt also
+appends **both set-level expert guides** (Lords of Limited + NumotTheNummy) as archetype/meta context,
+so takes reflect the experts' reads, newest-source-wins on conflict. It needs a long-lived
+`CLAUDE_CODE_OAUTH_TOKEN` (env, or a gitignored
 `claude-token.txt` at the repo root). To have the daemon's auto-replays include takes too, set
 `MTG_REPLAY_AI=1`; it's off by default so the background capture stays token-free and offline. Failures
 are silent — the deterministic replay is unaffected.

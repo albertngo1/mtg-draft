@@ -62,6 +62,12 @@ GUIDES = [
 def load_cards(SET):
     return json.load(open(f"{ROOT}/data/cache/17lands_{SET}_PremierDraft_1200d.json"))
 
+def load_scry():
+    """Scryfall cache keyed by mtga_id (string) — carries oracle `text`, `pt`, `mana`, `type_line`.
+    Joined into the prep record so the analyst agents READ what each card does, not just its stats."""
+    p = f"{ROOT}/data/cache/scryfall_arena.json"
+    return json.load(open(p)) if os.path.exists(p) else {}
+
 def load_grades(SET):
     for src in ("draftsim", "cardgamebase"):
         p = f"{ROOT}/grades/{src}_{SET}.json"
@@ -77,16 +83,22 @@ def signed(x): return f"{x*100:+.1f}" if x else None
 def prep(SET, out_dir, N):
     cards = load_cards(SET)
     glabel, grades = load_grades(SET)
+    scry = load_scry()
     guides = [(lab, parse_guide(f"{ROOT}/draft-guides/{d}/{f.format(SET=SET)}"))
               for lab, d, f in GUIDES]
     out = []
     for c in cards:
         k = norm(c["name"])
+        meta = scry.get(str(c.get("mtga_id")), {})
         rec = {
             "name": c["name"],
             "color": c["color"] or "C",
             "rarity": c["rarity"],
+            "mana": meta.get("mana") or None,               # mana cost, e.g. "{2}{U}"
+            "type_line": meta.get("type_line") or None,
             "types": c.get("types"),
+            "pt": meta.get("pt") or None,                   # power/toughness for creatures
+            "text": (meta.get("text") or "").strip() or None,  # ORACLE TEXT — read what the card DOES
             "gih_wr": pct(c.get("ever_drawn_win_rate")),
             "iwd": signed(c.get("drawn_improvement_win_rate")),
             "alsa": round(c["avg_seen"], 1) if c.get("avg_seen") else None,
@@ -107,6 +119,7 @@ def prep(SET, out_dir, N):
     print(f"prep {SET}: {len(out)} cards | grade={glabel} "
           f"({sum(1 for r in out if r.get(glabel.lower()+'_grade'))}) "
           f"| GIH WR ({sum(1 for r in out if r['gih_wr'])}) "
+          f"| oracle text ({sum(1 for r in out if r['text'])}) "
           f"| >=1 note ({sum(1 for r in out if r['notes'])}) "
           f"| {N} chunks -> {out_dir}")
 

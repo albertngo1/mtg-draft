@@ -5,13 +5,20 @@ CLAUDE_CODE_OAUTH_TOKEN (env or a gitignored claude-token.txt at the repo root) 
 ~/.claude/.credentials.json token 401s in a spawned subprocess."""
 import os, json, shutil, subprocess
 from .config import ROOT
-from .grades import load_guide_notes
+from .grades import load_guide_notes, load_expert_guides
+from .sources import load_scry
 
 # Distilled from AGENTS.md so the takes reflect THIS tool's doctrine, not generic MTG opinion.
 DOCTRINE = """You are a sharp MTG Limited draft coach. For each pick of a COMPLETED draft (under review),
 give a one-line take. Principles to apply:
+- READ THE CARD: every card carries its oracle `text` and `pt` (power/toughness) — READ THEM and judge
+  what the card actually DOES (cost, evasion, removal quality, role), not just its stat columns. A take
+  that misreads or ignores the card's text is wrong even if the numbers look right.
 - LEAD WITH THE GUIDE: the set's archetypes, which color pairs are strongest, and the card's role
-  in the open archetype drive the pick. The `guide` field (expert per-card note) is your lead lens.
+  in the open archetype drive the pick. The `guide` field (expert per-card note) is your lead lens, and
+  the full EXPERT GUIDES appended below (Lords of Limited + NumotTheNummy — the two expert sources) are
+  your archetype/meta/card reference; cite the experts' take where it bears on the pick, newest wins on
+  conflict.
 - CORE: every GIH WR is ARCHETYPE-CONDITIONAL — it's the win rate of the decks that actually drafted
   the card, not a context-free measure. Decode what it's conditioned on and ask if THIS deck matches.
   * Low archetype concentration (colorless / mono-pip / generically-good two-color) → WR transfers →
@@ -95,6 +102,8 @@ def _token():
 def _slim(c):
     """A compact card view — only what's decision-relevant, to keep the prompt small."""
     d = {"name": c["name"], "clr": c.get("color")}
+    if c.get("pt"):        d["pt"] = c["pt"]             # power/toughness
+    if c.get("text"):      d["text"] = c["text"]         # ORACLE TEXT — read what the card does, not just stats
     if c.get("guide"):     d["guide"] = c["guide"]       # lead lens: expert per-card note
     if c.get("alsa"):      d["alsa"] = round(c["alsa"], 1)
     if c.get("iwd") is not None: d["iwd"] = round(c["iwd"] * 100, 1)
@@ -115,15 +124,27 @@ def pick_takes(draft, top=6):
     claude, tok = shutil.which("claude"), _token()
     if not claude or not tok:
         return {}
-    # Backfill the expert guide note at take-time so a store built before the guide existed (or before
-    # its notes were parseable, e.g. SOS's table format) still feeds the lead-lens note to the model.
+    # Backfill the expert guide note AND the oracle text/PT at take-time. The stored pick records carry
+    # neither the LoL note (for stores built before the guide existed / was parseable) nor the oracle
+    # text (never persisted, to keep draft.json lean) — but the take model MUST read what each card does,
+    # not just its stats, so we join both back on here from the guide notes (by name) and the Scryfall
+    # cache (by id).
     gnotes = load_guide_notes(draft.get("set", ""))
+    scry = load_scry()
     def _enrich(c):
-        if c and not c.get("guide"):
-            g = gnotes.get(c["name"].split("//")[0].strip().lower())
+        if not c:
+            return c
+        out = c
+        if not out.get("guide"):
+            g = gnotes.get(out["name"].split("//")[0].strip().lower())
             if g:
-                return {**c, "guide": g}
-        return c
+                out = {**out, "guide": g}
+        meta = scry.get(str(out.get("id", "")), {})
+        if out.get("text") is None and meta.get("text"):
+            out = {**out, "text": meta["text"].strip()}
+        if out.get("pt") is None and meta.get("pt"):
+            out = {**out, "pt": meta["pt"]}
+        return out
     payload, prev = [], None
     for p in draft.get("picks", []):
         run = prev or {}
@@ -147,10 +168,15 @@ def pick_takes(draft, top=6):
     ev = (draft.get("event_name") or draft.get("event") or "").lower()
     is_cascade = "cascade" in ev or "emblem" in ev
     doctrine = DOCTRINE + (CASCADE_NOTE if is_cascade else "")
+    experts = load_expert_guides(draft.get("set", ""))
+    expert_block = (f"\n\nEXPERT GUIDES for this set (the two expert sources — draw on their archetype "
+                    f"tiers, meta read, and card takes; on conflict the newest source wins):\n\n{experts}"
+                    if experts else "")
     user = (f"Set/format: {draft.get('set')} {draft.get('fmt')} (ratings source: "
             f"{draft.get('ratings_fmt')}){' — CASCADE-EMBLEM EVENT' if is_cascade else ''}. "
             f"Final deck colors: {draft.get('analysis', {}).get('colors')}.\nFor EACH pick below give "
-            f"your take. Output ONLY a JSON object mapping the pick label to the take string — nothing else.\n\n"
+            f"your take. Output ONLY a JSON object mapping the pick label to the take string — nothing else."
+            + expert_block + "\n\n"
             + json.dumps(payload))
     try:
         r = subprocess.run([claude, "-p", doctrine + "\n\n" + user],
@@ -170,12 +196,21 @@ def draft_summary(draft):
     if not claude or not tok:
         return ""
     gnotes = load_guide_notes(draft.get("set", ""))
+    scry = load_scry()
     def _enrich(c):
-        if c and not c.get("guide"):
-            g = gnotes.get(c["name"].split("//")[0].strip().lower())
+        if not c:
+            return c
+        out = c
+        if not out.get("guide"):
+            g = gnotes.get(out["name"].split("//")[0].strip().lower())
             if g:
-                return {**c, "guide": g}
-        return c
+                out = {**out, "guide": g}
+        meta = scry.get(str(out.get("id", "")), {})
+        if out.get("text") is None and meta.get("text"):
+            out = {**out, "text": meta["text"].strip()}
+        if out.get("pt") is None and meta.get("pt"):
+            out = {**out, "pt": meta["pt"]}
+        return out
     picks = [{"pick": f"P{p['pack']}P{p['pick']}", "took": (p["taken"]["name"] if p.get("taken") else None)}
              for p in draft.get("picks", [])]
     names = Counter(c["name"] for c in draft.get("pool", []))
@@ -215,12 +250,17 @@ def draft_summary(draft):
             tribal_line += f" (UNFED payoffs: {', '.join(unfed)})"
         if tribal.get("off_tribe"):
             tribal_line += f" — off-tribe bodies: {', '.join(tribal['off_tribe'][:6])}"
+    experts = load_expert_guides(draft.get("set", ""))
+    expert_block = (f"\n\nEXPERT GUIDES for this set (the two expert sources — draw on their archetype "
+                    f"tiers, meta read, and card takes; on conflict the newest source wins):\n\n{experts}"
+                    if experts else "")
     user = (f"Set/format: {draft.get('set')} {draft.get('fmt')}. Final colors: {a.get('colors')}. "
             f"Archetype lean: {a.get('archetype_lean') or a.get('archetype') or '—'}. "
             f"Tribal coherence: {tribal_line}. "
             f"Final deck-state: creatures {final.get('creatures')}, spells {final.get('spells')}, "
             f"removal~{final.get('removal_est')}, two-drops {final.get('two_drops')}, "
-            f"curve {final.get('curve')}.\n\nPICKS (in order):\n{json.dumps(picks)}\n\n"
+            f"curve {final.get('curve')}." + expert_block
+            + f"\n\nPICKS (in order):\n{json.dumps(picks)}\n\n"
             f"FINAL POOL (build the 40 from these; n = copies owned):\n{json.dumps(pool)}")
     try:
         r = subprocess.run([claude, "-p", doctrine + "\n\n" + instr + "\n\n" + user],
