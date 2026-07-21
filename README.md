@@ -6,8 +6,9 @@ While you draft, it reads the pack you're looking at straight out of Arena's log
 real [17Lands](https://www.17lands.com/) win-rate data, and shows you what each card does — so every
 pick is backed by data instead of a gut read.
 
-No account login. No screen overlay. No browser extension. Just a Python script reading the log file
-Arena already writes on your own machine.
+No account login. No browser extension. Nothing forced on you — the core is just a Python script
+reading the log file Arena already writes on your own machine. (An optional on-screen overlay ships
+too, if you want one — see [`overlay/`](./overlay/).)
 
 ```
   MKM PremierDraft  (on-color = WB)
@@ -70,8 +71,8 @@ and prints a category/curve breakdown (with copy counts) to build from.
 ## Two ways to use it
 
 **🧍 Solo — no AI, no API key.** The whole ranking engine is plain Python over cached 17Lands +
-Scryfall data. `warm` once, keep `watch` running beside Arena, and draft straight off the live
-ranked overlay. Nothing leaves your machine.
+Scryfall data. `warm` once, keep `watch` running beside Arena (or launch the [`overlay/`](./overlay/)), and draft
+straight off the live ranked output. Nothing leaves your machine.
 
 **🤖 Coached — add an AI agent.** Point an LLM agent (e.g. Claude Code) at
 [`AGENTS.md`](./AGENTS.md) and it drives the same loop but adds *judgment*: reading open lanes,

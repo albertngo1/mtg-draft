@@ -80,10 +80,11 @@ analyst-agent fan-out under a per-set doctrine written from that set's draft gui
 
 Cards within each color group are ordered by **play rate (play %)**, highest first.
 
-**AI takes regenerated 2026-07-12** for all five sets after the prep record began carrying each card's
-**oracle text + P/T + mana** (joined from Scryfall — MSH by name, since its cards have no `arena_id`) — so
-the takes now read what each card actually does and ground the verdict in the expert notes, not just the
-stat columns. All five are 100% covered.
+**AI takes cover all seven sets.** The original five (SOS/MKM/MSH/BLB/ECL) were regenerated 2026-07-12
+after the prep record began carrying each card's **oracle text + P/T + mana** (joined from Scryfall — MSH
+by name, since its cards have no `arena_id`) — so the takes read what each card actually does and ground
+the verdict in the expert notes, not just the stat columns. **DFT** (2026-07-18) and **OTJ** (2026-07-21)
+were then added under the same pipeline. All seven are 100% covered.
 
 - **SOS** — 341/341 cards with image + 17Lands ratings + DS grade + AI take; 155/341 with ≥1 expert note.
 - **MKM** — 321/321 cards with image + 17Lands ratings + CGB grade + AI take; 142/321 with ≥1 expert note.
