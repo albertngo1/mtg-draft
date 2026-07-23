@@ -88,7 +88,7 @@ were then added under the same pipeline. All seven are 100% covered.
 
 - **SOS** — 341/341 cards with image + 17Lands ratings + DS grade + AI take; 155/341 with ≥1 expert note.
 - **MKM** — 321/321 cards with image + 17Lands ratings + CGB grade + AI take; 142/321 with ≥1 expert note.
-- **MSH** — 334/334 cards with image + AI take, 275/334 with live GIH WR (mature: ~11.6M PremierDraft games,
+- **MSH** — 334/334 cards with image + AI take, 285/334 with live GIH WR (mature: ~15.2M PremierDraft games,
   QuickDraft + Sealed also live) + 276 CGB grades; 234/334 with ≥1 expert note (Limited Level-Ups wired in —
   the largest MSH guide). Header carries a 10-archetype color-pair map. Takes under the MSH slow-grindy doctrine.
 - **BLB** — 271/271 cards with image + full-format GIH WR + CGB grade + AI take; 124/271 with ≥1 expert note
