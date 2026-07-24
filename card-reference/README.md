@@ -80,11 +80,13 @@ analyst-agent fan-out under a per-set doctrine written from that set's draft gui
 
 Cards within each color group are ordered by **play rate (play %)**, highest first.
 
-**AI takes cover all seven sets.** The original five (SOS/MKM/MSH/BLB/ECL) were regenerated 2026-07-12
+**AI takes cover all eight sets.** The original five (SOS/MKM/MSH/BLB/ECL) were regenerated 2026-07-12
 after the prep record began carrying each card's **oracle text + P/T + mana** (joined from Scryfall — MSH
 by name, since its cards have no `arena_id`) — so the takes read what each card actually does and ground
-the verdict in the expert notes, not just the stat columns. **DFT** (2026-07-18) and **OTJ** (2026-07-21)
-were then added under the same pipeline. All seven are 100% covered.
+the verdict in the expert notes, not just the stat columns. **DFT** (2026-07-18), **OTJ** (2026-07-21),
+and **DSK** (2026-07-23) were then added under the same pipeline. All eight are 100% covered. (The DSK pass
+also fixed the shared guide-note parser to accept LoL's `[**Card**](link) (mana gloss) — note` bullet form
+and Numot's `**Card:** note` colon-in-bold form, which recovered notes across ~20 sets — e.g. DSK 1→51.)
 
 - **SOS** — 341/341 cards with image + 17Lands ratings + DS grade + AI take; 155/341 with ≥1 expert note.
 - **MKM** — 321/321 cards with image + 17Lands ratings + CGB grade + AI take; 142/321 with ≥1 expert note.
@@ -107,3 +109,8 @@ were then added under the same pipeline. All seven are 100% covered.
   Big Score (OTP) bonus-sheet note. Takes under the OTJ bombs-and-removal doctrine (Green best / GW mounts,
   blue underrated/open, red weakest); GIH WR decoded for multicolor-soup + build-around-payoff inflation and
   efficient-removal underrating.
+- **DSK** — 281/281 cards with image + AI take, 272/281 with live GIH WR (finished format, Sep–Oct 2024);
+  271/281 with CGB grade; 51/281 with ≥1 expert note (LoL + Numot). Header carries a 10-row color-pair
+  archetype map. Takes under the DSK graveyard-matters-midrange doctrine (Green > Black >> Blue > White > Red;
+  Delirium/Manifest Dread/Eerie axes, 4-toughness magic number); GIH WR decoded for synergy/build-around-payoff
+  inflation and cheap-exile-removal underrating.

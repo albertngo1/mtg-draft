@@ -119,7 +119,11 @@ for src, label, desc in (("draftsim", "DS", "Draftsim grade /5"),
 ai = json.load(open(f"{HERE}/ai_takes_{SET}.json"))
 
 # ---- guide notes ------------------------------------------------------------
-BULLET = re.compile(r"^\s*-\s*\[?\*\*(.+?)\*\*\]?(?:\([^)]*\))?\s*[—–:-]\s*(.+?)\s*$")
+# Card name in bold, optionally linked, optionally followed by one-or-more parentheticals
+# (a scryfall link AND a mana/reminder gloss — LoL's `[**Card**](url) (4WW: …) — note` form),
+# then the note. The separator is optional so Numot's `**Card:** note` (colon inside the bold)
+# also parses; the `:?` lets the bold swallow that trailing colon.
+BULLET = re.compile(r"^\s*-\s*\[?\*\*(.+?):?\*\*\]?(?:\s*\([^)]*\))*\s*[—–:-]?\s*(.+?)\s*$")
 TABLE  = re.compile(r"^\s*\|\s*\[?\*\*(.+?)\*\*\]?[^|]*\|\s*(.+?)\s*\|")
 def parse_guide(path):
     notes = {}
@@ -280,6 +284,17 @@ CAVEAT = {
            "crime engines) and **underrates** efficient removal (Throw from the Saddle, Desert's Due) — the AI take + "
            "guide notes decode which deck a number belongs to. **The Big Score (OTP) bonus-sheet reprints** appear one "
            "per pack; evaluate them on raw power.\n",
+    "DSK": "> DSK (Duskmourn: House of Horror) is a **graveyard-matters midrange** format that plays slower than "
+           "it looks — five- and six-drop bomb uncommons are real P1P1s, and the engine pairs dominate once they "
+           "\"turn on.\" The three overlapping axes are **Delirium** (4+ card types in yard), **Manifest Dread**, and "
+           "**Eerie** (enchantments/rooms). The 17Lands GIH WR is a finished-format signal (Sep-Oct 2024; **272 of 281 "
+           "cards** have one); CGB letter grades are pre-data theory — trust live WR on conflict. **Color order: Green > "
+           "Black >> Blue > White > Red** (green is busted at common AND uncommon; blue has weak commons but elite "
+           "uncommons, so late blue uncommons = open). GIH WR **overrates synergy/build-around payoffs** (delirium "
+           "fatties, reanimate targets, eerie/room engines post the built-around deck's number) and **underrates cheap "
+           "exile removal** (Scorching Dragonfire, Nowhere to Run, Sheltered by Ghosts) — the AI take + guide notes "
+           "decode which deck a number belongs to. **Four toughness is the magic number** (dodges the two premier "
+           "damage-removal spells), and **exile/tuck > kill** since feeding graveyards helps your opponents.\n",
 }
 L.append(CAVEAT.get(SET, ""))
 
@@ -401,6 +416,34 @@ ARCHETYPES = {
            "payoffs. **Traps:** Skulduggery, Patient Naturalist, Outlaw Stitcher, Arid Archway, Phantom Interference, "
            "Razzle-Dazzler aggro. GIH WR **inflates** multicolor soup + build-around payoffs (Railway Brawler, "
            "Marchesa) and **underrates** efficient removal.\n",
+    "DSK": "### The archetypes (color-pair guilds)\n\n"
+           "DSK is a **graveyard-matters midrange** format built on three overlapping axes — **Delirium** (4+ card "
+           "types in yard), **Manifest Dread** (face-down 2/2s that fuel the yard + flip up), and **Eerie** "
+           "(enchantment/room triggers). **Green is busted** (elite commons AND uncommons) and **black** has the "
+           "premium removal + payoffs; blue is weak-commons/elite-uncommons, so late blue uncommons signal an open "
+           "lane. Don't over-commit before pick 5-6 — take mono-color removal/efficient creatures while reading the "
+           "seat. Ranked by Lords of Limited's settled read; Numot's counter-lean pushes **WU enchantments** ('maybe "
+           "the best deck') and **BR sacrifice** up.\n\n"
+           "| Tier | Pair | Theme / plan | Signposts / key cards |\n"
+           "|------|------|--------------|-----------------------|\n"
+           "| **S** | **BG** | Golgari Delirium value — fill the yard fast, unlock huge payoffs; splashes W/R naturally | Brood Weaver · Drag to the Roots · Wickerbough Thresher · Say Its Name |\n"
+           "| **A** | **UG** | Simic Manifest Dread engine — repeat it, flip up, refill (grinding midrange) | Oblivious Bookworm (best gold uncommon) · Paranormal Analyst · Threats Around Every Corner · Under the Skin |\n"
+           "| **A** | **BW** | Orzhov Reanimator — discard/mill fatties, reanimate them | Rite of the Moth · Shroudstomper · Miasma Demon · Vile Mutilator |\n"
+           "| **A-** | **UB** | Dimir Eerie control — enchantments/rooms, surveil, recurring evasion | Skullcap Nuisance · Fear of Infinity (\"can't race it\") · Nowhere to Run |\n"
+           "| **B+** | **RG** | Gruul Delirium stompy — fill yard, attack with big delirium bodies (Jund-splash natural) | Wildfire Wickerfolk · Beastie Beatdown · Patchwork Beastie |\n"
+           "| **B** | **WU** | Azorius Eerie tempo — enchantments trigger eerie + glimmers/rooms (best deck when open) | Gremlin Tamer · Inquisitive Glimmer · Glimmerlight |\n"
+           "| **B** | **BR** | Rakdos Sacrifice/Eerie — sac creatures/enchantments for value (Kenji favorite) | Disturbing Mirth · Sawblade Skinripper · Cracked Skull |\n"
+           "| **B-** | **GW** | Selesnya Survival — snowball beatdown via survival triggers + counters | Shrewd Storyteller · Orphans of the Wheat · Hardened Escort |\n"
+           "| **C+** | **UR** | Izzet Rooms — control/burn; signposts pull opposite ways, plays as soup (inconsistent) | Smoky Lounge // Misty Salon · Intruding Soulrager · Pyroclasm |\n"
+           "| **C** | **RW** | Boros aggro — power-2-or-less tokens/gremlins, Arabella drain (shallowest, weakest lane) | Arabella, Abandoned Doll · Midnight Mayhem · Razorkin Hordecaller |\n\n"
+           "**Removal benchmarks:** Scorching Dragonfire (1R: deal 3, exile) and Nowhere to Run (1B flash: −3/−3) are "
+           "the premier damage removal — **four toughness is the magic number** (dodges both). Premium exile/tuck: "
+           "Sheltered by Ghosts, Trapped in the Screen, Seized from Slumber (BW), Unable to Scream (U). Murder / Final "
+           "Vengeance / Withering Torment are the honest black kills. **Format rules:** 16-17 lands (Terramorphic + "
+           "land-cyclers + manifest dread smooth the mana); **exile/tuck > kill** since feeding graveyards helps "
+           "Delirium/Reanimator opponents. **Traps:** five-drop flyers with no board impact (Fear of Falling — "
+           "previewed premium, settled trap), Coordinated Clobbering, Monstrous Emergence (doesn't exile). Delirium's "
+           "hardest type is **artifacts** — Terramorphic Expanse, Glimmerlight, Piggy Bank, Patchwork Beastie are the glue.\n",
 }
 L.append(ARCHETYPES.get(SET, ""))
 L.append("## Contents\n")

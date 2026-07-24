@@ -25,7 +25,10 @@ def norm(s):
     return re.sub(r"[^a-z0-9]", "", s.split("//")[0].lower())
 
 # ---- guide parsing: identical to build_card_reference.py --------------------
-BULLET = re.compile(r"^\s*-\s*\[?\*\*(.+?)\*\*\]?(?:\([^)]*\))?\s*[—–:-]\s*(.+?)\s*$")
+# Card name in bold, optionally linked, optionally followed by one-or-more parentheticals
+# (scryfall link AND a mana/reminder gloss — LoL's `[**Card**](url) (4WW: …) — note` form),
+# then the note. Separator optional so Numot's `**Card:** note` (colon inside bold) parses too.
+BULLET = re.compile(r"^\s*-\s*\[?\*\*(.+?):?\*\*\]?(?:\s*\([^)]*\))*\s*[—–:-]?\s*(.+?)\s*$")
 TABLE  = re.compile(r"^\s*\|\s*\[?\*\*(.+?)\*\*\]?[^|]*\|\s*(.+?)\s*\|")
 def parse_guide(path):
     notes = {}
