@@ -1,0 +1,44 @@
+{
+  "channel": "Prerelease syntheses (multi-source web prose)",
+  "scope": "written prerelease guides synthesized from several article sources at once; NOT YouTube transcripts; outside the src/ingest ETL",
+  "note": "Weakest evidence tier in the repo by construction \u2014 every grade is a pre-gameplay prediction. Retire or rewrite each file once 17Lands data and the channel guides land. sha1 = shasum of the committed <SET>.md.",
+  "counts": {
+    "sets": 1
+  },
+  "sets": {
+    "HOB": {
+      "tier": 1,
+      "file": "HOB.md",
+      "captured": "2026-08-05",
+      "prerelease": "2026-08-07",
+      "arena_release": "2026-08-11",
+      "source_urls": [
+        "https://magic.wizards.com/en/news/feature/the-hobbit-prerelease-guide",
+        "https://draftsim.com/mtg-the-hobbit/",
+        "https://draftsim.com/mtg-hob-limited-set-review/",
+        "https://draftsim.com/HOB-pick-order/",
+        "https://cardgamebase.com/the-hobbit-draft-guide/",
+        "https://cardgamebase.com/the-hobbit-draft-tier-list/",
+        "https://mtgazone.com/the-hobbit-hob-limited-archetypes-guide-and-example-decks/"
+      ],
+      "sha1": "88908607d9b45f382206492836da17237dcf94b2",
+      "words": 6438,
+      "card_data": {
+        "source": "Scryfall set:hob",
+        "cards": 193,
+        "fetched": "2026-08-05",
+        "embedded_images": 120,
+        "image_size": "230px, scryfall normal (488x680 source)"
+      },
+      "aggregates": [
+        "limited-resources/HOB.md (LR 865)",
+        "Draftsim",
+        "Card Game Base",
+        "MTG Arena Zone",
+        "Wizards prerelease guide",
+        "Scryfall"
+      ],
+      "role": "master aggregated HOB guide"
+    }
+  }
+}
