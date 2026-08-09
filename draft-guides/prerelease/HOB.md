@@ -265,7 +265,7 @@ LR's A–F scale with ± subgrades, plus **sideboard** and **build-around**. Spl
 
 ## ⚡ First play data — r/lrcast prerelease reports (2026-08-09)
 
-**This is the only games-played evidence in the file, and it supersedes every prediction above it.** Harvested from r/lrcast: 66 HOB threads and 663 comments; 151 comments read closely across 11 threads (the rest were off-topic or sub-threshold). Still soft — self-reported, survivorship-biased, one weekend, no 17Lands — but it is the first time anyone in this document had played a game.
+**This is the only games-played evidence in the file, and it supersedes every prediction above it.** Harvested across r/lrcast, r/magicTCG, r/MagicArena, r/spikes and r/mtglimited: **127 posts, 1,015 comments fetched, 177 read closely** across 12 threads. Still soft — self-reported, survivorship-biased, one weekend, no 17Lands — but it is the first time anyone in this document had played a game.
 
 ### Blue underperformed, badly
 
@@ -300,6 +300,20 @@ The mechanism, and it's a Sealed-specific one (top comment, 57 pts): **"The blue
 The five signposts are loose enough to ignore. Reported: a **Gruul (R/G)** deck won a prerelease on green beaters + red removal; **Jund (B/R/G)** called *"the strongest space in the set"*; **Dimir (U/B)** rated above Simic. One player: *"the defined archetypes were barely supported, so really you can just find whatever synergies seem to be there."*
 
 **This cuts against OzMTG's "commit to a tribe or lose."** Reconciliation: commit to a *lane* — two colours with a coherent plan — but the printed pair is not binding. If your pool is B/R/G goodstuff, play B/R/G goodstuff.
+
+### Second wave — r/magicTCG prerelease megathread
+
+Widened the sweep to r/magicTCG, r/MagicArena, r/spikes and r/mtglimited: **127 posts, 1,015 comments** total. The r/magicTCG Prerelease Megathread (171 comments) is the single best battleground-report thread found.
+
+- **⚡ The metagame is R/W Dwarves and B/R Goblins, and blue and green are missing.** A player through five rounds: *"I didn't play a single person running blue or green. Literally everyone was RW dwarves or RB Goblins, with **goblins seemingly being the strongest**."* That is a **third independent confirmation** of the blue/green problem and of B/R on top.
+- **⚠ [Dancing from Dark to Dawn](https://scryfall.com/card/hob/123/dancing-from-dark-to-dawn) may be the real format-warper.** *"Nearly impossible to answer in limited. **Everyone who pulled one in my prerelease went 3-0.**"* The complaint attached: there's almost no enchantment removal, and the one piece people had ([Giant's Boulder](https://scryfall.com/card/hob/173/giants-boulder)) is far too slow. If you open it, build around it. If you face it, you are probably racing.
+- **A 3-0 R/W list shape, straight from a report:** **12 dwarves, 6 equipment, 5 removal.** That's a usable target if Andy or Kyle lands the R/W seat.
+- **[Dwarven Mauler](https://scryfall.com/card/hob/95/dwarven-mauler) is confirmed good** by the same 3-0 player — *"pretty damn good... I could attack big and then swap all equipments to a defender."* This settles the LLU disagreement in Mark's favour: the equip discount is real, and the mobility it buys is the point.
+- **Dwarves snowball if unanswered** — *"if you don't get your removal they seem to be able to get out of hand quick."* Reinforces the two reports that dwarves *without* removal lose: this deck is decided by whether interaction shows up on either side.
+- **[Stone-Giant of High Pass](https://scryfall.com/card/hob/113/stone-giant-of-high-pass) closes games** — with artifacts out, its attack trigger was dealing 8 to the face.
+- **[Inside Information](https://scryfall.com/card/hob/76/inside-information)** did heavy lifting in a B/R goblins deck running two copies.
+- **The one credible G/U report is ramp, not elf synergy.** *"I ran Simic elves ramping into huge bears that I'd buff with [Thranduil's Company](https://scryfall.com/card/hob/168/thranduils-company). Beat all the red decks I played against... hasty 7/7 bears by turn five."* If your pool forces G/U, **build it as ramp-into-fatties, not as an elf-count deck.**
+- **⚠ Live disagreement on three colours.** One report: *"3 colour seemed to do well in this set."* Against the earlier warning that the black decks are fast enough to punish taplands. Unresolved — but the trio guidance stands, because three-colour risk compounds when you're building three decks from one pool.
 
 ### Piloting notes from people who played
 
