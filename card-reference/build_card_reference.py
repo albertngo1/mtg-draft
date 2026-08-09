@@ -108,7 +108,8 @@ def norm(s):
 
 ds, GLABEL, GDESC = {}, "", ""
 for src, label, desc in (("draftsim", "DS", "Draftsim grade /5"),
-                         ("cardgamebase", "CGB", "CardGameBase letter grade")):
+                         ("cardgamebase", "CGB", "CardGameBase letter grade"),
+                         ("limitedresources", "LR", "Limited Resources letter grade (commons + uncommons only)")):
     p = f"{ROOT}/grades/{src}_{SET}.json"
     if os.path.exists(p):
         ds = {norm(k): v for k, v in json.load(open(p)).items() if not k.startswith("_")}
@@ -203,7 +204,7 @@ def cell(c):
     parts.append(f'<b>{esc(name)}</b><br><sub>{badge}</sub><br>')
     # compact stat lines
     parts.append(f'<sub>GIH <b>{pct(gih(c))}</b> · IWD {signed(c.get("drawn_improvement_win_rate"))} '
-                 f'· ALSA {(c.get("avg_seen") or 0):.1f} · {GLABEL} {ds_grade(c)}</sub><br>')
+                 f'· ALSA {f"{c["avg_seen"]:.1f}" if c.get("avg_seen") else "—"} · {GLABEL} {ds_grade(c)}</sub><br>')
     parts.append(f'<sub>OH {pct(c.get("opening_hand_win_rate"))} · GD {pct(c.get("drawn_win_rate"))} '
                  f'· Play {pct(c.get("play_rate"))}</sub><br>')
     # AI take
@@ -244,6 +245,17 @@ L.append("**Legend** — **GIH** = Games-in-Hand WR (primary) · **IWD** = Impro
          f"**Play** = play rate{_grade_legend}.  "
          f"🤖 AI · {_guide_legend}.\n")
 CAVEAT = {
+    "HOB": "> **⚠ NO 17LANDS DATA YET.** HOB is on Arena **2026-08-11**; every WR/ALSA column below is blank "
+           "by construction, and this card list is built from **Scryfall** (188 draftable cards) rather than a "
+           "17Lands export. What carries the read instead: **LR 865 letter grades**, the **Limited Level-Ups "
+           "primer**, and **prerelease play reports** — all pre-gameplay or one-weekend evidence. Rebuild with "
+           "`build_card_reference.py HOB` once 17Lands fills in (usable samples expected ~2026-08-17) and the "
+           "columns populate with no other change.\n"
+           ">\n"
+           "> Early format read from prerelease reports: **Rakdos (B/R) = Golgari (B/G) > Boros (R/W) > Azorius "
+           "(W/U) = Simic (G/U)**. Blue underperformed — it is synergistic and hard to assemble in Sealed. "
+           "Removal cannot kill small creatures (no Shock, no Stab), so two-drops are safe and curve-out plans "
+           "are rewarded. Damage-based removal caps at 5, making 6-toughness creatures near-unanswerable.\n",
     "SOS": "> SOS is a soup/Converge format — multicolor & Converge win-rates are inflated by 4-5c "
            "pilots. The AI take and guide notes decode which deck a number came from.\n",
     "MKM": "> MKM is a grindy 2-color guild-midrange format, so GIH WR transfers honestly (little soup "
