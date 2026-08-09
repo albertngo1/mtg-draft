@@ -415,6 +415,30 @@ Three two-colour decks consume **six colour slots across five colours**, so at l
 
 **Avoid any configuration containing G/U** unless the pool forces it (a G/U bomb rare, or genuinely nothing else). It is short on playable two-drops, its payoffs are unexciting, and its failure mode — drawing cards and making small bodies without ever turning the corner — is exactly the deck that loses long Sealed games.
 
+### ⚡ 18 packs changes what a synergy deck costs
+
+**The play data killed blue for a density reason, not a quality reason — and a shared 18-pack pool is exactly the fix.** Every reporter's mechanism was the same: *"the blue decks are all synergistic so they're harder to assemble in sealed — it's hard to pull 2× [Lakeshore Apothecary](https://scryfall.com/card/hob/43/lakeshore-apothecary) plus a critical mass of draw cards to turn it on."* Several of the same people said blue's cards look **strongest in a vacuum**. That is a supply problem, and you have three times the supply.
+
+**The rule this produces:**
+
+> In solo Sealed, synergy is a trap. In an 18-pack shared pool, **exactly one seat can afford to be the synergy deck** — it gets ~3× the density of a solo pool, the other two seats absorb the goodstuff, and concentration costs nothing **provided no other seat wants that colour**.
+
+That proviso is the whole trick, and it's what decides *which* blue deck:
+
+| Seat 3 option | Verdict |
+|---|---|
+| **U/B Dimir** | ✅ Doubles **black** — the deepest colour, the one you want doubled — and nobody contests blue. There's a report for it: *"Dimir looks great with blue's draw-2 synergies, Nurturer bouncing, and black removal and Amass. Honestly it looks a lot better than Simic to me."* |
+| **W/U** | ⚠️ Doubles **white**, and R/W Dwarves wants white cards too. Two seats fighting over Fíli, Kíli and the anthems, out of the set's thinnest commons |
+
+The one Dimir failure report was a **control** deck, and control is separately confirmed dead here. Dimir tempo-and-amass is a different deck.
+
+**The same maths rescues the other density thresholds**, for one seat only: ferocious's 8–10 enablers, [Dwarven Mattock](https://scryfall.com/card/hob/172/dwarven-mattock)'s ~10 dwarves, [Dwarven Mauler](https://scryfall.com/card/hob/95/dwarven-mauler)'s 4–5 equipment all become reachable. OzMTG's *"commit to a tribe or lose"* is better advice for a trio than for a solo pool.
+
+**Two caveats that survive:**
+
+1. **One seat or none.** Split blue across two decks and you've rebuilt the solo-Sealed problem at half density each.
+2. **Blue's removal still played badly** and its top end is weak (Gandalf is meh, [Thranduil's Decree](https://scryfall.com/card/hob/56/thranduils-decree) is purely reactive). The U/B seat needs **black** removal fed to it — which is exactly what the "worse alternative wins" rule in the contested pass is for.
+
 ### White is a dedicated seat, never a shared one
 
 This is the HOB-specific trap. **White has the worst commons in the set and the best rares** — all three of both LLU reviewers' top rares are white, plus Kíli the Resourceful just below. White also has exactly **one** removal common ([Magnificent End](https://scryfall.com/card/hob/20/magnificent-end)), though its uncommon removal ([Celebrate the Mountain-king](https://scryfall.com/card/hob/7/celebrate-the-mountain-king), [Stone by Sunlight](https://scryfall.com/card/hob/27/stone-by-sunlight)) is excellent.
