@@ -295,6 +295,28 @@ The mechanism, and it's a Sealed-specific one (top comment, 57 pts): **"The blue
 - **Blue's removal reads better than it plays.** On paper the sub rated it "fantastic"; the player who watched a prerelease said the three-mana tap-forever aura *"plays horribly."* Trust the played result.
 - **[Great Gilded Boat](https://scryfall.com/card/hob/42/great-gilded-boat) is a splash target from any colour.** *"Even if my blue pool isn't playable I would do everything I can to splash it."*
 
+### ⚠️ Correction: green is fine — it is *Simic* that is bad, not green
+
+An earlier revision of this file said "blue and green are missing." **That was wrong**, extrapolated from a single comment about one store's local metagame, and it should not have been repeated. The tier list from the player who watched a full prerelease reads:
+
+> **Rakdos (B/R) = Golgari (B/G) > Boros (R/W) > Azorius (W/U) = Simic (G/U)**
+
+**Golgari is tied for first**, and it has more trophy reports in this corpus than any other archetype:
+
+| Result | Note |
+|---|---|
+| 4-0 | *"I think BG is really good and aggressive — that's what I went 4-0 with"* |
+| 3-0 (6-1) | beat Rakdos, Azorius and Boros |
+| 3-0 | *"about 8 pieces of spot removal plus the uncommon flex sweeper... standard rock except the commons and uncommons were on steroids"* |
+| 3-0 | beat UW, RB, RW |
+| 3-0 | **with only one rare in the deck** — curve out, force trades, land the top end |
+| 3-1 | first serious prerelease |
+| back-to-back trophies | Golgari midrange |
+
+Against that: one 1-2 / 1-2 / 2-1 (the telegraphing problem), and one 2-1 in Two-Headed Giant. An opponent who lost to it: *"BG ferocious did a really good job of locking me out. **Lots of good removal in BG.**"*
+
+**What's actually bad is the blue half of green's other pairing.** G/U Simic is bottom-tier alongside W/U Azorius. Green paired with black is a top-two deck.
+
 ### Off-archetype pairs are live
 
 The five signposts are loose enough to ignore. Reported: a **Gruul (R/G)** deck won a prerelease on green beaters + red removal; **Jund (B/R/G)** called *"the strongest space in the set"*; **Dimir (U/B)** rated above Simic. One player: *"the defined archetypes were barely supported, so really you can just find whatever synergies seem to be there."*
@@ -305,7 +327,7 @@ The five signposts are loose enough to ignore. Reported: a **Gruul (R/G)** deck 
 
 Widened the sweep to r/magicTCG, r/MagicArena, r/spikes and r/mtglimited: **127 posts, 1,015 comments** total. The r/magicTCG Prerelease Megathread (171 comments) is the single best battleground-report thread found.
 
-- **⚡ The metagame is R/W Dwarves and B/R Goblins, and blue and green are missing.** A player through five rounds: *"I didn't play a single person running blue or green. Literally everyone was RW dwarves or RB Goblins, with **goblins seemingly being the strongest**."* That is a **third independent confirmation** of the blue/green problem and of B/R on top.
+- **The metagame is R/W Dwarves and B/R Goblins where people report it.** A player through five rounds: *"I didn't play a single person running blue or green. Literally everyone was RW dwarves or RB Goblins, with **goblins seemingly being the strongest**."* Good confirmation of **B/R on top** — but note this is **one store's local metagame**, and it is the *only* report that puts green in the same bucket as blue. See the correction below.
 - **⚠ [Dancing from Dark to Dawn](https://scryfall.com/card/hob/123/dancing-from-dark-to-dawn) may be the real format-warper.** *"Nearly impossible to answer in limited. **Everyone who pulled one in my prerelease went 3-0.**"* The complaint attached: there's almost no enchantment removal, and the one piece people had ([Giant's Boulder](https://scryfall.com/card/hob/173/giants-boulder)) is far too slow. If you open it, build around it. If you face it, you are probably racing.
 - **A 3-0 R/W report listed 12 dwarves, 6 equipment, 5 removal** — arithmetically fine (23 spells + 17 lands), but **do not use it as a template.** 12 creatures is under the 15–17 target, and the buckets overlap: [Dwarven Shortsword](https://scryfall.com/card/hob/10/dwarven-shortsword) and [Goblin Plate Mail](https://scryfall.com/card/hob/157/goblin-plate-mail) each bring their own body, while [Iron Hills Blacksmith](https://scryfall.com/card/hob/16/iron-hills-blacksmith) and [Dáin Ironfoot](https://scryfall.com/card/hob/91/dain-ironfoot) are dwarves that *make* equipment. Two more of that six aren't really equipment slots — [Crude Bent Blade](https://scryfall.com/card/hob/63/crude-bent-blade) is an edict and [Ragged Short Spear](https://scryfall.com/card/hob/108/ragged-short-spear) is a Tormenting Voice. Normalised, it's ~14 bodies / 3–4 real equipment / ~6 removal.
 
@@ -447,13 +469,17 @@ That proviso is the whole trick, and it's what decides *which* blue deck:
 
 **Both green bombs are `{3}{G}{G}`. You cannot splash them** — they need a real green seat or they sit in the sideboard.
 
-**So the census runs green first:**
+**So seat 3 is B/G, and it is very close to locked.** Golgari is **co-first on the only tier list we have** and carries more trophy reports than any other archetype in this corpus (a 4-0, four 3-0s, a 3-1, and back-to-back trophies). It is not a fallback — it is a top-two deck, and it brings its own removal.
 
-1. **Is Dancing from Dark to Dawn or Beorn the Fierce in the pool?** → seat 3 is **B/G**. Done, no further debate — two double-green cards that good outweigh any blue count. Both are mythics, so across 18 packs this decides it perhaps a third of the time before anyone counts a blue card.
-2. **No green bomb?** → apply the blue gate: **4+ draw-two enablers** (Lakeshore Apothecary / Patient Instructor / Bilbo Baggins, Burglar / Long Lake Nuisance / Plunder the Trollshaws) **and** one of [The Eagles Are Coming!](https://scryfall.com/card/hob/12/the-eagles-are-coming) or [Settle the Wreckage](https://scryfall.com/card/hob/26/settle-the-wreckage) → **W/U**.
-3. **Neither?** → **B/G** anyway. Green at least gives bodies plus real removal in Quarrel and Troll Negotiations; blue without density gives nothing.
+Green's two bombs reinforce it rather than being the argument for it: [Dancing from Dark to Dawn](https://scryfall.com/card/hob/123/dancing-from-dark-to-dawn) (*"everyone who pulled one went 3-0"*) and [Beorn the Fierce](https://scryfall.com/card/hob/119/beorn-the-fierce) (LLU's #1 mythic, CGB's #1 card) are both `{3}{G}{G}` and **cannot be splashed** — they need a real green seat or they rot in the sideboard.
 
-**W/U is the exception, not the default.** It needs green to be empty *and* blue to be deep.
+**Take W/U over B/G only if all three hold:**
+
+1. **Green is genuinely empty** — no green bomb, and not enough green two- and three-drops to curve out
+2. **4+ blue draw-two enablers** — Lakeshore Apothecary / Patient Instructor / Bilbo Baggins, Burglar / Long Lake Nuisance / Plunder the Trollshaws
+3. **One of the two white bombs** — [The Eagles Are Coming!](https://scryfall.com/card/hob/12/the-eagles-are-coming) or [Settle the Wreckage](https://scryfall.com/card/hob/26/settle-the-wreckage)
+
+W/U is Azorius, which sits **bottom-tier alongside Simic** on the same list that puts Golgari first. It is a real deck only when the pool hands you the bombs that carried both reported 3-0s.
 
 W/U also gets **blue's removal uncontested** — Uneasy Partings, Enchanted River's Grasp, Confusticate — roughly six pieces nobody else wants. The reports say blue removal is mediocre; six mediocre pieces beats fighting B/R over two good ones. (The one Dimir failure report was a **control** deck, and control is separately confirmed dead here — but the contention problem stands regardless.)
 
