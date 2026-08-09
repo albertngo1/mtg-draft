@@ -489,13 +489,32 @@ These are the places to trust the primary data over a written guide.
    - [Sound the Trumpets](https://scryfall.com/card/hob/55/sound-the-trumpets) — split within OzMTG itself, one on the recruit rider, the other on *"inefficiency built into a card."* LR's D+ draft / C+ Sealed split is the reconciliation.
 9. **Ignore the AI-generated "prerelease guides"** ranking in search right now. One claims Red is the strongest Sealed color with R/B and R/G as the best pairs — R/G isn't one of the five archetypes. If a guide doesn't name recruit, storied, amass, ferocious and landfall, it hasn't seen the set.
 
-## What to bring to the prerelease
+## Before you leave the house
 
-- Sleeves — 40+ per deck, and enough for three decks if you're sharing a pool.
-- A deck box per player, plus something separate for the leftover pool (submitted decks lock; keep the sideboard organized).
-- Dice or counters — amass and hone counters both stack up fast.
-- Basic lands. Stores supply them, but a personal stack of 20 of each saves ten minutes at build time.
-- Something to write on for a team build: three columns, one per player, so you can see the color split.
+### The night before — 20 minutes, then sleep
+
+**Read the ~60 commons. Not the whole set.** Scryfall `set:hob rarity:common` — ten per colour plus colourless. Commons are the bulk of what you'll physically open, and they're the cards you have to evaluate fastest at the table. Every common you already know is ten seconds you don't spend in the reading phase. If you only have five minutes, read the two colours you most expect to play.
+
+**Do not try to read all 193 cards.** You won't retain it, and the rares are the ones you'll have time to read carefully at the table anyway.
+
+**Send one message to your teammates.** The split rule is the only thing that genuinely cannot be fixed at the table, and settling it at 11pm costs two minutes:
+
+> Split rule for after — photo-split back, snake draft, or builder-keeps? Everyone brings their own sleeves. We each keep our own foil promo regardless.
+
+**Send the roles too**, so nobody negotiates them at the table: who is Decider, who is Clock, who is Scribe (see [Build choreography](#build-choreography-shared-pool)).
+
+### Audio, if you want it in the car
+
+**Limited Resources 865, minutes 0:00–14:36 only** — the mechanics chapter. Skip the remaining three hours; that's card grades you'll have in front of you anyway. Everything else in [Go deeper](#go-deeper-before-the-event) is reference material for the table, not listening.
+
+### What to pack
+
+- **Sleeves in three different colours**, 50+ each. This is how you unpick whose card is whose after the event — worth more than any single deckbuilding tip here.
+- A deck box per player, plus a fourth container for the leftover pool (submitted decks lock; keep the sideboard organized).
+- Dice or counters — amass and hone counters both stack up fast, across three simultaneous games.
+- Basic lands, 20 of each. Stores supply them, but a personal stack saves ten minutes across three decks.
+- A sheet of paper with **three columns**, one per player, for the config, pilots and contested list.
+- A phone with Scryfall open, for the reading phase.
 
 ## Go deeper before the event
 
