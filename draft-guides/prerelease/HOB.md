@@ -425,12 +425,25 @@ Three two-colour decks consume **six colour slots across five colours**, so at l
 
 That proviso is the whole trick, and it's what decides *which* blue deck:
 
-| Seat 3 option | Verdict |
-|---|---|
-| **U/B Dimir** | ✅ Doubles **black** — the deepest colour, the one you want doubled — and nobody contests blue. There's a report for it: *"Dimir looks great with blue's draw-2 synergies, Nurturer bouncing, and black removal and Amass. Honestly it looks a lot better than Simic to me."* |
-| **W/U** | ⚠️ Doubles **white**, and R/W Dwarves wants white cards too. Two seats fighting over Fíli, Kíli and the anthems, out of the set's thinnest commons |
+**Contention between seats is not symmetric, and that — not the doubling maths — decides it.** With seats 1 and 2 locked as R/W and B/R:
 
-The one Dimir failure report was a **control** deck, and control is separately confirmed dead here. Dimir tempo-and-amass is a different deck.
+| Seat 3 | Doubles | What it actually fights over |
+|---|---|---|
+| **W/U** | White | ✅ **Bombs vs. bodies — mostly different cards.** R/W wants white *creatures and equipment* (dwarves, Dwarven Provisioner, Dwarven Shortsword, Iron Hills Blacksmith); W/U wants white *bombs and removal* (Eagles, An Unexpected Party, Settle, Celebrate the Mountain-king). Barely any overlap |
+| **U/B Dimir** | Black | ⚠️ **Head-on.** Both decks want the identical short list of black removal, which is the scarce deciding resource |
+| **B/G** | Black | ⚠️ Same head-on collision |
+| G/U | nothing | Zero contention, but it's the archetype every source ranks last |
+
+**So seat 3 is W/U — built blue-primary, white for bombs.** Not a true two-colour recruit deck: blue is the engine, white is the payload. That is exactly the shape of both reported 3-0s (recruit into 4/4 fliers; recruit plus Settle), and it leaves R/W's dwarves and equipment untouched.
+
+**The census question changes accordingly.** Don't ask "do I have enough white." Ask both of:
+
+1. **Blue draw-two density** — 4+ of Lakeshore Apothecary / Patient Instructor / Bilbo Baggins, Burglar / Long Lake Nuisance / Plunder the Trollshaws across 18 packs
+2. **One of the two white bombs** — [The Eagles Are Coming!](https://scryfall.com/card/hob/12/the-eagles-are-coming) or [Settle the Wreckage](https://scryfall.com/card/hob/26/settle-the-wreckage)
+
+Both yes → **W/U**. Either no → **B/G**.
+
+W/U also gets **blue's removal uncontested** — Uneasy Partings, Enchanted River's Grasp, Confusticate — roughly six pieces nobody else wants. The reports say blue removal is mediocre; six mediocre pieces beats fighting B/R over two good ones. (The one Dimir failure report was a **control** deck, and control is separately confirmed dead here — but the contention problem stands regardless.)
 
 **The same maths rescues the other density thresholds**, for one seat only: ferocious's 8–10 enablers, [Dwarven Mattock](https://scryfall.com/card/hob/172/dwarven-mattock)'s ~10 dwarves, [Dwarven Mauler](https://scryfall.com/card/hob/95/dwarven-mauler)'s 4–5 equipment all become reachable. OzMTG's *"commit to a tribe or lose"* is better advice for a trio than for a solo pool.
 
