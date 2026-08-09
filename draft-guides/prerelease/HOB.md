@@ -258,6 +258,50 @@ LR's A–F scale with ± subgrades, plus **sideboard** and **build-around**. Spl
 
 ---
 
+## ⚡ First play data — r/lrcast prerelease reports (2026-08-09)
+
+**This is the only games-played evidence in the file, and it supersedes every prediction above it.** Harvested from r/lrcast: 66 HOB threads, 654 comments from people who actually played prerelease weekend. Still soft — self-reported, survivorship-biased, one weekend, no 17Lands — but it is the first time anyone in this document had played a game.
+
+### Blue underperformed, badly
+
+The single most consequential finding. From an OP who watched a full prerelease play out: **"Among the top 12 players there was no Azorius or Simic elf deck."** Their day-one tier list:
+
+> **Rakdos (B/R) = Golgari (B/G) > Boros (R/W) > Azorius (W/U) = Simic (G/U)**
+
+The mechanism, and it's a Sealed-specific one (top comment, 57 pts): **"The blue decks are all synergistic so they're harder to assemble in sealed. It's hard to pull 2× [Lakeshore Apothecary](https://scryfall.com/card/hob/43/lakeshore-apothecary) plus a critical mass of draw cards to turn it on."** Blue needs density it can't reliably get from six packs. A second player: *"in a vacuum they just have the strongest commons and uncommons"* — which is exactly what the pre-gameplay sources said, and it didn't translate.
+
+**This supersedes this file's earlier read of W/U as "the strongest Sealed default."** That call came from counting common quality, and common quality is not what decided these games.
+
+**W/U can still 3-0, but only off specific bombs.** Two independent 3-0 reports both credit the same two cards: [Settle the Wreckage](https://scryfall.com/card/hob/26/settle-the-wreckage) and [The Eagles Are Coming!](https://scryfall.com/card/hob/12/the-eagles-are-coming) — which the sub has already renamed "Eagle bullshit." One finals line: recruit into six 4/4 fliers, attack for 36 in the air. **Note this reverses LLU's read** that Settle the Wreckage was trauma-overrated and belonged outside the top 10; in Sealed it was doing heavy lifting.
+
+### The format is fast, and that has knock-on effects
+
+- **"Curve-outs are fast."** A player with three prereleases × four rounds: *"the black decks were so fast that you really couldn't allow yourself to stumble over mana, there's just no coming back from a major tempo loss, especially on the draw."*
+- **⚠️ Taplands can kill you.** Same player: *"Playing too many taplands can just get you killed."* **This is a live disagreement with the Fixing section above**, which rates the dual cycle highly. Both can be true — the lands are strong, and you can still play too many. Cap them, and prefer the ones in your main colours.
+- **Splashes need to be worth it.** Three-colour looked appealing on paper and mostly wasn't, *"unless you're heavy into recruit where you can just bin stuff if you don't hit your splash colours."*
+- **Equipment keeps small creatures live.** *"Even 1/1 creatures can become something like 4/2 menace attackers late game by utilizing equipment."*
+- **Lifegain barely exists** — no common lifelinkers, and [Old Thrush](https://scryfall.com/card/hob/2/old-thrush) is the only common creature that gains life on entry. Racing math is brutal; there is no stabilising back.
+
+### Removal is scarce and slow, and 6 toughness is close to unkillable
+
+- **Two-mana removal is very rare**, and there are impactful one-drops in green, red and white. Being the proactive deck is rewarded.
+- **The only efficient uncommon removal is [Stone by Sunlight](https://scryfall.com/card/hob/27/stone-by-sunlight).** Troll Negotiations, Burn Burn Tree and Fern, and Celebrate the Mountain-king are all four mana — value, not tempo. *"Play to the board early; there is not much defensive speed in the removal."*
+- **Damage-based removal caps at 5**, so **6-toughness creatures are effectively unanswerable at common**. [Old Fat Spider](https://scryfall.com/card/hob/132/old-fat-spider) and [Wilderland Scrounger](https://scryfall.com/card/hob/141/wilderland-scrounger) are the only common/uncommon creatures that big — **move both up**, especially Wilderland Scrounger, which LR graded C+/D+ and the sub is now revisiting for exactly this reason. It also means **going tall with Amass is more viable than it looked.**
+- **Blue's removal reads better than it plays.** On paper the sub rated it "fantastic"; the player who watched a prerelease said the three-mana tap-forever aura *"plays horribly."* Trust the played result.
+- **[Great Gilded Boat](https://scryfall.com/card/hob/42/great-gilded-boat) is a splash target from any colour.** *"Even if my blue pool isn't playable I would do everything I can to splash it."*
+
+### Off-archetype pairs are live
+
+The five signposts are loose enough to ignore. Reported: a **Gruul (R/G)** deck won a prerelease on green beaters + red removal; **Jund (B/R/G)** called *"the strongest space in the set"*; **Dimir (U/B)** rated above Simic. One player: *"the defined archetypes were barely supported, so really you can just find whatever synergies seem to be there."*
+
+**This cuts against OzMTG's "commit to a tribe or lose."** Reconciliation: commit to a *lane* — two colours with a coherent plan — but the printed pair is not binding. If your pool is B/R/G goodstuff, play B/R/G goodstuff.
+
+### What the self-reported records do and don't show
+
+I parsed records out of 66 post titles: 24 had a parseable match record, 11 also named an archetype. Aggregated, B/G and R/W came out at 100% and W/U at 83% — **but that sample is far too small and too survivorship-biased to mean anything.** People post their 3-0s. Treat the OP's top-12 observation above as better evidence than any tally of self-reports, and treat all of it as one weekend.
+
+**No text decklists were recoverable** — r/lrcast prerelease posts are overwhelmingly photos of the built deck, so the lists live in images, not text. Archetype and record come from the titles.
+
 ## The prerelease kit itself
 
 From OzMTG's on-camera kit opening (2026-08-05). Practical, and none of it is in the written guides.
@@ -320,9 +364,11 @@ Three two-colour decks consume **six colour slots across five colours**, so at l
 | Two adjacent + one disjoint | B/R + B/G + W/U | **one** (black) |
 | Three in a row | R/W + B/R + B/G | **two** (red and black), one colour unused (blue) |
 
-**Recommended: B/R + B/G + W/U.** It is the only configuration that doubles the deepest colour, uses all five colours, and **never builds G/U** — the archetype both LLU reviewers rank last. Black is the right colour to double because black has five or six commons you're happy to play, so two seats can share it without either going hungry.
+**Recommended: R/W + B/R + B/G.** ⚡ **Changed 2026-08-09 on the strength of actual prerelease results** — see [First play data](#-first-play-data--rlrcast-prerelease-reports-2026-08-09). These are precisely the three archetypes that performed (**Rakdos = Golgari > Boros**), and it drops blue entirely, which is the colour that underperformed. It doubles both of the two deepest colours, R and B. Three proactive decks out of one pool, which is what a fast format wants.
 
-**Runner-up: R/W + B/R + B/G**, which dumps blue entirely and doubles both of the two deepest colours. Take this when your white rares are thin — see below — since it's the configuration that gets three aggressive decks out of one pool.
+**Runner-up: B/R + B/G + W/U.** This was the recommendation until play data landed, on the reasoning that it doubles only one colour and uses all five. It is still structurally elegant, and the W/U seat is still fine **if — and only if — the pool hands you [Settle the Wreckage](https://scryfall.com/card/hob/26/settle-the-wreckage) or [The Eagles Are Coming!](https://scryfall.com/card/hob/12/the-eagles-are-coming)**. Both 3-0 W/U reports were carried by those cards. Without them, blue is a synergy deck you can't assemble from six packs.
+
+**Decision rule at the census:** count white rares *and* check for those two cards. Both configurations contain R/W and B/R, so the only real question is whether seat three is **B/G** (default) or **W/U** (needs a blue-white bomb).
 
 **Avoid any configuration containing G/U** unless the pool forces it (a G/U bomb rare, or genuinely nothing else). It is short on playable two-drops, its payoffs are unexciting, and its failure mode — drawing cards and making small bodies without ever turning the corner — is exactly the deck that loses long Sealed games.
 
