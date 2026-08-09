@@ -3,11 +3,22 @@
   "scope": "Limited-focused podcast/video: per-color card-by-card set reviews (letter grades) + rare/mythic review + prerelease/first-impressions guides + occasional early-access draft gameplay + weekly strategy deep-dives",
   "note": "Fingerprint of distilled scrape. sha1 = sha1 of the cleaned transcript .txt.",
   "counts": {
-    "sets": 1,
-    "videos_distilled": 11,
+    "sets": 2,
+    "videos_distilled": 16,
     "videos_no_captions": 0
   },
   "sets": {
+    "HOB": {
+      "tier": 1,
+      "file": "HOB.md",
+      "video_ids": [
+        "-DZnv_Ap-qo",
+        "gXrmVcPfg24",
+        "jD3Tr03b2MQ",
+        "m-qR8GeZ96A",
+        "nt-OvtlAGBY"
+      ]
+    },
     "MSH": {
       "tier": 1,
       "file": "MSH.md",
@@ -27,6 +38,12 @@
     }
   },
   "videos": {
+    "-DZnv_Ap-qo": {
+      "set": "HOB",
+      "sha1": "94cb0c179f5957119d5c5f0dec6ccb260a5136c2",
+      "words": 6993,
+      "distilled": true
+    },
     "G9kQKcUxWKA": {
       "set": "MSH",
       "sha1": "d489bc3ef807d7a165a30e9e7dcc04699cc70c30",
@@ -69,10 +86,34 @@
       "words": 6903,
       "distilled": true
     },
+    "gXrmVcPfg24": {
+      "set": "HOB",
+      "sha1": "a8809239f8ac9f916933828fefe3738d1d49083f",
+      "words": 2480,
+      "distilled": true
+    },
+    "jD3Tr03b2MQ": {
+      "set": "HOB",
+      "sha1": "2bbfc8c8254ab01bca631833b9f2c6923143280b",
+      "words": 5605,
+      "distilled": true
+    },
+    "m-qR8GeZ96A": {
+      "set": "HOB",
+      "sha1": "45b945421a735d2825ec640b182da8df84274370",
+      "words": 6755,
+      "distilled": true
+    },
     "nOHD6VMQDOU": {
       "set": "MSH",
       "sha1": "20b5fcf598e677cb09e812bef5622bdfc8f8b0c9",
       "words": 9121,
+      "distilled": true
+    },
+    "nt-OvtlAGBY": {
+      "set": "HOB",
+      "sha1": "3064ceae5bc390c13e9522cd3805e5b68121e616",
+      "words": 16004,
       "distilled": true
     },
     "qb9q7F4rFA8": {

@@ -25,4 +25,4 @@ If a set in this folder already has a post-release guide in another folder, pref
 
 | Set | Guide | Prerelease | Superseded by |
 |-----|-------|-----------|---------------|
-| The Hobbit (HOB) | [HOB.md](./HOB.md) | 2026-08-07 | partly — see [`limited-resources/HOB.md`](../limited-resources/HOB.md) (commons + uncommons only; HOB.md here still has the only rare coverage) |
+| The Hobbit (HOB) | [HOB.md](./HOB.md) | 2026-08-07 | largely — [`limited-level-ups/HOB.md`](../limited-level-ups/HOB.md) covers archetypes, commons, uncommons, **rares and mythics**; [`limited-resources/HOB.md`](../limited-resources/HOB.md) covers commons + uncommons. Retire once 17Lands GIH WR lands (Arena 2026-08-11). |

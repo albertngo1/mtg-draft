@@ -4,7 +4,11 @@
 >
 > **⚠ Weakest evidence tier, by construction.** Nothing here is backed by a single played game. HOB hits Arena **2026-08-11**; from that date **17Lands GIH WR supersedes every grade in this file.** LR 866 (rares & mythics) airs the week of Aug 10 and will supersede the rare section.
 >
-> Companion file: [`draft-guides/limited-resources/HOB.md`](../limited-resources/HOB.md) — the channel-pure LR 865 distill, kept separate per the ETL contract.
+> **Update 2026-08-08 — read `limited-level-ups/HOB.md` first for rares.** Limited Level-Ups published a five-part HOB primer (2026-07-30 → 08-06) that this file predates. It is a **stronger source than anything merged here**: two reviewers ranking blind and reconciling on air, with explicit coverage of rares and mythics. **This file is no longer the only rare coverage in the repo.** Where the two disagree, prefer LLU — it is newer, it is channel-pure, and its card names are Scryfall-verified.
+>
+> Companion files, in descending order of weight:
+> - [`draft-guides/limited-level-ups/HOB.md`](../limited-level-ups/HOB.md) — LLU primer: archetypes, top commons/uncommons, **rares + mythics**, Sealed guide. No letter grades (LLU skipped grading for this set); rankings and list positions instead.
+> - [`draft-guides/limited-resources/HOB.md`](../limited-resources/HOB.md) — the channel-pure LR 865 distill (commons + uncommons only), kept separate per the ETL contract.
 
 **Dates:** Prerelease **Aug 7–13, 2026** · Arena/MTGO **Aug 11** · Paper **Aug 14** · Set codes **HOB** (Standard/Pioneer/Modern legal) + **HOC** (eternal-only companion)
 
