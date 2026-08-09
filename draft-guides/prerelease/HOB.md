@@ -444,7 +444,7 @@ You need 2 of 3 wins, so what loses matches is one player getting a deck they ca
 
 | Pilot profile | Give them | Why |
 |---|---|---|
-| Limited novice | **R/W Dwarves** or **B/G Wolves** | Curve out, attack, point removal at blockers. Storied turns on by accident |
+| Limited novice | **B/G Wolves**, then **R/W Dwarves** | Curve out, attack, point removal at blockers. B/G first: fewest in-combat decisions to get wrong |
 | Experienced but rusty | **the grindy / leftovers deck** (often W/U recruit) | Recruit rewards knowing what to discard |
 | Most current reps | **the bomb deck** | |
 
@@ -454,11 +454,26 @@ You need 2 of 3 wins, so what loses matches is one player getting a deck they ca
 
 Two teammates with opposite failure modes. Neither is a weak player; both are strong at something the other isn't, and the assignments below are built around that rather than around a skill ranking.
 
-#### Andy — Mythic in Constructed, new to Limited
+#### Andy — Mythic in Constructed on one deck (mono-green landfall), new to Limited
 
-**The thing to get right: his weakness is deckbuilding, not piloting.** A Mythic Constructed player already has the hard-to-teach skills — combat math, sequencing, reading a board, knowing when to hold a trick. What he doesn't have is a Limited *prior* on what a card is worth. So the usual "give the novice the simple deck and watch him" instinct is half wrong: **don't let him build alone, then trust him to pilot.**
+**Read the Mythic carefully: it's Mythic with a single linear deck, not Mythic across a format.** Climbing with mono-green landfall is real — it takes reps and discipline — but it is close to the **least transferable** Constructed experience for Limited. On that deck he has never built a deck, never made a mana-base decision, never mulliganed on colours, and never held up interaction. Treat the experience as **narrow and deep**, not broad.
 
-The specific Constructed reflexes to head off, all of which show up at deckbuild:
+**What genuinely transfers:**
+
+- A **proactive creature plan.** He's comfortable playing to the board, attacking, and winning through one large trampling threat. That is exactly what B/G and R/W want to do.
+- **Landfall as a concept** — he'll read G/U faster than anyone at the table.
+- **Sequencing land drops** and playing around his own curve.
+
+**What doesn't transfer, and matters:**
+
+- **Using removal.** Mono-green plays almost none. In Limited, knowing *when to hold* removal and what to point it at is a top-three skill and he has no reps at it. Expect him to fire it at the first creature he sees.
+- **Blocking.** Landfall decks race; they rarely block well. Limited games are decided on the ground.
+- **Instant-speed play.** He's used to sorcery-speed pump; holding up mana won't be instinctive.
+- **Pricing unfamiliar cards.** A fixed 60-card list never asked him to evaluate a card he'd never seen.
+
+So "he'll build badly but pilot fine" is **half right at best** — there's a build gap *and* an interaction gap. **Don't let him build alone, and say the removal-and-blocking part out loud before round one rather than assuming it.**
+
+The specific reflexes to head off at deckbuild:
 
 | Reflex | Why it's wrong here | The rule |
 |---|---|---|
@@ -469,7 +484,12 @@ The specific Constructed reflexes to head off, all of which show up at deckbuild
 | Mulliganing to find the good draw | Limited is lower-power; every card lost hurts more | Keep 2–5 lands. Rarely mulligan |
 | Over-respecting the unknown | You play around tricks you know exist; in a brand-new set nobody knows | Ask "does a long game favour me?" first |
 
-**Give him R/W Dwarves or B/G Wolves.** Proactive, curve out, attack, point removal at blockers. Storied turns on incidentally so there's nothing to track. **Do not give him B/R Goblins** — amass sequencing is the single hardest thing in the format.
+**Give him B/G Wolves specifically**, not "R/W or B/G." Ferocious is the closest thing in HOB to the deck he already knows: keep a big creature on board, attack, win through size. R/W is the more decision-dense lane — equip timing, when to move equipment between creatures — and that's the kind of decision density he has the least practice with. **Do not give him B/R Goblins**; amass sequencing is the single hardest thing in the format.
+
+**Two things to tell him before round one, because his deck never taught them:**
+
+1. *"Don't spend removal on the first creature you see."* In a format this creature-dense, the removal spell you held is usually better than the one you cast on turn three.
+2. *"You're allowed to block."* Racing is his default. Sealed games go long and are decided on the ground.
 
 **One sentence to say to him at the census:** *"Build it like a creature deck that happens to have removal, not a removal deck that happens to have creatures."*
 
@@ -499,11 +519,11 @@ That last one is the point of the arrangement. The novice enforcing the clock on
 
 | Seat | Deck | Rationale |
 |---|---|---|
-| Andy | **R/W Dwarves** or **B/G Wolves** | Proactive, low tracking burden, rewards good combat — the skill he already has |
+| Andy | **B/G Wolves** | Ferocious is the nearest shape to mono-green landfall: big creature, attack, win through size |
 | Kyle | **W/U recruit** / the leftovers deck | Most build-reward, most in-game decisions |
 | Albert | **B/R Goblins** | Most removal-vulnerable, needs the most reps |
 
-If the white-rare count pushes you to `R/W + B/R + B/G` and there's no W/U seat, Kyle takes **R/W** — equipment is the most decision-dense of the remaining lanes — and Andy takes **B/G**.
+If the white-rare count pushes you to `R/W + B/R + B/G` and there's no W/U seat, Kyle takes **R/W** — equipment is the most decision-dense of the remaining lanes — and Andy keeps **B/G** either way.
 
 ### Talking during the match is the biggest edge in the format
 
