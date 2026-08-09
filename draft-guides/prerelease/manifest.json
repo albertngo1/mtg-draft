@@ -22,8 +22,8 @@
         "https://mtgazone.com/the-hobbit-hob-limited-archetypes-guide-and-example-decks/",
         "https://www.youtube.com/watch?v=tuFQbNpulRg"
       ],
-      "sha1": "a24b3d703198cb60721259abfe9634d5b9fbdd80",
-      "words": 12864,
+      "sha1": "1574d9847e3f1ae196f44026c61ba958485b15cc",
+      "words": 13521,
       "card_data": {
         "source": "Scryfall set:hob",
         "cards": 193,
@@ -64,7 +64,9 @@
         "source": "r/lrcast",
         "captured": "2026-08-09",
         "posts": 66,
-        "comments": 654,
+        "comments_fetched": 663,
+        "comments_read": 151,
+        "threads_read": 11,
         "note": "first games-played evidence; supersedes all pre-gameplay sources in this file"
       }
     }

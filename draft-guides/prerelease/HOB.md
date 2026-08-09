@@ -260,7 +260,7 @@ LR's A–F scale with ± subgrades, plus **sideboard** and **build-around**. Spl
 
 ## ⚡ First play data — r/lrcast prerelease reports (2026-08-09)
 
-**This is the only games-played evidence in the file, and it supersedes every prediction above it.** Harvested from r/lrcast: 66 HOB threads, 654 comments from people who actually played prerelease weekend. Still soft — self-reported, survivorship-biased, one weekend, no 17Lands — but it is the first time anyone in this document had played a game.
+**This is the only games-played evidence in the file, and it supersedes every prediction above it.** Harvested from r/lrcast: 66 HOB threads and 663 comments; 151 comments read closely across 11 threads (the rest were off-topic or sub-threshold). Still soft — self-reported, survivorship-biased, one weekend, no 17Lands — but it is the first time anyone in this document had played a game.
 
 ### Blue underperformed, badly
 
@@ -295,6 +295,28 @@ The mechanism, and it's a Sealed-specific one (top comment, 57 pts): **"The blue
 The five signposts are loose enough to ignore. Reported: a **Gruul (R/G)** deck won a prerelease on green beaters + red removal; **Jund (B/R/G)** called *"the strongest space in the set"*; **Dimir (U/B)** rated above Simic. One player: *"the defined archetypes were barely supported, so really you can just find whatever synergies seem to be there."*
 
 **This cuts against OzMTG's "commit to a tribe or lose."** Reconciliation: commit to a *lane* — two colours with a coherent plan — but the printed pair is not binding. If your pool is B/R/G goodstuff, play B/R/G goodstuff.
+
+### Piloting notes from people who played
+
+- **⚡ Removal can't kill small creatures — "your two-drops are pretty safe."** There is no Shock, no Stab, no one-mana white damage spell. Cheap creatures survive in a way they don't in most formats, which is why the curve-out plans work and why [Nasty Little Rabbit](https://scryfall.com/card/hob/130/nasty-little-rabbit) and [Desolation Prowler](https://scryfall.com/card/hob/64/desolation-prowler) on curve are as scary as LLU said. One report: Prowler on curve *"just shut down most of my dudes."*
+- **Control does not work here.** A player who built Dimir control with heavy removal and card advantage: *"there are many rares, bombs you cannot beat... along with a hexproof 10/7 bear and a lot of equipment. **It feels like what you used to be able to control, remove, block in other formats can now be equipped and becomes a threat.**"* They went on to say plainly: *"I think that blue is bad"* — a second independent voice on top of the top-12 observation.
+- **Just curve properly.** *"There isn't a lot of unfair things to be doing, so just try to curve properly. The equipment in this set is all very strong, so don't sleep on them."*
+- **B/G works but it telegraphs.** Results are genuinely mixed — one player went 3-1 and 3-0 across two prereleases with **one rare**, by curving out and forcing trades; another went 1-2, 1-2, 2-1 and diagnosed it: *"I often had to hold back attackers while waiting to get ferocious online. And when I was ready to attack, it was pretty obvious what was happening, so my opponents knew to hold up combat tricks."* Ferocious has a visible wind-up. Play around the trick you just advertised.
+- **Dwarves without removal loses.** Two separate reports. One went 1-2 with a good-looking equipment deck: *"once the game got to turn 5, the threats coming down were just way bigger than my deck was able to handle."* Another went 0-2 on dwarves with no interaction, **rebuilt into B/R goblins with removal, and went 2-0.**
+- **Don't play draw-two without the payoffs.** A W/U player with few payoffs *"drew a ridiculous amount of cards and actually decked myself in a winning position."*
+- **[An Unexpected Party](https://scryfall.com/card/hob/29/an-unexpected-party-at-the-door) ends games.** Cited twice as the card that ran away with a match, once making six 4/4 dwarf tokens.
+- **[Balin, Loremaster](https://scryfall.com/card/hob/87/balin-loremaster) was an R/W MVP** and appears in none of this file's other sources: *"completely dominated stalled-out games... would usually deal 7–9 damage in a turn."* Storied is easy enough to switch on that he re-triggers.
+- **[Warg Tactics](https://scryfall.com/card/hob/139/warg-tactics) is better than its grade.** Protects a bomb, kills a flier, or grants trample for lethal — and **B/G has essentially no reach**, so the flier mode matters. Maindeck or sideboard it.
+- **Settle the Wreckage is live and gettable.** One player, seeing {2}{W}{W} open, attacked with six of eight and kept two back. It was correct.
+
+### Two rules corrections from the sub
+
+- **[Gollum, Silent Slinker](https://scryfall.com/card/hob/71/gollum-silent-slinker-meager-meal)'s adventure targets both a creature *and* a player**, so it does **not** fizzle if they kill the creature in response — there's no blowout risk. LR got this wrong on air.
+- **[Misty Mountains Raider](https://scryfall.com/card/hob/105/misty-mountains-raider) triggers on *any* attack you make**, not only its own. If you already have a profitable attack, the amass trigger happens immediately — which softens the "no ETB, no protection five-drop" discount both LLU reviewers applied.
+
+### Source quality note
+
+**Draftsim's numeric ratings drew repeated fire** from players who'd played: [Dáin, Lord of the Iron Hills](https://scryfall.com/card/hob/8/dain-lord-of-the-iron-hills) is rated 1/10 and "rarely playable" there, against LR's **B−** and a place on LLU's synergy list. *"Draftsim's ratings are awful"* was the top reply. Where this file cites Draftsim, weight LR and LLU above it. A full text transcription of LR 865's grades for every common and uncommon is posted in the sub's LR 865 discussion thread — useful for cross-checking the tables above.
 
 ### What the self-reported records do and don't show
 
