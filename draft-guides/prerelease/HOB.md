@@ -68,9 +68,14 @@ Best removal in the format, worst resilience. Wants sacrifice outlets because am
 **Signposts:** [Duskwatch Hunter](https://scryfall.com/card/hob/153/duskwatch-hunter) (C/C+) · [The Chief Warg](https://scryfall.com/card/hob/150/the-chief-warg) (B) · [Large Bear](https://scryfall.com/card/hob/159/large-bear) (B−)
 Aggressively-slanted midrange playing naturally large creatures. [Desolation Prowler](https://scryfall.com/card/hob/64/desolation-prowler) (B+) is the best card in the archetype and the **highest-graded card in LR's entire review** — a two-mana Putrid Leech that turns ferocious on by itself.
 
+> **⚡ Play data:** **co-first archetype** — tied with B/R on the only prerelease tier list, and the most trophy reports in this file (a 4-0, four 3-0s, a 3-1, back-to-back trophies). One 3-0 ran **one rare**. Brings its own removal. Known weakness: it **telegraphs** — holding attackers back until ferocious switches on advertises the turn you intend to go.
+
 ### G/U Elves — landfall + ramp
 **Signposts:** [Mirkwood Nurturer](https://scryfall.com/card/hob/160/mirkwood-nurturer) (C/C−) · [Silvan Reveler](https://scryfall.com/card/hob/163/silvan-reveler) (B) · [Thranduil, Sindarin Liege](https://scryfall.com/card/hob/166/thranduil-sindarin-liege-silvan-rally) (B+)
 Thranduil is the highest-graded signpost in the set. Marshall: "blue-green looks incredible." **LSV's counter is the one to weight:** "blue-green misses a lot of the time — one of the decks that misses the most often, up to and including the last Lord of the Rings." Slowest lane, thinnest on removal, run 18 lands.
+
+> **⚡ Play data:** **bottom-tier**, alongside W/U Azorius. LSV's read held up. The one winning report was **ramp into fatties** — *"Simic elves ramping into huge bears buffed by Thranduil's Company... hasty 7/7 bears by turn five"* — **not** an elf-count deck. If the pool forces G/U, build fatties. This is a *Simic* problem, not a green problem: green with black is co-first.
+
 
 ---
 
@@ -420,86 +425,58 @@ From OzMTG's on-camera kit opening (2026-08-05). Practical, and none of it is in
 
 **You also get three foil promos and three land packs.** Both are legal to play (see [The prerelease kit itself](#the-prerelease-kit-itself)) — that's three extra rare-or-better cards in the shared pool that people routinely forget to add to the pile.
 
-### The color-overlap math is forced, so choose which color you double
+### The configuration: R/W + B/R + B/G
 
-Three two-colour decks consume **six colour slots across five colours**, so at least one colour is played twice. HOB's five archetypes form a closed ring — W/U → U/G → G/B → B/R → R/W → W/U — and each colour appears in exactly two of them. Consequence: pick any three archetypes and you **cannot** avoid overlap. You only get to choose its shape.
+**Three two-colour decks consume six colour slots across five colours**, so at least one colour is played twice. HOB's five archetypes form a closed ring — W/U → U/G → G/B → B/R → R/W → W/U — and each colour sits in exactly two of them, so overlap is unavoidable. You only choose its shape.
 
-| Shape | Example | Colours doubled |
+**Take `R/W + B/R + B/G`.** These are the top three archetypes on the only tier list produced by someone who watched a full prerelease:
+
+> **Rakdos (B/R) = Golgari (B/G) > Boros (R/W) > Azorius (W/U) = Simic (G/U)**
+
+It doubles red and black — the two deepest colours and where the removal lives — and it leaves out **blue**, the colour with three independent underperformance reports. All five colours minus blue get used, and every known bomb is castable: white via R/W, green via B/G, colourless anywhere.
+
+| Seat | Deck | Status |
 |---|---|---|
-| Two adjacent + one disjoint | B/R + B/G + W/U | **one** (black) |
-| Three in a row | R/W + B/R + B/G | **two** (red and black), one colour unused (blue) |
+| 1 | **B/R Goblins** | Locked — co-first, best removal |
+| 2 | **B/G Golgari** | Locked — co-first, most trophy reports in the corpus, brings its own removal |
+| 3 | **R/W Dwarves** | Locked — clear third, and everywhere in the reported metagame |
 
-**Recommended: R/W + B/R + B/G.** ⚡ **Changed 2026-08-09 on the strength of actual prerelease results** — see [First play data](#-first-play-data--rlrcast-prerelease-reports-2026-08-09). These are precisely the three archetypes that performed (**Rakdos = Golgari > Boros**), and it drops blue entirely, which is the colour that underperformed. It doubles both of the two deepest colours, R and B. Three proactive decks out of one pool, which is what a fast format wants.
+**All three seats are locked.** Earlier revisions of this file treated seat 3 as an open question between B/G and W/U; the tier list and the trophy counts settle it. There is one narrow exception below.
 
-**Runner-up: B/R + B/G + W/U.** This was the recommendation until play data landed, on the reasoning that it doubles only one colour and uses all five. It is still structurally elegant, and the W/U seat is still fine **if — and only if — the pool hands you [Settle the Wreckage](https://scryfall.com/card/hob/26/settle-the-wreckage) or [The Eagles Are Coming!](https://scryfall.com/card/hob/12/the-eagles-are-coming)**. Both 3-0 W/U reports were carried by those cards. Without them, blue is a synergy deck you can't assemble from six packs.
+**Avoid G/U Simic.** Bottom-tier alongside Azorius, short on playable two-drops, and its failure mode — drawing cards and making small bodies without turning the corner — is the deck that loses long Sealed games. Note this is a *Simic* problem, **not a green problem**: green paired with black is a top-two deck.
 
-**Decision rule at the census:** count white rares *and* check for those two cards. Both configurations contain R/W and B/R, so the only real question is whether seat three is **B/G** (default) or **W/U** (needs a blue-white bomb).
+### The one exception: swapping B/G for W/U
 
-**Avoid any configuration containing G/U** unless the pool forces it (a G/U bomb rare, or genuinely nothing else). It is short on playable two-drops, its payoffs are unexciting, and its failure mode — drawing cards and making small bodies without ever turning the corner — is exactly the deck that loses long Sealed games.
+Take **W/U over B/G** only if **all three** hold:
+
+1. **Green is genuinely empty** — no [Dancing from Dark to Dawn](https://scryfall.com/card/hob/123/dancing-from-dark-to-dawn) or [Beorn the Fierce](https://scryfall.com/card/hob/119/beorn-the-fierce), and not enough green two- and three-drops to curve out
+2. **4+ blue draw-two enablers** — Lakeshore Apothecary / Patient Instructor / Bilbo Baggins, Burglar / Long Lake Nuisance / Plunder the Trollshaws
+3. **One of the two white bombs** — [The Eagles Are Coming!](https://scryfall.com/card/hob/12/the-eagles-are-coming) or [Settle the Wreckage](https://scryfall.com/card/hob/26/settle-the-wreckage)
+
+Both green bombs are `{3}{G}{G}` and **cannot be splashed** — they need a real green seat or they rot in the sideboard, which is why condition 1 comes first.
+
+If you do swap, **build W/U blue-primary with white as payload**, not as a true recruit deck. Blue is the engine; white supplies the bombs. That's the shape of both reported W/U 3-0s, and it keeps R/W's dwarves and equipment untouched — R/W wants white *creatures and equipment*, W/U wants white *bombs and removal*, so the two barely collide.
 
 ### ⚡ 18 packs changes what a synergy deck costs
 
 **The play data killed blue for a density reason, not a quality reason — and a shared 18-pack pool is exactly the fix.** Every reporter's mechanism was the same: *"the blue decks are all synergistic so they're harder to assemble in sealed — it's hard to pull 2× [Lakeshore Apothecary](https://scryfall.com/card/hob/43/lakeshore-apothecary) plus a critical mass of draw cards to turn it on."* Several of the same people said blue's cards look **strongest in a vacuum**. That is a supply problem, and you have three times the supply.
 
-**The rule this produces:**
-
 > In solo Sealed, synergy is a trap. In an 18-pack shared pool, **exactly one seat can afford to be the synergy deck** — it gets ~3× the density of a solo pool, the other two seats absorb the goodstuff, and concentration costs nothing **provided no other seat wants that colour**.
-
-That proviso is the whole trick, and it's what decides *which* blue deck:
-
-**Contention between seats is not symmetric, and that — not the doubling maths — decides it.** With seats 1 and 2 locked as R/W and B/R:
-
-| Seat 3 | Doubles | What it actually fights over |
-|---|---|---|
-| **W/U** | White | ✅ **Bombs vs. bodies — mostly different cards.** R/W wants white *creatures and equipment* (dwarves, Dwarven Provisioner, Dwarven Shortsword, Iron Hills Blacksmith); W/U wants white *bombs and removal* (Eagles, An Unexpected Party, Settle, Celebrate the Mountain-king). Barely any overlap |
-| **U/B Dimir** | Black | ⚠️ **Head-on.** Both decks want the identical short list of black removal, which is the scarce deciding resource |
-| **B/G** | Black | ⚠️ Same head-on collision |
-| G/U | nothing | Zero contention, but it's the archetype every source ranks last |
-
-**So seat 3 is W/U — built blue-primary, white for bombs.** Not a true two-colour recruit deck: blue is the engine, white is the payload. That is exactly the shape of both reported 3-0s (recruit into 4/4 fliers; recruit plus Settle), and it leaves R/W's dwarves and equipment untouched.
-
-### ⚠️ Seat 3 decides which colour you throw away
-
-`R/W + B/R + W/U` uses W×2, R×2, B×1, U×1 and **G×0** — green goes entirely unused, roughly a fifth of an 18-pack pool dead on the table. `B/G` dumps **blue** instead. They are not equivalent:
-
-| Dump | You lose |
-|---|---|
-| **Green** | [Dancing from Dark to Dawn](https://scryfall.com/card/hob/123/dancing-from-dark-to-dawn) — *"everyone who pulled one went 3-0"* — and [Beorn the Fierce](https://scryfall.com/card/hob/119/beorn-the-fierce), LLU's #1 mythic and CGB's #1 card in the set |
-| **Blue** | A synergy engine you may not be able to assemble, whose best rares nobody has reported winning with |
-
-**Both green bombs are `{3}{G}{G}`. You cannot splash them** — they need a real green seat or they sit in the sideboard.
-
-**So seat 3 is B/G, and it is very close to locked.** Golgari is **co-first on the only tier list we have** and carries more trophy reports than any other archetype in this corpus (a 4-0, four 3-0s, a 3-1, and back-to-back trophies). It is not a fallback — it is a top-two deck, and it brings its own removal.
-
-Green's two bombs reinforce it rather than being the argument for it: [Dancing from Dark to Dawn](https://scryfall.com/card/hob/123/dancing-from-dark-to-dawn) (*"everyone who pulled one went 3-0"*) and [Beorn the Fierce](https://scryfall.com/card/hob/119/beorn-the-fierce) (LLU's #1 mythic, CGB's #1 card) are both `{3}{G}{G}` and **cannot be splashed** — they need a real green seat or they rot in the sideboard.
-
-**Take W/U over B/G only if all three hold:**
-
-1. **Green is genuinely empty** — no green bomb, and not enough green two- and three-drops to curve out
-2. **4+ blue draw-two enablers** — Lakeshore Apothecary / Patient Instructor / Bilbo Baggins, Burglar / Long Lake Nuisance / Plunder the Trollshaws
-3. **One of the two white bombs** — [The Eagles Are Coming!](https://scryfall.com/card/hob/12/the-eagles-are-coming) or [Settle the Wreckage](https://scryfall.com/card/hob/26/settle-the-wreckage)
-
-W/U is Azorius, which sits **bottom-tier alongside Simic** on the same list that puts Golgari first. It is a real deck only when the pool hands you the bombs that carried both reported 3-0s.
-
-W/U also gets **blue's removal uncontested** — Uneasy Partings, Enchanted River's Grasp, Confusticate — roughly six pieces nobody else wants. The reports say blue removal is mediocre; six mediocre pieces beats fighting B/R over two good ones. (The one Dimir failure report was a **control** deck, and control is separately confirmed dead here — but the contention problem stands regardless.)
 
 **The same maths rescues the other density thresholds**, for one seat only: ferocious's 8–10 enablers, [Dwarven Mattock](https://scryfall.com/card/hob/172/dwarven-mattock)'s ~10 dwarves, [Dwarven Mauler](https://scryfall.com/card/hob/95/dwarven-mauler)'s 4–5 equipment all become reachable. OzMTG's *"commit to a tribe or lose"* is better advice for a trio than for a solo pool.
 
-**Two caveats that survive:**
+**Two caveats:**
 
-1. **One seat or none.** Split blue across two decks and you've rebuilt the solo-Sealed problem at half density each.
-2. **Blue's removal still played badly** and its top end is weak (Gandalf is meh, [Thranduil's Decree](https://scryfall.com/card/hob/56/thranduils-decree) is purely reactive). The U/B seat needs **black** removal fed to it — which is exactly what the "worse alternative wins" rule in the contested pass is for.
+1. **One seat or none.** Split a synergy colour across two decks and you've rebuilt the solo-Sealed problem at half density each.
+2. **Blue's removal still played badly** and its top end is weak (Gandalf is meh, [Thranduil's Decree](https://scryfall.com/card/hob/56/thranduils-decree) is purely reactive). If you take the W/U exception, that seat needs **black** removal fed to it — which is what the "worse alternative wins" rule in the contested pass is for.
 
 ### White is a dedicated seat, never a shared one
 
-This is the HOB-specific trap. **White has the worst commons in the set and the best rares** — all three of both LLU reviewers' top rares are white, plus Kíli the Resourceful just below. White also has exactly **one** removal common ([Magnificent End](https://scryfall.com/card/hob/20/magnificent-end)), though its uncommon removal ([Celebrate the Mountain-king](https://scryfall.com/card/hob/7/celebrate-the-mountain-king), [Stone by Sunlight](https://scryfall.com/card/hob/27/stone-by-sunlight)) is excellent.
+**White has the worst commons in the set and the best rares** — all three of both LLU reviewers' top rares are white, plus Kíli the Resourceful just below, and white has exactly one removal common ([Magnificent End](https://scryfall.com/card/hob/20/magnificent-end)) though its uncommon removal ([Celebrate the Mountain-king](https://scryfall.com/card/hob/7/celebrate-the-mountain-king), [Stone by Sunlight](https://scryfall.com/card/hob/27/stone-by-sunlight)) is excellent.
 
-So: count your white rares first, before you assign anything.
+In the standard configuration **R/W is your only white deck, so give it every white card in the pool.** Splitting white across two decks yields two mediocre decks instead of one real one — which is the main structural cost of the W/U exception, and another reason to take it only when all three conditions hold.
 
-- **Two or more white bombs** → build a white seat and give it *every* white card in the pool. Splitting white across two decks gives you two mediocre decks instead of one real one.
-- **Zero or one** → skip white as a main colour and take the R/W + B/R + B/G configuration.
-
-The white seat will be **removal-starved by construction**. Feed it black and red removal even at the cost of the other two decks — this is the concrete direction for the "split removal unevenly" rule.
+The white seat is **removal-starved by construction.** Feed it black and red removal even at the cost of the other two decks — this is the concrete direction for the "split removal unevenly" rule.
 
 ### Build choreography (shared pool)
 
@@ -550,8 +527,8 @@ The Decider matters most. Three people with equal authority over one pool argue 
 
 **19–24 · Census, then lock.** All three at the top strip. Five minutes, and it decides the whole build.
 
-1. **Count the white rares.** That single number picks between the two configurations above.
-2. **Lock the configuration.** Lay the chosen three archetypes out as the three columns.
+1. **Check the exception, don't re-derive the config.** Is there a green bomb or a green curve? If yes — and it usually is — you are on `R/W + B/R + B/G` and there is nothing to debate. Only if green is empty do you count blue enablers and white bombs.
+2. **Lock the configuration.** `R/W + B/R + B/G` unless all three W/U-exception conditions hold. Lay the three archetypes out as the three columns.
 3. **Assign pilots** — this must happen here, because the next phase is each pilot reading their own colours. Assign by hardest-to-misplay (see the table below), and give the third player the leftovers as the **grindy** deck: most removal, highest curve, least synergy dependence.
 4. **Scribe writes all of it down** — config, pilots, columns.
 
@@ -681,13 +658,13 @@ Opposite risk: not that he'll misvalue cards, but that he'll try to **solve the 
 
 That last one is the point of the arrangement. The novice enforcing the clock on the optimizer is a better team than either instinct left unchecked.
 
-**R/W and B/R are locked; seat 3 is decided at the census.** Assign so that the undetermined seat lands on the person who can build either version:
+**All three seats are locked** (`R/W + B/R + B/G`), so assignment is fixed before you open a pack:
 
 | Seat | Deck | Rationale |
 |---|---|---|
 | **Andy** | **R/W Dwarves** — fixed, whichever way seat 3 goes | **R/W's decisions are proactive** (which creature to grow, where equipment goes, what to attack into) — that's advancing a board, which is what mono-green landfall trained. It also carries 5–6 removal, which forces the reps he's never had |
 | **Albert** | **B/R Goblins** | Best deck and the most removal-vulnerable board state in the format; needs the most reps |
-| **Kyle** | **Seat 3** — W/U if the gate passes, B/G if not | He can build either, so the census result doesn't reshuffle anyone else. Both reward analysis: recruit is a discard decision every trigger, ferocious is a timing puzzle |
+| **Kyle** | **B/G Golgari** | Ferocious is a timing puzzle — when to hold attackers, when the wind-up is worth telegraphing — and it's the archetype with the most trophy reports. If the pool forces the W/U exception, he takes that instead; he's the one who can build either |
 
 **Earlier drafts of this file put Andy on B/G. That was wrong** and is corrected here. **B/G's decisions are reactive** — hold attackers back until ferocious switches on, then read whether the opponent has the trick you just advertised. Patience and blocking are precisely his two named gaps, and the format's own reports confirm B/G telegraphs. **B/R is ruled out for him** on amass sequencing, and **W/U is the worst possible fit** — a discard decision on every recruit trigger.
 
