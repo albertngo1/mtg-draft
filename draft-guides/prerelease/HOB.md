@@ -337,7 +337,13 @@ The white seat will be **removal-starved by construction**. Feed it black and re
 
 ### Build choreography (shared pool)
 
-The whole design is that **only two phases are synchronous**; everything else runs three-wide. Teams that build as a committee — three people discussing one deck at a time — run out of clock. Total ~50 minutes; confirm your actual limit with the store, team builds usually get 45–60 rather than the 30 you get for individual Sealed.
+The whole design is that **only two phases are synchronous**; everything else runs three-wide. Teams that build as a committee — three people discussing one deck at a time — run out of clock.
+
+**Budget for reading, and put it in the right place.** Eighteen play boosters is roughly **220 playable cards nobody at the table has seen before.** You cannot read all of them, and you shouldn't try. The structural fix is that **reading happens *after* pilot assignment, not during the sort** — once you know you're on B/G, you read black and green and skip the other three colours entirely. That cuts each player's reading load to about two fifths of the pool, in parallel, and every card they read is one they might actually play.
+
+This is why the sort phase below is deliberately mechanical and silent. The person sorting white isn't necessarily the person playing it, so reading during the sort puts the knowledge in the wrong head.
+
+Total ~70 minutes with reading included. Confirm your actual limit with the store — team builds usually get 45–60 rather than the 30 for individual Sealed. **If your clock is under 70, the reading does not get cut** (see the triage note after the timeline).
 
 **Assign three roles before you open a single pack.** This is what separates a 45-minute build from a 90-minute one.
 
@@ -352,38 +358,49 @@ The Decider matters most. Three people with equal authority over one pool argue 
 | Time | Phase | Mode |
 |---|---|---|
 | 0–3 | Open + stage | Together |
-| 3–10 | Sort | **Parallel** |
-| 10–15 | Bomb census + lock the config | Together |
-| 15–35 | Build the three 40s | **Parallel** |
-| 35–42 | Resolve contested cards | Together |
-| 42–50 | Lands, sleeve, cross-check | **Parallel** |
+| 3–11 | Sort — mechanical, silent, **no reading** | **Parallel** |
+| 11–16 | Bomb census + lock the config and pilots | Together |
+| 16–30 | **Read your two colours** | **Parallel** |
+| 30–50 | Build the three 40s | **Parallel** |
+| 50–58 | Resolve contested cards | Together |
+| 58–68 | Lands, sleeve, cross-check | **Parallel** |
+
+**If your clock is shorter than 70 minutes**, cut in this order and never higher up the list: the neighbour cross-check to 1 minute · the contested pass to a single round with no debate · the build phase (you'll play more filler). **Do not cut the reading.** A deck built from cards nobody understood is worse than a deck built in a hurry from cards you did — and misreading a card at the table during round one costs a game outright.
 
 **0–3 · Open and stage.** Clear the table into **three columns plus a wide strip across the top** — the strip is the shared pool, the columns are the decks. All 18 packs into one pile. Land packs aside; basics are free and don't count. Pull the three foil promos, photograph the pool if that's your split rule, then **put the promos back in the pile** — they're legal and they're rares.
 
-**3–10 · Sort, in parallel.** Split the colours so nobody waits: player 1 takes white + blue, player 2 black + red, player 3 green + multicolour + colourless + lands. Within your colours sort **by mana value ascending**, rares and gold face-up. Sort by colour, **not** by tribe — OzMTG worked through exactly this decision on camera and landed on colour, because colour is what shows you where the depth is: *"then I can sort of see what I've got the most of."* Tribes are the second pass, once colour has narrowed it to two or three lanes. **Nobody evaluates cards yet** — talking about cards here is what turns seven minutes into twenty.
+**3–11 · Sort, in parallel — mechanical and silent.** Split the colours so nobody waits: player 1 takes white + blue, player 2 black + red, player 3 green + multicolour + colourless + lands. Within your colours sort **by mana value ascending**, rares and gold face-up. Sort by colour, **not** by tribe — OzMTG worked through exactly this decision on camera and landed on colour, because colour is what shows you where the depth is: *"then I can sort of see what I've got the most of."* Tribes are the second pass, once colour has narrowed it to two or three lanes. **Nobody evaluates cards yet** — talking about cards here is what turns seven minutes into twenty.
 
-**10–15 · Census, then lock.** All three at the top strip. Five minutes, and it decides the whole build.
+**11–16 · Census, then lock.** All three at the top strip. Five minutes, and it decides the whole build.
 
 1. **Count the white rares.** That single number picks between the two configurations above.
 2. **Lock the configuration.** Lay the chosen three archetypes out as the three columns.
-3. **Assign pilots** by hardest-to-misplay (see the table below), and give the third player the leftovers as the **grindy** deck: most removal, highest curve, least synergy dependence.
+3. **Assign pilots** — this must happen here, because the next phase is each pilot reading their own colours. Assign by hardest-to-misplay (see the table below), and give the third player the leftovers as the **grindy** deck: most removal, highest curve, least synergy dependence.
 4. **Scribe writes all of it down** — config, pilots, columns.
 
 Then stop. **Do not revisit the configuration after this point**, even if someone finds a great card in an unused colour. Reopening the config at minute 30 is how teams submit two decks and a pile.
 
-**15–35 · Build three decks at once.** Each player takes their column and builds their own 40, pulling from the top strip.
+**16–30 · Read your two colours.** Fourteen minutes, parallel, silent. Take your two colours off the top strip and physically read them — roughly 80–90 cards each, about ten seconds a card. **Do not read the other three colours at all.** Read colourless and your pair's gold/hybrid cards too; they're short.
+
+- **Sort into three piles as you read: yes / maybe / no.** Don't rank within the piles yet — that's the build phase. You're only converting "unknown card" into "card I understand."
+- **Adventures and modal cards take three times as long.** HOB has a lot of both. Read those first while you're fresh; they're also the ones most likely to be misplayed later.
+- **Use your phone for anything ambiguous** rather than debating it. Scryfall `set:hob`, or the grade tables in this file.
+- **Say the weird ones out loud** to the table — one sentence, not a discussion. "Storied is permanent once you get it." "Amass stacks on one token." Thirty seconds of shared vocabulary saves arguments in the contested pass.
+- **Read the rares last, not first.** You'll have already seen the ones that matter during the census, and the temptation to re-litigate the config while holding a shiny off-colour rare is exactly the failure mode below.
+
+**30–50 · Build three decks at once.** Each player takes their column and builds their own 40 from their yes/maybe piles, pulling anything else from the top strip.
 
 - **The constrained deck picks first.** Whoever is on the shallowest colours goes first, because they have the fewest options. The deck on the deepest colours has slack and absorbs what's left. Letting the strongest deck pick first starves the seat that was already going to be weakest.
 - **When two decks want the same card, don't fight — put it in a contested zone** in the middle of the table and keep building. Build assuming you *don't* get it. You're establishing each deck's floor; contested cards are upside, resolved in one pass later.
 - Everyone targets 17 lands · 15–17 creatures · 6–8 removal · ~5 twos, 5 threes, 4 fours, 3–4 at five-plus.
 
-**35–42 · Resolve the contested zone.** One pass, all three, Decider breaks ties. One rule governs it:
+**50–58 · Resolve the contested zone.** One pass, all three, Decider breaks ties. One rule governs it:
 
 > **A contested card goes to the deck with the worse alternative, not the deck that uses it better.**
 
 Counterintuitive and load-bearing. If Bilbo's Deadly Slice is the B/R deck's 7th-best removal spell and the W/U deck's 2nd-best, it goes to W/U — even though B/R is the better removal deck. You are not maximising any single deck. **You need two match wins**, so you are raising the floor of the worst one. The same logic drives the removal split: push interaction toward the weakest seat, since the aggro deck survives on four and the leftovers deck doesn't.
 
-**42–50 · Lands, sleeve, cross-check.** Parallel. Whoever finishes first starts sleeving for whoever's behind — nobody sits idle in the last ten minutes. Then the step almost every team skips: **hand your finished deck to a neighbour for a two-minute count.** Not a discussion, a count — lands, creatures, removal, eyeball the curve. You cannot see your own deck's holes after twenty minutes of staring; a fresh pair of eyes spots a 13-creature deck in fifteen seconds. Keep the leftover pool in its own container sorted by colour; it's your sideboard. Confirm with the store whether cards may move between decks between games — rules vary.
+**58–68 · Lands, sleeve, cross-check.** Parallel. Whoever finishes first starts sleeving for whoever's behind — nobody sits idle in the last ten minutes. Then the step almost every team skips: **hand your finished deck to a neighbour for a two-minute count.** Not a discussion, a count — lands, creatures, removal, eyeball the curve. You cannot see your own deck's holes after twenty minutes of staring; a fresh pair of eyes spots a 13-creature deck in fifteen seconds. Keep the leftover pool in its own container sorted by colour; it's your sideboard. Confirm with the store whether cards may move between decks between games — rules vary.
 
 ### Three ways this goes wrong
 
