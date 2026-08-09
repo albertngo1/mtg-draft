@@ -450,6 +450,61 @@ You need 2 of 3 wins, so what loses matches is one player getting a deck they ca
 
 **Never give B/R Goblins to the novice**, even though it's the strongest pair. Amass is the most removal-vulnerable board state in the format — one removal spell erases every counter you've invested — and knowing when to sacrifice the Army for value instead of growing it is a learned skill. Give B/R to whoever has the most recent reps.
 
+### This team, specifically
+
+Two teammates with opposite failure modes. Neither is a weak player; both are strong at something the other isn't, and the assignments below are built around that rather than around a skill ranking.
+
+#### Andy — Mythic in Constructed, new to Limited
+
+**The thing to get right: his weakness is deckbuilding, not piloting.** A Mythic Constructed player already has the hard-to-teach skills — combat math, sequencing, reading a board, knowing when to hold a trick. What he doesn't have is a Limited *prior* on what a card is worth. So the usual "give the novice the simple deck and watch him" instinct is half wrong: **don't let him build alone, then trust him to pilot.**
+
+The specific Constructed reflexes to head off, all of which show up at deckbuild:
+
+| Reflex | Why it's wrong here | The rule |
+|---|---|---|
+| Cutting creatures for spells | Constructed wins with few threats and lots of interaction. Limited is a creature-combat format | **15–17 creatures. Not negotiable** |
+| "This 6-drop is the most powerful card" | Card quality loses to curve in Limited | ~5 twos, 5 threes, 4 fours, 3–4 at five-plus |
+| Wanting 16 lands | Constructed runs 24/60 = 40%; Limited wants 42%+ | **17 lands** |
+| Dismissing vanilla creatures | [Ordinary Bear](https://scryfall.com/card/hob/133/ordinary-bear) is a literal French-vanilla 4/5 and it's a real playable — five toughness blocks the format and four power turns on ferocious | Bodies are cards here |
+| Mulliganing to find the good draw | Limited is lower-power; every card lost hurts more | Keep 2–5 lands. Rarely mulligan |
+| Over-respecting the unknown | You play around tricks you know exist; in a brand-new set nobody knows | Ask "does a long game favour me?" first |
+
+**Give him R/W Dwarves or B/G Wolves.** Proactive, curve out, attack, point removal at blockers. Storied turns on incidentally so there's nothing to track. **Do not give him B/R Goblins** — amass sequencing is the single hardest thing in the format.
+
+**One sentence to say to him at the census:** *"Build it like a creature deck that happens to have removal, not a removal deck that happens to have creatures."*
+
+#### Kyle — the analytical one
+
+Opposite risk: not that he'll misvalue cards, but that he'll try to **solve the pool instead of building a deck**, and the clock is the resource that actually runs out. Three specific traps, all of which HOB makes worse:
+
+- **The greedy manabase.** HOB has a lot of fixing — [8 nonbasic lands](https://scryfall.com/search?q=set%3Ahob+type%3Aland+-type%3Abasic) plus Treasure makers and Thrór's Map — and a good manabase argument can be constructed for almost any splash. But the archetypes are on rails and there's very little worth splashing *for*. The math being sound doesn't make the splash correct.
+- **Synergy that needs three pieces.** He'll spot the amass-sacrifice loop or the equipment engine and want to assemble it. That's exactly the "cut every card that's only good if the theme is on" trap, and it's worse in a three-way split where each deck gets a thinner slice of its own theme.
+- **Re-solving after new information.** Every card read in the reading phase is a reason to reconsider the config. It isn't.
+
+**Put his strength where it actually pays: give him the contested pass.** Allocating contested cards across three decks by *marginal* value — which deck has the worse alternative, not which uses it better — is a genuine optimization problem and he'll do it better than anyone. It's also naturally time-boxed at eight minutes.
+
+**Give him the grindy / leftovers deck**, usually W/U recruit. It's the hardest of the three to build well and the one that most rewards squeezing value out of marginal cards, and recruit is a genuinely skill-testing mechanic — every trigger is a real "what do I discard" decision.
+
+**Give him a hard stop, out loud.** *"Twenty minutes, then your deck is done."* An open-ended optimizer with no deadline is the single biggest clock risk on this team.
+
+#### Suggested roles
+
+| Role | Who | Why |
+|---|---|---|
+| **Decider** | Albert | Most Limited reps and the person holding this guide |
+| **Scribe + contested pass** | Kyle | Marginal-value allocation is the one place analysis genuinely wins |
+| **Clock** | Andy | Deliberately: it carries **zero card-evaluation load**, so it's the one job his Limited inexperience can't affect — and it puts the stop-times in the hands of the person least likely to want to keep optimizing |
+
+That last one is the point of the arrangement. The novice enforcing the clock on the optimizer is a better team than either instinct left unchecked.
+
+| Seat | Deck | Rationale |
+|---|---|---|
+| Andy | **R/W Dwarves** or **B/G Wolves** | Proactive, low tracking burden, rewards good combat — the skill he already has |
+| Kyle | **W/U recruit** / the leftovers deck | Most build-reward, most in-game decisions |
+| Albert | **B/R Goblins** | Most removal-vulnerable, needs the most reps |
+
+If the white-rare count pushes you to `R/W + B/R + B/G` and there's no W/U seat, Kyle takes **R/W** — equipment is the most decision-dense of the remaining lanes — and Andy takes **B/G**.
+
 ### Talking during the match is the biggest edge in the format
 
 In Team Limited, teammates sit together and **may confer freely during games**. Confirm your store honours this, then actually use it — most trios teams don't.
