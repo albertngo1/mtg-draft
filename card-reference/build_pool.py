@@ -44,6 +44,7 @@ meta = {c["name"]: c for c in cards}
 ORDER = {"mythic": 0, "rare": 1, "uncommon": 2, "common": 3}
 LABEL = {"mythic": "Mythic", "rare": "Rare", "uncommon": "Uncommon", "common": "Common"}
 
+counts = pool.get("counts", {})
 groups, missing = {}, []
 for name in pool["cards"]:
     c = meta.get(name)
@@ -57,9 +58,10 @@ if pool.get("note"):
     L.append(f"> {pool['note']}\n")
 if pool.get("counting"):
     L.append(f"> ⚠️ {pool['counting']}\n")
-counts = " · ".join(f"**{len(groups.get(r, []))}** {LABEL[r].lower()}"
-                    for r in sorted(groups, key=lambda r: ORDER[r]))
-L.append(f"{len(pool['cards']) - len(missing)} distinct cards — {counts}\n")
+summary = " · ".join(f"**{len(groups.get(r, []))}** {LABEL[r].lower()}"
+                     for r in sorted(groups, key=lambda r: ORDER[r]))
+total = sum(counts.get(n, 1) for n in pool["cards"] if n not in missing)
+L.append(f"{len(pool['cards']) - len(missing)} distinct cards / **{total} physical cards** — {summary}\n")
 L.append("Every name verified against the Scryfall card list. Tiles are lifted from "
          f"[{SET} card reference](/set/{SET}), so grades and notes match it exactly.\n")
 L.append("## Contents\n")
@@ -74,10 +76,27 @@ for r in sorted(groups, key=lambda r: ORDER[r]):
     for i in range(0, len(names), 3):
         L.append("<tr>")
         for n in names[i:i + 3]:
-            L.append(tiles.get(n, f'<td width="33%" valign="top"><b>{n}</b><br>'
-                                  f'<sub>no tile in the set reference</sub></td>'))
+            tile = tiles.get(n, f'<td width="33%" valign="top"><b>{n}</b><br>'
+                                f'<sub>no tile in the set reference</sub></td>')
+            k = counts.get(n, 1)
+            if k > 1:  # copy count rides right after the bolded card name
+                tile = tile.replace(f"<b>{html.escape(n, quote=False)}</b>",
+                                    f"<b>{html.escape(n, quote=False)}</b> <b>&times;{k}</b>", 1)
+            L.append(tile)
         L.append("</tr>")
     L.append("</table>\n")
+
+if pool.get("packs"):
+    L.append("\n## By booster\n")
+    L.append("| Pack | Identified | Cards |")
+    L.append("|---|---|---|")
+    for k in sorted(pool["packs"]):
+        v = pool["packs"][k]
+        flag = "14" if len(v) == 14 else f"{len(v)} — 1 hidden"
+        L.append(f"| {k} | {flag} | {', '.join(sorted(v))} |")
+    if pool.get("loose"):
+        L.append(f"| shot loose | {len(pool['loose'])} | {', '.join(pool['loose'])} |")
+    L.append("")
 
 if missing:
     L.append("\n## Not found in the set list\n")
