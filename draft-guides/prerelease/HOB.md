@@ -1,6 +1,6 @@
 # HOB — The Hobbit: aggregated draft & Sealed guide
 
-> **The master file for HOB.** Merges every source captured so far: Limited Resources 865 (letter grades, commons + uncommons), Draftsim (numeric /10 + set review), Card Game Base (letter tiers + archetypes), MTG Arena Zone, Wizards' prerelease guide — plus the full card list verified against **Scryfall, 2026-08-05**. Every card name links to its Scryfall page; click to see the card.
+> **The master file for HOB.** Merges every source captured so far: Limited Resources 865 (letter grades, commons + uncommons), Card Game Base (letter tiers + archetypes), MTG Arena Zone, Wizards' prerelease guide — plus the full card list verified against **Scryfall, 2026-08-05**. Every card name links to its Scryfall page; click to see the card.
 >
 > **⚠ Weakest evidence tier, by construction.** Nothing here is backed by a single played game. HOB hits Arena **2026-08-11**; from that date **17Lands GIH WR supersedes every grade in this file.** LR 866 (rares & mythics) airs the week of Aug 10 and will supersede the rare section.
 >
@@ -76,34 +76,39 @@ Thranduil is the highest-graded signpost in the set. Marshall: "blue-green looks
 
 ## Rares & mythics
 
-**LR has not graded these** — LR 866 covers rares and mythics the week of Aug 10. Grades below are Draftsim (/10) and Card Game Base (letter) only, both pre-gameplay. Cards with no grade were not covered by either written source; the cost and type are Scryfall-verified so you can evaluate them yourself at the table.
+**LR has not graded these** — LR 866 covers rares and mythics the week of Aug 10. Grades below are Card Game Base (letter) only, pre-gameplay. Cards with no grade were not covered by either written source; the cost and type are Scryfall-verified so you can evaluate them yourself at the table.
 
 ### Graded
 
-| Card | R | Cost | DS | CGB | Note |
-|---|---|---|---|---|---|
-| <img src="https://cards.scryfall.io/normal/front/3/6/367d5f8b-77ee-47f7-bc71-972d62c280a9.jpg?1784632151" width="230" alt="Beorn the Fierce"><br>[Beorn the Fierce](https://scryfall.com/card/hob/119/beorn-the-fierce) | M | {3}{G}{G} | — | **A** | CGB's #1 card in the set |
-| <img src="https://cards.scryfall.io/normal/front/a/5/a56a88ba-fcfa-4b56-bdae-a080b297b871.jpg?1783902783" width="230" alt="The Arkenstone // Seek the Heart"><br>[The Arkenstone // Seek the Heart](https://scryfall.com/card/hob/170/the-arkenstone-seek-the-heart) | M | {5} // {2}{W} | — | **A** | Colorless — goes in every deck |
-| <img src="https://cards.scryfall.io/normal/front/3/a/3aa29fe8-1687-486f-b4df-c04977869ab1.jpg?1783902787" width="230" alt="An Unexpected Party // At the Door"><br>[An Unexpected Party // At the Door](https://scryfall.com/card/hob/29/an-unexpected-party-at-the-door) | R | {2}{W}{W} | **10** | **A−** | Both sources' top white card |
-| <img src="https://cards.scryfall.io/normal/front/5/5/550cd0b6-ca61-4db7-9d20-0b68c48066f9.jpg?1785236704" width="230" alt="Dancing from Dark to Dawn"><br>[Dancing from Dark to Dawn](https://scryfall.com/card/hob/123/dancing-from-dark-to-dawn) | M | {3}{G}{G} | — | **A−** | Green's other top-tier bomb |
-| <img src="https://cards.scryfall.io/normal/front/f/a/fa0554fc-9448-4ae2-8712-4f4f7af3c7b4.jpg?1784636060" width="230" alt="The Lord of the Eagles"><br>[The Lord of the Eagles](https://scryfall.com/card/hob/46/the-lord-of-the-eagles) | R | {7}{U}{U} | **9** | — | Cost reduction with fliers out |
-| <img src="https://cards.scryfall.io/normal/front/3/1/31a7a5e2-4cb8-48fc-8351-18344b4a7560.jpg?1785496349" width="230" alt="Settle the Wreckage"><br>[Settle the Wreckage](https://scryfall.com/card/hob/26/settle-the-wreckage) | R | {2}{W}{W} | **9** | B+ | Best white answer |
-| <img src="https://cards.scryfall.io/normal/front/b/0/b02142f3-5e55-40dc-a02c-9113fb7d763c.jpg?1785496367" width="230" alt="Fíli the Pathfinder"><br>[Fíli the Pathfinder](https://scryfall.com/card/hob/14/f%C3%ADli-the-pathfinder) | R | {3}{W} | **8** | B+ | ⚠ **Rare, not uncommon** — see conflicts |
-| <img src="https://cards.scryfall.io/normal/front/1/8/1805532f-6d99-47d0-9529-5f5831a7fdc8.jpg?1785496242" width="230" alt="Kíli the Resourceful"><br>[Kíli the Resourceful](https://scryfall.com/card/hob/17/k%C3%ADli-the-resourceful) | R | {1}{W} | **8** | — | ⚠ **Rare, not uncommon** |
-| <img src="https://cards.scryfall.io/normal/front/6/a/6a5d8fad-2ffd-4645-8c49-907999b6cecf.jpg?1783902784" width="230" alt="Smaug the Magnificent"><br>[Smaug the Magnificent](https://scryfall.com/card/hob/110/smaug-the-magnificent) | M | {2}{R}{R} | — | B+ | The headliner. 4-mana dragon; **indestructible**, so The Black Arrow can't kill it |
-| <img src="https://cards.scryfall.io/normal/front/1/1/117347af-0dd7-4350-901d-8c8a81387e22.jpg?1783902784" width="230" alt="Thorin, Mountain-king"><br>[Thorin, Mountain-king](https://scryfall.com/card/hob/114/thorin-mountain-king) | M | {3}{R} | — | B+ | ⚠ Mythic, not a rare |
-| <img src="https://cards.scryfall.io/normal/front/5/f/5f4f4683-ffd2-447a-932b-276f7fa17cca.jpg?1785496221" width="230" alt="Stone-Giant of High Pass"><br>[Stone-Giant of High Pass](https://scryfall.com/card/hob/113/stone-giant-of-high-pass) | R | {5}{R}{R} | — | B+ | |
-| <img src="https://cards.scryfall.io/normal/front/0/b/0bda1b62-47fc-42c2-a841-ccad8ea0db48.jpg?1784376936" width="230" alt="The Eagles Are Coming!"><br>[The Eagles Are Coming!](https://scryfall.com/card/hob/12/the-eagles-are-coming!) | R | {1}{W} | — | B+ | |
-| <img src="https://cards.scryfall.io/normal/front/3/f/3ffe34d4-72f4-4562-a948-8909b9321e59.jpg?1785152416" width="230" alt="Head of the Hunt"><br>[Head of the Hunt](https://scryfall.com/card/hob/75/head-of-the-hunt) | R | {2}{B}{B} | — | B+ | Black's best by CGB |
-| <img src="https://cards.scryfall.io/normal/front/4/2/42fbd61d-e1a6-465d-b1a3-f5ee0869d3af.jpg?1785496910" width="230" alt="Celebrate the Mountain-king"><br>[Celebrate the Mountain-king](https://scryfall.com/card/hob/7/celebrate-the-mountain-king) | U | {3}{W} | **7** | — | *(uncommon; listed here because both sources rate it)* — LR **B+** |
-| <img src="https://cards.scryfall.io/normal/front/7/d/7d6ece3d-8e7a-41ad-974f-3c9748de4825.jpg?1785323269" width="230" alt="Gigantic Big Bear"><br>[Gigantic Big Bear](https://scryfall.com/card/hob/126/gigantic-big-bear) | R | {5}{G}{G} | — | B+ | |
-| <img src="https://cards.scryfall.io/normal/front/b/2/b2fb3995-5b43-4776-88b2-346d353edee0.jpg?1784862975" width="230" alt="Great Gilded Boat"><br>[Great Gilded Boat](https://scryfall.com/card/hob/42/great-gilded-boat) | R | {2}{U} | **7** | B | Vehicle |
-| <img src="https://cards.scryfall.io/normal/front/e/9/e95eba5c-e0d6-46b4-a0be-8e373b2185ea.jpg?1785496330" width="230" alt="Bejeweled Warg"><br>[Bejeweled Warg](https://scryfall.com/card/hob/117/bejeweled-warg) | R | {1}{G} | — | B | |
-| <img src="https://cards.scryfall.io/normal/front/b/b/bbdc7e37-c65a-497a-92b7-a30a6e369c71.jpg?1784376959" width="230" alt="Gollum, Riddle Master"><br>[Gollum, Riddle Master](https://scryfall.com/card/hob/70/gollum-riddle-master) | M | {1}{B} | **6** | B | ⚠ Both sources call it **underwhelming for a mythic** |
-| <img src="https://cards.scryfall.io/normal/front/5/7/5741bbad-a6e4-45e0-b827-73f48c9975bf.jpg?1785496313" width="230" alt="Radagast of Rhosgobel"><br>[Radagast of Rhosgobel](https://scryfall.com/card/hob/136/radagast-of-rhosgobel) | R | {2}{G}{G} | high | — | |
-| <img src="https://cards.scryfall.io/normal/front/c/a/ca0f7bf4-b8a2-4ec4-ad7e-b639de9fa76a.jpg?1785496323" width="230" alt="Troll Negotiations"><br>[Troll Negotiations](https://scryfall.com/card/hob/138/troll-negotiations) | U | {2}{G}{G} | — | — | LR **B** — part of the answer to G/U's removal shortage |
+| Card | R | Cost | CGB | Note |
+|---|---|---|---|---|
+| <img src="https://cards.scryfall.io/normal/front/3/6/367d5f8b-77ee-47f7-bc71-972d62c280a9.jpg?1784632151" width="230" alt="Beorn the Fierce"><br>[Beorn the Fierce](https://scryfall.com/card/hob/119/beorn-the-fierce) | M | {3}{G}{G} | **A** | CGB's #1 card in the set |
+| <img src="https://cards.scryfall.io/normal/front/a/5/a56a88ba-fcfa-4b56-bdae-a080b297b871.jpg?1783902783" width="230" alt="The Arkenstone // Seek the Heart"><br>[The Arkenstone // Seek the Heart](https://scryfall.com/card/hob/170/the-arkenstone-seek-the-heart) | M | {5} // {2}{W} | **A** | Colorless — goes in every deck |
+| <img src="https://cards.scryfall.io/normal/front/3/a/3aa29fe8-1687-486f-b4df-c04977869ab1.jpg?1783902787" width="230" alt="An Unexpected Party // At the Door"><br>[An Unexpected Party // At the Door](https://scryfall.com/card/hob/29/an-unexpected-party-at-the-door) | R | {2}{W}{W} | **A−** | Both sources' top white card |
+| <img src="https://cards.scryfall.io/normal/front/5/5/550cd0b6-ca61-4db7-9d20-0b68c48066f9.jpg?1785236704" width="230" alt="Dancing from Dark to Dawn"><br>[Dancing from Dark to Dawn](https://scryfall.com/card/hob/123/dancing-from-dark-to-dawn) | M | {3}{G}{G} | **A−** | Green's other top-tier bomb |
+| <img src="https://cards.scryfall.io/normal/front/3/1/31a7a5e2-4cb8-48fc-8351-18344b4a7560.jpg?1785496349" width="230" alt="Settle the Wreckage"><br>[Settle the Wreckage](https://scryfall.com/card/hob/26/settle-the-wreckage) | R | {2}{W}{W} | B+ | Best white answer |
+| <img src="https://cards.scryfall.io/normal/front/b/0/b02142f3-5e55-40dc-a02c-9113fb7d763c.jpg?1785496367" width="230" alt="Fíli the Pathfinder"><br>[Fíli the Pathfinder](https://scryfall.com/card/hob/14/f%C3%ADli-the-pathfinder) | R | {3}{W} | B+ | ⚠ **Rare, not uncommon** — see conflicts |
+| <img src="https://cards.scryfall.io/normal/front/6/a/6a5d8fad-2ffd-4645-8c49-907999b6cecf.jpg?1783902784" width="230" alt="Smaug the Magnificent"><br>[Smaug the Magnificent](https://scryfall.com/card/hob/110/smaug-the-magnificent) | M | {2}{R}{R} | B+ | The headliner. 4-mana dragon; **indestructible**, so The Black Arrow can't kill it |
+| <img src="https://cards.scryfall.io/normal/front/1/1/117347af-0dd7-4350-901d-8c8a81387e22.jpg?1783902784" width="230" alt="Thorin, Mountain-king"><br>[Thorin, Mountain-king](https://scryfall.com/card/hob/114/thorin-mountain-king) | M | {3}{R} | B+ | ⚠ Mythic, not a rare |
+| <img src="https://cards.scryfall.io/normal/front/5/f/5f4f4683-ffd2-447a-932b-276f7fa17cca.jpg?1785496221" width="230" alt="Stone-Giant of High Pass"><br>[Stone-Giant of High Pass](https://scryfall.com/card/hob/113/stone-giant-of-high-pass) | R | {5}{R}{R} | B+ | |
+| <img src="https://cards.scryfall.io/normal/front/0/b/0bda1b62-47fc-42c2-a841-ccad8ea0db48.jpg?1784376936" width="230" alt="The Eagles Are Coming!"><br>[The Eagles Are Coming!](https://scryfall.com/card/hob/12/the-eagles-are-coming!) | R | {1}{W} | B+ | |
+| <img src="https://cards.scryfall.io/normal/front/3/f/3ffe34d4-72f4-4562-a948-8909b9321e59.jpg?1785152416" width="230" alt="Head of the Hunt"><br>[Head of the Hunt](https://scryfall.com/card/hob/75/head-of-the-hunt) | R | {2}{B}{B} | B+ | Black's best by CGB |
+| <img src="https://cards.scryfall.io/normal/front/7/d/7d6ece3d-8e7a-41ad-974f-3c9748de4825.jpg?1785323269" width="230" alt="Gigantic Big Bear"><br>[Gigantic Big Bear](https://scryfall.com/card/hob/126/gigantic-big-bear) | R | {5}{G}{G} | B+ | |
+| <img src="https://cards.scryfall.io/normal/front/b/2/b2fb3995-5b43-4776-88b2-346d353edee0.jpg?1784862975" width="230" alt="Great Gilded Boat"><br>[Great Gilded Boat](https://scryfall.com/card/hob/42/great-gilded-boat) | R | {2}{U} | B | Vehicle |
+| <img src="https://cards.scryfall.io/normal/front/e/9/e95eba5c-e0d6-46b4-a0be-8e373b2185ea.jpg?1785496330" width="230" alt="Bejeweled Warg"><br>[Bejeweled Warg](https://scryfall.com/card/hob/117/bejeweled-warg) | R | {1}{G} | B | |
+| <img src="https://cards.scryfall.io/normal/front/b/b/bbdc7e37-c65a-497a-92b7-a30a6e369c71.jpg?1784376959" width="230" alt="Gollum, Riddle Master"><br>[Gollum, Riddle Master](https://scryfall.com/card/hob/70/gollum-riddle-master) | M | {1}{B} | B | ⚠ Both sources call it **underwhelming for a mythic** |
 
 ### Ungraded — evaluate at the table
+
+**⚠ Five cards moved here when Draftsim was removed** — they had no Card Game Base grade, so they now carry no external number. Do not read that as "unrated"; three of them are highly rated by the video sources:
+
+| Card | | Why it still matters |
+|---|---|---|
+| [Kíli the Resourceful](https://scryfall.com/card/hob/17/kili-the-resourceful) | R {1}{W} | **Top-10 rare on both LLU lists.** Two-drop that snowballs; draws a card on each dwarf or equipment (once per turn). Must-kill |
+| [Celebrate the Mountain-king](https://scryfall.com/card/hob/7/celebrate-the-mountain-king) | U {3}{W} | **LLU's #1 power uncommon, on both lists.** Removal plus a body plus a loot — the premier splash card in the set |
+| [Troll Negotiations](https://scryfall.com/card/hob/138/troll-negotiations) | U {2}{G}{G} | **LR: B.** LLU synergy uncommon on both lists; the Pitiless Fist effect, great in B/G aggro |
+| [Radagast of Rhosgobel](https://scryfall.com/card/hob/136/radagast-of-rhosgobel) | R {2}{G}{G} | Ranked by no video source, but **defined OzMTG's pool** — cost reduction on both turns. Evaluate it yourself |
+| [The Lord of the Eagles](https://scryfall.com/card/hob/46/the-lord-of-the-eagles) | R {7}{U}{U} | Cost reduces with fliers out. Blue underperformed at prereleases; discount accordingly |
 
 **White:** [Belladonna Took](https://scryfall.com/card/hob/4/belladonna-took) {1}{W} · [Bilbo's Gambit](https://scryfall.com/card/hob/5/bilbos-gambit) {1}{W} · [Gleaming Splendor](https://scryfall.com/card/hob/15/gleaming-splendor) M {1}{W} · [The Queen of Dale](https://scryfall.com/card/hob/24/the-queen-of-dale) M {1}{W} · [Roads Go Ever, Ever On](https://scryfall.com/card/hob/25/roads-go-ever-ever-on) {1}{W} Saga
 
@@ -316,7 +321,7 @@ The five signposts are loose enough to ignore. Reported: a **Gruul (R/G)** deck 
 
 ### Source quality note
 
-**Draftsim's numeric ratings drew repeated fire** from players who'd played: [Dáin, Lord of the Iron Hills](https://scryfall.com/card/hob/8/dain-lord-of-the-iron-hills) is rated 1/10 and "rarely playable" there, against LR's **B−** and a place on LLU's synergy list. *"Draftsim's ratings are awful"* was the top reply. Where this file cites Draftsim, weight LR and LLU above it. A full text transcription of LR 865's grades for every common and uncommon is posted in the sub's LR 865 discussion thread — useful for cross-checking the tables above.
+**Draftsim has been removed as a source from this file (2026-08-09).** Its numeric ratings drew repeated fire from players who had actually played — [Dáin, Lord of the Iron Hills](https://scryfall.com/card/hob/8/dain-lord-of-the-iron-hills) is rated 1/10 and "rarely playable" there, against LR's **B−** and a place on LLU's synergy list. *"Draftsim's ratings are awful"* was the top reply. It also got two verifiable facts wrong (Fíli and Kíli's rarity, and the set's card count). Grades in this file now come from **Limited Resources**, **Limited Level-Ups** and **Card Game Base** only. A full text transcription of LR 865's grades for every common and uncommon is posted in the sub's LR 865 discussion thread — useful for cross-checking the tables above.
 
 ### What the self-reported records do and don't show
 
@@ -635,8 +640,8 @@ You need two match wins, not one blowout. Three decks with high floors beat one 
 
 These are the places to trust the primary data over a written guide.
 
-1. **Fíli the Pathfinder and Kíli the Resourceful are RARES, not uncommons.** Draftsim listed both as "8/10 uncommons that make Boros Dwarves real." Scryfall says rare. The archetype is not built on cards you'll reliably see — treat R/W as a good-cards deck.
-2. **Card count: 193, not 183 or 321.** Draftsim said 183, Card Game Base 193, Gatherer 321. Scryfall's HOB Limited pool is **193**; the 321 figure counts special treatments and bonus printings.
+1. **Fíli the Pathfinder and Kíli the Resourceful are RARES, not uncommons.** Some written coverage listed both as uncommons that "make Boros Dwarves real." Scryfall says rare. The archetype is not built on cards you'll reliably see — treat R/W as a good-cards deck.
+2. **Card count: 193, not 183 or 321.** Written sources ranged from 183 to 321; Card Game Base said 193. Scryfall's HOB Limited pool is **193**; the 321 figure counts special treatments and bonus printings.
 3. **Three different Smaugs.** [Smaug the Magnificent](https://scryfall.com/card/hob/110/smaug-the-magnificent) (mythic, {2}{R}{R}, indestructible), [Smaug, Wicked Worm](https://scryfall.com/card/hob/164/smaug-wicked-worm) (rare, {3}{B}{R}), [Smaug, the Great Calamity](https://scryfall.com/card/hob/109/smaug-the-great-calamity-spew-flame) (**common**, {5}{R}{R} + adventure). Written sources conflate them. The Black Arrow kills the common but not the mythic.
 4. **Thorin, Mountain-king is a MYTHIC {3}{R}**, not a red rare as CGB implies.
 5. **Mirkwood Pathmaker:** CGB **B**, LR **C/C−**. LR watched the whole set in context; weight them.
@@ -699,8 +704,7 @@ Ranked by how much it changes your prerelease.
 | **Limited Resources 865** (Marshall + LSV) | 3h 20m | The gold standard, and already distilled into this file. Listen to the mechanics chapter (0:00–14:36) plus your two likely colors. |
 | **Limited Level-Ups HOB primer** (Alex + Mark) | ~2h 30m across 5 videos | Archetypes, top commons/uncommons, **rares + mythics**, and a Sealed-specific prerelease guide. **Now distilled** → [`limited-level-ups/HOB.md`](../limited-level-ups/HOB.md). Two reviewers ranking blind then reconciling on air — the disagreements are the most useful part. |
 | **[OzMTG, *The Hobbit Prerelease Kit Building*](https://www.youtube.com/watch?v=tuFQbNpulRg)** | 15m | The only source that opens an actual kit. Kit contents, what's legal to play, the seasonal Plains, and a real 6-pack pool built on camera. **Distilled into this file.** Weakest evidence tier — reading cards cold, not a graded review. |
-| **Draftsim set review + pick order** | reference | Numeric 1–10 grades, searchable on your phone at the table. |
-| **Card Game Base tier list + draft guide** | reference | Letter grades from a second reviewer. Disagreements with Draftsim mark the genuinely uncertain cards. |
+| **Card Game Base tier list + draft guide** | reference | Letter grades, searchable on your phone at the table. The only non-LR/LLU grading source still cited here. |
 | **17Lands** | — | Nothing until Arena release Aug 11 — four days *after* prerelease. The single best source the week after. |
 
 ## Sources
@@ -710,8 +714,6 @@ Ranked by how much it changes your prerelease.
 
 **Web prose:**
 - Wizards, *The Hobbit Prerelease Guide* — `magic.wizards.com/en/news/feature/the-hobbit-prerelease-guide`
-- Draftsim, *Cards, Mechanics, and Set Information* — `draftsim.com/mtg-the-hobbit/`
-- Draftsim, *The Ultimate Limited Set Review* + pick order — `draftsim.com/mtg-hob-limited-set-review/`, `draftsim.com/HOB-pick-order/`
 - Card Game Base, *Draft Guide* + *Draft Tier List* — `cardgamebase.com/the-hobbit-draft-guide/`, `cardgamebase.com/the-hobbit-draft-tier-list/`
 - MTG Arena Zone, *HOB Limited Archetypes Guide* — `mtgazone.com/the-hobbit-hob-limited-archetypes-guide-and-example-decks/`
 
