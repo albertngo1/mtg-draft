@@ -1,6 +1,8 @@
 # HOB — Albert's kit (split ledger)
 
-> Record of what **Albert's 6 packs** contributed to the shared trio pool at the 2026-08-09 sealed event. The pool has been played but **not yet divvied back out** — this page is the claim record for that split. Identified from 7 photos; stacks were fanned, so cards behind others are missing. Treat as a floor, not a complete list. The date-stamped foil promo is non-fungible and stays with whoever opened it.
+> Record of what **Albert's 6 packs** contributed to the shared trio pool at the 2026-08-09 sealed event. The pool has been played but **not yet divvied back out** — this page is the claim record for that split. The date-stamped foil promo is non-fungible and stays with whoever opened it.
+
+> ⚠️ **Distinct names only — copies are NOT counted.** Six play boosters hold roughly 72–78 catalogable cards; 63 distinct are listed here, so about **9–15 duplicate copies are missing from this page**. Confirmed duplicates visible within a single photo: **Rage into the Valley ×2**, **Wood Elves ×2**, **Patient Instructor ×2**. Cards repeating across different photos can't be told apart from the same card shot twice, so they aren't claimed here. To get real counts, re-shoot the pool spread flat in a grid with no overlap rather than fanned in stacks.
 
 63 distinct cards — **1** mythic · **8** rare · **19** uncommon · **35** common
 

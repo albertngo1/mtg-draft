@@ -55,6 +55,8 @@ for name in pool["cards"]:
 L = [f"# {pool.get('title', SET + ' pool')}\n"]
 if pool.get("note"):
     L.append(f"> {pool['note']}\n")
+if pool.get("counting"):
+    L.append(f"> ⚠️ {pool['counting']}\n")
 counts = " · ".join(f"**{len(groups.get(r, []))}** {LABEL[r].lower()}"
                     for r in sorted(groups, key=lambda r: ORDER[r]))
 L.append(f"{len(pool['cards']) - len(missing)} distinct cards — {counts}\n")
