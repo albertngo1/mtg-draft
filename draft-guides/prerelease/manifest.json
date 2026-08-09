@@ -22,8 +22,8 @@
         "https://mtgazone.com/the-hobbit-hob-limited-archetypes-guide-and-example-decks/",
         "https://www.youtube.com/watch?v=tuFQbNpulRg"
       ],
-      "sha1": "d625b0a1f2e7998dccd6ac57990614c44d39092f",
-      "words": 10321,
+      "sha1": "68215968c637b1342994f45f5f93525223eac96e",
+      "words": 10702,
       "card_data": {
         "source": "Scryfall set:hob",
         "cards": 193,
@@ -58,7 +58,8 @@
           "note": "ad hoc fetch; OzMTG not registered in src/ingest/channels.json"
         }
       ],
-      "trios_variant": "A \u2014 shared pool, 18 boosters (confirmed 2026-08-09)"
+      "trios_variant": "A \u2014 shared pool, 18 boosters (confirmed 2026-08-09)",
+      "scryfall_queries_verified": "2026-08-09"
     }
   }
 }

@@ -36,15 +36,17 @@ Two allied pairs (W/U, B/R) and three enemy pairs (B/G, R/W, G/U). The five **un
 
 ## Mechanics
 
+Counts link to a live Scryfall list — tap one to see every card with that mechanic as images.
+
 | Mechanic | Rules | How to play it |
 |---|---|---|
-| **Recruit** | Draw a card, then discard a card. If you discarded a nonland, create a 1/1 white Human Soldier. | Free value; smooths flood and screw. Never a reason to take a worse card. Cards you're happy to discard (flashback spells, [Silvan Reveler](https://scryfall.com/card/hob/163/silvan-reveler)) get better. |
-| **Storied** | While you control 3+ artifacts, legendary permanents and/or Sagas (combined), you have an **enduring story** for the rest of the game — it doesn't turn off if you lose the permanents. | Like City's Blessing. Easy to switch on; Treasure tokens and common legends count. |
-| **Amass Goblins X** | Put X +1/+1 counters on an Army you control; create a 0/0 black Goblin Army first if you have none. | One body, not a wide board. Keep a second threat in hand. Against it, save unconditional removal. |
-| **Ferocious** | Bonus while you control a creature with power 4+. | Count your 4-power creatures before committing. Below ~6 the payoffs are blanks. |
-| **Landfall** | Triggers when a land enters under your control. | Rewards the 18th land and land-return effects. |
-| **Hone counters** | Counters on Equipment that raise its bonus. | Boros glue. Bad in multiples — two equipment is plenty. |
-| **Adventure** | Cast the spell half, exile, cast the creature later. | Two cards in one. Raises your deck's floor more than any synergy. |
+| **Recruit** ([10](https://scryfall.com/search?q=set%3Ahob+oracle%3Arecruit)) | Draw a card, then discard a card. If you discarded a nonland, create a 1/1 white Human Soldier. | Free value; smooths flood and screw. Never a reason to take a worse card. Cards you're happy to discard (flashback spells, [Silvan Reveler](https://scryfall.com/card/hob/163/silvan-reveler)) get better. |
+| **Storied** ([9](https://scryfall.com/search?q=set%3Ahob+oracle%3Astoried) · [74 enablers](https://scryfall.com/search?q=set%3Ahob+%28type%3Alegendary+or+type%3Aartifact+or+type%3Asaga%29)) | While you control 3+ artifacts, legendary permanents and/or Sagas (combined), you have an **enduring story** for the rest of the game — it doesn't turn off if you lose the permanents. | Like City's Blessing. Easy to switch on; Treasure tokens and common legends count. |
+| **Amass Goblins X** ([14](https://scryfall.com/search?q=set%3Ahob+oracle%3Aamass)) | Put X +1/+1 counters on an Army you control; create a 0/0 black Goblin Army first if you have none. | One body, not a wide board. Keep a second threat in hand. Against it, save unconditional removal. |
+| **Ferocious** ([6](https://scryfall.com/search?q=set%3Ahob+oracle%3Aferocious) · [33 enablers](https://scryfall.com/search?q=set%3Ahob+pow%3E%3D4)) | Bonus while you control a creature with power 4+. | Count your 4-power creatures before committing. Below ~6 the payoffs are blanks. |
+| **Landfall** ([10](https://scryfall.com/search?q=set%3Ahob+oracle%3Alandfall)) | Triggers when a land enters under your control. | Rewards the 18th land and land-return effects. |
+| **Hone counters** ([12 equipment](https://scryfall.com/search?q=set%3Ahob+type%3Aequipment)) | Counters on Equipment that raise its bonus. | Boros glue. Bad in multiples — two equipment is plenty. |
+| **Adventure** ([17](https://scryfall.com/search?q=set%3Ahob+is%3Aadventure)) | Cast the spell half, exile, cast the creature later. | Two cards in one. Raises your deck's floor more than any synergy. |
 | **Treasure** | Sac for one mana of any color. | Your splash enabler, and a free storied enabler. |
 | **Cameos** | Kicker, affinity (Elves), behold, prowess, threshold, gift, mountaincycling, **halflingcycling** ([Hobbit Hole](https://scryfall.com/card/hob/184/hobbit-hole), finds one of the set's 9 halflings). | Read once at deckbuilding. |
 
@@ -343,7 +345,7 @@ The whole design is that **only two phases are synchronous**; everything else ru
 
 This is why the sort phase below is deliberately mechanical and silent. The person sorting white isn't necessarily the person playing it, so reading during the sort puts the knowledge in the wrong head.
 
-Total ~70 minutes with reading included. Confirm your actual limit with the store — team builds usually get 45–60 rather than the 30 for individual Sealed. **If your clock is under 70, the reading does not get cut** (see the triage note after the timeline).
+Total ~75 minutes, including the open, the photo pass and the reading. Confirm your actual limit with the store — team builds usually get 45–60 rather than the 30 for individual Sealed. **If your clock is under 70, the reading does not get cut** (see the triage note after the timeline).
 
 **Assign three roles before you open a single pack.** This is what separates a 45-minute build from a 90-minute one.
 
@@ -357,21 +359,32 @@ The Decider matters most. Three people with equal authority over one pool argue 
 
 | Time | Phase | Mode |
 |---|---|---|
-| 0–3 | Open + stage | Together |
-| 3–11 | Sort — mechanical, silent, **no reading** | **Parallel** |
-| 11–16 | Bomb census + lock the config and pilots | Together |
-| 16–30 | **Read your two colours** | **Parallel** |
-| 30–50 | Build the three 40s | **Parallel** |
-| 50–58 | Resolve contested cards | Together |
-| 58–68 | Lands, sleeve, cross-check | **Parallel** |
+| 0–4 | Open your own six packs | **Parallel** |
+| 4–9 | **Photograph each pull, separately** | **Parallel** |
+| 9–11 | Merge into one pool + stage the table | Together |
+| 11–19 | Sort — mechanical, silent, **no reading** | **Parallel** |
+| 19–24 | Bomb census + lock the config and pilots | Together |
+| 24–38 | **Read your two colours** | **Parallel** |
+| 38–58 | Build the three 40s | **Parallel** |
+| 58–66 | Resolve contested cards | Together |
+| 66–76 | Lands, sleeve, cross-check | **Parallel** |
 
-**If your clock is shorter than 70 minutes**, cut in this order and never higher up the list: the neighbour cross-check to 1 minute · the contested pass to a single round with no debate · the build phase (you'll play more filler). **Do not cut the reading.** A deck built from cards nobody understood is worse than a deck built in a hurry from cards you did — and misreading a card at the table during round one costs a game outright.
+**If your clock is shorter than 75 minutes**, cut in this order and never higher up the list: the neighbour cross-check to 1 minute · the contested pass to a single round with no debate · the build phase (you'll play more filler). **Do not cut the reading.** A deck built from cards nobody understood is worse than a deck built in a hurry from cards you did — and misreading a card at the table during round one costs a game outright.
 
-**0–3 · Open and stage.** Clear the table into **three columns plus a wide strip across the top** — the strip is the shared pool, the columns are the decks. All 18 packs into one pile. Land packs aside; basics are free and don't count. Pull the three foil promos, photograph the pool if that's your split rule, then **put the promos back in the pile** — they're legal and they're rares.
+**0–4 · Open your own six packs.** Each player opens their own kit into their own space. Don't merge yet. Land packs aside — basics are free and don't count.
 
-**3–11 · Sort, in parallel — mechanical and silent.** Split the colours so nobody waits: player 1 takes white + blue, player 2 black + red, player 3 green + multicolour + colourless + lands. Within your colours sort **by mana value ascending**, rares and gold face-up. Sort by colour, **not** by tribe — OzMTG worked through exactly this decision on camera and landed on colour, because colour is what shows you where the depth is: *"then I can sort of see what I've got the most of."* Tribes are the second pass, once colour has narrowed it to two or three lanes. **Nobody evaluates cards yet** — talking about cards here is what turns seven minutes into twenty.
+**4–9 · Photograph each pull, separately.** This is the step with a hard ordering constraint: **photograph before you merge, and photograph each player's six packs as its own picture.** A photo of the combined pool cannot tell you who opened what, so it's worthless for splitting the cards back afterward. Merge first and the information is gone for good.
 
-**11–16 · Census, then lock.** All three at the top strip. Five minutes, and it decides the whole build.
+- Lay your six packs out in a grid, cards fanned so every name is readable. Two or three shots per player beats one crowded one.
+- **Include your foil promo in your own photo** — it's date-stamped and non-fungible, and it should end the night back with you.
+- Shoot in decent light and check the photo is legible *before* you sweep the cards together. A blurry photo you can't read is the same as no photo.
+- Everyone keeps their own shots; send them to a group thread so there's one shared record.
+
+**9–11 · Merge and stage.** Now combine. Clear the table into **three columns plus a wide strip across the top** — the strip is the shared pool, the columns are the decks. **Put the foil promos into the pool** — they're legal and they're rares, and your photo already records whose is whose.
+
+**11–19 · Sort, in parallel — mechanical and silent.** Split the colours so nobody waits: player 1 takes white + blue, player 2 black + red, player 3 green + multicolour + colourless + lands. Within your colours sort **by mana value ascending**, rares and gold face-up. Sort by colour, **not** by tribe — OzMTG worked through exactly this decision on camera and landed on colour, because colour is what shows you where the depth is: *"then I can sort of see what I've got the most of."* Tribes are the second pass, once colour has narrowed it to two or three lanes. **Nobody evaluates cards yet** — talking about cards here is what turns seven minutes into twenty.
+
+**19–24 · Census, then lock.** All three at the top strip. Five minutes, and it decides the whole build.
 
 1. **Count the white rares.** That single number picks between the two configurations above.
 2. **Lock the configuration.** Lay the chosen three archetypes out as the three columns.
@@ -380,27 +393,33 @@ The Decider matters most. Three people with equal authority over one pool argue 
 
 Then stop. **Do not revisit the configuration after this point**, even if someone finds a great card in an unused colour. Reopening the config at minute 30 is how teams submit two decks and a pile.
 
-**16–30 · Read your two colours.** Fourteen minutes, parallel, silent. Take your two colours off the top strip and physically read them — roughly 80–90 cards each, about ten seconds a card. **Do not read the other three colours at all.** Read colourless and your pair's gold/hybrid cards too; they're short.
+**24–38 · Read your two colours.** Fourteen minutes, parallel, silent. Take your two colours off the top strip and physically read them — roughly 80–90 cards each, about ten seconds a card. **Do not read the other three colours at all.** Read colourless and your pair's gold/hybrid cards too; they're short.
 
 - **Sort into three piles as you read: yes / maybe / no.** Don't rank within the piles yet — that's the build phase. You're only converting "unknown card" into "card I understand."
 - **Adventures and modal cards take three times as long.** HOB has a lot of both. Read those first while you're fresh; they're also the ones most likely to be misplayed later.
-- **Use your phone for anything ambiguous** rather than debating it. Scryfall `set:hob`, or the grade tables in this file.
+- **Use your phone for anything ambiguous** rather than debating it. Open your pair's full card list on Scryfall and set the view to Images — it's every card castable in your two colours, colourless and hybrid included, and nothing else:
+
+  | Pilot | Cards | | Pilot | Cards |
+  |---|---|---|---|---|
+  | **B/R** | [78](https://scryfall.com/search?q=set%3Ahob+ci%3C%3Dbr+-type%3Abasic) | | **W/U** | [77](https://scryfall.com/search?q=set%3Ahob+ci%3C%3Dwu+-type%3Abasic) |
+  | **B/G** | [75](https://scryfall.com/search?q=set%3Ahob+ci%3C%3Dbg+-type%3Abasic) | | **R/W** | [78](https://scryfall.com/search?q=set%3Ahob+ci%3C%3Drw+-type%3Abasic) |
+  | **G/U** | [75](https://scryfall.com/search?q=set%3Ahob+ci%3C%3Dgu+-type%3Abasic) | | | |
 - **Say the weird ones out loud** to the table — one sentence, not a discussion. "Storied is permanent once you get it." "Amass stacks on one token." Thirty seconds of shared vocabulary saves arguments in the contested pass.
 - **Read the rares last, not first.** You'll have already seen the ones that matter during the census, and the temptation to re-litigate the config while holding a shiny off-colour rare is exactly the failure mode below.
 
-**30–50 · Build three decks at once.** Each player takes their column and builds their own 40 from their yes/maybe piles, pulling anything else from the top strip.
+**38–58 · Build three decks at once.** Each player takes their column and builds their own 40 from their yes/maybe piles, pulling anything else from the top strip.
 
 - **The constrained deck picks first.** Whoever is on the shallowest colours goes first, because they have the fewest options. The deck on the deepest colours has slack and absorbs what's left. Letting the strongest deck pick first starves the seat that was already going to be weakest.
 - **When two decks want the same card, don't fight — put it in a contested zone** in the middle of the table and keep building. Build assuming you *don't* get it. You're establishing each deck's floor; contested cards are upside, resolved in one pass later.
 - Everyone targets 17 lands · 15–17 creatures · 6–8 removal · ~5 twos, 5 threes, 4 fours, 3–4 at five-plus.
 
-**50–58 · Resolve the contested zone.** One pass, all three, Decider breaks ties. One rule governs it:
+**58–66 · Resolve the contested zone.** One pass, all three, Decider breaks ties. One rule governs it:
 
 > **A contested card goes to the deck with the worse alternative, not the deck that uses it better.**
 
 Counterintuitive and load-bearing. If Bilbo's Deadly Slice is the B/R deck's 7th-best removal spell and the W/U deck's 2nd-best, it goes to W/U — even though B/R is the better removal deck. You are not maximising any single deck. **You need two match wins**, so you are raising the floor of the worst one. The same logic drives the removal split: push interaction toward the weakest seat, since the aggro deck survives on four and the leftovers deck doesn't.
 
-**58–68 · Lands, sleeve, cross-check.** Parallel. Whoever finishes first starts sleeving for whoever's behind — nobody sits idle in the last ten minutes. Then the step almost every team skips: **hand your finished deck to a neighbour for a two-minute count.** Not a discussion, a count — lands, creatures, removal, eyeball the curve. You cannot see your own deck's holes after twenty minutes of staring; a fresh pair of eyes spots a 13-creature deck in fifteen seconds. Keep the leftover pool in its own container sorted by colour; it's your sideboard. Confirm with the store whether cards may move between decks between games — rules vary.
+**66–76 · Lands, sleeve, cross-check.** Parallel. Whoever finishes first starts sleeving for whoever's behind — nobody sits idle in the last ten minutes. Then the step almost every team skips: **hand your finished deck to a neighbour for a two-minute count.** Not a discussion, a count — lands, creatures, removal, eyeball the curve. You cannot see your own deck's holes after twenty minutes of staring; a fresh pair of eyes spots a 13-creature deck in fifteen seconds. Keep the leftover pool in its own container sorted by colour; it's your sideboard. Confirm with the store whether cards may move between decks between games — rules vary.
 
 ### Three ways this goes wrong
 
@@ -493,9 +512,21 @@ These are the places to trust the primary data over a written guide.
 
 ### The night before — 20 minutes, then sleep
 
-**Read the ~60 commons. Not the whole set.** Scryfall `set:hob rarity:common` — ten per colour plus colourless. Commons are the bulk of what you'll physically open, and they're the cards you have to evaluate fastest at the table. Every common you already know is ten seconds you don't spend in the reading phase. If you only have five minutes, read the two colours you most expect to play.
+**Read the commons. Not the whole set.** → **[all 65 HOB commons](https://scryfall.com/search?q=set%3Ahob+rarity%3Acommon+-type%3Abasic)** *(set the view to "Images" and swipe)*. Commons are the bulk of what you'll physically open, and they're the cards you have to evaluate fastest at the table. Every common you already know is ten seconds you don't spend in the reading phase.
 
-**Do not try to read all 193 cards.** You won't retain it, and the rares are the ones you'll have time to read carefully at the table anyway.
+If you only have five minutes, read the two colours you most expect to play:
+
+| | Commons | | Commons |
+|---|---|---|---|
+| **White** | [12](https://scryfall.com/search?q=set%3Ahob+rarity%3Acommon+color%3Aw) | **Red** | [12](https://scryfall.com/search?q=set%3Ahob+rarity%3Acommon+color%3Ar) |
+| **Blue** | [12](https://scryfall.com/search?q=set%3Ahob+rarity%3Acommon+color%3Au) | **Green** | [12](https://scryfall.com/search?q=set%3Ahob+rarity%3Acommon+color%3Ag) |
+| **Black** | [12](https://scryfall.com/search?q=set%3Ahob+rarity%3Acommon+color%3Ab) | | |
+
+*(Counts overlap — hybrid cards appear under both their colours. 65 distinct.)*
+
+**Do not try to read all 193 cards.** You won't retain it, and the [68 rares and mythics](https://scryfall.com/search?q=set%3Ahob+rarity%3E%3Drare) are the ones you'll have time to read carefully at the table anyway.
+
+**Worth two minutes each — the mechanics as card lists:** [17 adventures](https://scryfall.com/search?q=set%3Ahob+is%3Aadventure) (the slowest cards to read at the table, so front-load them) · [14 amass cards](https://scryfall.com/search?q=set%3Ahob+oracle%3Aamass) · [10 recruit cards](https://scryfall.com/search?q=set%3Ahob+oracle%3Arecruit) · [12 equipment](https://scryfall.com/search?q=set%3Ahob+type%3Aequipment) · [8 sagas](https://scryfall.com/search?q=set%3Ahob+type%3Asaga) · [8 nonbasic lands](https://scryfall.com/search?q=set%3Ahob+type%3Aland+-type%3Abasic).
 
 **Send one message to your teammates.** The split rule is the only thing that genuinely cannot be fixed at the table, and settling it at 11pm costs two minutes:
 
