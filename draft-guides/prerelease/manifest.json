@@ -19,10 +19,11 @@
         "https://draftsim.com/HOB-pick-order/",
         "https://cardgamebase.com/the-hobbit-draft-guide/",
         "https://cardgamebase.com/the-hobbit-draft-tier-list/",
-        "https://mtgazone.com/the-hobbit-hob-limited-archetypes-guide-and-example-decks/"
+        "https://mtgazone.com/the-hobbit-hob-limited-archetypes-guide-and-example-decks/",
+        "https://www.youtube.com/watch?v=tuFQbNpulRg"
       ],
-      "sha1": "8c2bd55192cc5c704b8b74a8566048eaf794750d",
-      "words": 7876,
+      "sha1": "be50a47e1799ba37bf92d1c986e9533a9f1b1d82",
+      "words": 8809,
       "card_data": {
         "source": "Scryfall set:hob",
         "cards": 193,
@@ -33,6 +34,7 @@
       "aggregates": [
         "limited-level-ups/HOB.md (LLU 5-part primer)",
         "limited-resources/HOB.md (LR 865)",
+        "OzMTG kit-building video",
         "Draftsim",
         "Card Game Base",
         "MTG Arena Zone",
@@ -43,7 +45,20 @@
       "superseded_by": [
         "limited-level-ups/HOB.md (LLU 5-part primer, 2026-07-30..08-06) \u2014 archetypes, commons, uncommons, RARES + MYTHICS",
         "limited-resources/HOB.md (LR 865) \u2014 commons + uncommons"
-      ]
+      ],
+      "source_videos": [
+        {
+          "id": "tuFQbNpulRg",
+          "channel": "OzMTG",
+          "channel_id": "UCk_FMCEGp6HXMSnLRyxHmtg",
+          "title": "The Hobbit Prerelease Kit Building | MTG",
+          "upload_date": "20260805",
+          "duration": "15:23",
+          "captured": "2026-08-09",
+          "note": "ad hoc fetch; OzMTG not registered in src/ingest/channels.json"
+        }
+      ],
+      "trios_variant": "A \u2014 shared pool, 18 boosters (confirmed 2026-08-09)"
     }
   }
 }

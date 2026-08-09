@@ -256,6 +256,26 @@ LR's A–F scale with ± subgrades, plus **sideboard** and **build-around**. Spl
 
 ---
 
+## The prerelease kit itself
+
+From OzMTG's on-camera kit opening (2026-08-05). Practical, and none of it is in the written guides.
+
+**What's in the box:** 6 play boosters · a spindown die · a **land pack** · a **date-stamped foil promo rare**.
+
+- **The promo and the land-pack basics are both legal in your deck.** People ask every event; the answer is yes on both. Add the promo to the pile before you build, not after.
+- **The kit does not tell you the archetypes.** OzMTG had to crack a separate play booster to find them printed. Know the five pairs before you sit down — nothing in the box will tell you.
+- **The die is nothing special** — the five ordinary colours with the set symbol on it. No special face.
+- **The land pack is the thing to keep.** Seasonal-art basics (spring, summer, autumn, winter), and OzMTG believes the four-season treatment is **Plains only**. In **non-foil these exist only in prerelease kits** — the bundle version is foil and the gift bundle is surge foil. If you want the non-foil seasonals for a Commander deck you need roughly 20–25, which is a lot of kits.
+- **Kit supply was limited**, at least in Australia. Pre-order rather than walking in.
+
+**Their format read, which is a genuinely different emphasis from the other sources:**
+
+- **Commit to a tribe or lose.** *"If you don't build a tribe, you're going to be screwed, because anyone who builds tribes is going to get synergies."* Stronger than LR's or LLU's framing, and worth weighing since it's the only read here based on looking at a real 6-pack pool rather than a spoiler list.
+- **But no more than two tribes.** B/G can support elves *and* wolves; a third dilutes both past the point where synergy pays.
+- **The colours line up cleanly.** No three-colour cards appeared in the pool, and the archetype colours map exactly onto the tribes — the set isn't trying to pull you off your lane. *"Very easy colours to get into."*
+- **The curve is low.** *"They are quite low mana costed... realistically you want to focus on two or three mana. That's going to be your bread and butter."* Matches the guide's advice to prioritise the 2–3 slot.
+- Their build landed on **B/G wolves** off Radagast of Rhosgobel plus The Chief Warg, Large Bear, Head of the Hunt and black removal — three two-drops, two three-mana removal spells, a high top end.
+
 ## Sealed: building your 40
 
 **Targets**
@@ -281,12 +301,13 @@ LR's A–F scale with ± subgrades, plus **sideboard** and **build-around**. Spl
 
 ## Trios / Team Sealed
 
-"Trios" is **not** an official Wizards prerelease format — confirm the structure with your store first. Two variants:
+"Trios" is **not** an official Wizards prerelease format — it's a store variant, and stores run it two ways. Variant B is three separate Sealed decks with no card sharing, in which case the ordinary Sealed advice above applies unchanged and you can skip this section.
 
-- **A · Shared-pool Team Sealed** — everything into one pile, build three 40-card decks. Cards move freely during building, then lock to their pilot. 1v1 against the opposing seat; first team to two match wins.
-- **B · Three separate Sealed decks** played as a team. No sharing; build normally.
+**This section assumes variant A: shared pool, 18 boosters** — three prerelease kits into one pile, three 40-card decks built collectively. Cards move freely during building, then lock to their pilot. 1v1 against the opposing seat; first team to two match wins.
 
-**Confirm the pack count before you plan.** Official Team Sealed is **12 boosters**; three prerelease kits is **18**. That difference is roughly 12 vs 18 rares and it changes everything below — with 12 packs you are choosing among ~3–5 real bombs and one seat will be genuinely weak; with 18 you can usually give all three seats a reason to win.
+**18 packs is the good version of this format.** Official Team Sealed is 12 boosters; three kits gives you 18, so roughly six extra rares. Expect **4–8 genuine bombs** — enough that all three seats can have a real reason to win rather than one seat being knowingly sacrificed. Plan to give every deck a threat, not to stack one super-deck.
+
+**You also get three foil promos and three land packs.** Both are legal to play (see [The prerelease kit itself](#the-prerelease-kit-itself)) — that's three extra rare-or-better cards in the shared pool that people routinely forget to add to the pile.
 
 ### The color-overlap math is forced, so choose which color you double
 
@@ -316,8 +337,8 @@ The white seat will be **removal-starved by construction**. Feed it black and re
 
 ### Build order (shared pool)
 
-1. **Pull the date-stamped foil promos aside first.** They're the only non-fungible cards in the pool; everything else is splittable afterward. Photograph each player's packs before mixing if you haven't already agreed a split rule.
-2. Sort all packs by colour, rares and gold face-up. Two minutes, read nothing yet.
+1. **Pull the date-stamped foil promos aside first.** They're the only non-fungible cards in the pool; everything else is splittable afterward. Photograph each player's packs before mixing if you haven't already agreed a split rule. Then put them **back into the playable pile** — the promo is legal in your deck and it's a rare.
+2. Sort all packs **by colour, not by tribe**, rares and gold face-up. Two minutes, read nothing yet. OzMTG worked through this exact decision on camera and landed on colour, because colour is what tells you where your depth is — *"then I can sort of see what I've got the most of."* Tribes are what you check second, once the colours have already narrowed it to two or three lanes.
 3. **Count white rares.** That single number picks between the two configurations above.
 4. Lay out the chosen three archetypes as three physical columns, one per player.
 5. Assign the two **least-overlapping** pairs first. Two decks fighting over red is how trios teams lose.
@@ -396,7 +417,15 @@ These are the places to trust the primary data over a written guide.
 4. **Thorin, Mountain-king is a MYTHIC {3}{R}**, not a red rare as CGB implies.
 5. **Mirkwood Pathmaker:** CGB **B**, LR **C/C−**. LR watched the whole set in context; weight them.
 6. **Gollum, Riddle Master** is a mythic both written sources call underwhelming. Do not first-pick it on rarity.
-7. **Ignore the AI-generated "prerelease guides"** ranking in search right now. One claims Red is the strongest Sealed color with R/B and R/G as the best pairs — R/G isn't one of the five archetypes. If a guide doesn't name recruit, storied, amass, ferocious and landfall, it hasn't seen the set.
+8. **OzMTG dissents (weakest tier — a casual pool crack, not a graded review, so treat these as minority reports):**
+   - [Radagast of Rhosgobel](https://scryfall.com/card/hob/136/radagast-of-rhosgobel) is their pool's defining card and neither LR nor LLU ranked it. *"If you can get Radagast, then all these are basically one or two mana."* The cost reduction applies on **both** turns. Genuinely under-covered elsewhere — evaluate it yourself.
+   - [Gollum the Abandoned](https://scryfall.com/card/hob/72/gollum-the-abandoned) — *"he's actually really good, I would definitely run him."* Two-mana 2/2 with graveyard hate, a drain, and self-recursion. Note the mirror: **their** Gollum can exile **your** Gollum out of your graveyard, and the recursion is sorcery-speed only.
+   - [Thorin's Last Stand](https://scryfall.com/card/hob/28/thorins-last-stand) — *"pretty average."* Against LR's C and LLU's Mark, who nearly put it in his top three white commons for the instant-speed disenchant mode. **Trust the reviewers here** — OzMTG were reading it cold.
+   - [Mirkwood Nurturer](https://scryfall.com/card/hob/160/mirkwood-nurturer) — *"that's pretty crappy, let's just put it to the side."* Directly against LLU's Mark, who had it as a top-three "other" common. This is the widest three-way split in the file.
+   - [Dwarven Mauler](https://scryfall.com/card/hob/95/dwarven-mauler) — *"not the best for this"* (they rate it a Commander card). LLU talked themselves **up** on it. Both agree it needs 4–5 equipment, so the disagreement is really about whether you'll have them.
+   - [Thranduil's Decree](https://scryfall.com/card/hob/56/thranduils-decree) — *"it's expensive, you're never going to play it."* LLU's Alex called it good blue top-end. Six mana in a format LLU reads as fast; lean toward OzMTG unless your deck is genuinely the slow one.
+   - [Sound the Trumpets](https://scryfall.com/card/hob/55/sound-the-trumpets) — split within OzMTG itself, one on the recruit rider, the other on *"inefficiency built into a card."* LR's D+ draft / C+ Sealed split is the reconciliation.
+9. **Ignore the AI-generated "prerelease guides"** ranking in search right now. One claims Red is the strongest Sealed color with R/B and R/G as the best pairs — R/G isn't one of the five archetypes. If a guide doesn't name recruit, storied, amass, ferocious and landfall, it hasn't seen the set.
 
 ## What to bring to the prerelease
 
@@ -414,6 +443,7 @@ Ranked by how much it changes your prerelease.
 |---|---|---|
 | **Limited Resources 865** (Marshall + LSV) | 3h 20m | The gold standard, and already distilled into this file. Listen to the mechanics chapter (0:00–14:36) plus your two likely colors. |
 | **Limited Level-Ups HOB primer** (Alex + Mark) | ~2h 30m across 5 videos | Archetypes, top commons/uncommons, **rares + mythics**, and a Sealed-specific prerelease guide. **Now distilled** → [`limited-level-ups/HOB.md`](../limited-level-ups/HOB.md). Two reviewers ranking blind then reconciling on air — the disagreements are the most useful part. |
+| **[OzMTG, *The Hobbit Prerelease Kit Building*](https://www.youtube.com/watch?v=tuFQbNpulRg)** | 15m | The only source that opens an actual kit. Kit contents, what's legal to play, the seasonal Plains, and a real 6-pack pool built on camera. **Distilled into this file.** Weakest evidence tier — reading cards cold, not a graded review. |
 | **Draftsim set review + pick order** | reference | Numeric 1–10 grades, searchable on your phone at the table. |
 | **Card Game Base tier list + draft guide** | reference | Letter grades from a second reviewer. Disagreements with Draftsim mark the genuinely uncertain cards. |
 | **17Lands** | — | Nothing until Arena release Aug 11 — four days *after* prerelease. The single best source the week after. |
@@ -434,5 +464,6 @@ Ranked by how much it changes your prerelease.
 
 **Also distilled (video):**
 - 2026-07-30 → 2026-08-06 — Limited Level-Ups HOB primer, 5 videos (`m-qR8GeZ96A`, `jD3Tr03b2MQ`, `nt-OvtlAGBY`, `-DZnv_Ap-qo`, `gXrmVcPfg24`) → [`limited-level-ups/HOB.md`](../limited-level-ups/HOB.md). Ingested 2026-08-08.
+- 2026-08-05 — OzMTG, *The Hobbit Prerelease Kit Building* (`tuFQbNpulRg`, 15m23s) — distilled directly into this file (kit contents + pool-build method + dissents). OzMTG is **not** a registered channel in `src/ingest/channels.json`; captions were fetched ad hoc, consistent with this folder being outside the `src/ingest/` ETL.
 
 **Not yet ingested:** LR 866 (rares & mythics, airs week of Aug 10) · Lords of Limited (no HOB content as of 2026-08-08) · Numot (channel has neither a videos nor a streams tab — needs a manual look) · 17Lands (no HOB data until Arena release Aug 11).
