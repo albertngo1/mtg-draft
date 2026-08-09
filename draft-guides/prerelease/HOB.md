@@ -436,12 +436,24 @@ That proviso is the whole trick, and it's what decides *which* blue deck:
 
 **So seat 3 is W/U — built blue-primary, white for bombs.** Not a true two-colour recruit deck: blue is the engine, white is the payload. That is exactly the shape of both reported 3-0s (recruit into 4/4 fliers; recruit plus Settle), and it leaves R/W's dwarves and equipment untouched.
 
-**The census question changes accordingly.** Don't ask "do I have enough white." Ask both of:
+### ⚠️ Seat 3 decides which colour you throw away
 
-1. **Blue draw-two density** — 4+ of Lakeshore Apothecary / Patient Instructor / Bilbo Baggins, Burglar / Long Lake Nuisance / Plunder the Trollshaws across 18 packs
-2. **One of the two white bombs** — [The Eagles Are Coming!](https://scryfall.com/card/hob/12/the-eagles-are-coming) or [Settle the Wreckage](https://scryfall.com/card/hob/26/settle-the-wreckage)
+`R/W + B/R + W/U` uses W×2, R×2, B×1, U×1 and **G×0** — green goes entirely unused, roughly a fifth of an 18-pack pool dead on the table. `B/G` dumps **blue** instead. They are not equivalent:
 
-Both yes → **W/U**. Either no → **B/G**.
+| Dump | You lose |
+|---|---|
+| **Green** | [Dancing from Dark to Dawn](https://scryfall.com/card/hob/123/dancing-from-dark-to-dawn) — *"everyone who pulled one went 3-0"* — and [Beorn the Fierce](https://scryfall.com/card/hob/119/beorn-the-fierce), LLU's #1 mythic and CGB's #1 card in the set |
+| **Blue** | A synergy engine you may not be able to assemble, whose best rares nobody has reported winning with |
+
+**Both green bombs are `{3}{G}{G}`. You cannot splash them** — they need a real green seat or they sit in the sideboard.
+
+**So the census runs green first:**
+
+1. **Is Dancing from Dark to Dawn or Beorn the Fierce in the pool?** → seat 3 is **B/G**. Done, no further debate — two double-green cards that good outweigh any blue count. Both are mythics, so across 18 packs this decides it perhaps a third of the time before anyone counts a blue card.
+2. **No green bomb?** → apply the blue gate: **4+ draw-two enablers** (Lakeshore Apothecary / Patient Instructor / Bilbo Baggins, Burglar / Long Lake Nuisance / Plunder the Trollshaws) **and** one of [The Eagles Are Coming!](https://scryfall.com/card/hob/12/the-eagles-are-coming) or [Settle the Wreckage](https://scryfall.com/card/hob/26/settle-the-wreckage) → **W/U**.
+3. **Neither?** → **B/G** anyway. Green at least gives bodies plus real removal in Quarrel and Troll Negotiations; blue without density gives nothing.
+
+**W/U is the exception, not the default.** It needs green to be empty *and* blue to be deep.
 
 W/U also gets **blue's removal uncontested** — Uneasy Partings, Enchanted River's Grasp, Confusticate — roughly six pieces nobody else wants. The reports say blue removal is mediocre; six mediocre pieces beats fighting B/R over two good ones. (The one Dimir failure report was a **control** deck, and control is separately confirmed dead here — but the contention problem stands regardless.)
 
