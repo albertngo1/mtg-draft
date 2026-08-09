@@ -335,16 +335,61 @@ So: count your white rares first, before you assign anything.
 
 The white seat will be **removal-starved by construction**. Feed it black and red removal even at the cost of the other two decks — this is the concrete direction for the "split removal unevenly" rule.
 
-### Build order (shared pool)
+### Build choreography (shared pool)
 
-1. **Pull the date-stamped foil promos aside first.** They're the only non-fungible cards in the pool; everything else is splittable afterward. Photograph each player's packs before mixing if you haven't already agreed a split rule. Then put them **back into the playable pile** — the promo is legal in your deck and it's a rare.
-2. Sort all packs **by colour, not by tribe**, rares and gold face-up. Two minutes, read nothing yet. OzMTG worked through this exact decision on camera and landed on colour, because colour is what tells you where your depth is — *"then I can sort of see what I've got the most of."* Tribes are what you check second, once the colours have already narrowed it to two or three lanes.
-3. **Count white rares.** That single number picks between the two configurations above.
-4. Lay out the chosen three archetypes as three physical columns, one per player.
-5. Assign the two **least-overlapping** pairs first. Two decks fighting over red is how trios teams lose.
-6. Third player gets the leftovers — make it the **grindy** deck: most removal, highest curve, least synergy dependence.
-7. **Split removal unevenly, toward the weakest deck.** The aggro deck survives on four; the leftovers pile doesn't.
-8. Submit at 40 minutes even if imperfect. Team Sealed builds run long — confirm your time limit, it's usually 45–60 minutes rather than the 30 you get for individual Sealed.
+The whole design is that **only two phases are synchronous**; everything else runs three-wide. Teams that build as a committee — three people discussing one deck at a time — run out of clock. Total ~50 minutes; confirm your actual limit with the store, team builds usually get 45–60 rather than the 30 you get for individual Sealed.
+
+**Assign three roles before you open a single pack.** This is what separates a 45-minute build from a 90-minute one.
+
+| Role | Who | Owns |
+|---|---|---|
+| **Decider** | Most Limited reps | Breaks every tie, immediately. Arguments end when they speak |
+| **Clock** | Anyone | Calls each phase boundary out loud |
+| **Scribe** | Anyone | The three-column sheet: config, pilots, then the contested list |
+
+The Decider matters most. Three people with equal authority over one pool argue until the round starts. Name them out loud and agree the call is final even when you disagree — being overruled is cheaper than debating.
+
+| Time | Phase | Mode |
+|---|---|---|
+| 0–3 | Open + stage | Together |
+| 3–10 | Sort | **Parallel** |
+| 10–15 | Bomb census + lock the config | Together |
+| 15–35 | Build the three 40s | **Parallel** |
+| 35–42 | Resolve contested cards | Together |
+| 42–50 | Lands, sleeve, cross-check | **Parallel** |
+
+**0–3 · Open and stage.** Clear the table into **three columns plus a wide strip across the top** — the strip is the shared pool, the columns are the decks. All 18 packs into one pile. Land packs aside; basics are free and don't count. Pull the three foil promos, photograph the pool if that's your split rule, then **put the promos back in the pile** — they're legal and they're rares.
+
+**3–10 · Sort, in parallel.** Split the colours so nobody waits: player 1 takes white + blue, player 2 black + red, player 3 green + multicolour + colourless + lands. Within your colours sort **by mana value ascending**, rares and gold face-up. Sort by colour, **not** by tribe — OzMTG worked through exactly this decision on camera and landed on colour, because colour is what shows you where the depth is: *"then I can sort of see what I've got the most of."* Tribes are the second pass, once colour has narrowed it to two or three lanes. **Nobody evaluates cards yet** — talking about cards here is what turns seven minutes into twenty.
+
+**10–15 · Census, then lock.** All three at the top strip. Five minutes, and it decides the whole build.
+
+1. **Count the white rares.** That single number picks between the two configurations above.
+2. **Lock the configuration.** Lay the chosen three archetypes out as the three columns.
+3. **Assign pilots** by hardest-to-misplay (see the table below), and give the third player the leftovers as the **grindy** deck: most removal, highest curve, least synergy dependence.
+4. **Scribe writes all of it down** — config, pilots, columns.
+
+Then stop. **Do not revisit the configuration after this point**, even if someone finds a great card in an unused colour. Reopening the config at minute 30 is how teams submit two decks and a pile.
+
+**15–35 · Build three decks at once.** Each player takes their column and builds their own 40, pulling from the top strip.
+
+- **The constrained deck picks first.** Whoever is on the shallowest colours goes first, because they have the fewest options. The deck on the deepest colours has slack and absorbs what's left. Letting the strongest deck pick first starves the seat that was already going to be weakest.
+- **When two decks want the same card, don't fight — put it in a contested zone** in the middle of the table and keep building. Build assuming you *don't* get it. You're establishing each deck's floor; contested cards are upside, resolved in one pass later.
+- Everyone targets 17 lands · 15–17 creatures · 6–8 removal · ~5 twos, 5 threes, 4 fours, 3–4 at five-plus.
+
+**35–42 · Resolve the contested zone.** One pass, all three, Decider breaks ties. One rule governs it:
+
+> **A contested card goes to the deck with the worse alternative, not the deck that uses it better.**
+
+Counterintuitive and load-bearing. If Bilbo's Deadly Slice is the B/R deck's 7th-best removal spell and the W/U deck's 2nd-best, it goes to W/U — even though B/R is the better removal deck. You are not maximising any single deck. **You need two match wins**, so you are raising the floor of the worst one. The same logic drives the removal split: push interaction toward the weakest seat, since the aggro deck survives on four and the leftovers deck doesn't.
+
+**42–50 · Lands, sleeve, cross-check.** Parallel. Whoever finishes first starts sleeving for whoever's behind — nobody sits idle in the last ten minutes. Then the step almost every team skips: **hand your finished deck to a neighbour for a two-minute count.** Not a discussion, a count — lands, creatures, removal, eyeball the curve. You cannot see your own deck's holes after twenty minutes of staring; a fresh pair of eyes spots a 13-creature deck in fifteen seconds. Keep the leftover pool in its own container sorted by colour; it's your sideboard. Confirm with the store whether cards may move between decks between games — rules vary.
+
+### Three ways this goes wrong
+
+1. **The committee.** Three people building one deck at a time. The parallel phases above are the fix and they're non-negotiable.
+2. **The reopen.** Someone finds a bomb in an unused colour at minute 28 and the config gets relitigated. The Decider says no; it's a sideboard card now.
+3. **The last-10% spiral.** Once a deck has its bomb, 6+ removal, 15–17 creatures and 17 lands it is **done** — physically slide it out of the middle of the table and move to the next seat. In a trio every extra optimisation pass costs three times what it does in solo Sealed.
 
 ### What is and isn't contested in this pool
 
