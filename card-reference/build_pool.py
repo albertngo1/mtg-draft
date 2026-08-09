@@ -99,7 +99,7 @@ if pool.get("packs"):
     L.append("|---|---|---|")
     for k in sorted(pool["packs"]):
         v = pool["packs"][k]
-        flag = "14" if len(v) == 14 else f"{len(v)} — 1 hidden"
+        flag = "14" if len(v) == 14 else f"{len(v)} — land + token pulled"
         L.append(f"| {k} | {flag} | {', '.join(sorted(v))} |")
     if pool.get("loose"):
         L.append(f"| shot loose | {len(pool['loose'])} | {', '.join(pool['loose'])} |")
