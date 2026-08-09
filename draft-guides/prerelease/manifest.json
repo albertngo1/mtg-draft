@@ -21,8 +21,8 @@
         "https://cardgamebase.com/the-hobbit-draft-tier-list/",
         "https://mtgazone.com/the-hobbit-hob-limited-archetypes-guide-and-example-decks/"
       ],
-      "sha1": "0966013eeb2b38cc0a743b3a1682747df6278ae1",
-      "words": 6556,
+      "sha1": "8c2bd55192cc5c704b8b74a8566048eaf794750d",
+      "words": 7876,
       "card_data": {
         "source": "Scryfall set:hob",
         "cards": 193,
@@ -31,6 +31,7 @@
         "image_size": "230px, scryfall normal (488x680 source)"
       },
       "aggregates": [
+        "limited-level-ups/HOB.md (LLU 5-part primer)",
         "limited-resources/HOB.md (LR 865)",
         "Draftsim",
         "Card Game Base",
@@ -38,7 +39,7 @@
         "Wizards prerelease guide",
         "Scryfall"
       ],
-      "role": "prerelease aggregate; no longer the only rare coverage as of 2026-08-08",
+      "role": "prerelease aggregate; expanded Trios/Team Sealed section is the part not duplicated elsewhere",
       "superseded_by": [
         "limited-level-ups/HOB.md (LLU 5-part primer, 2026-07-30..08-06) \u2014 archetypes, commons, uncommons, RARES + MYTHICS",
         "limited-resources/HOB.md (LR 865) \u2014 commons + uncommons"

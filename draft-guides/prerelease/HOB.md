@@ -283,26 +283,96 @@ LR's A–F scale with ± subgrades, plus **sideboard** and **build-around**. Spl
 
 "Trios" is **not** an official Wizards prerelease format — confirm the structure with your store first. Two variants:
 
-- **A · Shared-pool Team Sealed** — three kits (18 packs) into one pile, build three 40-card decks. Cards move freely during building, then lock to their pilot. 1v1 against the opposing seat; first team to two match wins.
+- **A · Shared-pool Team Sealed** — everything into one pile, build three 40-card decks. Cards move freely during building, then lock to their pilot. 1v1 against the opposing seat; first team to two match wins.
 - **B · Three separate Sealed decks** played as a team. No sharing; build normally.
 
-**If shared pool, build in this order**
+**Confirm the pack count before you plan.** Official Team Sealed is **12 boosters**; three prerelease kits is **18**. That difference is roughly 12 vs 18 rares and it changes everything below — with 12 packs you are choosing among ~3–5 real bombs and one seat will be genuinely weak; with 18 you can usually give all three seats a reason to win.
 
-1. Sort all 18 packs and find the bombs. With 18 packs expect 4–8 real ones. Bombs pick the three color pairs.
-2. Assign the two **least-overlapping** pairs first. Two decks fighting over red is how trios teams lose.
-3. Third player gets the leftovers — make it the **grindy** deck: most removal, highest curve, least synergy dependence.
-4. **Split removal unevenly, toward the weakest deck.** The aggro deck survives on four; the leftovers pile doesn't.
-5. Submit at 40 minutes even if imperfect. Team Sealed builds run long.
+### The color-overlap math is forced, so choose which color you double
 
-**Assign by "hardest deck to misplay," not by "best deck to best player."** You need 2 of 3 wins, so what loses matches is one player getting a deck they can't pilot.
+Three two-colour decks consume **six colour slots across five colours**, so at least one colour is played twice. HOB's five archetypes form a closed ring — W/U → U/G → G/B → B/R → R/W → W/U — and each colour appears in exactly two of them. Consequence: pick any three archetypes and you **cannot** avoid overlap. You only get to choose its shape.
+
+| Shape | Example | Colours doubled |
+|---|---|---|
+| Two adjacent + one disjoint | B/R + B/G + W/U | **one** (black) |
+| Three in a row | R/W + B/R + B/G | **two** (red and black), one colour unused (blue) |
+
+**Recommended: B/R + B/G + W/U.** It is the only configuration that doubles the deepest colour, uses all five colours, and **never builds G/U** — the archetype both LLU reviewers rank last. Black is the right colour to double because black has five or six commons you're happy to play, so two seats can share it without either going hungry.
+
+**Runner-up: R/W + B/R + B/G**, which dumps blue entirely and doubles both of the two deepest colours. Take this when your white rares are thin — see below — since it's the configuration that gets three aggressive decks out of one pool.
+
+**Avoid any configuration containing G/U** unless the pool forces it (a G/U bomb rare, or genuinely nothing else). It is short on playable two-drops, its payoffs are unexciting, and its failure mode — drawing cards and making small bodies without ever turning the corner — is exactly the deck that loses long Sealed games.
+
+### White is a dedicated seat, never a shared one
+
+This is the HOB-specific trap. **White has the worst commons in the set and the best rares** — all three of both LLU reviewers' top rares are white, plus Kíli the Resourceful just below. White also has exactly **one** removal common ([Magnificent End](https://scryfall.com/card/hob/20/magnificent-end)), though its uncommon removal ([Celebrate the Mountain-king](https://scryfall.com/card/hob/7/celebrate-the-mountain-king), [Stone by Sunlight](https://scryfall.com/card/hob/27/stone-by-sunlight)) is excellent.
+
+So: count your white rares first, before you assign anything.
+
+- **Two or more white bombs** → build a white seat and give it *every* white card in the pool. Splitting white across two decks gives you two mediocre decks instead of one real one.
+- **Zero or one** → skip white as a main colour and take the R/W + B/R + B/G configuration.
+
+The white seat will be **removal-starved by construction**. Feed it black and red removal even at the cost of the other two decks — this is the concrete direction for the "split removal unevenly" rule.
+
+### Build order (shared pool)
+
+1. **Pull the date-stamped foil promos aside first.** They're the only non-fungible cards in the pool; everything else is splittable afterward. Photograph each player's packs before mixing if you haven't already agreed a split rule.
+2. Sort all packs by colour, rares and gold face-up. Two minutes, read nothing yet.
+3. **Count white rares.** That single number picks between the two configurations above.
+4. Lay out the chosen three archetypes as three physical columns, one per player.
+5. Assign the two **least-overlapping** pairs first. Two decks fighting over red is how trios teams lose.
+6. Third player gets the leftovers — make it the **grindy** deck: most removal, highest curve, least synergy dependence.
+7. **Split removal unevenly, toward the weakest deck.** The aggro deck survives on four; the leftovers pile doesn't.
+8. Submit at 40 minutes even if imperfect. Team Sealed builds run long — confirm your time limit, it's usually 45–60 minutes rather than the 30 you get for individual Sealed.
+
+### What is and isn't contested in this pool
+
+| Card class | Contested? | Handling |
+|---|---|---|
+| **Removal** | Heavily — it's concentrated in black and red | Allocate deliberately, weakest deck first |
+| **Anthems** | Yes, between the two go-wide seats | HOB has almost no sweepers, so anthems are unusually good. [An Unexpected Party](https://scryfall.com/card/hob/29/an-unexpected-party-at-the-door), [The Arkenstone](https://scryfall.com/card/hob/170/the-arkenstone-seek-the-heart), Dwarven Provisioner, Thorin's Last Stand, Moment of Glory. Resolve early, don't leave it to the end |
+| **Equipment** | Only if you built R/W | Nobody else needs artifacts; storied is an R/W-only concern |
+| [Duskwatch Hunter](https://scryfall.com/card/hob/153/duskwatch-hunter) | No — only B/G wants it | Give the B/G seat all of them. It's the only cheap four-power common, so it's the single most important ferocious enabler you have |
+| **Dual lands / fixing** | Barely | The cycle is pair-specific, so each land goes to exactly one seat. HOB has lots of fixing and very little worth splashing for |
+| **Legends** | No | Despite the density, near-duplicates have different names — the three Bilbos, three Gollums, two Thranduils, two Bards, two Beorns and three Smaugs are all distinct cards. No legend-rule conflicts within a deck |
+
+### Assign decks by "hardest to misplay," not "best deck to best player"
+
+You need 2 of 3 wins, so what loses matches is one player getting a deck they can't pilot.
 
 | Pilot profile | Give them | Why |
 |---|---|---|
-| Limited novice | **R/W Dwarves** or **B/G Wolves** | Curve out, attack, point removal at blockers. Storied turns on by accident. |
-| Experienced but rusty | **the grindy / leftovers deck** (often W/U recruit) | Recruit rewards knowing what to discard. |
+| Limited novice | **R/W Dwarves** or **B/G Wolves** | Curve out, attack, point removal at blockers. Storied turns on by accident |
+| Experienced but rusty | **the grindy / leftovers deck** (often W/U recruit) | Recruit rewards knowing what to discard |
 | Most current reps | **the bomb deck** | |
 
-**Never give B/R Goblins to the novice.** Amass is the most removal-vulnerable board state in the format, and knowing when to sac the Army instead of growing it is a learned skill.
+**Never give B/R Goblins to the novice**, even though it's the strongest pair. Amass is the most removal-vulnerable board state in the format — one removal spell erases every counter you've invested — and knowing when to sacrifice the Army for value instead of growing it is a learned skill. Give B/R to whoever has the most recent reps.
+
+### Talking during the match is the biggest edge in the format
+
+In Team Limited, teammates sit together and **may confer freely during games**. Confirm your store honours this, then actually use it — most trios teams don't.
+
+- **Seat your best player in the middle.** They can watch and advise both neighbours between their own turns.
+- **Call out [Settle the Wreckage](https://scryfall.com/card/hob/26/settle-the-wreckage) the moment anyone sees it.** It's the only real sweeper in the format, the opposing team likely has one copy across three decks, and the whole point of knowing is attacking with four creatures instead of seven. LLU predicts this card will be one of the biggest skill-deltas on 17Lands — in trios you get to share that read across three matches at once.
+- Same for the mini-sweepers: [Desolation of Smaug](https://scryfall.com/card/hob/93/desolation-of-smaug) (3 to all), Easy Pickings (Glóin's adventure, 1 damage to each of their creatures), and the −1/−1 mode on [Gnashing of Teeth](https://scryfall.com/card/hob/69/gnashing-of-teeth).
+- **Ask before you commit to a race.** A teammate who is watching has a cleaner view of your board than you do.
+
+### Build for floor, not ceiling
+
+You need two match wins, not one blowout. Three decks with high floors beat one great deck and two greedy ones. Concretely:
+
+- **No three-colour decks.** Not one of the three. HOB's fixing is plentiful but there's little worth splashing for, and the archetypes are on rails.
+- **Splash only for a bomb**, only off a Treasure maker or real fixer, and only in one seat.
+- **Cut every card that's only good if the theme is on** — storied payoffs with two enablers, ferocious payoffs with three four-power creatures, amass payoffs with one amass card. In a three-way split these dead-theme cards multiply, because each seat gets a thinner slice of its own theme than a solo Sealed deck would.
+- **Ferocious needs 8–10 enablers** in a single deck (counting equipment and counters, not just naturally-large creatures). If the B/G seat can't get there after the split, build it as plain mid-range instead of chasing the aggro shell.
+- Once a deck's core 40 is good — right bombs, enough removal, real creature count — **lock it and move to the next seat.** Extra passes introduce mistakes.
+
+### Bring for a three-deck build
+
+- ~51 basic lands (17 × 3) plus spares. Stores supply them, but a personal stack of 20 of each saves ten minutes.
+- Sleeves for three decks, ideally in **three different colours** — this is how you keep track of whose card is whose when the decks come apart afterwards.
+- Three deck boxes plus one for the shared leftover pool.
+- Paper with three columns, one per player, to see the colour split at a glance.
 
 ## Playing the games
 
@@ -343,7 +413,7 @@ Ranked by how much it changes your prerelease.
 | Source | Length | What you get |
 |---|---|---|
 | **Limited Resources 865** (Marshall + LSV) | 3h 20m | The gold standard, and already distilled into this file. Listen to the mechanics chapter (0:00–14:36) plus your two likely colors. |
-| **Limited Level-Ups #255** (Chord_O_Calls) | ~1h | *First Impressions For Draft + Sealed* — the only source that addresses Sealed specifically. **Not yet ingested.** |
+| **Limited Level-Ups HOB primer** (Alex + Mark) | ~2h 30m across 5 videos | Archetypes, top commons/uncommons, **rares + mythics**, and a Sealed-specific prerelease guide. **Now distilled** → [`limited-level-ups/HOB.md`](../limited-level-ups/HOB.md). Two reviewers ranking blind then reconciling on air — the disagreements are the most useful part. |
 | **Draftsim set review + pick order** | reference | Numeric 1–10 grades, searchable on your phone at the table. |
 | **Card Game Base tier list + draft guide** | reference | Letter grades from a second reviewer. Disagreements with Draftsim mark the genuinely uncertain cards. |
 | **17Lands** | — | Nothing until Arena release Aug 11 — four days *after* prerelease. The single best source the week after. |
@@ -362,4 +432,7 @@ Ranked by how much it changes your prerelease.
 
 **Card data:** Scryfall `set:hob`, 193 cards, fetched 2026-08-05. All card names and mana costs in this file are Scryfall-verified.
 
-**Not yet ingested:** LR 866 (rares & mythics, airs week of Aug 10) · Limited Level-Ups #255, *First Impressions For Draft + Sealed* (`m-qR8GeZ96A`) · 17Lands (no HOB data until Arena release Aug 11).
+**Also distilled (video):**
+- 2026-07-30 → 2026-08-06 — Limited Level-Ups HOB primer, 5 videos (`m-qR8GeZ96A`, `jD3Tr03b2MQ`, `nt-OvtlAGBY`, `-DZnv_Ap-qo`, `gXrmVcPfg24`) → [`limited-level-ups/HOB.md`](../limited-level-ups/HOB.md). Ingested 2026-08-08.
+
+**Not yet ingested:** LR 866 (rares & mythics, airs week of Aug 10) · Lords of Limited (no HOB content as of 2026-08-08) · Numot (channel has neither a videos nor a streams tab — needs a manual look) · 17Lands (no HOB data until Arena release Aug 11).
