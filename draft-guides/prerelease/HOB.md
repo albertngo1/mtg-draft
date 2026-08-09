@@ -643,13 +643,15 @@ Opposite risk: not that he'll misvalue cards, but that he'll try to **solve the 
 
 That last one is the point of the arrangement. The novice enforcing the clock on the optimizer is a better team than either instinct left unchecked.
 
+**R/W and B/R are locked; seat 3 is decided at the census.** Assign so that the undetermined seat lands on the person who can build either version:
+
 | Seat | Deck | Rationale |
 |---|---|---|
-| Andy | **B/G Wolves** | Ferocious is the nearest shape to mono-green landfall: big creature, attack, win through size |
-| Kyle | **W/U recruit** / the leftovers deck | Most build-reward, most in-game decisions |
-| Albert | **B/R Goblins** | Most removal-vulnerable, needs the most reps |
+| **Andy** | **R/W Dwarves** — fixed, whichever way seat 3 goes | **R/W's decisions are proactive** (which creature to grow, where equipment goes, what to attack into) — that's advancing a board, which is what mono-green landfall trained. It also carries 5–6 removal, which forces the reps he's never had |
+| **Albert** | **B/R Goblins** | Best deck and the most removal-vulnerable board state in the format; needs the most reps |
+| **Kyle** | **Seat 3** — W/U if the gate passes, B/G if not | He can build either, so the census result doesn't reshuffle anyone else. Both reward analysis: recruit is a discard decision every trigger, ferocious is a timing puzzle |
 
-If the white-rare count pushes you to `R/W + B/R + B/G` and there's no W/U seat, Kyle takes **R/W** — equipment is the most decision-dense of the remaining lanes — and Andy keeps **B/G** either way.
+**Earlier drafts of this file put Andy on B/G. That was wrong** and is corrected here. **B/G's decisions are reactive** — hold attackers back until ferocious switches on, then read whether the opponent has the trick you just advertised. Patience and blocking are precisely his two named gaps, and the format's own reports confirm B/G telegraphs. **B/R is ruled out for him** on amass sequencing, and **W/U is the worst possible fit** — a discard decision on every recruit trigger.
 
 ### Talking during the match is the biggest edge in the format
 
