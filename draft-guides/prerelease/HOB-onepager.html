@@ -1,0 +1,237 @@
+<title>Andy's One-Pager — The Hobbit Prerelease</title>
+<style>
+  :root {
+    --paper:   #EDEEEA;
+    --raised:  #F6F7F4;
+    --ink:     #16191C;
+    --slate:   #5A6169;
+    --rule:    #CFD3CC;
+    --ember:   #B4442A;
+    --brass:   #8A6E32;
+
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+    --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+    --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #14171A; --raised: #1B1F22; --ink: #E4E6E2; --slate: #9BA3A6;
+      --rule: #2C3236; --ember: #D9694A; --brass: #C09A4E;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #14171A; --raised: #1B1F22; --ink: #E4E6E2; --slate: #9BA3A6;
+    --rule: #2C3236; --ember: #D9694A; --brass: #C09A4E;
+  }
+  :root[data-theme="light"] {
+    --paper: #EDEEEA; --raised: #F6F7F4; --ink: #16191C; --slate: #5A6169;
+    --rule: #CFD3CC; --ember: #B4442A; --brass: #8A6E32;
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  .sheet {
+    max-width: 40rem;
+    margin: 0 auto;
+    padding: 2.75rem 1.35rem 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.25rem;
+  }
+  p { max-width: 62ch; }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--brass);
+  }
+
+  header { display: flex; flex-direction: column; gap: 0.7rem; }
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(1.9rem, 6vw, 2.5rem);
+    line-height: 1.08;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+  .readtime { color: var(--slate); font-size: 0.92rem; }
+
+  h2 {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 1.2;
+    text-wrap: balance;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  section { display: flex; flex-direction: column; gap: 0.9rem; }
+
+  /* the thesis */
+  .thesis {
+    background: var(--raised);
+    border-left: 3px solid var(--ember);
+    padding: 1.1rem 1.2rem;
+    display: flex; flex-direction: column; gap: 0.55rem;
+  }
+  .thesis .big {
+    font-family: var(--serif);
+    font-size: 1.32rem;
+    line-height: 1.3;
+    font-weight: 700;
+    text-wrap: balance;
+  }
+  .thesis p { margin: 0; color: var(--slate); font-size: 0.95rem; }
+
+  /* genuine sequence — numbers earned */
+  ol.night { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; counter-reset: n; }
+  ol.night > li {
+    counter-increment: n;
+    display: grid; grid-template-columns: 1.6rem 1fr; gap: 0 0.7rem; align-items: baseline;
+  }
+  ol.night > li::before {
+    content: counter(n);
+    font-family: var(--mono); font-size: 0.82rem; color: var(--ember);
+    font-variant-numeric: tabular-nums;
+  }
+
+  ul.habits { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+  ul.habits > li { display: flex; flex-direction: column; gap: 0.25rem; }
+  ul.habits b { font-size: 1.02rem; }
+  ul.habits span { color: var(--slate); font-size: 0.95rem; }
+
+  .scroll { overflow-x: auto; border: 1px solid var(--rule); }
+  table { width: 100%; border-collapse: collapse; font-size: 0.92rem; background: var(--raised); }
+  th, td { text-align: left; padding: 0.6rem 0.8rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  thead th {
+    font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--brass); white-space: nowrap;
+  }
+  tbody tr:last-child td { border-bottom: 0; }
+  td:first-child { font-weight: 650; white-space: nowrap; }
+
+  .watch { display: flex; flex-direction: column; gap: 1rem; }
+  .card {
+    border: 1px solid var(--rule); background: var(--raised);
+    padding: 0.9rem 1rem; display: flex; flex-direction: column; gap: 0.35rem;
+  }
+  .card .name { font-family: var(--serif); font-size: 1.08rem; font-weight: 700; }
+  .card .meta { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--brass); }
+  .card p { margin: 0; font-size: 0.95rem; }
+
+  .closer {
+    border-top: 2px solid var(--ink);
+    padding-top: 1.1rem;
+    display: flex; flex-direction: column; gap: 0.5rem;
+  }
+  .closer .line { font-family: var(--serif); font-size: 1.15rem; font-weight: 700; text-wrap: balance; }
+  .closer p { margin: 0; color: var(--slate); font-size: 0.95rem; }
+
+  em.q { font-style: italic; color: var(--ink); }
+</style>
+
+<div class="sheet">
+
+  <header>
+    <span class="eyebrow">The Hobbit · Trio Prerelease</span>
+    <h1>You don't have to build anything.</h1>
+    <p class="readtime">Three minutes. Skip the long guide — that one's for building, and you're not building.</p>
+  </header>
+
+  <div class="thesis">
+    <span class="big">There's no drafting. We build all three decks together, hand you one, and you play it.</span>
+    <p>The hard part of Limited — knowing what's good, reading a card pool, cutting the right stuff — is the part you're skipping entirely.</p>
+  </div>
+
+  <section>
+    <h2>What the night actually looks like</h2>
+    <ol class="night">
+      <li>Everyone opens their six packs. We photograph them so we can split the cards back afterward.</li>
+      <li>All 18 packs go into one pile and the three of us build three decks. About an hour.</li>
+      <li>Someone hands you a deck. You play three or four rounds, best of three, roughly 50 minutes each.</li>
+    </ol>
+    <p><strong>Prereleases are the most casual event in Magic.</strong> People bring their kids. Nobody has played this set before either — the cards came out today. Everyone at your table is also reading cards for the first time.</p>
+  </section>
+
+  <section>
+    <h2>Your deck: Red/White Dwarves</h2>
+    <div class="thesis">
+      <span class="big">Play a creature every turn. Put weapons on it. Attack.</span>
+    </div>
+    <p>Roughly 16 creatures, a few Equipment, and 5–6 removal spells. <strong>Equipment</strong> are artifacts you attach to a creature to make it bigger — you can move them to a different creature for a cost. <strong>Storied</strong> turns on by itself once you've controlled three artifacts, legends or sagas at any point; you don't need to plan around it.</p>
+    <p>This is the closest deck on the table to your mono-green landfall deck. Go first, curve out, hit them. You already know how to do this.</p>
+  </section>
+
+  <section>
+    <h2>Three habits to bring</h2>
+    <ul class="habits">
+      <li>
+        <b>Don't spend removal on the first creature you see.</b>
+        <span>Your Constructed deck plays almost none, so holding it will feel unnatural. In Limited it's the most valuable card in your hand. Save it for something that actually threatens you.</span>
+      </li>
+      <li>
+        <b>You're allowed to block.</b>
+        <span>Green landfall races. Limited games get decided on the ground, and you'll often win by trading rather than by attacking.</span>
+      </li>
+      <li>
+        <b>Play first.</b>
+        <span>When you win the die roll, choose to play. It's almost never wrong.</span>
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Five things you'll see across the table</h2>
+    <div class="scroll">
+      <table>
+        <thead>
+          <tr><th>Mechanic</th><th>What it means</th><th>What to do</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Amass</td><td>They stack counters on one Goblin Army token until it's huge</td><td>Save a removal spell for it — killing it undoes several turns at once</td></tr>
+          <tr><td>Ferocious</td><td>Bonuses while they control a creature with power 4 or more</td><td>Kill the big one and the rest of their deck switches off</td></tr>
+          <tr><td>Recruit</td><td>Draw a card, discard a card, make a 1/1</td><td>Nothing — it's just value</td></tr>
+          <tr><td>Adventure</td><td>A card cast as a spell first, then later as a creature from exile</td><td>Normal, not a trick. They get two cards out of one</td></tr>
+          <tr><td>Equipment</td><td>Weapons that move between creatures</td><td>Don't assume a 1/1 stays a 1/1</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Two cards worth knowing on sight</h2>
+    <div class="watch">
+      <div class="card">
+        <span class="meta">4 mana · white · instant</span>
+        <span class="name">Settle the Wreckage</span>
+        <p>Exiles <em class="q">every creature you attacked with</em>. If your opponent has four lands untapped and two are Plains, don't swing with everything — leave one or two home.</p>
+      </div>
+      <div class="card">
+        <span class="meta">Green · enchantment</span>
+        <span class="name">Dancing from Dark to Dawn</span>
+        <p>Almost nobody can answer it. If it lands, stop playing the long game and race.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>When you don't know something</h2>
+    <p><strong>Ask.</strong> Ask your opponent what their card does — they'll tell you, it's expected. Ask us, we're sitting right there. Nobody at a prerelease minds, and reading a card carefully is not cheating.</p>
+    <p>Unsure whether to attack? Ask yourself: <em class="q">if they block and I lose this creature, am I still fine?</em> If yes, attack.</p>
+  </section>
+
+  <div class="closer">
+    <span class="line">We need two wins out of three, not three.</span>
+    <p>Kyle and Alby cover the other two seats. You're on the deck that's hardest to misplay, on purpose.</p>
+  </div>
+
+</div>

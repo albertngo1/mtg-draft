@@ -26,3 +26,10 @@ If a set in this folder already has a post-release guide in another folder, pref
 | Set | Guide | Prerelease | Superseded by |
 |-----|-------|-----------|---------------|
 | The Hobbit (HOB) | [HOB.md](./HOB.md) | 2026-08-07 | largely — [`limited-level-ups/HOB.md`](../limited-level-ups/HOB.md) covers archetypes, commons, uncommons, **rares and mythics**; [`limited-resources/HOB.md`](../limited-resources/HOB.md) covers commons + uncommons. Retire once 17Lands GIH WR lands (Arena 2026-08-11). |
+
+## Companion files
+
+| File | For |
+|------|-----|
+| `<SET>.md` | The build reference — archetypes, grades, trio strategy, play data |
+| `<SET>-onepager.md` / `.html` | A 3-minute primer for a teammate who is **playing but not building**. Deliberately short; hand this over instead of the build reference |

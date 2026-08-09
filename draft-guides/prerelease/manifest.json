@@ -74,7 +74,17 @@
       "removed_sources": {
         "Draftsim": "removed 2026-08-09 \u2014 ratings contradicted by played results; two verifiable factual errors (Fili/Kili rarity, card count)"
       },
-      "trio_config": "R/W + B/R + B/G (all three locked); W/U replaces B/G only if green empty AND 4+ blue enablers AND a white bomb"
+      "trio_config": "R/W + B/R + B/G (all three locked); W/U replaces B/G only if green empty AND 4+ blue enablers AND a white bomb",
+      "companions": {
+        "HOB-onepager.md": {
+          "role": "3-minute primer for a non-building teammate",
+          "sha1": "c21192000727a5cc4742bfc2a54d66fdb0c7536b"
+        },
+        "HOB-onepager.html": {
+          "role": "styled phone-readable version of the same primer",
+          "sha1": "500b284cbf3a6665fb42f6e1ed0662ba2d2c67dc"
+        }
+      }
     }
   }
 }
