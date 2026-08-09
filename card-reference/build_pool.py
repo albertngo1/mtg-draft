@@ -79,9 +79,16 @@ for r in sorted(groups, key=lambda r: ORDER[r]):
             tile = tiles.get(n, f'<td width="33%" valign="top"><b>{n}</b><br>'
                                 f'<sub>no tile in the set reference</sub></td>')
             k = counts.get(n, 1)
-            if k > 1:  # copy count rides right after the bolded card name
-                tile = tile.replace(f"<b>{html.escape(n, quote=False)}</b>",
-                                    f"<b>{html.escape(n, quote=False)}</b> <b>&times;{k}</b>", 1)
+            if k > 1:
+                # the set reference escapes apostrophes as &#x27;, so try the escaped
+                # form first and fall back to the raw one
+                for form in (html.escape(n), html.escape(n, quote=False), n):
+                    marker = f"<b>{form}</b>"
+                    if marker in tile:
+                        tile = tile.replace(marker, f"{marker} <b>&times;{k}</b>", 1)
+                        break
+                else:
+                    print(f"  warn: no badge anchor for {n!r}", file=sys.stderr)
             L.append(tile)
         L.append("</tr>")
     L.append("</table>\n")
