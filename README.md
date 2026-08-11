@@ -7,8 +7,7 @@ real [17Lands](https://www.17lands.com/) win-rate data, and shows you what each 
 pick is backed by data instead of a gut read.
 
 No account login. No browser extension. Nothing forced on you — the core is just a Python script
-reading the log file Arena already writes on your own machine. (An optional on-screen overlay ships
-too, if you want one — see [`overlay/`](./overlay/).)
+reading the log file Arena already writes on your own machine.
 
 ```
   MKM PremierDraft  (on-color = WB)
@@ -71,7 +70,7 @@ and prints a category/curve breakdown (with copy counts) to build from.
 ## Two ways to use it
 
 **🧍 Solo — no AI, no API key.** The whole ranking engine is plain Python over cached 17Lands +
-Scryfall data. `warm` once, keep `watch` running beside Arena (or launch the [`overlay/`](./overlay/)), and draft
+Scryfall data. `warm` once, keep `watch` running beside Arena, and draft
 straight off the live ranked output. Nothing leaves your machine.
 
 **🤖 Coached — add an AI agent.** Point an LLM agent (e.g. Claude Code) at
@@ -93,9 +92,6 @@ the other way around.
   theory plus how to drive this tool pick-by-pick.
 - **[card-reference/](./card-reference/)** — a one-file visual grid of every card in a set (image +
   17Lands ratings + Draftsim grade + expert-guide notes + an AI take). See its README to regenerate.
-- **[overlay/](./overlay/)** — an optional transparent, click-through, always-on-top Electron window
-  that floats the current pack (GIH · grade · wheel · tags · AI take) over Arena. Reads the same
-  `current.json` the tool already produces — no extra game-reading. See its README to run.
 
 ## Credits
 

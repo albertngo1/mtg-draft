@@ -32,7 +32,7 @@ lane/signal reads, cross-referencing CGB tier grades + the expert guides in
 the draft it can also write a coached **replay** (one `claude -p` call per completed draft,
 auto-enabled when the gitignored `claude-token.txt` exists — see [Reconstructed draft
 history](#reconstructed-draft-history)). This layer is a *second opinion on top of* the solo
-overlay — skip it and nothing in the core stops working. → see [Using it as an agent /
+layer — skip it and nothing in the core stops working. → see [Using it as an agent /
 coach](#using-it-as-an-agent--coach).
 
 Either way, the **set guide + archetype read is the lead lens** (which color pairs are strongest in
@@ -209,8 +209,6 @@ mtg-draft/
 │  ├─ lords-of-limited/           #   Lords of Limited <SET>-draft-guide.md (one per set)
 │  └─ numot/                      #   NumotTheNummy VOD-distilled <SET>.md notes (+ manifest.json)
 ├─ card-reference/                # visual card-reference builder + ai_takes_<SET>.json + <SET>-card-reference.md
-├─ overlay/                       # optional Electron overlay (TypeScript): floats the current pack over Arena
-│                                 #   src/ → dist/ via tsc; reads data/drafts/current.json, no extra game-reading
 └─ data/                          # generated, gitignored
    ├─ cache/                      # 17Lands + Scryfall caches, + cards_<SET>.ndjson exports
    ├─ drafts/                     # per-draft bundles <set>_<date>_<fp>/{draft.json,raw.log,replay.md} + current.json
