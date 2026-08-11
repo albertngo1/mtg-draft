@@ -3,8 +3,8 @@
   "scope": "draft-gameplay + set-strategy videos",
   "note": "Fingerprint of distilled scrape. sha1 = sha1 of the cleaned transcript .txt.",
   "counts": {
-    "sets": 32,
-    "videos_distilled": 148,
+    "sets": 33,
+    "videos_distilled": 149,
     "videos_no_captions": 1
   },
   "sets": {
@@ -119,6 +119,13 @@
       "file": "GRN-draft-guide.md",
       "video_ids": [
         "y1IxWia7X3c"
+      ]
+    },
+    "HOB": {
+      "tier": 1,
+      "file": "HOB-draft-guide.md",
+      "video_ids": [
+        "XLh9YSRvotE"
       ]
     },
     "IKO": {
@@ -811,6 +818,12 @@
       "set": "MAR",
       "sha1": "d3a0751ca38ca84ea6d8d5998fca0a2242df5205",
       "words": 16726,
+      "distilled": true
+    },
+    "XLh9YSRvotE": {
+      "set": "HOB",
+      "sha1": "b48bc19313ed8f944c6f8d503eb3a3133b6b57e4",
+      "words": 17184,
       "distilled": true
     },
     "XWxMnmE-7Jw": {
