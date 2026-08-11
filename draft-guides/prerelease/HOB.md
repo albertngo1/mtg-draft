@@ -322,6 +322,32 @@ Against that: one 1-2 / 1-2 / 2-1 (the telegraphing problem), and one 2-1 in Two
 
 **What's actually bad is the blue half of green's other pairing.** G/U Simic is bottom-tier alongside W/U Azorius. Green paired with black is a top-two deck.
 
+### ⚔️ Lords of Limited vs. the play data — a direct conflict on B/G
+
+LoL's crash course (2026-08-11) lands on almost the opposite archetype order from the prerelease reports, and the disagreement is worth holding rather than resolving.
+
+| | LoL (theory, no drafts played) | Prerelease reports (games played) |
+|---|---|---|
+| **B/R Rakdos** | **#1**, "extremely juiced" | **=#1** |
+| **W/U Azorius** | #2 | =#4, underperformed badly |
+| **G/U Simic** | #3 | =#4, bottom tier |
+| **R/W Boros** | #4 | #3 |
+| **B/G Golgari** | **#5, "not a believer at all"** | **=#1, most trophy reports in this file** |
+
+**They agree on B/R and they invert on almost everything else.** Weight the played results — LoL recorded before drafting the format, having skipped previews and first impressions, with one practice draft and two MTGO matches between them. They say so themselves: *"we're kind of going in blind."*
+
+**But LoL's B/G argument is worth knowing anyway**, because it names a real structural tension the results don't explain away: black wants goblins, sacrifice and grinding value; green wants elves, landfall and ramp. Ben's prediction is that B/G is never a fusion — it's *"either a green elves deck with black removal or a Rakdos deck with green support"* — which means **the colour you're primary in has to be genuinely open.** That is consistent with the played reports: the B/G trophies describe curving out and forcing trades, i.e. a black-shaped aggro deck, not an elves-and-ferocious synergy deck.
+
+**Where LoL adds something nobody else has:**
+
+- **[Pinecone Strike](https://scryfall.com/card/hob/107/pinecone-strike) may be the best common in the set.** Ben's format truth: *"broken"* and *"as good here as Lightning Strike was bad in Marvel."* It answers nearly every premium uncommon — Silvan Reveler before the rebuy, The Chief Warg on the turn it lands, Thranduil.
+- **Off-colour pairs are structurally cheap here.** Each pair gives up only **two hybrid cards**, and outside the B/R one they're weak — so ignoring a signpost costs almost nothing. Compare Strixhaven's ~10 gold cards per pair. Both hosts intend to **force U/B or U/R day one**.
+- **A glut of X/2s.** Sierkovitz's stat work, relayed on air: HOB is an outlier for cheap X/2 bodies, thin on X/3s, with a bump at X/4. You trade down on removal often, and cheap interaction is at a premium.
+- **[Bilbo Baggins, Burglar](https://scryfall.com/card/hob/34/bilbo-baggins-burglar-take-a-glance) might outrank Pinecone Strike** as the format's #1 common — *"take a glance on turn one is going to feel oppressive."*
+- **[Gandalf, Wandering Wizard](https://scryfall.com/card/hob/41/gandalf-wandering-wizard) is a trap.** Both hosts out: *"they did him dirty."*
+
+Full distill: [`lords-of-limited/HOB-draft-guide.md`](../lords-of-limited/HOB-draft-guide.md).
+
 ### Off-archetype pairs are live
 
 The five signposts are loose enough to ignore. Reported: a **Gruul (R/G)** deck won a prerelease on green beaters + red removal; **Jund (B/R/G)** called *"the strongest space in the set"*; **Dimir (U/B)** rated above Simic. One player: *"the defined archetypes were barely supported, so really you can just find whatever synergies seem to be there."*
@@ -793,4 +819,4 @@ Ranked by how much it changes your prerelease.
 - 2026-07-30 → 2026-08-06 — Limited Level-Ups HOB primer, 5 videos (`m-qR8GeZ96A`, `jD3Tr03b2MQ`, `nt-OvtlAGBY`, `-DZnv_Ap-qo`, `gXrmVcPfg24`) → [`limited-level-ups/HOB.md`](../limited-level-ups/HOB.md). Ingested 2026-08-08.
 - 2026-08-05 — OzMTG, *The Hobbit Prerelease Kit Building* (`tuFQbNpulRg`, 15m23s) — distilled directly into this file (kit contents + pool-build method + dissents). OzMTG is **not** a registered channel in `src/ingest/channels.json`; captions were fetched ad hoc, consistent with this folder being outside the `src/ingest/` ETL.
 
-**Not yet ingested:** LR 866 (rares & mythics, airs week of Aug 10) · Lords of Limited (no HOB content as of 2026-08-08) · Numot (channel has neither a videos nor a streams tab — needs a manual look) · 17Lands (no HOB data until Arena release Aug 11).
+**Not yet ingested:** LR 866 (rares & mythics — still not posted as of 2026-08-11) · Numot (channel has neither a videos nor a streams tab — needs a manual look) · 17Lands (no HOB data until Arena release Aug 11).

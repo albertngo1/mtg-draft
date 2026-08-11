@@ -19,8 +19,8 @@
         "https://mtgazone.com/the-hobbit-hob-limited-archetypes-guide-and-example-decks/",
         "https://www.youtube.com/watch?v=tuFQbNpulRg"
       ],
-      "sha1": "e7143dc6653b93a0823f1cdd5d6386a56de8338a",
-      "words": 15038,
+      "sha1": "97bf93e072837dbb1da2b4c7aa6bb4f81eef69d5",
+      "words": 15469,
       "card_data": {
         "source": "Scryfall set:hob",
         "cards": 193,
@@ -29,6 +29,7 @@
         "image_size": "230px, scryfall normal (488x680 source)"
       },
       "aggregates": [
+        "lords-of-limited/HOB-draft-guide.md (crash course)",
         "limited-level-ups/HOB.md (LLU 5-part primer)",
         "limited-resources/HOB.md (LR 865)",
         "OzMTG kit-building video",
