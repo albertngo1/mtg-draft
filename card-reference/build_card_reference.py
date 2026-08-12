@@ -195,11 +195,33 @@ def ds_grade(c):
 def play_score(c):
     return c.get("play_rate") or 0.0
 
+
+# Per-set ordering inside each colour group. Default is play rate alone.
+# "alsa_play" ranks by ALSA and play rate together, which is the better signal for a
+# young set: ALSA and play rate are populated from every draft, while GIH WR needs
+# games *won or lost with the card in hand* and so lags badly early on.
+SORT = {"HOB": "alsa_play"}
+
+
+def order_group(g):
+    if SORT.get(SET) != "alsa_play":
+        g.sort(key=play_score, reverse=True)
+        return
+    # Rank-average: scale-free, so no normalisation constants to tune, and a card
+    # missing one metric still sorts sensibly on the other. ALSA is "average last seen
+    # at", so LOWER is better (picked earlier); play rate is higher-is-better.
+    by_alsa = sorted(g, key=lambda c: (c.get("avg_seen") is None, c.get("avg_seen") or 0))
+    by_play = sorted(g, key=lambda c: -(c.get("play_rate") or 0))
+    r_alsa = {id(c): i for i, c in enumerate(by_alsa)}
+    r_play = {id(c): i for i, c in enumerate(by_play)}
+    g.sort(key=lambda c: r_alsa[id(c)] + r_play[id(c)])
+
+
 groups = {}
 for c in cards:
     groups.setdefault(group_of(c), []).append(c)
 for g in groups.values():
-    g.sort(key=play_score, reverse=True)  # order each color group by play rate (play %), highest first
+    order_group(g)
 
 def esc(s): return html.escape(str(s))
 
@@ -323,6 +345,9 @@ CAVEAT = {
            "decode which deck a number belongs to. **Four toughness is the magic number** (dodges the two premier "
            "damage-removal spells), and **exile/tuck > kill** since feeding graveyards helps your opponents.\n",
 }
+L.append("> **Ordering:** cards within each colour are ranked by a combined **ALSA + play-rate** score "
+         "(rank-average of the two), not by GIH WR — ALSA and play rate are populated from every draft, "
+         "while GIH WR lags on a new set.\n" if SORT.get(SET) == "alsa_play" else "")
 L.append(CAVEAT.get(SET, ""))
 
 # ---- archetype map (set-specific 10 color-pair guilds) -----------------------
