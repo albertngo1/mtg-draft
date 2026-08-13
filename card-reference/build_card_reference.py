@@ -352,6 +352,24 @@ L.append(CAVEAT.get(SET, ""))
 
 # ---- archetype map (set-specific 10 color-pair guilds) -----------------------
 ARCHETYPES = {
+    "HOB": "**Archetype win rates** (17Lands PremierDraft, 1.63M games):\n\n"
+           "| WR | Pair | Plan | Signposts |\n|---|---|---|---|\n"
+           "| **57.7%** | **BR** | Rakdos Goblins — amass one huge Army, sacrifice for value; best removal and the deepest colours | Bolg of the North · Goblin Plate Mail · Fearsome Goblin Pair |\n"
+           "| **57.1%** | **BG** | Golgari Ferocious — black-shaped aggro with green bodies; power 4+ payoffs. **Not** an elves/synergy deck | The Chief Warg · Large Bear · Duskwatch Hunter |\n"
+           "| **55.8%** | **RW** | Boros Dwarves — storied + equipment; carried by white's rares, not its commons | Thorin Oakenshield · Bifur, Melodic Rider · Nori, Teller of Tales |\n"
+           "| **55.4%** | **WU** | Azorius Recruit — draw-two payoffs and go-wide tokens; synergy-dependent | Bard the Bowman · Eagle's Rescue · Patient Instructor |\n"
+           "| ~54% | UR · UB | Unsupported pairs. Small samples, middling; the off-colour thesis has not paid off |  |\n"
+           "| **50.3%** | **GU** | Simic Elves/Landfall — **the worst deck by five points.** Draws cards and makes small bodies without turning the corner | Silvan Reveler · Thranduil, Sindarin Liege · Mirkwood Nurturer |\n\n"
+           "**Removal benchmarks:** the format's defining constraint is that **removal cannot kill small creatures** — no Shock, "
+           "no Stab, no cheap white damage spell — so **two-drops are safe** and curve-out plans are rewarded. **Damage-based "
+           "removal caps at 5**, making 6-toughness creatures (Old Fat Spider, Wilderland Scrounger) effectively unanswerable at "
+           "common. Premium commons: Pinecone Strike (3 damage + exile) and Bilbo's Deadly Slice (Murder); **Stone by Sunlight is "
+           "the only efficient uncommon removal** — Troll Negotiations, Burn Burn Tree and Fern and Celebrate the Mountain-king "
+           "are all four mana. White gets exactly one common removal spell. **Sweepers barely exist**, so going wide is rewarded "
+           "and anthems are unusually good; **lifegain barely exists**, so there is no stabilising back. **Traps:** synergy decks "
+           "you can't assemble (this is what sank Simic), splashing off the plentiful fixing, and storied/ferocious payoffs run "
+           "with too few enablers.\n",
+
     "MSH": "### The 10 archetypes (color-pair guilds)\n\n"
            "MSH is a **slow, grindy, lightly-themed goodstuff** format — every pick below is read against the "
            "AI's read of which guild a card serves. Pairs are ranked by Limited Level-Ups' early-data read; "

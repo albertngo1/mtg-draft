@@ -78,16 +78,24 @@ analyst-agent fan-out under a per-set doctrine written from that set's draft gui
 
 ## Coverage
 
-Cards within each color group are ordered by **play rate (play %)**, highest first.
+Cards within each color group are ordered by **play rate (play %)**, highest first — except **HOB**, which
+uses a rank-average of **ALSA + play rate**. On a young set those two are populated by every draft while GIH
+WR lags, so they sort the whole card list rather than just the measured part.
 
-**AI takes cover all eight sets.** The original five (SOS/MKM/MSH/BLB/ECL) were regenerated 2026-07-12
+**AI takes cover all nine sets.** The original five (SOS/MKM/MSH/BLB/ECL) were regenerated 2026-07-12
 after the prep record began carrying each card's **oracle text + P/T + mana** (joined from Scryfall — MSH
 by name, since its cards have no `arena_id`) — so the takes read what each card actually does and ground
 the verdict in the expert notes, not just the stat columns. **DFT** (2026-07-18), **OTJ** (2026-07-21),
-and **DSK** (2026-07-23) were then added under the same pipeline. All eight are 100% covered. (The DSK pass
+**DSK** (2026-07-23) and **HOB** (2026-08-13) were then added under the same pipeline. All nine are 100% covered. (The DSK pass
 also fixed the shared guide-note parser to accept LoL's `[**Card**](link) (mana gloss) — note` bullet form
 and Numot's `**Card:** note` colon-in-bold form, which recovered notes across ~20 sets — e.g. DSK 1→51.)
 
+- **HOB** — 188/188 cards with image + AI take, 174/188 with live GIH WR (young: 1.63M PremierDraft games, two
+  days after Arena release) + 188 CGB grades + 115 LR grades; 138/188 with ≥1 expert note (LR 865, Limited
+  Level-Ups primer, Lords of Limited crash course). **First set to carry two reviewer-grade sources at once**
+  (LR and CGB render side by side). Header carries a 5-archetype map with live archetype win rates. Also the
+  first set built through the pre-data path: scaffolded from Scryfall while 17Lands was empty, then refreshed
+  in place. Scryfall reports no `arena_id` for HOB, so oracle text joins by name.
 - **SOS** — 341/341 cards with image + 17Lands ratings + DS grade + AI take; 155/341 with ≥1 expert note.
 - **MKM** — 321/321 cards with image + 17Lands ratings + CGB grade + AI take; 142/321 with ≥1 expert note.
 - **MSH** — 334/334 cards with image + AI take, 285/334 with live GIH WR (mature: ~15.2M PremierDraft games,

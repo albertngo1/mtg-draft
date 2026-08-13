@@ -4,6 +4,7 @@
 
 **Legend** — **GIH** = Games-in-Hand WR (primary) · **IWD** = Improvement When Drawn (pp) · **ALSA** = Avg Last Seen At (lower = earlier) · **OH/GD** = Opening-Hand / Drawn WR · **Play** = play rate · **CGB** = CardGameBase letter grade.  🤖 AI · 📘 Lords of Limited · 🎙 NumotTheNummy.
 
+
 > DSK (Duskmourn: House of Horror) is a **graveyard-matters midrange** format that plays slower than it looks — five- and six-drop bomb uncommons are real P1P1s, and the engine pairs dominate once they "turn on." The three overlapping axes are **Delirium** (4+ card types in yard), **Manifest Dread**, and **Eerie** (enchantments/rooms). The 17Lands GIH WR is a finished-format signal (Sep-Oct 2024; **272 of 281 cards** have one); CGB letter grades are pre-data theory — trust live WR on conflict. **Color order: Green > Black >> Blue > White > Red** (green is busted at common AND uncommon; blue has weak commons but elite uncommons, so late blue uncommons = open). GIH WR **overrates synergy/build-around payoffs** (delirium fatties, reanimate targets, eerie/room engines post the built-around deck's number) and **underrates cheap exile removal** (Scorching Dragonfire, Nowhere to Run, Sheltered by Ghosts) — the AI take + guide notes decode which deck a number belongs to. **Four toughness is the magic number** (dodges the two premier damage-removal spells), and **exile/tuck > kill** since feeding graveyards helps your opponents.
 
 ### The archetypes (color-pair guilds)
