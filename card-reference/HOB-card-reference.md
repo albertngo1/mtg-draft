@@ -6,9 +6,9 @@
 
 > **Ordering:** cards within each colour are ranked by a combined **ALSA + play-rate** score (rank-average of the two), not by GIH WR — ALSA and play rate are populated from every draft, while GIH WR lags on a new set.
 
-> **⚠ NO 17LANDS DATA YET.** HOB is on Arena **2026-08-11**; every WR/ALSA column below is blank by construction, and this card list is built from **Scryfall** (188 draftable cards) rather than a 17Lands export. What carries the read instead: **LR 865 letter grades**, the **Limited Level-Ups primer**, and **prerelease play reports** — all pre-gameplay or one-weekend evidence. Rebuild with `build_card_reference.py HOB` once 17Lands fills in (usable samples expected ~2026-08-17) and the columns populate with no other change.
+> **Young data.** HOB hit Arena on **2026-08-11**; these numbers are from **1.63M PremierDraft games** two days later, with **174 of 188 cards** carrying a GIH WR. That is a real sample but pick orders are still settling — the 14 cards without a win rate are genuinely unplayed rather than merely unmeasured. Two reviewer-grade sources render side by side: **LR** (Limited Resources 865, commons and uncommons only) and **CGB** (CardGameBase, all 188).
 >
-> Early format read from prerelease reports: **Rakdos (B/R) = Golgari (B/G) > Boros (R/W) > Azorius (W/U) = Simic (G/U)**. Blue underperformed — it is synergistic and hard to assemble in Sealed. Removal cannot kill small creatures (no Shock, no Stab), so two-drops are safe and curve-out plans are rewarded. Damage-based removal caps at 5, making 6-toughness creatures near-unanswerable.
+> Archetype order from live data: **Rakdos 57.7% = Golgari 57.1% > Boros 55.8% > Azorius 55.4% >> Simic 50.3%.** Removal cannot kill small creatures (no Shock, no Stab), so **two-drops are safe** and curve-out plans are rewarded. Damage-based removal caps at 5, making **6-toughness creatures near-unanswerable** at common.
 
 **Archetype win rates** (17Lands PremierDraft, 1.63M games):
 

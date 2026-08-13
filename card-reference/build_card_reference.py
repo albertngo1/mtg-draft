@@ -282,17 +282,9 @@ L.append("**Legend** — **GIH** = Games-in-Hand WR (primary) · **IWD** = Impro
          f"**Play** = play rate{_grade_legend}.  "
          f"🤖 AI · {_guide_legend}.\n")
 CAVEAT = {
-    "HOB": "> **⚠ NO 17LANDS DATA YET.** HOB is on Arena **2026-08-11**; every WR/ALSA column below is blank "
-           "by construction, and this card list is built from **Scryfall** (188 draftable cards) rather than a "
-           "17Lands export. What carries the read instead: **LR 865 letter grades**, the **Limited Level-Ups "
-           "primer**, and **prerelease play reports** — all pre-gameplay or one-weekend evidence. Rebuild with "
-           "`build_card_reference.py HOB` once 17Lands fills in (usable samples expected ~2026-08-17) and the "
-           "columns populate with no other change.\n"
+    "HOB": "> **Young data.** HOB hit Arena on **2026-08-11**; these numbers are from **1.63M PremierDraft games** two days later, with **174 of 188 cards** carrying a GIH WR. That is a real sample but pick orders are still settling — the 14 cards without a win rate are genuinely unplayed rather than merely unmeasured. Two reviewer-grade sources render side by side: **LR** (Limited Resources 865, commons and uncommons only) and **CGB** (CardGameBase, all 188).\n"
            ">\n"
-           "> Early format read from prerelease reports: **Rakdos (B/R) = Golgari (B/G) > Boros (R/W) > Azorius "
-           "(W/U) = Simic (G/U)**. Blue underperformed — it is synergistic and hard to assemble in Sealed. "
-           "Removal cannot kill small creatures (no Shock, no Stab), so two-drops are safe and curve-out plans "
-           "are rewarded. Damage-based removal caps at 5, making 6-toughness creatures near-unanswerable.\n",
+           "> Archetype order from live data: **Rakdos 57.7% = Golgari 57.1% > Boros 55.8% > Azorius 55.4% >> Simic 50.3%.** Removal cannot kill small creatures (no Shock, no Stab), so **two-drops are safe** and curve-out plans are rewarded. Damage-based removal caps at 5, making **6-toughness creatures near-unanswerable** at common.\n",
     "SOS": "> SOS is a soup/Converge format — multicolor & Converge win-rates are inflated by 4-5c "
            "pilots. The AI take and guide notes decode which deck a number came from.\n",
     "MKM": "> MKM is a grindy 2-color guild-midrange format, so GIH WR transfers honestly (little soup "
