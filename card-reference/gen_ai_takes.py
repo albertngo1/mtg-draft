@@ -71,6 +71,19 @@ def load_scry():
     p = f"{ROOT}/data/cache/scryfall_arena.json"
     return json.load(open(p)) if os.path.exists(p) else {}
 
+
+def load_scry_by_name(SET):
+    """Name-keyed fallback for a set Scryfall hasn't assigned Arena IDs to yet.
+
+    A brand-new set can be fully spoiled on Scryfall while every card still has
+    `arena_id: null`, which makes the mtga_id join above return nothing and leaves
+    every take to be written without the card's text. Fetching the set by name
+    sidesteps that. Written by `scryfall_cardlist.py --by-name <SET>`."""
+    p = f"{ROOT}/data/cache/scryfall_byname_{SET}.json"
+    if not os.path.exists(p):
+        return {}
+    return {norm(k): v for k, v in json.load(open(p)).items()}
+
 def load_grades(SET):
     for src in ("draftsim", "cardgamebase"):
         p = f"{ROOT}/grades/{src}_{SET}.json"
@@ -89,10 +102,11 @@ def prep(SET, out_dir, N):
     scry = load_scry()
     guides = [(lab, parse_guide(f"{ROOT}/draft-guides/{d}/{f.format(SET=SET)}"))
               for lab, d, f in GUIDES]
+    by_name = load_scry_by_name(SET)
     out = []
     for c in cards:
         k = norm(c["name"])
-        meta = scry.get(str(c.get("mtga_id")), {})
+        meta = scry.get(str(c.get("mtga_id"))) or by_name.get(k) or {}
         rec = {
             "name": c["name"],
             "color": c["color"] or "C",
