@@ -2,9 +2,11 @@
 
 ## ⚠ Recency rule (read first)
 
-**One episode distilled so far, and it is the weakest evidence tier there is.** LR 865 is the release-week commons/uncommons set review — grades made from card images, before a single game. Marshall and LSV say so themselves ("we don't give out any A's in the review and then retroactively one of the uncommons hits like the A-minus level"). On any conflict, the **newest source wins**; the eventual Format Overview and Sunset Show supersede everything here.
+**Two episodes distilled, and both are the weakest evidence tier there is.** LR 865 and 866 are the release-week set reviews — grades made largely from card images. 866 is marginally better sourced than 865 because both hosts had played some games by then and repeatedly cite specific play experiences ("I had this card in a deck and it performed well"), but it is still a review, not a format read. Marshall and LSV say so themselves ("we don't give out any A's in the review and then retroactively one of the uncommons hits like the A-minus level"). On any conflict, the **newest source wins**; the eventual Format Overview and Sunset Show supersede everything here, and **the 17Lands data in the card reference supersedes both** on anything measurable.
 
-**Not yet distilled:** LR 866 (rares & mythics, announced at the end of this episode as "next week"), the format overview, and the Sunset Show. This file covers **commons and uncommons only** — every rare and mythic in HOB is absent.
+**Not yet distilled:** the format overview (announced at the end of 866 as "next week") and the Sunset Show.
+
+Coverage is now **complete** — all 188 cards have an LR grade: 115 commons/uncommons from 865, 68 rares/mythics from 866. (Five commons and eleven uncommons in the 17Lands list carry no LR grade because they are the adventure/land halves LR discussed under a different name.)
 
 Grades are LR's A–F scale with +/− subgrades, plus two subgrades: **sideboard** and **build-around**. Where Marshall and LSV disagreed the split is preserved (`C+/B−`), and where the grade moved during the discussion the final number is given with the starting one noted.
 
@@ -13,10 +15,20 @@ Grades are LR's A–F scale with +/− subgrades, plus two subgrades: **sideboar
 | Date | # | Title | Phase | Weight |
 |---|---|---|---|---|
 | 2026-08-04 | 865 | The Hobbit Set Review: Commons and Uncommons | release-week | **Weakest** |
+| 2026-08-11 | 866 | The Hobbit Set Review: Rares and Mythics | release-week, some games played | **Weakest** |
 
 ## Supersessions
 
-**No cross-episode supersessions exist yet** — there is only one episode. What follows are **in-episode revisions**, where a grade moved during the discussion. These are the cards LR was least sure of, so they're the ones most likely to move again.
+### 866 over 865
+
+- **Equipment was underrated in 865 and LR said so on air.** Marshall, opening 866: *"we definitely underrated a number of the equipment… equipment is actually pretty good in this format."* LSV: *"I have lost to equipment numerous times."* Treat every equipment grade in the 865 section below as **one step low** — Goblin Plate Mail (C/C+), Dwarven Mattock (build-around B), The Black Arrow (B−) and Ragged Short Spear (C) are the ones most likely to move.
+- **The format is fast**, confirmed with games behind it: *"This is also a fast format. We've already seen that… Removal's good. The threats are good."* This is the frame that pushed 866's expensive rares down — Through the Forest Gate (F), Gigantic Big Bear (B not A), The Lord of the Eagles (build-around only).
+- **Set depth read revised down.** 865 ended positive on the "refreshing normal fantasy" vibe. 866 closes flatter: Marshall calls it *"a little surface level… hard to imagine drafting this for 3 months,"* and notes it is the third consecutive small set. LSV: *"I don't think it's going to be particularly deep."*
+- **Tribal counts that cap build-arounds:** only **4 wizards** and **4 dragons** in the whole set, all dragons at 5 toughness bar one. This is why Wizard's Staff got a D and The Black Arrow's dragon-hate clause is a sideboard bonus, not a plan.
+
+### In-episode revisions (865)
+
+What follows are grades that moved during the 865 discussion. These are the cards LR was least sure of, so they're the ones most likely to move again.
 
 - **Thorin's Last Stand** — Marshall opened C−, LSV pushed back on the disenchant mode's value → settled **C**.
 - **Master's Councillors** — LSV opened D, talked himself up through "it's a 2-mana 3/3 vigilance a lot of the time" → settled **C+**.
@@ -198,10 +210,115 @@ Signposts: **Mirkwood Nurturer** (C/C−), **Silvan Reveler** (B), **Thranduil, 
 - **Old Thrush** — D. Two-mana 1/2 flier, gain 2, tutor a basic **to the top**. LR: bad fixing as a trap is actively harmful design.
 - **Key to the Side-Door** — **F**. Unblockable activation, or discard a redundant legend to draw two. "Your win rate is just going to be low."
 
+## Rares and mythics (LR 866)
+
+Marshall and LSV had both played real games before recording this one, and it shows — a good third of these grades come with an anecdote attached. That does **not** make them format-tested; treat them as informed first impressions.
+
+**The through-line of the episode:** cheap cards that affect the board immediately graded high; expensive cards that need to untap graded low, no matter how large the payoff. Everything at seven-plus mana got dinged for the format's speed, and every "do nothing the turn it lands" enchantment got dinged twice.
+
+### White
+
+- **Fíli the Pathfinder** — **A**. Four-mana 2/2 that makes a 2/2 dwarf on every non-token dwarf ETB, and gives the team +1/+1 with an enduring story. LSV: *"this card's just completely absurd."* Marshall's only hesitation was the two toughness, which he then argued away.
+- **An Unexpected Party** — **A** (Marshall floated A+). At the Door makes X 2/2 dwarves for 3+X, then the enchantment gives a creature type +2/+2 permanently. You cast the adventure first, always. Its one weakness is being stuck on three or four mana.
+- **The Eagles Are Coming!** — **A**. Two-mana instant: bounce your own creature, get a 4/4 flier at the next upkeep. Kicked at 2WW it does it for your whole board. LSV: *"if it's three, it's going to be really hard for your opponents to win."* Real fail case with an empty board.
+- **The Queen of Dale** — **A−** (mythic). Two-mana 2/1 that recruits off their first noncreature spell each turn. LSV has added it to his cube. *"You're not quite up a card every time, but it's pretty close."*
+- **Belladonna Took** — **build-around A**. Escalating token triggers: life → draw → team counters. The second trigger is the hard one; recruit is what lines it up. *"You really need token creation and that's hard to find."*
+- **Kíli the Resourceful** — **build-around A**. Free first equip each turn with an enduring story, plus a once-per-turn draw on dwarf/equipment ETB. LSV: *"if you just play this and they don't kill it, it's going to draw you a card and get you free mana pretty consistently."*
+- **Settle the Wreckage** — **B+**. Exile all attackers, they get basics. LSV revised *up* mid-discussion: it's bad in best-of-three against players who play around it, good on Arena where they don't. Two creatures is fine, three is a blowout.
+- **Roads Go Ever, Ever On** — **B−**. Saga: fetch two Plains to exile, dole them out, then a big attack pump per Plains. *"This feels like a nice uncommon"* — but Marshall likes hitting land drops.
+- **Bilbo's Gambit** — **F**. Two-mana bounce-a-spell with no card back. *"I'm just not playing Reprieve that doesn't draw a card."*
+- **Gleaming Splendor** — **F** (mythic). A multiplayer card. *"Don't put Gleaming Splendor in your deck."*
+
+### Blue
+
+- **Bilbo, Thief in the Night** — **B+** (mythic). Two-mana 2/2 that casts a card from your graveyard on attack, plus a global discount on non-hand casts. Marshall had it in a deck: *"it's sweet."* Wants a bit of building around; you run out of fuel.
+- **Elrond, Moon-Reader** — **B** (B+ if built for). Three-mana 3/3 that draws once per turn on any creature activated ability. The seven-mana blink is win-more. LSV played it in blue-green elves — *"totally solid."*
+- **Great Gilded Boat** — **B**. Two-mana 4/4 crew 2 vehicle that recruits whenever you attack — with anything, not just the boat. Fits the recruit decks that want a trigger every turn.
+- **The Lord of the Eagles** — **build-around B**. 9-mana 8/8 flash flier, minus your fliers' total power. Marshall's ladder: nine no, eight no, seven maybe, six or less yes. Pick it up late.
+- **Riddles in the Dark** — **B−**. Instant Fact or Fiction for 2U. LSV's tip: people fear the face-down pile more, so put your *best* card face-up when the piles are close. Three-and-one splits are for when you can afford to lose the single.
+- **Most Decrepit Old Bird** — **D+**. One-mana 1/1 flier with threshold, plus a 1U mill-4-grab-a-spell adventure. The halves are in the wrong order — you cast the spell first, then play the bird pre-threshold.
+- **Wizard's Staff** — **D**. Prowess-granting equipment with a wizard discount. Only four wizards in the whole set, and equip 3 otherwise. *"At face value I'm not interested."*
+- **Uncover the Moon-Letters** — **D**. Four mana that does nothing, then draws X and discards 2 per noncreature spell. Only card-positive at three-plus mana spells.
+- **Fateful Discovery** — **build-around D** (mythic). Draw on artifact ETB. LSV faced it: *"it drew my opponent one card before they died."* Marshall's benchmark: 5-mana draw-3 sorcery would be a D, and that's the dream case.
+- **Roll-Roll-Roll-Roll** — **F**. Four-chapter self-blink saga. *"It's an F. Sorry."*
+
+### Black
+
+- **Head of the Hunt** — **A−**. 2B 4/3 wolf with **flash**, and any opposing creature that would die gets exiled and makes you a 2/2 Wolf. Both hosts had lost to it. Play pattern: attack, they block, flash it in.
+- **Rhovanion Rampager** — **A−**. Three-mana 3/2 that eats a creature on attack for counters equal to its power, and amasses its own power on death. Marshall lost to it: *"it grew shockingly fast."* No evasion is the real answer to it.
+- **Gollum, Riddle Master** — **B+** (mythic). Two-mana 3/1; name odd or even, then collect draw / counter / drain across three separate triggers. Play order: draw first, then counter, then drain. On the play name even, on the draw name odd.
+- **The Sackville-Bagginses** — **B**. Two-mana 2/2, sac something on ETB for a card and a Treasure, then drain on every token sacrifice. Slots into the amass/sacrifice deck.
+- **The Master of Lake-town** — **C+**. Three-mana 3/2 deathtouch that mills on life loss and draws on death per threshold graveyard. *"I'm trying to find ways that this isn't that good, and it there's no knocks on it."* Two toughness on a 1BB card is the one.
+- **Along the Crooked Way** — **C+/B−**. Three-mana Gravedigger-to-hand that amasses 1 and keeps a menace activation on the enchantment permanently.
+- **Azog, Moria's Ruin** — **C/C+**. Three-mana 1/3 that destroys a creature — and gives its controller an Army equal to its power. LSV declined to take it in a sacrifice deck he was already building. *"None of those use cases are that exciting."*
+- **Inside Information** — **C** (mythic). Bolas's Citadel for X. LSV's sweet spot is X=3 or 4. The trap: it gets much worse the lower your life total, which is exactly when you need it.
+- **Supper for Spiders** — **F**. Steal creatures that died this turn — but they come back as **Food, not creatures**. *"That is an amazing design. The card's not."*
+
+### Red
+
+- **Smaug the Magnificent** — **A** (mythic). 2RR 4/3 flying haste that pings for your Treasure count on attack. The hosts pre-committed to the grade before reading it out.
+- **Stone-Giant of High Pass** — **B+**. Seven mana 7/7 that makes a 3/1 Stone Boulder wall on ETB *and* on attack, with a 2R-sac-an-artifact 4 damage outlet. Untap with it and you get two activations. A curve-topper that also stabilizes.
+- **Thorin, Mountain-king** — **B+ build-around** (Marshall) / **build-around A** (LSV). Four-mana 3/4 trample that moves an equipment and Flametongues for the equip cost. Three equipment is the target; both hosts said they'd play it with one.
+- **Dáin Ironfoot** — **B**. Two-mana 1/4 that makes an Axe token and attaches it free, then grants double strike to your equipped attackers. *"If you told me that was an uncommon, I'd totally believe you."*
+- **Gandalf, Goblins' Bane** — **B** (mythic). *"More like a B-level card than a mythic bomb"* — but never cut from a red deck, and a frequent early pick.
+- **Desolation of Smaug** — **B**. Three damage to each non-Dragon. Note the set has only four Dragons, all at five toughness bar one.
+- **Balin, Loremaster** — **C+**. Five-mana 4/4; every dwarf ETB lets you wheel your hand and, with a story, burn for the count. Realistically one or two cards by turn five. *"This is all fine, right?"*
+- **Desert Were-Worm** — **C**. Power equal to your Mountains. *"Let's say you play it with five Mountains — it's a six-mana 10/5. How often is that going to be good? Who cares?"*
+- **The Misty Mountains Cold** — **D**. Suspend-3 for a 6/6 Dragon, four Treasures along the way. Doesn't eat the Treasures, which is the only saving grace. Cast on three, Dragon on six, and it can't attack.
+- **Getaway Barrel** — **F**. Sacrifice it, reveal 13, put a **random** creature into play. *"There is no way this can be worth it."*
+
+### Green
+
+- **Beorn the Fierce** — **A** (mythic).
+- **Bejeweled Warg** — **A−**. Two-mana 3/2 trample; on combat damage, counter a Wolf or make a Treasure. LSV had it: you attack into a 2/2, they block, you trample for one and still get the Treasure. *"There's just no real way to lose out on this card."*
+- **The Notary Hobbits** — **B+**. 3GG for a 1/1 that brings two non-legendary copies; each taps for colorless equal to your halfling count. Untap with all three and that's nine extra mana. LSV played it: *"it feels broken."*
+- **Radagast of Rhosgobel** — **B+**. Four-mana 2/5 that makes your first creature each turn cost 2 less **and** flashable. *"It offers too much mana with decent stats."* ⚠ **The 17Lands data disagrees hard** — see the conflict note below.
+- **Cantankerous Keepers** — **build-around B+**. Affinity for elves, mill 4 and take all elves. A four-mana 4/3 that draws an elf in a real elves deck; a six-mana disaster otherwise.
+- **Dancing from Dark to Dawn** — **B/B+** (mythic). Counters on creature casts, tokens on land drops. Slow — five mana and nothing happens — but *"all your creatures are basically twice as big."*
+- **Gigantic Big Bear** — **B**. Seven-mana 10/7 haste, hexproof, uncounterable. No trample and no menace, so an Army token blanks it. *"You get that warm safe feeling from the hexproof but it's kind of a lie."*
+- **Down in the Valley** — **B−/C+**. Saga: fetch a basic to hand → gain landfall elf-making → team pump twice. *"It's a little slow."*
+- **Part in Friendship** — **D**. Five-mana enchantment that returns your dying creatures. Both hosts went low on the *"five-mana enchantment that does nothing"* pattern. Marshall wanted to like it.
+- **Through the Forest Gate** — **F**. Eight mana: all your lands from the top 20 into play, gain 8. *"You can't really spend this much mana on that."*
+
+### Multicolour
+
+- **Chief Warg's Company** — **A**. 1BG 5/3 trample that can't attack without two other Wolves, and makes a 2/2 Wolf every upkeep. *"I am willing to accept these terms."* It builds a board whether or not it can swing.
+- **Bard's Company** — **A**. 2WU 2/3 that pumps your other creatures, recruits on ETB and on attack, and has quasi-flash off any human. *"It kind of does it all."*
+- **Tom, Bert, and William** — **A**. 3BG 5/5 with a 1-mana sac outlet that draws cards equal to the sacrificed creature's power, then comes back as a non-creature artifact keeping the ability. No timing restriction.
+- **Smaug, Wicked Worm** — **A−**. Five-mana 5/5 flier first, Treasure engine second. *"Mostly because it's a five-mana 5/5 flying."*
+- **Dáin's Company** — **B+** (build-around A− per LSV). Two-mana 2/2 that digs 4 for a dwarf or equipment and gains lifelink with another dwarf. *"The ideal two-drop for that archetype."*
+- **The Great Goblin** — **B+**. Three-mana 3/2; two damage to the opponent on every counter added to a goblin/orc/Army, and impulse draw whenever one dies. Kill-on-sight.
+- **Bard, King of Dale** — **B** (mythic). Six-mana 3/5 reach vigilance that doubles extra draws and all tokens. *"You do need to do work after it"* — it wants to untap.
+- **Thranduil's Company** — **B**, both hosts hedging upward. Two counters and vigilance on every landfall, extra land drop with any other elf. LSV had it: *"two +1/+1 counters just for playing a land adds up really really quick."*
+- **Dwalin, Weaponmaster** — **B**. Two-mana 2/1 first strike that hones every equipment you control on ETB and attack. Effectively colorless in R/W.
+- **Thranduil, the Elvenking** — **build-around B**. The set's only triple-colour card (2BGU). *"A little too far down the build-around path."*
+- **Bolg's Company** — **C**. Two-mana 2/2 goblin, conditional haste, sac-a-goblin for BR. *"More of a constructed card."*
+
+### Artifacts and lands
+
+- **The Arkenstone** — **A+** (mythic). Five-mana colorless: team +1/+1 and draw a card every end step, plus a 2W tutor-a-legend adventure. *"I played this in a deck that didn't even have access to white mana and was still thrilled with it."* LSV: *"an A+ pretty much in every deck."* The best card in the set by LR's grades.
+- **Orcrist, Goblin-cleaver** — **B** (Marshall) / **A−** (LSV) (mythic). +2/+2 and trample, then a Treasure per creature of a chosen type on combat damage. Three to cast and three to equip is a real commitment — and getting the equipped creature killed can lose the game outright.
+- **The Lonely Mountain** — **B+**. A rare Mountain that enters untapped with an equipment, and is a repeatable dwarf factory for 4R minus one per equipment. *"This is a slot that doesn't normally have a big impact"* — that's why it grades high.
+- **Elven Passage** — **C/C+**. Evolving Wilds for a life, untapped if you behold an elf. Play it in non-elf decks too.
+- **My Precious** — **C+** (Marshall, with both halves) / **D** (LSV). Unblockable and hexproof for two mana **and two life**, plus a 1B sac-a-creature draw-2 adventure. Both flagged it as much better with lifelink creatures.
+- **Sting, Bilbo's Sword** — **D**. Hone counters equal to their creature count. *"The better you're doing in the game, the worse it is."*
+- **Glamdring, Foe-hammer** — **F**. Spell-cost reduction on an equipment, in a spells deck that doesn't want creatures. *"That is not how spells decks work."*
+
+## ⚠ Where LR 866 conflicts with the play data
+
+Two grades in this episode are directly contradicted by the 17Lands numbers in the card reference. Trust the data.
+
+- **Radagast of Rhosgobel** — LR **B+**, data **50.9% GIH** despite ALSA 2.3 and an 81% play rate. People first-pick it on the review grade and it underdelivers: a 2/5 that discounts one creature a turn doesn't affect the board fast enough.
+- **Balin, Loremaster** — LR **C+**, data **−3.6 IWD**, among the worst of any rare. Marshall's "this is all fine" read doesn't survive contact with a format that ends before a five-mana wheel matters.
+
+Two more where the *data* is kinder than LR:
+
+- **The Misty Mountains Cold** — LR **D**, data **+4.8 IWD** at 80% play. The Treasures do more than the review credited.
+- **The Mountain-king's Return** — LR **D+** (865), data **61.5% GIH / +6.4 IWD**. The "you need a creature in the yard" risk resolves more often than they expected.
+
 ## Source episodes
 
 - 2026-08-04 — Limited Resources 865 – The Hobbit Set Review: Commons and Uncommons (`G9bqewk4i4Y`)
+- 2026-08-11 — Limited Resources 866 – The Hobbit Set Review: Rares and Mythics (`b-mJNcpSo-w`)
 
-*Auto-caption caveat: this is a speech transcript, so card names came through mangled. **All card names in this file have been verified against Scryfall's 193-card HOB pool (2026-08-05) and corrected** — no `(?)` readings remain.*
-
-* Rares and mythics are not covered — LR 866 was announced for the following week and is not yet fetched.*
+*Auto-caption caveat: these are speech transcripts, so card names came through mangled ("Fely the Pathfinder", "Belladonna Tuk Tuk", "Eland Moonreader", "Ratagast of Rosabel"). **All card names in this file have been verified against the 188-card HOB list and corrected** — no `(?)` readings remain.*

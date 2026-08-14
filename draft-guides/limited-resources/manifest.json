@@ -4,7 +4,7 @@
   "note": "Fingerprint of distilled scrape. sha1 = sha1 of the cleaned transcript .txt.",
   "counts": {
     "sets": 5,
-    "videos_distilled": 20,
+    "videos_distilled": 21,
     "videos_no_captions": 0
   },
   "sets": {
@@ -24,7 +24,8 @@
       "tier": 1,
       "file": "HOB.md",
       "video_ids": [
-        "G9bqewk4i4Y"
+        "G9bqewk4i4Y",
+        "b-mJNcpSo-w"
       ]
     },
     "MKM": {
@@ -136,6 +137,12 @@
       "set": "BLB",
       "sha1": "b6b2f454fe2b1650d5c9ada7cf1043b3e4597da2",
       "words": 29624,
+      "distilled": true
+    },
+    "b-mJNcpSo-w": {
+      "set": "HOB",
+      "sha1": "7d1f27a3e4fcda4b6f7e04c10a305f6a9c1bd91c",
+      "words": 30670,
       "distilled": true
     },
     "bsBoYVrt-mI": {

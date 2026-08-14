@@ -282,9 +282,9 @@ L.append("**Legend** — **GIH** = Games-in-Hand WR (primary) · **IWD** = Impro
          f"**Play** = play rate{_grade_legend}.  "
          f"🤖 AI · {_guide_legend}.\n")
 CAVEAT = {
-    "HOB": "> **Young data.** HOB hit Arena on **2026-08-11**; these numbers are from **1.63M PremierDraft games** two days later, with **174 of 188 cards** carrying a GIH WR. That is a real sample but pick orders are still settling — the 14 cards without a win rate are genuinely unplayed rather than merely unmeasured. Two reviewer-grade sources render side by side: **LR** (Limited Resources 865, commons and uncommons only) and **CGB** (CardGameBase, all 188).\n"
+    "HOB": "> **Young data.** HOB hit Arena on **2026-08-11**; these numbers are from **106,022 PremierDraft games** (2.64M card-game observations) as of **2026-08-14**, with **179 of 188 cards** carrying a GIH WR. That is a real sample but pick orders are still settling — the 9 cards without a win rate are genuinely unplayed rather than merely unmeasured. Two reviewer-grade sources render side by side: **LR** (Limited Resources 865 + 866, now all 188) and **CGB** (CardGameBase, all 188).\n"
            ">\n"
-           "> Archetype order from live data: **Rakdos 57.7% = Golgari 57.1% > Boros 55.8% > Azorius 55.4% >> Simic 50.3%.** Removal cannot kill small creatures (no Shock, no Stab), so **two-drops are safe** and curve-out plans are rewarded. Damage-based removal caps at 5, making **6-toughness creatures near-unanswerable** at common.\n",
+           "> Archetype order from live data: **Rakdos 57.8% > Golgari 56.8% > Boros 55.8% ≈ Azorius 55.6% > Dimir 53.2% >> Simic 50.9%.** Removal cannot kill small creatures (no Shock, no Stab), so **two-drops are safe** and curve-out plans are rewarded. Damage-based removal caps at 5, making **6-toughness creatures near-unanswerable** at common.\n",
     "SOS": "> SOS is a soup/Converge format — multicolor & Converge win-rates are inflated by 4-5c "
            "pilots. The AI take and guide notes decode which deck a number came from.\n",
     "MKM": "> MKM is a grindy 2-color guild-midrange format, so GIH WR transfers honestly (little soup "
@@ -344,14 +344,15 @@ L.append(CAVEAT.get(SET, ""))
 
 # ---- archetype map (set-specific 10 color-pair guilds) -----------------------
 ARCHETYPES = {
-    "HOB": "**Archetype win rates** (17Lands PremierDraft, 1.63M games):\n\n"
-           "| WR | Pair | Plan | Signposts |\n|---|---|---|---|\n"
-           "| **57.7%** | **BR** | Rakdos Goblins — amass one huge Army, sacrifice for value; best removal and the deepest colours | Bolg of the North · Goblin Plate Mail · Fearsome Goblin Pair |\n"
-           "| **57.1%** | **BG** | Golgari Ferocious — black-shaped aggro with green bodies; power 4+ payoffs. **Not** an elves/synergy deck | The Chief Warg · Large Bear · Duskwatch Hunter |\n"
-           "| **55.8%** | **RW** | Boros Dwarves — storied + equipment; carried by white's rares, not its commons | Thorin Oakenshield · Bifur, Melodic Rider · Nori, Teller of Tales |\n"
-           "| **55.4%** | **WU** | Azorius Recruit — draw-two payoffs and go-wide tokens; synergy-dependent | Bard the Bowman · Eagle's Rescue · Patient Instructor |\n"
-           "| ~54% | UR · UB | Unsupported pairs. Small samples, middling; the off-colour thesis has not paid off |  |\n"
-           "| **50.3%** | **GU** | Simic Elves/Landfall — **the worst deck by five points.** Draws cards and makes small bodies without turning the corner | Silvan Reveler · Thranduil, Sindarin Liege · Mirkwood Nurturer |\n\n"
+    "HOB": "**Archetype win rates** (17Lands PremierDraft, 106,022 games, 2026-08-14):\n\n"
+           "| WR | Games | Pair | Plan | Signposts |\n|---|---|---|---|---|\n"
+           "| **57.8%** | 29.5k | **BR** | Rakdos Goblins — amass one huge Army, sacrifice for value; best removal and the deepest colours. Also the most-played deck by a wide margin | Bolg of the North · Goblin Plate Mail · Fearsome Goblin Pair |\n"
+           "| **56.8%** | 19.0k | **BG** | Golgari Ferocious — black-shaped aggro with green bodies; power 4+ payoffs. **Not** an elves/synergy deck | The Chief Warg · Large Bear · Duskwatch Hunter |\n"
+           "| **55.8%** | 18.2k | **RW** | Boros Dwarves — storied + equipment; carried by white's rares, not its commons | Thorin Oakenshield · Bifur, Melodic Rider · Nori, Teller of Tales |\n"
+           "| **55.6%** | 16.7k | **WU** | Azorius Recruit — draw-two payoffs and go-wide tokens; synergy-dependent | Bard the Bowman · Eagle's Rescue · Patient Instructor |\n"
+           "| **53.2%** | 2.8k | **UB** | Dimir — no signpost and no plan, but black's removal carries it above the off-colour pairs | — |\n"
+           "| **50.9%** | 10.2k | **GU** | Simic Elves/Landfall — **the worst supported deck by four points**, and the second-most-drafted. Draws cards and makes small bodies without turning the corner | Silvan Reveler · Thranduil, Sindarin Liege · Mirkwood Nurturer |\n"
+           "| 46–54% | <1.5k | RG · WB · UR · GW | Unsupported pairs. Orzhov 56.9% and Izzet 54.1% on tiny samples; **Selesnya 45.7% is the worst pairing in the format** |  |\n\n"
            "**Removal benchmarks:** the format's defining constraint is that **removal cannot kill small creatures** — no Shock, "
            "no Stab, no cheap white damage spell — so **two-drops are safe** and curve-out plans are rewarded. **Damage-based "
            "removal caps at 5**, making 6-toughness creatures (Old Fat Spider, Wilderland Scrounger) effectively unanswerable at "
@@ -531,5 +532,7 @@ open(OUT, "w", encoding="utf-8").write("\n".join(L))
 matched = sum(1 for c in cards if any(src.get(norm(c["name"])) for _l, _f, src in GUIDE_SRCS))
 print(f"wrote {OUT}")
 print(f"cards: {total} | AI takes: {sum(1 for c in cards if c['name'] in ai)} "
-      f"| >=1 guide note: {matched} | DS grades: {sum(1 for c in cards if norm(c['name']) in ds)} "
-      f"| {COLS} per row")
+      f"| >=1 guide note: {matched} "
+      + "".join(f"| {l} grades: {sum(1 for c in cards if norm(c['name']) in t)} "
+                for l, t, _ in GRADE_SOURCES)
+      + f"| {COLS} per row")
