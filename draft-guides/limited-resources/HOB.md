@@ -210,7 +210,7 @@ Signposts: **Mirkwood Nurturer** (C/C−), **Silvan Reveler** (B), **Thranduil, 
 - **Old Thrush** — D. Two-mana 1/2 flier, gain 2, tutor a basic **to the top**. LR: bad fixing as a trap is actively harmful design.
 - **Key to the Side-Door** — **F**. Unblockable activation, or discard a redundant legend to draw two. "Your win rate is just going to be low."
 
-## Rares and mythics (LR 866)
+## Card tips — rares and mythics (LR 866)
 
 Marshall and LSV had both played real games before recording this one, and it shows — a good third of these grades come with an anecdote attached. That does **not** make them format-tested; treat them as informed first impressions.
 
