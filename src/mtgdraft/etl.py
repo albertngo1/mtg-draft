@@ -139,7 +139,9 @@ def _card_enricher(cfg, ids):
     scry = load_scry()
     missing = stale_ids(scry, {str(i) for i in ids})  # absent OR below current schema -> (re)fetch
     if missing:
-        resolve_ids(missing); scry = load_scry()
+        # pass 17Lands names so a set without Scryfall arena_ids yet resolves by name instead
+        resolve_ids(missing, {k: v.get("name") for k, v in by_id.items()}, cfg["set"])
+        scry = load_scry()
     ds, _ = load_grades_any(cfg["set"])
     guide = load_guide_notes(cfg["set"])
     def card(cid):

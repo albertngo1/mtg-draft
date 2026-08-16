@@ -1,6 +1,6 @@
 import os, re, time, subprocess
 from .config import STREAM
-from .sources import load_scry, resolve_ids, stale_ids
+from .sources import load_scry, ratings, resolve_ids, stale_ids
 
 STREAM_FRESH_SECS = 8.0   # trust the local capture stream only if the daemon wrote it this recently
 KNOWN_FMTS = ("PremierDraft", "QuickDraft", "TradDraft", "Sealed", "TradSealed")  # real 17Lands formats
@@ -162,7 +162,15 @@ def infer_colors(picked_ids, cfg):
     scry = load_scry()
     missing = stale_ids(scry, picked_ids)  # absent OR below current schema -> (re)fetch
     if missing:
-        resolve_ids(missing)
+        # Names come from 17Lands so a set Scryfall hasn't assigned arena_ids to yet still
+        # resolves (by name). Without them every mana cost is blank and the pip count -- and
+        # so the whole colour guess -- silently comes back empty.
+        try:
+            data, _ = ratings(cfg["set"], cfg["fmt"], cfg["days"], cfg["refresh"])
+            names = {str(c["mtga_id"]): c.get("name") for c in data if c.get("mtga_id")}
+        except Exception:
+            names = {}
+        resolve_ids(missing, names, cfg["set"])
         scry = load_scry()
     from collections import Counter
     pips = Counter()

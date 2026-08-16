@@ -1,4 +1,4 @@
-import os, json, time, datetime, urllib.request
+import os, json, time, datetime, urllib.request, urllib.parse
 from .config import CACHE, SCRY_CACHE, UA
 
 # Scryfall cache entry schema version. Bump whenever _scry_rec() starts storing new fields
@@ -108,8 +108,26 @@ def _scry_rec(d):
         "text": text.replace("\n", " "),
         "image_url": image_url,                    # front-face normal image; replay.md embeds it
     }
-def resolve_ids(ids):
-    """Return {id: {name, cmc, color, type}} resolving misses via Scryfall (cached, 1-by-1)."""
+def _front_name(name):
+    """Front-face name, the form 17Lands uses ('A // B' -> 'A'). Match key for the name fallback."""
+    return (name or "").split("//")[0].strip()
+def _fetch_by_name(name, set_code=None):
+    """Scryfall exact-name lookup, optionally pinned to a set. The fallback path for cards whose
+    arena_id Scryfall has not assigned yet (every card of a set, for ~the first weeks after its
+    Arena release) — see resolve_ids/set_fetch."""
+    url = f"https://api.scryfall.com/cards/named?exact={urllib.parse.quote(name)}"
+    if set_code:
+        url += f"&set={set_code.lower()}"
+    return _scry_rec(json.loads(_get(url)))
+def resolve_ids(ids, names=None, set_code=None):
+    """Return {id: {name, cmc, color, type}} resolving misses via Scryfall (cached, 1-by-1).
+
+    Scryfall keys Arena printings by `arena_id`, but it does not assign those until some weeks
+    after a set hits Arena — so for a brand-new set EVERY id 404s here and the whole set comes
+    back as failed placeholders (cmc 0, no mana cost, no oracle text). `names` ({id: 17Lands card
+    name}) enables the fallback: on a 404, look the card up by exact name instead, then cache the
+    result under the Arena id so the rest of the pipeline (which joins on id) is unchanged."""
+    names = {str(k): v for k, v in (names or {}).items()}
     cache = load_scry()
     out, fetched = {}, {}
     for cid in ids:
@@ -120,45 +138,80 @@ def resolve_ids(ids):
         try:
             rec = _scry_rec(json.loads(_get(f"https://api.scryfall.com/cards/arena/{cid}")))
         except Exception as e:
-            rec = {"name": f"<{cid}?>", "full_name": "?", "cmc": 0, "color": "?",
-                   "rarity": "?", "type": f"(lookup failed: {e})"}
+            rec = None
+            if names.get(cid):     # arena_id not assigned yet -> fall back to an exact-name lookup
+                try:
+                    rec = _fetch_by_name(names[cid], set_code)
+                    time.sleep(0.06)
+                except Exception:
+                    rec = None
+            if rec is None:
+                rec = {"name": names.get(cid) or f"<{cid}?>", "full_name": "?", "cmc": 0,
+                       "color": "?", "rarity": "?", "type": f"(lookup failed: {e})"}
         cache[cid] = rec
         out[cid] = rec
         fetched[cid] = rec     # only the freshly-fetched entries; merged in late to avoid clobbering
         time.sleep(0.06)  # be polite to Scryfall
     merge_scry(fetched)        # reload-and-merge so a concurrent writer's new entries survive
     return out
-def set_fetch(set_code):
+def set_fetch(set_code, id_names=None):
     """Page the whole set from Scryfall's search endpoint, caching each printing by arena_id
-    (cost + oracle text + P/T). One paginated walk (~2-3 requests) instead of 1-per-card."""
+    (cost + oracle text + P/T). One paginated walk (~2-3 requests) instead of 1-per-card.
+
+    Scryfall assigns `arena_id` only some weeks after a set reaches Arena, so for a brand-new
+    set this walk finds the cards but caches NOTHING (every printing has arena_id None) and the
+    live table ends up with MV 0 and an empty oracle-text section. `id_names` ({mtga_id: name},
+    which 17Lands supplies) closes that gap: the same printings get indexed by front-face name
+    and re-keyed onto the Arena ids, so the id-joined pipeline downstream needs no changes.
+    Returns (n_by_arena_id, n_by_name)."""
     url = (f"https://api.scryfall.com/cards/search?q=e:{set_code.lower()}"
            f"&unique=prints&format=json")
-    fetched = {}
+    fetched, by_name = {}, {}
     n = 0
     while url:
         resp = json.loads(_get(url))
         for d in resp.get("data", []):
+            rec = _scry_rec(d)
+            by_name.setdefault(_front_name(rec.get("name")), rec)
             aid = d.get("arena_id")
             if aid is None:
                 continue
-            fetched[str(aid)] = _scry_rec(d)
+            fetched[str(aid)] = rec
             n += 1
         url = resp.get("next_page") if resp.get("has_more") else None
         if url:
             time.sleep(0.1)
+    # Name-join backfill for every id the arena_id pass didn't cover.
+    n_named = 0
+    for cid, name in (id_names or {}).items():
+        cid = str(cid)
+        if cid in fetched:
+            continue
+        rec = by_name.get(_front_name(name))
+        if rec:
+            fetched[cid] = rec
+            n_named += 1
     merge_scry(fetched)        # reload-and-merge so a concurrent writer's new entries survive
-    return n
+    return n, n_named
 def warm_set(cfg):
     """Pre-cache the whole set so live drafts make ZERO per-card queries.
     17Lands gives name/color/rarity/stats keyed by mtga_id; Scryfall supplies cost + text + P/T."""
     print(f"\n  Warming {cfg['set']} from Scryfall (cost + oracle text + P/T)...")
+    # 17Lands is the source of the id->name map that lets set_fetch/resolve_ids fall back to a
+    # name lookup for sets Scryfall hasn't assigned arena_ids to yet.
     try:
-        n = set_fetch(cfg["set"])
-        print(f"  Cached {n} printings. Scryfall cache now holds {len(load_scry())} cards.")
+        data = seventeen(cfg["set"], cfg["fmt"], cfg["days"], cfg["refresh"])
+    except Exception:
+        data = []
+    id_names = {str(c["mtga_id"]): c.get("name") for c in data if c.get("mtga_id")}
+    try:
+        n, n_named = set_fetch(cfg["set"], id_names)
+        note = f" (+{n_named} matched by name — Scryfall has no arena_id for them yet)" if n_named else ""
+        print(f"  Cached {n + n_named} printings{note}. "
+              f"Scryfall cache now holds {len(load_scry())} cards.")
     except Exception as e:
         print(f"  set search failed ({e}). Falling back to per-card from 17Lands ids...")
-        data = seventeen(cfg["set"], cfg["fmt"], cfg["days"], cfg["refresh"])
-        resolve_ids([str(c["mtga_id"]) for c in data if c.get("mtga_id")])
+        resolve_ids(list(id_names), id_names, cfg["set"])
     print("  Done — future `pull`/`rank` for this set = 0 live queries "
           "(17Lands itself caches 24h).\n")
 def _time_period(days):

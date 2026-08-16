@@ -147,7 +147,8 @@ def print_pool(ids, cfg, noun="picks"):
     scry = load_scry()
     missing = stale_ids(scry, [str(i) for i in ids])  # absent OR below current schema -> (re)fetch
     if missing:
-        resolve_ids(missing)
+        # pass 17Lands names so a set without Scryfall arena_ids yet resolves by name instead
+        resolve_ids(missing, {k: v.get("name") for k, v in by_id.items()}, cfg["set"])
         scry = load_scry()
     on = set(cfg["colors"].upper())
 
@@ -222,7 +223,8 @@ def print_table(ids, cfg, show_text=True):
     # cmc + oracle text come from Scryfall; resolve any that `warm` didn't pre-cache
     missing = stale_ids(scry, [str(i) for i in ids])  # absent OR below current schema -> (re)fetch
     if missing:
-        resolve_ids(missing)
+        # pass 17Lands names so a set without Scryfall arena_ids yet resolves by name instead
+        resolve_ids(missing, {k: v.get("name") for k, v in by_id.items()}, cfg["set"])
         scry = load_scry()
     on = set(cfg["colors"].upper())
     ds, ds_label = load_grades_any(cfg["set"])   # external reviewer grades (Draftsim x/5 or CGB tier)

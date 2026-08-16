@@ -235,6 +235,15 @@ Paths resolve relative to the repo root regardless of where you invoke from, so
 3. Scryfall supplies only what 17Lands lacks — mana cost, P/T, oracle text. `warm` pre-pulls the
    whole set via the `e:<set>` search in one paginated walk; otherwise misses are resolved
    one-by-one via `cards/arena/<id>`. Cached persistently in `data/cache/scryfall_arena.json`.
+
+   **New-set fallback.** Scryfall does not assign `arena_id` until some weeks after a set reaches
+   Arena, so for a just-released set *every* id lookup 404s and the whole set would cache as
+   failed placeholders — the table still ranks correctly (that join is on 17Lands' own `mtga_id`)
+   but shows `MV 0` with an empty card-text section, and `infer_colors` silently returns no colors
+   because it counts mana pips. So both paths take the 17Lands card names and fall back to an
+   exact-name lookup, re-keying the result onto the Arena id: `set_fetch` name-joins the whole
+   paginated walk at once, `resolve_ids` does it per-card via `cards/named?exact=`. Nothing
+   downstream changes — the cache stays id-keyed. `warm` reports how many were matched by name.
 4. Sorts by GIH WR, prints the table + the card-text section.
 
 After `warm`, a `pull`/`rank` for that set makes **zero** network round-trips until the 24h
