@@ -2,13 +2,32 @@
 
 ## ⚠ Recency rule (read first)
 
-**Every take in this file is a pre-gameplay prediction.** All five episodes aired between 2026-07-30 and 2026-08-06 — before the paper prerelease (Aug 7) and before HOB hit Arena (Aug 11). Not one game had been played. On any conflict, the **newest source wins**, and **17Lands GIH WR supersedes this entire file** the moment it exists.
+**This file now spans two eras, and they disagree.** The first five episodes (2026-07-30 → 08-06)
+are **pre-gameplay predictions** — published before the paper prerelease and before HOB hit Arena,
+with not one game played. The last three (2026-08-12 → 08-15) are **post-release**, recorded after
+Alex had drafted the format for four straight days and reviewed coaching logs from other players.
 
-**No per-card letter grades this set.** This is a contract deviation worth knowing about: LLU normally splits its set review into per-color episodes and grades every card. For HOB they ran a **three-part "primer" instead of a full set review** — Alex, on air: *"we haven't been talking about grades today... we're not really talking about grades."* They published a separate tier list on the LLU website (not captured here). What this file preserves instead is **list position and whose list it was**, which is the only ranking signal the episodes contain. The two grades that did get said out loud are marked inline.
+**On any conflict, the post-release episodes win, and the State of the Format Address (2026-08-15)
+wins over everything else in this file.** 17Lands GIH WR still supersedes the whole document.
 
-**Coverage is partial by design.** Alex estimates the primer covers *"a little more than a third"* of the card file: top 3 commons per color, top 10 power uncommons, top 10 synergy uncommons, top 10 rares, top 3 mythics. Cards absent from this file were not discussed, which is **not** evidence they are bad.
+**No per-card letter grades this set.** A contract deviation worth knowing about: LLU normally
+splits its set review into per-color episodes and grades every card. For HOB they ran a **three-part
+"primer" instead of a full set review** — Alex, on air: *"we haven't been talking about grades
+today... we're not really talking about grades."* They published a separate tier list on the LLU
+website (not captured here). What the prerelease half of this file preserves instead is **list
+position and whose list it was**. The two grades that got said out loud are marked inline. The
+post-release episodes cite **17Lands letter grades** rather than Alex's own, and those are quoted
+as such.
 
-**Two reviewers, and they disagree a lot.** Alex (host) and Mark (guest) built their lists blind and compared on air. They agreed on **9 of 10** power uncommons but only **4 of 10** synergy uncommons. Where they split, both positions are recorded — the split itself is the signal.
+**Prerelease coverage is partial by design.** Alex estimates the primer covers *"a little more than
+a third"* of the card file: top 3 commons per color, top 10 power uncommons, top 10 synergy
+uncommons, top 10 rares, top 3 mythics. Cards absent from the prerelease sections were not
+discussed, which is **not** evidence they are bad.
+
+**Two reviewers in the prerelease half, and they disagree a lot.** Alex (host) and Mark (guest)
+built their lists blind and compared on air. They agreed on **9 of 10** power uncommons but only
+**4 of 10** synergy uncommons. Where they split, both positions are recorded — the split itself is
+the signal. The post-release episodes are **Alex solo**.
 
 ### Source timeline
 
@@ -18,13 +37,116 @@
 | 2026-08-05 | The Hobbit Limited Guide \| Archetypes | prerelease | Weak |
 | 2026-08-05 | The Hobbit Limited Guide \| Top Commons and Uncommons | prerelease | Weak |
 | 2026-08-05 | The Hobbit Limited Guide \| Rares and Mythics | prerelease | Weak |
-| 2026-08-06 | The Hobbit Prerelease Guide! | prerelease, Sealed-focused | **Least weak** |
+| 2026-08-06 | The Hobbit Prerelease Guide! | prerelease, Sealed-focused | Least weak |
+| 2026-08-12 | Hobbit Drafts are Here! | release day, 4th–5th draft | Strong |
+| 2026-08-13 | The Top Common That No One Saw Coming | week 1, day 2 | Stronger |
+| 2026-08-15 | The Hobbit State of the Format Address! | week 1 retrospective + coaching data | **Strongest** |
+
+## Week-one verdict (2026-08-15 — read this before the prerelease sections)
+
+Alex's post-play summary of the format, with Arena Best-of-One win rates he read on air:
+
+- **The format is more balanced than it looks, and black is the exception.** *"There is a clear
+  front-runner best deck in the format — Red Black amass is great, it's the best deck... I just
+  think that most of the other decks in the format are also quite good."* His stated numbers:
+  **B/R 57.8% · B/G 56.8% · R/W 55.8% · W/U 55.6%** — a ~2-point band. In *top-player* stats the
+  gap closes further and **W/U becomes the best deck**, which he attributes to recruit being a
+  decision-dense mechanic: *"when you're looting turn after turn, the good players are going to make
+  the decision of what to discard and when."*
+- **Black is the one genuinely unbalanced thing.** *"Drafting black when it's open or semi-open is
+  almost like drafting on easy mode... black without question has the best commons and also the
+  deepest roster of commons in the set."* His comparison for scale: *"as good as white was in
+  [Marvel]."*
+- **But do not force it.** The single most common way a draft went wrong in his coaching logs:
+  *"I started black, I hung on to black for dear life, and it was clear there was a lot of other
+  people fighting at the table for black, and I ended up with a mediocre deck."* His framing:
+  **black is your default, not your commitment.** He has seen tables with six drafters in black
+  while a great W/U or R/W deck flies around.
+- **The unsupported pairs are good, and W/B is the best of them.** *"White black I think is my
+  favorite of the bunch."* The path in: black is open, and you pick up one of white's many strong
+  rares. It has real synergy, not just card quality — black's two common equipment (Crude Bent
+  Blade, Goblin Plate Mail) feed white's equipment-matters and storied cards, white's tokens feed
+  black's sacrifice effects, and white's bodies keep the equipment attacking. When he built ~9
+  sealed pools for the Arena Direct that week, **three were W/B**. U/B is also fine on raw black
+  depth. He has barely seen W/G, R/G or U/R.
+- **U/G elves is the one that missed.** *"Substantially worse than the other four main decks...
+  Blue Green's plan doesn't line up with what the rest of the format really rewards. This is a get
+  on board racing format."* Still draftable — but **don't build it as a late-game value deck, and
+  don't chase the elf theme** (see Archetypes).
+- **The format is fast, and creature sizing is the currency.** *"What's already rewarded in the
+  format is just stats on board. You want your creatures to be able to attack and block really well
+  as soon as possible."* The card he uses as the negative example: **Wood Elves** — *"three mana 1/1
+  — yeah, just ain't it."*
+
+### The three gameplay rules he closes on
+
+1. **Sequencing matters more than usual, because the games are short.** *"In a format like this
+   where there are fewer turns, fewer decisions overall, every decision matters that much more...
+   it's more punishing."* Same logic as unspent mana: in a six-turn game, one wasted turn is a much
+   larger fraction of the game.
+2. **Do the menace math explicitly.** *"I'm almost sure I've seen a lot of folks put themselves dead
+   on board because they didn't realize how much damage I could attack back for."* Two blockers
+   against three menace creatures blocks *one* creature — and a removal spell means it blocks none.
+   Intuition is miscalibrated here; count it out.
+3. **Attack more than you think you should.** *"Taking a defensive stance in a format that is
+   largely about racing is consigning yourself to playing a defensive role"* — which turns off the
+   very cards that are good (a topdecked Goblin Plate Mail matters at 8 life, not at 16). Default:
+   **for the first ~4 turns, just attack**, unless your hand is specifically built around surviving
+   to a bomb.
 
 ## Supersessions
 
-Only one week separates the first episode from the last, so there are no true reversals — but several positions moved, and several on-air disagreements resolved. These are the least stable calls in the file.
+**Prerelease → post-play (2026-08-15).** These are the calls the format actually overturned, and
+they are the highest-value lines in this file.
 
-**Between episodes (First Impressions → primer):**
+- **Goblin-town Flunkies: predicted top red common → cut from the top tier.** Alex, on air:
+  *"Goblin-town Flunkies, which going in I had as the top red common, has super underperformed."*
+  The problem is that the 1/1 haste half *"gets in for like a point of damage if you're on the play,
+  but then it just kind of stops being a real card"* in a format where creature sizing decides
+  combat. He still plays it; he no longer takes it early. **Exception:** a deck genuinely loaded on
+  sacrifice outlets (multiple Stir Up Trouble) wants it back.
+- **Crude Bent Blade: unranked → the best or second-best black common.** *"This is performing at a
+  B+ level on 17Lands, and that's in like the top five black cards in the entire set."* He will
+  **first-pick it and play four or five copies**. This is the card the "Top Common That No One Saw
+  Coming" episode is named for. See Card tips for the full argument.
+- **Gollum, Silent Slinker: unranked → premium black common.** *"This is one that I think flew under
+  the radar for basically everybody."* Hovering around a B on 17Lands. Note the direct conflict with
+  NumotTheNummy, who found it consistently underperformed — Alex's case is that it is a *racing*
+  card and Kenji drafts defensively.
+- **Dwarven Shortsword: predicted top white common → merely playable.** *"I kind of thought this
+  might be like bread-and-butter good white common... even my first copy I'm not thrilled about.
+  I'm going to play it, but not quite in that top common range like I might have expected."* The
+  problem is the four-mana cost.
+- **Long Lake Nuisance: predicted solid → worse than expected (day 1) → underrated by the field
+  (day 4).** He moved twice. Release day: *"I found this card to be worse than I thought it might
+  be... doesn't block well enough on the turn it needs to and doesn't pressure enough to make up for
+  it."* By the State of the Format he lists it among W/U's good common support without complaint.
+  17Lands has it wheeling far later than its win rate justifies. **Treat the day-1 downgrade as the
+  outlier.**
+- **Smaug, the Great Calamity: unsure → confirmed good.** *"One that before playing the set I was
+  kind of unsure how good it would be. And I think it's fine"* — a clunky removal spell that draws
+  a giant threat, taken to round out a removal suite. He notes games in this format are fast *"but
+  they're not so fast that you never cast a seven-drop."*
+- **The gold uncommon signposts: presumed archetype anchors → mostly mediocre.** Said flatly:
+  *"the gold cards, like the uncommon gold cards, are all kind of just not anything special."* He
+  has played **Bolg of the North once**. Exception: **Bard the Bowman** is *"out of all the gold
+  cards, this might be my favorite one."* **Dáin's Company** also survives — *"I totally get not
+  first-picking it because it's a gold card, but I think it's strong enough you should take it out
+  of a lot of packs."*
+- **B/G: "the aggressive build only exists if you get the good uncommons" → the format's #2 deck and
+  Alex's personal best.** *"It's the deck that I've personally had the most success with. I've won
+  with this deck the most."* It also *"absolutely has the most explosive starts out of any deck in
+  the format."*
+- **U/G: "weakest of the five" → confirmed, with a specific fix.** The prerelease read was right,
+  but the diagnosis changed: the problem is not card quality, it is that **people lean into the elf
+  theme**. *"A lot of the elf cards ask you to have a critical mass of elves to be good... to make
+  these cards tick you have to play some bad cards."* Fix: **play the good blue and green cards and
+  ignore elves.**
+- **Sting, Bilbo's Sword and Orcrist, Goblin-cleaver: rares → traps, do not play.** *"Two trap
+  equipment... I think you should basically never play them."* Sting is designed for four-player
+  games; Orcrist is *"super clunky on both ends"* and only barely creeps into playable.
+
+**Between prerelease episodes (First Impressions → primer):**
 
 - **The dual-land cycle (Elvenking's Halls and friends).** Alex on First Impressions: *"these are worse than let's say surveil lands or scry lands."* By the Archetypes episode he had flipped to Mark's view — *"the more I thought about it, the more I'm like, no, actually I agree with your take."* Now rated genuinely strong, because sacrificing for two +1/+1 counters on a creature type your deck is already full of needs no build-around. Mark's kicker: in B/G it can make your signpost five power, turning on ferocious.
 - **Storied timing.** A First Impressions commenter asked whether storied would be too slow. Alex's answer hardened across all three later episodes: **storied is not a build-around**, it turns on incidentally, and you should build R/W as a straight aggro deck. Mark: *"more like a tiebreaker instead of a true build-around"* — your 23rd card might become an extra artifact, nothing more.
@@ -56,25 +178,69 @@ Only one week separates the first episode from the last, so there are no true re
 
 ## Archetypes
 
-The contract's usual 10-pair ranking doesn't apply — HOB has five. Ranked by the primer's combined read:
+The contract's usual 10-pair ranking doesn't apply — HOB has five. **The prerelease ranking below
+survived contact with the format** (B/R first, U/G last), so what follows is the primer's read with
+the post-play corrections folded in. Alex's week-one Arena BO1 win rates: **B/R 57.8 · B/G 56.8 ·
+R/W 55.8 · W/U 55.6 · U/G well behind**.
+
+**What changed after playing:** the three white/blue decks are much closer to the black decks than
+the prerelease read implied; the gold signposts are mostly not the reason to be in a pair; and the
+unsupported pairs — **W/B above all**, then U/B — are legitimate destinations rather than
+consolation prizes. See the Week-one verdict section.
+
 
 **1. B/R — Goblins / amass / sacrifice.** Signposts **Bolg of the North** (gold) and **Fearsome Goblin Pair** (hybrid). Deepest color pair at every rarity, plus the best removal access. Two builds: **go tall** (stack counters on one army, kill them with it) or **sacrifice-loop** (amass one, sac it for value, repeat). Alex: don't be too precious about which — *"the more red you have, the more aggressive you are; the more black you have, the more attrition-y mid-range-y you are."* A near-mono-red deck is plausible given red's common depth.
 
 **Amass mechanics that matter:** it's a **go-tall** mechanic, not go-wide — the first amass makes a 0/0 army and puts the counters on it; later amasses stack onto the same army. If the army dies you start over. Corollary: **one removal spell erases the whole investment**, and a stacked army is effectively hasty (adding counters to an existing army means those stats attack immediately).
 
+**Post-play (B/R):** it is *"much more of a just-kill-you deck rather than a sacrifice attrition
+deck."* Sacrifice-outlet cards (Snowslope Hunter, Stony-Voiced Goblins, Bolg of the North) are
+playable but off-plan — Alex leans *"squarely towards static creatures that can attack well on
+their own."* The deck can run **10–12 real creatures** because equipment and amass sorceries fill
+the creature slot and also turn on Bothersome Noisemaker.
+
 **2. R/W — Dwarves / equipment / storied.** Signposts **Thorin Oakenshield** (gold) and **Dáin's Company**, **Dwalin, Weaponmaster**, **Nori, Teller of Tales**, **Bifur, Melodic Rider** (hybrid). Build it aggressive — Alex: *"nine out of ten times your pool will want you to build that as aggressive as you can."* Mark is *"looking forward to playing"* this one most, for the decision density: where to move equipment, when to attack, tricks vs. value.
 
 **Storied** = if you control three or more artifacts, legendaries, and/or sagas, you have an enduring story for the rest of the game. It's a **player designation** like the city's blessing — once earned it can never be lost, even if your permanent count drops. Support exists in all three categories (many legends, mostly-equipment artifacts, a saga cycle), so it turns on incidentally. Note the tension: trading off your legendary creatures can cost you the third permanent before you get there.
+
+**Post-play (R/W):** the reason to be here is that **people pass the rares**. Alex: *"there are
+some really strong rares for this deck that I've been passed a lot in pack one. I'm not sure if
+people just don't think they're strong cards or maybe don't like red-white."* Dáin Ironfoot,
+Dwalin Weaponmaster and Dáin's Company all come later than they should. **Storied is a non-issue in
+practice** — *"I just haven't seen a red-white opponent not have storied by turn five. It is almost
+impossible"* — so stop building around it and stop holding Thorin Oakenshield back to keep it.
 
 **3. B/G — Ferocious / wolves, bears, spiders.** Signposts **The Chief Warg** (gold) and **Large Bear**, **Duskwatch Hunter** (hybrid). This is **B/G aggro**, not the usual graveyard grind. Its commons are unimpressive; **the power is concentrated at uncommon**, so the aggressive build only exists if you get the good uncommons (**Nasty Little Rabbit**, **Desolation Prowler**, **Nighthowl Pursuer**). Without them, build a normal mid-range deck — that's fine too.
 
 **Enabler count for ferocious: eight to ten** four-power creatures and power-boosters, counting equipment and counters, not just naturally-large creatures. Mark's caveat: eight enablers is worse than it sounds if three or four of them are six-drops, because every turn you wait to trigger is a turn you don't attack. Target shape: *"one third payoffs, one third four-power creatures, one third removal plus other stuff."*
 
+**Post-play (B/G):** confirmed as the #2 deck and Alex's personal best record. It is the most
+explosive opener in the format — **Nasty Little Rabbit into Desolation Prowler** on turn two — and
+Nasty Little Rabbit's opening-hand win rate on 17Lands was **67%**, which he calls a number very few
+cards reach. Its threats are so cheap and so hard to block that the opponent is forced into removal
+rather than blocks, which is what makes the green protection spell **Warg Tactics** unusually good
+here: your clock is already set up on turns 1–3, so you can hold mana from turn four onward.
+
 **4. W/U — Humans / draw-two / recruit.** Signposts **Bard the Bowman** (gold, the only signpost on neither reviewer's list) and **Patient Instructor**, **Eagle's Rescue** (hybrid). Mark: *"mostly a blue deck"* — the enablers are strong, the payoffs are thin, and white contributes little at common.
 
 **Recruit** = draw a card, then discard a card; if you discarded a nonland card, create a 1/1 white Human Soldier token. Slightly better than connive on average, and different in kind: connive makes your deck more aggressive, recruit *prolongs* games by leaving ground blockers. In a set full of equipment, any 1/1 body is a real threat waiting for a weapon. Every card with recruit on it is worth playing.
 
+**Post-play (W/U):** *"rivals the black decks in just how deep the payoffs and the enablers are.
+If blue-white is reasonably open in your seat, I don't think you'll have a tough time making
+playables."* It is **skill-intensive** and it is good *against* the black decks specifically: recruit
+makes 1/1 tokens, which blunt the menace creatures that are black's main way of pushing damage. It
+also lets you find white's busted rares far more often than any other deck. **The common mistake:
+discarding lands to recruit too often** — a free 1/1 is frequently the better outcome. *"Ask, would
+I like a free 1/1 here? Is that better than the card in hand that I might not actually have time to
+cast?"*
+
 **5. G/U — Elves / landfall.** Signposts **Silvan Reveler** (gold) and **Thranduil, Sindarin Liege** (hybrid). Weakest of the five on both lists. Alex: *"the worst or the least supported or the one with the most junky cards."* Short on playable two-drops, and the elf payoffs are underwhelming. Alex's Sealed advice: *"if it's at all close, this is the deck that I would maybe lean away from."*
+
+**Post-play (U/G):** draftable, but **not as an elf deck and not as a value deck.** *"Just play the
+good green and blue cards and don't lean into the elf stuff... blue is a good color and green, while
+probably the worst color, isn't a bad color."* **Thranduil, Sindarin Liege** is the exception that
+doesn't need elf density — it is self-fuelling. If you open **Thranduil's Company** or the lane is
+wide open, take it and build stompy/draw-two rather than tribal.
 
 **Unsupported pairs:** W/B, W/G, U/B, U/R, R/G have no signposts and no payoffs. Of these, U/R and U/B are live off raw card quality (see the Grixis note above).
 
@@ -110,6 +276,24 @@ Format: `- **Card** — list position (source). Note.` Positions are the primer'
 - **Thorin's Last Stand** — not ranked. {2}{W}{W} instant, modal: +2/+1 to your team **or** destroy an artifact/enchantment. Mark nearly put it in his top three white commons — *not* because the set goes wide, but because **instant-speed artifact destruction is genuinely good in a set this full of equipment**, and it answers The Arkenstone.
 - **Well-Worn Spatula (?)** — not ranked. Referred to only as *"a one mana short sword that I think gains two life."* {1} is the only common equipment matching. The 23rd card you play to reach equipment critical mass for **Thorin, Mountain-king**.
 
+
+**Post-play additions (2026-08-12 → 08-15):**
+
+- **Celebrate the Mountain-king** — *"another potential best uncommon in the set."* Confirmed as the
+  premier white card below rare: exile a nonland permanent, get a body's worth of value, and trigger
+  your draw-two payoffs. *"Absurdly good. Could be the best uncommon."*
+- **The Mountain-king's Return** — **underrated.** {2}{W} saga: recruit, then reanimate a creature
+  with mana value 3 or less, then a +1/+1 counter. *"Just a lot for your three mana, while triggering
+  all of your draw-two payoffs."*
+- **Dwarven Shortsword** — downgraded, see Supersessions. Four mana is the problem; play the first
+  copy, don't take it early.
+- **Well-Worn Spatula** — a real playable he stumbled into. One mana, gain 2 life, {1} equip for
+  +1/+1. *"I put this card in a deck because I was missing a playable and I ended up kind of really
+  liking it."* Useful proof of how much +1/+1 matters when both boards are 2/2s into 3/3s into 4/4s.
+  Free filler if a rare has left you short on equipment.
+- **Moment of Glory** — worth a slot in a token-heavy W/U build, and it doubles as good recruit
+  fodder. Don't run three.
+- **Magnificent End** — still white's only removal, still a splash target.
 ### Blue
 
 - **Bilbo Baggins, Burglar // Take a Glance** — top common #1 (both). Possibly **the best common in the set**. Three-mana 2/1 that draws a card, with a {U} scry-2 adventure. Absurd in an opening hand (keeps one-landers), still live in top-deck mode. Legendary, but Alex would happily play three.
@@ -123,6 +307,24 @@ Format: `- **Card** — list position (source). Note.` Positions are the primer'
 - **Enchanted River's Grasp** — not ranked, named only as *"the lockdown enchantment in blue."* Alex: *"always close to a top common."*
 - **Confusticate and Bebother (?)** — not ranked, named only as *"a counterspell that I think's pretty good."* The only {2}{U} common instant.
 
+
+**Post-play additions (2026-08-12 → 08-15):**
+
+- **Lakeshore Apothecary** — the best common payoff for drawing two. *"If you've built your deck
+  right, you're triggering this almost every turn."* Alex's framing: it is W/U's Nasty Little Rabbit.
+- **Bilbo, Luckwearer** — confirmed excellent: two-mana unblockable looter that triggers every
+  draw-two payoff, plus an adventure that trades a 1/1 token for their best permanent.
+- **Plunder the Trollshaws** — quietly important: it draws **two cards in one shot** on the flashback,
+  so it turns on draw-two payoffs *on the opponent's turn*, which almost nothing else does. It is
+  also the best card to discard to recruit.
+- **Master's Councillors** — a 1/3 vigilance that grows to a 5/3; the mill is mostly decoration.
+  *"I haven't really seen anybody get decked by this just yet."*
+- **Long Lake Nuisance** — see Supersessions; the day-1 downgrade did not hold.
+- **Old Fat Spider Can't See Me** — the blue uncommon saga, and the reason green has no saga. Alex
+  rates it **clearly below the Mardu sagas**. Playable, not a priority.
+- **Timing note (load-bearing):** several draw-two payoffs (Lakeshore Apothecary, Lake-town Toymaker)
+  want their trigger **before combat**, and Bilbo's loot only fires **after** combat damage. Sequence
+  accordingly — this is a real cost of building around Bilbo.
 ### Black
 
 - **Bilbo's Deadly Slice** — top common #1 (both, by consensus placement — **neither reviewer actually ranked it first**). Reprinted Murder at {1}{B}{B}. The usual C+ to B− efficient common you're always happy to play.
@@ -140,6 +342,51 @@ Format: `- **Card** — list position (source). Note.` Positions are the primer'
 - **Gathering of Darkness** — not ranked; discussed. {3}{B} sorcery: raise a creature from the graveyard to hand, amass Goblins 3. Gravedigger has been power-crept out, but the 3/3 of stats — often effectively hasty if you already have an army — makes it playable and probably good.
 - **Fearsome Goblin Pair** — not ranked, referenced as *"the red black hybrid uncommon, a three mana 1/1 that dies to amass 4."* A card you **want** to sacrifice.
 
+
+**Post-play additions (2026-08-12 → 08-15):**
+
+- **Crude Bent Blade** — **the top common in the set on Alex's post-play list**, and the subject of
+  a dedicated segment. Performing at a **B+ on 17Lands, top-five black card in the set.** He
+  first-picks it and will play **four or five copies**. The argument, in full:
+  - The template — three mana, opponent sacrifices, *you keep something* — is a known overperformer
+    (compare **Cornered by Black Mages** in LTR).
+  - Don't read it as removal that kills what you want. It removes *a* creature they invested mana
+    and a card in, and leaves you a **two-mana +2/+1 equipment**, which is a better rate than the
+    format normally offers.
+  - **The fail case is still fine.** They sacrifice a 1/1 recruit token, and you still have the
+    equipment. *"If you've had this card cast against you, it probably feels worse than when you
+    cast it"* — the opponent had blocks planned that no longer work.
+  - **It is good against amass, not bad against it.** Amass is go-tall; when all their counters are
+    on one army, the sacrifice is a pseudo two- or three-for-one. Its *worst* matchup is recruit
+    (go-wide tokens), and even there it is fine.
+  - It enables ferocious for two mana, and it converts every future topdeck into a threat, which is
+    how the black decks grind: *"suit up my smallest thing, get in, repeat."*
+- **Gollum, Silent Slinker** — premium common. A four-mana 4/3 menace with a one-mana adventure
+  (counter + gain 2 life) is exactly what a racing format wants, and *"just like a one-mana
+  adventure, the fact that you can fit it in anywhere helps you spend more of your mana in a turn."*
+  Rules note: the adventure targets *"target player gains two life"* too, so **removal in response
+  can't blow you out** — the spell still has a legal target. **Legend cap: play two.** Three gets
+  punished (he lost a game to exactly that on stream). Hobbit Hole finds it.
+  General heuristic he offers: *"if you see a Gollum in a pack, it's going to be a good card."*
+- **Ravening Warg** — *"one of the most underrated commons. I love this card."* A {1}{B} 2/2
+  deathtouch wolf that gains 2 life on attack with ferocious online. Deathtouch is unusually good
+  when everyone is sizing creatures; the lifegain wins races outright. He sees it **eighth or ninth**
+  and thinks that is far too late.
+- **Down, Down to Goblin-town** — both reviewers flagged they had ranked it too low prerelease;
+  post-play it is one of the two best uncommon sagas.
+- **Reverent Howl** — a sleeper worth picking up late. The two modes are genuinely different (draw
+  two + lose two on *either* player, or +2/+2 lifelink), which is what makes a modal card good.
+  In a race the lifelink mode *"is almost like a Time Walk."*
+- **Front Porch Sentries** — Alex generally plays this **over Goblin-town Flunkies**, because a 2/2
+  attacks into 3/3s and 4/4s better than two 1/1s do.
+- **Rage into the Valley** — solid; amass two, draw, lose a life. Doubles as a non-creature spell
+  for Bothersome Noisemaker.
+- **Stony-Voiced Goblins** — conditional. Good in the mid-range B/R build, weak in B/G beatdown:
+  *"playing a one-power two-drop on turn two is not exactly what I want."*
+- **Gathering of Darkness** — *"worse than it looks. I was pretty excited for this card going in."*
+  Many black decks are light on real creatures, and the four-drop slot is crowded. Better once you
+  have premium cheap creatures worth rebuying.
+- **Inside Information** — not discussed post-play by LLU, but note 17Lands marks it a trap.
 ### Red
 
 - **Goblin-town Flunkies** — top common #1 (both). {1}{R} 1/1 haste goblin, amass Goblins 1 on entry. Mark's case: it blocks well, attacks well, grows your army, gives you one or two bodies you're happy to sacrifice, and carries relevant creature types. The haste matters more than it looks, and amass onto an existing army is effectively hasty too. Compare Rally at the Hornburg from LTR.
@@ -159,6 +406,34 @@ Format: `- **Card** — list position (source). Note.` Positions are the primer'
 - **Desolation of Smaug** — not ranked, listed as a sweeper. 3 damage to all creatures.
 - **Dori, Bearer of Friends** — not ranked; discussed. {2}{R} 3/2 trample legendary dwarf making a Treasure. Cheap storied fuel: curve Thorin Oakenshield into this and you're two-thirds of the way there on turn three.
 
+
+**Post-play additions (2026-08-12 → 08-15):**
+
+- **Bothersome Noisemaker** — first among the five premium red uncommons. *"Especially in black-red
+  where you can have like a 12-, 11-, 10-creature deck sometimes,"* because equipment and amass
+  sorceries fill creature slots *and* trigger it.
+- **Gandalf, Spark Starter** — *"one I've seen people be sort of unsure of, but I think is very good
+  and you should take it about as high as these other cards."* Six mana for a 4/3 reach that deals
+  3 damage divided on entry. The six-mana objection doesn't hold in a fast format if the rest of the
+  curve is sound — and it catches you up when you're behind. **He plays multiples.**
+- **Burn, Burn, Tree and Fern** and **Misty Mountains Raider** — both premium uncommons, no caveats.
+  Misty Mountains Raider is a *"must-kill."*
+- **Pinecone Strike** — *"very strong, take it fairly highly."* **PSA:** it is **not** modal-exclusive
+  — *"you can do both. You can blow up your opponent's axe token and kill their creature."* Several
+  players misread this.
+- **Tidings of War** — *"pretty solid. I always play the first copy."* Nice to start the army on
+  turn one, and a cheap one-drop is real **protection against the opponent's Crude Bent Blade**. Don't
+  load up.
+- **Smaug, the Great Calamity** — see Supersessions. Good enough to round out a removal suite.
+- **Goblin-town Flunkies** — see Supersessions; the predicted top red common that underperformed.
+- **Glóin the Mighty** — liked. The **Easy Pickings** adventure (3 mana, 1 damage to each opposing
+  creature) kills the whole recruit token squad, and the overlooked line is **casting it post-combat**
+  to finish off creatures that just blocked.
+- **Bifur, Melodic Rider** — a six-mana 4/5 that plays like a titan: enters *and* attacks putting
+  counters, doubled if you have an enduring story (which R/W always does).
+- **Dori, Bearer of Friends** — a 3/2 trampler making a treasure for three. Trample matters with
+  equipment; the treasure is 2/3 of the way to storied on its own.
+- **Snowslope Hunter** — playable but **off-plan** for B/R as Alex builds it. Numot rates it higher.
 ### Green
 
 - **Quarrel** — top common #1 (**the only common both reviewers agreed on**). {1}{G} instant fight-style removal. Mark: *"it's not a very exciting card... this being potentially green's best common is not a great sign for the color overall."* Plays especially well with Attercop.
@@ -175,6 +450,37 @@ Format: `- **Card** — list position (source). Note.` Positions are the primer'
 - **Little Bear** — not ranked; discussed. {2}{G} 3/2 flash that untaps another creature (+1/+1 counter if it's a bear).
 - **Gigantic Big Bear** — not ranked, referenced only as *"like a 10/7 bear at rare."*
 
+
+**Post-play additions (2026-08-12 → 08-15):**
+
+- **Desolation Prowler** — *"my favorite uncommon in the set, and I think it is the best uncommon in
+  the set."* Effectively a **two-mana 4/4**: it turns on every ferocious payoff on turn two, dodges
+  the format's three-damage burn, and cannot be blocked profitably. *"If you're not already taking
+  this card extremely highly, I would recommend doing so."*
+- **Nasty Little Rabbit** — a one-mana ferocious payoff that grows itself (ferocious checks its own
+  power, so equipment or a counter is enough). **67% opening-hand win rate on 17Lands** — a number
+  very few cards reach.
+- **Nighthowl Pursuer** — same self-checking-ferocious trick, with menace. Good in B/R too.
+- **Mirkwood Pathmaker** — *"an excellent uncommon... simple but effective."* A three-mana \*/\* equal
+  to your land count that grows every turn for free. In-draft: *"this card just gets out of hand real
+  quick."*
+- **Attercop** — 2/1 reach deathtouch with landfall +1/+1. *"A knockoff Desolation Prowler is still a
+  card I like."* Better with Hobbit Hole / Elven Passage for the landfall trigger.
+- **Wargling** — **Alex disagrees with the data on this one.** *"Last I checked it was hitting like a
+  D+, and I don't think this is a D+ two-drop. I've been perfectly happy to slot it in."* (It has
+  since climbed to roughly average on 17Lands.)
+- **Duskwatch Hunter** — the B/G hybrid 3/1 that **can't be blocked by tokens** (blanks amass armies
+  *and* recruit tokens) and puts a counter on entry, so it's another cheap ferocious enabler.
+- **Warg Tactics** — unusually good in B/G specifically. Because your threats cost 1–3 mana, you can
+  deploy the clock early and hold up protection from turn four; *"your opponent is really pressed
+  into playing into this."*
+- **Mirkwood Nurturer** — powerful but **misprinted into the wrong colors**. Its value comes from
+  re-buying enters-the-battlefield permanents and sagas, and the best of those are the Mardu ones.
+  *"It's a lot better in other color combinations."*
+- **Wood Elves** — the explicit negative example for the format. A three-mana 1/1 *"just ain't it."*
+- **Woodland Weavemaster (?)** — the green elf-lord/mana-dork. *"Actually fairly powerful. The problem
+  is, to make it consistently good you need to put a lot of elves in your deck, and a lot of the elf
+  cards are just not good."* (Caption name uncertain.)
 ### Multicolor and hybrid
 
 - **Goblin Plate Mail** — top "other" common #1 (both). {1}{B/R} equipment: amass Goblins 1 and auto-attach; +1/+0 and menace; equip {4}. Effectively a two-mana 2/1 menace goblin that leaves an equipment behind. Alex: *"this reads like an uncommon... compare this to any of the white commons."* The equip {4} is often bypassable via the set's snap-on effects, and both halves are sacrifice fodder.
@@ -198,11 +504,49 @@ Format: `- **Card** — list position (source). Note.` Positions are the primer'
 - **The Arkenstone // Seek the Heart** — mythic #2 (both). {5} legendary artifact: +1/+1 to your team and draw a card each end step; adventure is {2}{W} tutor a legendary creature to hand. Both reviewers think **the adventure is a trap** — given the choice on turn three between casting Seek the Heart and playing a two-drop, play the two-drop. Widen your board so the anthem matters; once the artifact lands and draws every turn, you win anyway.
 - **Smaug the Magnificent** — not covered by LLU. (Named in outside coverage as a four-mana 4/3 haste flier that ramps.)
 
+
+**Post-play additions (2026-08-12 → 08-15):**
+
+- **The gold uncommon signposts are, as a class, mediocre.** See Supersessions. Alex on **The Chief
+  Warg**: *"a four-mana 3/3 — eh, okay. My cheaper creatures hit a lot harder."* On **Bolg of the
+  North**: played it once. On **Thorin Oakenshield**: *"a totally fine two-drop... don't be afraid to
+  trade this off"* — he's seen players refuse to attack with it to protect the ward ability, which
+  is wrong.
+- **Bard the Bowman** — the exception. *"Out of all of the gold cards, this might be my favorite
+  one."* The lifelink trigger is the key card when racing the black aggro decks.
+- **Dáin's Company** — take it out of most packs despite the gold cost: a 2/2 lifelink that digs
+  four cards deep for a dwarf or equipment.
+- **Dwalin, Weaponmaster** — {R/W}{1} 2/1 first strike that puts a **hone counter** (+1/+0) on each
+  equipment on entry *and* on attack. New counter type; *"deceptively good."*
+- **Dáin Ironfoot** — *"best of the bunch"* for R/W rares and *"a must-kill that leaves around a
+  little something."* Consistently passed too late.
+- **Thranduil, Sindarin Liege** — the U/G hybrid that **doesn't need elf density**; self-fuelling.
+  The one elf card to build toward.
+- **Bard's Company** — *"very, very good... big old power-level buff to the deck."*
+- **Thranduil's Company** — a genuine bomb; take it and build blue-green *without* the elf theme.
 ### Colorless
 
 - **Dwarven Mattock** — synergy uncommon (Mark). {2} equipment: auto-attaches to a dwarf on entry; +2/+2 and ward 1; equip {3}. The one-into-two curve attacks for four on turn two. **Pretty bad without the free attach — wants ~10 dwarves.** Note it does *not* get Dwarven Mauler's equip discount on the free attach, so that combo loses a little value.
 - **Thrór's Map**, **Giant's Boulder**, **Troop of Ponies**, **Old Thrush**, **Long-Bodied Grey Dog**, **Hobbit Hole** — see [Fixing](#fixing).
 
+
+**Post-play additions (2026-08-12 → 08-15):**
+
+- **Goblin Plate Mail** — *"the best aggressive two-drop you can find at common."* Effectively a
+  turn-two 2/1 menace that leaves an equipment behind if they remove it, so trading removal for it
+  feels bad. **Multiples play worse than most good commons**: the second copy is closer to an aura
+  than a creature, and you can usually only spend four mana moving equipment once per turn. **Three
+  copies is his happy number** — the cost of sometimes drawing two is worth seeing the first copy on
+  turn two more often.
+- **Dwarven Mattock** — *"quite strong."* Two mana, auto-equips to a dwarf, +2/+2 and ward 1.
+- **Ragged Short Spear** — fine mid-tier equipment (discard a card, draw two on entry; +2/+0).
+- **Well-Worn Spatula** — see White; genuinely playable filler.
+- **Sting, Bilbo's Sword** — **trap, do not play.** Designed for four-player games where an opponent
+  has 25 creatures. *"The first time I read this card I was like, am I missing something?"*
+- **Orcrist, Goblin-cleaver** — **near-trap.** Better than Sting but *"super clunky on both ends."*
+  Don't take it highly.
+- **Iron Hills Blacksmith** — good: a two-mana 1/1 double strike dwarf that makes an axe token — a
+  natural home for the whole equipment suite.
 ### Rares neither reviewer ranked but both flagged
 
 - **The Eagles Are Coming!** — top-3 rare on **both** lists (order differs). {1}{W} instant, kicker {2}{W}: return your own creature(s) to hand; at the next upkeep, make a 4/4 white flier for each. Alex: *"this is either busted or very busted."* Four distinct modes: (1) turn-two return a one-drop, attack with a 4/4 flier on turn three; (2) a two-mana protection spell that leaves a 4/4; (3) kicked offensively at six mana on your turn — birds arrive on their upkeep, can block, attack next turn; (4) kicked defensively as a combat blowout, birds arrive summoning-sick. **Timing warning: the birds appear at the next upkeep, so you must cast it on your own turn if you want to attack with them.** It picks up nontokens without letting you recast them — irrelevant, they're 4/4 fliers now.
@@ -218,5 +562,10 @@ Format: `- **Card** — list position (source). Note.` Positions are the primer'
 - 2026-08-05 — The Hobbit Limited Guide | Top Commons and Uncommons (`nt-OvtlAGBY`)
 - 2026-08-05 — The Hobbit Limited Guide | Rares and Mythics (`-DZnv_Ap-qo`)
 - 2026-08-06 — The Hobbit Prerelease Guide! (`gXrmVcPfg24`)
+- 2026-08-12 — Hobbit Drafts are Here! (`FNrzLlTn8M0`)
+- 2026-08-13 — The Top Common That No One Saw Coming | The Hobbit Draft (`hEXTpSCKK7A`)
+- 2026-08-15 — The Hobbit State of the Format Address! | Draft Guide (`o6jz8EmwdmY`)
 
-Card names were verified against the Scryfall `set:hob` card list (193 cards) — auto-captions mangled most of them. Two names that could not be pinned down with confidence are marked `(?)`.
+Card names were verified against the Scryfall `set:hob` card list (193 cards) and the 188-card HOB
+17Lands list — auto-captions mangled most of them. Names that could not be pinned down with
+confidence are marked `(?)`.

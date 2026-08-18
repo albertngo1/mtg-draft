@@ -4,7 +4,7 @@
   "note": "Fingerprint of distilled scrape. sha1 = sha1 of the cleaned transcript .txt.",
   "counts": {
     "sets": 2,
-    "videos_distilled": 16,
+    "videos_distilled": 19,
     "videos_no_captions": 0
   },
   "sets": {
@@ -13,10 +13,13 @@
       "file": "HOB.md",
       "video_ids": [
         "-DZnv_Ap-qo",
+        "FNrzLlTn8M0",
         "gXrmVcPfg24",
+        "hEXTpSCKK7A",
         "jD3Tr03b2MQ",
         "m-qR8GeZ96A",
-        "nt-OvtlAGBY"
+        "nt-OvtlAGBY",
+        "o6jz8EmwdmY"
       ]
     },
     "MSH": {
@@ -42,6 +45,12 @@
       "set": "HOB",
       "sha1": "94cb0c179f5957119d5c5f0dec6ccb260a5136c2",
       "words": 6993,
+      "distilled": true
+    },
+    "FNrzLlTn8M0": {
+      "set": "HOB",
+      "sha1": "a59da6f3fb73fb94728cc936955d6c1c4f1f46fc",
+      "words": 9207,
       "distilled": true
     },
     "G9kQKcUxWKA": {
@@ -92,6 +101,12 @@
       "words": 2480,
       "distilled": true
     },
+    "hEXTpSCKK7A": {
+      "set": "HOB",
+      "sha1": "93ba122a6bb0451c18578ef31ae6636374aacc9f",
+      "words": 8508,
+      "distilled": true
+    },
     "jD3Tr03b2MQ": {
       "set": "HOB",
       "sha1": "2bbfc8c8254ab01bca631833b9f2c6923143280b",
@@ -114,6 +129,12 @@
       "set": "HOB",
       "sha1": "3064ceae5bc390c13e9522cd3805e5b68121e616",
       "words": 16004,
+      "distilled": true
+    },
+    "o6jz8EmwdmY": {
+      "set": "HOB",
+      "sha1": "c2ed6e43b2ae895d7bc80676be1aa8b2bf7f6407",
+      "words": 13333,
       "distilled": true
     },
     "qb9q7F4rFA8": {
