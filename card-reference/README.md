@@ -8,12 +8,11 @@ Single-file, visual card references for a set: every draftable card as a tile in
 - `build_card_reference.py` — generator. `python3 build_card_reference.py [SET]` (default `SOS`).
 - `ai_takes_<SET>.json` — pre-generated per-card AI verdicts (name → take), committed so the
   build is reproducible without re-running the LLM pass.
-- `brief_<SET>.md` — **optional** format-level strategy brief, injected verbatim between the
+- **Format brief** — an optional per-set `BRIEF` entry in the generator, rendered between the
   archetype map and the card grid. This is where the expert-guide commentary that *isn't* attached
   to a single card goes: the draft plan, gameplay rules, deckbuilding doctrine, traps, and any
-  cross-source disagreements. The point is that the reference is self-contained — you shouldn't have
-  to open `draft-guides/` in a second window while drafting. Plain Markdown, edit it directly; no
-  code change needed to add one for a new set. HOB ships one.
+  cross-source disagreements. The point is that the reference is self-contained — you should never
+  have to open `draft-guides/` in a second window while drafting. HOB ships one.
 - `<SET>-card-reference.md` — the output (open in any Markdown viewer; images are remote Scryfall URLs).
 
 ## Per-card tile
