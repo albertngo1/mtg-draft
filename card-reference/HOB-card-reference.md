@@ -6,23 +6,146 @@
 
 > **Ordering:** cards within each colour are ranked by a combined **ALSA + play-rate** score (rank-average of the two), not by GIH WR — ALSA and play rate are populated from every draft, while GIH WR lags on a new set.
 
-> **Young data.** HOB hit Arena on **2026-08-11**; these numbers are from **140,029 PremierDraft games** (3.48M card-game observations) as of **2026-08-15**, with **179 of 188 cards** carrying a GIH WR. That is a real sample but pick orders are still settling — the 9 cards without a win rate are genuinely unplayed rather than merely unmeasured. Two reviewer-grade sources render side by side: **LR** (Limited Resources 865 + 866, now all 188) and **CGB** (CardGameBase, all 188).
+> **Settled data.** HOB hit Arena on **2026-08-11**; these numbers are from **4,872,395 PremierDraft games** as of **2026-08-17**, with **179 of 188 cards** carrying a GIH WR. Evaluations have converged — the median per-card GIH WR move over the previous 24 hours was **0.20pp** and the largest was 1.2pp, so treat this as close to final. The 9 cards without a win rate are genuinely unplayed rather than merely unmeasured. Two reviewer-grade sources render side by side: **LR** (Limited Resources 865 + 866, all 188) and **CGB** (CardGameBase, all 188).
 >
-> Archetype order from live data, now stable across two snapshots: **Rakdos 57.7% > Golgari 56.7% > Boros 55.8% ≈ Azorius 55.4% > Dimir 53.5% >> Simic 51.0%.** Removal cannot kill small creatures (no Shock, no Stab), so **two-drops are safe** and curve-out plans are rewarded. Damage-based removal caps at 5, making **6-toughness creatures near-unanswerable** at common.
+> Removal cannot kill small creatures (no Shock, no Stab), so **two-drops are safe** and curve-out plans are rewarded. Damage-based removal caps at 5, making **6-toughness creatures near-unanswerable** at common. See the **Format brief** below for the archetype reads, gameplay rules and traps distilled from all four expert guides.
 
-**Archetype win rates** (17Lands PremierDraft, 140,029 games, 2026-08-15):
+**Archetype win rates** (17Lands PremierDraft, 195,883 decks, 2026-08-01 → 08-17):
 
 | WR | Games | Pair | Plan | Signposts |
 |---|---|---|---|---|
-| **57.7%** | 39.4k | **BR** | Rakdos Goblins — amass one huge Army, sacrifice for value; best removal and the deepest colours. Also the most-played deck by a wide margin | Bolg of the North · Goblin Plate Mail · Fearsome Goblin Pair |
-| **56.7%** | 25.0k | **BG** | Golgari Ferocious — black-shaped aggro with green bodies; power 4+ payoffs. **Not** an elves/synergy deck | The Chief Warg · Large Bear · Duskwatch Hunter |
-| **55.8%** | 24.0k | **RW** | Boros Dwarves — storied + equipment; carried by white's rares, not its commons | Thorin Oakenshield · Bifur, Melodic Rider · Nori, Teller of Tales |
-| **55.4%** | 22.2k | **WU** | Azorius Recruit — draw-two payoffs and go-wide tokens; synergy-dependent | Bard the Bowman · Eagle's Rescue · Patient Instructor |
-| **53.5%** | 3.7k | **UB** | Dimir — no signpost and no plan, but black's removal carries it above the off-colour pairs | — |
-| **51.0%** | 12.9k | **GU** | Simic Elves/Landfall — **the worst supported deck by four points**, and the second-most-drafted. Draws cards and makes small bodies without turning the corner | Silvan Reveler · Thranduil, Sindarin Liege · Mirkwood Nurturer |
-| 47–57% | <2k | WB · UR · RG · GW | Unsupported pairs. Orzhov 56.6% on a small sample is the only one above water; **Selesnya 47.5% is the worst pairing in the format** |  |
+| **57.6%** | 55.0k | **BR** | Rakdos Goblins — amass one huge Army, sacrifice for value; best removal and the deepest colours. Also the most-played deck by a wide margin. Post-play read: it is a **kill-you deck, not a sacrifice-attrition deck** | Bolg of the North · Goblin Plate Mail · Fearsome Goblin Pair |
+| **57.1%** | 2.2k | **WB** | Orzhov — **unsupported and the best of the off-pairs.** Black's common equipment feed white's equipment/storied cards; white's tokens feed black's sac effects. Small sample, big signal | — |
+| **56.8%** | 35.3k | **BG** | Golgari Ferocious — black-shaped aggro with green bodies; power 4+ payoffs. The most explosive openers in the format. **Not** an elves/synergy deck | The Chief Warg · Large Bear · Duskwatch Hunter |
+| **55.7%** | 33.4k | **RW** | Boros Dwarves — storied + equipment; carried by white's rares, which get passed too late. **Storied turns on by itself** — stop building around it | Thorin Oakenshield · Dáin Ironfoot · Dwalin, Weaponmaster |
+| **55.3%** | 32.0k | **WU** | Azorius Recruit — draw-two payoffs and go-wide tokens. Skill-intensive; **best deck in top-player stats.** Good *against* the black decks (1/1 tokens blank menace) | Bard the Bowman · Eagle's Rescue · Patient Instructor |
+| **53.8%** | 2.4k | **UR** | Izzet — no signpost, but blue and red are deep enough to carry it | — |
+| **53.2%** | 5.3k | **UB** | Dimir — no signpost and no plan, but black's removal carries it above the other off-pairs | — |
+| **51.9%** | 1.5k | **RG** | Gruul — unsupported; playable as straight beats if both colours are open | — |
+| **51.1%** | 16.9k | **GU** | Simic Elves/Landfall — **the worst supported deck by 4.6 points**, and still the third-most-drafted. **Don't chase elves** — play the good blue and green cards | Silvan Reveler · Thranduil, Sindarin Liege · Mirkwood Nurturer |
+| **46.7%** | 0.7k | **GW** | Selesnya — **the worst pairing in the format** | — |
 
-**Removal benchmarks:** the format's defining constraint is that **removal cannot kill small creatures** — no Shock, no Stab, no cheap white damage spell — so **two-drops are safe** and curve-out plans are rewarded. **Damage-based removal caps at 5**, making 6-toughness creatures (Old Fat Spider, Wilderland Scrounger) effectively unanswerable at common. Premium commons: Pinecone Strike (3 damage + exile) and Bilbo's Deadly Slice (Murder); **Stone by Sunlight is the only efficient uncommon removal** — Troll Negotiations, Burn Burn Tree and Fern and Celebrate the Mountain-king are all four mana. White gets exactly one common removal spell. **Sweepers barely exist**, so going wide is rewarded and anthems are unusually good; **lifegain barely exists**, so there is no stabilising back. **Traps:** synergy decks you can't assemble (this is what sank Simic), splashing off the plentiful fixing, and storied/ferocious payoffs run with too few enablers.
+**Mono-colour benchmark:** Mono-Black **62.1%** (n=1.8k) is the highest win rate on the board — a blunt statement of how far ahead black is. Three-colour decks post **49.1%**; Sultai is **44.4%**. Splash only for removal, and only once the fixing is already in your pool.
+
+**Removal benchmarks:** the format's defining constraint is that **removal cannot kill small creatures** — no Shock, no Stab, no cheap white damage spell — so **two-drops are safe** and curve-out plans are rewarded. **Damage-based removal caps at 5**, making 6-toughness creatures (Old Fat Spider, Wilderland Scrounger) effectively unanswerable at common. Premium commons: Pinecone Strike (3 damage + exile) and Bilbo's Deadly Slice (Murder); **Stone by Sunlight is the only efficient uncommon removal** — Troll Negotiations, Burn Burn Tree and Fern and Celebrate the Mountain-king are all four mana. White gets exactly one common removal spell. **Sweepers barely exist**, so going wide is rewarded and anthems are unusually good; **lifegain barely exists**, so there is no stabilising back. **Menace is the defining keyword** — blocking is close to illegal in many games, which is why removing *a* body matters more than removing the right one. **Traps:** synergy decks you can't assemble (this is what sank Simic), splashing off the plentiful fixing, and storied/ferocious payoffs run with too few enablers.
+
+## Format brief — everything that isn't a single card
+
+Distilled from the four expert guides in `draft-guides/` so you don't need a second window. Sources
+in priority order: **Limited Level-Ups State of the Format** (2026-08-15, post-play, Alex had drafted
+the format for four days and reviewed coaching logs), **NumotTheNummy** (three week-one Premier VODs,
+2026-08-14 → 08-16), **Limited Resources 865/866**, **Lords of Limited crash course** (prerelease
+theory, weakest). On conflict: live 17Lands numbers > post-play takes > prerelease predictions.
+
+### The draft plan in five lines
+
+1. **Black is the default, not the commitment.** *"Drafting black when it's open or semi-open is
+   almost like drafting on easy mode"* — it has the best and deepest commons. But the single most
+   common trainwreck in Alex's coaching logs is *"I started black, I hung on to black for dear life,
+   and it was clear a lot of other people were fighting for black."* Six-drafters-in-black tables are
+   real; a great W/U or R/W deck flies around when that happens.
+2. **Curve out. That is the format.** Numot: *"curving out is overpowered"* and *"something you
+   really need to do in this format is have a low curve."* Games are won by two-drop → three-drop →
+   four-drop with no bombs involved, and lost to exactly that from red-black.
+3. **Take the cheap card at equal power.** *"There are so many good cheap cards that you don't need
+   expensive cards as often. If your cheap cards are good in the late game, why play a six-drop
+   unless it's exceptional?"*
+4. **Being reactive is punished.** *"Trying to just cast a bunch of removal doesn't work very well.
+   There's a lot of recursion, a lot of token makers — you want to be on the front foot."*
+5. **The unsupported pairs are real.** **W/B is the best of them** (black's two common equipment feed
+   white's equipment/storied cards; white's tokens feed black's sac effects; three of nine sealed
+   pools Alex built that week were W/B). U/B is fine on black's depth alone. Numot drafted **R/G** and
+   **U/B splashing green** in week one and neither was a mistake. Don't cage yourself in the five
+   signposted pairs.
+
+### Gameplay rules that actually change results
+
+- **Attack more than you think you should.** *"Taking a defensive stance in a format that is largely
+  about racing is consigning yourself to playing a defensive role"* — which turns off the very cards
+  that are good. A topdecked Goblin Plate Mail matters when they're at 8, not at 16. Default: for the
+  first ~4 turns, just attack, unless your hand is specifically built around surviving to a bomb.
+- **Do the menace math explicitly.** *"I'm almost sure I've seen a lot of folks put themselves dead
+  on board because they didn't realize how much damage I could attack back for."* Two blockers vs.
+  three menace creatures blocks **one** creature — and one removal spell means it blocks **none**.
+  Intuition is miscalibrated here; count it out every turn.
+- **Don't decline a lethal alpha strike over a card they might have.** Numot's one self-diagnosed
+  punt of the run: *"I had an easy win if I attack with everything... I got too scared of what they
+  could have. Why wouldn't I just go in with 50 points of trample damage?"*
+- **Sequencing is punishing because the games are short.** Fewer turns means each decision is a
+  larger fraction of the game — which land, which two-drop, how you double-spell on four.
+- **Every unspent mana is expensive.** In a six-turn game, a wasted mana is a much bigger share of
+  your total than in a ten-turn one. This is the real argument for one-mana adventure halves and
+  cheap equipment: they let you *fill* a turn, not just fill a deck slot.
+- **Take the big hit instead of losing two creatures.** *"Do I double block and lose both of my
+  creatures? Do I take eight? I think taking eight's the play."*
+- **Don't pay optional life when the attack already works** — Desolation Prowler's activation is
+  genuinely dangerous in a deck already paying life elsewhere, and burn range comes up fast.
+- **Where the equipment sits is a play, not upkeep.** *"Move the blade over to the 2/1, that way none
+  of their 1/1s have a good block."* Reassign it every combat.
+- **A fast format only feels fast when one player isn't affecting the board.** *"Games do tend to
+  slow down if both players are coming to the table prepared — matching each other on curve, with a
+  good amount of interaction."* That's why a seven-mana adventure creature is still castable.
+
+### Deckbuilding doctrine
+
+- **Copy counts differ per card and Alex worked them out on air:** Goblin Plate Mail **three** (the
+  second copy plays like an aura, but three means you actually see the first on turn two) · Gollum,
+  Silent Slinker **two** (legend rule; three got punished on stream) · Crude Bent Blade **four or
+  five, no cap** · Tidings of War **one or two** · Moment of Glory **not three**.
+- **Modal cards are good in proportion to how *different* the modes are.** Reverent Howl is the case
+  study: draw-two after a mulligan and +2/+2 lifelink in a race are different games. Apply the same
+  test to Stone by Sunlight and Warg Tactics.
+- **Splash only for removal, and only if the fixing arrived first.** Fixing is plentiful (the dual
+  cycle is in ~50% of packs) but almost nothing is worth splashing — the gold rares aren't
+  splashable and the good uncommons are locked to their pair. **Celebrate the Mountain-king** is the
+  archetypal target.
+- **Ferocious wants 8–10 enablers**, counting equipment and counters, not just naturally-big
+  creatures — and eight is worse than it sounds if three of them are six-drops.
+- **Storied is not a build-around.** It turns on incidentally; in R/W it is nearly automatic. *"I
+  just haven't seen a red-white opponent not have storied by turn five."* Stop holding Thorin
+  Oakenshield back to protect it.
+- **W/U recruit is skill-intensive, and the common mistake is discarding lands.** A free 1/1 is
+  frequently the better outcome — *"ask, would I like a free 1/1 here? Is that better than the card
+  in hand that I might not have time to cast?"*
+
+### Traps and reversals the format has already settled
+
+- **Goblin-town Flunkies** — Alex's predicted top red common; *"has super underperformed."* The 1/1
+  haste half stops being a card after turn two in a format decided by creature sizing.
+- **Crude Bent Blade** — the reverse: unranked prerelease, now the best or second-best black common,
+  first-pickable, four or five copies. Read its tile.
+- **The legendary-equipment cycle** (Sting, Orcrist, My Precious, Balin, Inside Information) all go
+  pick 1–3 and all have **negative IWD**. **Sting is unplayable** — it's designed for four-player
+  games. Orcrist barely creeps into playable.
+- **The gold uncommon signposts are mostly not the reason to be in a pair.** *"The uncommon gold
+  cards are all kind of just not anything special."* Exceptions: **Bard the Bowman** (his favourite)
+  and **Dáin's Company**.
+- **Simic U/G is the broken archetype** — 6+ points behind Rakdos. If you end up there, **don't
+  chase elves**: *"a lot of the elf cards ask you to have a critical mass to be good, so to make
+  them tick you have to play bad cards."* Play the good blue and green cards instead. Thranduil,
+  Sindarin Liege is the one elf card that's self-fuelling.
+- **Blue commons wheel far too late for their strength** — Plunder the Trollshaws, Long Lake
+  Nuisance and Lakeshore Apothecary all post strong win rates at ALSA 6+. The cheapest edge in the
+  format.
+- **Don't first-pick fixing**, and don't play Wood Elves — a three-mana 1/1 *"just ain't it."*
+
+### Cross-source disagreements, left unresolved on purpose
+
+- **Gollum, Silent Slinker** — LLU calls it a premium under-the-radar common and 17Lands agrees;
+  Numot found it *"has underperformed for me consistently."* The likely explanation is the one Kenji
+  names himself: he plays from a defensive posture and this is a racing card.
+- **Dáin's Company** — Numot: *"not very good, right?"* LLU: strong enough to take out of most packs.
+- **Snowslope Hunter** — Numot: *"amazing,"* given how many equipment there are to sacrifice. LLU:
+  playable but off-plan for how he builds B/R.
+- **Wargling** — Alex likes it against the data (*"I don't think this is a D+ two-drop"*); it has
+  since climbed to roughly average.
+
+### Calibration note
+
+Numot went **18-18** on release day and did not trophy in his **first eight drafts** while making
+evaluations that mostly held up. Alex, by 2026-08-15: *"I don't think there's that much more
+exploring of the format to be done."* Treat the week-one read as close to final — which the 17Lands
+convergence supports — but don't rewrite your pick order off one bad weekend.
 
 ## Contents
 
