@@ -1,5 +1,5 @@
 # Numot — general draft principles
-> Evergreen, set-independent draft & play principles distilled across ~205 NumotTheNummy (Kenji Egashira) regular Arena draft VODs. Built 2026-06-10. Expert opinion/theory and the "why" behind picks — and the lens that *decodes* the 17Lands data: every GIH WR is archetype-conditional, so these principles tell you whose-deck a number came from and whether it transfers to yours (see AGENTS.md).
+> Evergreen, set-independent draft & play principles distilled across ~210 NumotTheNummy (Kenji Egashira) regular Arena draft VODs. Built 2026-06-10, last extended 2026-08-17 (HOB week one). Expert opinion/theory and the "why" behind picks — and the lens that *decodes* the 17Lands data: every GIH WR is archetype-conditional, so these principles tell you whose-deck a number came from and whether it transfers to yours (see AGENTS.md).
 
 ## Picking & pick order
 
@@ -15,6 +15,7 @@
 - Hate drafting is not worth it in normal formats; take a playable instead.
 - In bot draft (Quick Draft), bots systematically undervalue certain card types (synergy engines, build-arounds). Don't try to read signals; just take the best card available and exploit what late picks the algorithm provides.
 - In a format dominated by one archetype, value cheap interaction that is specifically good against the dominant deck over generic cards.
+- **A cheap must-answer threat is jammed, not baited.** *"I am slamming the company on three and asking the question: hey, can you deal with this? And if the answer happens to be no, then I like my chances."* This is the exception to holding bombs for a tap-out window — that rule is about **expensive** bombs. A three-mana threat that wins unanswered should hit the board on turn three, because the games where they have the answer were unwinnable anyway.
 
 ## Reading signals & staying open
 
@@ -72,6 +73,13 @@
 - Don't discard your best interaction carelessly to card-draw effects. Always check whether you're throwing away the card you'll need most in two turns.
 - In a losing game: identify the exact outs and play toward them explicitly rather than the hedged play that just extends the losing position.
 - Identify the exact turn and decision where you misplayed. "Turn 3 was my mistake — I Dragon Fired when I didn't need to." Vague self-criticism doesn't improve your game; specific turn identification does.
+- **Don't decline a lethal alpha strike because of a card they might have.** The single named punt of the HOB run: *"I think I punted this game by not attacking with everything. I had an easy win if I attack with everything... I got too scared of what they could have. Why wouldn't I just go in with 50 points of trample damage?"* If attacking with everything wins unless they have a specific card, and losing the race is the alternative, attack. Playing around a card you have no evidence for converts a win into a loss.
+- **Take the big hit rather than lose two creatures.** *"Do I double block and lose both of my creatures here? Do I take eight? I think taking eight's the play."* Life is a resource until it isn't; board presence in a creature format usually is not.
+- **Don't pay optional life or pump when the attack already works.** *"I don't think I'm actually going to pump this turn. I don't think we need to pay any more life and I don't want to get randomly burnt out."* Confirmed correct one turn later — the opponent was holding burn that would have killed the pumped creature. Optional costs are only free when you're not in burn range.
+- **Resolve card-draw and card-selection before your land drop, not after.** *"I got punished there for not drawing first and then playing a land."* A loot, scry or draw can change which land you want in play, or whether you want to hold one at all.
+- **Sequence card-advantage spells so you can actually use what you find this turn.** On an X-spell that exiles cards to cast: *"what maybe you should do here is wait until you can also potentially play a land off of it."* Casting a dig effect a turn later, with the mana to deploy the hits, beats casting it on curve for a bigger X.
+- **Scry toward the activation you're building to, not just toward a spell.** *"I do actually want to put a land on top, cuz that lets us activate our boulder as well."* Land-on-top is the right scry far more often than instinct says when the deck has mana sinks.
+- **Hold fetch lands when your deck has landfall payoffs still in the deck.** *"I used both my fetches before the company was drawn. It's too bad."* Cracking a fetch for a basic you didn't need spends a trigger you can never get back.
 
 ## Mindset & format approach
 
@@ -89,3 +97,5 @@
 - "0-2 is the perfect start for a 7-2." After a bad early run, reset and play your best game — the loser bracket wins are still on the table.
 - Flashback-format events tend to have favorable early-day conditions because players forget how to draft the format. Exploit that unfamiliarity in the first days.
 - Taking breaks from a format refreshes pick-order perspective. Coming back after time off often resets misconceptions that accumulate over grinding.
+- **Name fatigue as a cause without using it as an excuse.** After a punt: *"I'm going to blame literally playing Magic for the last 10 hours. It doesn't excuse it, but it's an excuse."* And earlier the same day, on an 18-18 record: *"admittedly there were a lot of punts with the new cards, but a lot of it was just me getting completely owned."* Separating variance from execution from tiredness is what makes the post-mortem usable.
+- **Expect to be bad at a format for its first week, and draft to learn rather than to win.** *"This is day two of the format being online, so nobody, not even me, knows what's going on really."* Eight drafts into HOB he had not trophied once. Early-format records are not evidence your evaluations are wrong yet.

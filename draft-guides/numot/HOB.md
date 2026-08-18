@@ -242,6 +242,37 @@ pairs** — which is itself the takeaway.
   green-black land?"*
 - **Roads Go Ever, Ever On** — *"good value card for two mana."*
 
+## Play patterns (HOB-specific)
+
+Kenji's gameplay commentary is the bulk of these VODs, and most of it is about tempo decisions in a
+format where the games are short.
+
+- **The three-drop bomb question.** His stated plan with Chief Warg's Company: *"I am slamming the
+  company on three and asking the question: hey, can you deal with this? And if the answer happens
+  to be no, then I like my chances."* It worked repeatedly — *"I played a three-mana bomb and they
+  never killed it and we won."* HOB's must-answer threats are cheap enough that holding them for a
+  safe window is the wrong instinct.
+- **Curving out is the whole game.** *"Curving out is overpowered."* He wins games on the strength of
+  a two-drop into three-drop into four-drop with no bombs involved, and loses to the same from
+  red-black. When a keep is marginal, the question is whether it curves, not whether it has action.
+- **Equipment reassignment is the black decks' engine, and it's a targeting decision.** *"Now we're
+  going to move the blade over to the 2/1, that way none of their 1/1s have a good block."* Where the
+  equipment sits each turn changes which blocks are legal for them — treat it as a play, not upkeep.
+- **Attack before you equip or activate.** He repeatedly attacks first and moves equipment
+  post-combat, so the opponent commits blocks without full information.
+- **Play around the counter-spell tax, not the counterspell.** He lost a lethal swing to a
+  *"counter unless you pay four"* effect after declining to attack with everything the turn before —
+  the error was the cautious turn, not the turn he got countered.
+- **Fetches and cycling lands are held, not cracked on curve.** Hobbit Hole cycling to find Gollum,
+  and Elven Passage held for a landfall payoff, both came up as real decisions. *"I used both my
+  fetches before the company was drawn. It's too bad."*
+- **Life is spendable until you're in burn range.** He declines a Desolation Prowler pump with
+  *"I don't want to get randomly burnt out"* and is proven right by a Pinecone Strike the same turn.
+  The Prowler's two-life activation is genuinely dangerous in a deck already paying life elsewhere:
+  *"I have a lot of self-damage in this deck."*
+- **Racing math beats blocking math.** *"Do I double block and lose both of my creatures here? Do I
+  take eight? I think taking eight's the play."*
+
 ## Pitfalls
 
 - **Amassing into open mana is a blowout.** The clearest tactical lesson in the run, and Kenji wins a
@@ -256,6 +287,14 @@ pairs** — which is itself the takeaway.
 - **Don't first-pick fixing.** He talks himself out of a first-pick dual land twice.
 - **Playing too many six-drops.** *"I love this card. I will probably not be playing this card very
   frequently. Just way too much mana."*
+- **Playing scared with a winning board.** His one self-diagnosed punt of the run, and worth
+  quoting in full: *"I think I punted this game by not attacking with everything. I had an easy win
+  if I attack with everything... I got too scared of what they could have. Why wouldn't I just go in
+  with 50 points of trample damage? Oh, that was so sloppy of me."* In a racing format the cautious
+  line is usually the losing line.
+- **Expecting your first-week record to mean anything.** He went **18-18** on release day and did not
+  trophy in his **first eight drafts**, while making evaluations that mostly held up. Don't rewrite
+  your pick order off a bad first weekend.
 - **Splashing without enough sources.** He passes several splashable removal spells with *"I guess I
   would rather not splash if possible"* — splash only when the fixing showed up first.
 

@@ -78,6 +78,33 @@ Alex's post-play summary of the format, with Arena Best-of-One win rates he read
   as soon as possible."* The card he uses as the negative example: **Wood Elves** — *"three mana 1/1
   — yeah, just ain't it."*
 
+### Deckbuilding doctrine from week one
+
+- **How many copies is a real question this set, and the answers differ per card.** Alex worked
+  through it explicitly: **Goblin Plate Mail — three** (the second copy plays more like an aura than
+  a creature, and you can usually only spend four mana moving equipment once a turn, but three means
+  you actually see the first one on turn two); **Gollum, Silent Slinker — two** (legend rule; he was
+  punished playing three on stream and still defends the third copy as reasonable: *"I'll happily
+  accept I draw Gollum a little more often, for once in a while you draw all three and lose because
+  of it"*); **Crude Bent Blade — four or five, no cap**; **Tidings of War — one or two**;
+  **Moment of Glory — not three**.
+- **Unspent mana costs more in a short format.** *"In a short game you need to spend all of your
+  mana, because every mana you don't spend is a larger percentage of the mana you could have been
+  spending, compared to a format where the games go nine or ten turns."* This is the real argument
+  for cheap adventure halves and one-mana equipment — they let you fill a turn, not just fill a slot.
+- **Cheap beats expensive at equal power.** *"Generally cheap is good in this format. There are so
+  many good cheap cards that you don't need expensive cards as often — the cheap cards do a lot...
+  If your cheap cards are good in the late game, why play a six-drop unless it's exceptional?"*
+  (Note the deliberate exceptions he still takes: Gandalf, Spark Starter and Bifur, Melodic Rider.)
+- **What makes a modal card good is how *different* the modes are.** His case study is Reverent Howl:
+  *"the more different the modes are, the more likely it will be relevant in whatever game state you
+  find yourself in."* Draw-two after a mulligan and +2/+2 lifelink in a race are different games —
+  which is why it outperforms cards with two similar modes. Apply the test to Stone by Sunlight and
+  Warg Tactics as well.
+- **Being reactive is punished.** From release day: *"it is punishing to be reactive. Trying to just
+  cast a bunch of removal doesn't work very well. There's a lot of recursion, a lot of token
+  makers... you want to be on the front foot."* Build a curve, not a control deck.
+
 ### The three gameplay rules he closes on
 
 1. **Sequencing matters more than usual, because the games are short.** *"In a format like this
@@ -175,6 +202,28 @@ they are the highest-value lines in this file.
 - **Anthems everywhere.** An unusual density of team-pump at uncommon and rare, which compounds with the lack of sweepers.
 - **Less exile than usual.** White's removal doesn't exile, black's doesn't either. This raises the value of dies-triggers and recursion (**Tom, Bert, and William**) and of stacking counters on a single creature.
 - **The set is pushed.** Alex, comparing to the previous set: *"where Marvel kind of felt like they were tempering things slightly, I think with this one they're pushing things slightly."*
+
+**Post-play tempo notes (2026-08-15):**
+
+- **A fast format only feels fast when one player isn't playing Magic.** *"In a fast format it will
+  feel much faster to you if you're not affecting the board. In fast formats like this, games do tend
+  to slow down if both players are coming to the table prepared — they're matching each other on
+  curve, they've got a good amount of interaction."* Consequence: the mirror-ish games go long enough
+  that a seven-mana adventure creature like Smaug, the Great Calamity is a real card. The format is
+  fast against a stumbling opponent, not fast in the abstract.
+- **Menace, not amass, is the format's defining keyword.** *"This is really menace-the-format.
+  Blocking does feel kind of illegal in a lot of games when menace is all over the place."* This is
+  the engine behind three separate conclusions elsewhere in this file: why Crude Bent Blade only needs
+  to remove *a* body, why W/U's 1/1 recruit tokens are good defense, and why the menace math is the
+  most commonly miscounted thing in the format.
+- **The format is fast but Alex likes it, and says so against the grain.** *"I know some folks were a
+  little bit lukewarm on it, but that's not me... we haven't had a true good beatdown format in a
+  while."* Useful calibration when reading his card evaluations — he is not grading through a
+  grindy-format lens.
+- **He does not expect much more format exploration.** By 2026-08-15: *"I don't think there's that
+  much more exploring of the format to be done. What we covered today is a lot of what you have to
+  know for the format."* Consistent with the 17Lands convergence — treat the week-one read as close
+  to final.
 
 ## Archetypes
 
