@@ -4,7 +4,7 @@
   "note": "Fingerprint of distilled scrape. sha1 = sha1 of the cleaned transcript .txt.",
   "counts": {
     "sets": 33,
-    "videos_distilled": 149,
+    "videos_distilled": 150,
     "videos_no_captions": 1
   },
   "sets": {
@@ -125,7 +125,8 @@
       "tier": 1,
       "file": "HOB-draft-guide.md",
       "video_ids": [
-        "XLh9YSRvotE"
+        "XLh9YSRvotE",
+        "dXfR2zxQa3E"
       ]
     },
     "IKO": {

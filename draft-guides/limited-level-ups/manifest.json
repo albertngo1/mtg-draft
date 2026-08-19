@@ -4,7 +4,7 @@
   "note": "Fingerprint of distilled scrape. sha1 = sha1 of the cleaned transcript .txt.",
   "counts": {
     "sets": 2,
-    "videos_distilled": 19,
+    "videos_distilled": 20,
     "videos_no_captions": 0
   },
   "sets": {
@@ -14,6 +14,7 @@
       "video_ids": [
         "-DZnv_Ap-qo",
         "FNrzLlTn8M0",
+        "UZ07TLhx5ls",
         "gXrmVcPfg24",
         "hEXTpSCKK7A",
         "jD3Tr03b2MQ",

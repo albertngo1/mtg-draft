@@ -40,7 +40,8 @@ the signal. The post-release episodes are **Alex solo**.
 | 2026-08-06 | The Hobbit Prerelease Guide! | prerelease, Sealed-focused | Least weak |
 | 2026-08-12 | Hobbit Drafts are Here! | release day, 4th–5th draft | Strong |
 | 2026-08-13 | The Top Common That No One Saw Coming | week 1, day 2 | Stronger |
-| 2026-08-15 | The Hobbit State of the Format Address! | week 1 retrospective + coaching data | **Strongest** |
+| 2026-08-15 | The Hobbit State of the Format Address! | week 1 retrospective + coaching data | Strongest (theory) |
+| 2026-08-18 | I Have a New Favourite Common! (draft VOD) | week 2, day 1 | **Strongest (play)** |
 
 ## Week-one verdict (2026-08-15 — read this before the prerelease sections)
 
@@ -300,7 +301,7 @@ There is **a lot** of fixing and, in both reviewers' read, **very little worth s
 **What to actually splash for: removal.** Alex — *"splashing for removal might be the most common thing you splash for in this set,"* because some colors get it much better than others. **Celebrate the Mountain-king** is the archetypal splash target.
 
 - **The dual-land cycle** (Elvenking's Halls, Goblin-town, Iron Hills, Lake-town, Mirkwood) — enters tapped, taps for two colors, and sacrifices for four mana to put two +1/+1 counters on your pair's creature type. Roughly **50% of packs** (TMNT's cycle was 60%). Genuinely strong; no build-around needed since any deck in the pair has 10+ targets. The R/W one is the most feared in play; B/G's hits bears, wolves *or* spiders and can push your signpost to five power.
-- **Hobbit Hole** — Evolving Wilds with **halfling cycling {4}**. Alex: you don't need much upside on an Evolving Wilds to play it, and any upside that keeps flood useful is fantastic. Double landfall triggers in G/U.
+- **Hobbit Hole** — Evolving Wilds with **halfling cycling {4}**. Alex: you don't need much upside on an Evolving Wilds to play it, and any upside that keeps flood useful is fantastic. Double landfall triggers in G/U. Week two: *"I value Hobbit Hole more than most players"* — a second copy goes **way up** once you have real halfling targets (Gollum, Bilbo), and the common line is to cycle it mid-game rather than play it on turn one.
 - **Thrór's Map** — {2} legendary artifact, fetch a basic to hand, then {2},{T}: loot. The best of the colorless fixing; a repeatable loot engine that also feeds draw-two. Mark's worry (three of five archetypes are aggressive) resolved to: just don't cast it on turn two, play it as a four- or five-drop.
 - **Giant's Boulder** — {1}, scry 2 on entry, taps for any color, seven-mana sac to destroy a permanent. The scry is the real text; the fixing is close to irrelevant. Best in G/U where you run more lands. Alex explicitly rejects the Arcum's Astrolabe comparison circulating on Twitter.
 - **Troop of Ponies** — {2} 2/1, sac for two basics (one to battlefield tapped, one to hand). Held back by needing to be cast on turn two and then *not* traded away. Both reviewers uncertain.
@@ -325,6 +326,20 @@ Format: `- **Card** — list position (source). Note.` Positions are the primer'
 - **Thorin's Last Stand** — not ranked. {2}{W}{W} instant, modal: +2/+1 to your team **or** destroy an artifact/enchantment. Mark nearly put it in his top three white commons — *not* because the set goes wide, but because **instant-speed artifact destruction is genuinely good in a set this full of equipment**, and it answers The Arkenstone.
 - **Well-Worn Spatula (?)** — not ranked. Referred to only as *"a one mana short sword that I think gains two life."* {1} is the only common equipment matching. The 23rd card you play to reach equipment critical mass for **Thorin, Mountain-king**.
 
+
+**Week-two addendum (2026-08-18 draft VOD):**
+
+- **Crude Bent Blade is a design mistake, and that is the format's shape.** Alex: *"I do think this
+  card is a mistake. It's too good to be common — it would be fine as an uncommon, a very good one."*
+  His structural complaint is that it inverts what synergy is supposed to do: a synergy piece is
+  normally a weak card that plays well with others, but Blade *"is just a good card on its own and it
+  makes so many other cards better"* — the rich get richer. This is his one solid criticism of a set
+  he otherwise likes more than most players do.
+- **Black is now contested at the table.** *"Black is very good. People have caught on."* His current
+  pattern: start black, then either move out of it or bully your way back in.
+- **Mirkwood Nurturer is the payoff card he's building around.** Picking up Crude Bent Blade with it
+  is *"one of the key synergies in blue-black"*; picking up Stony-Voiced Goblins or Down, Down to
+  Goblin-town turns filler into a value engine. He'll play two or three copies and take them early.
 
 **Post-play additions (2026-08-12 → 08-15):**
 
@@ -428,7 +443,8 @@ Format: `- **Card** — list position (source). Note.` Positions are the primer'
   In a race the lifelink mode *"is almost like a Time Walk."*
 - **Front Porch Sentries** — Alex generally plays this **over Goblin-town Flunkies**, because a 2/2
   attacks into 3/3s and 4/4s better than two 1/1s do.
-- **Rage into the Valley** — solid; amass two, draw, lose a life. Doubles as a non-creature spell
+- **Rage into the Valley** — solid; amass two, draw, lose a life. Week two, softened: *"I thought
+  this card would be a little bit better than it ended up being, but it's still good."* Doubles as a non-creature spell
   for Bothersome Noisemaker.
 - **Stony-Voiced Goblins** — conditional. Good in the mid-range B/R build, weak in B/G beatdown:
   *"playing a one-power two-drop on turn two is not exactly what I want."*
@@ -614,6 +630,7 @@ Format: `- **Card** — list position (source). Note.` Positions are the primer'
 - 2026-08-12 — Hobbit Drafts are Here! (`FNrzLlTn8M0`)
 - 2026-08-13 — The Top Common That No One Saw Coming | The Hobbit Draft (`hEXTpSCKK7A`)
 - 2026-08-15 — The Hobbit State of the Format Address! | Draft Guide (`o6jz8EmwdmY`)
+- 2026-08-18 — I Have a New Favourite Common! | The Hobbit Draft (`UZ07TLhx5ls`)
 
 Card names were verified against the Scryfall `set:hob` card list (193 cards) and the 188-card HOB
 17Lands list — auto-captions mangled most of them. Names that could not be pinned down with

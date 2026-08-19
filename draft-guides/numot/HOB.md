@@ -19,7 +19,8 @@ flagged inline below) but the number wins.
 |---|---|---|---|
 | 2026-08-14 | WOLVES DOMINATE HOBBITS (Premier Draft) | week 1, day 2 | Weakest |
 | 2026-08-15 | This Bear Means Business (Premier Draft) | week 1 | Middle |
-| 2026-08-16 | THE PERFECT HOBBIT DRAFT! (Premier Draft) | week 1 | **Strongest** |
+| 2026-08-16 | THE PERFECT HOBBIT DRAFT! (Premier Draft) | week 1 | Strong |
+| 2026-08-17 | MONO COLOR FORMAT BREAKER (Premier Draft) | week 1, 17 drafts deep | **Strongest** |
 
 Sealed VODs from the same week are out of scope for this channel and were not distilled.
 
@@ -48,6 +49,19 @@ positions moved, and one stayed stubbornly against the data.
 
 ## Format speed / meta read
 
+- **Mono-black is a real deck, and it broke his slump.** (Aug 17.) Seventeen drafts into the format
+  Kenji was at *one trophy and a 54% win rate* — *"really low for me"* — and deliberately changed his
+  approach: take the two-drop over the near-bomb, stay in black, and let the deck become
+  **mono-black**. Result: **7 wins**. The build was four Crude Bent Blades, three Goblin Plate Mails,
+  two Gnashing of Teeth, ten-plus two-drops, 16 lands. *"If I do not have a two-drop on turn two,
+  something has gone wrong."* His own summary: *"What if I just started forcing mono-black every
+  draft?"* This lines up with 17Lands, where Mono-Black posts the highest win rate on the board.
+- **The play/draw gap is the format's headline stat.** *"This is the fastest format... whoever is on
+  the play has the greatest advantage of any format besides cube."* Practical consequence he states:
+  **play first, curve out, don't punt.**
+- **He does not like the format.** Three small sets in a row, and this is the one he rates lowest —
+  five supported archetypes, high repetition, and a lot of early losses. Read his card takes through
+  that; the mono-black VOD is where he sounds like himself again.
 - **Red-black curve-outs are the thing that beats you.** Kenji's single strongest first-week read,
   and he traces it back to sealed: *"we noticed this on the very first day of sealed, but red-black
   curve out is just very, very good."* His 18-18 birthday stream was, by his own account, mostly
@@ -84,6 +98,14 @@ pairs** — which is itself the takeaway.
   picks with no plan, then splashing **Thranduil's Company** off Elven Passage + Old Thrush + a
   green-black dual. His verdict on the shell: *"kind of like a weird blue-black control deck
   splashing for Thranduil's Company."* It won.
+- **Mono-black (Aug 17)** — the deck he broke his slump with. Enabled by black being *"very open"*
+  at the table and by black's own equipment: with four Crude Bent Blades even **Old Thrush** becomes
+  a three-power flier, so the deck needs no second colour for reach. Sixteen lands, ten-plus
+  two-drops, no colour screw. *"An actual mono-color deck in The Hobbit."*
+- **Blue-black control** — his only trophy before the mono-black run, and the archetype he keeps
+  returning to: *"I've been doing incredibly well, better than my other color pairings, with
+  blue-black control, just with all of these draw-multiple-card value cards."* Unsupported, and he
+  drafts it anyway.
 - **Blue-green elves** — never drafted, and late-wheeling Bilbos in VOD 1 make him say *"I'm
   guessing blue-green was the place I was supposed to be"* — meaning it was **open because nobody
   wanted it**, not because it was good.
@@ -134,6 +156,14 @@ pairs** — which is itself the takeaway.
   numbers side against him — this is one of the format's marked traps.
 - **Stir Up Trouble** — taken as removal when the pack is thin; wants sacrifice fodder to be live.
 
+- **Gnashing of Teeth** — *"has been fantastic."* Five toughness is *"a pretty magical number"* in
+  this format, and it is the answer to the white/blue recruit boards that blank point removal. Two
+  copies made his mono-black deck.
+- **Old Thrush** — normally unplayable, but with three or four Crude Bent Blades it is a two-mana
+  flier that equips into a 3/3 in the air. The card that let mono-black skip a second colour for
+  reach.
+- **Ravenous Rats (Stony-Voiced Goblins)** — fine in an equipment-heavy black deck purely as another
+  body to carry a blade.
 ### Red
 
 - **Bothersome Noisemaker** — *"an incredible two-drop... you play this on turn two, and if they
@@ -155,6 +185,8 @@ pairs** — which is itself the takeaway.
 
 - **Desolation Prowler** — *"insane. It's two mana 4/4. Like, this is the two-drop that you want in
   this deck."* Takes it over rares. His highest-conviction uncommon.
+  Aug 17: *"every time I have a Desolation Prowler, I feel like I cannot lose"* — taken over the
+  near-bomb Tom, Bert and William on purpose.
 - **Bejeweled Warg** — *"if you have this on turn two, it can sometimes just run away with the
   game."* But when compared directly: *"Desolation Prowler, amazing two-drop. Honestly, it's
   probably better than Bejeweled Warg."*
@@ -227,6 +259,8 @@ pairs** — which is itself the takeaway.
 
 - **Goblin Plate Mail** — *"one of the better equipment in the format"* and *"plate mail's good."*
   Takes it over comparable commons.
+  Aug 17: three copies in the 7-win mono-black deck — menace is how black closes, and the equipment
+  stays behind after the body trades.
 - **Glamdring, Foe-hammer** — *"is not good... that is a constructed-looking card if I've ever seen
   one."* Matches the 17Lands trap read on the legendary-equipment cycle.
 - **My Precious** — *"interesting. Gives the creature hexproof, can't be blocked."* No verdict; he
@@ -303,6 +337,7 @@ format where the games are short.
 - 2026-08-14 — WOLVES DOMINATE HOBBITS | The Hobbit Premier Draft | MTG Arena (`yqwa9mhQFdI`)
 - 2026-08-15 — This Bear Means Business | The Hobbit Premier Draft | MTG Arena (`l4HWAeytwhM`)
 - 2026-08-16 — THE PERFECT HOBBIT DRAFT! | The Hobbit Premier Draft | MTG Arena (`8Fk-Ocr5GpE`)
+- 2026-08-17 — MONO COLOR FORMAT BREAKER | The Hobbit Premier Draft | MTG Arena (`BecCy-GGJN4`)
 
 Card names were verified against the 188-card HOB 17Lands list — auto-captions mangle nearly every
 proper noun in this set ("vent blade", "Bjorn", "adop", "Shelob's company", "Romanian Rampager").
