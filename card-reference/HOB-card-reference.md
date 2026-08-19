@@ -134,7 +134,7 @@ theory, weakest). On conflict: live 17Lands numbers > post-play takes > prerelea
   them tick you have to play bad cards."* Play the good blue and green cards instead. Thranduil,
   Sindarin Liege is the one elf card that's self-fuelling.
 - **Blue commons wheel far too late for their strength** — Plunder the Trollshaws, Long Lake
-  Nuisance and Lakeshore Apothecary all post strong win rates at ALSA 6+. The cheapest edge in the
+  Nuisance and Lakeshore Apothecary all post strong win rates at ALSA 5.8–6.4. The cheapest edge in the
   format.
 - **Don't first-pick fixing**, and don't play Wood Elves — a three-mana 1/1 *"just ain't it."*
 
