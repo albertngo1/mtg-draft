@@ -282,7 +282,7 @@ L.append("**Legend** — **GIH** = Games-in-Hand WR (primary) · **IWD** = Impro
          f"**Play** = play rate{_grade_legend}.  "
          f"🤖 AI · {_guide_legend}.\n")
 CAVEAT = {
-    "HOB": "> **Settled data.** HOB hit Arena on **2026-08-11**; these numbers are from **4,872,395 PremierDraft games** as of **2026-08-17**, with **179 of 188 cards** carrying a GIH WR. Evaluations have converged — the median per-card GIH WR move over the previous 24 hours was **0.20pp** and the largest was 1.2pp, so treat this as close to final. The 9 cards without a win rate are genuinely unplayed rather than merely unmeasured. Two reviewer-grade sources render side by side: **LR** (Limited Resources 865 + 866, all 188) and **CGB** (CardGameBase, all 188).\n"
+    "HOB": "> **Settled data.** HOB hit Arena on **2026-08-11**; these numbers are from **6,001,733 PremierDraft games** as of **2026-08-19**, with **179 of 188 cards** carrying a GIH WR. Evaluations have converged — the median per-card GIH WR move over the previous two days was **0.21pp** and the largest was 1.0pp, so treat this as close to final. The 9 cards without a win rate are genuinely unplayed rather than merely unmeasured. Two reviewer-grade sources render side by side: **LR** (Limited Resources 865 + 866, all 188) and **CGB** (CardGameBase, all 188).\n"
            ">\n"
            "> Removal cannot kill small creatures (no Shock, no Stab), so **two-drops are safe** and curve-out plans are rewarded. Damage-based removal caps at 5, making **6-toughness creatures near-unanswerable** at common. See the **Format brief** below for the archetype reads, gameplay rules and traps distilled from all four expert guides.\n",
     "SOS": "> SOS is a soup/Converge format — multicolor & Converge win-rates are inflated by 4-5c "
@@ -344,19 +344,19 @@ L.append(CAVEAT.get(SET, ""))
 
 # ---- archetype map (set-specific 10 color-pair guilds) -----------------------
 ARCHETYPES = {
-    "HOB": "**Archetype win rates** (17Lands PremierDraft, 195,883 decks, 2026-08-01 → 08-17):\n\n"
+    "HOB": "**Archetype win rates** (17Lands PremierDraft, 227,771 decks, 2026-08-01 → 08-19):\n\n"
            "| WR | Games | Pair | Plan | Signposts |\n|---|---|---|---|---|\n"
-           "| **57.6%** | 55.0k | **BR** | Rakdos Goblins — amass one huge Army, sacrifice for value; best removal and the deepest colours. Also the most-played deck by a wide margin. Post-play read: it is a **kill-you deck, not a sacrifice-attrition deck** | Bolg of the North · Goblin Plate Mail · Fearsome Goblin Pair |\n"
-           "| **57.1%** | 2.2k | **WB** | Orzhov — **unsupported and the best of the off-pairs.** Black's common equipment feed white's equipment/storied cards; white's tokens feed black's sac effects. Small sample, big signal | — |\n"
-           "| **56.8%** | 35.3k | **BG** | Golgari Ferocious — black-shaped aggro with green bodies; power 4+ payoffs. The most explosive openers in the format. **Not** an elves/synergy deck | The Chief Warg · Large Bear · Duskwatch Hunter |\n"
-           "| **55.7%** | 33.4k | **RW** | Boros Dwarves — storied + equipment; carried by white's rares, which get passed too late. **Storied turns on by itself** — stop building around it | Thorin Oakenshield · Dáin Ironfoot · Dwalin, Weaponmaster |\n"
-           "| **55.3%** | 32.0k | **WU** | Azorius Recruit — draw-two payoffs and go-wide tokens. Skill-intensive; **best deck in top-player stats.** Good *against* the black decks (1/1 tokens blank menace) | Bard the Bowman · Eagle's Rescue · Patient Instructor |\n"
-           "| **53.8%** | 2.4k | **UR** | Izzet — no signpost, but blue and red are deep enough to carry it | — |\n"
-           "| **53.2%** | 5.3k | **UB** | Dimir — no signpost and no plan, but black's removal carries it above the other off-pairs | — |\n"
-           "| **51.9%** | 1.5k | **RG** | Gruul — unsupported; playable as straight beats if both colours are open | — |\n"
-           "| **51.1%** | 16.9k | **GU** | Simic Elves/Landfall — **the worst supported deck by 4.6 points**, and still the third-most-drafted. **Don't chase elves** — play the good blue and green cards | Silvan Reveler · Thranduil, Sindarin Liege · Mirkwood Nurturer |\n"
-           "| **46.7%** | 0.7k | **GW** | Selesnya — **the worst pairing in the format** | — |\n\n"
-           "**Mono-colour benchmark:** Mono-Black **62.1%** (n=1.8k) is the highest win rate on the board — a blunt statement of how far ahead black is. Three-colour decks post **49.1%**; Sultai is **44.4%**. Splash only for removal, and only once the fixing is already in your pool.\n\n"
+           "| **57.4%** | 67.3k | **BR** | Rakdos Goblins — amass one huge Army, sacrifice for value; best removal and the deepest colours. Also the most-played deck by a wide margin. Post-play read: it is a **kill-you deck, not a sacrifice-attrition deck** | Bolg of the North · Goblin Plate Mail · Fearsome Goblin Pair |\n"
+           "| **57.3%** | 3.0k | **WB** | Orzhov — **unsupported and the best of the off-pairs.** Black's common equipment feed white's equipment/storied cards; white's tokens feed black's sac effects. Small sample, big signal | — |\n"
+           "| **56.6%** | 43.9k | **BG** | Golgari Ferocious — black-shaped aggro with green bodies; power 4+ payoffs. The most explosive openers in the format. **Not** an elves/synergy deck | The Chief Warg · Large Bear · Duskwatch Hunter |\n"
+           "| **55.7%** | 41.3k | **RW** | Boros Dwarves — storied + equipment; carried by white's rares, which get passed too late. **Storied turns on by itself** — stop building around it | Thorin Oakenshield · Dáin Ironfoot · Dwalin, Weaponmaster |\n"
+           "| **55.4%** | 39.7k | **WU** | Azorius Recruit — draw-two payoffs and go-wide tokens. Skill-intensive; **best deck in top-player stats.** Good *against* the black decks (1/1 tokens blank menace) | Bard the Bowman · Eagle's Rescue · Patient Instructor |\n"
+           "| **53.9%** | 3.0k | **UR** | Izzet — no signpost, but blue and red are deep enough to carry it | — |\n"
+           "| **53.4%** | 7.0k | **UB** | Dimir — no signpost and no plan, but black's removal carries it above the other off-pairs | — |\n"
+           "| **52.2%** | 2.0k | **RG** | Gruul — unsupported; playable as straight beats if both colours are open | — |\n"
+           "| **51.2%** | 19.8k | **GU** | Simic Elves/Landfall — **the worst supported deck by 4.2 points**, and still the third-most-drafted. **Don't chase elves** — play the good blue and green cards | Silvan Reveler · Thranduil, Sindarin Liege · Mirkwood Nurturer |\n"
+           "| **46.8%** | 0.9k | **GW** | Selesnya — **the worst pairing in the format** | — |\n\n"
+           "**Mono-colour benchmark:** Mono-Black **62.3%** (n=2.2k) is the highest win rate on the board — a blunt statement of how far ahead black is. Three-colour decks post **48.6%**; Sultai is **43.6%**. Splash only for removal, and only once the fixing is already in your pool.\n\n"
            "**Removal benchmarks:** the format's defining constraint is that **removal cannot kill small creatures** — no Shock, "
            "no Stab, no cheap white damage spell — so **two-drops are safe** and curve-out plans are rewarded. **Damage-based "
            "removal caps at 5**, making 6-toughness creatures (Old Fat Spider, Wilderland Scrounger) effectively unanswerable at "
