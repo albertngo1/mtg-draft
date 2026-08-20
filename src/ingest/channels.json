@@ -135,6 +135,42 @@
           "Preserve the letter grade on every card bullet; coverage should be near-complete since every card gets reviewed."
         ]
       }
+    },
+    "rough-drafts": {
+      "name": "Rough Drafts (Samp)",
+      "youtube": "https://www.youtube.com/@roughdrafts-magic",
+      "content_type": "Limited podcast built around ONE card per episode, plus per-set 'Hot Topics', 'Grab Bag' and 'Retrospective' episodes",
+      "guide_dir": "draft-guides/rough-drafts",
+      "guide_filename": "<SET>.md",
+      "notes": "Channel #5 (added 2026-08-20). Structurally different from the other four: most episodes are a 30-60 minute deep dive on a SINGLE card, so it yields unusual depth per card rather than breadth per set. Its per-set 'Hot Topics' (early), 'Grab Bag' (mid) and 'Retrospective' (end-of-format) episodes carry the format-level read. Cube episodes are out of scope. Also the only source covering ECL and FIN beyond LoL + Numot.",
+      "distill_format": {
+        "house_style": "shared",
+        "per_set_file": "<SET>.md",
+        "flat_in_guide_dir": true,
+        "channel_files": [],
+        "sections": [
+          "## ⚠ Recency rule (read first)",
+          "### Source timeline (dated table, Phase Hot-Topics/card-episode/Grab-Bag/Retrospective + Weight Weakest→Strongest)",
+          "## Supersessions (what the Retrospective reversed from the Hot Topics episode)",
+          "## Format speed / meta read",
+          "## Archetypes",
+          "## Card tips",
+          "## Deep dives (one subsection per single-card episode)"
+        ],
+        "card_bullets": {
+          "heading": "## Card tips",
+          "format": "- **Card** — note",
+          "machine_parsed": false,
+          "preserve": "for a card that got its own episode, the bullet must link to its `## Deep dives` subsection — the whole point of this channel is that one card gets an hour of analysis"
+        },
+        "recency": "the per-set Hot Topics episode is a first-impressions read (weakest); single-card episodes are argued from played reps at the date recorded; the per-set Retrospective is the settled end-of-format verdict and the most authoritative",
+        "manifest": true,
+        "special_rules": [
+          "A single-card episode is the deepest evidence in the repo for that one card — give it a `## Deep dives` subsection with the host's actual argument (why it over/under-performs, what it asks of your deck, when to take it), not a one-line grade.",
+          "Cube, changelog and rotisserie episodes are OUT OF SCOPE — they are not set Limited.",
+          "An episode titled '<SET> Retrospective + <OTHER SET> Hot Topics' covers two sets — distill each half into its own <SET>.md and never let one set's file mention the other."
+        ]
+      }
     }
   }
 }
