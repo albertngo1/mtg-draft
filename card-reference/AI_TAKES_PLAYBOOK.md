@@ -61,7 +61,22 @@ that set's draft guides. MSH (2026-06) is the reference implementation.
      (ranked, with signposts), plus removal benchmarks and any set-specific rule (e.g. MSH's
      "big-dummy" no-ETB-fatty trap). This is what makes the takes' archetype references legible.
 
-6. **Rebuild + sanity-check:**
+6. **Write the format brief (REQUIRED)** — `card-reference/briefs/<SET>.md`. This is the
+   format-level commentary from the guides that isn't attached to any single card: the draft plan,
+   gameplay rules, deckbuilding doctrine, traps, and where the experts were wrong once the data
+   landed. The reference is meant to be self-contained — a reader should never open `draft-guides/`
+   in a second window.
+   ```
+   python3 card-reference/build_card_reference.py <SET> --scaffold-brief   # writes the template
+   ```
+   Fill in every `TODO` from that set's `draft-guides/` files, scored against the 17Lands numbers in
+   this same reference. **[`briefs/HOB.md`](briefs/HOB.md) is the blueprint** — match its shape and
+   its habit of quoting the hosts directly. Keep it **self-contained to this set**: no comparisons to
+   other sets, except where you are quoting an expert's own words verbatim.
+   The build **fails** while `briefs/<SET>.md` is missing or still holds a `TODO`, so a set cannot
+   ship a brief-less reference by accident.
+
+7. **Rebuild + sanity-check:**
    ```
    python3 card-reference/build_card_reference.py <SET>
    ```

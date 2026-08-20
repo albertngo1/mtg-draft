@@ -4,8 +4,192 @@
 
 **Legend** — **GIH** = Games-in-Hand WR (primary) · **IWD** = Improvement When Drawn (pp) · **ALSA** = Avg Last Seen At (lower = earlier) · **OH/GD** = Opening-Hand / Drawn WR · **Play** = play rate · **CGB** = CardGameBase letter grade.  🤖 AI · 📘 Lords of Limited · 🎙 NumotTheNummy · 🎧 Limited Resources.
 
+
 > MKM is a grindy 2-color guild-midrange format, so GIH WR transfers honestly (little soup inflation). Ratings are 2024 MKM PremierDraft historical data. White pairs (Boros best) sit on top; black is the weakest color.
 
+
+## Format brief — everything that isn't a single card
+
+Distilled from the three expert guides in `draft-guides/` so you don't need a second window. Sources
+in priority order: **Limited Resources #743 Sunset Show** (2024-03-29, the settled end-of-format
+retrospective, plus five earlier episodes), **NumotTheNummy** (21 VODs, 2024-01-30 → 2024-03-24 —
+tier-1 full coverage, so his late VODs supersede his own release-week reads), **Lords of Limited**
+(6 episodes ending in the 2024-03-25 "Gone Too Soon" retrospective). No Limited Level-Ups guide
+exists for this set. On conflict: the 17Lands numbers on these tiles > end-of-format retrospectives
+> release-week predictions.
+
+**The data here is the finished 2024 PremierDraft format — 28.5M games across 296 measured cards.**
+Nothing about MKM will move again; the 2026 Quick Draft re-run shuffles the same cards. That makes
+this the rare brief where every expert claim can simply be *scored*, and several headline calls lose.
+
+**Calibrate to the baseline:** MKM win rates run tight. Game-weighted mono-colour GIH WR spans only
+**54.3% to 56.1%** — a 1.8pp spread across all five colours. A 56% card is average-to-good, not
+excellent, and small GIH differences between commons are mostly noise. Read IWD (does drawing it
+help?) alongside GIH (is it in good decks?); in this format the two disagree unusually often.
+
+### The draft plan in five lines
+
+1. **Boros is the best pair and it is not close — but "all four white pairs" is a myth.** Gold-card
+   GIH WR by pair: **WR 58.2 · UG 57.7 · UR 57.5 · WG 57.4 · WU 57.0 · BG 56.3 · WB 55.6 · UB 55.5 ·
+   RG 54.1 · BR 54.0.** Every source called Boros #1 and every source was right. But Limited
+   Resources' settled line — *"all four white color pairs" are the top tier* — does not survive: WU
+   is 5th and WB is 7th. Only **RW** is a tier of its own.
+2. **Green is dead even with white, not a late-blooming role player.** Game-weighted mono-colour GIH
+   WR: **G 56.1 ≈ W 56.0 > R 55.4 > U 54.9 > B 54.3.** Lords of Limited's colour order
+   (W > G > R = U > B) is the one that matches. LR's *White > Red > Blue ≈ Green >> Black* has green
+   two slots too low, and their *"black is the worst colour by so much"* overstates it — black trails
+   blue by **0.6pp**, not a chasm. Black is last; it is not radioactive.
+3. **Have a turn-two play, and be on the play.** This is the most-confirmed claim in the three guides
+   and nothing in the data argues with it. Every source independently reports the same shape: good
+   two-drops are scarce, four-drops are everywhere, and missing turn two loses to *most* decks rather
+   than just to aggro. LR measured the fewest average turns and the largest on-the-play advantage
+   they had ever recorded on 17Lands; Numot's mantra is *"be on the play, curve out, don't punt — it
+   really is that easy in best of one magic."*
+4. **Cheap instant interaction, ~3 spells minimum.** Ward-2 disguise taxes every removal spell, so
+   the format prices interaction by what it kills a face-down 2/2 for. **Shock (57.0%, IWD +1.5)**
+   over **Galvanize (56.4%, +0.9)** is real but marginal — both are top-15 commons and the hosts
+   over-corrected on Galvanize. The removal that actually pulls ahead is the black uncommon
+   **Long Goodbye (56.8%, IWD +4.2, ALSA 3.0)** and **Extract a Confession (56.1%, +3.0)**, which the
+   guides correctly identify as black's best common ahead of **Murder (55.0%, +2.5)**.
+5. **Take the bomb rare when you open it, especially in black.** MKM's rare pool decides games:
+   **Aurelia's Vindicator 68.6% · Izoni, Center of the Web 65.3% · Vein Ripper 63.6% (IWD +12.9) ·
+   Cryptic Coat 63.2% (+10.2) · Teysa, Opulent Oligarch 61.5% (+10.0) · Doppelgang 62.4% (+9.3).**
+   LR's *"this is why you draft black — not for the common depth, but for the bomb rares"* is the
+   correct reading of a colour that is otherwise last. LSV calling Cryptic Coat one of the best
+   Limited cards he has seen, and Doppelgang his favourite card, both land.
+
+### Where the experts were wrong — judged by 28.5M games
+
+- **Limited Resources' signature Sunset-Show insight does not survive.** #743's flagship claim was
+  three "end-of-format overperformers that flowed late because they look bad": **Red Herring
+  (55.4% GIH, IWD −1.1)**, **Felonious Rage (55.6%, −1.1, ALSA 6.6)**, **Goblin Maskmaker (54.3%,
+  −1.5, ALSA 6.5)**. All three have **negative IWD**. They wheel because the field is right about
+  them, and their respectable GIH is the win rate of the aggro decks that ran them, not a payoff for
+  drawing them. Numot's parallel *"Red Herring so OP, I'm playing three"* reversal fails the same way.
+- **"Connecting the Dots" is the worst early pick in the set — 47.4% GIH, IWD −7.3 at ALSA 4.3.**
+  LR graded it D/F and never revisited; Lords of Limited said *"if your takeaway is never play it,
+  you're more right than wrong."* Both correct. **Numot built combo lines around it and drafted it as
+  a UR draw engine — that is the single clearest expert miss in this set.**
+- **Assemble the Players (47.9%, IWD −7.0, ALSA 3.6) is the second trap of the same shape**, and
+  Numot lists it as a WU key card. **Case of the Pilfered Proof (48.2%, −6.0)** and **Delney,
+  Streetwise Lookout (51.7%, −2.8, first-picked at ALSA 1.7)** round out the early-pick traps.
+- **On the Job is not the Boros breakout.** Both LR and Lords of Limited build the archetype's
+  finish around it — LR calls two copies a build-around, Lords of Limited calls it *"premium."* The
+  numbers: **55.7% GIH, IWD −1.8, and it wheels to ALSA 5.7.** The field passes it to pick six and
+  drawing it makes the deck worse. Boros is carried by its commons, not this card.
+- **Boros' signposts are not the reason Boros is good — which Lords of Limited said, and the data
+  confirms hard.** **Meddling Youths sits at 54.8% with IWD −1.9**; only **Lightning Helix (58.9%)**
+  pulls its weight. The engine is **Novice Inspector (59.5%, +2.7, ALSA 2.8 — the best common in the
+  set)**, **Makeshift Binding (58.5%)**, **Person of Interest (58.2%, +1.6)**, **Dog Walker (57.8%,
+  ALSA 3.5)** and **Case of the Gateway Express (57.7%, ALSA 2.6)**.
+- **Dimir is not the worst pair; Rakdos is.** Lords of Limited's retrospective puts UB last. The
+  gold-card numbers put **BR (54.0%) below RG (54.1%) below UB (55.5%)**. LR's proof point for
+  Rakdos being non-functional — **Judith, Carnage Connoisseur at 50.0% GIH** — is confirmed; she is a
+  2.7-ALSA rare with negative IWD.
+- **Gruul and Orzhov: Lords of Limited was right, Numot was not.** Numot rates RG *"one of the better
+  aggressive decks"* that can 7-1, and WB *"strong when curving."* Lords of Limited puts both at C+,
+  "below the gap." The pair numbers agree with Lords of Limited: **RG 9th, WB 7th.**
+- **Simic is genuinely the best non-white pair (UG 57.7%, #2 overall)** — both LR ("the format's
+  saving grace") and Lords of Limited (A-tier, #2) called this, and Lords of Limited's higher
+  placement is the more accurate one. Marshall's core trifecta all check out and all wheel:
+  **Reasonable Doubt 56.3% at ALSA 6.3 (IWD +1.6)**, **Unauthorized Exit 55.7% at 6.2**, **Deduce
+  55.4% at 5.7**.
+- **Izzet is underrated by everyone.** LR calls it "fine," Numot calls it high-ceiling and fragile,
+  Lords of Limited puts it at B. **UR is the #3 pair at 57.5%**, and its engine cards are real:
+  **Gleaming Geardrake 60.3%**, **Maverick Thopterist 59.6%**, **Detective's Satchel 58.3% (IWD
+  +5.2)**. Numot's instinct to double and triple the Satchel is the correct half of his UR read.
+- **A few retrospective "unplayables" were overstated.** **Not on My Watch** — Lords of Limited's
+  retro calls it unplayable for white; it is **55.5% with IWD +1.2 at ALSA 3.4**, a fine playable.
+  **Scene of the Crime** — called unplayable; it is **54.3%, IWD +0.4**, merely below average.
+  **Public Thoroughfare (52.3%, −0.6) is the one that earns the label.**
+- **The build-around obituary is half right.** LR's central soapbox is that a 7/10-speed format ran
+  the graveyard decks over. By deck quality that holds — **Insidious Roots 51.6% and Chalk Outline
+  51.9%** are among the worst uncommons in the set. But both carry **positive IWD (+2.4 and +2.0)**:
+  they *do* work when you draw them, and the decks built around them were bad for other reasons.
+  Lords of Limited's willingness to draft BG at B-tier is defensible; committing to it blind is not.
+
+### Gameplay rules that actually change results
+
+- **Count the ward-2 tax before you fire removal.** Numot: *"a lot of removal in this format is
+  actually worse than it first appears — Shock frequently is a three-mana kill on a three-drop."*
+  Removal that sidesteps ward — fights (Bite Down on Crime, **57.2%, IWD +2.6, the 6th-best common**),
+  edicts (Extract a Confession), −X/−X (Slice from the Shadows) — is worth more than its rate suggests.
+- **Fire instant removal in response to the face-down play, not after the flip.** Numot punts this
+  repeatedly: *"I should probably fire off the murder in response."*
+- **Check Watchdog before you plan a flip.** It stops *you* turning creatures face up. Numot: *"I do
+  that every single time even though I know the dog has text."*
+- **Hold priority for artifact and clue triggers.** Activate Detective's Satchel before a Drone Smith
+  thopter auto-sacrifices; crack a Clue before its draw resolves to chain into Connecting the Dots'
+  free cast. Arena's auto-pass silently throws the value away.
+- **Don't trust the auto-tapper** when you have flip costs, activated abilities or a trick to hold up
+  — it has cost lines outright.
+- **Combat tricks beat removal more often than usual**, because the threat of a face-down flip makes
+  defenders play scared. Both LR and Numot land on this independently.
+- **Just commit your board.** Every wrath in the set is rare or mythic, and Clue card advantage means
+  everyone rebuilds, so over-committing is rarely the losing line unless you have a specific read.
+
+### Deckbuilding doctrine
+
+- **17 lands is the default. 16 only with an ultra-low curve; 18 for the slower value/control
+  builds** — Numot's own late refinement (*"I want 18 lands again"*), and LSV went to 16 in a
+  removal-tempo UR deck topping out at four mana with surveil duals.
+- **Play the mediocre two-drop.** This is doctrine in all three guides and it shows up in the data as
+  a signature: **Seasoned Consultant (55.1%, IWD −1.9)** and **Museum Nightwatch (55.3%, −1.6)** both
+  post solid GIH with *negative* IWD. That is exactly what "a card the good decks need but drawing it
+  doesn't win the game" looks like. Play them anyway; do not first-pick them.
+- **Cap tap-lands at about two in anything aggressive.** A tapped turn two is a real loss of equity
+  in the fastest window of the game, and **Public Thoroughfare (52.3%)** is close to unplayable.
+- **Escape Tunnel is the fixing worth having** — **55.8% at ALSA 4.1 with 424k games**, the most-played
+  nonbasic in the set. Note its **IWD of +0.2**: it enables the deck, it doesn't win the game.
+- **Aim for zero Suspicious Detonation (51.1%, IWD −1.9)** and don't stack four-drops. Person of
+  Interest is excellent and still clogs when you have three.
+- **Collect Evidence is free — don't warp picks for it.** LR's best-mechanic grade went here precisely
+  because the cards are priced to cast without it, and the graveyard fills from ordinary trading.
+- **Splash only off real fixing.** Green does the heavy lifting; a single-pip splash wants about four
+  sources.
+
+### Traps and sleepers the data settled
+
+- **Worst early picks** (taken by pick 5 on average, negative IWD): Connecting the Dots (47.4%, −7.3),
+  Assemble the Players (47.9%, −7.0), Case of the Pilfered Proof (48.2%, −6.0), Officious
+  Interrogation (49.0%, −3.2), Delney, Streetwise Lookout (51.7%, −2.8 at ALSA 1.7), Mentor of the
+  Meek (52.0%, −2.7), Meddling Youths (54.8%, −1.9).
+- **Cheapest edges — good cards that wheel** (ALSA 5.5+): Reasonable Doubt (56.3% at 6.3),
+  Fanatical Strength (56.1% at 6.4), Festerleech (55.4% at 5.8, IWD +1.7), Rubblebelt Maverick
+  (55.6% at 5.5, +1.6 — Numot's "premium one-drop" call, confirmed), Unauthorized Exit (55.7% at 6.2),
+  Deduce (55.4% at 5.7), Vitu-Ghazi Inspector (55.5% at 5.7).
+- **Crimestopper Sprite is a bust and both channels caught it** — **54.1%, IWD +0.3**. Numot's
+  correction to take **Forensic Researcher (55.0%, +1.2)** over it is the right direction.
+- **Jaded Analyst is not a defensive all-star.** LSV's favourite cheap blocker posts **52.3% with
+  IWD −1.8 at ALSA 6.6** — one of the weakest blue commons in the set.
+- **Faerie Snoop never became the top common the preview predicted** — 54.0% at ALSA 5.7.
+- **The Special Guests bonus sheet carries no expert notes at all**, because set reviews skip known
+  quantities — Enlisted Wurm (60.6%), Smuggler's Copter (63.4%), Crashing Footfalls (62.7%), Krosan
+  Tusker, Hard Evidence. Their tiles show numbers and an AI take only. That is a coverage gap, not a
+  signal that they are unimportant; note the small samples on them.
+
+### Cross-source disagreements, left unresolved on purpose
+
+- **Dog Walker's exact ceiling.** Consensus best hybrid common; Lords of Limited's Ethan flags it as
+  over-rated by the community (2nd-best, not 1st). The numbers split the difference — **57.8% at ALSA
+  3.5 makes it the 4th-best common, but its IWD of +0.6 is modest**, so it is a card that makes decks
+  rather than wins games. Very high pick in RW, ordinary elsewhere.
+- **Pauper or Prince.** LR's settled verdict is Pauper — disguise blunts bombs enough that an
+  all-common low-curve Boros deck beats a good rare. Lords of Limited calls it a deep, fair *rare*
+  pool where rares define games. The card data supports Lords of Limited on raw power (the top rares
+  clear the top commons by 5–9pp) and LR on practice (Boros is the best pair and needs none of them).
+- **Format enjoyment.** Numot settled at roughly 3/10 by format end (*"it's been wearing me down"*),
+  Marshall at a B− with a 7/10-speed soapbox. Neither is a pick-order input, but both are honest
+  about the same cause: best-of-one plus a large play/draw advantage.
+
+### Calibration note
+
+Two of the three sources reversed themselves *hard* between release week and their retrospective,
+and both reversals are documented in their own guides — so read a release-week grade on a card tile
+as a hypothesis and the retrospective line as the claim. Then read the win rate as the verdict. In
+this set that ordering matters more than usual: the retrospectives got Boros, black's bombs, and
+Simic right, and got Red Herring, Goblin Maskmaker, Felonious Rage, and On the Job wrong in the same
+breath.
 
 ## Contents
 
@@ -45,7 +229,7 @@
 <tr>
 <td width="33%" valign="top"><img src="https://cards.scryfall.io/large/front/c/0/c0ebfe5d-8819-495d-bf72-b9c28c6fd23e.jpg?1706241537" width="240" alt="Seasoned Consultant" loading="lazy" decoding="async"><br><b>Seasoned Consultant</b><br><sub>W · Common</sub><br><sub>GIH <b>55.1%</b> · IWD -1.9 · ALSA 4.5 · CGB C</sub><br><sub>OH 56.8% · GD 53.8% · Play 86.9%</sub><br><br>🤖 <b>AI:</b> Good aggressive two-drop backbone for WU/white. A 1/3 blocks early and turns into a 3/3 attacker once you&#x27;re going wide, and 55.1% GIH with 56.8% opening-hand WR (per LoL/Numot, you want it on turn two) confirms it as a cornerstone body. Prioritize in go-wide white decks.<br><br><sub><b>📘 LoL:</b> Good blue/WU two-drop backbone. (03-05, retro)</sub><br><sub><b>🎙 Numot:</b> Good 2-drop detective, 3 toughness; &quot;want to be starting the game on turn two with it.&quot;</sub></td>
 <td width="33%" valign="top"><img src="https://cards.scryfall.io/large/front/b/e/be219928-3d0e-4d00-b124-152ce8a8c13b.jpg?1706241477" width="240" alt="Delney, Streetwise Lookout" loading="lazy" decoding="async"><br><b>Delney, Streetwise Lookout</b><br><sub>W · Mythic</sub><br><sub>GIH <b>51.7%</b> · IWD -2.8 · ALSA 1.7 · CGB C+</sub><br><sub>OH 51.8% · GD 51.6% · Play 85.4%</sub><br><br>🤖 <b>AI:</b> Overrated mythic in the abstract — 51.7% GIH and negative IWD show the 2/2 body underdelivers unless you&#x27;ve built a dedicated small-creature/triggers deck. The 85% play rate is name-tax, not performance. A build-around payoff, not a slam; only prioritize in go-wide white.<br></td>
-<td width="33%" valign="top"><img src="https://cards.scryfall.io/large/front/7/9/79cfb366-ae2a-4b3d-9a80-383a32db1509.jpg?1706241500" width="240" alt="Karlov Watchdog" loading="lazy" decoding="async"><br><b>Karlov Watchdog</b><br><sub>W · Uncommon</sub><br><sub>GIH <b>55.6%</b> · IWD -0.9 · ALSA 3.7 · CGB C+</sub><br><sub>OH 55.9% · GD 55.4% · Play 83.8%</sub><br><br>🤖 <b>AI:</b> Quietly strong white uncommon. A 3/2 vigilance with an anthem-on-attack rider that rewards white&#x27;s go-wide plan, and the face-up hate is real vs disguise decks. 55.6% GIH backs it as a reliable playable — take it as a solid two-drop-curve filler for aggressive white.<br></td>
+<td width="33%" valign="top"><img src="https://cards.scryfall.io/large/front/7/9/79cfb366-ae2a-4b3d-9a80-383a32db1509.jpg?1706241500" width="240" alt="Karlov Watchdog" loading="lazy" decoding="async"><br><b>Karlov Watchdog</b><br><sub>W · Uncommon</sub><br><sub>GIH <b>55.6%</b> · IWD -0.9 · ALSA 3.7 · CGB C+</sub><br><sub>OH 55.9% · GD 55.4% · Play 83.8%</sub><br><br>🤖 <b>AI:</b> Quietly strong white uncommon. A 3/2 vigilance with an anthem-on-attack rider that rewards white&#x27;s go-wide plan, and the face-up hate is real vs disguise decks. 55.6% GIH backs it as a reliable playable — take it as a solid two-drop-curve filler for aggressive white.<br><br><sub><b>🎙 Numot:</b> 4-mana 3/2, &quot;awful when behind&quot;; only good attacking; &quot;cards good half the time aren&#x27;t worthwhile.&quot;</sub></td>
 </tr>
 <tr>
 <td width="33%" valign="top"><img src="https://cards.scryfall.io/large/front/3/7/37860682-4973-4a0f-a43a-3056037bd2dc.jpg?1706241514" width="240" alt="Museum Nightwatch" loading="lazy" decoding="async"><br><b>Museum Nightwatch</b><br><sub>W · Common</sub><br><sub>GIH <b>55.3%</b> · IWD -1.6 · ALSA 4.6 · CGB C</sub><br><sub>OH 55.7% · GD 55.1% · Play 82.3%</sub><br><br>🤖 <b>AI:</b> Solid common and a white staple — 55.3% GIH at a huge 82% play rate. The die-into-a-2/2-Detective ETB gives real two-for-one value, and disguise lets you sandbag it as a ward-2 blocker or an ambush. Sticky, flexible, and enables Detective payoffs; a reliable mid-pick.<br></td>
@@ -109,7 +293,7 @@
 <td width="33%" valign="top"><img src="https://cards.scryfall.io/large/front/f/0/f082111b-9b1c-4a25-8c5d-d6ef77533a9b.jpg?1706241576" width="240" alt="Cold Case Cracker" loading="lazy" decoding="async"><br><b>Cold Case Cracker</b><br><sub>U · Common</sub><br><sub>GIH <b>55.4%</b> · IWD +1.3 · ALSA 4.3 · CGB B-</sub><br><sub>OH 54.7% · GD 55.9% · Play 83.8%</sub><br><br>🤖 <b>AI:</b> A clean, reliable UW/UG defensive common: 3/3 flyer for four that leaves a Clue when it dies, so it trades up and replaces itself. 55.4% GIH and 84% play rate confirm the perfect blocker-that-cantrips statline. Solid mid-priority pick for control decks.<br><br><sub><b>🎧 LR:</b> B-. 3/3 flyer for 4 + Clue on death; perfect statline for WU/GU defense; happy to trade into anything.</sub></td>
 </tr>
 <tr>
-<td width="33%" valign="top"><img src="https://cards.scryfall.io/large/front/a/d/ad378843-e2b0-48d6-90dc-b584e857473d.jpg?1706241642" width="240" alt="Projektor Inspector" loading="lazy" decoding="async"><br><b>Projektor Inspector</b><br><sub>U · Common</sub><br><sub>GIH <b>56.1%</b> · IWD +1.3 · ALSA 4.7 · CGB B-</sub><br><sub>OH 56.4% · GD 55.9% · Play 82.5%</sub><br><br>🤖 <b>AI:</b> Solid blue-tempo common and a Detective payoff. A 3/2 for three that loots on every Detective ETB/flip is real card selection in the UW/UB detective decks. 56% GIH, 82% play rate, positive IWD — a comfortable early-to-mid playable.<br></td>
+<td width="33%" valign="top"><img src="https://cards.scryfall.io/large/front/a/d/ad378843-e2b0-48d6-90dc-b584e857473d.jpg?1706241642" width="240" alt="Projektor Inspector" loading="lazy" decoding="async"><br><b>Projektor Inspector</b><br><sub>U · Common</sub><br><sub>GIH <b>56.1%</b> · IWD +1.3 · ALSA 4.7 · CGB B-</sub><br><sub>OH 56.4% · GD 55.9% · Play 82.5%</sub><br><br>🤖 <b>AI:</b> Solid blue-tempo common and a Detective payoff. A 3/2 for three that loots on every Detective ETB/flip is real card selection in the UW/UB detective decks. 56% GIH, 82% play rate, positive IWD — a comfortable early-to-mid playable.<br><br><sub><b>📘 LoL:</b> ⚠ Best blue common (retro) but repeatedly called **&quot;wildly underrated&quot;** in-format. Investigate-on-attack Detective; excellent w/ go-wide and extra Detectives. Doubling it is great with Analyst. (03-05, retro)</sub></td>
 <td width="33%" valign="top"><img src="https://cards.scryfall.io/large/front/7/0/703b874d-6739-4063-9891-e9c040dd9618.jpg?1706241653" width="240" alt="Surveillance Monitor" loading="lazy" decoding="async"><br><b>Surveillance Monitor</b><br><sub>U · Uncommon</sub><br><sub>GIH <b>56.3%</b> · IWD +2.6 · ALSA 3.7 · CGB B</sub><br><sub>OH 53.7% · GD 57.8% · Play 80.6%</sub><br><br>🤖 <b>AI:</b> Good blue engine. A 3/3 for four that collect-evidences on ETB and turns every future collect-evidence into a flying Thopter — a token generator Numot rates in Golgari and as a CE enabler. 56.3% GIH, B grade, 80% play; multiples late signal an open lane.<br><br><sub><b>🎙 Numot:</b> Collect-evidence token engine; good in Golgari and as a CE enabler. Multiples late = lane open.</sub></td>
 <td width="33%" valign="top"><img src="https://cards.scryfall.io/large/front/5/0/501599d6-1072-4124-b05d-01f96de153f3.jpg?1710406503" width="240" alt="Hard Evidence" loading="lazy" decoding="async"><br><b>Hard Evidence</b><br><sub>U · Common</sub><br><sub>GIH <b>56.9%</b> · IWD +2.3 · ALSA 4.8 · CGB C+</sub><br><sub>OH 59.5% · GD 55.3% · Play 80.5%</sub><br><br>🤖 <b>AI:</b> The best blue common — {U} for a 0/3 wall that gums up aggro plus a Clue for later card flow. 56.9% GIH belies how much value it grinds; the 0/3 blocks two-drops all day and the Investigate feeds artifact/detective synergies. Reliable early Azorius/Dimir pickup.<br><br><sub><b>🎧 LR:</b> &quot;best blue common&quot; (a reprint, #739); cheap card-flow + a Clue.</sub></td>
 </tr>
@@ -145,7 +329,7 @@
 </tr>
 <tr>
 <td width="33%" valign="top"><img src="https://cards.scryfall.io/large/front/8/8/88e791fc-bf9f-49b6-b5f2-a24d4b3e360e.jpg?1706241576" width="240" alt="Conspiracy Unraveler" loading="lazy" decoding="async"><br><b>Conspiracy Unraveler</b><br><sub>U · Mythic</sub><br><sub>GIH <b>51.0%</b> · IWD +1.1 · ALSA 3.4 · CGB C</sub><br><sub>OH 49.5% · GD 51.7% · Play 44.3%</sub><br><br>🤖 <b>AI:</b> Mediocre top-end. A 6/6 flier is a fine finisher, but seven mana is a lot and the free-cast evidence ability rarely comes online in Limited; 51.0% GIH is just a big flier&#x27;s floor. Playable as a curve-topper in slow blue decks, never a priority.<br></td>
-<td width="33%" valign="top"><img src="https://cards.scryfall.io/large/front/d/9/d9caa4eb-ed8c-4d05-8029-2a42163938a7.jpg?1706241603" width="240" alt="Fae Flight" loading="lazy" decoding="async"><br><b>Fae Flight</b><br><sub>U · Uncommon</sub><br><sub>GIH <b>51.8%</b> · IWD -1.2 · ALSA 5.6 · CGB C-</sub><br><sub>OH 49.7% · GD 53.1% · Play 42.6%</sub><br><br>🤖 <b>AI:</b> Situational combat trick / evasion enabler. Flash hexproof plus flying can steal a race or blowout a removal spell, but a sub-50 OH WR and -1.2 IWD show it&#x27;s a do-nothing when behind. Fringe blue playable for tempo/flyer decks only.<br></td>
+<td width="33%" valign="top"><img src="https://cards.scryfall.io/large/front/d/9/d9caa4eb-ed8c-4d05-8029-2a42163938a7.jpg?1706241603" width="240" alt="Fae Flight" loading="lazy" decoding="async"><br><b>Fae Flight</b><br><sub>U · Uncommon</sub><br><sub>GIH <b>51.8%</b> · IWD -1.2 · ALSA 5.6 · CGB C-</sub><br><sub>OH 49.7% · GD 53.1% · Play 42.6%</sub><br><br>🤖 <b>AI:</b> Situational combat trick / evasion enabler. Flash hexproof plus flying can steal a race or blowout a removal spell, but a sub-50 OH WR and -1.2 IWD show it&#x27;s a do-nothing when behind. Fringe blue playable for tempo/flyer decks only.<br><br><sub><b>🎙 Numot:</b> Permanent flying; Kenji likes it more than most (&quot;probably not as good as I give it credit for&quot;). Niche, decent on Private Eye.</sub></td>
 <td width="33%" valign="top"><img src="https://cards.scryfall.io/large/front/8/8/8894a0f5-2e1d-474f-9400-bdaa91b19fda.jpg?1710406445" width="240" alt="Mystery Key" loading="lazy" decoding="async"><br><b>Mystery Key</b><br><sub>U · Uncommon</sub><br><sub>GIH <b>53.1%</b> · IWD +2.1 · ALSA 5.6 · CGB C-</sub><br><sub>OH 54.3% · GD 52.4% · Play 37.9%</sub><br><br>🤖 <b>AI:</b> Niche blue role-player. Equip-one to draw three on a connect is powerful card advantage, but it needs an evasive or unblocked creature and does nothing on defense. 37% play rate; the positive IWD (+2.1) shows upside in aggressive UW/UB tempo, but it&#x27;s a build-toward, not a staple.<br></td>
 </tr>
 <tr>
@@ -215,7 +399,7 @@
 </tr>
 <tr>
 <td width="33%" valign="top"><img src="https://cards.scryfall.io/large/front/4/b/4bc803ad-f8a2-4198-a8a6-8d987b3d00fb.jpg?1706241753" width="240" alt="Slimy Dualleech" loading="lazy" decoding="async"><br><b>Slimy Dualleech</b><br><sub>B · Uncommon</sub><br><sub>GIH <b>53.8%</b> · IWD +1.0 · ALSA 5.0 · CGB B-</sub><br><sub>OH 53.1% · GD 54.4% · Play 63.3%</sub><br><br>🤖 <b>AI:</b> Solid black uncommon. A 2/4 wall that hands out +1/+0 and deathtouch each combat trades up all day and blocks aggro cleanly. Positive IWD and 63% play rate — a dependable, unflashy defensive playable that quietly wins races on the ground.<br></td>
-<td width="33%" valign="top"><img src="https://cards.scryfall.io/large/front/9/3/93ab3e11-8584-406f-b9ae-9e1df4396cbc.jpg?1706241754" width="240" alt="Snarling Gorehound" loading="lazy" decoding="async"><br><b>Snarling Gorehound</b><br><sub>B · Common</sub><br><sub>GIH <b>54.3%</b> · IWD +1.0 · ALSA 5.8 · CGB C+</sub><br><sub>OH 57.0% · GD 52.2% · Play 62.3%</sub><br><br>🤖 <b>AI:</b> Conditional one-drop with menace and a surveil engine. Strong 57.0% OH shows it&#x27;s a fine aggressive opener, but the gd drop-off and Numot&#x27;s note flag that the power-2 trigger fires less than you&#x27;d hope. A serviceable black one-drop for small-creature decks, not a build-around.<br><br><sub><b>🎙 Numot:</b> Conditionally good; trigger count (power-2-or-less attackers) is often lower than expected.</sub></td>
+<td width="33%" valign="top"><img src="https://cards.scryfall.io/large/front/9/3/93ab3e11-8584-406f-b9ae-9e1df4396cbc.jpg?1706241754" width="240" alt="Snarling Gorehound" loading="lazy" decoding="async"><br><b>Snarling Gorehound</b><br><sub>B · Common</sub><br><sub>GIH <b>54.3%</b> · IWD +1.0 · ALSA 5.8 · CGB C+</sub><br><sub>OH 57.0% · GD 52.2% · Play 62.3%</sub><br><br>🤖 <b>AI:</b> Conditional one-drop with menace and a surveil engine. Strong 57.0% OH shows it&#x27;s a fine aggressive opener, but the gd drop-off and Numot&#x27;s note flag that the power-2 trigger fires less than you&#x27;d hope. A serviceable black one-drop for small-creature decks, not a build-around.<br><br><sub><b>🎙 Numot:</b> &quot;Surprisingly great&quot; / &quot;so good&quot; surveil 2-drop in graveyard/aggro shells (late 03-xx); but Kenji warns it needs enough power-2-or-less attackers and is weak in non-synergy control (&quot;I don&#x27;t feel like I have enough power two or less&quot; in some decks).</sub></td>
 <td width="33%" valign="top"><img src="https://cards.scryfall.io/large/front/8/3/83a6fa37-8351-403b-ae05-b67e9bf74bbb.jpg?1706241694" width="240" alt="Festerleech" loading="lazy" decoding="async"><br><b>Festerleech</b><br><sub>B · Uncommon</sub><br><sub>GIH <b>55.4%</b> · IWD +1.7 · ALSA 5.8 · CGB B-</sub><br><sub>OH 58.7% · GD 53.0% · Play 51.4%</sub><br><br>🤖 <b>AI:</b> Sneaky-good black one-drop: a {B} 1/1 that pumps to a 3/3 attacker on demand and mills to feed graveyard/collect-evidence. 55.4% GIH and a strong 58.7% OH earn its B- — an aggressive early play in Golgari/Dimir grave decks that trades up and closes. Solid role-player.<br></td>
 </tr>
 <tr>
@@ -349,7 +533,7 @@
 </tr>
 <tr>
 <td width="33%" valign="top"><img src="https://cards.scryfall.io/large/front/8/a/8ad807c2-14a7-4464-bf57-c323fb3c0bd0.jpg?1706242021" width="240" alt="Hard-Hitting Question" loading="lazy" decoding="async"><br><b>Hard-Hitting Question</b><br><sub>G · Uncommon</sub><br><sub>GIH <b>57.0%</b> · IWD +2.2 · ALSA 3.5 · CGB B</sub><br><sub>OH 55.8% · GD 57.8% · Play 88.2%</sub><br><br>🤖 <b>AI:</b> Premium green removal — one mana to fight for full power kills almost anything if you have a decent body. Green&#x27;s best answer, and 57.0% GIH with +2.2 IWD and 88% play rate confirm it. Take it high; the only cost is needing a creature in play.<br></td>
-<td width="33%" valign="top"><img src="https://cards.scryfall.io/large/front/2/c/2c1392c5-91a5-4e6e-803d-ed032e4d594b.jpg?1706242059" width="240" alt="A Killer Among Us" loading="lazy" decoding="async"><br><b>A Killer Among Us</b><br><sub>G · Uncommon</sub><br><sub>GIH <b>60.2%</b> · IWD +5.1 · ALSA 3.8 · CGB B+</sub><br><sub>OH 59.4% · GD 60.8% · Play 86.1%</sub><br><br>🤖 <b>AI:</b> Underrated — LR flipped it to &quot;easily the pick, better than most rares.&quot; Five mana for three 1/1 bodies (~6 power spread) plus a deathtouch-and-counters ambush mode is insane when even or ahead. 60.2% GIH, +5.1 IWD, 86% play. Weak purely on defense, but a high pick in go-wide green.<br><br><sub><b>🎧 LR:</b> C+/B- (review) → &quot;easily the pick, better than most rares&quot; (#738). 5 mana, ~6 power of stats across three bodies with a deathtouch mode; insane when even/ahead, weak on defense.</sub></td>
+<td width="33%" valign="top"><img src="https://cards.scryfall.io/large/front/2/c/2c1392c5-91a5-4e6e-803d-ed032e4d594b.jpg?1706242059" width="240" alt="A Killer Among Us" loading="lazy" decoding="async"><br><b>A Killer Among Us</b><br><sub>G · Uncommon</sub><br><sub>GIH <b>60.2%</b> · IWD +5.1 · ALSA 3.8 · CGB B+</sub><br><sub>OH 59.4% · GD 60.8% · Play 86.1%</sub><br><br>🤖 <b>AI:</b> Underrated — LR flipped it to &quot;easily the pick, better than most rares.&quot; Five mana for three 1/1 bodies (~6 power spread) plus a deathtouch-and-counters ambush mode is insane when even or ahead. 60.2% GIH, +5.1 IWD, 86% play. Weak purely on defense, but a high pick in go-wide green.<br><br><sub><b>🎙 Numot:</b> &quot;Really really impressive.&quot; 5-mana three 1/1s with a 4/4-attacker mode; insane when even/ahead, weak on defense.</sub><br><sub><b>🎧 LR:</b> C+/B- (review) → &quot;easily the pick, better than most rares&quot; (#738). 5 mana, ~6 power of stats across three bodies with a deathtouch mode; insane when even/ahead, weak on defense.</sub></td>
 <td width="33%" valign="top"><img src="https://cards.scryfall.io/large/front/2/9/29bbfe93-8225-444c-835b-33ffa006ef66.jpg?1706241952" width="240" alt="Bite Down on Crime" loading="lazy" decoding="async"><br><b>Bite Down on Crime</b><br><sub>G · Common</sub><br><sub>GIH <b>57.2%</b> · IWD +2.6 · ALSA 4.5 · CGB B-</sub><br><sub>OH 54.4% · GD 58.9% · Play 84.9%</sub><br><br>🤖 <b>AI:</b> Re-evaluated up: fight-removal that bypasses ward 2 and collects evidence, and even small CE inclusions make it good. 57.2% GIH validates the retro read over the weak preview. Requires a creature on board but that&#x27;s easy in green; a solid green removal pick.<br><br><sub><b>📘 LoL:</b> ⚠ Preview: weak (4-mana sorcery fight, needs setup). Re-evaluated UP: fight bypasses ward 2 AND collects evidence — even small CE inclusions are good. (preview → 01-29, retro)</sub></td>
 </tr>
 <tr>
@@ -393,7 +577,7 @@
 <td width="33%" valign="top"><img src="https://cards.scryfall.io/large/front/c/2/c27f3193-3083-409e-99d8-10f5b1afe9f1.jpg?1705435017" width="240" alt="Evolutionary Leap" loading="lazy" decoding="async"><br><b>Evolutionary Leap</b><br><sub>G · Rare</sub><br><sub>GIH <b>—</b> · IWD — · ALSA 5.2 · CGB B+</sub><br><sub>OH — · GD — · Play 14.7%</sub><br><br>🤖 <b>AI:</b> Niche sac-outlet engine that reads better than it plays — no WR sample and only 14.7% play rate mean most drafters correctly leave it out. Wants a Golgari sacrifice shell to grind card advantage; without one it&#x27;s a do-nothing enchantment. Provisional B+ is optimistic; treat as a build-around.<br></td>
 </tr>
 <tr>
-<td width="33%" valign="top"><img src="https://cards.scryfall.io/large/front/a/8/a8e23d15-33af-4fd8-964b-8ca4efdebc37.jpg?1706241948" width="240" alt="Audience with Trostani" loading="lazy" decoding="async"><br><b>Audience with Trostani</b><br><sub>G · Rare</sub><br><sub>GIH <b>54.6%</b> · IWD +2.7 · ALSA 5.4 · CGB D</sub><br><sub>OH 50.7% · GD 57.3% · Play 14.7%</sub><br><br>🤖 <b>AI:</b> Weak build-around. LR nails it — you almost never have enough differently-named tokens to draw more than one card, making this a three-mana cantrip-plus-Plant most games. 54.6% GIH is inflated by the few token-heavy GW decks; skip unless you&#x27;re flooding tokens.<br><br><sub><b>🎧 LR:</b> D. Almost never draws more than one extra card.</sub></td>
+<td width="33%" valign="top"><img src="https://cards.scryfall.io/large/front/a/8/a8e23d15-33af-4fd8-964b-8ca4efdebc37.jpg?1706241948" width="240" alt="Audience with Trostani" loading="lazy" decoding="async"><br><b>Audience with Trostani</b><br><sub>G · Rare</sub><br><sub>GIH <b>54.6%</b> · IWD +2.7 · ALSA 5.4 · CGB D</sub><br><sub>OH 50.7% · GD 57.3% · Play 14.7%</sub><br><br>🤖 <b>AI:</b> Weak build-around. LR nails it — you almost never have enough differently-named tokens to draw more than one card, making this a three-mana cantrip-plus-Plant most games. 54.6% GIH is inflated by the few token-heavy GW decks; skip unless you&#x27;re flooding tokens.<br><br><sub><b>🎙 Numot:</b> &quot;Quite weak overall&quot; in draft.</sub><br><sub><b>🎧 LR:</b> D. Almost never draws more than one extra card.</sub></td>
 <td width="33%" valign="top"><img src="https://cards.scryfall.io/large/front/f/5/f58cfb23-4d99-4133-bf4b-d7e7c7d17cea.jpg?1708201628" width="240" alt="Pick Your Poison" loading="lazy" decoding="async"><br><b>Pick Your Poison</b><br><sub>G · Common</sub><br><sub>GIH <b>50.9%</b> · IWD -0.7 · ALSA 7.6 · CGB D</sub><br><sub>OH 48.1% · GD 52.8% · Play 10.3%</sub><br><br>🤖 <b>AI:</b> Narrow one-mana answer that&#x27;s mostly a sideboard card — the flying/artifact/enchantment modes miss too often maindeck. 10.3% play and D grade confirm. Board it in vs fliers or key artifacts; don&#x27;t maindeck.<br></td>
 <td width="33%" valign="top"><img src="https://cards.scryfall.io/large/front/6/8/6881946c-5036-4d9f-926f-932c9a592aff.jpg?1706242076" width="240" alt="Rope" loading="lazy" decoding="async"><br><b>Rope</b><br><sub>G · Uncommon</sub><br><sub>GIH <b>46.7%</b> · IWD -4.8 · ALSA 7.2 · CGB D+</sub><br><sub>OH 47.4% · GD 46.2% · Play 8.2%</sub><br><br>🤖 <b>AI:</b> Filler equipment. +1/+2 reach and evasion with a sac-to-draw is too slow and clunky for the format; 46.7% GIH and -4.8 IWD confirm the D+. A late-pick clue enabler at best — usually leave it in the board.<br></td>
 </tr>
@@ -412,7 +596,7 @@
 
 <table>
 <tr>
-<td width="33%" valign="top"><img src="https://cards.scryfall.io/large/front/7/0/70ea66cd-587a-4ca9-9ca8-d7d2046bfbed.jpg?1706242180" width="240" alt="Izoni, Center of the Web" loading="lazy" decoding="async"><br><b>Izoni, Center of the Web</b><br><sub>BG · Rare</sub><br><sub>GIH <b>65.3%</b> · IWD +14.5 · ALSA 1.7 · CGB A</sub><br><sub>OH 62.4% · GD 67.1% · Play 92.2%</sub><br><br>🤖 <b>AI:</b> Top-tier BG bomb. +14.5 IWD and 65.3% GIH — the best numbers on the sheet: a 5/4 menace that spits out Spider tokens off collect-evidence and cashes them for cards and life. A grade, 92% play; a slam-dunk Golgari engine that grinds any game away.<br></td>
+<td width="33%" valign="top"><img src="https://cards.scryfall.io/large/front/7/0/70ea66cd-587a-4ca9-9ca8-d7d2046bfbed.jpg?1706242180" width="240" alt="Izoni, Center of the Web" loading="lazy" decoding="async"><br><b>Izoni, Center of the Web</b><br><sub>BG · Rare</sub><br><sub>GIH <b>65.3%</b> · IWD +14.5 · ALSA 1.7 · CGB A</sub><br><sub>OH 62.4% · GD 67.1% · Play 92.2%</sub><br><br>🤖 <b>AI:</b> Top-tier BG bomb. +14.5 IWD and 65.3% GIH — the best numbers on the sheet: a 5/4 menace that spits out Spider tokens off collect-evidence and cashes them for cards and life. A grade, 92% play; a slam-dunk Golgari engine that grinds any game away.<br><br><sub><b>📘 LoL:</b> **Best rare** in a deep, balanced rare pool. (retro)</sub></td>
 <td width="33%" valign="top"><img src="https://cards.scryfall.io/large/front/a/6/a6e0adb7-a030-4dcc-9284-cd91c7598a22.jpg?1706242142" width="240" alt="Dog Walker" loading="lazy" decoding="async"><br><b>Dog Walker</b><br><sub>WR · Common</sub><br><sub>GIH <b>57.8%</b> · IWD +0.6 · ALSA 3.5 · CGB B</sub><br><sub>OH 58.3% · GD 57.5% · Play 91.6%</sub><br><br>🤖 <b>AI:</b> One of the best commons in the format — &#x27;11th-pick Dog Walker is busted.&#x27; A 3/1 vigilance whose disguise flip makes two 2/2 Dogs, and the X/1 body dodges the format&#x27;s lack of 1-toughness removal. Early &#x27;bad on defense&#x27; reads are superseded; 57.8% GIH, 91% play rate. Best in Boros go-wide, never cut from GW.<br><br><sub><b>📘 LoL:</b> ⚠ Best hybrid common (Ethan: slightly *over*-loved; &quot;second-best common after Makeshift Binding&quot;). X/1 dodges the no-1-toughness-removal gap. Notably **worse outside RW but never cut from GW.** Often plays better cast full-cost on a do-nothing turn. (preview, 01-29, 02-07, retro)</sub><br><sub><b>🎙 Numot:</b> **&quot;One of the best commons&quot; (confirmed end-of-format 03-23; &quot;11th pick dog walker is absolutely busted&quot;).** Disguise into multiple 2/2 dogs; X/1 dodges the no-1-toughness-removal gap; qualifies for Assemble face-down. &quot;Best with the doggies&quot; go-wide. (Early notes called it conflicted/&quot;bad on defense&quot; — that read is **superseded**; the late verdict is a strong, very-takeable common.)</sub><br><sub><b>🎧 LR:</b> C+. One of the better commons; X/1 dodges the no-1-toughness-removal gap; makes multiple 2/2 dogs; qualifies face-down for power-2-or-less synergies.</sub></td>
 <td width="33%" valign="top"><img src="https://cards.scryfall.io/large/front/8/f/8f80c6e7-e9f9-4ca6-87f7-a52c96079e4a.jpg?1706242118" width="240" alt="Aurelia, the Law Above" loading="lazy" decoding="async"><br><b>Aurelia, the Law Above</b><br><sub>WR · Rare</sub><br><sub>GIH <b>60.3%</b> · IWD +6.0 · ALSA 1.4 · CGB A</sub><br><sub>OH 58.6% · GD 61.5% · Play 91.3%</sub><br><br>🤖 <b>AI:</b> Format-defining bomb — LSV&#x27;s personal favorite. A 4/4 flying vigilance haste for five is already premium, and in any wide Boros deck the card draw and 3-damage/3-life triggers take over — 60.3% GIH, 91% play rate, 1.4 ALSA. First-pick, splash-worthy.<br><br><sub><b>🎧 LR:</b> A. 4/4 flying vigilance haste for 5 that draws and pings; LSV&#x27;s personal favorite card of the format.</sub></td>
 </tr>
@@ -439,7 +623,7 @@
 <tr>
 <td width="33%" valign="top"><img src="https://cards.scryfall.io/large/front/c/4/c49690c7-c282-4eb4-8da3-5e0c46a80fc4.jpg?1707428999" width="240" alt="Kellan, Inquisitive Prodigy" loading="lazy" decoding="async"><br><b>Kellan, Inquisitive Prodigy</b><br><sub>UG · Rare</sub><br><sub>GIH <b>60.6%</b> · IWD +7.5 · ALSA 2.2 · CGB A-</sub><br><sub>OH 63.0% · GD 59.1% · Play 84.1%</sub><br><br>🤖 <b>AI:</b> A premium Simic rare and near-bomb: MDFC that ramps/investigates early or comes down as a 3/4 flying vigilance that draws when it attacks and kills an artifact. 60.6% GIH, +7.5 IWD, 63% OH, 84% play — flexibility plus evasion plus card advantage. Take it very early in UG.<br><br><sub><b>🎧 LR:</b> A-. 3/4 flyer for 4 that draws off cracking your own artifacts.</sub></td>
 <td width="33%" valign="top"><img src="https://cards.scryfall.io/large/front/7/e/7e144609-e1f6-4bdc-8d14-b735ef4140d3.jpg?1706242126" width="240" alt="Buried in the Garden" loading="lazy" decoding="async"><br><b>Buried in the Garden</b><br><sub>WG · Uncommon</sub><br><sub>GIH <b>59.7%</b> · IWD +5.3 · ALSA 3.3 · CGB B</sub><br><sub>OH 58.9% · GD 60.2% · Play 82.5%</sub><br><br>🤖 <b>AI:</b> The reason to be Selesnya (LR calls it A-): {2}{G}{W} O-Ring on a nonland permanent that ALSO ramps you a mana of any color off the enchanted land. 59.7% GIH, +5.3 IWD — removal plus fixing plus ramp in one card. Premium GW pickup, take highly.<br><br><sub><b>🎧 LR:</b> A-. GW O-Ring + ramp aura; a real reason to be Selesnya.</sub></td>
-<td width="33%" valign="top"><img src="https://cards.scryfall.io/large/front/9/5/9554d5f2-7a33-4734-8cf3-dfae2ccc3596.jpg?1706242161" width="240" alt="Ezrim, Agency Chief" loading="lazy" decoding="async"><br><b>Ezrim, Agency Chief</b><br><sub>WU · Rare</sub><br><sub>GIH <b>63.1%</b> · IWD +10.9 · ALSA 1.9 · CGB A+</sub><br><sub>OH 62.9% · GD 63.2% · Play 82.3%</sub><br><br>🤖 <b>AI:</b> Set-defining bomb — the standout numbers say it all: 63% GIH, a monstrous +10.9 IWD, A+ grade. A 5/5 flyer that investigates twice and sacrifices artifacts to gain hexproof/lifelink/vigilance is near-impossible to beat once it lands. Slam over almost anything in UW.<br><br><sub><b>🎧 LR:</b> A+. WWUU 5/5 flyer; investigates twice, sac artifacts to gain vigilance/lifelink/hexproof. Near-impossible to beat once set up.</sub></td>
+<td width="33%" valign="top"><img src="https://cards.scryfall.io/large/front/9/5/9554d5f2-7a33-4734-8cf3-dfae2ccc3596.jpg?1706242161" width="240" alt="Ezrim, Agency Chief" loading="lazy" decoding="async"><br><b>Ezrim, Agency Chief</b><br><sub>WU · Rare</sub><br><sub>GIH <b>63.1%</b> · IWD +10.9 · ALSA 1.9 · CGB A+</sub><br><sub>OH 62.9% · GD 63.2% · Play 82.3%</sub><br><br>🤖 <b>AI:</b> Set-defining bomb — the standout numbers say it all: 63% GIH, a monstrous +10.9 IWD, A+ grade. A 5/5 flyer that investigates twice and sacrifices artifacts to gain hexproof/lifelink/vigilance is near-impossible to beat once it lands. Slam over almost anything in UW.<br><br><sub><b>📘 LoL:</b> Can sac enemy artifacts (not just Clues); pair w/ Sanitation Automaton to give Esika hexproof. (retro)</sub><br><sub><b>🎧 LR:</b> A+. WWUU 5/5 flyer; investigates twice, sac artifacts to gain vigilance/lifelink/hexproof. Near-impossible to beat once set up.</sub></td>
 </tr>
 <tr>
 <td width="33%" valign="top"><img src="https://cards.scryfall.io/large/front/3/2/326845a7-7502-4dc3-8f3e-867d6c84e931.jpg?1706242292" width="240" alt="Yarus, Roar of the Old Gods" loading="lazy" decoding="async"><br><b>Yarus, Roar of the Old Gods</b><br><sub>RG · Rare</sub><br><sub>GIH <b>57.0%</b> · IWD +4.7 · ALSA 2.0 · CGB B+</sub><br><sub>OH 57.6% · GD 56.5% · Play 82.2%</sub><br><br>🤖 <b>AI:</b> RG disguise engine and a strong standalone 4/4 that hastes your team — 57.0% GIH, +4.7 IWD, and LSV rates it P1P1-worthy. Even without a face-down build it&#x27;s a fine body; with disguise fodder it draws cards and recurs. High pick in Gruul; B+/A- range.<br><br><sub><b>🎧 LR:</b> A-. RG disguise engine; LSV rates it P1P1-worthy.</sub></td>
@@ -533,7 +717,7 @@
 </tr>
 <tr>
 <td width="33%" valign="top"><img src="https://cards.scryfall.io/large/front/0/f/0f852937-381d-4445-99d3-2ecb8af6bb6a.jpg?1706242252" width="240" alt="Soul Search" loading="lazy" decoding="async"><br><b>Soul Search</b><br><sub>WB · Uncommon</sub><br><sub>GIH <b>51.6%</b> · IWD -1.9 · ALSA 6.9 · CGB D+</sub><br><sub>OH 51.9% · GD 51.4% · Play 14.7%</sub><br><br>🤖 <b>AI:</b> Weak targeted discard: {W}{B} to exile a nonland card (with a token if it&#x27;s cheap), but sorcery-speed hand attack is low-impact in a creature-combat format. D+, 14.7% play, negative IWD — a sideboard card against specific bombs, not a maindeck pick.<br></td>
-<td width="33%" valign="top"><img src="https://cards.scryfall.io/large/front/b/f/bf6e59be-f959-4f4a-8c2d-b7c441e88135.jpg?1706242205" width="240" alt="Leyline of the Guildpact" loading="lazy" decoding="async"><br><b>Leyline of the Guildpact</b><br><sub>WUBRG · Rare</sub><br><sub>GIH <b>43.8%</b> · IWD -3.8 · ALSA 4.7 · CGB F</sub><br><sub>OH — · GD 43.9% · Play 14.2%</sub><br><br>🤖 <b>AI:</b> Trap — Numot: &quot;more a fun card than a good card.&quot; In a two-color deck it just fixes mana you already have and does nothing else; the free-turn-zero clause is a novelty. 43.8% GIH, F grade, 14% play. Not a real Limited card.<br><br><sub><b>🎙 Numot:</b> &quot;More a fun card than a good card. Would not recommend.&quot;</sub></td>
+<td width="33%" valign="top"><img src="https://cards.scryfall.io/large/front/b/f/bf6e59be-f959-4f4a-8c2d-b7c441e88135.jpg?1706242205" width="240" alt="Leyline of the Guildpact" loading="lazy" decoding="async"><br><b>Leyline of the Guildpact</b><br><sub>WUBRG · Rare</sub><br><sub>GIH <b>43.8%</b> · IWD -3.8 · ALSA 4.7 · CGB F</sub><br><sub>OH — · GD 43.9% · Play 14.2%</sub><br><br>🤖 <b>AI:</b> Trap — Numot: &quot;more a fun card than a good card.&quot; In a two-color deck it just fixes mana you already have and does nothing else; the free-turn-zero clause is a novelty. 43.8% GIH, F grade, 14% play. Not a real Limited card.<br><br><sub><b>🎙 Numot:</b> &quot;More a fun card than a good card. Would not recommend.&quot;</sub><br><sub><b>🎧 LR:</b> F / build-around-C. Do nothing useful in Limited; last-picked territory.</sub></td>
 <td width="33%" valign="top"><img src="https://cards.scryfall.io/large/front/2/0/20948cd2-e40c-4648-832f-ab0f1cc21610.jpg?1706242233" width="240" alt="Relive the Past" loading="lazy" decoding="async"><br><b>Relive the Past</b><br><sub>WG · Rare</sub><br><sub>GIH <b>47.9%</b> · IWD -2.4 · ALSA 5.3 · CGB B+</sub><br><sub>OH 44.2% · GD 50.0% · Play 10.8%</sub><br><br>🤖 <b>AI:</b> Trap for maindecks. The B+ grade collides with a 47.9% GIH and -2.4 IWD: a seven-mana reanimation that needs specific artifact/land/enchantment fuel in the yard and does nothing to stabilize an empty board. Niche GW ramp payoff only; the live data says pass.<br></td>
 </tr>
 <tr>
@@ -550,10 +734,10 @@
 <tr>
 <td width="33%" valign="top"><img src="https://cards.scryfall.io/large/front/7/8/7832abb5-5107-4603-904e-491b221bd3e3.jpg?1705435031" width="240" alt="Smuggler&#x27;s Copter" loading="lazy" decoding="async"><br><b>Smuggler&#x27;s Copter</b><br><sub>C · Rare</sub><br><sub>GIH <b>63.4%</b> · IWD +8.6 · ALSA 1.3 · CGB A</sub><br><sub>OH 67.6% · GD 60.3% · Play 99.5%</sub><br><br>🤖 <b>AI:</b> The premium colorless P1P1: a 2-mana 3/3 flyer with looting on attack/block and trivial crew 1. 63.4% GIH, 67.6% OH and near-universal play — it&#x27;s a bomb. LoL&#x27;s caveat: only take it if your final deck can actually crew and support the body; don&#x27;t let it drag you into a crew-less shell.<br><br><sub><b>📘 LoL:</b> The premium colorless pickup (P1P1-tier). ⚠ Caveat: in 03-06 it was the drafter&#x27;s *one regret* — taken while uncertain on colors, then drifted into a build (graveyard Golgari) that couldn&#x27;t crew/support it. **Take it, but be honest whether your final deck supports the body/crew.** (Note: &quot;Satchel&quot; appears as a caption alias — see caveats.) (02-07, 03-06)</sub></td>
 <td width="33%" valign="top"><img src="https://cards.scryfall.io/large/front/5/2/52608ba4-c47d-44e4-b624-dee2a3a42ae2.jpg?1706716416" width="240" alt="Sanitation Automaton" loading="lazy" decoding="async"><br><b>Sanitation Automaton</b><br><sub>C · Common</sub><br><sub>GIH <b>54.2%</b> · IWD -1.6 · ALSA 5.5 · CGB C</sub><br><sub>OH 54.8% · GD 53.7% · Play 72.1%</sub><br><br>🤖 <b>AI:</b> Solid glue two-drop. A 2/1 with surveil 1 that slots into any deck and fills MKM&#x27;s shortage of good two-drops; LoL&#x27;s &quot;Golden Egg co-winner&quot; with a high floor. 54.2% GIH and 72% play rate — a reliable, colorless curve-filler you&#x27;re happy to run.<br><br><sub><b>📘 LoL:</b> Golden Egg co-winner: universal &quot;glue card,&quot; high floor, goes in any deck; can give Esika hexproof. A good two-drop in a format short on them. (retro)</sub></td>
-<td width="33%" valign="top"><img src="https://cards.scryfall.io/large/front/1/f/1f952d8d-c089-432c-822a-8ef1e605ae38.jpg?1706242312" width="240" alt="Gravestone Strider" loading="lazy" decoding="async"><br><b>Gravestone Strider</b><br><sub>C · Common</sub><br><sub>GIH <b>53.4%</b> · IWD -0.3 · ALSA 5.7 · CGB C-</sub><br><sub>OH 53.6% · GD 53.3% · Play 65.6%</sub><br><br>🤖 <b>AI:</b> Underrated colorless role-player — Numot&#x27;s &quot;all-star&quot; in graveyard decks. A 1/3 that fixes any color and self-exiles for graveyard hate/Roots synergy earns its 65% play rate as early fixing plus late utility. Fine glue in artifact/graveyard builds; filler elsewhere.<br><br><sub><b>🎙 Numot:</b> &quot;Underrated all-star&quot; in graveyard decks (late read): fixing + graveyard removal, self-exiles for a clean Roots trigger.</sub></td>
+<td width="33%" valign="top"><img src="https://cards.scryfall.io/large/front/1/f/1f952d8d-c089-432c-822a-8ef1e605ae38.jpg?1706242312" width="240" alt="Gravestone Strider" loading="lazy" decoding="async"><br><b>Gravestone Strider</b><br><sub>C · Common</sub><br><sub>GIH <b>53.4%</b> · IWD -0.3 · ALSA 5.7 · CGB C-</sub><br><sub>OH 53.6% · GD 53.3% · Play 65.6%</sub><br><br>🤖 <b>AI:</b> Underrated colorless role-player — Numot&#x27;s &quot;all-star&quot; in graveyard decks. A 1/3 that fixes any color and self-exiles for graveyard hate/Roots synergy earns its 65% play rate as early fixing plus late utility. Fine glue in artifact/graveyard builds; filler elsewhere.<br><br><sub><b>📘 LoL:</b> Golden Egg co-winner: higher-ceiling green/late-game/splash payoff. (retro)</sub><br><sub><b>🎙 Numot:</b> &quot;Underrated all-star&quot; in graveyard decks (late read): fixing + graveyard removal, self-exiles for a clean Roots trigger.</sub></td>
 </tr>
 <tr>
-<td width="33%" valign="top"><img src="https://cards.scryfall.io/large/front/2/a/2a70f0ae-d49b-4cc8-9f76-895039c3dc39.jpg?1706241444" width="240" alt="Case of the Shattered Pact" loading="lazy" decoding="async"><br><b>Case of the Shattered Pact</b><br><sub>C · Uncommon</sub><br><sub>GIH <b>52.6%</b> · IWD +0.9 · ALSA 5.9 · CGB D</sub><br><sub>OH 51.9% · GD 53.1% · Play 36.9%</sub><br><br>🤖 <b>AI:</b> Fixing that pretends to be a payoff. The ETB land-tutor smooths a splashy manabase, and 52.6% GIH with positive IWD says the fetch alone earns a slot; the five-color solve rarely fires, so treat it as a two-mana fixer with upside, not a combat trick.<br></td>
+<td width="33%" valign="top"><img src="https://cards.scryfall.io/large/front/2/a/2a70f0ae-d49b-4cc8-9f76-895039c3dc39.jpg?1706241444" width="240" alt="Case of the Shattered Pact" loading="lazy" decoding="async"><br><b>Case of the Shattered Pact</b><br><sub>C · Uncommon</sub><br><sub>GIH <b>52.6%</b> · IWD +0.9 · ALSA 5.9 · CGB D</sub><br><sub>OH 51.9% · GD 53.1% · Play 36.9%</sub><br><br>🤖 <b>AI:</b> Fixing that pretends to be a payoff. The ETB land-tutor smooths a splashy manabase, and 52.6% GIH with positive IWD says the fetch alone earns a slot; the five-color solve rarely fires, so treat it as a two-mana fixer with upside, not a combat trick.<br><br><sub><b>📘 LoL:</b> Easy to solve via hybrid commons; fixes + grants flying/double strike/vigilance. (01-29)</sub></td>
 <td width="33%" valign="top"><img src="https://cards.scryfall.io/large/front/6/d/6d2565e1-dd7b-462b-8270-a17913277793.jpg?1706242328" width="240" alt="Thinking Cap" loading="lazy" decoding="async"><br><b>Thinking Cap</b><br><sub>C · Common</sub><br><sub>GIH <b>50.5%</b> · IWD -4.4 · ALSA 7.0 · CGB C-</sub><br><sub>OH 50.3% · GD 50.6% · Play 28.9%</sub><br><br>🤖 <b>AI:</b> Trap-adjacent: a 1-mana Detective equip (+1/+2, equip-for-1) that&#x27;s fine with ~5-6 detectives but a liability otherwise — over-committing to augmentation cost drafters games (LoL/Numot). 50.5% GIH, -4.4 IWD. Play one or two in a dense detective deck; cut it for real interaction.<br><br><sub><b>📘 LoL:</b> 1-mana Detective equip; fine but **over-committing to &quot;augmentation&quot; is a trap** — cut Thinking Cap for cheap interaction (Make Your Move) won a draft. (preview, 03-05)</sub><br><sub><b>🎙 Numot:</b> Wants ~5–6 detectives; equip-for-1 strong, equip-for-3 bad. Over-committing to augmentation is a trap.</sub></td>
 <td width="33%" valign="top"><img src="https://cards.scryfall.io/large/front/9/b/9b1639c3-f22d-4246-9252-219a4b2b2999.jpg?1707764860" width="240" alt="Metalspinner&#x27;s Puzzleknot" loading="lazy" decoding="async"><br><b>Metalspinner&#x27;s Puzzleknot</b><br><sub>C · Common</sub><br><sub>GIH <b>48.5%</b> · IWD -3.6 · ALSA 6.8 · CGB C</sub><br><sub>OH — · GD — · Play 19.3%</sub><br><br>🤖 <b>AI:</b> Filler card draw. Two cantrips stapled together, but the -3.6 IWD and sub-50 GIH WR show the tempo loss and life drain outweigh the cards in a grindy format. Only worth it as artifact fodder for sac/evidence decks; otherwise leave it.<br></td>
 </tr>

@@ -209,6 +209,7 @@ mtg-draft/
 │  ├─ lords-of-limited/           #   Lords of Limited <SET>-draft-guide.md (one per set)
 │  └─ numot/                      #   NumotTheNummy VOD-distilled <SET>.md notes (+ manifest.json)
 ├─ card-reference/                # visual card-reference builder + ai_takes_<SET>.json + <SET>-card-reference.md
+│  └─ briefs/<SET>.md            #   REQUIRED per-set format brief (build fails without it)
 └─ data/                          # generated, gitignored
    ├─ cache/                      # 17Lands + Scryfall caches, + cards_<SET>.ndjson exports
    ├─ drafts/                     # per-draft bundles <set>_<date>_<fp>/{draft.json,raw.log,replay.md} + current.json

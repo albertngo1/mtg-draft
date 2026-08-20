@@ -8,11 +8,19 @@ Single-file, visual card references for a set: every draftable card as a tile in
 - `build_card_reference.py` — generator. `python3 build_card_reference.py [SET]` (default `SOS`).
 - `ai_takes_<SET>.json` — pre-generated per-card AI verdicts (name → take), committed so the
   build is reproducible without re-running the LLM pass.
-- **Format brief** — an optional per-set `BRIEF` entry in the generator, rendered between the
+- `briefs/<SET>.md` — **the per-set format brief, REQUIRED for every set.** Rendered between the
   archetype map and the card grid. This is where the expert-guide commentary that *isn't* attached
   to a single card goes: the draft plan, gameplay rules, deckbuilding doctrine, traps, and any
   cross-source disagreements. The point is that the reference is self-contained — you should never
-  have to open `draft-guides/` in a second window while drafting. HOB ships one.
+  have to open `draft-guides/` in a second window while drafting.
+  **[`briefs/HOB.md`](briefs/HOB.md) is the blueprint.** Keep each brief self-contained to its own
+  set: no comparisons to other sets, except when quoting an expert's own words verbatim.
+  The build **fails** if `briefs/<SET>.md` is missing or still contains a `TODO`, so a newly
+  scraped set structurally cannot ship without one:
+  ```
+  python3 build_card_reference.py <SET> --scaffold-brief   # write the house template, then fill it in
+  python3 build_card_reference.py <SET> --no-brief         # throwaway build only; never commit one
+  ```
 - `<SET>-card-reference.md` — the output (open in any Markdown viewer; images are remote Scryfall URLs).
 
 ## Per-card tile

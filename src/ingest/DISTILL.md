@@ -27,6 +27,15 @@ For a channel `<slug>` (one of `lords-of-limited`, `numot`, `limited-resources`)
 5. **Fingerprint.** `python3 src/ingest/fingerprint.py <slug> update` rewrites
    `draft-guides/<slug>/manifest.json` to mark everything distilled (and records captionless videos
    so they aren't retried).
+6. **Refresh the format brief** for every set you touched. New guide content that isn't attached to
+   a single card belongs in `card-reference/briefs/<SET>.md` (draft plan, gameplay rules,
+   deckbuilding doctrine, traps, cross-source disagreements, and where the guides were wrong once
+   the data landed). This is **required, not optional** — `build_card_reference.py <SET>` fails
+   while the brief is missing or still holds a `TODO`. Scaffold a new one with
+   `python3 card-reference/build_card_reference.py <SET> --scaffold-brief`;
+   `card-reference/briefs/HOB.md` is the blueprint. Keep each brief self-contained to its own set.
+7. **Rebuild the card reference** — `python3 card-reference/build_card_reference.py <SET>` — so the
+   new notes and brief actually reach the drafting surface.
 
 ## Shared house style (`house_style: shared`)
 

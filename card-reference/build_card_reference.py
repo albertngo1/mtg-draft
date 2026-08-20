@@ -8,11 +8,12 @@ Sources (relative to the mtg-draft repo root):
   grades/draftsim_<SET>.json                         Draftsim DS grade (0-5)
   draft-guides/{lords-of-limited,numot,limited-resources,limited-level-ups}/...  expert per-card notes
   card-reference/ai_takes_<SET>.json                 pre-generated AI takes (this folder)
+  card-reference/briefs/<SET>.md                     REQUIRED per-set format brief (this folder)
 
 Usage: python3 build_card_reference.py [SET]   (default SET=SOS)
 Output: card-reference/<SET>-card-reference.md
 """
-import json, os, re, html, sys, time, base64, urllib.request
+import json, os, re, html, sys, time, base64, difflib, urllib.request
 
 # Image modes (default = hotlink cards.scryfall.io, fine on GitHub where images are proxied):
 #   --local-images  download each image once into data/card-images/<SET>/ and reference it by
@@ -26,6 +27,8 @@ import json, os, re, html, sys, time, base64, urllib.request
 ARGS = [a for a in sys.argv[1:] if not a.startswith("--")]
 LOCAL_IMAGES = "--local-images" in sys.argv[1:]
 EMBED_IMAGES = "--embed-images" in sys.argv[1:]
+NO_BRIEF = "--no-brief" in sys.argv[1:]              # build without a format brief (throwaway only)
+SCAFFOLD_BRIEF = "--scaffold-brief" in sys.argv[1:]  # write briefs/<SET>.md from the template and exit
 SET = (ARGS[0] if ARGS else "SOS").upper()
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
@@ -33,6 +36,53 @@ _suffix = ".embedded.md" if EMBED_IMAGES else ".local.md" if LOCAL_IMAGES else "
 OUT  = os.path.join(HERE, f"{SET}-card-reference{_suffix}")
 IMGDIR = os.path.join(ROOT, "data", "card-images", SET)  # download cache (gitignored via data/)
 COLS = 3  # cards per row
+
+BRIEF_TEMPLATE = """## Format brief \u2014 everything that isn't a single card
+
+Distilled from the expert guides in `draft-guides/` so you don't need a second window. Sources in
+priority order: TODO. On conflict: live 17Lands numbers > post-play takes > prerelease predictions.
+
+### The draft plan in five lines
+
+1. TODO \u2014 colour/archetype hierarchy, with the game-weighted mono-colour GIH WR spread.
+2. TODO \u2014 what the format rewards (curve / removal / synergy / going wide).
+3. TODO \u2014 the one card or axis that defines the format.
+4. TODO \u2014 the most common trainwreck the experts name.
+5. TODO \u2014 whether the signposted pairs are worth committing to.
+
+### Gameplay rules that actually change results
+
+- TODO
+
+### Deckbuilding doctrine
+
+- TODO \u2014 curve shape, land count, copy counts, splash policy.
+
+### Where the experts were wrong \u2014 judged by the data
+
+- TODO \u2014 score each guide's headline calls against the 17Lands numbers in this same file.
+
+### Traps and sleepers the data settled
+
+- TODO
+
+### Cross-source disagreements, left unresolved on purpose
+
+- TODO
+
+### Calibration note
+
+TODO \u2014 how much of the format each source had actually played when they recorded.
+"""
+
+BRIEF_PATH = os.path.join(HERE, "briefs", f"{SET}.md")
+
+if SCAFFOLD_BRIEF:
+    os.makedirs(os.path.dirname(BRIEF_PATH), exist_ok=True)
+    if os.path.exists(BRIEF_PATH):
+        sys.exit(f"{BRIEF_PATH} already exists — refusing to overwrite.")
+    open(BRIEF_PATH, "w", encoding="utf-8").write(BRIEF_TEMPLATE)
+    sys.exit(f"scaffolded {BRIEF_PATH} — fill in every TODO from draft-guides/, then rebuild.")
 
 # Optional alternate image host, keyed by mtga_id. Committed as card-reference/alt_images_<SET>.json.
 # Used for a brand-new set whose images are cold at Scryfall's CDN edge (so VS Code's ~300-request
@@ -106,6 +156,8 @@ cards = json.load(open(f"{ROOT}/data/cache/17lands_{SET}_PremierDraft_1200d.json
 def norm(s):
     return re.sub(r"[^a-z0-9]", "", s.split("//")[0].lower())
 
+CARD_KEYS = [norm(c["name"]) for c in cards]   # fuzzy-match target for garbled guide names
+
 # A set can carry several reviewer-grade files; show every one that exists rather
 # than only the first, since they differ in both coverage and authority.
 GRADE_SOURCES = []          # [(label, {norm_name: grade}), ...] in display order
@@ -130,7 +182,25 @@ ai = json.load(open(f"{HERE}/ai_takes_{SET}.json"))
 # also parses; the `:?` lets the bold swallow that trailing colon.
 BULLET = re.compile(r"^\s*-\s*\[?\*\*(.+?):?\*\*\]?(?:\s*\([^)]*\))*\s*[—–:-]?\s*(.+?)\s*$")
 TABLE  = re.compile(r"^\s*\|\s*\[?\*\*(.+?)\*\*\]?[^|]*\|\s*(.+?)\s*\|")
-def parse_guide(path):
+# Auto-caption transcripts mangle card names ("Cactus Durantula" for Cactarantula, "Magitech Armor"
+# for Magitek Armor), so an exact-name join silently drops ~130 real expert notes across the sets.
+# Anything that doesn't match exactly gets one fuzzy pass against the set's actual card list.
+# FUZZ_CUT is deliberately high and near-ties are refused, so a garble that could plausibly be two
+# different cards is dropped rather than attached to the wrong tile.
+FUZZ_CUT = 0.78     # minimum similarity to accept a garbled name
+FUZZ_MARGIN = 0.06  # best match must beat the runner-up by this much, else it's ambiguous — drop it
+FUZZ_LOG = []       # (label, raw name, resolved card) for the build's summary line
+
+def fuzzy_key(k, card_keys):
+    """Resolve a garbled normalized name to a real card key, or None if unsure."""
+    m = difflib.get_close_matches(k, card_keys, 3, FUZZ_CUT)
+    if not m:
+        return None
+    best = difflib.SequenceMatcher(None, k, m[0]).ratio()
+    runner = difflib.SequenceMatcher(None, k, m[1]).ratio() if len(m) > 1 else 0.0
+    return m[0] if best - runner >= FUZZ_MARGIN else None
+
+def parse_guide(path, card_keys=(), label=""):
     notes = {}
     if not os.path.exists(path):
         return notes
@@ -150,16 +220,23 @@ def parse_guide(path):
             continue
         for nm in names:
             k = norm(nm)
-            if k and k not in notes:
-                notes[k] = note
+            if not k or k in notes:
+                continue
+            if card_keys and k not in card_keys:
+                fk = fuzzy_key(k, card_keys)
+                if not fk or fk in notes:
+                    continue
+                FUZZ_LOG.append((label, nm.strip(), fk))
+                k = fk
+            notes[k] = note
     return notes
 
 # (tile-label, full legend name, parsed-notes dict) — drives both the tiles and the legend
 GUIDE_SRCS = [
-    ("📘 LoL",   "📘 Lords of Limited",   parse_guide(f"{ROOT}/draft-guides/lords-of-limited/{SET}-draft-guide.md")),
-    ("🎙 Numot", "🎙 NumotTheNummy",      parse_guide(f"{ROOT}/draft-guides/numot/{SET}.md")),
-    ("🎧 LR",    "🎧 Limited Resources",  parse_guide(f"{ROOT}/draft-guides/limited-resources/{SET}.md")),
-    ("🎓 LLU",   "🎓 Limited Level-Ups",  parse_guide(f"{ROOT}/draft-guides/limited-level-ups/{SET}.md")),
+    ("📘 LoL",   "📘 Lords of Limited",   parse_guide(f"{ROOT}/draft-guides/lords-of-limited/{SET}-draft-guide.md", CARD_KEYS, "LoL")),
+    ("🎙 Numot", "🎙 NumotTheNummy",      parse_guide(f"{ROOT}/draft-guides/numot/{SET}.md", CARD_KEYS, "Numot")),
+    ("🎧 LR",    "🎧 Limited Resources",  parse_guide(f"{ROOT}/draft-guides/limited-resources/{SET}.md", CARD_KEYS, "LR")),
+    ("🎓 LLU",   "🎓 Limited Level-Ups",  parse_guide(f"{ROOT}/draft-guides/limited-level-ups/{SET}.md", CARD_KEYS, "LLU")),
 ]
 
 # ---- grouping / ordering ----------------------------------------------------
@@ -515,16 +592,33 @@ ARCHETYPES = {
 }
 L.append(ARCHETYPES.get(SET, ""))
 
-# ---- per-set strategy brief -------------------------------------------------
+# ---- per-set strategy brief (REQUIRED) --------------------------------------
 # The format-level commentary distilled from the expert guides that isn't attached to any single
 # card: draft plan, gameplay rules, deckbuilding doctrine, traps, cross-source disagreements.
-# Lives here rather than in a sidecar file so the reference is built from one place — the whole
-# point is that the reader never has to open a second document.
-BRIEF = {
-    "MSH": "## Format brief \u2014 everything that isn't a single card\n\nDistilled from the four expert guides in `draft-guides/` so you don't need a second window.\n\n**Read this first \u2014 every MSH expert source predates the data.** Each was recorded *before or during*\nrelease week: Limited Level-Ups' deepest input is a 2026-06-24 ranked draft, Lords of Limited's is a\n2026-06-23 paper early-access episode, Limited Resources only ever aired the commons/uncommons review\n(#858, 2026-06-17 \u2014 no rares/mythics review, no format overview, no sunset show), and NumotTheNummy\nhas two release-window VODs he himself drafted loosely. **Not one of them saw a single game of\n17Lands data.** This brief's main job is therefore to say *where 8.35M games proved the\nexperts wrong*. On any conflict, the data wins \u2014 that is not a tiebreak rule here, it is the whole\npoint. Read the guide notes on a card tile as theory, and the numbers on the same tile as the verdict.\n\n**Calibrate to the baseline:** MSH GIH WRs run high. Mono-color game-weighted averages sit between\n53.5% and 57.9%, so a 55% card is *average*, not good. Read the deltas, not the absolutes.\n\n### Week-two expert claims, scored against 6.0M games\n\nThe three newest videos are post-play but still anecdote; these are their headline calls checked against the 2026-08-19 numbers. **Confirmed:**\n\n- **Desolation Prowler** (Numot: *\"every time I have one I feel like I cannot lose\"*) — **61.6% GIH, ALSA 2.8, 92.9% play.** The best-supported claim of the batch and near the top of the format.\n- **Crude Bent Blade is the format** — **60.9% GIH at 90.0% play**, and it goes *earlier* (ALSA 3.6) than the cards the field used to first-pick. Every source now agrees.\n- **Gathering of Darkness is a trap** (LoL week-two reversal) — 79.4% play but **54.7% GIH, IWD −2.0.** People keep playing it; it keeps not helping.\n- **Velvetwing Butterflies does not matter** — 52.7% GIH at 33.0% play. Bust confirmed.\n- **Blue's commons still wheel** — Plunder the Trollshaws 58.5% at ALSA 5.9, Long Lake Nuisance 57.9% at 6.4, Lakeshore Apothecary 57.5% at 5.8. Three top-15 commons arriving on the back half of the pack.\n\n**Not confirmed — take the number over the take:**\n\n- **Goblin Plate Mail as the #1 common** (Lords of Limited, *\"I'd take it over all of them\"*) — it is the **weakest of their own top three: 57.1% GIH, IWD −0.6**, behind Pinecone Strike (59.3%, +2.5) and Crude Bent Blade. It is also seen *later* (ALSA 4.1 vs 3.3), so the field already disagrees.\n- **Stir Up Trouble over Bilbo's Deadly Slice** — efficiency loses here: Slice **57.2%** at ALSA 2.9 beats Stir Up Trouble **56.3%** at 4.2. Four mana that always kills is still better than one mana that costs you a body.\n- **Goblin-town Flunkies as Crude Bent Blade insurance** — **53.7% GIH, IWD −2.1.** The tech is real in the mirror; the card is not good enough to run for it.\n- **Rage into the Valley \"never cut it\"** — 78.8% play but **IWD −1.7.** LLU's softer week-two read (*\"a bit worse than I thought, still good\"*) matches the data; Lords of Limited's does not.\n- **Mirkwood Nurturer as a build-around** (LLU) — **54.8% GIH at 55.8% play.** The Blade/Goblins pickup lines are real but have not moved the aggregate; treat it as a nice-to-have, not a plan.\n- **Wood Elves as green's Blade insurance** (Ben's week-two reversal) — **53.0% GIH, IWD +1.4.** Still below average. His original *\"stinker\"* read was closer.\n\n- **Old Fat Spider Can't See Me** is the interesting split: **52.8% GIH but IWD +3.3** at only 50.4% play. The card helps the decks that draw it; the decks that play it are worse than average. Both hosts loving it and 17Lands burying it can be true at once.\n\n### The draft plan in five lines\n\n1. **Be in blue or white. Both, ideally.** Game-weighted mono-color GIH WR: **U 57.9% \u2248 W 57.9% >\n   G 56.4% > B 55.6% > R 53.5%.** The experts unanimously called blue #1 and that held \u2014 but *white\n   is dead even with it*, not a clear #2, and **red is 4.3pp behind blue**, an enormous gap. The top\n   six commons in the set are all white or blue (Hero in Training 60.5%, Trickster's Stratagem 60.4%,\n   Murdock's Crusade 59.7%, S.H.I.E.L.D. Deployment Drone 59.5%, Web Up 59.3%, We Say Thee Nay!\n   59.3%). That is the whole color story.\n2. **Do not pair blue with black.** This is the format's biggest expert miss. LLU called UB its\n   \"de-facto best in practice,\" LoL ranked it Tier 1 co-#1, Draftsim led with it. By gold-card win\n   rate UB is **dead last of the ten pairs.** The mechanism is simple: blue is the best color, black\n   is the *fourth* color, and UB's signposts are its two worst (Kang 55.4% at ALSA 5.0 \u2014 it wheels;\n   Ghost 52.4%). Connive is genuinely good; the black half of the pair is what drags. **Pair blue\n   with white instead.**\n3. **The signpost cycle is a trap. Take the good card.** Of the twenty gold-and-hybrid signposts,\n   **six have negative IWD** and only **one \u2014 Killmonger, Scourge of Wakanda (60.3%, IWD +6.2) \u2014 is\n   worth a genuinely high pick.** LoL and Numot both called Killmonger the best gold uncommon by a\n   wide margin, and that is the one signpost call the field got right.\n4. **Removal is scarce, and all four sources independently said so.** This is the single\n   most-confirmed take across every guide \u2014 LLU (\"at a premium more so than usual\"), LR (the whole\n   #858 grading frame), LoL (\"prioritize it and hold it\"), Numot (who blamed both losing drafts on\n   being removal-light). Nothing in the data contradicts it. Dark Deed (59.4%, IWD +6.3), Punishing\n   Punch (59.7%), Web Up (59.3%), Cruel Alliance (59.1% \u2014 LR correctly called it \"likely the best\n   black common\") are the benchmarks. Do not pass cheap interaction.\n5. **Lightly-themed goodstuff midrange is a fine default.** LLU's post-draft verdict \u2014 \"the theme is\n   good cards, it's a midrange deck\u2026 something you're going to find pretty commonly in this set\" \u2014\n   is the read that survives contact with the numbers. No pair is dead, the fixing is deep, and every\n   hard-committed synergy lane below underperformed its hype.\n\n### Where the experts were wrong \u2014 judged by 8.35M games\n\nGold-card GIH WR by color pair, best to worst: **BG 58.8 \u00b7 UW 58.8 \u00b7 RW 58.5 \u00b7 WB 57.5 \u00b7 GR 57.4 \u00b7\nBR 56.7 \u00b7 GW 56.0 \u00b7 UR 55.4 \u00b7 GU 55.1 \u00b7 UB 54.1.**\n\n\u26a0 **This is a proxy, not 17Lands' archetype win rate.** It averages only the gold cards legal in each\npair, so it conflates card quality with archetype quality and rests on small per-pair samples. Trust\nthe direction and the extremes; do not treat the exact ordering as settled.\n\n- **UB \u2014 ranked #1 or co-#1 by three of four sources; finishes last.** See line 2 above. The largest\n  collective miss in the repo for this set.\n- **RW \u2014 LoL called it \"too fussy,\" \"a house made of toothpicks,\" Tier 2; it finishes #3.** And it\n  holds the best card in the set, **The Super Hero Civil War (69.3%, IWD +16.8, ALSA 1.5)**. Note the\n  shape though: *both* its signposts are negative-IWD (War Machine \u22121.1, Thor Odinson \u22120.5), so RW is\n  good **despite** its signposts, carried by white commons and that one rare.\n- **GW \u2014 LoL Tier 1, LLU's #2 archetype; finishes #7.** Both its signposts are negative-IWD too\n  (Black Panther, Vanguard \u22120.3 despite LR's B+ \"both enabler and payoff\"; Spider-Man, To the Rescue\n  \u22121.0). The hero theme turning on \"automatically\" was true and did not matter.\n- **BG #1 and UW #2 are the two calls that held.** LoL had both in Tier 1; LLU had UW at #4 and BG\n  down at #6, so LoL wins this one.\n- **GU worst-pair and UR shallowest-theme predictions both hold** (9th and 8th). LLU's \"a deck you\n  draft once in a blue moon\" and \"you won't get a true all-artifact deck\" were correct.\n- **LLU's grades beat LR's on uncommons \u2014 weight them accordingly.** LR graded the signposts in the\n  abstract before playing and systematically over-rated them: Madame Hydra B (actual 49.8%, IWD\n  \u22120.5), Beast, Erudite Aerialist B\u2212 (49.5%, IWD \u22122.6 \u2014 the worst signpost in the set), Ant-Man,\n  Colony Commander B+ \"closer to A\u2212, pushing the limits all by itself\" (53.7%, IWD +0.8), Bullseye\n  B+ \"completely justifies itself\" (54.2%). LLU had those same cards at D+, D, and D+/C\u2212. On MSH\n  uncommons, **LLU's letter beats LR's letter.**\n- **LR's own \"predicted-volatile\" watchlist resolved mostly to the pessimistic branch:** Madame Hydra\n  \u2192 bust \u00b7 Mockingbird, Ace Agent \u2192 50.3%, IWD \u22122.6, the \"trap until proven otherwise\" read was right\n  \u00b7 Speedball, New Warrior \u2192 50.3%, IWD \u22122.2, the \"could just as easily be a B+\" hope lost \u00b7 Red Hulk\n  \u2192 52.2%, the D branch of \"predicted A-or-D\". Two went the other way: **Wakandan Drone Flock** is a\n  fine playable that wheels (57.1% at ALSA 5.9 \u2014 better than the feared C\u2212), and **Panther Pounce**\n  stayed marginal (54.1%, IWD \u22120.1).\n- **Plans split; LoL's blanket \"garbage\" was too harsh.** Political Triumph is a top-ten uncommon\n  (59.2%) while Construct a Cosmic Cube is a genuine bust (48.8%). LLU's more careful \"value the\n  early chapters, they rarely reach the final one\" is the read that survives.\n- **LLU's sleeper list is the best single piece of prediction in the four guides \u2014 6 of 7 hit.**\n  Trickster's Stratagem (60.4%, the #2 common in the set), We Say Thee Nay! (59.3%), Undercover\n  Skrull (59.0%), Take Up the Shield (58.5%), H.E.R.B.I.E. Scout Unit (57.5% at ALSA 4.7),\n  Surveillance Room (56.3% at ALSA 5.8). The one miss: **A.I.M. Synthoids** \u2014 \"don't sideboard it\"\n  was wrong, it is a sideboard card (52.3%, IWD \u22120.8).\n\n### The one thing this brief cannot settle: format speed\n\nLLU and LoL converge hard on **slow and grindy** \u2014 board stalls, flying breaks them, no board wipes,\n\"Dominaria United cadence,\" missing land drop three is an auto-loss. Numot, from the other side of\nthe table, insists the loudest lesson of his two drafts was that **\"playing first and curving out is\nOP,\"** and that he lost repeatedly to clean 2\u21923\u21924 villain curves before any stall formed. Card-level\nwin rates cannot adjudicate this. Treat both as true: the format grinds when neither player is\nahead, and punishes you hard when you are the one durdling.\n\n### Deckbuilding doctrine\n\n- **The 2-drop slot is the scarce one; the 4-drop slot clogs.** LoL and Numot independently hit this.\n  Do not play bad filler two-drops \u2014 you 0-for-1 yourself \u2014 but do count land-cyclers as two-drops\n  (cycle on two, play a three on three). Typical: 3\u20135 real two-drops plus 2\u20133 cyclers, 16\u201317 lands,\n  17\u201318 creatures because so many engines are bodies.\n- **4 toughness is the magic number.** You need to attack through it and to kill it, which is why\n  deal-3 effects underperform their reputation.\n- **No board wipes exist.** Only deal-2-or-3-to-everything. Go-wide and sticky single threats are\n  unusually safe; a white bomb with no sweeper to answer it just wins.\n- **Splash freely for removal and a bomb or two \u2014 not for a pile of fatties.** Fixing is deep\n  (gain-lands in ~half of packs, an untapped rare dual cycle, land-cyclers, Ant-Man's Army 56.8%,\n  Surveillance Room 56.3%). Numot proved the failure mode himself: his 4\u20135 colour soup piles were\n  \"cool, not good,\" bomb-heavy and interaction-light, and lost to clean curves.\n- **Bait removal with your mid-curve.** LLU's post-play correction: a random 4-mana 4/4 plays *better*\n  than its grade in a slow format, because eating their removal on your medium threat protects your\n  actual bomb. The top-end no-ETB fatties still get raced \u2014 that exception holds.\n- **Don't straddle two synergy lanes.** Numot's clearest self-diagnosed error: his deck drifted\n  between +1/+1 counters and artifacts and committed to neither. Counters live in GU, artifacts in\n  UR; they do not merge.\n\n### Traps and sleepers the data settled\n\n- **Worst early picks** (taken by pick 4 on average, negative or zero IWD): Thunderbolts Conspiracy\n  (49.2%, IWD \u22121.2), War Machine, Legacy of Iron (\u22121.1), Spider-Man, To the Rescue (\u22121.0), Alien\n  Invasion (\u22121.0), Black Panther, Vanguard (\u22120.3), The Sentry, Golden Guardian (53.1% at ALSA 2.4),\n  Construct a Cosmic Cube (48.8%), Shang-Chi, Master of Kung Fu (53.0% at ALSA 2.7).\n- **Cheapest edges \u2014 strong cards that wheel** (ALSA 6+): Rapid Rescue (57.8% at ALSA **8.0** \u2014 the\n  single biggest gap in the set), Giant-Sized Flying Ant (57.6% at 6.2), S.H.I.E.L.D. Helicarrier\n  (57.4% at 6.9 \u2014 LLU's Alex defended this over co-host Mark's D+ and community pushback; **Alex was\n  right**), HYDRA Infiltration (56.4% at 7.3), Depower (56.1% at 6.6), Super Suit (55.8% at 7.0).\n- **HYDRA Troopers is not a reason to be in BG** \u2014 53.3% at ALSA 6.6, after LoL and LR both walked it\n  back from \"premium\" to \"conditional.\" They were right to walk it back, and it fell further.\n- **HULK SMASH! is fine, actually** \u2014 55.4%, IWD +2.7. LLU's \"more of a constructed card than a\n  limited card\" was too harsh; this is the one place LLU under-called rather than over-called.\n- **Take the reprints seriously.** Sword of Fire and Ice (69.2%), Path to Exile, Counterspell,\n  Massacre Girl, Extinction Event and the rest of the bonus sheet carry no expert notes at all\n  because set reviews skip known quantities. Their tiles have numbers and an AI take only \u2014 that is\n  a coverage gap, not a signal that they are unimportant.\n\n### Calibration note\n\nNumot's own warning is the right frame for this whole document: he crushed paper early access, then\nwent 0-3 on release-day Arena and cautioned that \"the early-access sample may not be a good way to\ncount my drafting in this format.\" Every guide here is written from inside that window. Where a card\ntile shows a confident letter grade next to a mediocre win rate, the win rate is what happened.\n",
-    "HOB": "## Format brief — everything that isn't a single card\n\nDistilled from the four expert guides in `draft-guides/` so you don't need a second window. Sources\nin priority order: **Limited Level-Ups State of the Format** (2026-08-15, post-play, Alex had drafted\nthe format for four days and reviewed coaching logs), **NumotTheNummy** (three week-one Premier VODs,\n2026-08-14 → 08-16), **Limited Resources 865/866**, **Lords of Limited crash course** (prerelease\ntheory, weakest). On conflict: live 17Lands numbers > post-play takes > prerelease predictions.\n\n### Week-two update (Lords of Limited 2026-08-17, Numot 2026-08-17, LLU 2026-08-18)\n\n- **Draft colours, not colour pairs.** Lords of Limited's week-one verdict after ~20 drafts between them: *\"in my head, this format is not color pairs, it is colors.\"* Ask **am I base blue or base black**, then see what comes along. Their colour order is **Black 1 · Blue 2 · Red 3 · White 4 · Green far last**, with red and white as support colours only. Decks routinely end 11 Swamps or 11 Islands plus a handful of a second colour, because a small set keeps handing you the redundant pieces.\n- **The data agrees with the base-colour read, not the pair read.** Mono-Black is the highest win rate on the board (**62.3%**, n=2.2k) and Numot broke a 17-draft slump with a **7-win mono-black deck** (four Crude Bent Blade, three Goblin Plate Mail, two Gnashing of Teeth, 10+ two-drops, 16 lands): *\"what if I just started forcing mono-black every draft?\"*\n- **The blue disagreement is the one live conflict in this file.** 17Lands puts WU 5th and GU last; Lords of Limited had a mythic run on heavy blue and calls the ranking *\"counterintuitive.\"* Their hypothesis, which fits the mono-colour numbers: blue is good as a **base colour built on four-plus Lakeshore Apothecary / Master's Conciliator**, and bad in any deck that isn't. If you are not on the draw-two engine, blue's pair win rates are the number that applies to you.\n- **Crude Bent Blade is the format's defining card, and a design mistake.** LLU: *\"too good to be common — it would be fine as a very good uncommon.\"* Build and mulligan around turn-three Blade; keep a spare body as insurance (Goblin-town Flunkies in the mirror, Wood Elves in green, a second recruit body in blue). Three or four copies is normal.\n- **Play/draw is the headline stat.** Roughly **56% on the play vs 44% on the draw** by the figures both channels quote — Numot: the largest such gap of any Arena format except cube. Build the deck that still functions on the draw, and cut tap lands to **one, sometimes zero**.\n- **Black is now contested.** LLU: *\"black is very good, people have caught on.\"* Start black, then be ready to move out or bully back in — do not hang on for dear life.\n\n### The draft plan in five lines\n\n1. **Black is the default, not the commitment.** *\"Drafting black when it's open or semi-open is\n   almost like drafting on easy mode\"* — it has the best and deepest commons. But the single most\n   common trainwreck in Alex's coaching logs is *\"I started black, I hung on to black for dear life,\n   and it was clear a lot of other people were fighting for black.\"* Six-drafters-in-black tables are\n   real; a great W/U or R/W deck flies around when that happens.\n2. **Curve out. That is the format.** Numot: *\"curving out is overpowered\"* and *\"something you\n   really need to do in this format is have a low curve.\"* Games are won by two-drop → three-drop →\n   four-drop with no bombs involved, and lost to exactly that from red-black.\n3. **Take the cheap card at equal power.** *\"There are so many good cheap cards that you don't need\n   expensive cards as often. If your cheap cards are good in the late game, why play a six-drop\n   unless it's exceptional?\"*\n4. **Being reactive is punished.** *\"Trying to just cast a bunch of removal doesn't work very well.\n   There's a lot of recursion, a lot of token makers — you want to be on the front foot.\"*\n5. **The unsupported pairs are real.** **W/B is the best of them** (black's two common equipment feed\n   white's equipment/storied cards; white's tokens feed black's sac effects; three of nine sealed\n   pools Alex built that week were W/B). U/B is fine on black's depth alone. Numot drafted **R/G** and\n   **U/B splashing green** in week one and neither was a mistake. Don't cage yourself in the five\n   signposted pairs.\n\n### Gameplay rules that actually change results\n\n- **Attack more than you think you should.** *\"Taking a defensive stance in a format that is largely\n  about racing is consigning yourself to playing a defensive role\"* — which turns off the very cards\n  that are good. A topdecked Goblin Plate Mail matters when they're at 8, not at 16. Default: for the\n  first ~4 turns, just attack, unless your hand is specifically built around surviving to a bomb.\n- **Do the menace math explicitly.** *\"I'm almost sure I've seen a lot of folks put themselves dead\n  on board because they didn't realize how much damage I could attack back for.\"* Two blockers vs.\n  three menace creatures blocks **one** creature — and one removal spell means it blocks **none**.\n  Intuition is miscalibrated here; count it out every turn.\n- **Don't decline a lethal alpha strike over a card they might have.** Numot's one self-diagnosed\n  punt of the run: *\"I had an easy win if I attack with everything... I got too scared of what they\n  could have. Why wouldn't I just go in with 50 points of trample damage?\"*\n- **Sequencing is punishing because the games are short.** Fewer turns means each decision is a\n  larger fraction of the game — which land, which two-drop, how you double-spell on four.\n- **Every unspent mana is expensive.** In a six-turn game, a wasted mana is a much bigger share of\n  your total than in a ten-turn one. This is the real argument for one-mana adventure halves and\n  cheap equipment: they let you *fill* a turn, not just fill a deck slot.\n- **Take the big hit instead of losing two creatures.** *\"Do I double block and lose both of my\n  creatures? Do I take eight? I think taking eight's the play.\"*\n- **Don't pay optional life when the attack already works** — Desolation Prowler's activation is\n  genuinely dangerous in a deck already paying life elsewhere, and burn range comes up fast.\n- **Where the equipment sits is a play, not upkeep.** *\"Move the blade over to the 2/1, that way none\n  of their 1/1s have a good block.\"* Reassign it every combat.\n- **A fast format only feels fast when one player isn't affecting the board.** *\"Games do tend to\n  slow down if both players are coming to the table prepared — matching each other on curve, with a\n  good amount of interaction.\"* That's why a seven-mana adventure creature is still castable.\n\n### Deckbuilding doctrine\n\n- **Copy counts differ per card and Alex worked them out on air:** Goblin Plate Mail **three** (the\n  second copy plays like an aura, but three means you actually see the first on turn two) · Gollum,\n  Silent Slinker **two** (legend rule; three got punished on stream) · Crude Bent Blade **four or\n  five, no cap** · Tidings of War **one or two** · Moment of Glory **not three**.\n- **Modal cards are good in proportion to how *different* the modes are.** Reverent Howl is the case\n  study: draw-two after a mulligan and +2/+2 lifelink in a race are different games. Apply the same\n  test to Stone by Sunlight and Warg Tactics.\n- **Splash only for removal, and only if the fixing arrived first.** Fixing is plentiful (the dual\n  cycle is in ~50% of packs) but almost nothing is worth splashing — the gold rares aren't\n  splashable and the good uncommons are locked to their pair. **Celebrate the Mountain-king** is the\n  archetypal target.\n- **Ferocious wants 8–10 enablers**, counting equipment and counters, not just naturally-big\n  creatures — and eight is worse than it sounds if three of them are six-drops.\n- **Storied is not a build-around.** It turns on incidentally; in R/W it is nearly automatic. *\"I\n  just haven't seen a red-white opponent not have storied by turn five.\"* Stop holding Thorin\n  Oakenshield back to protect it.\n- **W/U recruit is skill-intensive, and the common mistake is discarding lands.** A free 1/1 is\n  frequently the better outcome — *\"ask, would I like a free 1/1 here? Is that better than the card\n  in hand that I might not have time to cast?\"*\n\n### Traps and reversals the format has already settled\n\n- **Goblin-town Flunkies** — Alex's predicted top red common; *\"has super underperformed.\"* The 1/1\n  haste half stops being a card after turn two in a format decided by creature sizing.\n- **Crude Bent Blade** — the reverse: unranked prerelease, now the best or second-best black common,\n  first-pickable, four or five copies. Read its tile.\n- **The legendary-equipment cycle** (Sting, Orcrist, My Precious, Balin, Inside Information) all go\n  pick 1–3 and all have **negative IWD**. **Sting is unplayable** — it's designed for four-player\n  games. Orcrist barely creeps into playable.\n- **The gold uncommon signposts are mostly not the reason to be in a pair.** *\"The uncommon gold\n  cards are all kind of just not anything special.\"* Exceptions: **Bard the Bowman** (his favourite)\n  and **Dáin's Company**.\n- **Simic U/G is the broken archetype** — 6+ points behind Rakdos. If you end up there, **don't\n  chase elves**: *\"a lot of the elf cards ask you to have a critical mass to be good, so to make\n  them tick you have to play bad cards.\"* Play the good blue and green cards instead. Thranduil,\n  Sindarin Liege is the one elf card that's self-fuelling.\n- **Blue commons wheel far too late for their strength** — Plunder the Trollshaws, Long Lake\n  Nuisance and Lakeshore Apothecary all post strong win rates at ALSA 5.8–6.4. The cheapest edge in the\n  format.\n- **Don't first-pick fixing**, and don't play Wood Elves — a three-mana 1/1 *\"just ain't it.\"*\n\n### Cross-source disagreements, left unresolved on purpose\n\n- **Gollum, Silent Slinker** — LLU calls it a premium under-the-radar common and 17Lands agrees;\n  Numot found it *\"has underperformed for me consistently.\"* The likely explanation is the one Kenji\n  names himself: he plays from a defensive posture and this is a racing card.\n- **Dáin's Company** — Numot: *\"not very good, right?\"* LLU: strong enough to take out of most packs.\n- **Snowslope Hunter** — Numot: *\"amazing,\"* given how many equipment there are to sacrifice. LLU:\n  playable but off-plan for how he builds B/R.\n- **Wargling** — Alex likes it against the data (*\"I don't think this is a D+ two-drop\"*); it has\n  since climbed to roughly average.\n\n### Calibration note\n\nNumot went **18-18** on release day and did not trophy in his **first eight drafts** while making\nevaluations that mostly held up. Alex, by 2026-08-15: *\"I don't think there's that much more\nexploring of the format to be done.\"* Treat the week-one read as close to final — which the 17Lands\nconvergence supports — but don't rewrite your pick order off one bad weekend.\n",
-}
-L.append(BRIEF.get(SET, ""))
+# The point is that the reference is self-contained — the reader never opens a second document.
+#
+# STRUCTURAL RULE: every set MUST ship card-reference/briefs/<SET>.md. The build FAILS without it,
+# so a newly scraped set cannot quietly ship a brief-less reference. Escape hatches:
+#   --scaffold-brief   write briefs/<SET>.md from the house template and exit (then fill it in)
+#   --no-brief         build anyway (one-off diagnostics only; never for a committed reference)
+
+
+if os.path.exists(BRIEF_PATH):
+    _brief = open(BRIEF_PATH, encoding="utf-8").read()
+    if "TODO" in _brief and not NO_BRIEF:
+        sys.exit(f"{BRIEF_PATH} still contains TODO placeholders. Finish the brief, or pass "
+                 f"--no-brief for a throwaway build.")
+    L.append(_brief)
+elif NO_BRIEF:
+    print(f"  \u26a0 no brief for {SET} (--no-brief) — the reference is NOT self-contained.")
+else:
+    sys.exit(
+        f"missing {BRIEF_PATH}\n"
+        f"Every set's card reference must carry a format brief (see briefs/HOB.md for the "
+        f"blueprint).\n"
+        f"  python3 build_card_reference.py {SET} --scaffold-brief   # write the template, then fill it in\n"
+        f"  python3 build_card_reference.py {SET} --no-brief         # throwaway build without one"
+    )
 
 L.append("## Contents\n")
 for key in sorted(groups):
@@ -553,3 +647,7 @@ print(f"cards: {total} | AI takes: {sum(1 for c in cards if c['name'] in ai)} "
       + "".join(f"| {l} grades: {sum(1 for c in cards if norm(c['name']) in t)} "
                 for l, t, _ in GRADE_SOURCES)
       + f"| {COLS} per row")
+if FUZZ_LOG:
+    print(f"  fuzzy-matched {len(FUZZ_LOG)} garbled guide names: "
+          + ", ".join(f"{l}:{r}\u2192{k}" for l, r, k in FUZZ_LOG[:6])
+          + (" ..." if len(FUZZ_LOG) > 6 else ""))
