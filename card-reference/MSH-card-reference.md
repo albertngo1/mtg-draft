@@ -28,147 +28,130 @@ MSH is a **slow, grindy, lightly-themed goodstuff** format — every pick below 
 
 ## Format brief — everything that isn't a single card
 
-Distilled from the four expert guides in `draft-guides/` so you don't need a second window.
+The 17Lands numbers on these tiles are the spine of this document. What the four expert guides in
+`draft-guides/` add is everything a win-rate column structurally cannot measure: how to sequence a
+turn, what to mulligan, how many copies of a card to run, why a good card is good, and which of two
+similar picks fits the deck you are actually building. That is what this brief collects.
 
-**Read this first — every MSH expert source predates the data.** Each was recorded *before or during*
-release week: Limited Level-Ups' deepest input is a 2026-06-24 ranked draft, Lords of Limited's is a
-2026-06-23 paper early-access episode, Limited Resources only ever aired the commons/uncommons review
-(#858, 2026-06-17 — no rares/mythics review, no format overview, no sunset show), and NumotTheNummy
-has two release-window VODs he himself drafted loosely. **Not one of them saw a single game of
-17Lands data.** This brief's main job is therefore to say *where 8.35M games proved the
-experts wrong*. On any conflict, the data wins — that is not a tiebreak rule here, it is the whole
-point. Read the guide notes on a card tile as theory, and the numbers on the same tile as the verdict.
+**Sources:** Limited Level-Ups, Lords of Limited, Limited Resources #858, NumotTheNummy. All four
+recorded before or during release week, so their *predictions* have been superseded by 8.35M games —
+read a letter grade on a card tile as theory and the win rate beside it as the result. Their
+*gameplay* reads are a different matter and are collected below on their own merits.
 
-**Calibrate to the baseline:** MSH GIH WRs run high. Mono-color game-weighted averages sit between
+**Calibrate to the baseline:** MSH win rates run high. Mono-colour game-weighted averages sit between
 53.5% and 57.9%, so a 55% card is *average*, not good. Read the deltas, not the absolutes.
 
-### The draft plan in five lines
+### What the data says
 
-1. **Be in blue or white. Both, ideally.** Game-weighted mono-color GIH WR: **U 57.9% ≈ W 57.9% >
-   G 56.4% > B 55.6% > R 53.5%.** The experts unanimously called blue #1 and that held — but *white
-   is dead even with it*, not a clear #2, and **red is 4.3pp behind blue**, an enormous gap. The top
-   six commons in the set are all white or blue (Hero in Training 60.5%, Trickster's Stratagem 60.4%,
-   Murdock's Crusade 59.7%, S.H.I.E.L.D. Deployment Drone 59.5%, Web Up 59.3%, We Say Thee Nay!
-   59.3%). That is the whole color story.
-2. **Do not pair blue with black.** This is the format's biggest expert miss. LLU called UB its
-   "de-facto best in practice," LoL ranked it Tier 1 co-#1, Draftsim led with it. By gold-card win
-   rate UB is **dead last of the ten pairs.** The mechanism is simple: blue is the best color, black
-   is the *fourth* color, and UB's signposts are its two worst (Kang 55.4% at ALSA 5.0 — it wheels;
-   Ghost 52.4%). Connive is genuinely good; the black half of the pair is what drags. **Pair blue
-   with white instead.**
-3. **The signpost cycle is a trap. Take the good card.** Of the twenty gold-and-hybrid signposts,
-   **six have negative IWD** and only **one — Killmonger, Scourge of Wakanda (60.3%, IWD +6.2) — is
-   worth a genuinely high pick.** LoL and Numot both called Killmonger the best gold uncommon by a
-   wide margin, and that is the one signpost call the field got right.
-4. **Removal is scarce, and all four sources independently said so.** This is the single
-   most-confirmed take across every guide — LLU ("at a premium more so than usual"), LR (the whole
-   #858 grading frame), LoL ("prioritize it and hold it"), Numot (who blamed both losing drafts on
-   being removal-light). Nothing in the data contradicts it. Dark Deed (59.4%, IWD +6.3), Punishing
-   Punch (59.7%), Web Up (59.3%), Cruel Alliance (59.1% — LR correctly called it "likely the best
-   black common") are the benchmarks. Do not pass cheap interaction.
-5. **Lightly-themed goodstuff midrange is a fine default.** LLU's post-draft verdict — "the theme is
-   good cards, it's a midrange deck… something you're going to find pretty commonly in this set" —
-   is the read that survives contact with the numbers. No pair is dead, the fixing is deep, and every
-   hard-committed synergy lane below underperformed its hype.
+**Archetype win rate** (17Lands PremierDraft, 635k two-colour games; share = portion of the
+two-colour metagame):
 
-### Where the experts were wrong — judged by 8.35M games
+| Pair | Win % | Share | | Pair | Win % | Share |
+|---|---|---|---|---|---|---|
+| **WU** | **58.17** | 27.2% | | WR | 54.98 | 6.7% |
+| UG | 56.93 | 8.5% | | UB | 54.45 | 9.4% |
+| WG | 56.36 | 13.7% | | RG | 54.14 | 4.4% |
+| BG | 55.72 | 6.5% | | UR | 52.96 | 7.8% |
+| WB | 55.36 | 9.2% | | BR | 51.91 | 6.6% |
 
-Gold-card GIH WR by color pair, best to worst: **BG 58.8 · UW 58.8 · RW 58.5 · WB 57.5 · GR 57.4 ·
-BR 56.7 · GW 56.0 · UR 55.4 · GU 55.1 · UB 54.1.**
+**Azorius is the best deck and the most-drafted deck at once** — over a quarter of the field is in
+it and it still clears second place by 1.2pp. That combination is the strongest signal an archetype
+can give: a contested lane that wins anyway is genuinely the best, not an unexploited niche.
+Mono-White (59.78%) and Mono-Blue (57.51%) are the two highest win rates on the board outright, on
+small samples — the same two colours, undiluted.
 
-⚠ **This is a proxy, not 17Lands' archetype win rate.** It averages only the gold cards legal in each
-pair, so it conflates card quality with archetype quality and rests on small per-pair samples. Trust
-the direction and the extremes; do not treat the exact ordering as settled.
+**Colour order:** **U 57.9% ≈ W 57.9% > G 56.4% > B 55.6% > R 53.5%.** Blue and white are dead even,
+and red is 4.3pp behind — an enormous gap. The top six commons in the set are all white or blue
+(Hero in Training 60.5%, Trickster's Stratagem 60.4%, Murdock's Crusade 59.7%, S.H.I.E.L.D.
+Deployment Drone 59.5%, Web Up 59.3%, We Say Thee Nay! 59.3%). That is the whole colour story.
 
-- **UB — ranked #1 or co-#1 by three of four sources; finishes last.** See line 2 above. The largest
-  collective miss in the repo for this set.
-- **RW — LoL called it "too fussy," "a house made of toothpicks," Tier 2; it finishes #3.** And it
-  holds the best card in the set, **The Super Hero Civil War (69.3%, IWD +16.8, ALSA 1.5)**. Note the
-  shape though: *both* its signposts are negative-IWD (War Machine −1.1, Thor Odinson −0.5), so RW is
-  good **despite** its signposts, carried by white commons and that one rare.
-- **GW — LoL Tier 1, LLU's #2 archetype; finishes #7.** Both its signposts are negative-IWD too
-  (Black Panther, Vanguard −0.3 despite LR's B+ "both enabler and payoff"; Spider-Man, To the Rescue
-  −1.0). The hero theme turning on "automatically" was true and did not matter.
-- **BG #1 and UW #2 are the two calls that held.** LoL had both in Tier 1; LLU had UW at #4 and BG
-  down at #6, so LoL wins this one.
-- **GU worst-pair and UR shallowest-theme predictions both hold** (9th and 8th). LLU's "a deck you
-  draft once in a blue moon" and "you won't get a true all-artifact deck" were correct.
-- **LLU's grades beat LR's on uncommons — weight them accordingly.** LR graded the signposts in the
-  abstract before playing and systematically over-rated them: Madame Hydra B (actual 49.8%, IWD
-  −0.5), Beast, Erudite Aerialist B− (49.5%, IWD −2.6 — the worst signpost in the set), Ant-Man,
-  Colony Commander B+ "closer to A−, pushing the limits all by itself" (53.7%, IWD +0.8), Bullseye
-  B+ "completely justifies itself" (54.2%). LLU had those same cards at D+, D, and D+/C−. On MSH
-  uncommons, **LLU's letter beats LR's letter.**
-- **LR's own "predicted-volatile" watchlist resolved mostly to the pessimistic branch:** Madame Hydra
-  → bust · Mockingbird, Ace Agent → 50.3%, IWD −2.6, the "trap until proven otherwise" read was right
-  · Speedball, New Warrior → 50.3%, IWD −2.2, the "could just as easily be a B+" hope lost · Red Hulk
-  → 52.2%, the D branch of "predicted A-or-D". Two went the other way: **Wakandan Drone Flock** is a
-  fine playable that wheels (57.1% at ALSA 5.9 — better than the feared C−), and **Panther Pounce**
-  stayed marginal (54.1%, IWD −0.1).
-- **Plans split; LoL's blanket "garbage" was too harsh.** Political Triumph is a top-ten uncommon
-  (59.2%) while Construct a Cosmic Cube is a genuine bust (48.8%). LLU's more careful "value the
-  early chapters, they rarely reach the final one" is the read that survives.
-- **LLU's sleeper list is the best single piece of prediction in the four guides — 6 of 7 hit.**
-  Trickster's Stratagem (60.4%, the #2 common in the set), We Say Thee Nay! (59.3%), Undercover
-  Skrull (59.0%), Take Up the Shield (58.5%), H.E.R.B.I.E. Scout Unit (57.5% at ALSA 4.7),
-  Surveillance Room (56.3% at ALSA 5.8). The one miss: **A.I.M. Synthoids** — "don't sideboard it"
-  was wrong, it is a sideboard card (52.3%, IWD −0.8).
+**Two seats are worth knowing about.** **Simic is the second-best archetype at 56.93% and the
+least-drafted at 8.5%** — the field talked itself out of it, which makes it the best place to end up
+when white-blue is contested. **Dimir is the mirror image**: drafted as often as Orzhov, finishing
+7th. If you are being passed good blue, the black half is what will cost you.
 
-### The one thing this brief cannot settle: format speed
+### The draft plan
 
-LLU and LoL converge hard on **slow and grindy** — board stalls, flying breaks them, no board wipes,
-"Dominaria United cadence," missing land drop three is an auto-loss. Numot, from the other side of
-the table, insists the loudest lesson of his two drafts was that **"playing first and curving out is
-OP,"** and that he lost repeatedly to clean 2→3→4 villain curves before any stall formed. Card-level
-win rates cannot adjudicate this. Treat both as true: the format grinds when neither player is
-ahead, and punishes you hard when you are the one durdling.
+1. **Be white-blue unless the seat says otherwise; be Simic when it does.** The two best colours,
+   the best archetype, and a genuinely open second-best.
+2. **Take cheap interaction over almost anything.** Removal is scarce, and this is the one thing all
+   four guides said independently before the data existed — Limited Level-Ups called it at a premium
+   more than usual, Numot blamed both his losing drafts on being removal-light. The benchmarks:
+   **Dark Deed (59.4%, IWD +6.3)**, **Punishing Punch (59.7%)**, **Web Up (59.3%)**, **Cruel
+   Alliance (59.1%)**.
+3. **Ignore the signpost cycle; take the better card.** Of the twenty gold-and-hybrid signposts,
+   **six have negative IWD**, and only **Killmonger, Scourge of Wakanda (60.3%, IWD +6.2)** is worth
+   a genuinely high pick. Several archetypes are good *despite* their signposts rather than because
+   of them — Selesnya and Boros both post good archetype numbers while both of their signposts have
+   negative IWD.
+4. **Lightly-themed goodstuff midrange is a fine default.** No pair is dead, the fixing is deep, and
+   every hard-committed synergy lane underperformed its billing. Limited Level-Ups' post-draft
+   summary — the theme is good cards, and it is a midrange deck — is the read that survived contact
+   with the numbers.
+5. **The best card in the set is The Super Hero Civil War (69.3%, IWD +16.8, ALSA 1.5).** Take the
+   bomb; the rest of the plan is flexible.
+
+### What the numbers can't tell you
+
+This is where the guides earn their place — none of it is visible in a win-rate column.
+
+- **Four toughness is the magic number.** You need to attack through it and to kill it, which is why
+  deal-3 effects underperform their rate. Build your curve around clearing or surviving that line.
+- **No board wipes exist** — only deal-2-or-3-to-everything. Go-wide boards and sticky single threats
+  are unusually safe, and a bomb that resolves with no sweeper in the format simply wins.
+- **Bait removal with your mid-curve.** A plain four-mana 4/4 plays *better* than its grade in a slow
+  format, because eating their removal on a medium threat is what protects your actual bomb. The
+  exception holds for top-end fatties with no enter-the-battlefield value: those still get raced.
+- **Don't straddle two synergy lanes.** Numot's clearest self-diagnosed error was a deck drifting
+  between +1/+1 counters and artifacts and committing to neither. Counters live in Simic, artifacts
+  in Izzet; they do not merge.
+- **Splash for removal and a bomb, never for a pile of fatties.** Fixing is deep — gain-lands in
+  about half of packs, an untapped rare dual cycle, land-cyclers, **Ant-Man's Army (56.8%)** and
+  **Surveillance Room (56.3%)**. Numot demonstrated the failure mode himself: four- and five-colour
+  piles that were bomb-heavy and interaction-light, losing to clean curves.
 
 ### Deckbuilding doctrine
 
-- **The 2-drop slot is the scarce one; the 4-drop slot clogs.** LoL and Numot independently hit this.
-  Do not play bad filler two-drops — you 0-for-1 yourself — but do count land-cyclers as two-drops
-  (cycle on two, play a three on three). Typical: 3–5 real two-drops plus 2–3 cyclers, 16–17 lands,
-  17–18 creatures because so many engines are bodies.
-- **4 toughness is the magic number.** You need to attack through it and to kill it, which is why
-  deal-3 effects underperform their reputation.
-- **No board wipes exist.** Only deal-2-or-3-to-everything. Go-wide and sticky single threats are
-  unusually safe; a white bomb with no sweeper to answer it just wins.
-- **Splash freely for removal and a bomb or two — not for a pile of fatties.** Fixing is deep
-  (gain-lands in ~half of packs, an untapped rare dual cycle, land-cyclers, Ant-Man's Army 56.8%,
-  Surveillance Room 56.3%). Numot proved the failure mode himself: his 4–5 colour soup piles were
-  "cool, not good," bomb-heavy and interaction-light, and lost to clean curves.
-- **Bait removal with your mid-curve.** LLU's post-play correction: a random 4-mana 4/4 plays *better*
-  than its grade in a slow format, because eating their removal on your medium threat protects your
-  actual bomb. The top-end no-ETB fatties still get raced — that exception holds.
-- **Don't straddle two synergy lanes.** Numot's clearest self-diagnosed error: his deck drifted
-  between +1/+1 counters and artifacts and committed to neither. Counters live in GU, artifacts in
-  UR; they do not merge.
+- **The two-drop slot is scarce; the four-drop slot clogs.** Do not play bad filler two-drops — you
+  0-for-1 yourself — but do count land-cyclers as two-drops (cycle on two, play a three on three).
+  Typical shape: **3–5 real two-drops plus 2–3 cyclers, 16–17 lands, 17–18 creatures**, because so
+  many of the engines are bodies.
+- **Missing your third land drop is close to an auto-loss** in the grindy configurations, which is
+  the argument for the cyclers over a marginal spell.
 
-### Traps and sleepers the data settled
+### Where the field misprices cards
 
-- **Worst early picks** (taken by pick 4 on average, negative or zero IWD): Thunderbolts Conspiracy
-  (49.2%, IWD −1.2), War Machine, Legacy of Iron (−1.1), Spider-Man, To the Rescue (−1.0), Alien
-  Invasion (−1.0), Black Panther, Vanguard (−0.3), The Sentry, Golden Guardian (53.1% at ALSA 2.4),
-  Construct a Cosmic Cube (48.8%), Shang-Chi, Master of Kung Fu (53.0% at ALSA 2.7).
-- **Cheapest edges — strong cards that wheel** (ALSA 6+): Rapid Rescue (57.8% at ALSA **8.0** — the
-  single biggest gap in the set), Giant-Sized Flying Ant (57.6% at 6.2), S.H.I.E.L.D. Helicarrier
-  (57.4% at 6.9 — LLU's Alex defended this over co-host Mark's D+ and community pushback; **Alex was
-  right**), HYDRA Infiltration (56.4% at 7.3), Depower (56.1% at 6.6), Super Suit (55.8% at 7.0).
-- **HYDRA Troopers is not a reason to be in BG** — 53.3% at ALSA 6.6, after LoL and LR both walked it
-  back from "premium" to "conditional." They were right to walk it back, and it fell further.
-- **HULK SMASH! is fine, actually** — 55.4%, IWD +2.7. LLU's "more of a constructed card than a
-  limited card" was too harsh; this is the one place LLU under-called rather than over-called.
-- **Take the reprints seriously.** Sword of Fire and Ice (69.2%), Path to Exile, Counterspell,
-  Massacre Girl, Extinction Event and the rest of the bonus sheet carry no expert notes at all
-  because set reviews skip known quantities. Their tiles have numbers and an AI take only — that is
-  a coverage gap, not a signal that they are unimportant.
+These are the gaps between what a card is worth and where it actually goes — the cheapest equity in
+the format.
 
-### Calibration note
+- **Cards that wheel and shouldn't** (ALSA 6+): **Rapid Rescue (57.8% at ALSA 8.0 — the single
+  biggest gap in the set)**, Giant-Sized Flying Ant (57.6% at 6.2), S.H.I.E.L.D. Helicarrier (57.4%
+  at 6.9), HYDRA Infiltration (56.4% at 7.3), Depower (56.1% at 6.6), Super Suit (55.8% at 7.0).
+- **Cards taken early that shouldn't be** (by pick 4 on average, negative or zero IWD): Thunderbolts
+  Conspiracy (49.2%, IWD −1.2), War Machine, Legacy of Iron (−1.1), Spider-Man, To the Rescue (−1.0),
+  Alien Invasion (−1.0), Construct a Cosmic Cube (48.8%), The Sentry, Golden Guardian (53.1% at ALSA
+  2.4), Shang-Chi, Master of Kung Fu (53.0% at 2.7), Black Panther, Vanguard (−0.3).
+- **The worst uncommons in the set are signposts**: Beast, Erudite Aerialist (49.5%, IWD −2.6),
+  Madame Hydra (49.8%), Mockingbird, Ace Agent (50.3%, −2.6), Speedball, New Warrior (50.3%, −2.2).
+  Being a gold uncommon is not a reason to take one.
+- **HYDRA Troopers is not a reason to be in Golgari** — 53.3% at ALSA 6.6.
+- **Political Triumph is a top-ten uncommon (59.2%)** while Construct a Cosmic Cube is a genuine bust
+  (48.8%) — the Plans are not one category. Value the early chapters; they rarely reach the last one.
+- **HULK SMASH! is a real card** — 55.4% with IWD +2.7.
+- **The bonus-sheet reprints carry no expert notes at all**, because set reviews skip known
+  quantities — Sword of Fire and Ice (69.2%), Path to Exile, Counterspell, Massacre Girl, Extinction
+  Event. Their tiles show numbers and an AI take only. That is a coverage gap in the guides, not a
+  signal that the cards are unimportant.
 
-Numot's own warning is the right frame for this whole document: he crushed paper early access, then
-went 0-3 on release-day Arena and cautioned that "the early-access sample may not be a good way to
-count my drafting in this format." Every guide here is written from inside that window. Where a card
-tile shows a confident letter grade next to a mediocre win rate, the win rate is what happened.
+### Open questions the data can't settle
+
+- **How fast is this format, really?** Limited Level-Ups and Lords of Limited converge on slow and
+  grindy — board stalls, flying breaks them, no sweepers, missing land drop three loses. Numot, from
+  the other side of the table, insists the loudest lesson of his drafts was that playing first and
+  curving out is overpowered, and that he lost repeatedly to clean 2→3→4 curves before any stall
+  formed. Card-level win rates cannot adjudicate this. Both are true in practice: the format grinds
+  when neither player is ahead, and punishes you hard when you are the one durdling. Build a deck
+  that can do both, and take the play.
 
 ## Contents
 
