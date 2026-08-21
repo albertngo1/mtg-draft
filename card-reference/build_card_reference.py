@@ -237,6 +237,7 @@ GUIDE_SRCS = [
     ("🎙 Numot", "🎙 NumotTheNummy",      parse_guide(f"{ROOT}/draft-guides/numot/{SET}.md", CARD_KEYS, "Numot")),
     ("🎧 LR",    "🎧 Limited Resources",  parse_guide(f"{ROOT}/draft-guides/limited-resources/{SET}.md", CARD_KEYS, "LR")),
     ("🎓 LLU",   "🎓 Limited Level-Ups",  parse_guide(f"{ROOT}/draft-guides/limited-level-ups/{SET}.md", CARD_KEYS, "LLU")),
+    ("🎬 RD",    "🎬 Rough Drafts",       parse_guide(f"{ROOT}/draft-guides/rough-drafts/{SET}.md", CARD_KEYS, "RD")),
 ]
 
 # ---- grouping / ordering ----------------------------------------------------
