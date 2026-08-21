@@ -7,24 +7,24 @@
 
 > MSH 17Lands data is now mature (updated 2026-07-23): **285 of 334 cards** have a GIH WR off ~15.2M PremierDraft games, with QuickDraft (246 cards / ~2.1M games) and Sealed (254 cards / ~1.4M games) both live. Cards still lacking WR show blank stats; lean on the **CGB letter grade** + expert notes for those. WR is now a settled signal.
 
-### The 10 archetypes (color-pair guilds)
+MSH is a **slow, grindy goodstuff-midrange** format. Ranked by real 17Lands archetype win rate — note that Azorius is both the most-drafted pair *and* the highest-winning, while Simic is the second-best and the least-drafted (the open seat when white-blue is contested).
 
-MSH is a **slow, grindy, lightly-themed goodstuff** format — every pick below is read against the AI's read of which guild a card serves. Pairs are ranked by Limited Level-Ups' early-data read; no pair looked un-viable. The hybrid signpost is usually the higher pick.
+**Archetype win rate** (17Lands PremierDraft, 634,709 two-colour games; share = portion of the two-colour metagame):
 
-| # | Pair | Theme | Signposts |
-|---|------|-------|-----------|
-| 1 | **UB** | Connive / draw-two — smooth draws, grind card advantage (best in practice) | Kang, Temporal Tyrant · Ghost, Spectral Saboteur |
-| 2 | **GW** | Heroes-matter — go wide with ~91 heroes, low-effort payoffs | Black Panther, Vanguard · Spider-Man, To the Rescue |
-| 3 | **BR** | Villains-matter — auto-on (most black creatures are villains), push damage | Madame Hydra · Bullseye, Death Dealer |
-| 4 | **WU** | Teamwork — tap creatures to upgrade spells; wants a body-heavy build | Captain America, Living Legend · Spider-Woman, Secret Agent |
-| 5 | **RW** | Spells / prowess / tricks — the most aggressive pair | Thor Odinson · War Machine, Legacy of Iron |
-| 6 | **BG** | Graveyard — 2 creatures in yard (hit by trading); Killmonger is the linchpin | Killmonger, Scourge of Wakanda · Titania, Rugged Rumbler |
-| 7 | **RG** | Power-up / ramp — big bodies + +1/+1 mana sinks | Hulk, Gamma Goliath · Abomination, Terrifying Titan |
-| 8 | **WB** | Attack-alone — one operative, pile bonuses; small equipment sub-theme | Black Widow, Double Agent · U.S.Agent, John Walker |
-| 9 | **UR** | Artifacts — shallowest theme; evaluate each artifact on its own, don't force | Iron Man, Master of Machines · Speedball, New Warrior |
-| 10 | **GU** | +1/+1 counters — pile counters via power-up; weakest pair | Ant-Man, Colony Commander · Beast, Erudite Aerialist |
+| WR | Share | Pair | Plan | Key cards |
+|---|---|---|---|---|
+| **58.17%** | 27.2% | **WU** | Teamwork — tap creatures to upgrade spells; wants a body-heavy build | Captain America, Living Legend · Spider-Woman, Secret Agent |
+| 56.93% | 8.5% | **UG** | +1/+1 counters — pile counters via power-up. **Under-drafted and good** | Ant-Man, Colony Commander · Beast, Erudite Aerialist |
+| 56.36% | 13.7% | **WG** | Heroes-matter — go wide with ~91 heroes, low-effort payoffs | Black Panther, Vanguard · Spider-Man, To the Rescue |
+| 55.72% | 6.5% | **BG** | Graveyard — 2 creatures in yard (hit by trading); Killmonger is the linchpin | Killmonger, Scourge of Wakanda · Titania, Rugged Rumbler |
+| 55.36% | 9.2% | **WB** | Attack-alone — one operative, pile bonuses; small equipment sub-theme | Black Widow, Double Agent · U.S.Agent, John Walker |
+| 54.98% | 6.7% | **WR** | Spells / prowess / tricks — the most aggressive pair | Thor Odinson · War Machine, Legacy of Iron |
+| 54.45% | 9.4% | **UB** | Villains/connive — the format's biggest expert over-rate; blue is fine, black drags | Kang the Conqueror · Ghost, Elusive Specter |
+| 54.14% | 4.4% | **RG** | Power-up / ramp — big bodies + +1/+1 mana sinks | Hulk, Gamma Goliath · Abomination, Terrifying Titan |
+| 52.96% | 7.8% | **UR** | Artifacts — shallowest theme; evaluate each artifact on its own, don't force | Iron Man, Master of Machines · Speedball, New Warrior |
+| 51.91% | 6.6% | **BR** | Villains-matter — auto-on, push damage. Finishes last | Madame Hydra · Bullseye, Death Dealer |
 
-**Removal benchmarks** (scarce + at a premium in this slow format): Lightning Strike (R), Dark Deed / Cruel Alliance (B), Web Up / Super Villain Lockup (W), Punishing Punch (G), Frozen in Ice (U). **Big-dummy rule:** expensive no-ETB vanilla creatures are traps; flyers break the format's board stalls.
+**Removal benchmarks** (scarce and at a premium in this slow format): Dark Deed / Cruel Alliance (B), Punishing Punch (G), Web Up / Super Villain Lockup (W), Lightning Strike (R), Frozen in Ice (U). **Big-dummy rule:** expensive no-ETB vanilla creatures are traps; flyers break the format's board stalls.
 
 ## Format brief — everything that isn't a single card
 
@@ -43,16 +43,7 @@ read a letter grade on a card tile as theory and the win rate beside it as the r
 
 ### What the data says
 
-**Archetype win rate** (17Lands PremierDraft, 635k two-colour games; share = portion of the
-two-colour metagame):
-
-| Pair | Win % | Share | | Pair | Win % | Share |
-|---|---|---|---|---|---|---|
-| **WU** | **58.17** | 27.2% | | WR | 54.98 | 6.7% |
-| UG | 56.93 | 8.5% | | UB | 54.45 | 9.4% |
-| WG | 56.36 | 13.7% | | RG | 54.14 | 4.4% |
-| BG | 55.72 | 6.5% | | UR | 52.96 | 7.8% |
-| WB | 55.36 | 9.2% | | BR | 51.91 | 6.6% |
+*(The full archetype table with metagame share renders directly above this brief.)*
 
 **Azorius is the best deck and the most-drafted deck at once** — over a quarter of the field is in
 it and it still clears second place by 1.2pp. That combination is the strongest signal an archetype

@@ -7,6 +7,24 @@
 
 > MKM is a grindy 2-color guild-midrange format, so GIH WR transfers honestly (little soup inflation). Ratings are 2024 MKM PremierDraft historical data. White pairs (Boros best) sit on top; black is the weakest color.
 
+MKM is a **grindy 2-color guild-midrange** format, so GIH WR transfers honestly — little soup inflation. **Boros is both the best and the most-drafted archetype**, and white's four pairs finish 1st, 2nd, 4th and 5th, so being predisposed to white is a real heuristic. Simic is the best non-white pair and under-drafted; the three black pairs finish 8th, 9th and 10th.
+
+**Archetype win rate** (17Lands PremierDraft, 900,623 two-colour games; share = portion of the two-colour metagame):
+
+| WR | Share | Pair | Plan | Key cards |
+|---|---|---|---|---|
+| **58.05%** | 20.1% | **WR** | Boros aggro/tempo — curve out, go wide, close fast. Carried by mono-color commons, NOT its signposts | Novice Inspector · Dog Walker · Case of the Gateway Express · Lightning Helix |
+| 56.71% | 13.4% | **WG** | Selesnya — white-core go-wide disguise; you compromise the green plan, not the white one | On the Job · Dog Walker · Nervous Gardener · Buried in the Garden |
+| 56.07% | 9.8% | **UG** | Simic — grindy value, Collect Evidence, surveil. **The open seat: best non-white pair at 9.8% share** | Projektor Inspector · Out Cold · Reasonable Doubt · Doppelgang |
+| 55.33% | 12.3% | **WU** | Azorius — detective tempo, low curve, cheap interaction + flyers | Perimeter Enforcer · Private Eye · Granite Witness · Novice Inspector |
+| 55.27% | 6.9% | **WB** | Orzhov — "power 2 or less" drain + go-wide aggro | Wisp-Drinker Vampire · Inside Source · Teysa, Opulent Oligarch |
+| 54.97% | 11.1% | **UR** | Izzet — artifacts/clues/thopters. High ceiling, low floor; third most-drafted for a below-median result | Gleaming Geardrake · Detective's Satchel · Maverick Thopterist |
+| 54.18% | 7.0% | **RG** | Gruul — big disguise, ramp into flip-up haymakers | Tin Street Gossip · Tunnel Tipster · Fanatical Strength |
+| 53.76% | 6.2% | **BR** | Rakdos — suspect aggro + sacrifice. Judith at 50.0% is the proof it didn't function | Rune-Brand Juggler · Detective's Satchel · Push // Pull |
+| 53.57% | 8.4% | **BG** | Golgari — graveyard build-around. **The format's biggest casualty; too slow** | Chalk Outline · Insidious Roots · Gravestone Strider |
+| 52.65% | 4.8% | **UB** | Dimir — clues control. Last, because everyone has Clue card advantage | Faerie Snoop · Long Goodbye · Deadly Cover-Up |
+
+**Removal benchmarks:** Long Goodbye (B uncommon, the best in the set), Extract a Confession (B common — better than Murder), Bite Down on Crime (G fight), Shock (R, edges Galvanize), Makeshift Binding (W). **Ward-2 disguise warps every removal evaluation** — a face-down creature is a ward-2 2/2, so cheap burn is often a 3-mana kill; fights, edicts and -X/-X sidestep the tax. **Format rules:** 17 lands (16 ultra-low curve, 18 for value/control); good two-drops are scarce and four-drops are everywhere, so play the mediocre two-drop but don't pick it early; the wheel is largely dead (Play Booster); Collect Evidence is free — don't warp picks for it; aim for zero Suspicious Detonation.
 
 ## Format brief — everything that isn't a single card
 
@@ -28,16 +46,7 @@ often, and the gap is informative (see "Where the field misprices cards").
 
 ### What the data says
 
-**Archetype win rate** (17Lands PremierDraft, 900k two-colour games; share = portion of the
-two-colour metagame):
-
-| Pair | Win % | Share | | Pair | Win % | Share |
-|---|---|---|---|---|---|---|
-| **WR** | **58.05** | 20.1% | | UR | 54.97 | 11.1% |
-| WG | 56.71 | 13.4% | | RG | 54.18 | 7.0% |
-| UG | 56.07 | 9.8% | | BR | 53.76 | 6.2% |
-| WU | 55.33 | 12.3% | | BG | 53.57 | 8.4% |
-| WB | 55.27 | 6.9% | | UB | 52.65 | 4.8% |
+*(The full archetype table with metagame share renders directly above this brief.)*
 
 **Boros is the best deck and the most-drafted deck at once**, 1.3pp clear of second while a fifth of
 the field is in it — a contested lane that wins anyway. Every source called it. White's four pairs

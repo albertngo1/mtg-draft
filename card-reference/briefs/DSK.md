@@ -16,16 +16,7 @@ non-black colours sit inside 0.6pp of each other, so colour-level differences ar
 
 ### What the data says
 
-**Archetype win rate** (17Lands PremierDraft, 1.22M two-colour games; share = portion of the
-two-colour metagame):
-
-| Pair | Win % | Share | | Pair | Win % | Share |
-|---|---|---|---|---|---|---|
-| **WR** | **56.95** | 15.6% | | BG | 54.55 | 9.0% |
-| WU | 56.43 | 17.3% | | WG | 52.74 | 5.0% |
-| UG | 55.65 | 13.7% | | WB | 52.32 | 5.9% |
-| RG | 55.48 | 13.4% | | UR | 52.23 | 5.6% |
-| BR | 54.99 | 9.8% | | UB | 51.59 | 4.5% |
+*(The full archetype table with metagame share renders directly above this brief.)*
 
 **The two white pairs are the best archetypes, and the graveyard decks are not.** That is the single
 most useful thing on this page, because DSK reads like a graveyard format — Delirium, Manifest Dread

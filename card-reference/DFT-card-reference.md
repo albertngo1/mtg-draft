@@ -7,23 +7,24 @@
 
 > DFT (Aetherdrift) is the vehicles set that drove **under the speed limit** — despite the racing theme it's one of the **slower** recent formats, so plan for the long game and don't overvalue vanilla two-mana 2/2s (a good two-drop wants 3 power OR 3 toughness; 4 toughness is the magic number). The 17Lands GIH WR is a finished-format signal (Feb-Mar 2025) and CGB letter grades are pre-data theory — trust live WR on conflict. **Color order at common: Green ≥ Black > Red = White > Blue**, but blue's *uncommons* are elite, so blue is a strong support color. GIH WR **overrates big green fatties/payoffs** (their number comes from the ramp deck) and **underrates cheap removal** — the AI take + guide notes decode which deck a number belongs to.
 
-### The archetypes (color-pair guilds)
+DFT is a **slow, grindy** format wearing a racing costume. **The three green pairs are the top three, separated by 0.23pp — a statistical tie** — so being in green matters more than which green pair. Green plays the best raw threats at common, so every other deck needs a plan to beat big green.
 
-DFT is a **slow, grindy** format wearing a racing costume — every pick is read against which pair a card serves. Pairs ranked by Lords of Limited's 2025-03-17 retrospective (the decisive source). Green plays the best raw threats at common, so **every deck needs a plan to beat big green** (Hazard of the Dunes, Migrating Ketradon, Regal Imperiosaur).
+**Archetype win rate** (17Lands PremierDraft, 872,036 two-colour games; share = portion of the two-colour metagame):
 
-| Tier | Pair | Game plan | Signposts |
-|------|------|-----------|-----------|
-| **S** | **BG** | Graveyard value + exhaust, big bodies — the best deck | Thundering Broodwagon · Wreckage Wickerfolk · Spin Out · Earthrumbler |
-| **A** | **UB** | Artifact/affinity control, thopters, Haunt the Network drain (Esper soup too) | Haunt the Network · Pactdoll Terror · Repurposing Bay · Rangers' Refueler |
-| **A** | **BR** | Start Your Engines aggro-midrange, edict into engine-start, drain | Momentum Breaker · Outpace Oblivion · Endrider Spikespitter · Magmakin Artillerist |
-| **A-** | **UR** | Cycling/discard + **Push the Limit** build-around — highest ceiling in the set | Clamorous Ironclad · Spire Mechcycle · Push the Limit · Thunderhead Gunner |
-| **B+** | **Big White** | Broad-base midrange/control with chunky vehicles — NOT aggro white | Ride's End · Broadcast Rambler · Marshals' Pathcruiser · Explosive Getaway |
-| **B** | **4c No-Green** | Esper/Mardu/Grixis good-uncommon piles on Starting Column + Night Market fixing | Starting Column · Ride's End · Haunt the Network |
-| **B** | **Green late-game** | Ramp into big green bodies + exhaust payoffs (incl. GU exhaust) | Hazard of the Dunes · Regal Imperiosaur · Boom Scholar |
-| **C+** | **RG** | Exhaust big-mana stompy, Boom Scholar cost-reduction | Boom Scholar · Rocketeer Boostbuggy · Hazard of the Dunes |
-| **C** | **WB / WU / GU / RW** | Aristocrats · artifact-vehicles · exhaust-thopters · pilot beatdown — narrower support pairs | Embalmed Ascendant · Guidelight Pathmaker · Rangers' Aetherhive · Cloudspire Coordinator |
+| WR | Share | Pair | Plan | Key cards |
+|---|---|---|---|---|
+| **56.46%** | 15.0% | **UG** | Exhaust synergies + thopters; the ramp-soup base | Skyserpent Seeker · Rangers' Aetherhive · Hulldrifter |
+| 56.40% | 18.4% | **BG** | Graveyard value + exhaust, big bodies — most-drafted, safest default | Thundering Broodwagon · Wreckage Wickerfolk · Spin Out |
+| 56.23% | 8.3% | **WG** | Mounts/vehicles + green rate. **Under-drafted at 8.3%** | Veteran Beastrider · Ride's End · Stampeding Scurryfoot |
+| 55.62% | 5.8% | **WB** | Aristocrats — embalm/sacrifice value | Embalmed Ascendant · Spin Out · Ride's End |
+| 55.18% | 8.9% | **BR** | Start Your Engines aggro-midrange, edict into engine-start, drain | Momentum Breaker · Gastal Thrillseeker · Magmakin Artillerist |
+| 55.12% | 9.2% | **RG** | Exhaust big-mana stompy | Rocketeer Boostbuggy · Hazard of the Dunes |
+| 54.62% | 12.2% | **UB** | Artifact/affinity control, thopters, Haunt the Network drain | Haunt the Network · Pactdoll Terror · Rangers' Refueler |
+| 54.24% | 7.6% | **WU** | Artifact-vehicles + Guidelight synergies | Guidelight Pathmaker · Spikeshell Harrier · Marshals' Pathcruiser |
+| 53.68% | 9.9% | **UR** | Cycling/discard + **Push the Limit** — high ceiling, low floor | Clamorous Ironclad · Push the Limit · Captain Howler |
+| 51.95% | 4.9% | **WR** | Pilot beatdown. **Worst archetype in the set by 1.7pp** | Cloudspire Coordinator · Canyon Vaulter |
 
-**Removal benchmarks:** Ride's End (W, premium), Spin Out (B common), Momentum Breaker (B edict/tempo), Outpace Oblivion / Lightning Strike (R), Bounce Off (U tempo), Broadside Barrage (gold), Spectacular Pileup (W cycling wrath — wheels because everyone avoids white). **Format rules:** vanilla 2-mana 2/2s are below replacement; **aggressive white is a trap** (big white only); **Push the Limit needs 9+ mounts/vehicles** — don't force it; RW Boros is hard to pilot (every win is 'two wins'); max speed (Start Your Engines) turns on when an opponent loses life on your turn, and payoffs spike hard at max.
+**Removal benchmarks:** Ride's End (W, premium exile), Spin Out (B common), Momentum Breaker (B edict/tempo), Grim Bauble (B), Bounce Off (U tempo), Broadside Barrage (gold). **Format rules:** vanilla 2-mana 2/2s are below replacement (want 3 power OR 3 toughness); **aggressive white is a trap — big white only**; crew cost is the whole evaluation on a vehicle (crew 1 >> crew 3); exhaust is a mana sink, not a plan; Start Your Engines needs 3-4 turns to matter. Blue's uncommons are the best in the format and its commons are not.
 
 ## Format brief — everything that isn't a single card
 
@@ -44,16 +45,7 @@ you drew them in. The sample is **25.7M games across 277 measured cards**.
 
 ### What the data says
 
-**Archetype win rate** (17Lands PremierDraft, 872k two-colour games; share = portion of the
-two-colour metagame):
-
-| Pair | Win % | Share | | Pair | Win % | Share |
-|---|---|---|---|---|---|---|
-| **UG** | **56.46** | 15.0% | | RG | 55.12 | 9.2% |
-| BG | 56.40 | 18.4% | | UB | 54.62 | 12.2% |
-| WG | 56.23 | 8.3% | | WU | 54.24 | 7.6% |
-| WB | 55.62 | 5.8% | | UR | 53.68 | 9.9% |
-| BR | 55.18 | 8.9% | | WR | 51.95 | 4.9% |
+*(The full archetype table with metagame share renders directly above this brief.)*
 
 **The three green pairs are the top three, separated by 0.23pp — a statistical tie.** Golgari is also
 the most-drafted archetype at 18.4%, which makes it the safest default rather than a hidden gem;

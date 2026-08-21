@@ -7,24 +7,24 @@
 
 > DSK (Duskmourn: House of Horror) is a **graveyard-matters midrange** format that plays slower than it looks — five- and six-drop bomb uncommons are real P1P1s, and the engine pairs dominate once they "turn on." The three overlapping axes are **Delirium** (4+ card types in yard), **Manifest Dread**, and **Eerie** (enchantments/rooms). The 17Lands GIH WR is a finished-format signal (Sep-Oct 2024; **272 of 281 cards** have one); CGB letter grades are pre-data theory — trust live WR on conflict. **Color order: Green > Black >> Blue > White > Red** (green is busted at common AND uncommon; blue has weak commons but elite uncommons, so late blue uncommons = open). GIH WR **overrates synergy/build-around payoffs** (delirium fatties, reanimate targets, eerie/room engines post the built-around deck's number) and **underrates cheap exile removal** (Scorching Dragonfire, Nowhere to Run, Sheltered by Ghosts) — the AI take + guide notes decode which deck a number belongs to. **Four toughness is the magic number** (dodges the two premier damage-removal spells), and **exile/tuck > kill** since feeding graveyards helps your opponents.
 
-### The archetypes (color-pair guilds)
+DSK is a **graveyard-matters midrange** format built on three overlapping axes — **Delirium** (4+ card types in yard), **Manifest Dread** (face-down 2/2s that fuel the yard + flip up), and **Eerie** (enchantment/room triggers). **But the two white tempo pairs win, and the dedicated graveyard decks don't** — Golgari finishes 6th, Orzhov 8th and Dimir 10th. The right amount of Delirium is incidental, not built-around. Don't over-commit before pick 5-6.
 
-DSK is a **graveyard-matters midrange** format built on three overlapping axes — **Delirium** (4+ card types in yard), **Manifest Dread** (face-down 2/2s that fuel the yard + flip up), and **Eerie** (enchantment/room triggers). **Green is busted** (elite commons AND uncommons) and **black** has the premium removal + payoffs; blue is weak-commons/elite-uncommons, so late blue uncommons signal an open lane. Don't over-commit before pick 5-6 — take mono-color removal/efficient creatures while reading the seat. Ranked by Lords of Limited's settled read; Numot's counter-lean pushes **WU enchantments** ('maybe the best deck') and **BR sacrifice** up.
+**Archetype win rate** (17Lands PremierDraft, 1,215,147 two-colour games; share = portion of the two-colour metagame):
 
-| Tier | Pair | Theme / plan | Signposts / key cards |
-|------|------|--------------|-----------------------|
-| **S** | **BG** | Golgari Delirium value — fill the yard fast, unlock huge payoffs; splashes W/R naturally | Brood Weaver · Drag to the Roots · Wickerbough Thresher · Say Its Name |
-| **A** | **UG** | Simic Manifest Dread engine — repeat it, flip up, refill (grinding midrange) | Oblivious Bookworm (best gold uncommon) · Paranormal Analyst · Threats Around Every Corner · Under the Skin |
-| **A** | **BW** | Orzhov Reanimator — discard/mill fatties, reanimate them | Rite of the Moth · Shroudstomper · Miasma Demon · Vile Mutilator |
-| **A-** | **UB** | Dimir Eerie control — enchantments/rooms, surveil, recurring evasion | Skullcap Nuisance · Fear of Infinity ("can't race it") · Nowhere to Run |
-| **B+** | **RG** | Gruul Delirium stompy — fill yard, attack with big delirium bodies (Jund-splash natural) | Wildfire Wickerfolk · Beastie Beatdown · Patchwork Beastie |
-| **B** | **WU** | Azorius Eerie tempo — enchantments trigger eerie + glimmers/rooms (best deck when open) | Gremlin Tamer · Inquisitive Glimmer · Glimmerlight |
-| **B** | **BR** | Rakdos Sacrifice/Eerie — sac creatures/enchantments for value (Kenji favorite) | Disturbing Mirth · Sawblade Skinripper · Cracked Skull |
-| **B-** | **GW** | Selesnya Survival — snowball beatdown via survival triggers + counters | Shrewd Storyteller · Orphans of the Wheat · Hardened Escort |
-| **C+** | **UR** | Izzet Rooms — control/burn; signposts pull opposite ways, plays as soup (inconsistent) | Smoky Lounge // Misty Salon · Intruding Soulrager · Pyroclasm |
-| **C** | **RW** | Boros aggro — power-2-or-less tokens/gremlins, Arabella drain (shallowest, weakest lane) | Arabella, Abandoned Doll · Midnight Mayhem · Razorkin Hordecaller |
+| WR | Share | Pair | Plan | Key cards |
+|---|---|---|---|---|
+| **56.95%** | 15.6% | **WR** | Boros aggro — power-2-or-less tokens/gremlins, Arabella drain | Arabella, Abandoned Doll · Midnight Mayhem · Razorkin Hordecaller |
+| 56.43% | 17.3% | **WU** | Azorius Eerie tempo — enchantments trigger eerie + glimmers/rooms | Gremlin Tamer · Inquisitive Glimmer · Glimmerlight |
+| 55.65% | 13.7% | **UG** | Simic Manifest Dread engine — repeat it, flip up, refill | Oblivious Bookworm · Paranormal Analyst · Threats Around Every Corner |
+| 55.48% | 13.4% | **RG** | Gruul Delirium stompy — fill yard, attack with big delirium bodies | Wildfire Wickerfolk · Beastie Beatdown · Patchwork Beastie |
+| 54.99% | 9.8% | **BR** | Rakdos Sacrifice/Eerie — sac creatures/enchantments for value | Disturbing Mirth · Sawblade Skinripper · Cracked Skull |
+| 54.55% | 9.0% | **BG** | Golgari Delirium value — fill the yard fast, unlock payoffs | Broodspinner · Drag to the Roots · Say Its Name |
+| 52.74% | 5.0% | **WG** | Selesnya Survival — snowball beatdown via survival triggers | Shrewd Storyteller · Orphans of the Wheat · Hardened Escort |
+| 52.32% | 5.9% | **WB** | Orzhov Reanimator — discard/mill fatties, reanimate them | Rite of the Moth · Miasma Demon · Vile Mutilator |
+| 52.23% | 5.6% | **UR** | Izzet Rooms — control/burn; signposts pull opposite ways | Roaring Furnace // Steaming Sauna · Intruding Soulrager |
+| 51.59% | 4.5% | **UB** | Dimir Eerie control — enchantments/rooms, surveil, recurring evasion | Fear of Infinity · Nowhere to Run · Skullcap Nuisance |
 
-**Removal benchmarks:** Scorching Dragonfire (1R: deal 3, exile) and Nowhere to Run (1B flash: −3/−3) are the premier damage removal — **four toughness is the magic number** (dodges both). Premium exile/tuck: Sheltered by Ghosts, Trapped in the Screen, Seized from Slumber (BW), Unable to Scream (U). Murder / Final Vengeance / Withering Torment are the honest black kills. **Format rules:** 16-17 lands (Terramorphic + land-cyclers + manifest dread smooth the mana); **exile/tuck > kill** since feeding graveyards helps Delirium/Reanimator opponents. **Traps:** five-drop flyers with no board impact (Fear of Falling — previewed premium, settled trap), Coordinated Clobbering, Monstrous Emergence (doesn't exile). Delirium's hardest type is **artifacts** — Terramorphic Expanse, Glimmerlight, Piggy Bank, Patchwork Beastie are the glue.
+**Removal benchmarks:** Scorching Dragonfire (1R: deal 3, exile) and Nowhere to Run (1B flash: -3/-3) are the premier damage removal — **four toughness is the magic number** (dodges both). Premium exile/tuck: Sheltered by Ghosts (the best card in the set outside rares), Trapped in the Screen, Unable to Scream. **Format rules:** 16-17 lands; **exile/tuck > kill** since feeding graveyards helps Delirium/Reanimator opponents; Delirium's hardest type is **artifacts**, so the artifact glue cards matter more than their rate. **Traps:** five-drop flyers with no board impact, Pyroclasm maindeck.
 
 ## Format brief — everything that isn't a single card
 
@@ -44,16 +44,7 @@ non-black colours sit inside 0.6pp of each other, so colour-level differences ar
 
 ### What the data says
 
-**Archetype win rate** (17Lands PremierDraft, 1.22M two-colour games; share = portion of the
-two-colour metagame):
-
-| Pair | Win % | Share | | Pair | Win % | Share |
-|---|---|---|---|---|---|---|
-| **WR** | **56.95** | 15.6% | | BG | 54.55 | 9.0% |
-| WU | 56.43 | 17.3% | | WG | 52.74 | 5.0% |
-| UG | 55.65 | 13.7% | | WB | 52.32 | 5.9% |
-| RG | 55.48 | 13.4% | | UR | 52.23 | 5.6% |
-| BR | 54.99 | 9.8% | | UB | 51.59 | 4.5% |
+*(The full archetype table with metagame share renders directly above this brief.)*
 
 **The two white pairs are the best archetypes, and the graveyard decks are not.** That is the single
 most useful thing on this page, because DSK reads like a graveyard format — Delirium, Manifest Dread

@@ -17,16 +17,7 @@ you drew them in. The sample is **25.7M games across 277 measured cards**.
 
 ### What the data says
 
-**Archetype win rate** (17Lands PremierDraft, 872k two-colour games; share = portion of the
-two-colour metagame):
-
-| Pair | Win % | Share | | Pair | Win % | Share |
-|---|---|---|---|---|---|---|
-| **UG** | **56.46** | 15.0% | | RG | 55.12 | 9.2% |
-| BG | 56.40 | 18.4% | | UB | 54.62 | 12.2% |
-| WG | 56.23 | 8.3% | | WU | 54.24 | 7.6% |
-| WB | 55.62 | 5.8% | | UR | 53.68 | 9.9% |
-| BR | 55.18 | 8.9% | | WR | 51.95 | 4.9% |
+*(The full archetype table with metagame share renders directly above this brief.)*
 
 **The three green pairs are the top three, separated by 0.23pp — a statistical tie.** Golgari is also
 the most-drafted archetype at 18.4%, which makes it the safest default rather than a hidden gem;

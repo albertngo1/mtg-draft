@@ -18,16 +18,7 @@ often, and the gap is informative (see "Where the field misprices cards").
 
 ### What the data says
 
-**Archetype win rate** (17Lands PremierDraft, 900k two-colour games; share = portion of the
-two-colour metagame):
-
-| Pair | Win % | Share | | Pair | Win % | Share |
-|---|---|---|---|---|---|---|
-| **WR** | **58.05** | 20.1% | | UR | 54.97 | 11.1% |
-| WG | 56.71 | 13.4% | | RG | 54.18 | 7.0% |
-| UG | 56.07 | 9.8% | | BR | 53.76 | 6.2% |
-| WU | 55.33 | 12.3% | | BG | 53.57 | 8.4% |
-| WB | 55.27 | 6.9% | | UB | 52.65 | 4.8% |
+*(The full archetype table with metagame share renders directly above this brief.)*
 
 **Boros is the best deck and the most-drafted deck at once**, 1.3pp clear of second while a fifth of
 the field is in it — a contested lane that wins anyway. Every source called it. White's four pairs

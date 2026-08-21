@@ -7,24 +7,24 @@
 
 > BLB is a finished format (Aug-Sep 2024) — the 17Lands GIH WR is **mature and full-format**, and the expert notes are end-of-format retrospectives (LoL's '50 Takes' finale, LR's Sunset Show, Kenji's last BLB VODs), so this reference is settled, not provisional. Big caveat: it's a **typal/synergy format**, so GIH WR is archetype-conditional — a tribal 'false friend' (Carrot Cake is great in GW Rabbits, bad in RW Mice) reads average overall but swings hard by deck. The AI take + guide notes decode which tribe a number belongs to.
 
-### The 10 archetypes (color-pair tribes)
+BLB is a **typal/synergy** format — each color pair is an animal tribe with a narrow home. Think "BG Food/Forage card," not "green card." **The flattest format in this reference: the top five pairs sit inside 0.9pp**, so draft the open seat rather than a ranking. Start green or black — they branch into the most good pairs — and let pack 1 name the tribe.
 
-BLB is a **typal/synergy** format — each color pair is an animal tribe with a narrow home. Think "BG Food/Forage card," not "green card." Ranked by Lords of Limited's end-of-format retrospective; the format **self-corrected** so all ten are draftable when open (blue pairs especially overperform for skilled drafters who read an empty lane). **Start green or black** — they branch into the most good pairs — and let pack 1 tell you the tribe.
+**Archetype win rate** (17Lands PremierDraft, 1,062,929 two-colour games; share = portion of the two-colour metagame):
 
-| # | Pair | Tribe / plan | Key cards |
-|---|------|--------------|-----------|
-| 1 | **BG** | Squirrels — Forage / Food / graveyard grind (deepest, highest floor) | Cache Grab · Scavenger's Talent · Vinereap Mentor |
-| 2 | **GW** | Rabbits — go-wide Offspring / Food tokens, curve out fast | Carrot Cake · Intrepid Rabbit · Treeguard Duo |
-| 3 | **GU** | Frogs — blink / bounce to re-trigger ETBs, grind value (LSV's favorite) | Pond Prophet · Sunshower Druid · Three Tree Scribe |
-| 4 | **BR** | Lizards — cheap aggressive bodies + burn / damage payoffs | Scales of Shale · Fireglass Mentor · Hired Claw |
-| 5 | **UB** | Rats — go-wide + discard / Threshold (under-drafted sleeper) | Tidecaller Mentor · Mind Drill Assailant · Mindwhisker |
-| 6 | **WB** | Bats — lifegain triggers + drain attrition (branches well) | Starscape Cleric · Moonrise Cleric · Valley Rotcaller |
-| 7 | **RG** | Raccoons — Expend / Forage / Food goodstuff (weakest, generic) | Wandertale Mentor · Bakersbane Duo · Junkblade Bruiser |
-| 8 | **RW** | Mice — Valiant / go-wide aggro (contested; Food stalls it) | Heartfire Hero · Manifold Mouse · Emberheart Challenger |
-| 9 | **UR** | Otters — spells / prowess / tempo (low floor, expert-only) | Stormcatch Mentor · Alania's Pathmaker · Stormsplitter |
-| 10 | **WU** | Birds — evasive flyers + counters (weak avg, elite ceiling when open) | Jackdaw Savior · Seedpod Squire · Plumecreed Escort |
+| WR | Share | Pair | Plan | Key cards |
+|---|---|---|---|---|
+| **55.91%** | 9.3% | **BR** | Lizards — cheap aggressive bodies + burn / damage payoffs | Scales of Shale · Fireglass Mentor · Hired Claw |
+| 55.64% | 15.4% | **WG** | Rabbits — go-wide Offspring / Food tokens, curve out fast | Carrot Cake · Intrepid Rabbit · Treeguard Duo |
+| 55.49% | 17.5% | **BG** | Squirrels — Forage / Food / graveyard grind (deepest, highest floor) | Cache Grab · Scavenger's Talent · Vinereap Mentor |
+| 55.38% | 12.5% | **WB** | Bats — lifegain triggers + drain attrition (branches well) | Starscape Cleric · Moonrise Cleric · Valley Rotcaller |
+| 55.03% | 12.7% | **UG** | Frogs — blink / bounce to re-trigger ETBs, grind value | Pond Prophet · Sunshower Druid · Three Tree Scribe |
+| 54.50% | 10.2% | **WR** | Mice — Valiant / go-wide aggro (contested; Food stalls it) | Heartfire Hero · Manifold Mouse · Emberheart Challenger |
+| 53.89% | 6.8% | **UB** | Rats — go-wide + discard / Threshold | Tidecaller Mentor · Mind Drill Assailant · Mindwhisker |
+| 53.82% | 7.2% | **RG** | Raccoons — Expend / Forage / Food goodstuff (generic) | Wandertale Mentor · Bakersbane Duo · Junkblade Bruiser |
+| 52.65% | 3.5% | **WU** | Birds — evasive flyers + counters | Jackdaw Savior · Seedpod Squire · Plumecreed Escort |
+| 51.61% | 4.9% | **UR** | Otters — spells / prowess / tempo. Last, and the field agrees | Stormcatch Mentor · Alania's Pathmaker · Stormsplitter |
 
-**Format principles:** medium-to-slow despite looking fast (games hit turns 10-14; whoever's buried in card advantage loses). **Food + lifegain are disproportionately strong** (buy turns for synergy to come online). Want a turn-2 play; better drafters run a U-shaped curve (lots of 1-2s + 5-6s). Removal is scarce — prioritize cheap instant-speed (Savor, Nocturnal Hunger, Sonar Strike, Scales of Shale). **Talents are the best build-arounds** — open one, jam it. The Villages (type dual lands) are a trap.
+**Format principles:** medium-to-slow despite looking fast (games hit turns 10-14). **Food + lifegain are disproportionately strong.** Want a turn-2 play. Removal is scarce — prioritize cheap instant-speed (Savor is the best common in the set, then Nocturnal Hunger, Scales of Shale). **Innkeeper's and Hunter's Talent are format-warping; the other three Talents are ordinary.** Blue's *cards* are the cheapest late picks in the format even though blue's *pairs* finish 9th and 10th.
 
 ## Format brief — everything that isn't a single card
 
@@ -45,16 +45,7 @@ that wins the game you drew it in."
 
 ### What the data says
 
-**Archetype win rate** (17Lands PremierDraft, 1.06M two-colour games; share = portion of the
-two-colour metagame):
-
-| Pair | Win % | Share | | Pair | Win % | Share |
-|---|---|---|---|---|---|---|
-| **BR** | **55.91** | 9.3% | | WR | 54.50 | 10.2% |
-| WG | 55.64 | 15.4% | | UB | 53.89 | 6.8% |
-| BG | 55.49 | 17.5% | | RG | 53.82 | 7.2% |
-| WB | 55.38 | 12.5% | | WU | 52.65 | 3.5% |
-| UG | 55.03 | 12.7% | | UR | 51.61 | 4.9% |
+*(The full archetype table with metagame share renders directly above this brief.)*
 
 **This is the flattest format in the reference — the top five pairs sit inside 0.9pp.** Which is
 exactly Limited Resources' settled position that the format self-corrected and any pair can win if

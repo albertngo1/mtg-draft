@@ -7,6 +7,19 @@
 
 > SOS is a soup/Converge format — multicolor & Converge win-rates are inflated by 4-5c pilots. The AI take and guide notes decode which deck a number came from.
 
+SOS is a **"soup versus white-X aggro"** format. Strixhaven has five college pairs rather than ten, plus an unwritten sixth archetype — **Converge / 5c soup** — that 17Lands structurally cannot measure, because its record is split across dozens of invisible three- and four-color builds. **The two white colleges are a tier of their own**, 2.3pp clear of third. Note Prismari: last of five *and* the second most-drafted, a quarter of the field in the worst college.
+
+**Archetype win rate** (17Lands PremierDraft, 907,949 two-colour games; share = portion of the two-colour metagame):
+
+| WR | Share | Pair | Plan | Key cards |
+|---|---|---|---|---|
+| **57.28%** | 22.1% | **WB** | Silverquill — Repartee aggro/tempo; target your own creatures to grow the board | Scolding Administrator · Render Speechless · Cost of Brilliance |
+| 56.89% | 25.6% | **WR** | Lorehold — "leaves the graveyard" value; assertive midrange rather than pure aggro | Rubble Rouser · Molten Note · Pursue the Past · Ark of Hunger |
+| 54.57% | 12.1% | **UG** | Quandrix — ramp/fractals. Basically didn't exist as a 2-color deck; feeds soup | Cuboid Colony · Snarl Song · Environmental Scientist |
+| 54.05% | 16.1% | **BG** | Witherbloom — lifegain grind or +2/+2-menace overrun | Root Manipulation · Grapple with Death · Bogwater Luminary |
+| 54.00% | 23.8% | **UR** | Prismari — spell-density control; the natural soup base, and a trap as a 2-color deck | Elite Interceptor · Tome Blast · Stress Dream · Sanar |
+
+**Removal benchmarks:** Unsubtle Mockery / Tome Blast (R), Last Gasp / Cost of Brilliance (B), Ajani's Response / Repel Calamity (W), Essence Scatter / Brush Off (U), Grapple with Death (BG). **Soup payoffs, and note how late two of them go:** Together as One (the best card in the set), Mathemagics, Snarl Song, **Arcane Omens (wheels to ALSA 5.5)**, **Potioner's Trove (the keystone, wheels to 4.6)**, Sundering Archaic, Divergent Equation, Wisdom of Ages. **Never force soup** — commit only once you have an over-the-top payoff; "bad soup" loses to everything. 17 lands standard, ~7-8 sources per main color.
 
 ## Format brief — everything that isn't a single card
 
@@ -33,16 +46,7 @@ reference. Individual colour differences are near noise. **IWD separates far mor
 
 ### What the data says
 
-**Archetype win rate** (17Lands PremierDraft, 908k two-colour games; share = portion of the
-two-colour metagame). Strixhaven has five college pairs rather than ten:
-
-| College | Pair | Win % | Share |
-|---|---|---|---|
-| **Silverquill** | **WB** | **57.28** | 22.1% |
-| **Lorehold** | **WR** | **56.89** | 25.6% |
-| Quandrix | UG | 54.57 | 12.1% |
-| Witherbloom | BG | 54.05 | 16.1% |
-| Prismari | UR | 54.00 | 23.8% |
+*(The full archetype table with metagame share renders directly above this brief.)*
 
 **The two white colleges are a tier of their own** — the gap from 2nd to 3rd is **2.3pp**, enormous
 for a five-archetype format. Limited Resources' settled advice, that if you only care about winning

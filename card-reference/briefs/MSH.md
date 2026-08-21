@@ -15,16 +15,7 @@ read a letter grade on a card tile as theory and the win rate beside it as the r
 
 ### What the data says
 
-**Archetype win rate** (17Lands PremierDraft, 635k two-colour games; share = portion of the
-two-colour metagame):
-
-| Pair | Win % | Share | | Pair | Win % | Share |
-|---|---|---|---|---|---|---|
-| **WU** | **58.17** | 27.2% | | WR | 54.98 | 6.7% |
-| UG | 56.93 | 8.5% | | UB | 54.45 | 9.4% |
-| WG | 56.36 | 13.7% | | RG | 54.14 | 4.4% |
-| BG | 55.72 | 6.5% | | UR | 52.96 | 7.8% |
-| WB | 55.36 | 9.2% | | BR | 51.91 | 6.6% |
+*(The full archetype table with metagame share renders directly above this brief.)*
 
 **Azorius is the best deck and the most-drafted deck at once** — over a quarter of the field is in
 it and it still clears second place by 1.2pp. That combination is the strongest signal an archetype

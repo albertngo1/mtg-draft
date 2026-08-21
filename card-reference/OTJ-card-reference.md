@@ -7,24 +7,24 @@
 
 > OTJ (Outlaws of Thunder Junction) is a **midrange, bombs-and-removal** format that plays a hair faster than it looks — draft the best bomb you open, then prioritize clean (ideally exile) removal, since the set is bomby and recursion is everywhere. Ratings are finished-format 2024 PremierDraft data (**364 of 376 cards** have a GIH WR); CGB letter grades are pre-data theory — trust live WR on conflict. **Green is the best color and GW mounts the best deck; blue is underrated/open** (uncommons wheel to pick 6+); **red is weakest.** GIH WR **inflates** multicolor good-stuff + build-around payoffs (Railway Brawler, Marchesa, crime engines) and **underrates** efficient removal (Throw from the Saddle, Desert's Due) — the AI take + guide notes decode which deck a number belongs to. **The Big Score (OTP) bonus-sheet reprints** appear one per pack; evaluate them on raw power.
 
-### The archetypes (color-pair guilds)
+OTJ is a **midrange, bombs-and-removal** format — draft the best bomb you open, then prioritize clean (ideally exile) removal to answer the opponent's, because recursion is everywhere. **Green-White is both the best deck and the most-drafted at 23.7%** — a contested lane that wins anyway. Crime is a cross-color sub-theme, and the 10-desert crime-land cycle is dual-purpose fixing.
 
-OTJ is a **midrange, bombs-and-removal** format — draft the best bomb you open, then prioritize clean (ideally exile) removal to answer the opponent's, because the set is bomby and recursion is everywhere. **Green is the best color and GW mounts is the best deck; blue is underrated and open** (its uncommons wheel to pick 6+); **red is the weakest color.** Pairs ranked by Lords of Limited's 2025-01-28 retrospective; Numot's counter-lean pushes Desert-fixed **4-5c good-stuff/crime** and **RG Railway Brawler stompy** up. Crime (targeting the opponent/their stuff) is a cross-color sub-theme, and the 10-desert crime-land cycle is dual-purpose fixing.
+**Archetype win rate** (17Lands PremierDraft, 1,148,129 two-colour games; share = portion of the two-colour metagame):
 
-| Tier | Pair | Plan | Signposts / key cards |
-|------|------|------|-----------------------|
-| **S** | **GW** | Mounts + go-wide, big green rate + white removal, Miriam recursion | Congregation Gryff · Miriam, Herd Whisperer · Throw from the Saddle · Bounding Felidar |
-| **A** | **UB** | Control / crime: card advantage + removal + Intimidation Campaign; Grindstone win-con | Slickshot Lockpicker · Vault Plunderer · Intimidation Campaign · Lazav |
-| **A** | **UW** | Control/tempo, "didn't cast from hand" payoffs on a control shell | Wrangler of the Damned · Mystical Tether · Canyon Crab · Lassoed by the Law |
-| **A** | **BR** | Outlaws aggro + crimes + burn (affinity-for-outlaws bodies) | Vile Smasher · Reckless Lackey · Laughing Jasper Flint · Jagged Barrens |
-| **B** | **UR** | LATE-GAME control w/ double-spell package (preferred) — Razzle-Dazzler aggro is a trap unless fully built | Kraum · Malcolm · Highway Robbery · Canyon Crab |
-| **B** | **BW** | Midrange crimes + recursion | Ruthless Lawbringer · Lively Dirge · Mourner's Surprise |
-| **B-** | **GB** | Value/midrange, Honest Rutstein recursion + green rate | Honest Rutstein · Patient Naturalist · Throw from the Saddle |
-| **C+** | **RG** | Stompy — Railway Brawler makes the team huge, Dance of the Tumbleweeds ramp (Numot's #1 mythic) | Railway Brawler · Dance of the Tumbleweeds · Colossal Rattlewurm |
-| **C+** | **RW** | Boros go-wide aggro (needs its 2-drops; red's weakness caps it) | Scalestorm Summoner · Trained Arynx · Skewer the Critics |
-| **C** | **GU / 4-5c** | GU self-mill niche · **4-5c good-stuff/crime** on Desert + Oasis Gardener fixing (Numot's favorite) | Oasis Gardener · Bandit's Haul · Villainous Wealth · Mirage Mesa |
+| WR | Share | Pair | Plan | Key cards |
+|---|---|---|---|---|
+| **57.42%** | 23.7% | **WG** | Mounts + go-wide, big green rate + white removal, Miriam recursion | Congregation Gryff · Miriam, Herd Whisperer · Throw from the Saddle |
+| 56.10% | 8.7% | **WB** | Midrange crimes + recursion | Ruthless Lawbringer · Lively Dirge · Mourner's Surprise |
+| 55.77% | 16.2% | **BG** | Value/midrange, Honest Rutstein recursion + green rate | Honest Rutstein · Patient Naturalist · Throw from the Saddle |
+| 55.68% | 5.7% | **WR** | Boros go-wide aggro. **Under-drafted at 5.7% and better than its reputation** | Scalestorm Summoner · Trained Arynx · Skewer the Critics |
+| 55.28% | 9.0% | **RG** | Stompy — Railway Brawler makes the team huge, Dance of the Tumbleweeds ramp | Railway Brawler · Dance of the Tumbleweeds · Colossal Rattlewurm |
+| 54.34% | 6.5% | **UG** | Self-mill niche; the weaker half of the green pairs | Rise of the Varmints · Patient Naturalist |
+| 53.89% | 11.0% | **UB** | Control / crime: card advantage + removal + Intimidation Campaign | Slickshot Lockpicker · Vault Plunderer · Intimidation Campaign |
+| 53.16% | 9.0% | **BR** | Outlaws aggro + crimes + burn | Vile Smasher · Reckless Lackey · Jagged Barrens |
+| 51.97% | 4.8% | **WU** | Control/tempo, "didn't cast from hand" payoffs | Wrangler of the Damned · Mystical Tether · Canyon Crab |
+| 50.80% | 5.3% | **UR** | Late-game control w/ double-spell package. **Worst archetype in the set** | Kraum · Malcolm · Highway Robbery |
 
-**Removal benchmarks:** Throw from the Saddle (G fight — **best common in the set**), Mystical Tether (W exile — premium), Lassoed by the Law (W), Desert's Due (B, needs a desert), Consuming Ashes (B exile), Explosive Derailment / Skewer the Critics (R), Stop Cold (U exile vs bombs). **Format rules:** 17 lands standard (18 with mana sinks); **plot is a value/late-game mechanic, NOT tempo** — don't plot over a better play; **don't hold creatures waiting to commit a crime**; take crime-deserts 2-4 deep with payoffs. **Traps:** Skulduggery, Patient Naturalist, Outlaw Stitcher, Arid Archway, Phantom Interference, Razzle-Dazzler aggro. GIH WR **inflates** multicolor soup + build-around payoffs (Railway Brawler, Marchesa) and **underrates** efficient removal.
+**Removal benchmarks:** Throw from the Saddle (G fight — **best common in the set**), Lassoed by the Law (W — the best white card outside the rares), Mystical Tether (W exile), Consuming Ashes (B exile), Shoot the Sheriff (B), Desert's Due (B, needs a desert). **Format rules:** 17 lands standard (18 with mana sinks); **plot is a value/late-game mechanic, NOT tempo**; **don't hold creatures waiting to commit a crime**; deserts are deck-fixing rather than picks. Blue's cheap *commons* are the format's biggest bargain even though both blue *pairs* finish last.
 
 ## Format brief — everything that isn't a single card
 
@@ -46,16 +46,7 @@ the largest in the repo.
 
 ### What the data says
 
-**Archetype win rate** (17Lands PremierDraft, 1.15M two-colour games; share = portion of the
-two-colour metagame):
-
-| Pair | Win % | Share | | Pair | Win % | Share |
-|---|---|---|---|---|---|---|
-| **WG** | **57.42** | 23.7% | | UG | 54.34 | 6.5% |
-| WB | 56.10 | 8.7% | | UB | 53.89 | 11.0% |
-| BG | 55.77 | 16.2% | | BR | 53.16 | 9.0% |
-| WR | 55.68 | 5.7% | | WU | 51.97 | 4.8% |
-| RG | 55.28 | 9.0% | | UR | 50.80 | 5.3% |
+*(The full archetype table with metagame share renders directly above this brief.)*
 
 **Green-White is the best deck and the most-drafted deck at once** — nearly a quarter of the field is
 in it and it still clears second place by 1.3pp. A heavily-contested archetype that wins anyway is

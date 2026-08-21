@@ -23,16 +23,7 @@ reference. Individual colour differences are near noise. **IWD separates far mor
 
 ### What the data says
 
-**Archetype win rate** (17Lands PremierDraft, 908k two-colour games; share = portion of the
-two-colour metagame). Strixhaven has five college pairs rather than ten:
-
-| College | Pair | Win % | Share |
-|---|---|---|---|
-| **Silverquill** | **WB** | **57.28** | 22.1% |
-| **Lorehold** | **WR** | **56.89** | 25.6% |
-| Quandrix | UG | 54.57 | 12.1% |
-| Witherbloom | BG | 54.05 | 16.1% |
-| Prismari | UR | 54.00 | 23.8% |
+*(The full archetype table with metagame share renders directly above this brief.)*
 
 **The two white colleges are a tier of their own** — the gap from 2nd to 3rd is **2.3pp**, enormous
 for a five-archetype format. Limited Resources' settled advice, that if you only care about winning

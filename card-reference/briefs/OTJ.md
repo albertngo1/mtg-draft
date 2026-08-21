@@ -18,16 +18,7 @@ the largest in the repo.
 
 ### What the data says
 
-**Archetype win rate** (17Lands PremierDraft, 1.15M two-colour games; share = portion of the
-two-colour metagame):
-
-| Pair | Win % | Share | | Pair | Win % | Share |
-|---|---|---|---|---|---|---|
-| **WG** | **57.42** | 23.7% | | UG | 54.34 | 6.5% |
-| WB | 56.10 | 8.7% | | UB | 53.89 | 11.0% |
-| BG | 55.77 | 16.2% | | BR | 53.16 | 9.0% |
-| WR | 55.68 | 5.7% | | WU | 51.97 | 4.8% |
-| RG | 55.28 | 9.0% | | UR | 50.80 | 5.3% |
+*(The full archetype table with metagame share renders directly above this brief.)*
 
 **Green-White is the best deck and the most-drafted deck at once** — nearly a quarter of the field is
 in it and it still clears second place by 1.3pp. A heavily-contested archetype that wins anyway is

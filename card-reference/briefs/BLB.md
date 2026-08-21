@@ -17,16 +17,7 @@ that wins the game you drew it in."
 
 ### What the data says
 
-**Archetype win rate** (17Lands PremierDraft, 1.06M two-colour games; share = portion of the
-two-colour metagame):
-
-| Pair | Win % | Share | | Pair | Win % | Share |
-|---|---|---|---|---|---|---|
-| **BR** | **55.91** | 9.3% | | WR | 54.50 | 10.2% |
-| WG | 55.64 | 15.4% | | UB | 53.89 | 6.8% |
-| BG | 55.49 | 17.5% | | RG | 53.82 | 7.2% |
-| WB | 55.38 | 12.5% | | WU | 52.65 | 3.5% |
-| UG | 55.03 | 12.7% | | UR | 51.61 | 4.9% |
+*(The full archetype table with metagame share renders directly above this brief.)*
 
 **This is the flattest format in the reference — the top five pairs sit inside 0.9pp.** Which is
 exactly Limited Resources' settled position that the format self-corrected and any pair can win if
