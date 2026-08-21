@@ -1,0 +1,69 @@
+## Rebuild and deploy the card-reference site to GitHub Pages.
+##
+## Why this exists: the site is generated from card-reference/*-card-reference.md, which are
+## themselves regenerated whenever a brief, a guide or the 17Lands data changes. Publishing from a
+## committed docs/ folder meant the live site silently lagged behind the Markdown until someone
+## remembered to re-run build_site.py. This closes that gap — every push that touches a source file
+## rebuilds and deploys, so the site cannot diverge from the repo.
+##
+## It also means docs/ no longer needs to be committed (it is gitignored), which keeps the ~4.7MB
+## of generated HTML out of the repo's history on every rebuild.
+
+name: Deploy card reference to Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'card-reference/*-card-reference.md'
+      - 'card-reference/site/**'
+      - 'card-reference/build_site.py'
+      - '.github/workflows/pages.yml'
+  workflow_dispatch:        # lets you force a rebuild without touching a file
+
+# Read the repo, write a Pages deployment, mint the OIDC token deploy-pages needs.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Never let two deploys race. Don't cancel a running one — a half-finished deploy
+# would leave the site partially updated.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+        # build_site.py is standard library only, so there is nothing to install.
+
+      - name: Build site
+        run: python3 card-reference/build_site.py --out ./_site
+
+      - name: Fail if the build produced no set pages
+        # Cheap guard against publishing an empty site if the glob ever stops matching.
+        run: |
+          count=$(find ./_site/sets -name '*.html' | wc -l)
+          echo "built $count set pages"
+          test "$count" -ge 1
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./_site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
