@@ -283,15 +283,19 @@ a:hover { text-decoration: underline; }
    Chips made every tile a grid of pills and buried the one number that matters. */
 .stats {
   display: block; margin: 0; padding: 0; list-style: none;
-  font: 11.5px/1.7 var(--mono); color: var(--text-2);
+  font: 12px/1.75 var(--mono);
 }
 .stats li { display: inline; }
 .stats li + li::before { content: " · "; color: var(--line); }
-.stats li .k { color: var(--text-3); }
-.stats li .v { margin-left: 4px; }
+/* The label is scaffolding; the number is the content. Labels stay quiet and the
+   values carry full text contrast, so a stat line reads as numbers rather than as
+   one flat grey string. */
+.stats li .k { color: var(--text-3); font-size: 10.5px; letter-spacing: .03em; }
+.stats li .v { margin-left: 4px; color: var(--text); font-weight: 600; }
 .stats li.gih .k { color: var(--gold); }
-.stats li.gih .v { color: var(--gold); font-weight: 700; }
-.stats.sub { color: var(--text-3); margin-top: -3px; }
+.stats li.gih .v { color: var(--gold); font-weight: 700; font-size: 13px; }
+.stats.sub { margin-top: 0; }
+.stats.sub li .v { color: var(--text-2); font-weight: 500; }
 
 /* The AI take is the actual analysis — it leads the tile. Gold is reserved for the
    phrases inside it, which is the thing worth spotting at a glance. */
