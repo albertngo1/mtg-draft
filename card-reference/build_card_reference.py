@@ -270,21 +270,14 @@ def ds_grade(c):
     v = ds.get(norm(c["name"])); return f"{v}" if v is not None else "—"
 
 
-def play_score(c):
-    return c.get("play_rate") or 0.0
-
-
-# Per-set ordering inside each colour group. Default is play rate alone.
-# "alsa_play" ranks by ALSA and play rate together, which is the better signal for a
-# young set: ALSA and play rate are populated from every draft, while GIH WR needs
-# games *won or lost with the card in hand* and so lags badly early on.
-SORT = {"HOB": "alsa_play"}
-
-
+# Ordering inside each colour group: a rank-average of ALSA and play rate, for every set.
+#
+# Both metrics are populated by every single draft — ALSA by what the field passes, play
+# rate by what makes the deck — so together they say where a card actually sits in the
+# pick order. Play rate alone (the old default) flattened out across the whole playable
+# middle of a set, and GIH WR sorts by which decks happened to draft a card, which is a
+# different question from "what do I take here" and lags badly on a young set besides.
 def order_group(g):
-    if SORT.get(SET) != "alsa_play":
-        g.sort(key=play_score, reverse=True)
-        return
     # Rank-average: scale-free, so no normalisation constants to tune, and a card
     # missing one metric still sorts sensibly on the other. ALSA is "average last seen
     # at", so LOWER is better (picked earlier); play rate is higher-is-better.
@@ -372,8 +365,9 @@ CAVEAT = {
     "FIN": "> FIN is a **finished, very large sample** \u2014 42.1M PremierDraft games across 348 measured cards (the biggest in this reference), so the numbers here are settled. It is a **midrange, removal-heavy** format: the ground clogs with tokens and Job Select hero tokens, **four toughness is the magic number**, and **flying is what breaks through**. Pack 4-6 pieces of interaction. FIN is the one set here with **no reviewer-grade file**, so the tiles carry live win rates, guide notes and an AI take only. Bonus-sheet reprints have samples in the low thousands rather than the hundreds of thousands \u2014 read those tiles with much wider error bars.\n",
 }
 L.append("> **Ordering:** cards within each colour are ranked by a combined **ALSA + play-rate** score "
-         "(rank-average of the two), not by GIH WR — ALSA and play rate are populated from every draft, "
-         "while GIH WR lags on a new set.\n" if SORT.get(SET) == "alsa_play" else "")
+         "(rank-average of the two), not by GIH WR. Both are populated by every draft — where the field "
+         "takes a card, and how often it makes the deck — so together they track pick priority. A win "
+         "rate answers a different question: which decks drafted the card.\n")
 L.append(CAVEAT.get(SET, ""))
 
 # ---- archetype map (set-specific 10 color-pair guilds) -----------------------

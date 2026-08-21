@@ -30,7 +30,7 @@
   --l: #b79a72;
 
   --radius: 12px;
-  --wrap: 1280px;
+  --wrap: 1120px;
   --serif: ui-serif, "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
   --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
@@ -182,26 +182,18 @@ a:hover { text-decoration: underline; }
 
 /* ---------- set page ---------- */
 
-.sethead { padding: 40px 0 6px; text-align: center; }
+.sethead { padding: 40px 0 6px; }
 .sethead h1 {
   font-family: var(--serif); font-weight: 600; font-size: clamp(26px, 4vw, 38px);
   margin: 0 0 10px; letter-spacing: -.01em; line-height: 1.15;
 }
 .sethead .lede, .prose .lede { color: var(--text-2); }
-.sethead .lede { max-width: 78ch; margin-inline: auto; }
 
-/* The centring above is for the title and the one-line lede only. Body copy stays
-   left-aligned: the format brief runs to several thousand words, and centred ragged
-   text costs the reader a new line-start on every line. Centre the column, not the text. */
-.sethead .prose { text-align: left; }
-.sethead .prose > .lede { text-align: center; }
-
+/* ONE column for the whole page. Prose, tables and the card grid all start and end on
+   the same two vertical lines — the way the Markdown reference reads. A capped measure
+   on the prose alone gave the page three different left edges. The column itself is
+   sized (--wrap) so a full-width line of body copy is still a sane length. */
 .prose { max-width: none; }
-/* Cap the measure for readability, but centre the block in the column — left-hugging
-   a 78ch column on a wide screen leaves the right half empty and reads as broken.
-   Tables still use the full width. */
-.prose > p, .prose > ul, .prose > ol, .prose > blockquote,
-.prose > h2, .prose > h3, .prose > h4 { max-width: 78ch; margin-inline: auto; }
 .prose h2 {
   font-family: var(--serif); font-weight: 600; font-size: 22px;
   margin: 34px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--line-soft);
@@ -220,12 +212,6 @@ a:hover { text-decoration: underline; }
 .prose blockquote p:last-child { margin-bottom: 0; }
 .prose code { font: .88em var(--mono); background: var(--panel-2); border-radius: 4px; padding: .12em .4em; }
 
-/* Centre the capped-measure blocks in the column. This has to come AFTER the margin
-   shorthands above (.prose p, .prose blockquote, .prose h2 ...), which each set
-   margin-inline to 0 and would otherwise win on source order at equal specificity. */
-.prose > p, .prose > ul, .prose > ol, .prose > blockquote,
-.prose > h2, .prose > h3, .prose > h4 { margin-inline: auto; }
-
 .tablescroll { overflow-x: auto; margin: 0 0 18px; border: 1px solid var(--line); border-radius: 10px; }
 .prose table { border-collapse: collapse; width: 100%; font-size: 13.5px; }
 .prose th, .prose td { padding: 8px 12px; border-bottom: 1px solid var(--line-soft); text-align: left; vertical-align: top; }
@@ -233,13 +219,12 @@ a:hover { text-decoration: underline; }
 .prose tbody tr:last-child td { border-bottom: 0; }
 .prose tbody tr:hover td { background: rgba(255,255,255,.018); }
 
-.brief {
-  border: 1px solid var(--line); border-radius: var(--radius);
-  background: var(--ink-2); margin: 26px 0 10px; padding: 0 20px;
-}
+/* No panel and no inner padding: a boxed brief was the one block on the page whose
+   text started 20px in from every other block's left edge. It is a heading and prose,
+   exactly as it is in the Markdown. */
+.brief { margin: 26px 0 10px; }
 .brief > .brieftitle {
   padding: 15px 0; margin: 0; border-bottom: 1px solid var(--line-soft);
-  justify-content: center;
   font-family: var(--serif); font-size: 19px; font-weight: 600; color: var(--text);
   display: flex; align-items: center; gap: 10px;
 }
@@ -294,9 +279,6 @@ a:hover { text-decoration: underline; }
 }
 
 .cname { font-family: var(--serif); font-size: 17.5px; font-weight: 600; line-height: 1.25; margin: 0; }
-/* Rarity only. The card image already shows the colour, so a pip beside it was
-   the same fact twice. */
-.cmeta { font: 11.5px var(--mono); color: var(--text-3); margin: -3px 0 0; }
 /* One flowing middot-separated line per stat row, exactly as the Markdown renders it.
    Chips made every tile a grid of pills and buried the one number that matters. */
 .stats {

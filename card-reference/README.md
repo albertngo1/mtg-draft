@@ -136,9 +136,10 @@ analyst-agent fan-out under a per-set doctrine written from that set's draft gui
 
 ## Coverage
 
-Cards within each color group are ordered by **play rate (play %)**, highest first — except **HOB**, which
-uses a rank-average of **ALSA + play rate**. On a young set those two are populated by every draft while GIH
-WR lags, so they sort the whole card list rather than just the measured part.
+Cards within each color group are ordered by a rank-average of **ALSA + play rate**, for every set.
+Both are populated by every draft — where the field takes a card, and how often it makes the deck — so
+together they track pick priority. Play rate alone (the old default) flattened out across the whole
+playable middle of a set, and a win rate answers a different question: which decks drafted the card.
 
 **AI takes cover all ten sets.** The original five (SOS/MKM/MSH/BLB/ECL) were regenerated 2026-07-12
 after the prep record began carrying each card's **oracle text + P/T + mana** (joined from Scryfall — MSH

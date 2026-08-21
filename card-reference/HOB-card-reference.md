@@ -4,7 +4,7 @@
 
 **Legend** — **GIH** = Games-in-Hand WR (primary) · **IWD** = Improvement When Drawn (pp) · **ALSA** = Avg Last Seen At (lower = earlier) · **OH/GD** = Opening-Hand / Drawn WR · **Play** = play rate · **LR** = Limited Resources letter grade · **CGB** = CardGameBase letter grade.  🤖 AI · 📘 Lords of Limited · 🎙 NumotTheNummy · 🎧 Limited Resources · 🎓 Limited Level-Ups.
 
-> **Ordering:** cards within each colour are ranked by a combined **ALSA + play-rate** score (rank-average of the two), not by GIH WR — ALSA and play rate are populated from every draft, while GIH WR lags on a new set.
+> **Ordering:** cards within each colour are ranked by a combined **ALSA + play-rate** score (rank-average of the two), not by GIH WR. Both are populated by every draft — where the field takes a card, and how often it makes the deck — so together they track pick priority. A win rate answers a different question: which decks drafted the card.
 
 > **Settled data.** HOB hit Arena on **2026-08-11**; these numbers are from **6,001,733 PremierDraft games** as of **2026-08-19**, with **179 of 188 cards** carrying a GIH WR. Evaluations have converged — the median per-card GIH WR move over the previous two days was **0.21pp** and the largest was 1.0pp, so treat this as close to final. The 9 cards without a win rate are genuinely unplayed rather than merely unmeasured. Two reviewer-grade sources render side by side: **LR** (Limited Resources 865 + 866, all 188) and **CGB** (CardGameBase, all 188).
 >

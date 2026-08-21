@@ -268,8 +268,6 @@ def render_tile(cell: str) -> str:
     )
     bits.append('<div class="body">')
     bits.append('<h3 class="cname">%s</h3>' % name)
-    if rarity:
-        bits.append('<p class="cmeta">%s</p>' % html.escape(rarity))
     for idx, raw in enumerate(stats):
         bits.append(_stat_chips(raw, primary=(idx == 0)))
     if ai:
