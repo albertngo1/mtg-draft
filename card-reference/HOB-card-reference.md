@@ -31,47 +31,44 @@
 
 ## Format brief — everything that isn't a single card
 
-The 17Lands numbers on these tiles are the spine of this document. What the four expert guides in
-`draft-guides/` add is everything a win-rate column structurally cannot measure: how many copies of a
-card to run, how to sequence a combat, what to mulligan, and why a card plays better or worse than
-its rate. That is what this brief collects.
+Every number lives on the card tiles below and in the archetype table above. This brief is the other
+half: what four expert guides worked out that a win-rate column structurally cannot say — how many
+copies to run, how to sequence a combat, what to mulligan, and why a card plays better or worse than
+it rates.
 
 **Sources:** Limited Level-Ups (State of the Format plus a week-two update — Alex had drafted the
 format for days and reviewed coaching logs), NumotTheNummy (week-one and week-two Premier VODs),
-Limited Resources 865/866, Lords of Limited (a prerelease crash course and a week-one verdict). This
-is a young format by the standards of this reference, but the per-card numbers have converged.
+Limited Resources 865/866, Lords of Limited (a prerelease crash course and a week-one verdict).
 
-**Calibrate to the baseline:** game-weighted mono-colour GIH WR runs **54.6% to 57.5%**. Four colours
-sit within 1.2pp; green is 2pp adrift of everything. The sample is **6.5M games across 179 measured
-cards** — an order of magnitude smaller than the finished formats in this reference, so treat rare
-and mythic tiles (a few thousand games each) with much wider error bars than the commons.
+**One caveat on the numbers you'll see on the tiles:** this is a young, small format. Commons have
+been drafted enough times to trust. Rares and mythics have not — read those tiles as a first
+impression, not a verdict.
 
 ### What the data says
 
-*(The full archetype table with metagame share renders directly above this brief.)*
+*(The full archetype table renders directly above this brief.)*
 
-**Rakdos is the best deck and nearly a third of the metagame is in it.** The five signposted pairs
-(BR, BG, WR, WU, UG) account for ~94% of two-colour games, and they finish 1st, 3rd, 4th, 5th and
-**last**. **Simic is the broken one** — 51.25%, more than 6pp behind Rakdos, on 8.6% of the field.
+**Rakdos is the best deck, and close to a third of the field is in it.** Five pairs are signposted —
+Rakdos, Golgari, Boros, Azorius and Simic — and between them they account for almost every
+two-colour deck. Four of them are fine. **Simic is the broken one**: comfortably the worst supported
+pair, and still the third-most-drafted, which is a standing gift to everyone else.
 
-**⚠ Read the small-share rows with suspicion.** WB at 57.25% looks like the second-best archetype but
-rests on **3,373 games (1.4% of the field)**; UR and RG are the same. The guides like WB as the best
-unsupported pair and the number does not contradict them — it just isn't evidence yet.
+**Read the rare pairs with suspicion.** Orzhov looks like the second-best archetype on the board, but
+almost nobody drafts it, so that ranking rests on very little. The guides like Orzhov as the best of
+the unsupported pairs and the data doesn't contradict them — it just isn't evidence yet. Same for
+Izzet and Gruul.
 
-**Colour order:** **B 57.51 > R 56.79 > W 56.63 > U 56.30 > G 54.62.** Black on top matches every
-source. Green is the outlier, 1.7pp behind blue.
+**Colour order: black, then red, white and blue in a tight cluster, then green well behind.** Black
+on top matches every source. Green being the outlier is the surprise, and it is not close.
 
-**Black's commons are the deepest in the set:** **Crude Bent Blade (60.7%, IWD +3.2, ALSA 3.6)** is
-the best common by 1.2pp, then **Gollum, Silent Slinker (59.5%)**, Ravening Warg (57.7%), Bilbo's
-Deadly Slice (57.2%), Stir Up Trouble (56.4%). Red's best is **Pinecone Strike (59.2%, +2.6)**.
+**Black's commons are the deepest in the set.** Crude Bent Blade is the best common in the format by
+a clear margin, with Gollum, Ravening Warg, Bilbo's Deadly Slice and Stir Up Trouble behind it. Red's
+best is Pinecone Strike.
 
-**Blue is where the format's mispricing lives.** Every one of blue's good commons wheels: **Plunder
-the Trollshaws (58.4% at ALSA 5.8, IWD +5.6)**, **Long Lake Nuisance (57.8% at 6.4, +5.0)**,
-**Lakeshore Apothecary (57.4% at 5.8, +4.2)**, **Patient Instructor (58.2% at 5.8, +4.4)**, Bilbo
-Baggins, Burglar (57.1% at 5.1, +4.3), Uneasy Partings (55.8% at 6.6, +3.4), Sound the Trumpets
-(55.2% at 6.4, +5.5), Esgaroth Garrison (55.1% at **7.7**, +3.2). Note the IWDs — these are not
-merely playable, they are the cards that win the game you drew them in, arriving on the back half of
-the pack.
+**Blue is where the format's mispricing lives.** Every good blue common wheels — Plunder the
+Trollshaws, Long Lake Nuisance, Lakeshore Apothecary, Patient Instructor, Bilbo Baggins Burglar,
+Uneasy Partings, Sound the Trumpets, Esgaroth Garrison. These are not merely playable late; several
+of them win the game you draw them in, and they arrive on the back half of the pack.
 
 ### The draft plan
 
@@ -86,15 +83,14 @@ the pack.
    don't need expensive ones, and a six-drop needs to be exceptional to earn its slot.
 4. **Being reactive is punished.** Recursion and token-makers mean a pile of removal doesn't stabilise
    you; you want to be on the front foot.
-5. **If blue is flowing, take it and be happy.** The blue commons above are the cheapest edge in the
-   format by a wide margin. Just note the pair numbers: **Azorius is a fine 5th at 55.35% and Simic
-   is last** — blue works as a base colour built on the draw-two engines, and badly otherwise.
+5. **If blue is flowing, take it and be happy** — but as a *base* colour built on the draw-two
+   engines. Blue is good that way and bad every other way, which is the whole story of Azorius
+   finishing mid-table while Simic finishes last.
 
 ### What the numbers can't tell you
 
-- **Play/draw is the headline stat.** Roughly **56% on the play against 44% on the draw** by the
-  figures both channels quote — the largest such gap of any Arena format except cube. Build the deck
-  that still functions on the draw, and **cut tap lands to one, sometimes zero.**
+- **Play/draw is the headline stat.** The gap here is the largest of any Arena format except cube.
+  Build the deck that still functions on the draw, and **cut tap lands to one, sometimes zero.**
 - **Build and mulligan around a turn-three Crude Bent Blade**, both yours and theirs, and keep a spare
   body as insurance against it.
 - **Attack more than you think you should.** Taking a defensive stance in a racing format switches off
@@ -139,41 +135,35 @@ the pack.
 
 ### Where the field misprices cards
 
-- **Cards taken early that shouldn't be** (negative IWD by pick 5): **Inside Information (49.8%, IWD
-  −5.7 at ALSA 2.7)**, Desert Were-Worm (47.4%, −5.3), **Sting, Bilbo's Sword (48.3%, −4.4 at ALSA
-  3.0)**, Balin, Loremaster (51.2%, −4.0), Bolg's Company (52.0%, −3.2), Snowslope Hunter (53.1%,
-  −2.7), The Chief Warg (53.0%, −2.7), Azog, Moria's Ruin (52.0%, −2.5 at ALSA 2.5), **My Precious
-  (50.3%, −1.5 at ALSA 2.1)**, Gathering of Darkness (54.7%, −1.8).
-  **The legendary-equipment cycle is the pattern here** — Sting, My Precious, Inside Information and
-  Balin all go pick 1–3 and all have strongly negative IWD. Sting in particular is designed for
-  multiplayer and is close to unplayable in draft.
-- **Cards that wheel and shouldn't:** the entire blue common suite listed above, plus **Esgaroth
-  Garrison at ALSA 7.7 with IWD +3.2** — the single biggest gap in the set.
-- **Watch the high-GIH / negative-IWD shape.** **Goblin Plate Mail (57.0%, IWD −0.6)**, **Rage into
-  the Valley (55.9%, −1.7)**, **Stony-Voiced Goblins (55.9%, −1.4)** and **Stir Up Trouble (56.4%,
-  −0.1)** all live in good aggressive decks without improving the game you drew them in. Play them;
-  don't take them over a card with a real IWD.
-- **Bilbo's Deadly Slice (57.2%, ALSA 2.9) versus Stir Up Trouble (56.4%, ALSA 4.2):** four mana that
-  always kills beats one mana that costs you a body, and the field already agrees — Slice goes more
-  than a pick earlier.
-- **Gollum is a premium common (59.5%) despite one host reporting it underperforming for him.** The
-  likely explanation is the one he names himself: he plays from a defensive posture and this is a
-  racing card.
-- **Thranduil, the Elvenking (45.4%)** is the elf payoff, and it is the worst rare in the set.
+- **Taken early, and shouldn't be.** The legendary-equipment cycle is the pattern: **Sting, Bilbo's
+  Sword**, **My Precious**, **Inside Information** and **Balin, Loremaster** all go in the first
+  three picks and all make your deck worse in the games you draw them. Sting in particular is designed
+  for multiplayer and is close to unplayable here. Desert Were-Worm, Bolg's Company, Snowslope Hunter,
+  The Chief Warg, Azog and Gathering of Darkness belong in the same bucket, more mildly.
+- **Wheels, and shouldn't.** The whole blue common suite above, and **Esgaroth Garrison** most of
+  all — it goes later than any other card in the set that is this good.
+- **Good in the deck, but not worth a high pick.** Goblin Plate Mail, Rage into the Valley,
+  Stony-Voiced Goblins and Stir Up Trouble all live happily in winning aggressive decks without doing
+  much for the game you drew them in. Play them; don't take them over a card that swings a game.
+- **Bilbo's Deadly Slice over Stir Up Trouble:** four mana that always kills beats one mana that costs
+  you a body — and the field already agrees, taking Slice more than a pick earlier.
+- **Gollum is a premium common** despite one host reporting it underperformed for him. The likely
+  explanation is the one he names himself: he plays from a defensive posture, and this is a racing
+  card.
+- **Thranduil, the Elvenking** is the elf payoff and the worst rare in the set.
 
 ### Open questions the data can't settle
 
-- **Is Azorius better than its ranking?** 17Lands puts WU 5th and Simic last; Lords of Limited had a
-  mythic run on heavy blue and calls the ranking counterintuitive. Their hypothesis fits the numbers:
-  blue is good as a **base colour built on four-plus copies of the draw-two engines**, and bad in any
-  deck that isn't. If you are not on that engine, the pair win rate is the number that applies to you.
-- **How much of the good-unsupported-pair advice to trust.** Orzhov posts the second-best win rate on
-  1.4% of the metagame, and three sources independently like it. That is suggestive and not yet
-  evidence — if you end up there, you are probably fine; don't draft toward it on the strength of that
-  row.
-- **Two live card disagreements the aggregate leans on but doesn't close:** Dáin's Company (one host
-  takes it out of most packs, another rates it poorly) and Snowslope Hunter (called excellent for the
-  equipment density, but sitting at 53.1% with IWD −2.7 — the data leans against it).
+- **Is Azorius better than its ranking?** The data puts it mid-table and Simic last; Lords of Limited
+  had a mythic run on heavy blue and calls that counterintuitive. Their hypothesis fits: blue is good
+  as a **base colour with four-plus copies of the draw-two engines**, and bad in any deck that isn't.
+  If you aren't on that engine, the pair's ranking is the number that applies to you.
+- **How much of the good-unsupported-pair advice to trust.** Orzhov rates near the top on a sliver of
+  the field, and three sources independently like it. That is suggestive, not evidence — if you end up
+  there you are probably fine, but don't draft toward it on the strength of one row.
+- **Two live card disagreements nobody has closed:** Dáin's Company (one host takes it out of most
+  packs, another rates it poorly) and Snowslope Hunter (called excellent for the equipment density,
+  but the results lean against it).
 
 ## Contents
 
