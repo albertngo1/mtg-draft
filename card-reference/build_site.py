@@ -257,26 +257,19 @@ def render_tile(cell: str) -> str:
     ai = re.sub(r"^(?:<br>\s*)+", "", ai)
     ai = re.sub(r"(?:<br>\s*)+$", "", ai)
 
-    pips = "".join(
-        '<span class="pip pip-%s">%s</span>' % (c, c)
-        for c in colors if c in "WUBRGC"
-    )
-
     bits = ['<article class="tile" data-rarity="%s" data-name="%s">'
             % (html.escape(rarity.lower(), quote=True),
                html.escape(html.unescape(name).lower(), quote=True))]
     bits.append(
         '<a class="art" href="%s" target="_blank" rel="noopener">'
-        '<img src="%s" alt="%s" loading="lazy" decoding="async"></a>'
+        '<img src="%s" alt="%s" width="488" height="680" '
+        'loading="lazy" decoding="async"></a>'
         % (html.escape(img, quote=True), html.escape(img, quote=True), alt)
     )
     bits.append('<div class="body">')
     bits.append('<h3 class="cname">%s</h3>' % name)
-    bits.append(
-        '<p class="cmeta"><span class="pips">%s</span>'
-        '<span class="rar">%s</span></p>'
-        % (pips, html.escape(rarity))
-    )
+    if rarity:
+        bits.append('<p class="cmeta">%s</p>' % html.escape(rarity))
     for idx, raw in enumerate(stats):
         bits.append(_stat_chips(raw, primary=(idx == 0)))
     if ai:
@@ -426,7 +419,6 @@ def shell(title: str, head_extra: str, body: str, depth: int) -> str:
 {head_extra}</head>
 <body>
 {body}
-<a class="totop" href="#top" aria-label="Back to top">&uarr;</a>
 <script src="{up}assets/site.js" defer></script>
 </body>
 </html>
@@ -436,12 +428,12 @@ def shell(title: str, head_extra: str, body: str, depth: int) -> str:
 def footer(depth: int) -> str:
     up = "../" * depth
     return f"""<footer class="foot"><div class="wrap">
-<p>Generated from the Markdown in <a href="{REPO_URL}/tree/main/card-reference"><code>card-reference/</code></a>
+<p>Generated from the Markdown in <a href="{REPO_URL}/tree/main/card-reference" target="_blank" rel="noopener"><code>card-reference/</code></a>
 by <code>build_site.py</code> — rebuild with <code>python3 card-reference/build_site.py</code>.</p>
-<p>Card images are hotlinked from <a href="https://scryfall.com/">Scryfall</a> and TCGplayer; win-rate data from
-<a href="https://www.17lands.com/">17Lands</a>. Magic: The Gathering is &copy; Wizards of the Coast — an
+<p>Card images are hotlinked from <a href="https://scryfall.com/" target="_blank" rel="noopener">Scryfall</a> and TCGplayer; win-rate data from
+<a href="https://www.17lands.com/" target="_blank" rel="noopener">17Lands</a>. Magic: The Gathering is &copy; Wizards of the Coast — an
 unofficial fan project, not affiliated with or endorsed by Wizards.</p>
-<p><a href="{up}index.html">All sets</a> &middot; <a href="{REPO_URL}">mtg-draft on GitHub</a></p>
+<p><a href="{up}index.html">All sets</a> &middot; <a href="{REPO_URL}" target="_blank" rel="noopener">mtg-draft on GitHub</a></p>
 </div></footer>"""
 
 
@@ -477,7 +469,7 @@ def render_index(sets: list[dict]) -> str:
 
     body = f"""<header class="topbar" id="top"><div class="wrap">
   <span class="brand"><span class="pipmark">&#9670;</span>{SITE_TITLE}</span>
-  <div class="toolbar"><a class="crumb" href="{REPO_URL}">GitHub &#8599;</a></div>
+  <div class="toolbar"><a class="crumb" href="{REPO_URL}" target="_blank" rel="noopener">GitHub &#8599;</a></div>
 </div></header>
 
 <main class="wrap">

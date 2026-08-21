@@ -4,16 +4,6 @@
 (function () {
   'use strict';
 
-  /* ---- back to top (both pages) ---- */
-  var top = document.querySelector('.totop');
-  if (top) {
-    var onScroll = function () {
-      top.classList.toggle('show', window.scrollY > 900);
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-  }
-
   /* ---- card filtering (set pages only) ---- */
   var input = document.getElementById('q');
   if (!input) return;

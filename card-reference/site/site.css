@@ -30,7 +30,7 @@
   --l: #b79a72;
 
   --radius: 12px;
-  --wrap: 1440px;
+  --wrap: 1280px;
   --serif: ui-serif, "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
   --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
@@ -53,7 +53,7 @@ body {
 a { color: var(--link); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
-.wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 22px; }
+.wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 48px; }
 .narrow { max-width: 940px; }
 
 /* ---------- top bar ---------- */
@@ -282,7 +282,7 @@ a:hover { text-decoration: underline; }
 .tile:hover { border-color: var(--line); }
 .tile .art { display: block; background: var(--ink); text-align: left; padding: 14px 16px 0; }
 .tile .art img {
-  width: 100%; max-width: 300px; aspect-ratio: 5 / 7;
+  width: 100%; max-width: 300px; height: auto;
   object-fit: contain; border-radius: 9px; display: block;
   background: var(--ink-2);
 }
@@ -294,17 +294,9 @@ a:hover { text-decoration: underline; }
 }
 
 .cname { font-family: var(--serif); font-size: 17.5px; font-weight: 600; line-height: 1.25; margin: 0; }
-.cmeta { display: flex; align-items: center; gap: 7px; margin: -3px 0 0; }
-.pips { display: flex; gap: 3px; }
-.pip {
-  width: 15px; height: 15px; border-radius: 50%; display: grid; place-items: center;
-  font: 700 9px var(--mono); color: #10141b;
-}
-.pip-W { background: var(--w); } .pip-U { background: var(--u); }
-.pip-B { background: var(--b); } .pip-R { background: var(--r); }
-.pip-G { background: var(--g); } .pip-C { background: var(--c); }
-.rar { font: 11.5px var(--mono); color: var(--text-3); }
-.rar::before { content: "· "; color: var(--line); }
+/* Rarity only. The card image already shows the colour, so a pip beside it was
+   the same fact twice. */
+.cmeta { font: 11.5px var(--mono); color: var(--text-3); margin: -3px 0 0; }
 /* One flowing middot-separated line per stat row, exactly as the Markdown renders it.
    Chips made every tile a grid of pills and buried the one number that matters. */
 .stats {
@@ -349,18 +341,9 @@ a:hover { text-decoration: underline; }
 }
 .foot p { margin: 0 0 6px; }
 
-.totop {
-  position: fixed; right: 18px; bottom: 18px; z-index: 60;
-  width: 40px; height: 40px; border-radius: 50%;
-  background: var(--panel); border: 1px solid var(--line); color: var(--text-2);
-  display: grid; place-items: center; font-size: 15px;
-  opacity: 0; pointer-events: none; transition: opacity .2s ease;
-}
-.totop.show { opacity: 1; pointer-events: auto; }
-.totop:hover { color: var(--gold); border-color: var(--gold-dim); text-decoration: none; }
-
 @media (max-width: 720px) {
   html { scroll-padding-top: 150px; }
+  .wrap { padding: 0 18px; }
   .topbar .wrap { min-height: 0; }
   .toolbar { margin-left: 0; width: 100%; }
   .search { flex: 1; }
