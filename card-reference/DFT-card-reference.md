@@ -29,60 +29,57 @@ DFT is a **slow, grindy** format wearing a racing costume. **The three green pai
 
 ## Format brief — everything that isn't a single card
 
-The 17Lands numbers on these tiles are the spine of this document. What the two expert guides in
-`draft-guides/` add is everything a win-rate column structurally cannot measure: how to evaluate a
-vehicle, when a mechanic is worth activating, what shape a two-drop needs, and how many lands a
-build-around wants. That is what this brief collects.
+Every number lives on the card tiles below and in the archetype table above. This brief is the other
+half: what the expert guides worked out that a win-rate column structurally cannot say — how to
+evaluate a vehicle, when a mechanic is worth activating, what shape a two-drop needs, and how many
+lands a build-around wants.
 
 **Sources:** Lords of Limited (a "Get In Loser" 50-takes retrospective, plus five earlier episodes
 back to a blind preview) and NumotTheNummy (a thin tier-2 end-of-format sample). No Limited Resources
 or Limited Level-Ups guide exists for this set, so **DFT is one of the two narrowest-sourced sets in
-this reference** — lean on the numbers here more than usual.
+this reference** — lean on the tiles here more than usual.
 
-**Calibrate to the baseline:** game-weighted mono-colour GIH WR runs **54.1% to 56.7%**. Green, black
-and blue cluster at the top within 0.8pp; white and red are a real step behind. IWD separates far
-more cleanly than GIH — DFT is full of big commons that live in good decks without winning the game
-you drew them in. The sample is **25.7M games across 277 measured cards**.
+**One calibration to carry into the tiles:** DFT is full of big commons that live in good decks
+without winning the game you drew them in. When a card's win rate and its impact-when-drawn disagree
+here, believe the second one.
 
 ### What the data says
 
-*(The full archetype table with metagame share renders directly above this brief.)*
+*(The full archetype table renders directly above this brief.)*
 
-**The three green pairs are the top three, separated by 0.23pp — a statistical tie.** Golgari is also
-the most-drafted archetype at 18.4%, which makes it the safest default rather than a hidden gem;
-**Selesnya at 56.23% on only 8.3% of the field is the underdrafted one.**
+**The three green pairs are the top three, and they are a statistical tie.** Golgari is also the
+most-drafted archetype in the format, which makes it the safest default rather than a hidden gem;
+**Selesnya is the underdrafted one** — the same tier, a fraction of the field.
 
-**Boros is the worst archetype by a wide margin — 51.95%, a full 1.7pp below ninth.** Nothing else in
-DFT is that far adrift. It is also the least-drafted, so the field has this right.
+**Boros is the worst archetype by a wide margin**, further below ninth place than any other gap in
+the set. It is also the least-drafted, so the field has this right.
 
-**Colour order:** **G 56.72 > B 56.06 > U 55.92 > W 54.67 > R 54.10.**
+**Colour order: green, then black and blue close behind, then white and red a real step back.**
 
 **Blue's uncommons are the best in the format and its commons are not** — the sharpest observation in
-either guide. **Spikeshell Harrier (59.4%, IWD +5.8, ALSA 2.8)**, **Stock Up (59.6%, +5.6)**,
-**Rangers' Refueler (59.4%, +5.1)**, **Transit Mage (59.0%, +5.0)** are four elite uncommons; blue's
-commons top out around 56%. That split is the whole colour story.
+either guide. Spikeshell Harrier, Stock Up, Rangers' Refueler and Transit Mage are four elite
+uncommons sitting on top of a thoroughly ordinary common tier. That split is the whole colour story.
 
-**Best commons:** Stampeding Scurryfoot (58.6%, IWD +2.5 — the #1 common), Engine Rat (57.8%),
-Wreckage Wickerfolk (57.7%), **Pactdoll Terror (57.6%, +4.2)**, **Grim Bauble (57.6%, +2.8)**,
-Migrating Ketradon (57.5%), Run Over (57.4%), **Ride's End (57.3%, +3.3 — the best white common and
-the cleanest exile effect)**, Spin Out (57.2%).
+**Best commons:** Stampeding Scurryfoot is the best in the set, then Engine Rat, Wreckage Wickerfolk,
+Pactdoll Terror, Grim Bauble, Migrating Ketradon, Run Over, **Ride's End** (the best white common and
+the cleanest exile effect in the format) and Spin Out.
 
-**Best uncommon: Thundering Broodwagon (61.1%, IWD +5.9)** — the Golgari signpost, and the strongest
-single piece of evidence for the green pairs owning the format.
+**Best uncommon: Thundering Broodwagon** — the Golgari signpost, and the strongest single piece of
+evidence for the green pairs owning the format.
 
 ### The draft plan
 
 1. **Be in green. Which green pair matters less than being in green at all** — the top three are
-   inside a quarter of a point.
+   indistinguishable.
 2. **Take blue uncommons aggressively and blue commons late.** The gap between them is the largest
    colour-internal split in the set.
 3. **Prefer three-power or three-toughness two-drops.** The format is slower than a vehicle set has
-   any right to be, and vanilla 2/2s brick against the 1/3s and die to the cheap black removal —
-   confirmed by the two the guide names as disappointments, **Leonin Surveyor (52.3%, IWD −1.8)** and
-   **Gilded Ghoda (52.8%, −0.9)**.
-4. **Have an answer for the big green commons.** Not because they're broken — Hazard of the Dunes
-   (57.0%, IWD +0.9) and Migrating Ketradon (57.5%, +1.3) are good rather than scary — but because
-   green is where the format's density lives, and **Ride's End** is the clean answer.
+   any right to be, and vanilla 2/2s brick against the 1/3s and die to the cheap black removal — both
+   of the two-drops the guide names as disappointments, **Leonin Surveyor** and **Gilded Ghoda**, are
+   exactly that shape.
+4. **Have an answer for the big green commons.** Not because they're broken — Hazard of the Dunes and
+   Migrating Ketradon are good rather than scary — but because green is where the format's density
+   lives, and **Ride's End** is the clean answer.
 5. **Buy the exhaust and Start Your Engines payoffs late.** Both mechanics reward a slow format, but
    the specific payoffs get taken above their worth (see below). Let them come to you.
 
@@ -113,43 +110,37 @@ single piece of evidence for the green pairs owning the format.
 
 ### Where the field misprices cards
 
-- **Cards taken early that shouldn't be** (negative IWD by pick 5): Bloodghast (49.0%, IWD −4.4),
-  Spire Mechcycle (49.9%, −2.6), Pacesetter Paragon (51.5%, −2.4), Adrenaline Jockey (51.2%, −2.0),
-  Cloudspire Captain (51.8%, −1.6), Pride of the Road (52.1%, −1.0), **Endrider Spikespitter (52.9%,
-  −0.9)**, **Boom Scholar (53.7%, −0.7)**. **Four of the eight are red uncommons** — the clearest
-  single illustration of why Boros finishes last. The last two matter because they're the named
-  payoffs of Start Your Engines and the Gruul exhaust engine respectively; neither delivers.
-- **Monument to Endurance is a trap** — **51.5% while being taken at pick 2.9.** The cycling payoff
-  that does deliver is **Captain Howler, Sea Scourge (58.8%, IWD +8.2)**.
-- **Elvish Refueler is a high pick that changes nothing when drawn** — 55.4% with **IWD +0.2** at ALSA
-  2.8. Same shape on **Wickerfolk Thresher (55.0%, +0.8 at ALSA 2.9)**.
-- **Momentum Breaker is the real Rakdos linchpin** — 56.8%, IWD +2.5 at ALSA 3.5.
-- **Push the Limit is a genuine build-around, priced correctly by the field.** **54.4% GIH at ALSA
-  6.9 — but IWD +4.9.** Its decks finish below average and drawing it wins games: the signature of a
-  card that pays off when assembled and drags the aggregate down when not. Take it late and cheap;
-  don't draft toward it.
-- **The fixing is enabling, not picks.** **Night Market (55.4%, IWD −0.2)** and **Starting Column
-  (54.2%, +1.1 at ALSA 6.5)** make your deck castable and do nothing when drawn instead of a spell.
-  **Guidelight Matrix (53.1% at ALSA 7.5)** the field is right to leave.
-- **The clunky removal is more clunky than good** — Crash and Burn (53.6%, IWD −0.2), Scrap Compactor
-  (53.9%, −0.1), Broken Wings (55.1%, −0.4). All below the format baseline.
-- **Riverchurn Monument (59.9%, IWD +7.4)** is one of the best blue rares, not a curiosity mill card.
-- **Big White is real, and the aggressive version is the trap.** **Marshals' Pathcruiser (58.8%, IWD
-  +4.5)** and **Ride's End** carry it; **Guidelight Pathmaker (56.8%, +5.7)** supports it; **Air
-  Response Unit (51.1%, −1.7)** does not.
-- **Cards that wheel** (ALSA 5.5+): Spectral Interference (56.2% at 6.3), Maximum Overdrive (56.2% at
-  6.0), Broadcast Rambler (56.1% at 6.1), Bounce Off (55.9% at 5.8), Hulldrifter (55.3% at 5.6, IWD
-  +2.5), Voyager Quickwelder (55.2% at 6.2, +2.3). Note the wheel is **shallower here than in most
-  sets** — the late picks are serviceable rather than genuinely underpriced.
+- **Taken early, and shouldn't be:** Bloodghast, Spire Mechcycle, Pacesetter Paragon, Adrenaline
+  Jockey, Cloudspire Captain, Pride of the Road, **Endrider Spikespitter** and **Boom Scholar**.
+  **Half of them are red uncommons** — the clearest single illustration of why Boros finishes last.
+  The last two matter because they're the named payoffs of Start Your Engines and the Gruul exhaust
+  engine respectively, and neither delivers.
+- **Monument to Endurance is a trap** — taken in the first three picks and well below the bar. The
+  cycling payoff that does deliver is **Captain Howler, Sea Scourge**.
+- **Elvish Refueler and Wickerfolk Thresher are high picks that change nothing when you draw them.**
+- **Momentum Breaker is the real Rakdos linchpin.**
+- **Push the Limit is a genuine build-around, and the field prices it correctly.** Its decks finish
+  below average *and* drawing it wins games — the signature of a card that pays off when assembled
+  and drags the aggregate down when not. Take it late and cheap; don't draft toward it.
+- **The fixing is enabling, not picks.** Night Market and Starting Column make your deck castable and
+  do nothing when drawn instead of a spell. Guidelight Matrix the field is right to leave.
+- **The clunky removal is more clunky than good** — Crash and Burn, Scrap Compactor and Broken Wings
+  all sit below the format baseline.
+- **Riverchurn Monument is one of the best blue rares**, not a curiosity mill card.
+- **Big White is real, and the aggressive version is the trap.** Marshals' Pathcruiser and Ride's End
+  carry it, Guidelight Pathmaker supports it, and Air Response Unit does not.
+- **The wheel is shallower here than in most sets.** Spectral Interference, Maximum Overdrive,
+  Broadcast Rambler, Bounce Off, Hulldrifter and Voyager Quickwelder all come back, but they're
+  serviceable rather than genuinely underpriced.
 
 ### Open questions the data can't settle
 
 - **How good the Push the Limit ceiling really is.** The aggregate can't see an assembled
-  build-around, and **IWD +4.9** says the card does something real when drawn. The guide is describing
-  the built deck; the number is describing every attempt at it. Both are true — the practical answer
-  is that it's cheap, so the attempt is low-cost.
-- **Green versus black for best colour.** The retrospective hedges and the data has green ahead by
-  0.66pp — real but small, and black's commons are genuinely the deeper set. It rarely matters, since
+  build-around, and drawing the card demonstrably does something. The guide is describing the built
+  deck; the number is describing every attempt at it. Both are true — and since the card is cheap,
+  the attempt is low-cost.
+- **Green versus black for best colour.** The retrospective hedges and the data has green ahead by a
+  real but small margin, while black's commons are genuinely the deeper set. It rarely matters, since
   the top three archetypes are all green anyway.
 
 ## Contents
