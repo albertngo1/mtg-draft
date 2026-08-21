@@ -94,7 +94,8 @@ the other way around.
   17Lands ratings + Draftsim grade + expert-guide notes + an AI take). See its README to regenerate.
   Browsable online at **[albertngo1.github.io/mtg-draft](https://albertngo1.github.io/mtg-draft/)** —
   searchable card grids with a format brief per set, built from those same Markdown files by
-  `python3 card-reference/build_site.py` (output in [`docs/`](./docs/), served by GitHub Pages).
+  `card-reference/build_site.py`. GitHub Actions rebuilds and deploys it on every push that changes
+  a reference, so the site always matches the Markdown.
 
 ## Credits
 

@@ -37,7 +37,7 @@ two on a phone.
 the whole site, so a new set appears (and an edited one updates) with no code change:
 
 ```
-python3 card-reference/build_site.py                 # -> ./docs   (what GitHub Pages serves)
+python3 card-reference/build_site.py                 # -> ./docs   (local preview; gitignored)
 python3 card-reference/build_site.py --out /tmp/prev # preview build somewhere else
 python3 -m http.server 8000 --directory docs         # then open http://127.0.0.1:8000/
 ```
@@ -45,10 +45,15 @@ python3 -m http.server 8000 --directory docs         # then open http://127.0.0.
 Standard library only — it ships its own small Markdown renderer, and `site/site.css` +
 `site/site.js` are copied verbatim into `docs/assets/`. Nothing is loaded from a CDN.
 
-**Publishing:** GitHub Pages is configured to serve the **`/docs` folder on `main`**, so the site
-updates on `git push` with no CI step. `docs/` holds generated output — never hand-edit it. After
-regenerating any `<SET>-card-reference.md`, re-run `build_site.py` and commit `docs/` in the same
-commit, or the published site will lag the Markdown.
+**Publishing is automatic — you do not run this to publish.**
+[`.github/workflows/pages.yml`](../.github/workflows/pages.yml) rebuilds and deploys the site on
+every push to `main` that touches a `<SET>-card-reference.md`, the `site/` template, or the
+generator. GitHub Pages serves the workflow's artifact directly, so **the live site cannot lag the
+Markdown** — regenerate a reference, push, and the site follows.
+
+`docs/` is **gitignored**: it is generated output, it is rebuilt in CI, and committing it churned
+~4.7 MB of history per rebuild. Run `build_site.py` locally only to preview. To force a rebuild
+without changing a file: `gh workflow run pages.yml --ref main`.
 
 ## Per-card tile
 
