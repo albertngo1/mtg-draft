@@ -182,17 +182,20 @@ a:hover { text-decoration: underline; }
 
 /* ---------- set page ---------- */
 
-.sethead { padding: 40px 0 6px; }
+.sethead { padding: 40px 0 6px; text-align: center; }
 .sethead h1 {
   font-family: var(--serif); font-weight: 600; font-size: clamp(26px, 4vw, 38px);
   margin: 0 0 10px; letter-spacing: -.01em; line-height: 1.15;
 }
 .sethead .lede, .prose .lede { color: var(--text-2); }
+.sethead .lede { max-width: 78ch; margin-inline: auto; }
 
 .prose { max-width: none; }
-/* Cap the measure on prose, but let tables use the full column width. */
+/* Cap the measure for readability, but centre the block in the column — left-hugging
+   a 78ch column on a wide screen leaves the right half empty and reads as broken.
+   Tables still use the full width. */
 .prose > p, .prose > ul, .prose > ol, .prose > blockquote,
-.prose > h2, .prose > h3, .prose > h4 { max-width: 78ch; }
+.prose > h2, .prose > h3, .prose > h4 { max-width: 78ch; margin-inline: auto; }
 .prose h2 {
   font-family: var(--serif); font-weight: 600; font-size: 22px;
   margin: 34px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--line-soft);
@@ -211,6 +214,12 @@ a:hover { text-decoration: underline; }
 .prose blockquote p:last-child { margin-bottom: 0; }
 .prose code { font: .88em var(--mono); background: var(--panel-2); border-radius: 4px; padding: .12em .4em; }
 
+/* Centre the capped-measure blocks in the column. This has to come AFTER the margin
+   shorthands above (.prose p, .prose blockquote, .prose h2 ...), which each set
+   margin-inline to 0 and would otherwise win on source order at equal specificity. */
+.prose > p, .prose > ul, .prose > ol, .prose > blockquote,
+.prose > h2, .prose > h3, .prose > h4 { margin-inline: auto; }
+
 .tablescroll { overflow-x: auto; margin: 0 0 18px; border: 1px solid var(--line); border-radius: 10px; }
 .prose table { border-collapse: collapse; width: 100%; font-size: 13.5px; }
 .prose th, .prose td { padding: 8px 12px; border-bottom: 1px solid var(--line-soft); text-align: left; vertical-align: top; }
@@ -218,23 +227,19 @@ a:hover { text-decoration: underline; }
 .prose tbody tr:last-child td { border-bottom: 0; }
 .prose tbody tr:hover td { background: rgba(255,255,255,.018); }
 
-details.brief {
+.brief {
   border: 1px solid var(--line); border-radius: var(--radius);
   background: var(--ink-2); margin: 26px 0 10px; padding: 0 20px;
 }
-details.brief > summary {
-  cursor: pointer; list-style: none; padding: 15px 0;
-  font-family: var(--serif); font-size: 17px; color: var(--text);
+.brief > .brieftitle {
+  padding: 15px 0; margin: 0; border-bottom: 1px solid var(--line-soft);
+  justify-content: center;
+  font-family: var(--serif); font-size: 19px; font-weight: 600; color: var(--text);
   display: flex; align-items: center; gap: 10px;
 }
-details.brief > summary::-webkit-details-marker { display: none; }
-details.brief > summary::before {
-  content: "▸"; color: var(--gold); font-size: 13px; transition: transform .15s ease;
-}
-details.brief[open] > summary::before { transform: rotate(90deg); }
-details.brief > summary .hint { margin-left: auto; font: 11px var(--mono); color: var(--text-3); }
-details.brief > .briefbody { padding: 4px 0 22px; border-top: 1px solid var(--line-soft); }
-details.brief > .briefbody > :first-child { margin-top: 16px; }
+.brief > .brieftitle .hint { margin-left: auto; font: 11px var(--mono); color: var(--text-3); }
+.brief > .briefbody { padding: 4px 0 22px; }
+.brief > .briefbody > :first-child { margin-top: 16px; }
 
 /* ---------- card grid ---------- */
 
@@ -262,7 +267,7 @@ details.brief > .briefbody > :first-child { margin-top: 16px; }
   display: flex; flex-direction: column;
   background: var(--panel); border: 1px solid var(--line);
   border-radius: var(--radius); overflow: hidden;
-  content-visibility: auto; contain-intrinsic-size: auto 520px;
+  content-visibility: auto; contain-intrinsic-size: auto 640px;
 }
 .tile:hover { border-color: var(--line); }
 .tile .art { display: block; background: var(--ink); text-align: center; padding: 12px 12px 0; }
@@ -271,10 +276,13 @@ details.brief > .briefbody > :first-child { margin-top: 16px; }
   object-fit: contain; border-radius: 9px; display: inline-block;
   background: var(--ink-2);
 }
-.tile .body { padding: 12px 14px 14px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.tile .body {
+  padding: 12px 14px 14px; display: flex; flex-direction: column; gap: 8px; flex: 1;
+  text-align: center; align-items: center;
+}
 
-.cname { font-family: var(--serif); font-size: 16.5px; font-weight: 600; line-height: 1.25; margin: 0; }
-.cmeta { display: flex; align-items: center; gap: 7px; margin: -3px 0 0; }
+.cname { font-family: var(--serif); font-size: 17px; font-weight: 600; line-height: 1.25; margin: 0; }
+.cmeta { display: flex; align-items: center; justify-content: center; gap: 7px; margin: -3px 0 0; }
 .pips { display: flex; gap: 3px; }
 .pip {
   width: 15px; height: 15px; border-radius: 50%; display: grid; place-items: center;
@@ -283,41 +291,35 @@ details.brief > .briefbody > :first-child { margin-top: 16px; }
 .pip-W { background: var(--w); } .pip-U { background: var(--u); }
 .pip-B { background: var(--b); } .pip-R { background: var(--r); }
 .pip-G { background: var(--g); } .pip-C { background: var(--c); }
-.rar { font: 11px var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--text-3); }
-.rar-Rare { color: var(--gold); }
-.rar-Mythic { color: #e08a4e; }
-.rar-Uncommon { color: #9fb6c9; }
-
-.stats { display: flex; flex-wrap: wrap; gap: 4px; margin: 0; padding: 0; list-style: none; }
+.stats { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px; margin: 0; padding: 0; list-style: none; }
 .stats li {
   font: 11px/1 var(--mono); color: var(--text-2);
   background: var(--panel-2); border-radius: 5px; padding: 5px 7px;
   display: flex; gap: 5px; align-items: baseline;
 }
 .stats li .k { color: var(--text-3); font-size: 10px; letter-spacing: .04em; }
-.stats li.gih { background: color-mix(in srgb, var(--gold) 16%, var(--panel-2)); color: #f4e6c6; }
+.stats li.gih { background: var(--panel-2); border: 1px solid var(--gold-dim); color: var(--text); }
 .stats li.gih .k { color: var(--gold); }
+.stats.sub { justify-content: center; }
 .stats.sub li { background: transparent; padding: 2px 0; color: var(--text-3); }
 .stats.sub li + li::before { content: "·"; color: var(--line); margin-right: 5px; }
 
-.ai { font-size: 13px; line-height: 1.55; color: var(--text-2); margin: 2px 0 0; }
-.ai b, .ai strong { color: var(--text); }
+/* The AI take is the actual analysis — it leads the tile. Gold is reserved for the
+   phrases inside it, which is the thing worth spotting at a glance. */
+.ai { font-size: 13.5px; line-height: 1.6; color: var(--text); margin: 4px 0 0; }
+.ai b, .ai strong { color: var(--gold); font-weight: 600; }
 
-details.notes { margin-top: auto; padding-top: 6px; }
-details.notes > summary {
-  cursor: pointer; list-style: none;
-  font: 11px var(--mono); letter-spacing: .04em; color: var(--text-3);
-  border-top: 1px solid var(--line-soft); padding-top: 9px;
+.notes { margin-top: 4px; padding-top: 10px; border-top: 1px solid var(--line-soft); width: 100%; }
+.noteslabel {
+  font: 10px var(--mono); letter-spacing: .14em; text-transform: uppercase;
+  color: var(--text-3); margin: 0 0 7px;
 }
-details.notes > summary::-webkit-details-marker { display: none; }
-details.notes > summary:hover { color: var(--gold); }
-details.notes > summary::after { content: " ▾"; }
-details.notes[open] > summary::after { content: " ▴"; }
-details.notes .note {
-  font-size: 12px; line-height: 1.5; color: var(--text-3);
-  margin: 9px 0 0; padding-left: 9px; border-left: 2px solid var(--line);
+.notes .note {
+  font-size: 12.5px; line-height: 1.55; color: var(--text-2);
+  margin: 0 0 7px; text-align: left;
 }
-details.notes .note b { color: var(--text-2); }
+.notes .note:last-child { margin-bottom: 0; }
+.notes .note b { color: var(--text); }
 
 .tile[hidden] { display: none; }
 .cardsection[hidden] { display: none; }

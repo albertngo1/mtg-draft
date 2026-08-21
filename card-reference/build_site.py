@@ -272,20 +272,17 @@ def render_tile(cell: str) -> str:
     )
     bits.append('<div class="body">')
     bits.append('<h3 class="cname">%s</h3>' % name)
-    bits.append(
-        '<p class="cmeta"><span class="pips">%s</span>'
-        '<span class="rar rar-%s">%s</span></p>'
-        % (pips, html.escape(rarity, quote=True), html.escape(rarity))
-    )
+    bits.append('<p class="cmeta"><span class="pips">%s</span></p>' % pips)
     for idx, raw in enumerate(stats):
         bits.append(_stat_chips(raw, primary=(idx == 0)))
     if ai:
         bits.append('<p class="ai">%s</p>' % ai)
     if notes:
-        label = "%d expert note%s" % (len(notes), "" if len(notes) == 1 else "s")
         bits.append(
-            '<details class="notes"><summary>%s</summary>%s</details>'
-            % (label, "".join('<p class="note">%s</p>' % t for t in notes))
+            '<section class="notes"><p class="noteslabel">Expert notes</p>%s</section>'
+            # The distilled guides use markdown emphasis inside a note; run it through the
+            # same inline renderer the prose uses, or the tile shows literal ** asterisks.
+            % "".join('<p class="note">%s</p>' % inline(t) for t in notes)
         )
     bits.append("</div></article>")
     return "".join(bits)
@@ -533,11 +530,11 @@ def render_set(s: dict) -> str:
 
     brief = ""
     if s["brief_html"]:
-        brief = f"""<details class="brief" id="brief">
-  <summary>{brief_title}
-    <span class="hint">{s['brief_words']:,} words</span></summary>
+        brief = f"""<section class="brief" id="brief">
+  <h2 class="brieftitle">{brief_title}
+    <span class="hint">{s['brief_words']:,} words</span></h2>
   <div class="briefbody prose">{s['brief_html']}</div>
-</details>"""
+</section>"""
 
     chips = "".join(
         '<button class="chip" data-rarity="%s" aria-pressed="false">%s</button>' % (r.lower(), r)
