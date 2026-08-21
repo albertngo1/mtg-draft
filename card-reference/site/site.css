@@ -190,6 +190,12 @@ a:hover { text-decoration: underline; }
 .sethead .lede, .prose .lede { color: var(--text-2); }
 .sethead .lede { max-width: 78ch; margin-inline: auto; }
 
+/* The centring above is for the title and the one-line lede only. Body copy stays
+   left-aligned: the format brief runs to several thousand words, and centred ragged
+   text costs the reader a new line-start on every line. Centre the column, not the text. */
+.sethead .prose { text-align: left; }
+.sethead .prose > .lede { text-align: center; }
+
 .prose { max-width: none; }
 /* Cap the measure for readability, but centre the block in the column — left-hugging
    a 78ch column on a wide screen leaves the right half empty and reads as broken.
@@ -306,7 +312,7 @@ a:hover { text-decoration: underline; }
 
 /* The AI take is the actual analysis — it leads the tile. Gold is reserved for the
    phrases inside it, which is the thing worth spotting at a glance. */
-.ai { font-size: 13.5px; line-height: 1.6; color: var(--text); margin: 4px 0 0; }
+.ai { font-size: 13.5px; line-height: 1.6; color: var(--text); margin: 4px 0 0; text-align: left; }
 .ai b, .ai strong { color: var(--gold); font-weight: 600; }
 
 .notes { margin-top: 4px; padding-top: 10px; border-top: 1px solid var(--line-soft); width: 100%; }

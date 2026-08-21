@@ -90,18 +90,35 @@ the other way around.
   log-reading and caching work, the draft-history reconstruction, repo layout, and more.
 - **[AGENTS.md](./AGENTS.md)** — the operating manual for the AI coaching layer: universal limited
   theory plus how to drive this tool pick-by-pick.
-- **[card-reference/](./card-reference/)** — a one-file visual grid of every card in a set (image +
-  17Lands ratings + Draftsim grade + expert-guide notes + an AI take). See its README to regenerate.
-  Browsable online at **[albertngo1.github.io/mtg-draft](https://albertngo1.github.io/mtg-draft/)** —
-  searchable card grids with a format brief per set, built from those same Markdown files by
-  `card-reference/build_site.py`. GitHub Actions rebuilds and deploys it on every push that changes
-  a reference, so the site always matches the Markdown.
+- **[card-reference/](./card-reference/)** — a visual grid of every card in a set: image, 17Lands
+  ratings, a reviewer letter grade where one exists, notes from the expert guides, and a per-card AI
+  take. **Ten sets, 3,038 cards** — BLB, DFT, DSK, ECL, FIN, HOB, MKM, MSH, OTJ, SOS. Each set also
+  ships a **format brief** (`card-reference/briefs/<SET>.md`): the archetype table with real 17Lands
+  win rates and metagame share, the draft plan, and the things a win-rate column can't tell you —
+  sequencing, combat math, copy counts, splash policy. See its README to regenerate.
+
+  Browsable online at **[albertngo1.github.io/mtg-draft](https://albertngo1.github.io/mtg-draft/)**,
+  with search across card names, stats *and* every expert note, plus rarity filters and colour-section
+  jumps. GitHub Actions rebuilds and deploys it on every push that changes a reference, so the site
+  cannot fall behind the Markdown.
+
+- **[draft-guides/](./draft-guides/)** — per-set strategy notes distilled from five limited channels
+  (Lords of Limited, NumotTheNummy, Limited Resources, Limited Level-Ups, Rough Drafts). The
+  ingest pipeline is channel-agnostic — [`src/ingest/channels.json`](./src/ingest/channels.json)
+  registers a channel and its output contract, `fetch_subs.sh` pulls captions, `fingerprint.py`
+  tracks what's been distilled, and [`src/ingest/DISTILL.md`](./src/ingest/DISTILL.md) is the
+  runbook. These notes **decode** the 17Lands data rather than outranking it: the win rate says how
+  good a card is, the guides say which deck's number you're looking at.
 
 ## Credits
 
 - **[17Lands](https://www.17lands.com/)** — draft win-rate statistics (queried at runtime).
 - **[Scryfall](https://scryfall.com/)** — card names, mana costs, and oracle text (queried at
   runtime, not redistributed; please respect their [API guidelines](https://scryfall.com/docs/api)).
+- The limited-content creators whose public videos the `draft-guides/` notes are distilled from —
+  **Lords of Limited**, **NumotTheNummy**, **Limited Resources**, **Limited Level-Ups** and
+  **Rough Drafts**. Those files are summaries written for personal draft prep, not transcripts; go
+  watch the originals.
 
 Magic: The Gathering is © Wizards of the Coast. This is an unofficial fan tool, not affiliated with
 or endorsed by Wizards of the Coast.

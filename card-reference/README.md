@@ -136,35 +136,31 @@ same pipeline. All ten are 100% covered. (The DSK pass
 also fixed the shared guide-note parser to accept LoL's `[**Card**](link) (mana gloss) — note` bullet form
 and Numot's `**Card:** note` colon-in-bold form, which recovered notes across ~20 sets — e.g. DSK 1→51.)
 
-- **HOB** — 188/188 cards with image + AI take, 174/188 with live GIH WR (young: 1.63M PremierDraft games, two
-  days after Arena release) + 188 CGB grades + 115 LR grades; 138/188 with ≥1 expert note (LR 865, Limited
-  Level-Ups primer, Lords of Limited crash course). **First set to carry two reviewer-grade sources at once**
-  (LR and CGB render side by side). Header carries a 5-archetype map with live archetype win rates. Also the
-  first set built through the pre-data path: scaffolded from Scryfall while 17Lands was empty, then refreshed
-  in place. Scryfall reports no `arena_id` for HOB, so oracle text joins by name.
-- **SOS** — 341/341 cards with image + 17Lands ratings + DS grade + AI take; 155/341 with ≥1 expert note.
-- **MKM** — 321/321 cards with image + 17Lands ratings + CGB grade + AI take; 142/321 with ≥1 expert note.
-- **MSH** — 334/334 cards with image + AI take, 285/334 with live GIH WR (mature: ~15.2M PremierDraft games,
-  QuickDraft + Sealed also live) + 276 CGB grades; 234/334 with ≥1 expert note (Limited Level-Ups wired in —
-  the largest MSH guide). Header carries a 10-archetype color-pair map. Takes under the MSH slow-grindy doctrine.
-- **BLB** — 271/271 cards with image + full-format GIH WR + CGB grade + AI take; 124/271 with ≥1 expert note
-  (all 3 guides are end-of-format retrospectives). Header carries the 10-tribe color-pair map; takes are
-  archetype-aware (typal/"false friend" decoding).
-- **ECL** — 288/288 cards with image + AI take, 273/288 with live GIH WR (mature: ~22.2M PremierDraft games);
-  103/288 with ≥1 expert note (LoL + Numot; no reviewer-grade file exists yet). Header carries the tribal
-  color-pair map. Takes under the ECL tribal-synergy doctrine; GIH WR decoded for removal-underrating and
-  payoff-inflation.
-- **DFT** — 281/281 cards with image + AI take, 277/281 with live GIH WR (finished format, Feb–Mar 2025);
-  271/281 with CGB grade (the 10 without are special-guest reprints); 76/281 with ≥1 expert note (LoL + Numot).
-  Header carries a 9-row color-pair archetype map. Takes under the DFT slow-vehicles doctrine (Green ≥ Black
-  best at common, blue-uncommons elite); GIH WR decoded for green-fatty inflation and cheap-removal underrating.
-- **OTJ** — 376/376 cards with image + AI take, 364/376 with live GIH WR (finished format, 2024); 376/376 with
-  CGB grade; 61/376 with ≥1 expert note (LoL + Numot). Header carries a 10-row color-pair archetype map + a
-  Big Score (OTP) bonus-sheet note. Takes under the OTJ bombs-and-removal doctrine (Green best / GW mounts,
-  blue underrated/open, red weakest); GIH WR decoded for multicolor-soup + build-around-payoff inflation and
-  efficient-removal underrating.
-- **DSK** — 281/281 cards with image + AI take, 272/281 with live GIH WR (finished format, Sep–Oct 2024);
-  271/281 with CGB grade; 51/281 with ≥1 expert note (LoL + Numot). Header carries a 10-row color-pair
-  archetype map. Takes under the DSK graveyard-matters-midrange doctrine (Green > Black >> Blue > White > Red;
-  Delirium/Manifest Dread/Eerie axes, 4-toughness magic number); GIH WR decoded for synergy/build-around-payoff
-  inflation and cheap-exile-removal underrating.
+| Set | Cards | Live GIH WR | Sample | Guide notes | Reviewer grades |
+|---|---|---|---|---|---|
+| **BLB** | 271 | 265 | 27.6M | 150 | CGB 261 |
+| **DFT** | 281 | 277 | 25.7M | 93 | CGB 271 |
+| **DSK** | 281 | 272 | 34.6M | 60 | CGB 271 |
+| **ECL** | 288 | 273 | 22.2M | 108 | — |
+| **FIN** | 357 | 348 | 42.1M | 63 | — |
+| **HOB** | 188 | 179 | 6.5M | 182 | CGB 188 · LR 183 |
+| **MKM** | 321 | 296 | 28.6M | 147 | CGB 321 |
+| **MSH** | 334 | 289 | 19.0M | 259 | CGB 276 |
+| **OTJ** | 376 | 364 | 38.6M | 75 | CGB 376 |
+| **SOS** | 341 | 327 | 29.2M | 166 | DS 341 |
+
+**Every set is at 100% for images, AI takes and a format brief** — those three are the floor. What
+varies is how much the rest of the world has written about a set:
+
+- **Guide-note coverage tracks how many channels covered the set**, not its quality. MSH and HOB have
+  four channels each; DSK and OTJ have two, and it shows.
+- **ECL and FIN carry no reviewer grade at all** — no CardGameBase, Draftsim or Limited Resources file
+  exists for them, so their tiles run on live win rates, guide notes and the AI take alone.
+- **Sample size varies by two orders of magnitude at card level.** FIN's 42.1M games and OTJ's 38.6M
+  are settled; bonus-sheet reprints inside any set sit in the low thousands and deserve much wider
+  error bars than the commons beside them.
+- **Cards short of a live GIH WR are genuinely unplayed rather than merely unmeasured** — they show
+  ratings as blank rather than guessing.
+
+To regenerate these numbers, run `build_card_reference.py <SET>` and read its summary line; it prints
+card count, AI-take coverage, guide-note count and every grade source it found.
