@@ -122,11 +122,12 @@ Cards within each color group are ordered by **play rate (play %)**, highest fir
 uses a rank-average of **ALSA + play rate**. On a young set those two are populated by every draft while GIH
 WR lags, so they sort the whole card list rather than just the measured part.
 
-**AI takes cover all nine sets.** The original five (SOS/MKM/MSH/BLB/ECL) were regenerated 2026-07-12
+**AI takes cover all ten sets.** The original five (SOS/MKM/MSH/BLB/ECL) were regenerated 2026-07-12
 after the prep record began carrying each card's **oracle text + P/T + mana** (joined from Scryfall — MSH
 by name, since its cards have no `arena_id`) — so the takes read what each card actually does and ground
 the verdict in the expert notes, not just the stat columns. **DFT** (2026-07-18), **OTJ** (2026-07-21),
-**DSK** (2026-07-23) and **HOB** (2026-08-13) were then added under the same pipeline. All nine are 100% covered. (The DSK pass
+**DSK** (2026-07-23), **HOB** (2026-08-13) and **FIN** (2026-08-20, 357 cards) were then added under the
+same pipeline. All ten are 100% covered. (The DSK pass
 also fixed the shared guide-note parser to accept LoL's `[**Card**](link) (mana gloss) — note` bullet form
 and Numot's `**Card:** note` colon-in-bold form, which recovered notes across ~20 sets — e.g. DSK 1→51.)
 
