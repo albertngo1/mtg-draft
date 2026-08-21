@@ -34,9 +34,14 @@ Single-file, visual card references for a set: every draftable card as a tile in
 The same references, published as a static site: a landing page listing every set (card count,
 colour split, grade source, whether it carries a format brief) and a per-set page with the full
 card grid. Each set page adds what a Markdown file can't do — a search box that matches card names,
-stats and every expert note; rarity filters; a sticky colour-section jump strip; and a collapsed
-format brief so the grid is the first thing you see. Card tiles reflow from five columns down to
-two on a phone.
+stats and every expert note; rarity filters; and a sticky colour-section jump strip.
+
+**The page layout deliberately mirrors the Markdown**: the same three-across grid of the `<td
+width="33%">` cells, the same reading order down each tile (image, name, colour · rarity, the two
+middot-separated stat lines, the AI take, then the expert notes), all left-aligned. Nothing is
+collapsed — the format brief and every card's expert notes render open, because a reference you
+have to click through is one you don't read mid-draft. Tiles drop to two columns under 1080px and
+one on a phone.
 
 **`build_site.py` reads the `<SET>-card-reference.md` files off disk at build time** and rebuilds
 the whole site, so a new set appears (and an edited one updates) with no code change:

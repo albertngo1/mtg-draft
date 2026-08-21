@@ -264,10 +264,14 @@ a:hover { text-decoration: underline; }
 }
 .cardsection > h2 .n { margin-left: auto; font: 12px var(--mono); color: var(--text-3); }
 
+/* Three columns, matching the <td width="33%"> cells of the Markdown reference.
+   Fixed rather than auto-fill: the tiles carry a full AI take plus every expert note,
+   so a five-across grid squeezed each one into a 20-character measure. */
 .grid {
-  display: grid; gap: 14px;
-  grid-template-columns: repeat(auto-fill, minmax(252px, 1fr));
+  display: grid; gap: 20px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
+@media (max-width: 1080px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
 .tile {
   display: flex; flex-direction: column;
@@ -276,19 +280,21 @@ a:hover { text-decoration: underline; }
   content-visibility: auto; contain-intrinsic-size: auto 640px;
 }
 .tile:hover { border-color: var(--line); }
-.tile .art { display: block; background: var(--ink); text-align: center; padding: 12px 12px 0; }
+.tile .art { display: block; background: var(--ink); text-align: left; padding: 14px 16px 0; }
 .tile .art img {
-  width: 100%; max-width: 232px; aspect-ratio: 5 / 7;
-  object-fit: contain; border-radius: 9px; display: inline-block;
+  width: 100%; max-width: 300px; aspect-ratio: 5 / 7;
+  object-fit: contain; border-radius: 9px; display: block;
   background: var(--ink-2);
 }
+/* Left-aligned, single column of blocks — the reading order of a Markdown table cell:
+   image, name, colour/rarity, stat lines, AI take, notes. */
 .tile .body {
-  padding: 12px 14px 14px; display: flex; flex-direction: column; gap: 8px; flex: 1;
-  text-align: center; align-items: center;
+  padding: 12px 16px 16px; display: flex; flex-direction: column; gap: 7px; flex: 1;
+  text-align: left; align-items: stretch;
 }
 
-.cname { font-family: var(--serif); font-size: 17px; font-weight: 600; line-height: 1.25; margin: 0; }
-.cmeta { display: flex; align-items: center; justify-content: center; gap: 7px; margin: -3px 0 0; }
+.cname { font-family: var(--serif); font-size: 17.5px; font-weight: 600; line-height: 1.25; margin: 0; }
+.cmeta { display: flex; align-items: center; gap: 7px; margin: -3px 0 0; }
 .pips { display: flex; gap: 3px; }
 .pip {
   width: 15px; height: 15px; border-radius: 50%; display: grid; place-items: center;
@@ -297,32 +303,31 @@ a:hover { text-decoration: underline; }
 .pip-W { background: var(--w); } .pip-U { background: var(--u); }
 .pip-B { background: var(--b); } .pip-R { background: var(--r); }
 .pip-G { background: var(--g); } .pip-C { background: var(--c); }
-.stats { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px; margin: 0; padding: 0; list-style: none; }
-.stats li {
-  font: 11px/1 var(--mono); color: var(--text-2);
-  background: var(--panel-2); border-radius: 5px; padding: 5px 7px;
-  display: flex; gap: 5px; align-items: baseline;
+.rar { font: 11.5px var(--mono); color: var(--text-3); }
+.rar::before { content: "· "; color: var(--line); }
+/* One flowing middot-separated line per stat row, exactly as the Markdown renders it.
+   Chips made every tile a grid of pills and buried the one number that matters. */
+.stats {
+  display: block; margin: 0; padding: 0; list-style: none;
+  font: 11.5px/1.7 var(--mono); color: var(--text-2);
 }
-.stats li .k { color: var(--text-3); font-size: 10px; letter-spacing: .04em; }
-.stats li.gih { background: var(--panel-2); border: 1px solid var(--gold-dim); color: var(--text); }
+.stats li { display: inline; }
+.stats li + li::before { content: " · "; color: var(--line); }
+.stats li .k { color: var(--text-3); }
+.stats li .v { margin-left: 4px; }
 .stats li.gih .k { color: var(--gold); }
-.stats.sub { justify-content: center; }
-.stats.sub li { background: transparent; padding: 2px 0; color: var(--text-3); }
-.stats.sub li + li::before { content: "·"; color: var(--line); margin-right: 5px; }
+.stats li.gih .v { color: var(--gold); font-weight: 700; }
+.stats.sub { color: var(--text-3); margin-top: -3px; }
 
 /* The AI take is the actual analysis — it leads the tile. Gold is reserved for the
    phrases inside it, which is the thing worth spotting at a glance. */
 .ai { font-size: 13.5px; line-height: 1.6; color: var(--text); margin: 4px 0 0; text-align: left; }
 .ai b, .ai strong { color: var(--gold); font-weight: 600; }
 
-.notes { margin-top: 4px; padding-top: 10px; border-top: 1px solid var(--line-soft); width: 100%; }
-.noteslabel {
-  font: 10px var(--mono); letter-spacing: .14em; text-transform: uppercase;
-  color: var(--text-3); margin: 0 0 7px;
-}
+.notes { margin-top: 3px; padding-top: 11px; border-top: 1px solid var(--line-soft); }
 .notes .note {
   font-size: 12.5px; line-height: 1.55; color: var(--text-2);
-  margin: 0 0 7px; text-align: left;
+  margin: 0 0 8px;
 }
 .notes .note:last-child { margin-bottom: 0; }
 .notes .note b { color: var(--text); }
@@ -362,7 +367,8 @@ a:hover { text-decoration: underline; }
   .search input { width: 100%; }
   .jump { top: 96px; }
   .cardsection > h2 { scroll-margin-top: 160px; }
-  .grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+  .grid { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  .tile .art img { width: 100%; max-width: 300px; }
   /* Data tables scroll inside their box instead of squeezing to two words a line. */
   .prose table { min-width: 560px; }
   .hero { padding: 30px 0 8px; }
