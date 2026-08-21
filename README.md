@@ -92,6 +92,9 @@ the other way around.
   theory plus how to drive this tool pick-by-pick.
 - **[card-reference/](./card-reference/)** — a one-file visual grid of every card in a set (image +
   17Lands ratings + Draftsim grade + expert-guide notes + an AI take). See its README to regenerate.
+  Browsable online at **[albertngo1.github.io/mtg-draft](https://albertngo1.github.io/mtg-draft/)** —
+  searchable card grids with a format brief per set, built from those same Markdown files by
+  `python3 card-reference/build_site.py` (output in [`docs/`](./docs/), served by GitHub Pages).
 
 ## Credits
 

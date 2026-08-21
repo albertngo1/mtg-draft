@@ -22,6 +22,33 @@ Single-file, visual card references for a set: every draftable card as a tile in
   python3 build_card_reference.py <SET> --no-brief         # throwaway build only; never commit one
   ```
 - `<SET>-card-reference.md` — the output (open in any Markdown viewer; images are remote Scryfall URLs).
+- `build_site.py` + `site/` — the static-site generator behind the browsable web version (below).
+
+## Browsable web version — https://albertngo1.github.io/mtg-draft/
+
+The same references, published as a static site: a landing page listing every set (card count,
+colour split, grade source, whether it carries a format brief) and a per-set page with the full
+card grid. Each set page adds what a Markdown file can't do — a search box that matches card names,
+stats and every expert note; rarity filters; a sticky colour-section jump strip; and a collapsed
+format brief so the grid is the first thing you see. Card tiles reflow from five columns down to
+two on a phone.
+
+**`build_site.py` reads the `<SET>-card-reference.md` files off disk at build time** and rebuilds
+the whole site, so a new set appears (and an edited one updates) with no code change:
+
+```
+python3 card-reference/build_site.py                 # -> ./docs   (what GitHub Pages serves)
+python3 card-reference/build_site.py --out /tmp/prev # preview build somewhere else
+python3 -m http.server 8000 --directory docs         # then open http://127.0.0.1:8000/
+```
+
+Standard library only — it ships its own small Markdown renderer, and `site/site.css` +
+`site/site.js` are copied verbatim into `docs/assets/`. Nothing is loaded from a CDN.
+
+**Publishing:** GitHub Pages is configured to serve the **`/docs` folder on `main`**, so the site
+updates on `git push` with no CI step. `docs/` holds generated output — never hand-edit it. After
+regenerating any `<SET>-card-reference.md`, re-run `build_site.py` and commit `docs/` in the same
+commit, or the published site will lag the Markdown.
 
 ## Per-card tile
 
