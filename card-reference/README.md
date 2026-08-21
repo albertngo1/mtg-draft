@@ -22,6 +22,11 @@ Single-file, visual card references for a set: every draftable card as a tile in
   python3 build_card_reference.py <SET> --no-brief         # throwaway build only; never commit one
   ```
 - `<SET>-card-reference.md` — the output (open in any Markdown viewer; images are remote Scryfall URLs).
+- `fetch_archetypes.py` — pulls each colour pair's **real** win rate and share of the metagame from
+  17Lands. `python3 fetch_archetypes.py <SET> [EVENT_TYPE] [--refresh]`. Use this, never the obvious
+  workaround of averaging the gold cards legal in each pair — that proxy conflates card quality with
+  archetype quality, rests on 3-8 cards, and measured against this endpoint it mis-ranked pairs by up
+  to five places. The archetype table above each brief comes from here.
 - `build_site.py` + `site/` — the static-site generator behind the browsable web version (below).
 
 ## Browsable web version — https://albertngo1.github.io/mtg-draft/
@@ -61,9 +66,12 @@ without changing a file: `gh workflow run pages.yml --ref main`.
 - **Ratings:** GIH WR (primary) · IWD · ALSA · DS (Draftsim /5) · OH WR · GD WR · play rate —
   from `data/cache/17lands_<SET>_PremierDraft_1200d.json`
 - **🤖 AI take** — independent, data-decoding verdict (flags soup-inflated win-rates, gives pick priority)
-- **📘 Lords of Limited / 🎙 NumotTheNummy / 🎧 Limited Resources / 🎓 Limited Level-Ups** — expert notes
-  parsed from `draft-guides/`, where the card name matched (gaps are mostly commons whose names were
-  garbled in the source podcast/VOD transcripts)
+- **📘 Lords of Limited / 🎙 NumotTheNummy / 🎧 Limited Resources / 🎓 Limited Level-Ups / 🎬 Rough
+  Drafts** — expert notes parsed from `draft-guides/`. Names are matched exactly first, then a single
+  fuzzy pass against the set's real card list, because auto-caption transcripts mangle card names
+  ("Cactus Durantula" for Cactarantula, "Magitech Armor" for Magitek Armor). The pass uses a 0.78
+  similarity cutoff and **refuses near-ties**, so a garble that could plausibly be two different cards
+  is dropped rather than attached to the wrong tile. Each build prints what it recovered.
 
 The reviewer-grade column auto-detects its source: **DS** (Draftsim, numeric /5) if `grades/draftsim_<SET>.json`
 exists, else **CGB** (CardGameBase, letter A+→F). The header caveat is set-aware (SOS = soup-inflation
