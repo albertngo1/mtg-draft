@@ -15,9 +15,20 @@ READMEs again.
 For a channel `<slug>` (one of `lords-of-limited`, `numot`, `limited-resources`,
 `limited-level-ups`, `rough-drafts`):
 
-1. **Find the work.** `python3 src/ingest/fingerprint.py <slug> new --ids` prints `<SET>\t<id>`
-   lines for every video that is new or whose transcript changed. On a first/full run for a channel
-   with no manifest yet, that's every video in `data/subs/<slug>/worklist.json`.
+1. **Find the work.** Start with `python3 src/ingest/fingerprint.py <slug> coverage` — per set, it
+   compares transcripts on disk against the guide that should account for them, on two independent
+   signals (`guide` = guide file older than its newest transcript; `unfp` = transcripts no manifest
+   entry mentions). A set flagged by BOTH is very likely a real gap; one signal alone is a prompt to
+   open the guide and look, not a verdict.
+
+   Then `python3 src/ingest/fingerprint.py <slug> new --ids` prints `<SET>\t<id>` lines for every
+   video that is new or whose transcript changed. On a first/full run for a channel with no manifest
+   yet, that's every video in `data/subs/<slug>/worklist.json`.
+
+   > **Run this before every distill pass, and believe it over your memory of what is done.**
+   > On 2026-08-23, eight set-guides were found with transcripts fetched months earlier and never
+   > distilled. Nothing was broken — `new` reports exactly those gaps and always would have. It had
+   > simply never been run. Fetching is not distilling, and nothing in the pipeline connects them.
 2. **Read the contract.** Open `channels.json` → `channels.<slug>.distill_format`. It tells you the
    output filename (`per_set_file`), any channel-wide files (`channel_files`), the ordered
    `sections`, the per-card `card_bullets` shape, the `recency` weighting, and `special_rules`.
@@ -42,9 +53,20 @@ For a channel `<slug>` (one of `lords-of-limited`, `numot`, `limited-resources`,
    EOF
    ```
 4. **Update channel-wide files** (e.g. numot's `general-tips.md`) if `channel_files` is non-empty.
-5. **Fingerprint.** `python3 src/ingest/fingerprint.py <slug> update` rewrites
-   `draft-guides/<slug>/manifest.json` to mark everything distilled (and records captionless videos
-   so they aren't retried).
+5. **Fingerprint — LAST, and only for sets you actually distilled.**
+   `python3 src/ingest/fingerprint.py <slug> update` rewrites `draft-guides/<slug>/manifest.json`
+   (and records captionless videos so they aren't retried). It now SKIPS any set whose guide is
+   missing or older than its newest transcript, printing `SKIP <SET>: guide missing|behind` — so it
+   cannot certify undistilled work as done. `--force` overrides, and is only for repairing a
+   manifest you have separately verified.
+
+   > **Order is load-bearing: coverage → new → distill → update.** Running `update` first is what
+   > caused the 2026-08-23 incident. `update` used to mark every transcript on disk as distilled
+   > without checking whether any guide reflected it; one premature run marked 31 videos across 5
+   > sets as done, and `new` then reported "up to date" forever. A set-level "does a guide exist"
+   > check is NOT enough to catch this — a set with a stale guide passes it and still hides work.
+   > Worse, those videos would have been written as `reason: no-captions`, a tombstone `new`
+   > deliberately never retries. The guard now covers both paths.
 6. **Refresh the format brief** for every set you touched. New guide content that isn't attached to
    a single card belongs in `card-reference/briefs/<SET>.md` (draft plan, gameplay rules,
    deckbuilding doctrine, traps, cross-source disagreements, and where the guides were wrong once
