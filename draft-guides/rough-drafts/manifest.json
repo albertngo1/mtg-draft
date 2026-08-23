@@ -1,0 +1,165 @@
+{
+  "channel": "Rough Drafts (Samp)",
+  "scope": "Limited podcast: per-set 'Hot Topics' (early), 'Grab Bag' (mid) and 'Retrospective' (end-of-format) episodes, plus weekly episodes TITLED after a single card that are in practice format-theory essays",
+  "note": "Fingerprint of distilled scrape. sha1 = sha1 of the cleaned transcript .txt.",
+  "counts": {
+    "sets": 3,
+    "videos_distilled": 19,
+    "videos_no_captions": 0
+  },
+  "sets": {
+    "HOB": {
+      "tier": null,
+      "file": "HOB.md",
+      "video_ids": [
+        "0_k700j_mEU",
+        "ITX7YYszOUU",
+        "_i4F6a_REL8",
+        "bLdNnPWOx2w",
+        "yzC8k78oDwQ"
+      ]
+    },
+    "MSH": {
+      "tier": null,
+      "file": "MSH.md",
+      "video_ids": [
+        "0Bk2oM2sC8A",
+        "SUWgZUEs6RU",
+        "bAf9EPya59U",
+        "pJJReH6VIJc",
+        "wEkLOANyDKU"
+      ]
+    },
+    "SOS": {
+      "tier": null,
+      "file": "SOS.md",
+      "video_ids": [
+        "0_ezsOtsg1c",
+        "BgRrmNsS8ik",
+        "QyrnMAP1x7Q",
+        "UY7ISy1p7aM",
+        "VOkgqQ2p390",
+        "by2n5saeRWM",
+        "kAiVNx5nm0U",
+        "pVePkJmzAdg",
+        "vH2dVk3NnAc"
+      ]
+    }
+  },
+  "videos": {
+    "0Bk2oM2sC8A": {
+      "set": "MSH",
+      "sha1": "9a1a7a5b9d665f68f40e4e172a050cd89d6a58f1",
+      "words": 5836,
+      "distilled": true
+    },
+    "0_ezsOtsg1c": {
+      "set": "SOS",
+      "sha1": "44be89772a51bada711eb53cc50ee40e449d8f67",
+      "words": 6027,
+      "distilled": true
+    },
+    "0_k700j_mEU": {
+      "set": "HOB",
+      "sha1": "39dfe730592aa41a424e93e7334b8e8af998978c",
+      "words": 7506,
+      "distilled": true
+    },
+    "BgRrmNsS8ik": {
+      "set": "SOS",
+      "sha1": "b6fbc3fb6c713bd9e964e2e14f3639143320ff58",
+      "words": 5932,
+      "distilled": true
+    },
+    "ITX7YYszOUU": {
+      "set": "HOB",
+      "sha1": "f1c3021d05c9e9edcfcd54c5e5bf8ca42622a590",
+      "words": 17309,
+      "distilled": true
+    },
+    "QyrnMAP1x7Q": {
+      "set": "SOS",
+      "sha1": "ab86c89597b5a841d5bda099a6998a4d36282beb",
+      "words": 4994,
+      "distilled": true
+    },
+    "SUWgZUEs6RU": {
+      "set": "MSH",
+      "sha1": "826fa3f20110fd301190d9fec625eae654c36b4e",
+      "words": 6425,
+      "distilled": true
+    },
+    "UY7ISy1p7aM": {
+      "set": "SOS",
+      "sha1": "85be3d7699476b5ab8e4cbac681469766eb19ab7",
+      "words": 7078,
+      "distilled": true
+    },
+    "VOkgqQ2p390": {
+      "set": "SOS",
+      "sha1": "7d3a83a2753cc3e64612f23bd5a2c2c65d44bbe1",
+      "words": 8060,
+      "distilled": true
+    },
+    "_i4F6a_REL8": {
+      "set": "HOB",
+      "sha1": "cdffdbd32035a83fc1a4b90fc44149f338636a93",
+      "words": 4563,
+      "distilled": true
+    },
+    "bAf9EPya59U": {
+      "set": "MSH",
+      "sha1": "1f64abd50c617c56c0eb8f08cba84fabca126050",
+      "words": 7645,
+      "distilled": true
+    },
+    "bLdNnPWOx2w": {
+      "set": "HOB",
+      "sha1": "28afbdcdeaa94a9772eb3520d09e111c8015616e",
+      "words": 9688,
+      "distilled": true
+    },
+    "by2n5saeRWM": {
+      "set": "SOS",
+      "sha1": "b25adcb2af786dd89a166d1e32747877d2f45b26",
+      "words": 11310,
+      "distilled": true
+    },
+    "kAiVNx5nm0U": {
+      "set": "SOS",
+      "sha1": "d3aea51cf397133c3ced614ee7f4009d335be0a0",
+      "words": 5676,
+      "distilled": true
+    },
+    "pJJReH6VIJc": {
+      "set": "MSH",
+      "sha1": "8426eb3a9138f3fe09811dd04ab35b1ac8735083",
+      "words": 11614,
+      "distilled": true
+    },
+    "pVePkJmzAdg": {
+      "set": "SOS",
+      "sha1": "3b4c495a31a7a3ddd85fd541c89cb6847a6bea09",
+      "words": 6086,
+      "distilled": true
+    },
+    "vH2dVk3NnAc": {
+      "set": "SOS",
+      "sha1": "51fe91b048e764fdc90f7fe155311b86b210f8b5",
+      "words": 6449,
+      "distilled": true
+    },
+    "wEkLOANyDKU": {
+      "set": "MSH",
+      "sha1": "aac961ac042c9eb0c6c93098e85151cb89e19c4d",
+      "words": 6111,
+      "distilled": true
+    },
+    "yzC8k78oDwQ": {
+      "set": "HOB",
+      "sha1": "b9ad15a0da18af4400a754633f04496ddd158f39",
+      "words": 5281,
+      "distilled": true
+    }
+  }
+}
