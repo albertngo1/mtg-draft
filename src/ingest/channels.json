@@ -139,10 +139,10 @@
     "rough-drafts": {
       "name": "Rough Drafts (Samp)",
       "youtube": "https://www.youtube.com/@roughdrafts-magic",
-      "content_type": "Limited podcast built around ONE card per episode, plus per-set 'Hot Topics', 'Grab Bag' and 'Retrospective' episodes",
+      "content_type": "Limited podcast: per-set 'Hot Topics' (early), 'Grab Bag' (mid) and 'Retrospective' (end-of-format) episodes, plus weekly episodes TITLED after a single card that are in practice format-theory essays",
       "guide_dir": "draft-guides/rough-drafts",
       "guide_filename": "<SET>.md",
-      "notes": "Channel #5 (added 2026-08-20). Structurally different from the other four: most episodes are a 30-60 minute deep dive on a SINGLE card, so it yields unusual depth per card rather than breadth per set. Its per-set 'Hot Topics' (early), 'Grab Bag' (mid) and 'Retrospective' (end-of-format) episodes carry the format-level read. Cube episodes are out of scope. Also the only source covering ECL and FIN beyond LoL + Numot.",
+      "notes": "Channel #5 (added 2026-08-20; contract CORRECTED 2026-08-23 after distilling ep 75 as a test). A card-titled episode is NOT a single-card deep dive — the card is a framing device for a format-theory argument. Measured on ep 75 'Goblin Plate Mail': 5,281 words, 4 direct mentions of the namesake card, 14 distinct cards named, and the actual thesis was 'HOB is the best menace format ever printed and black free-rolls the first 8 damage off amass'. Treat every episode as a format read that happens to carry a card's name. Cube, changelog and rotisserie episodes are out of scope. Also the only source covering ECL and FIN beyond LoL + Numot.",
       "distill_format": {
         "house_style": "shared",
         "per_set_file": "<SET>.md",
@@ -151,22 +151,26 @@
         "sections": [
           "## ⚠ Recency rule (read first)",
           "### Source timeline (dated table, Phase Hot-Topics/card-episode/Grab-Bag/Retrospective + Weight Weakest→Strongest)",
-          "## Supersessions (what the Retrospective reversed from the Hot Topics episode)",
-          "## Format speed / meta read",
+          "## Supersessions (what a later episode reversed from an earlier one)",
+          "## Format speed / meta read (PRIMARY PRODUCT of this channel — the thesis, not a summary)",
           "## Archetypes",
           "## Card tips",
-          "## Deep dives (one subsection per single-card episode)"
+          "## Pitfalls",
+          "## Caption garble",
+          "## Deep dives (CONDITIONAL — only when an episode genuinely sustains one card for most of its runtime; omit the section entirely otherwise)"
         ],
         "card_bullets": {
           "heading": "## Card tips",
           "format": "- **Card** — note",
           "machine_parsed": false,
-          "preserve": "for a card that got its own episode, the bullet must link to its `## Deep dives` subsection — the whole point of this channel is that one card gets an hour of analysis"
+          "preserve": "the host's stated CONFIDENCE, not just his verdict. This channel routinely says things like 'could be the third best black common, could be down to sixth' — that self-reported uncertainty is signal a letter grade cannot carry, and it is the reason to read this source at all. Never flatten a hedge into a grade."
         },
-        "recency": "the per-set Hot Topics episode is a first-impressions read (weakest); single-card episodes are argued from played reps at the date recorded; the per-set Retrospective is the settled end-of-format verdict and the most authoritative",
+        "recency": "the per-set Hot Topics episode is a first-impressions read (weakest); card-titled episodes are argued from played reps at the date recorded and get stronger through the format; the per-set Retrospective is the settled end-of-format verdict and the most authoritative",
         "manifest": true,
         "special_rules": [
-          "A single-card episode is the deepest evidence in the repo for that one card — give it a `## Deep dives` subsection with the host's actual argument (why it over/under-performs, what it asks of your deck, when to take it), not a one-line grade.",
+          "DO NOT manufacture a `## Deep dives` section from an episode title. Verify first: count how much of the runtime the namesake card actually occupies. On ep 75 the namesake got roughly one paragraph out of 5,281 words. If the card does not carry the episode, its content belongs in `## Format speed / meta read` and one `## Card tips` bullet.",
+          "The host sometimes drafts a set BLIND — no previews, no 17Lands data, no outside discussion (the whole HOB run, eps 73-76). This is the channel's highest-value property: it is the only source in this repo decorrelated from the 17Lands numbers the reference already shows. Flag such episodes explicitly as pre-data in the Source timeline, and never present a blind read as settled — the follow-up 'data reveal' episode supersedes it.",
+          "CAPTION TRAP: 'Sam Black' in the transcript is BOTH a mangle of the host's name 'Samp' (see 'Discord: Sam Black 6' = Samp 6) AND genuine third-person references to the real Sam Black, whose big-game/small-game framework and Wilds of Eldraine archetype video the host cites. Two different people, one garbled string — never merge them.",
           "Cube, changelog and rotisserie episodes are OUT OF SCOPE — they are not set Limited.",
           "An episode titled '<SET> Retrospective + <OTHER SET> Hot Topics' covers two sets — distill each half into its own <SET>.md and never let one set's file mention the other."
         ]

@@ -12,7 +12,8 @@ READMEs again.
 
 ## Procedure
 
-For a channel `<slug>` (one of `lords-of-limited`, `numot`, `limited-resources`):
+For a channel `<slug>` (one of `lords-of-limited`, `numot`, `limited-resources`,
+`limited-level-ups`, `rough-drafts`):
 
 1. **Find the work.** `python3 src/ingest/fingerprint.py <slug> new --ids` prints `<SET>\t<id>`
    lines for every video that is new or whose transcript changed. On a first/full run for a channel
@@ -23,6 +24,23 @@ For a channel `<slug>` (one of `lords-of-limited`, `numot`, `limited-resources`)
 3. **Distill per set.** For each set, read all of that set's transcripts in `data/subs/<slug>/<SET>/`
    and synthesize **one** `draft-guides/<slug>/<per_set_file>` following the contract + the shared
    house style below. Batch by set, not by video — the per-set file consolidates every episode.
+
+   **Never trust an episode title to describe its scope.** Check what the transcript actually spends
+   its runtime on before honoring any contract rule keyed off the title. Rough Drafts ep 75 is named
+   "Goblin Plate Mail" and mentions that card 4 times in 5,281 words; the episode is a format-theory
+   argument about menace and amass. A contract rule that says "a card-titled episode gets a deep-dive
+   section" will make you invent content that does not exist. Cheap check before distilling:
+
+   ```bash
+   # how many of the set's cards does this episode actually discuss, and how often?
+   python3 - <<'EOF'
+   import json
+   cards=[c['name'] for c in json.load(open('data/cache/17lands_<SET>_PremierDraft_1200d.json'))]
+   t=open('data/subs/<slug>/<SET>/<id>.txt',encoding='utf-8',errors='replace').read().lower()
+   hits=sorted(((t.count(n.split('//')[0].strip().lower()),n) for n in cards),reverse=True)
+   print(f"words={len(t.split())}"); [print(f"{c:3d}  {n}") for c,n in hits[:15] if c]
+   EOF
+   ```
 4. **Update channel-wide files** (e.g. numot's `general-tips.md`) if `channel_files` is non-empty.
 5. **Fingerprint.** `python3 src/ingest/fingerprint.py <slug> update` rewrites
    `draft-guides/<slug>/manifest.json` to mark everything distilled (and records captionless videos
@@ -36,6 +54,15 @@ For a channel `<slug>` (one of `lords-of-limited`, `numot`, `limited-resources`)
    `card-reference/briefs/HOB.md` is the blueprint. Keep each brief self-contained to its own set.
 7. **Rebuild the card reference** — `python3 card-reference/build_card_reference.py <SET>` — so the
    new notes and brief actually reach the drafting surface.
+
+   **Cache gotcha:** `build_card_reference.py` reads `data/cache/17lands_<SET>_PremierDraft_1200d.json`,
+   but `mtg-draft.py warm --set <SET>` only refreshes the **120d** file. Running `warm` and then
+   rebuilding silently reuses stale win rates. To actually refresh the numbers the reference renders:
+
+   ```bash
+   python3 -c "import sys; sys.path.insert(0,'src'); from mtgdraft.sources import seventeen; \
+     seventeen('<SET>','PremierDraft',1200,refresh=True)"
+   ```
 
 ## Shared house style (`house_style: shared`)
 
