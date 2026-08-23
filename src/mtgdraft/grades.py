@@ -26,12 +26,18 @@ def load_grades_any(set_code):
         if g:
             return g, label
     return {}, ""
-# Both regexes tolerate an optional Markdown link wrapper around the bolded card name —
-# `[**Card**](url)` (added in the Scryfall-linking pass) parses identically to plain `**Card**`.
-_GUIDE_NOTE_RX = re.compile(r"^\s*-\s*\[?\*\*(.+?)\*\*\](?:\([^)]*\))?\s*[—–-]\s*(.+?)\s*$")
+# Kept deliberately identical in shape to BULLET/TABLE in card-reference/build_card_reference.py.
+# Three real bullet forms exist across the guides and all three must parse:
+#   - **Card** — note                      plain (HOB, MSH, most sets)
+#   - [**Card**](url) (4WW: …) — note      link-wrapped, one or more parentheticals (FIN, SOS)
+#   - **Card:** note                       colon inside the bold, no dash (numot)
+# The closing `]` MUST stay optional. It was previously unconditional while the opening `[` was
+# optional, so every plain `**Card**` bullet silently failed to match and the live draft tool
+# showed zero expert notes for those sets — HOB and MSH included. Caught 2026-08-23.
+_GUIDE_NOTE_RX = re.compile(r"^\s*-\s*\[?\*\*(.+?):?\*\*\]?(?:\s*\([^)]*\))*\s*[—–:-]?\s*(.+?)\s*$")
 # Table form `| **Card** (parenthetical) | take | source |` — col1 bolded name, col2 the note.
 # (SOS and other guides put their Card-notes section in a per-color table, not bullets.)
-_GUIDE_TABLE_RX = re.compile(r"^\s*\|\s*\[?\*\*(.+?)\*\*\](?:\([^)]*\))?[^|]*\|\s*(.+?)\s*\|")
+_GUIDE_TABLE_RX = re.compile(r"^\s*\|\s*\[?\*\*(.+?)\*\*\]?[^|]*\|\s*(.+?)\s*\|")
 def load_guide_notes(set_code):
     """Per-card expert notes from draft-guides/lords-of-limited/<SET>-draft-guide.md's '## Card notes' section.
     Reads BOTH bullet rows (`- **Card** — note`) and table rows (`| **Card** | note | … |`); a guide may
