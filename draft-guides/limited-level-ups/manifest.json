@@ -3,8 +3,8 @@
   "scope": "Limited-focused podcast/video: per-color card-by-card set reviews (letter grades) + rare/mythic review + prerelease/first-impressions guides + occasional early-access draft gameplay + weekly strategy deep-dives",
   "note": "Fingerprint of distilled scrape. sha1 = sha1 of the cleaned transcript .txt.",
   "counts": {
-    "sets": 3,
-    "videos_distilled": 33,
+    "sets": 4,
+    "videos_distilled": 53,
     "videos_no_captions": 0
   },
   "sets": {
@@ -29,6 +29,32 @@
         "m-qR8GeZ96A",
         "nt-OvtlAGBY",
         "o6jz8EmwdmY"
+      ]
+    },
+    "MSH": {
+      "tier": 1,
+      "file": "MSH.md",
+      "video_ids": [
+        "Axp4Ovw9D-4",
+        "Enz1PdA_J1E",
+        "G9kQKcUxWKA",
+        "HU-5U2k0Jww",
+        "HdxkWvtEphA",
+        "HmP3Uu6kUa4",
+        "Ov5xyQBD3ww",
+        "STg2UF-x61I",
+        "X33UM8qKyYY",
+        "ZS223zzDB0Y",
+        "hkOlv41KO10",
+        "hlv4m4Uz1Pk",
+        "kO8uVZ5nc4E",
+        "mkfrFnXQ3Gw",
+        "nOHD6VMQDOU",
+        "qb9q7F4rFA8",
+        "rF_n7N8i6O8",
+        "wY19qLrFUtI",
+        "xAPh8JcXjUc",
+        "zGVOVbSYcwQ"
       ]
     },
     "SOS": {
@@ -91,10 +117,46 @@
       "words": 8000,
       "distilled": true
     },
+    "Axp4Ovw9D-4": {
+      "set": "MSH",
+      "sha1": "b14405b4fd1fc3f08c502f734e5a98757b513a43",
+      "words": 9351,
+      "distilled": true
+    },
+    "Enz1PdA_J1E": {
+      "set": "MSH",
+      "sha1": "ffcf40b6631331b51f60f39c9d7d18c2e8e77147",
+      "words": 8507,
+      "distilled": true
+    },
     "FNrzLlTn8M0": {
       "set": "HOB",
       "sha1": "a59da6f3fb73fb94728cc936955d6c1c4f1f46fc",
       "words": 9207,
+      "distilled": true
+    },
+    "G9kQKcUxWKA": {
+      "set": "MSH",
+      "sha1": "d489bc3ef807d7a165a30e9e7dcc04699cc70c30",
+      "words": 13883,
+      "distilled": true
+    },
+    "HU-5U2k0Jww": {
+      "set": "MSH",
+      "sha1": "f7ab12c52bcc3bbc80905a14a9c4a38ba7f367c8",
+      "words": 6343,
+      "distilled": true
+    },
+    "HdxkWvtEphA": {
+      "set": "MSH",
+      "sha1": "c8ff3e0a7b0ce9056a57ffab1bffbbe71964e86f",
+      "words": 2767,
+      "distilled": true
+    },
+    "HmP3Uu6kUa4": {
+      "set": "MSH",
+      "sha1": "ef689ff86c6022240966ed0032bb434bc1409b8c",
+      "words": 9496,
       "distilled": true
     },
     "J4irTAcGIHY": {
@@ -139,6 +201,12 @@
       "words": 4917,
       "distilled": true
     },
+    "Ov5xyQBD3ww": {
+      "set": "MSH",
+      "sha1": "6e6529d7dc62dd09a2e6a68d83abb11a05487773",
+      "words": 28327,
+      "distilled": true
+    },
     "RNQ3fzWz2C0": {
       "set": "SOS",
       "sha1": "1f53c23225c51032743ead65bba4b07ffd7eadd8",
@@ -151,10 +219,28 @@
       "words": 11312,
       "distilled": true
     },
+    "STg2UF-x61I": {
+      "set": "MSH",
+      "sha1": "21facf50d826022a8fd92586b7d233caff30c56b",
+      "words": 8606,
+      "distilled": true
+    },
     "UZ07TLhx5ls": {
       "set": "HOB",
       "sha1": "6e0a7a418feb0636016b2cf449c4f9e7c5563805",
       "words": 8022,
+      "distilled": true
+    },
+    "X33UM8qKyYY": {
+      "set": "MSH",
+      "sha1": "41f1dd4360c167c517d7e32d170645f9a5ad2259",
+      "words": 8136,
+      "distilled": true
+    },
+    "ZS223zzDB0Y": {
+      "set": "MSH",
+      "sha1": "acd52f2f348eabadfa8b993063c3d5c7e6c68406",
+      "words": 6903,
       "distilled": true
     },
     "cSrPK-NlcJI": {
@@ -187,10 +273,28 @@
       "words": 8508,
       "distilled": true
     },
+    "hkOlv41KO10": {
+      "set": "MSH",
+      "sha1": "9b6a41b5aa2560532ca23aa50355211b5796e113",
+      "words": 8806,
+      "distilled": true
+    },
+    "hlv4m4Uz1Pk": {
+      "set": "MSH",
+      "sha1": "7e7ed1d318a65e3289f4cdb34ac3ae97c5fb0930",
+      "words": 10285,
+      "distilled": true
+    },
     "jD3Tr03b2MQ": {
       "set": "HOB",
       "sha1": "2bbfc8c8254ab01bca631833b9f2c6923143280b",
       "words": 5605,
+      "distilled": true
+    },
+    "kO8uVZ5nc4E": {
+      "set": "MSH",
+      "sha1": "3cef5a7cd49a1df900580a196db7721ab3bd97e6",
+      "words": 6135,
       "distilled": true
     },
     "kWAw_xGKxY0": {
@@ -209,6 +313,18 @@
       "set": "SOS",
       "sha1": "640c62b81c444ab7c77ef028ac69a1605296d8e6",
       "words": 5926,
+      "distilled": true
+    },
+    "mkfrFnXQ3Gw": {
+      "set": "MSH",
+      "sha1": "7c8fe7fc0e72c288f94cab7d4e4dcb0314d9e148",
+      "words": 7937,
+      "distilled": true
+    },
+    "nOHD6VMQDOU": {
+      "set": "MSH",
+      "sha1": "20b5fcf598e677cb09e812bef5622bdfc8f8b0c9",
+      "words": 9121,
       "distilled": true
     },
     "nt-OvtlAGBY": {
@@ -241,6 +357,18 @@
       "words": 10736,
       "distilled": true
     },
+    "qb9q7F4rFA8": {
+      "set": "MSH",
+      "sha1": "237f923af0d76b9042b5ff68722e5f7bd011eae5",
+      "words": 7479,
+      "distilled": true
+    },
+    "rF_n7N8i6O8": {
+      "set": "MSH",
+      "sha1": "779e4bde2565125cc2eaa8d1666272a6f0a0b353",
+      "words": 8156,
+      "distilled": true
+    },
     "tUZkC4xogHY": {
       "set": "SOS",
       "sha1": "abe081bdc1bbe47da73bef512249808dde80dd42",
@@ -251,6 +379,24 @@
       "set": "SOS",
       "sha1": "93317ca35759679c02b5ca728786380a5c1dfb65",
       "words": 10265,
+      "distilled": true
+    },
+    "wY19qLrFUtI": {
+      "set": "MSH",
+      "sha1": "166a2d25d8cf18c62a8335f5ee86d463549d0416",
+      "words": 11031,
+      "distilled": true
+    },
+    "xAPh8JcXjUc": {
+      "set": "MSH",
+      "sha1": "fc75968c76ed699c51ac0d0248947d1c436e577a",
+      "words": 10105,
+      "distilled": true
+    },
+    "zGVOVbSYcwQ": {
+      "set": "MSH",
+      "sha1": "cb22852a8d1bf9a82c290ce2a9e9888308ab9f97",
+      "words": 9276,
       "distilled": true
     },
     "zTBgiLmaEAs": {

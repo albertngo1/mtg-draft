@@ -1,6 +1,6 @@
 # Lorwyn Eclipsed (ECL) — Draft Guide
 
-> Synthesized from 6 Lords of Limited episodes. This guide is the lead lens that **decodes** the 17Lands data — every GIH WR is archetype-conditional (trust where it transfers, discount where it inflates; see AGENTS.md). Synthesized from videos current as of 2026-03-23.
+> Synthesized from 9 Lords of Limited episodes. This guide is the lead lens that **decodes** the 17Lands data — every GIH WR is archetype-conditional (trust where it transfers, discount where it inflates; see AGENTS.md). Synthesized from videos current as of 2026-03-23.
 
 ## ⚠ Recency rule (read first)
 
@@ -21,14 +21,17 @@ Use the Source timeline below to see at a glance how fresh each cited claim is.
 | 2026-01-19 | Changeling Our Minds: Lorwyn Eclipsed | early access | Low |
 | 2026-01-23 | Let's Play Elves in Lorwyn Eclipsed Draft (YouTube) | early | Low-Medium |
 | 2026-01-29 | Forcing Treefolk Tribal In Lorwyn Eclipsed (YouTube) | early-mid | Medium |
+| 2026-01-16 | Let's Play Merfolk in Lorwyn Eclipsed Draft (early access #2, YouTube) | early | Low |
+| 2026-01-26 | Lorwyn Eclipsed Week 2: Our Draft Approach | week two | Medium |
 | 2026-02-02 | Lorwyn Eclipsed Pro Tour: Draft Breakdowns | mid | Medium-High |
+| 2026-02-16 | Spotlight Series Draft Review \| Lorwyn Eclipsed | mid-late | Medium-High |
 | 2026-03-23 | 50 Takes in 50 Minutes \| Lorwyn Eclipsed | **RETROSPECTIVE** | **Most authoritative** |
 
 ## TL;DR meta read
 
 - **Elves is the best deck in the format** (settled read, 50-takes retro). It is the best deck in *both* the early and late game — strong creature sizing + graveyard synergy via Morcan's Eyes. Merfolk is second, Elementals third (sleeper that kept rising), Goblins fourth, Kithkin last among the five typal pairs.
 - **The format has 10+ real archetypes** if you look past the surface tribal structure. The five typal two-color pairs (Elves, Merfolk, Elementals, Goblins, Kithkin) are all real; so are two-color Vivid, Black-White Blight, Blue-Black Fairies/Flash, and Red-White Blight. **Non-typal decks are real and fun, but you were incentivized to be in a typal pair** because it unlocks gold lords, Eclipsed cards, and commands — more good cards flowing through your seat.
-- **Vivid is the sixth linear deck** and the hosts' sleeper call. Best built as strictly two-color (never five-color piles); the four key payoffs are Shine Striker, Prisma Basher, Explosive Prodigy, and Kith Keeper. The vivid deck loves a board stall and crushes the late game when ahead.
+- **Vivid is the sixth linear deck** and the hosts' sleeper call. Best built as strictly two-color (never five-color piles); the four key payoffs are Shine Striker, Prisma Basher, Explosive Prodigy, and Kith Keeper. The vivid deck loves a board stall and crushes the late game when ahead. **Confirmed viable in best-of-one** (2026-02-16): Ben went 6 wins across two best-of-one vivid decks, just short of trophy — responding to viewer pushback that vivid "can't hang" outside best-of-three.
 - **Blight is genuinely upside when you build for it** (retro confirms). Blight-one in particular is almost free — enables Cinder Strike as a one-mana deal-four and unlocks Moonlit Mentor, Reaping Willow, and other blight payoffs. Blight is NOT just upside by default; it only becomes upside when you build your deck to treat counters as resources.
 - **Format speed:** *slower than expected*. Two-drops are plentiful in draft but often get blanked by high-toughness bodies. Plays often start on turn three in practice. Playing off-curve and holding removal for key threats was rewarded. **Five toughness** is the magic number — dodges Blight Rot, Seer, and Cinder Strike on blight mode.
 - **Removal is important but not spammy.** Do NOT use removal to push damage; save it for key threats (lords, engines). Holding up flash creatures and removal is a legitimate game plan.
@@ -45,7 +48,7 @@ Ordering is the **2026-03-23 retrospective** verdict, which supersedes all earli
 | UW Merfolk | Blue + White | **A** | Tempo aggro with convoke; tap synergies + flash threats; wants to close games quickly | Gravelgill Scoundrel, Tributary Vultur (?), Marrow Skywimmer, Temporal Cleansing, Unexpected Assistance, Deep Channel Duelist (lord) | Highest floor of all tribal decks — commons alone are very strong. Curve of Scoundrel → Vultur → Skywimmer is excellent. Struggles to close past turn 8; must press early. |
 | UR Elementals | Blue + Red | **A-** | Midrange/late-game power; ETB triggers doubling with lord; land cyclers provide early game | Flaming Cinder (rummage 3/2), Colrath Zealot (5/6 cycle), Stratusaur (cycle), Summon Elemental, Tenfal Rimespeaker, Flamebraider ("soul ring" 2/2) | Sleeper of the format that kept rising all season. Flamebraider is broken — kill on sight. Best version pairs with two-color vivid payoffs. |
 | 2c Vivid | Any two | **A-** | Build a two-color base with hybrid changelings; deploy vivid payoffs late that opponents can't easily use | Shine Striker (4BB 3/3 draw X), Prisma Basher (4GG 6/6 trample give +X+X), Kith Keeper (7W make tokens), Explosive Prodigy (1R 1/1 deal X), Nogggle Robber (1GR 3/3 treasure), Shimmer Wild's Growth, Puka's Eye | NOT a five-color pile. Strictly two colors; use hybrid cards and Puka's Eye to get vivid count up. Most common bases: Naya, red-green, or white-green. Vivid deck loves a board stall. |
-| RB Goblins | Red + Black | **B** | Ping-and-blight combo kill; go-wide tokens; Bogurt tribal; best Goblins decks win without attacking | Sour Bread Auntie (2R blight-2 4/3 + two 1/1s), Warren Torchmaster, Mudbutton Cursetosser (?), Lasting Tarfire (?), Champion of the Weird (3B 5/5 behold a goblin) | Fun, finicky, and misunderstood early. Bad Goblins tries to attack; good Goblins wins through blight drain and triggered effects. Champion of the Weird is broken when it sticks. |
+| RB Goblins | Red + Black | **B** | Ping-and-blight combo kill; go-wide tokens; Bogurt tribal; best Goblins decks win without attacking | Sour Bread Auntie (2R blight-2 4/3 + two 1/1s), Warren Torchmaster, Mudbutton Cursetosser (?), Lasting Tarfire (?), Champion of the Weird (3B 5/5 behold a goblin) | Fun, finicky, and misunderstood early. Bad Goblins tries to attack; good Goblins wins through blight drain and triggered effects. Champion of the Weird is broken when it sticks. **Build-around core (2026-01-26):** Boggart Cursecrafter + Boggart Mischief + Lasting Tarfire is the actual game plan — it's an aristocrats deck that blights things to death instead of sacrificing them (Boggart Mischief is your "blood artist"). Ethan's rule: Lasting Tarfire is never cut once you have 10+ blight sources; pair it with Sting-Slinger for a way to blight on the opponent's turn (blight on your turn → Tarfire trigger → Sting-Slinger ping on their turn → Tarfire triggers again on their end step). Sequence blight onto higher-toughness targets first to get more counters' worth of value. Most commons in the deck (Elder Auntie, Boneclub Berserker) are traps — Gristle Glutton is the exception, a free repeatable blight source that also rummages. Data has it as the second-worst-performing deck in the format, which the hosts attribute to the deck being genuinely hard to pilot, not genuinely bad. |
 | BW Blight | Black + White | **B** | Grindy blight-counter value; Reaping Willow recurs creatures; high-toughness bodies absorb counters | Reaping Willow (1WW WW 3/6 lifelink, remove 2 counters → reanimate ≤3), Moonlit Mentor (2W 2/5 remove counter → draw), Narho Bark Elm (2B 3/4 but terrible — see notes), Bog Slither's Embrace, Nameless Inversion | Ethan's passion project. Can actually execute the blight-as-upside plan better than any other pair. Slow/grindy; punishes durdle decks. |
 | UB Fairies/Flash | Blue + Black | **B** | Flash threats; play on opponent's turn; Voracious Tome Skimmer payoff; draw cards | Voracious Tome Skimmer (UB hybrid 2/3 flyer — draw on opp's turn), Mischievous Sneakling (UB hybrid 2/2 flash changeling), Glamour Gifter (1U 1/2 flash flyer → 4/4 effect), Unexpected Assistance, Wild Unraveling | Blue-black with no rares can trophy (confirmed week one). Key takeaway: don't slam attacks into open two mana — Sneakling ambushes are real. |
 | WG Kithkin | White + Green | **C** | Weenie aggro; pump-on-attack lords; dies to one removal spell; Thought-Weft lieutenant is the glue | Thought-Weft Lieutenant (GW 2/2 gives +1+1 trample on Kithkin ETB), Clacken Festival (2W kindred enchantment makes tokens), Crossroads Watcher (2G 3/3 trample grows), Mist Meadow Council (4G 4/3 draw a card, 1 less with Kithkin/Changeling) | Predicted top dog pre-format; finished last among the five. Kithkin is a glass cannon — a single removal spell can stop the beat-downs cold. Good Kithkin is great; mediocre Kithkin is terrible. |
@@ -57,7 +60,8 @@ Ordering is the **2026-03-23 retrospective** verdict, which supersedes all earli
 **Draft philosophy:**
 - You are highly incentivized to be in one of the five supported typal color pairs. Being in a supported pair means your seat unlocks lords, eclipsed cards, commands, and double-faced rares — more good cards in your direction. Being in a non-typal pair does not get those.
 - That said, vivid (two-color), blight (BW or RB), and fairies/flash (UB) are real off-ramps if you get cut.
-- The HAIL method the hosts developed for this format: **H**aymakers (bombs, pushed uncommons) → **A**nswers (Cinder Strike, Bog Slither's Embrace, Seer, Luminal/Leenal Hold) → **I**dentity cards (signpost lords, eclipsed cards) → **L**everage (Unexpected Assistance, Burning Curiosity, Mist Meadow Council). Take haymakers and answers early; identity cards later once your lane is clear.
+- The HAIL method the hosts developed for this format (introduced 2026-01-26, "Week 2: Our Draft Approach"): **H**aymakers (bombs, pushed uncommons) → **A**nswers (Cinder Strike, Bog Slither's Embrace, Seer, Luminal/Leenal Hold) → **I**dentity cards (signpost lords, eclipsed cards) → **L**everage (Unexpected Assistance, Burning Curiosity, Mist Meadow Council). Take haymakers and answers early; identity cards later once your lane is clear. Corollary format truth: don't stack too many answers either — you also need bodies on the battlefield (LR's "defensive speed") to hold the ground so you can save removal for what matters; 4–6 efficient removal pieces is the sweet spot.
+- **Color power ranking (2026-01-26, hosts' informal ranking):** Red > Blue > Green > Black > White — but both hosts stress "whatever is open" outranks this table; it's a tiebreaker, not a target. Red is valued because its commons (Cinder Strike, Gristle Glutton, Unexpected Assistance, the basic-land-cycling elemental) all "work everywhere" — goblins, elementals, vivid, or blight — so red picks rarely get stranded even if your typal lane closes.
 - **Delay the decision using changelings and hybrid cards.** Changelings are better than lessons or allies from other formats because they satisfy typal payoffs, count for vivid pips, work in multiple decks, and are great in draft to keep your options open. Mischievous Sneakling is the best of the bunch; Changeling Wayfinder is excellent ramp/fixing.
 - **Don't take power-level hits to go deep in a tribe early.** Taking a C-level goblin card over a B-minus flexible card early is wrong. Take the best card and let the lane reveal itself.
 - **Eclipsed uncommons were overrated by the community** (retro verdict). They are conditional: great if you have 12+ hits for them to find; mediocre if you only have 4. Mist Meadow Council and Unexpected Assistance provide similar "dig" without a density requirement.
@@ -80,7 +84,7 @@ Ordering is the **2026-03-23 retrospective** verdict, which supersedes all earli
 
 ## Card notes (community consensus)
 
-Episode shorthand: **50t** = 50-takes retrospective (most authoritative), **pt** = Pro Tour draft breakdowns, **ea** = "Changeling Our Minds" early access, **cc** = Prerelease Crash Course.
+Episode shorthand: **50t** = 50-takes retrospective (most authoritative), **HNn7** = Spotlight Series Draft Review (2026-02-16), **wk2** = Week 2: Our Draft Approach / HAIL method (2026-01-26), **pt** = Pro Tour draft breakdowns, **ea2** = second early-access Let's Play, Merfolk (2026-01-16, YouTube), **ea** = "Changeling Our Minds" early access, **cc** = Prerelease Crash Course.
 
 ### White
 
@@ -102,6 +106,7 @@ Episode shorthand: **50t** = 50-takes retrospective (most authoritative), **pt**
 | **Bristlebane Outrider** (3G 3/5 Kithkin, can't be blocked by ≤2 power; +2/0 when another creature enters) | Five toughness hero. Dodges all three main removal spells. Great body. | ea, 50t |
 | Thought-Weft Trio (?) | Went up and up. Great even as your only Kithkin; cracked when supported. "My favorite was Bark of Doran + Thought-Weft Trio to swing as a 7/7." | 50t |
 | **Kinsbaile Aspirant** (1W 2/1, cast for W if you reveal a Kithkin) | Cheap but rarely played. Hated to see on turn one — if opponent curved out from it, it was brutal. | 50t |
+| [**Adept Watershaper**](https://scryfall.com/search?q=Adept%20Watershaper) (2W 3/4, other tapped creatures you control have indestructible) | Kithkin uncommon. Good when the Kithkin deck is pressuring (tapping out from attacking) — protects the rest of the team while they're vulnerable. Pairs with Blossoming Defense / Gilt-Leaf Emissary to protect the Watershaper itself, since it's the priority kill for the opponent. | HNn7 |
 
 ### Blue
 
@@ -119,6 +124,8 @@ Episode shorthand: **50t** = 50-takes retrospective (most authoritative), **pt**
 | **Wild Unraveling** (UU instant, blight 2 or pay 1 extra to counter target spell) | Cancel is good enough in this format; gives Merfolk a way to interact with vivid decks' key cards. | ea |
 | **Omni-Changeling** (?) | Ben's top uncommon from blue. Flexible, great in Merfolk/Elementals. 17 Lands data puts it lower than expected — surprising but confirmed. | ea, 50t |
 | **Gravelgill Scoundrel** (1U 1/3 Merfolk vigilance, attack: tap another creature, that creature is unblockable) | Underrated at crash course (Ben gave it a zero). After format: one of the most important Merfolk commons. Pairs beautifully with Tributary Vultur; Bark of Doran makes it a 4/4 unblockable. | 50t |
+| [**Flitterwing Nuisance**](https://scryfall.com/search?q=Flitterwing%20Nuisance) (1U 2/2 flyer, enters with a counter; pay 2U remove a counter: whenever a creature you control deals combat damage to a player, draw a card) | "I think this card is really good" — taken over Spiral into Solitude and Boggart Mischief in an early-access Merfolk draft. So obscure even Ethan couldn't recall its text unprompted by episode two. | ea2 |
+| [**Glen Elendra Guardian**](https://scryfall.com/search?q=Glen%20Elendra%20Guardian) (2U ~3/4 flash flyer, enters with a counter; pay 1U remove a counter: counter target spell, its controller draws a card) | Rare. "I love that card... very good," an "I win button that is very difficult to interact with," smooths draws by replacing the countered card. Ranked above Seer and Cinder Strike as removal by both hosts. | HNn7 |
 
 ### Black
 
@@ -139,6 +146,8 @@ Episode shorthand: **50t** = 50-takes retrospective (most authoritative), **pt**
 | **Blighted Blackthorn** (4B 3/7, enters or attacks: blight 2, draw a card, lose a life) | Biggest mover up nominee. Looked D-level, plays surprisingly well. "Sometimes cast this as a 3/7 that blights onto an irrelevant two-drop and then threatens to draw more cards." Not a high pick, but legitimately playable — "the wheel is alive with pick 10." | ea, 50t |
 | **Champion of the Weird** (3B 5/5, behold goblin, ETB-repeatable: blight your opponents' creatures) | "Broken in half." Repeatable plague-wind effect in Goblins. Cast this and it never stopped glowing on Arena. | ea |
 | **Mudbutton Cursetosser** (2B 2/1, behold goblin to cost 1B, can't block, dies: destroy ≤2-power creature) | Biggest mover up winner at retro. "Ethan's beloved." | 50t |
+| [**Boggart Mischief**](https://scryfall.com/search?q=Boggart%20Mischief) (2B kindred enchantment, ETB blight 1: make two 1/1 goblins; whenever a goblin you control dies, each opponent loses 1 and you gain 1) | **The clearest signal card in the format for open Goblins.** "Most important non-rare for the Goblins deck" — seeing it wheel to pick 8 in a high-stakes draft told both hosts nobody at the table wanted goblins. Backbreaking in the goblin mirror; the drain is how the deck actually wins (chip damage), not attacking. Shout-out: 47% game-in-hand win rate despite being the deck's best card, because the deck is hard to build/pilot. | wk2, HNn7 |
+| [**Unbury**](https://scryfall.com/search?q=Unbury) (1B instant, return a creature card from your graveyard to hand, or two if they share a type) | Goes criminally late — creeps into Ben's top drafted cards on 17Lands. Not just a goblins/elves card: splashable in any deck leaning on changelings for the type-match mode. Two-for-one is easy to find. | wk2 |
 
 ### Red
 
@@ -158,6 +167,7 @@ Episode shorthand: **50t** = 50-takes retrospective (most authoritative), **pt**
 | **Flaring Cinder** (2R 3/2 elemental, ETB rummage, when you cast MV4+: rummage again) | "Card selection plus relevant type." One of Elementals' key engines; also good in Vivid for filtering. | 50t |
 | **Kulrath Zealot** (5R 6/5, ETB exile top card play till next turn, basic land cycling) | "Big and I did not like seeing this resolve from my opponents." Five toughness, card advantage, cycling. Excellent Elementals top end. Clunky-overperformer award nominee. | ea, 50t |
 | **Stratosoarer** (?) | Land cycler with 5 toughness. "Flexible and early-game help for Elementals." | 50t |
+| [**Sting-Slinger**](https://scryfall.com/search?q=Sting-Slinger) (2R 3/3, tap + blight 1: deal 2 to each opponent) | Key Goblins-blight glue piece — best friends with Lasting Tarfire (it's one of the few ways to blight on the opponent's turn, chaining into an end-step Tarfire trigger). Solid pickup even outside goblins as a spec into a blight lane. | wk2 |
 
 ### Green
 
@@ -194,6 +204,8 @@ Episode shorthand: **50t** = 50-takes retrospective (most authoritative), **pt**
 | **Eclipsed Kithkin** (GW GW 2/1 Celelesnia, ETB look at top 4: get Kithkin/Forest/Plains) | Best of the Eclipsed cycle. Two-mana makes the land-finding mode excellent; finding lands on turn two is huge. Also finds changelings and Nameless Inversion. | cc |
 | **Boggart Cursecrafter** (BR 2/3 goblin deathtouch, another goblin dies: deal 1 to each opponent) | Goblin signpost uncommon. Deathtouch body, drain payoff. | cc |
 | **Voracious Tome-Skimmer** (UB hybrid 2/3 fairy rogue flyer, cast a spell on opponent's turn: pay 1 life to draw a card) | Fairies/flash payoff. "It's just a really excellent payoff for the deck." | cc, ea |
+| [**Sygg's Command**](https://scryfall.com/search?q=Sygg%27s%20Command) (1WU kindred sorcery, choose two: copy target Merfolk you control / target creature gains lifelink / target player draws a card / stun a creature) | Merfolk's typal Command. Explicitly the **weakest of the five typal Commands** ("copy a Merfolk, draw a card" is still fine, but it's not a P1P1-quality card) — a real test case for "don't first-pick typal gold cards to commit," since taking it P1P1 forces you into Merfolk with no fallback. | HNn7 |
+| [**Shimmercreep**](https://scryfall.com/search?q=Shimmercreep) (4B 3/5 menace, drain equal to the number of differently-colored permanents you control) | Vivid payoff. A signal of genuine vivid conviction when taken over safer removal early — "this is a person who has an opinion about the format." | HNn7 |
 
 ### Colorless / Artifacts
 
@@ -222,6 +234,11 @@ Episode shorthand: **50t** = 50-takes retrospective (most authoritative), **pt**
 | **Mirrorform** (rare aura, creatures become copies of enchanted creature?) | Dream worth chasing. One opponent used it on Deep Channel Duelist; everything became a 6/6. "I never got to live the dream, but it was lived against me." | 50t |
 | **Abigale, Eloquent First-Year** (WW WW 1/1 flying first strike lifelink, another creature ETB: give it those keywords too) | Excellent rare bomb in BW decks. Pairs beautifully with Reaping Willow. | OK7 |
 | **Moon-Vigil Adherents** (4 elf, power and toughness = creatures you control + in graveyard, trample) | "Moon Vigil Adherents is annoying enough for me to face that I need to draft it too." P/T counts creatures in graveyard — very hard to answer once the graveyard fills. Biggest mover up nominee. | OK7, 50t |
+| [**Gloom Ripper**](https://scryfall.com/search?q=Gloom%20Ripper) (3BB 4/4, gets +X/+0 and -0/-X to something equal to elves you control + in graveyard) | "One of the best rares in the set." Effectively unbeatable once an elf deck is online — opens the elves lane outright when seen pack one. | HNn7 |
+| [**Brigid, Clachan's Heart**](https://scryfall.com/search?q=Brigid%2C%20Clachan%27s%20Heart) (Kithkin flip rare, 3/2 that brings a 1/1 token; flips into a mana ability tapping for G/W equal to creatures you control) | Auto-take pack one pick one for Kithkin. "Always taking Brigid." | HNn7 |
+| [**Maralen, Fae Ascendant**](https://scryfall.com/search?q=Maralen%2C%20Fae%20Ascendant) (4/5 elf faerie: ETB exile top two, play one if its MV ≤ creatures you control of shown types; repeats on later same-type casts) | Elves payoff that snowballs card advantage once the elf/faerie count is up; incentivizes a light splash once seen mid-draft. | HNn7 |
+| [**Twinflame Travelers**](https://scryfall.com/search?q=Twinflame%20Travelers) (1UR 3/3 flying elemental, doubles elemental triggers) | Elementals payoff rare — doubles ETB/cast triggers like Colrath Zealot's cycling or Flamebraider's mana ability. | HNn7 |
+| [**Tam, Mindful First-Year**](https://scryfall.com/search?q=Tam%2C%20Mindful%20First-Year) (1-mana Simic hybrid 2/2 rare, other creatures you control have hexproof from each of their other colors; tap: give a creature all colors until EOT) | Vivid enabler — "basically Giver of Runes for limited" (no combat protection, but hexproof from color-based removal on the team). Taken P1P1 over Moonlit Lamenter and Sygg's Command in one high-stakes draft as the most flexible option. | HNn7 |
 
 ### Lands
 
@@ -285,8 +302,11 @@ The following names were mangled in auto-captions. Best guesses in parentheses:
 ## Source episodes
 
 - 2026-01-12 — Prerelease Crash Course: Lorwyn Eclipsed (Wm6xKK6XYUo)
+- 2026-01-16 — Let's Play Merfolk in Lorwyn Eclipsed Draft | MTG Arena Early Access (-9iwyW_Nyvo)
 - 2026-01-19 — Changeling Our Minds: Lorwyn Eclipsed (eq_JtVMNAro)
 - 2026-01-23 — Let's Play Elves in Lorwyn Eclipsed Draft | MTG Arena Early Access (5eGjK4dGHOE)
+- 2026-01-26 — Lorwyn Eclipsed Week 2: Our Draft Approach (zShbyLMPTyw) — introduces the HAIL method.
 - 2026-01-29 — Forcing Treefolk Tribal In Lorwyn Eclipsed (OK7MWMufhk4)
 - 2026-02-02 — Lorwyn Eclipsed Pro Tour: Draft Breakdowns (S4Ui8irKBzI)
+- 2026-02-16 — Spotlight Series Draft Review | Lorwyn Eclipsed (HNn7Z2bSKQk)
 - 2026-03-23 — 50 Takes in 50 Minutes | Lorwyn Eclipsed | Magic: the Gathering (jEHZhFIiRjk)

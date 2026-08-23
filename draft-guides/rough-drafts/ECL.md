@@ -2,13 +2,17 @@
 
 > Source: **Rough Drafts** (Sam Pratt) — 7 Lorwyn Eclipsed episodes. Distilled 2026-08-20 from YouTube
 > auto-caption transcripts; card names corrected where confident, uncertain readings marked `(?)`.
+> Sections audited/added 2026-08-23 against the corrected channel contract (see below).
 >
-> This channel is structurally different from the other four in `draft-guides/`. Most episodes are a
-> 30–60 minute deep dive on a **single card**, using that card as a lens onto a broader format
-> concept — so its value here is depth and framing rather than card-by-card grades. The per-set
-> **Hot Topics** (preview), mid-format episodes and **Retrospective** carry the format-level read.
-> Sam is explicit that he sees his content as a complement to the full set reviews rather than a
-> replacement, and points listeners at Lords of Limited and Limited Level-Ups for those.
+> This channel is structurally different from the other four in `draft-guides/`. Most episodes are
+> **titled after a single card**, using that card as a lens onto a broader format concept — so its
+> value here is depth and framing rather than card-by-card grades. **Update (2026-08-23): checked
+> against the transcripts, none of ECL's five card-titled episodes actually sustain their namesake for
+> most of the runtime — see the `## Deep dives` note below for the mention counts.** The card is a
+> hook, not the subject. The per-set **Hot Topics** (preview), mid-format episodes and **Retrospective**
+> carry the format-level read. Sam is explicit that he sees his content as a complement to the full set
+> reviews rather than a replacement, and points listeners at Lords of Limited and Limited Level-Ups for
+> those.
 
 ## ⚠ Recency rule (read first)
 
@@ -85,6 +89,10 @@
   starting green is defensible almost regardless of where you end up — including in **Red-Green**,
   which is not a supported pair and has no associated type, but is reachable precisely because green
   is that deep.
+- **Read a new format as a metagame, not just a pile of card grades (Ep 48).** His stated method:
+  ask expected game length, whether early drops actually matter, whether there's a late-game mana
+  sink, and average creature size — then let 17Lands' archetype numbers answer those *structural*
+  questions rather than treating "is this card good" as the only question worth asking.
 
 ## Archetypes
 
@@ -148,42 +156,47 @@
   top-deck. Best as a sideboard answer in best-of-three.
 - **Brambleback Brute** — the subject of Ep 45; by Ep 47 he reports it *"didn't really pan out."*
 
-## Deep dives
+*(No `## Deep dives` section: none of ECL's five card-titled episodes sustain their namesake for most
+of the runtime. Ep 45 mentions Brambleback Brute 3 times in 5,607 words; Ep 46 mentions Gravelgill
+Scoundrel (captioned "gravel gill scoundrel") 5 times in 6,229; Ep 47 mentions Eclipsed Boggart
+(captioned "bogart") 13 times in 7,579 but opens with Sam telling listeners *"this week is going to be
+a little more abstract than I normally do... talking about format, draft navigation"* rather than the
+card; Ep 48 mentions Kulrath Mystic (captioned "Colrath Mystic" / "Kra Wrath Mystic") 5 times in 6,399;
+Ep 49 mentions Gangly Stompling 5 times in 6,422. All five are format-theory essays wearing a card's
+name; their arguments are folded into Format speed / meta read, Archetypes and Card tips above rather
+than repeated here. Ep 50 (Retrospective) is likewise not a single-card episode — its verdict is in
+Supersessions and Format speed.)*
 
-### Ep 45 — Brambleback Brute: individually powerful cards
-The thesis that would define his read on the format: ECL rewards packing your deck with cards that
-individually matter, rather than assembling a smooth curve of interchangeable playables. The Brute
-itself did not survive contact with the format, but the framing did.
+## Pitfalls
 
-### Ep 46 — Gravelgill Scoundrel: convoke, evasion and pushing damage
-Uses an unblockable, vigilant blue common as the anchor for how the WU/WG convoke beatdown decks
-actually win. Vigilance is load-bearing: attack with it, then still convoke your instant-speed spells
-with it after combat. The episode is effectively a catalogue of damage-pushing tools — Bark of Doran,
-Thoughtweft Imbuer, Glister Bairn, Evershrike's Gift — and the argument that these decks want a very
-low curve so convoke is live every turn.
+1. **Don't treat the officially "supported" off-pairs as real decks.** UB fairies, Mardu blight (WB,
+   WR) and Temur vivid (UG, RG) get a hybrid uncommon and a loose theme, but Ep 50 explicitly walks
+   back the preview framing that treated them as archetypes on par with the five gold-anthem pairs.
+   They are vectors you layer onto a supported pair, not destinations in themselves.
+2. **Don't overbuild for a creature type.** Most typal payoffs (the Eclipsed hybrid cycle, Thoughtweft
+   Imbuer) are satisfied by five to eight of a type, not fifteen — warping your draft to hit a high
+   type count is usually wasted effort in this format.
+3. **Avoid UB fairies/flash.** The one archetype Sam never found a route into across the whole run and
+   does not recommend.
+4. **Don't take "best common in the format" at face value on Cinder Strike.** He rates it that highly,
+   but the blight-1-for-4-damage mode is a real additional cost, and the data shows a fine common, not
+   the format's best by win rate. Weight the number over the enthusiasm here.
+5. **Auntie's Sentence is a bad topdeck.** He flags it as possibly underrated on rate, but it's most
+   useful pre-boarded as a best-of-three sideboard answer, not a maindeck plan.
 
-### Ep 47 — Eclipsed Boggart: the A-tier/B-tier distribution
-The most valuable episode in the run. Contrasts ECL against Avatar to argue that ECL's tier spread is
-unusually top-heavy — many A-level cards, few generically-good B's — so the "pile up mediocre value
-and out-grind them" plan that works in most formats fails here. Draft for the density of impactful
-cards and for supporting them.
+## Caption garble
 
-### Ep 48 — Kulrath Mystic: reading a format as a metagame
-Frames learning a limited format through a metagame lens — expected game length, whether early drops
-matter, whether there are late-game mana sinks, average creature size — and argues 17Lands answers
-these structural questions, not just "is this card good." A methodology episode rather than a card
-episode.
+These auto-captions transcribe speech; card names get mangled. Corrections applied above, listed here
+so the readings are auditable.
 
-### Ep 49 — Gangly Stompling: big creatures and why green is best
-Argues green is the strongest colour on the strength of its commons and uncommons rather than the elf
-payoffs, which is why Red-Green functions as a real deck despite having no support and no creature
-type. Recorded after a 31st-place Spotlight Series finish.
-
-### Ep 50 — Retrospective
-Settles the format: the supported-pair structure is good design rather than a limitation; blight and
-vivid are vectors, not decks; divorce the pairs from their tribes; the commons were outclassed by the
-uncommons and rares and were relegated to role-player status. Overall verdict positive — a format he
-would happily draft again and felt rotated out early.
+- The host's name transcribes consistently as **"Sam Pratt"** across all seven episodes (Discord
+  handle "samp" / "SamP6", Twitch "samp_mtg") — no variant spellings found in this set's run, unlike
+  the "Sam Black" ambiguity flagged on the FIN side of this channel.
+- **"gravel gill scoundrel"** → **Gravelgill Scoundrel** (ep 46's namesake; the printed capitalisation
+  never appears in the transcript).
+- **"bogart"** → **(Eclipsed) Boggart** (ep 47's namesake).
+- **"Colrath Mystic"** and **"Kra Wrath Mystic"** → **Kulrath Mystic** (ep 48's namesake; two
+  different mangles of the same card inside one episode).
 
 ## Source episodes
 

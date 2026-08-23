@@ -2,11 +2,15 @@
 
 > Source: **Rough Drafts** (Sam Pratt) — 7 Final Fantasy episodes. Distilled 2026-08-20 from YouTube
 > auto-caption transcripts; card names corrected where confident, uncertain readings marked `(?)`.
+> Sections audited/added 2026-08-23 against the corrected channel contract (see below).
 >
-> This channel is structurally different from the other four in `draft-guides/`. Most episodes are a
-> deep dive on a **single card**, used as a lens onto a broader format or design concept — its value
-> is depth and framing rather than card-by-card grades. Sam positions his content as a complement to
-> the full set reviews rather than a replacement.
+> This channel is structurally different from the other four in `draft-guides/`. Most episodes are
+> **titled after a single card**, used as a lens onto a broader format or design concept — its value
+> is depth and framing rather than card-by-card grades. **Update (2026-08-23): checked against the
+> transcripts, only one of FIN's six card-titled episodes (Ep 14, Black Mage's Rod) actually sustains
+> its namesake for most of the runtime — see the `## Deep dives` section below.** The rest use the
+> card as a hook for a broader argument. Sam positions his content as a complement to the full set
+> reviews rather than a replacement.
 
 ## ⚠ Recency rule (read first)
 
@@ -32,6 +36,16 @@
 | 15 | Reach the Horizon | Mid — splash discipline | Medium-high |
 | 16 | White Auracite | Mid — interaction vs creatures | High |
 | 17 | Summon: G.F. Ifrit | Mid-late | High |
+
+## Supersessions (newer take wins)
+
+- **How much FIN rewards splashing — predicted heavy → settled minimal.** Ep 11 (preview, no games
+  yet) guesses that the green good-stuff decks and the Esper/Grixis spells piles *"are going to be
+  splashing a lot of good cards."* → **Ep 15 (mid-format, played reps): "Final Fantasy is the set
+  I've splashed the least in in a very long time."** Cause is explicit: the format is unusually
+  balanced (all ten pairs "just work"), so finding the open lane among eight drafters at a ten-pair
+  table beats splashing for power, and the synergy pairs mostly don't need outside help. **Verdict:
+  treat the Ep 11 splashing prediction as superseded — see the Format speed bullet below.**
 
 ## Format speed / meta read
 
@@ -62,6 +76,42 @@
 - **Power versus synergy is the right frame for deckbuilding here.** Some decks want half a dozen
   genuinely powerful cards with the rest set up to play normal Magic around them; others want the
   synergy. Deciding which one you are building is the decision that matters.
+- **When the aggregate win rate likes a narrow-looking card, take it seriously (Ep 13).** A card that
+  "should" be dead outside its build-around (Sorceress's Schemes only does anything with instants and
+  sorceries in the yard) usually posts a mediocre aggregate number if it's actually narrow. When it
+  doesn't, that's a real signal, not noise — *"something that I never would have tried without the
+  data."* Methodology point, generalisable beyond this one card.
+
+## Archetypes
+
+*Coverage here is partial — only the white-based pairs got a dedicated survey (Ep 16); the other six
+pairs are described only where a Format speed or Card tips note above already touches them.*
+
+- **WU / WR "Galacat" decks — single-threat flyers beatdown.** Named for Galacat, a 3-mana 1/3 flying
+  vigilance that's a 3/3 with two artifacts. WR is the equipment shell, WU the artifacts shell; both
+  turn Galacat on just by being in-colour. Not snowbally — you use early pressure to force answers,
+  then move your equipment/pump onto whichever threat is live. Slash of Light (2-mana instant, damage
+  equal to your artifact+creature count) is rated **above White Auracite in the right deck**, but he
+  still takes Auracite higher on average because it's live in every white deck.
+- **GW — two different decks depending on your green.** Either a straightforward equipment beatdown
+  (Bard's Bow enables Galacat here too), or a genuine **go-wide combo-midrange** plan: token makers
+  (Aerith Rescue Mission) plus team-pump finishers (Summon Choco Mog, Rydia's Return (?), Esper
+  Origins) closing from a wide board. He explicitly frames this as *not* an aggro deck — it wants less
+  early pressure than the equipment version.
+- **WB — the base matters more than the pair (Ep 16, citing the real Sam Black's big-game/small-game
+  framework).** *Base white* WB is a "big game" token/go-wide deck, functionally a Galacat deck
+  splashing black. *Base black* WB is "small game" — a controlling shell built around symmetrical
+  resource-denial commons (Hecti (?), Malboro (captioned "Malbor")) that wants to keep the game small
+  so a menace threat (captioned "Jack", likely **Jecht, Reluctant Guardian** — see Caption garble)
+  closes it out. **Know which base you are before you build the deck** — the same two
+  colours support two different game plans.
+- **All four blue pairs clear the aggregate win-rate bar that most pairs don't (Ep 12)** — see Format
+  speed above. This is archetype-level evidence for blue's strength, not a specific pair recommendation.
+- **UR / BR — the Sorceress's Schemes pairs**, and decks that already have their own card selection
+  from the non-creature spells they want to cast anyway (Card tips: don't add Ifrit or Adventurers'
+  Airship here, they're redundant).
+- **RW / WG — decks that otherwise lack card selection**, and where Ifrit/Adventurers' Airship (?) are
+  worth their rate specifically because they fill a role those decks are missing.
 
 ## Card tips
 
@@ -87,39 +137,70 @@
   have no way to see extra cards. Same logic as the Ifrit note: card selection is a role, and which
   colours need it filled differs.
 - **Reach the Horizon** — the Ep 15 lens for splash discipline rather than a card recommendation.
+- **Galacat** — 3-mana 1/3 flying vigilance, a 3/3 with two artifacts controlled. The anchor of the
+  WU/WR "Galacat decks" archetype (see Archetypes) — turns on just from being in either colour.
+- **Slash of Light** — 2-mana instant, deals damage equal to your artifact+creature count to any
+  target. *"Often just two mana, kill anything."* Rated above White Auracite specifically in a
+  heavy-artifact Galacat deck, though Sam still takes Auracite higher on average.
 
 ## Deep dives
 
-### Ep 12 — Sahagin: what it means when blue is the best colour
-Two parts: a history of Arena-era formats where blue was the strongest colour, and then FIN's blue
-cards specifically. The generalisable point is the method — he reads colour strength off the
-**archetype** win rates rather than off card evaluations, and checks whether *all* of a colour's pairs
-clear the aggregate bar.
-
-### Ep 13 — Sorceress's Schemes: when the data says a narrow card is good
-A card that recurs instants and sorceries from the graveyard "should" have a poor aggregate win rate,
-because it is dead in the wrong deck. It doesn't. The episode is about taking that kind of signal
-seriously — when the aggregate likes a narrow card, there is usually something real there.
+Only one FIN episode actually sustains its namesake card for most of its runtime. The other five
+card-titled episodes (Sahagin, Sorceress's Schemes, Reach the Horizon, White Auracite, Summon: G.F.
+Ifrit) use the card as a framing device and spend their runtime on archetype or format theory — their
+content is in the sections above, not here. (Ep 11 Hot Topics is a preview roundup, not card-titled.)
 
 ### Ep 14 — Black Mage's Rod: equipment as a spells-matter payoff
-Built from two games he lost to the card at MagicCon Vegas, both against scrappy commons-and-uncommons
-Blue-Black decks. The lesson is that the equipment rewarded a deck that attached it and attacked,
-rather than one that kept casting spells.
+A genuine card dissection, not a theory essay wearing a card's name — 23 mentions of the card in
+4,073 words, the highest density of any episode in this channel's ECL+FIN run. He opens by reading the
+card text, then builds the whole episode from two losses at MagicCon Vegas, both to scrappy
+commons-heavy Blue-Black decks. **The insight is a play-pattern one**, not a rate one: the card is
+mediocre as a vanilla body (2-mana 2/1, a "not very good" equip cost) and only makes sense as a
+**synergy piece** — the winning line was attaching it to a creature and attacking, not casting more
+spells to trigger it repeatedly. He walks the archetypes it fits differently in: **Black-Red** (its
+"natural home"), **Blue-Black** (a low-to-the-ground proactive tempo shell with Dreams of Laguna and
+Sahagin-style cantrips), and **White-Black** (equipment synergies plus the two-Combatants-to-sacrifice
+theme, paired with Phantom Train). Closes on the episode's real thesis: *"your deck's plan is it
+synergy versus power"* — decide which you're building before evaluating a card like this one.
 
-### Ep 15 — Reach the Horizon: when to splash, and when not to
-His most transferable FIN episode. Walks the tiers of splashing — one card, a couple of cards, a full
-multicolour pile — and concludes that FIN mostly does not want any of it, because the pairs are
-self-sufficient. Introduces the power-versus-synergy framing for deckbuilding.
+## Pitfalls
 
-### Ep 16 — White Auracite: interaction versus creatures in modern Limited
-A design-history essay: how pushed commons and multi-body creatures made aggro dominant for a few
-years, how cheap interaction got better and cheap creatures got worse, and why that has slowed the
-*critical turn* of a game without lengthening the game itself. FIN is his worked example.
+1. **Don't splash on instinct.** FIN's ten balanced pairs reward finding the open lane over splashing
+   for power — Ep 11's pre-data prediction that green/Esper/Grixis decks would splash heavily did not
+   hold up once games were played (see Supersessions).
+2. **Don't add Ifrit-style card selection to UR or BR.** Those decks already get filtering from the
+   non-creature spells they want to cast anyway; a redundant card-selection piece is a wasted slot
+   there. It belongs in RW/WG, which otherwise have none.
+3. **Know your WB base before you build.** Base-white WB is a big-game go-wide deck; base-black WB is
+   a small-game control deck. They want different two-drops and different closers — see Archetypes.
+4. **Don't dismiss a narrow-looking card on read alone.** If the aggregate win rate likes it anyway
+   (Sorceress's Schemes), the data is telling you something your card evaluation missed — Ep 13's
+   central lesson.
+5. **Don't evaluate Black Mage's Rod as a vanilla body.** It's bad on rate and only good as a synergy
+   piece that gets attached and attacked with, not cast-more-spells fuel.
 
-### Ep 17 — Summon: G.F. Ifrit: role-filling and where a bad card is good
-Argues from the card's poor aggregate number to a narrower claim — that card filtering is a *role*,
-and the colours that already fill it (UR, BR) should not pay for it again, while RW and WG sometimes
-should.
+## Caption garble
+
+These auto-captions transcribe speech; card and personal names are mangled. Corrections applied above,
+listed here so the readings are auditable.
+
+- **"Sam Black" appears once in this run (Ep 16) and is the real Sam Black**, not the host — *"I'm
+  going to bring up that Sam Black concept of big game versus small game... there's an article, I'll
+  link the article again."* The host's own name transcribes as **"Sam Pratt"** throughout (Discord
+  "samp6", Twitch "samp_mtg", "samratt.bsky.social"). No merge risk found in this run, but flagged per
+  the channel-wide caption trap — see MSH.md for a case where the two strings do collide.
+- **"Sahagen"** → **Sahagin** (ep 12's namesake; the printed spelling never appears in the transcript).
+- **"Black Bane's Rod"** / **"Black Midget's Rod"** → **Black Mage's Rod** (ep 14's namesake — three
+  different mangles of the same card inside one episode, including in the card-text read-out at the
+  very start).
+- **"Malbor"** → **Malboro**.
+- **"Ria's return"** → **Rydia's Return** (?) — plausible match on the described effect (return two
+  cards from graveyard, or team pump), spelling unverified against the transcript alone.
+- **"Hecti"** (?) — a cheap black discard/attrition common described as the "flagship card for keeping
+  the game small"; not confidently matched to a printed name here.
+- **"Jack"** (?) — a black rare, 4-mana 4/3 menace that flips into a saga on combat damage. Likely
+  **Jecht, Reluctant Guardian** on phonetic grounds ("Jecht" → "Jack") and rarity/colour fit, but the
+  printed name never appears in the transcript — treat as unverified.
 
 ## Source episodes
 

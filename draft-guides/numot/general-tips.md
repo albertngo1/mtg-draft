@@ -1,5 +1,5 @@
 # Numot — general draft principles
-> Evergreen, set-independent draft & play principles distilled across ~210 NumotTheNummy (Kenji Egashira) regular Arena draft VODs. Built 2026-06-10, last extended 2026-08-17 (HOB week one). Expert opinion/theory and the "why" behind picks — and the lens that *decodes* the 17Lands data: every GIH WR is archetype-conditional, so these principles tell you whose-deck a number came from and whether it transfers to yours (see AGENTS.md).
+> Evergreen, set-independent draft & play principles distilled across ~245 NumotTheNummy (Kenji Egashira) regular Arena draft VODs. Built 2026-06-10, last extended 2026-08-23 (MSH full-format backlog — 32 new VODs). Expert opinion/theory and the "why" behind picks — and the lens that *decodes* the 17Lands data: every GIH WR is archetype-conditional, so these principles tell you whose-deck a number came from and whether it transfers to yours (see AGENTS.md).
 
 ## Picking & pick order
 
@@ -9,6 +9,7 @@
 - A two-drop with ongoing upside (card draw, explore, triggered ETB) is gold-standard. Cards that do something on turn 2 AND keep doing it later warrant first-pick consideration.
 - Curve discipline over raw power. When choosing between the 5th removal spell and a two-drop, take the two-drop if the curve is light. Diminishing returns on removal past 3–4 copies are steep; missing the curve is a bigger problem.
 - Don't take speculative build-around picks without a credible plan to already have (or realistically acquire) the enablers. Count your current enablers before first-picking a payoff: "how many enablers do I have for this card right now?"
+- **Even a fully-enabled build-around payoff is usually weaker than the generic shell around it.** Across a run of MSH decks built specifically to resolve a flashy payoff card (a go-wide villain bomb, a token-and-counter enchantment, a death-trigger recursion enchantment), the payoff itself resolved fully only a fraction of the time — the decks still won consistently, but on their removal and curve, not the build-around. Draft build-arounds because they're fun to pilot, and evaluate the result on the shell's quality, not on how often the payoff actually went off.
 - Cycling on any card upgrades it half a tier — it converts a dead card into a scry-1 draw and is never fully wasted.
 - Splashing requires dedicated fixing. Taking a splash card without at least two dual lands or comparable fixing sources already in hand is a trap. "If I don't have more fixing, I will not play the green." Commit the fixing before committing the splash card.
 - Don't run wraths in aggressive decks. A wrath resets your own board when you're ahead and is too slow when you're behind. Only include sweepers if the deck is built to survive to 4–5 mana and stabilize.
@@ -16,6 +17,7 @@
 - In bot draft (Quick Draft), bots systematically undervalue certain card types (synergy engines, build-arounds). Don't try to read signals; just take the best card available and exploit what late picks the algorithm provides.
 - In a format dominated by one archetype, value cheap interaction that is specifically good against the dominant deck over generic cards.
 - **A cheap must-answer threat is jammed, not baited.** *"I am slamming the company on three and asking the question: hey, can you deal with this? And if the answer happens to be no, then I like my chances."* This is the exception to holding bombs for a tap-out window — that rule is about **expensive** bombs. A three-mana threat that wins unanswered should hit the board on turn three, because the games where they have the answer were unwinnable anyway.
+- **Don't speculatively take a flashy off-color bomb over a premium on-color card you know you'll actually play.** A repeated leak once a drafter is already committed to a lane: passing a removal spell in your open colors for an exciting off-color rare, on the bet that color will "come together," and then not getting there. From MSH: passed a Web Up for M.O.D.O.K. twice in close succession, regretted both, never even played the off-color bomb — *"Baited by the Modok."* If you're already in a color, take the card you'll play over the speculative splash-bomb.
 
 ## Reading signals & staying open
 
@@ -30,6 +32,7 @@
 - When you commit to a lane, pass signals cleanly to your left so they know what's open. Know what signals you're sending even when you're taking the better card anyway.
 - A "disjointed" deck that tries to do two different things executes neither well. If late in pack 2 you're split between two strategies, cut to the cleaner version.
 - Late-format meta shifts matter: reevaluate pick values at end of format, not just at release. The dominant deck at format end is over-represented in the queues and should shift your removal priorities.
+- **A well-drafted deck in a weak archetype can still lose to a mediocre deck in the format's best archetype.** After a genuinely good removal-dense villains deck (5-2, built around a real bomb payoff) lost twice to a blue-white opponent: *"a very good villain's deck might still be worse than a mediocre blue-white deck... potentially the way of the world."* When picking a lane, weigh the archetype's ceiling, not just how well you can execute the deck in front of you.
 
 ## Curve & deckbuilding
 
@@ -70,6 +73,7 @@
 - Auto-tapper is your enemy when you have triggered abilities, flip effects, or multi-use permanents. Tap lands manually in those situations.
 - When bouncing your own creature, remember re-playing it costs mana. Use that to plan whether to race or stabilize.
 - Verify "leaves the battlefield" vs. "when this dies" before self-bouncing — bounce fires "leaves the battlefield" triggers; dying does not.
+- **A clone/copy effect usually keeps its own name and doesn't inherit tribal/typal identity from the thing it copies — check the exact rules text before assuming a copied trigger applies.** Costly live example: a clone creature copied a card whose ability cared about its own creature type attacking, and the clone (which kept its original name/type) didn't qualify. Also verify the copied body's actual printed stats rather than the remembered "gist" of the card you're copying — a copy misjudged by even one power/toughness point changes the math.
 - Don't discard your best interaction carelessly to card-draw effects. Always check whether you're throwing away the card you'll need most in two turns.
 - In a losing game: identify the exact outs and play toward them explicitly rather than the hedged play that just extends the losing position.
 - Identify the exact turn and decision where you misplayed. "Turn 3 was my mistake — I Dragon Fired when I didn't need to." Vague self-criticism doesn't improve your game; specific turn identification does.
@@ -89,6 +93,7 @@
 - In BO3, sideboard specifically after game 1. "After game 1 I now know what they're playing — use that information aggressively." Bring in cards that target the opponent's specific win condition; don't just board generically.
 - Cards that are "often better maindecked than sideboarded" in the right shell deserve explicit consideration during deckbuilding, not just the sideboard pile.
 - Mulligans are just so bad in limited. Keep any hand with both colors represented, a relevant 2- or 3-drop, and enough land. Single-color hands with 7+ sources are mulligans. "A totally reasonable keep. A little bit risky, but..." — accept higher variance in exchange for fewer mulligans.
+- **In a deck built around a single most-important payoff or curve slot, mulligan toward that card specifically, not just toward "keepable."** *"I will probably aggressively mulligan at least one time... until we either have [the payoff] on turn one or a decent curve out with something to do on turn two."* A generically fine hand that just does nothing until turn four is a mulligan when the deck's whole plan hinges on hitting its key early play.
 - One-land keeps are viable only with 2-mana cantrips or cycling effects that near-guarantee hitting land 2.
 - Mana flood is a greater long-game threat than mana screw — screw creates immediate recognizable states; flood is insidious. "I've drawn 12 lands, it looked like 13 maybe."
 - Know the difference between "fun to draft" and "good to draft." Explicitly flag build-arounds you're taking for fun so you evaluate the result in the right frame. "If this was an arena open or something I would probably still just take the answer."

@@ -3,8 +3,8 @@
   "scope": "audio podcast on YouTube: card-by-card set reviews (letter grades) + format overviews",
   "note": "Fingerprint of distilled scrape. sha1 = sha1 of the cleaned transcript .txt.",
   "counts": {
-    "sets": 7,
-    "videos_distilled": 32,
+    "sets": 8,
+    "videos_distilled": 39,
     "videos_no_captions": 0
   },
   "sets": {
@@ -70,6 +70,19 @@
         "lK8O-nmlVWE"
       ]
     },
+    "MSH": {
+      "tier": 1,
+      "file": "MSH.md",
+      "video_ids": [
+        "JM3Lz3tu7jY",
+        "KhuYIdOsl5s",
+        "O9IUuoEAd6Q",
+        "QdEu9FW1Jy4",
+        "piD5IyFDfe0",
+        "r5Ev8usyWwI",
+        "y11-rxC1rQk"
+      ]
+    },
     "SOS": {
       "tier": 1,
       "file": "SOS.md",
@@ -120,6 +133,18 @@
       "words": 13326,
       "distilled": true
     },
+    "JM3Lz3tu7jY": {
+      "set": "MSH",
+      "sha1": "038fd9f4cfef59da02a706d3b3e35857d94cb527",
+      "words": 59639,
+      "distilled": true
+    },
+    "KhuYIdOsl5s": {
+      "set": "MSH",
+      "sha1": "e62a0f1e827c4abaa62d665c905dbb8c6bbaf11f",
+      "words": 20965,
+      "distilled": true
+    },
     "Ku1d5-hrqwc": {
       "set": "BLB",
       "sha1": "604e76653a7ff73503a84255802e35dd550ead75",
@@ -142,6 +167,18 @@
       "set": "SOS",
       "sha1": "8304e8bef84ccc15846db1f0ddcff34624d56370",
       "words": 17979,
+      "distilled": true
+    },
+    "O9IUuoEAd6Q": {
+      "set": "MSH",
+      "sha1": "2bf9cdb45666e5f72f46fcc9202ee01716d37b25",
+      "words": 17518,
+      "distilled": true
+    },
+    "QdEu9FW1Jy4": {
+      "set": "MSH",
+      "sha1": "c0ed04a8fb875cd4be09d627ec2db8d7c7c5ec14",
+      "words": 14237,
       "distilled": true
     },
     "Wlgwz49mKec": {
@@ -246,6 +283,18 @@
       "words": 37755,
       "distilled": true
     },
+    "piD5IyFDfe0": {
+      "set": "MSH",
+      "sha1": "3b2b2ae5b40bd01aeb43bb8230c63de8e2f82dbd",
+      "words": 12916,
+      "distilled": true
+    },
+    "r5Ev8usyWwI": {
+      "set": "MSH",
+      "sha1": "79c68ee997c9b459dc7e361c7d52a4a9aff470d7",
+      "words": 16982,
+      "distilled": true
+    },
     "tDde9t-8Qsg": {
       "set": "FIN",
       "sha1": "30dd28cada5f24aa8770afa79647a779ce23ac63",
@@ -268,6 +317,12 @@
       "set": "SOS",
       "sha1": "61d4a3b1ea2404cd4c0bfc7f5f03950ec4446015",
       "words": 19751,
+      "distilled": true
+    },
+    "y11-rxC1rQk": {
+      "set": "MSH",
+      "sha1": "0dea4fcd75a5cfc3ceaeb161d4304c0b76cb17a6",
+      "words": 47090,
       "distilled": true
     },
     "zZeHP3gwA7U": {

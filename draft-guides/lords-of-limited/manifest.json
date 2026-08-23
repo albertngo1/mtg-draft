@@ -3,8 +3,8 @@
   "scope": "draft-gameplay + set-strategy videos",
   "note": "Fingerprint of distilled scrape. sha1 = sha1 of the cleaned transcript .txt.",
   "counts": {
-    "sets": 33,
-    "videos_distilled": 150,
+    "sets": 34,
+    "videos_distilled": 161,
     "videos_no_captions": 1
   },
   "sets": {
@@ -60,12 +60,15 @@
       "tier": null,
       "file": "ECL-draft-guide.md",
       "video_ids": [
+        "-9iwyW_Nyvo",
         "5eGjK4dGHOE",
+        "HNn7Z2bSKQk",
         "OK7MWMufhk4",
         "S4Ui8irKBzI",
         "Wm6xKK6XYUo",
         "eq_JtVMNAro",
-        "jEHZhFIiRjk"
+        "jEHZhFIiRjk",
+        "zShbyLMPTyw"
       ]
     },
     "ELD": {
@@ -107,8 +110,10 @@
       "file": "FIN-draft-guide.md",
       "video_ids": [
         "5-GScnchgoU",
+        "8bHylD-HfT4",
         "OuQacGs_k5I",
         "i4DBgsOtqrA",
+        "ifKhyuAwksw",
         "lMfeEkmcxqY",
         "wnysYygplA4",
         "xLiVBasIH2I"
@@ -228,6 +233,7 @@
       "tier": null,
       "file": "MSH-draft-guide.md",
       "video_ids": [
+        "NFIdGseO32k",
         "RpGwE20YyMU",
         "SHVELf7oPL0",
         "hXwSIsPU7B4"
@@ -271,6 +277,17 @@
         "3jgQy3fMAJ8",
         "eFBDDf9Akec",
         "haKoOwB8g9s"
+      ]
+    },
+    "SOS": {
+      "tier": null,
+      "file": "SOS-draft-guide.md",
+      "video_ids": [
+        "96moLNSBajQ",
+        "OAZ-_Z3V5Bs",
+        "Vf2jJkxXA3Q",
+        "sonKik39H9o",
+        "z3FU6NAG4PI"
       ]
     },
     "STX": {
@@ -362,6 +379,12 @@
       "set": "PIOM",
       "sha1": "cb823cfaeded885c0cb6f184ce3f22baa0e9798f",
       "words": 4961,
+      "distilled": true
+    },
+    "-9iwyW_Nyvo": {
+      "set": "ECL",
+      "sha1": "ceeb201daec792984366171eba69da251d67bacd",
+      "words": 6170,
       "distilled": true
     },
     "-VqyvmDofyA": {
@@ -502,6 +525,18 @@
       "words": 8707,
       "distilled": true
     },
+    "8bHylD-HfT4": {
+      "set": "FIN",
+      "sha1": "995d91802e9244a2930545c75af932aace8ee013",
+      "words": 17032,
+      "distilled": true
+    },
+    "96moLNSBajQ": {
+      "set": "SOS",
+      "sha1": "eddab8b9b60e953ed96c14fc7c9c9e7d95b4f323",
+      "words": 15783,
+      "distilled": true
+    },
     "A4hKLnMrYeA": {
       "set": "DSK",
       "sha1": "ceec0214aa42dad848c950200a7bc59a2af0e4a5",
@@ -599,6 +634,12 @@
       "words": 5103,
       "distilled": true
     },
+    "HNn7Z2bSKQk": {
+      "set": "ECL",
+      "sha1": "23ffa785fa84bf431cbed57398acc65a41765162",
+      "words": 13756,
+      "distilled": true
+    },
     "Ha5oVgjxnSk": {
       "set": "MH3",
       "sha1": "76a4422efde4f6efbf33da18e9d24f50c0560adc",
@@ -681,6 +722,18 @@
       "set": "DSK",
       "sha1": "f0b6156cb2beff87788a6b05489ee0b1ac61808b",
       "words": 22854,
+      "distilled": true
+    },
+    "NFIdGseO32k": {
+      "set": "MSH",
+      "sha1": "e7795e0f135331820d9d404f20e5109eab8672c1",
+      "words": 14734,
+      "distilled": true
+    },
+    "OAZ-_Z3V5Bs": {
+      "set": "SOS",
+      "sha1": "481062dee0373309732b4fe65dfcab2a023698fc",
+      "words": 14475,
       "distilled": true
     },
     "OK7MWMufhk4": {
@@ -789,6 +842,12 @@
       "set": "FDN",
       "sha1": "54693baa7aee8940bfd957eb520d4c6f1bb2202a",
       "words": 6629,
+      "distilled": true
+    },
+    "Vf2jJkxXA3Q": {
+      "set": "SOS",
+      "sha1": "2eab29a1aaa052ac5410a80e3a26ae5e2dfd9a61",
+      "words": 14867,
       "distilled": true
     },
     "VoODWrkB0a0": {
@@ -929,6 +988,12 @@
       "words": 5239,
       "distilled": true
     },
+    "dXfR2zxQa3E": {
+      "set": "HOB",
+      "sha1": "5fc9509189caece54c2c1372c8999d2372edfebe",
+      "words": 15076,
+      "distilled": true
+    },
     "e7cGsP_BdrI": {
       "set": "M21",
       "sha1": "bb1ca850197a71b1845fdead2dc021729d351e1c",
@@ -1035,6 +1100,12 @@
       "set": "FIN",
       "sha1": "8325eed2c122d7800f85091952ec8ba6da616a8c",
       "words": 16138,
+      "distilled": true
+    },
+    "ifKhyuAwksw": {
+      "set": "FIN",
+      "sha1": "d58aa915410e14f942c925e81256de12a7f3bb4f",
+      "words": 17309,
       "distilled": true
     },
     "iwKO2z7DWj0": {
@@ -1175,6 +1246,12 @@
       "words": 9235,
       "distilled": true
     },
+    "sonKik39H9o": {
+      "set": "SOS",
+      "sha1": "4b3cc3d3dd538b1cad93e7e6e1c93e508ea33a56",
+      "words": 16487,
+      "distilled": true
+    },
     "tArZTyQfiYw": {
       "set": "LCI",
       "sha1": "a875211829f2d18a6bcefd8fff0c87da799b4d6e",
@@ -1251,6 +1328,18 @@
       "set": "FDN",
       "sha1": "d147c2c76559e948728a6ed9de00ccb38274896d",
       "words": 19002,
+      "distilled": true
+    },
+    "z3FU6NAG4PI": {
+      "set": "SOS",
+      "sha1": "54823005695d3ceee87041ab954772977c40a798",
+      "words": 3865,
+      "distilled": true
+    },
+    "zShbyLMPTyw": {
+      "set": "ECL",
+      "sha1": "b17e98144e281b5850f901cdf4b836feb8c7afa8",
+      "words": 14414,
       "distilled": true
     },
     "zkX8YPWAGiE": {
