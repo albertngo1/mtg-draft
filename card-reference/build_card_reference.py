@@ -37,10 +37,15 @@ OUT  = os.path.join(HERE, f"{SET}-card-reference{_suffix}")
 IMGDIR = os.path.join(ROOT, "data", "card-images", SET)  # download cache (gitignored via data/)
 COLS = 3  # cards per row
 
+# NOTE: the brief opens straight on content. No "what this brief is" paragraph, no source
+# bibliography, no pointer at the table rendered directly above it \u2014 the page already shows all
+# of that, and restating it just buries the first real claim. The only thing that earns a spot
+# above the first section is calibration that changes how the tiles below should be READ
+# (sample-size caveats, a missing grade source, a pre-data attribution). Keep it to a blockquote.
 BRIEF_TEMPLATE = """## Format brief \u2014 everything that isn't a single card
 
-Distilled from the expert guides in `draft-guides/` so you don't need a second window. Sources in
-priority order: TODO. On conflict: live 17Lands numbers > post-play takes > prerelease predictions.
+> TODO \u2014 one blockquote, only if something changes how the tiles should be read (thin sample,
+> a source that grades nothing, an attribution that is pre-data). Delete this line otherwise.
 
 ### The draft plan in five lines
 

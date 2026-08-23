@@ -1,21 +1,10 @@
 ## Format brief — everything that isn't a single card
 
-Every number lives on the card tiles below and in the archetype table above. This brief is the other
-half: what four expert guides worked out that a win-rate column structurally cannot say — how many
-copies to run, how to sequence a combat, what to mulligan, and why a card plays better or worse than
-it rates.
-
-**Sources:** Limited Level-Ups (State of the Format plus a week-two update — Alex had drafted the
-format for days and reviewed coaching logs), NumotTheNummy (week-one and week-two Premier VODs),
-Limited Resources 865/866, Lords of Limited (a prerelease crash course and a week-one verdict).
-
-**One caveat on the numbers you'll see on the tiles:** this is a young, small format. Commons have
-been drafted enough times to trust. Rares and mythics have not — read those tiles as a first
-impression, not a verdict.
+> Rare and mythic tiles are a first impression, not a verdict — this format is young and small, so
+> only the commons have been drafted enough to trust. Claims attributed to **Samp** are pre-data:
+> he drafted the whole format blind, which is what makes his read decorrelated and also unvalidated.
 
 ### What the data says
-
-*(The full archetype table renders directly above this brief.)*
 
 **Rakdos is the best deck, and close to a third of the field is in it.** Five pairs are signposted —
 Rakdos, Golgari, Boros, Azorius and Simic — and between them they account for almost every
@@ -68,6 +57,17 @@ of them win the game you draw them in, and they arrive on the back half of the p
 - **Do the menace math explicitly, every turn.** Two blockers against three menace creatures blocks
   *one* creature — and one removal spell means it blocks **none**. Intuition is miscalibrated here;
   count it out.
+- **Count blockers, not board size.** Samp's blind read pushes the menace math into a format thesis
+  the other four sources never state: menace taxes the *number* of creatures the opponent has, not
+  the size of their board. Because the menace is at common in a small set, a black deck routinely
+  assembles two or three menace attackers and the opponent needs **six** bodies to take zero. His
+  claim is that this is the best menace has ever been in a limited format, and that it structurally
+  blanks the recruit tokens and chump blockers the white-blue decks are built on. Pre-data — but it
+  is a mechanism, not a ranking, and it is testable at the table.
+- **Amass is stealth haste.** Adding counters to an *existing* Army means the new stats attack the
+  same turn. The line that falls out: trade the army off, rebuild it after combat, swing with the
+  bigger one next turn. It also means the first several points of amass damage are close to free —
+  they can answer a 4/4 or 5/4 on turn four or five, but by then the race is decided.
 - **Don't decline a lethal alpha strike over a card they might have.** Numot names this as his one
   clear punt of the run.
 - **Every unspent mana is expensive.** In a six-turn game a wasted mana is a much larger share of your
@@ -99,6 +99,15 @@ of them win the game you draw them in, and they arrive on the back half of the p
   creatures — and eight is worse than it sounds if three of them are six-drops.
 - **Storied is not a build-around.** It turns on incidentally, and in Boros it is nearly automatic —
   stop holding cards back to protect it.
+- **Prefer cards that affect the board *and* leave something behind.** Samp's framing is that HOB is
+  a small-game format: the battlefield stays empty, so every marginal one-for-one edge compounds and
+  a lone 1/1 gets to attack turn after turn. That is the structural argument for black's equipment —
+  strip a blocker or pump the army now, and still own a permanent afterwards. Pre-data, and it
+  points the same direction as the curve-out advice above.
+- **Build white-red as an equipment deck, not a storied deck.** Independent confirmation of the
+  doctrine above from the one source who trophied with the pair: his winning build contained a
+  single card that mentioned storied. Sagas leaving play also means your storied count is not
+  stable, so it is not something to hold cards for.
 - **Don't chase elves in Simic.** The elf payoffs need a critical mass, and reaching it means playing
   bad cards. If you end up in the worst pair, just play the good blue and green cards.
 
@@ -116,6 +125,13 @@ of them win the game you draw them in, and they arrive on the back half of the p
   much for the game you drew them in. Play them; don't take them over a card that swings a game.
 - **Bilbo's Deadly Slice over Stir Up Trouble:** four mana that always kills beats one mana that costs
   you a body — and the field already agrees, taking Slice more than a pick earlier.
+- **…but that ordering is genuinely contested.** Samp, blind, put **both** Crude Bent Blade and Stir
+  Up Trouble *above* the Slice, on the menace logic: when their creature *count* is the resource
+  that matters, an edict that eats even a token is real removal, and the sacrifice cost is cheap in
+  a deck that trades armies off and rebuilds them every turn. He would also take **Rage into the
+  Valley** over the first Slice — while naming cheap value commons as the exact card class a blind
+  evaluation gets wrong. Where his prose fights a number, take the number; the argument still earns
+  its place when the pick is close.
 - **Gollum is a premium common** despite one host reporting it underperformed for him. The likely
   explanation is the one he names himself: he plays from a defensive posture, and this is a racing
   card.
@@ -130,6 +146,20 @@ of them win the game you draw them in, and they arrive on the back half of the p
 - **How much of the good-unsupported-pair advice to trust.** Orzhov rates near the top on a sliver of
   the field, and three sources independently like it. That is suggestive, not evidence — if you end up
   there you are probably fine, but don't draft toward it on the strength of one row.
+- **Is blue's problem the cards, or the seat?** Samp went from "blue is kind of cracked" to distinctly
+  lower on it inside six days, and the cause he names is positional rather than card-by-card:
+  laddering up meant facing better and better black curve-outs, which blue is not built to answer.
+  He still rates the individual blue cards highly. That is the Azorius question above, argued from
+  the opposite side — and it is a blind read, so it is a hypothesis, not a finding.
+- **Is black the colour, or is Rakdos the pair?** Four sources talk about Rakdos; Samp says the
+  argument is entirely about black, with red supplying the hybrid amass overlap and the equipment.
+  The data can't separate them, because the pair and the colour move together. It matters anyway:
+  it tells you what to do when red dries up, and it agrees with this brief's own "draft colours, not
+  colour pairs."
+- **Nobody has a real green read.** The data has green well behind and it is not close. The one
+  source who drafted blind never drafted a green deck at all, and his three takes on it — "very
+  unfocused," "a little bit scattered," "green is good, I haven't lost to green much" — are all
+  opponent-side impressions that contradict each other.
 - **Two live card disagreements nobody has closed:** Dáin's Company (one host takes it out of most
   packs, another rates it poorly) and Snowslope Hunter (called excellent for the equipment density,
   but the results lean against it).

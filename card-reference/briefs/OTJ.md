@@ -1,19 +1,8 @@
 ## Format brief — everything that isn't a single card
 
-Every number lives on the card tiles below and in the archetype table above. This brief is the other
-half: what the expert guides worked out that a win-rate column structurally cannot say — when to use
-a mechanic, how to sequence a turn, what to prioritise in a pack, and why a card plays better or
-worse than it rates.
-
-**Sources:** Lords of Limited (a "Saddle Up" flashback recorded months after the format closed, plus
-a mid-format meta episode, two Arena Open day-two drafts and two early-access drafts) and
-NumotTheNummy (four end-of-format VODs). No Limited Resources or Limited Level-Ups guide exists for
-this set, so **OTJ has the narrowest source base in this reference** — lean on the tiles here more
-than usual.
-
-**One calibration to carry into the tiles:** green, white and black are close at the top while blue
-and red are genuinely behind, so the same win rate means "average" in one colour and "good" in
-another. Read a card against its own colour.
+> Green, white and black are close at the top while blue and red are genuinely behind, so the same
+> win rate means "average" in one colour and "good" in another — read a card against its own colour.
+> OTJ also has the narrowest source base in this reference; lean on the tiles more than usual.
 
 ### What the data says
 

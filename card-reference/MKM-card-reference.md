@@ -29,20 +29,8 @@ MKM is a **grindy 2-color guild-midrange** format, so GIH WR transfers honestly 
 
 ## Format brief — everything that isn't a single card
 
-Every number lives on the card tiles below and in the archetype table above. This brief is the other
-half: what three expert guides worked out that a win-rate column structurally cannot say — how to
-sequence a turn, which removal spell actually answers what, how many lands to run, and why a card
-plays better or worse than it rates.
-
-**Sources:** Limited Resources (six episodes ending in the #743 Sunset Show), NumotTheNummy (21 VODs
-across the full format), Lords of Limited (six episodes ending in the 2024-03-25 retrospective). No
-Limited Level-Ups guide exists for this set. All three had played the format out when they recorded
-their retrospectives, so their gameplay reads are well-tested — and where they disagree, the finished
-data on the tiles settles it.
-
-**One calibration to carry into the tiles:** MKM's win rates run tight, so small differences between
-commons are mostly noise. What separates them is whether drawing the card changed the game — and in
-this format those two measures disagree unusually often. See "Where the field misprices cards".
+> MKM's win rates run tight, so small differences between commons are mostly noise — and here the
+> win rate and impact-when-drawn disagree unusually often. See "Where the field misprices cards".
 
 ### What the data says
 

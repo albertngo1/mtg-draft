@@ -1,18 +1,8 @@
 ## Format brief — everything that isn't a single card
 
-Every number lives on the card tiles below and in the archetype table above. This brief is the other
-half: what three expert guides worked out that a win-rate column structurally cannot say — how to
-enable a mechanic, how to sequence combat, what to mulligan, and how many copies to run.
-
-**Sources:** Limited Resources (six episodes ending in the #767 Sunset Show), Lords of Limited (six
-episodes ending in a 50-takes retrospective), NumotTheNummy (four end-of-format VODs — the thinnest
-sample here, so weight anything only he says accordingly). No Limited Level-Ups guide exists for this
-set. All three recorded their settled reads after playing the format out.
-
-**One calibration to carry into the tiles:** BLB's win rates run high and tight, so the raw
-percentage separates cards less than usual. What separates them is whether drawing the card changed
-the game — in a typal format that is the difference between a card good decks happen to run and a
-card that wins games.
+> BLB's win rates run high and tight, so the raw percentage separates cards less than usual. What
+> separates them is whether drawing the card changed the game — in a typal format that is the
+> difference between a card good decks happen to run and a card that wins games.
 
 ### What the data says
 
