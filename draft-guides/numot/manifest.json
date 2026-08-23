@@ -3,9 +3,9 @@
   "scope": "regular Arena draft VODs (cube/sealed/constructed/alchemy excluded)",
   "note": "Fingerprint of distilled scrape. sha1 = sha1 of the cleaned transcript .txt.",
   "counts": {
-    "sets": 42,
-    "videos_distilled": 211,
-    "videos_no_captions": 2
+    "sets": 41,
+    "videos_distilled": 209,
+    "videos_no_captions": 1
   },
   "sets": {
     "AFR": {
@@ -292,14 +292,6 @@
         "AFG3kU-z7-M",
         "Le6N5geCepU",
         "mmLxeFwQlRs"
-      ]
-    },
-    "MSH": {
-      "tier": 1,
-      "file": "MSH.md",
-      "video_ids": [
-        "R4bqbX8IaWY",
-        "TTP3-ngUZ5Y"
       ]
     },
     "NEO": {
@@ -773,6 +765,12 @@
       "words": 6437,
       "distilled": true
     },
+    "BecCy-GGJN4": {
+      "set": "HOB",
+      "sha1": "5a796707eb14594511e1533c0d768de9a90b7648",
+      "words": 4363,
+      "distilled": true
+    },
     "Bh-hiTcquBc": {
       "set": "MH3",
       "sha1": "44fbd5f8908678c62ff4b233d9a0d644b7c61332",
@@ -1062,12 +1060,6 @@
       "words": 2027,
       "distilled": true
     },
-    "R4bqbX8IaWY": {
-      "set": "MSH",
-      "sha1": "9dc1c482e372db14246750bc81b20c1b8992fd31",
-      "words": 4821,
-      "distilled": true
-    },
     "RQ3up-LR85E": {
       "set": "OTJ",
       "sha1": "f8329fe0ff74943419bd8e5da1b7527c90282045",
@@ -1108,12 +1100,6 @@
       "set": "MKM",
       "sha1": "f96cc83a689d3a0580804662fc2c63eae801dd3f",
       "words": 4853,
-      "distilled": true
-    },
-    "TTP3-ngUZ5Y": {
-      "set": "MSH",
-      "sha1": "6364545c11c5613ddb25a87df5b38078cafc917a",
-      "words": 5754,
       "distilled": true
     },
     "TnXT23a8xcY": {
@@ -1199,13 +1185,6 @@
       "sha1": "36a8005bf13d7c91084b68b284a780a03e75aac1",
       "words": 5152,
       "distilled": true
-    },
-    "YAyuBb6Pbkk": {
-      "set": "MSH",
-      "sha1": null,
-      "words": 0,
-      "distilled": false,
-      "reason": "no-captions"
     },
     "YKYkHMZuJaQ": {
       "set": "IKO",

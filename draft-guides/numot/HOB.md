@@ -232,6 +232,12 @@ pairs** — which is itself the takeaway.
 - **Patient Instructor** — *"really solid,"* and he notes seeing *"a lot of these patient
   instructors go around"* — a wheeling common worth more than its pick position.
 - **Old Fat Spider** — *"the old fat spider's good."*
+- **Old Fat Spider Can't See Me** — a slower, distinct card from the one above: *"it's really slow,
+  but it is decent... a divination on suspend in a sense, with a couple effects that are oftentimes
+  pretty relevant."* The catch: it can't draw its extra card until chapters three and four, which
+  makes it *"a little bit of a dirty card."* (Aug 17.)
+- **Uneasy Partings** — *"Partings is good"* — a clean pickup for the blue-black control shell he
+  built before pivoting to mono-black that run. (Aug 17.)
 - **Elrond, Moon-Reader** — cut from his own deck: *"this is very [much a] three-mana 3/3 until you
   get to turn seven."*
 
@@ -254,6 +260,9 @@ pairs** — which is itself the takeaway.
   deck. I don't have that many ways to actually utilize it."* Needs a real counters/amass density.
 - **Bolg of the North** — passed on without enthusiasm across multiple packs.
 - **The Queen of Dale** — no comment; unremarkable in play.
+- **Fearsome Goblin Pair** — *"it's an okay card, and there are certainly enough sacrifice effects in
+  the format to make it worthwhile."* Reads as an annoying blocker early, then a real body once it
+  amasses up. (Aug 17.)
 
 ### Artifacts, equipment and lands
 

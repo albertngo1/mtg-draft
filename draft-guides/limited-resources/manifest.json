@@ -3,7 +3,7 @@
   "scope": "audio podcast on YouTube: card-by-card set reviews (letter grades) + format overviews",
   "note": "Fingerprint of distilled scrape. sha1 = sha1 of the cleaned transcript .txt.",
   "counts": {
-    "sets": 8,
+    "sets": 7,
     "videos_distilled": 32,
     "videos_no_captions": 0
   },
@@ -54,7 +54,8 @@
       "file": "HOB.md",
       "video_ids": [
         "G9bqewk4i4Y",
-        "b-mJNcpSo-w"
+        "b-mJNcpSo-w",
+        "zZeHP3gwA7U"
       ]
     },
     "MKM": {
@@ -67,13 +68,6 @@
         "hUYXa1aOPck",
         "jSmDFHLHDcI",
         "lK8O-nmlVWE"
-      ]
-    },
-    "MSH": {
-      "tier": 1,
-      "file": "MSH.md",
-      "video_ids": [
-        "JM3Lz3tu7jY"
       ]
     },
     "SOS": {
@@ -124,12 +118,6 @@
       "set": "ECL",
       "sha1": "5192dd1715f3ed73f0c5021225eaec9539fbacad",
       "words": 13326,
-      "distilled": true
-    },
-    "JM3Lz3tu7jY": {
-      "set": "MSH",
-      "sha1": "038fd9f4cfef59da02a706d3b3e35857d94cb527",
-      "words": 59639,
       "distilled": true
     },
     "Ku1d5-hrqwc": {
@@ -280,6 +268,12 @@
       "set": "SOS",
       "sha1": "61d4a3b1ea2404cd4c0bfc7f5f03950ec4446015",
       "words": 19751,
+      "distilled": true
+    },
+    "zZeHP3gwA7U": {
+      "set": "HOB",
+      "sha1": "28e9cf53b450ca37b0526024cd4278fd1e5c0a80",
+      "words": 20172,
       "distilled": true
     }
   }

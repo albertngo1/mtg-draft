@@ -125,12 +125,22 @@ of them win the game you draw them in, and they arrive on the back half of the p
   much for the game you drew them in. Play them; don't take them over a card that swings a game.
 - **Bilbo's Deadly Slice over Stir Up Trouble:** four mana that always kills beats one mana that costs
   you a body — and the field already agrees, taking Slice more than a pick earlier.
-- **…but that ordering is genuinely contested.** Samp, blind, put **both** Crude Bent Blade and Stir
-  Up Trouble *above* the Slice, on the menace logic: when their creature *count* is the resource
-  that matters, an edict that eats even a token is real removal, and the sacrifice cost is cheap in
-  a deck that trades armies off and rebuilds them every turn. He would also take **Rage into the
-  Valley** over the first Slice — while naming cheap value commons as the exact card class a blind
-  evaluation gets wrong. Where his prose fights a number, take the number; the argument still earns
+- **…but only half of that ordering is still contested.** Samp, blind, put **both** Crude Bent Blade
+  and Stir Up Trouble *above* the Slice, on the menace logic: when their creature *count* is the
+  resource that matters, an edict that eats even a token is real removal, and the sacrifice cost is
+  cheap in a deck that trades armies off and rebuilds them every turn.
+
+  On **Crude Bent Blade he was simply right**, and every source has now landed there. Limited
+  Resources graded it C/D in the set review and walked that back on air in the format overview,
+  calling it the best common in the set at a rare-level win rate; Lords of Limited reached
+  format-defining independently; Limited Level-Ups called it a design mistake, too good to be
+  common. A blind read, a graded review that reversed itself, and two gameplay channels all
+  converging is about as settled as this reference gets.
+
+  **Stir Up Trouble is the part still open.** There the ordering above stands and his prose is
+  fighting a number. He would also take **Rage into the Valley** over the first Slice — while
+  naming cheap value commons as the exact card class a blind evaluation gets wrong. Take the
+  number; the argument still earns
   its place when the pick is close.
 - **Gollum is a premium common** despite one host reporting it underperformed for him. The likely
   explanation is the one he names himself: he plays from a defensive posture, and this is a racing

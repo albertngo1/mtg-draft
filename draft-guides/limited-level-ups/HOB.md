@@ -4,11 +4,14 @@
 
 **This file now spans two eras, and they disagree.** The first five episodes (2026-07-30 → 08-06)
 are **pre-gameplay predictions** — published before the paper prerelease and before HOB hit Arena,
-with not one game played. The last three (2026-08-12 → 08-15) are **post-release**, recorded after
+with not one game played. The last five (2026-08-12 → 08-20) are **post-release**, recorded after
 Alex had drafted the format for four straight days and reviewed coaching logs from other players.
 
-**On any conflict, the post-release episodes win, and the State of the Format Address (2026-08-15)
-wins over everything else in this file.** 17Lands GIH WR still supersedes the whole document.
+**On any conflict, the post-release episodes win, and each later post-release episode outranks the
+ones before it.** The two week-two episodes — 2026-08-18 (draft VOD) and 2026-08-20 (Arena Direct
+Sealed) — are the freshest gameplay evidence in this file and win over the 2026-08-15 State of the
+Format Address on any point of disagreement, which in turn still wins over the release-week episodes.
+17Lands GIH WR still supersedes the whole document.
 
 **No per-card letter grades this set.** A contract deviation worth knowing about: LLU normally
 splits its set review into per-color episodes and grades every card. For HOB they ran a **three-part
@@ -42,6 +45,7 @@ the signal. The post-release episodes are **Alex solo**.
 | 2026-08-13 | The Top Common That No One Saw Coming | week 1, day 2 | Stronger |
 | 2026-08-15 | The Hobbit State of the Format Address! | week 1 retrospective + coaching data | Strongest (theory) |
 | 2026-08-18 | I Have a New Favourite Common! (draft VOD) | week 2, day 1 | **Strongest (play)** |
+| 2026-08-20 | Arena Direct Win-A-Box Event #1 (Sealed VOD) | week 2, Sealed | **Strongest (play)** |
 
 ## Week-one verdict (2026-08-15 — read this before the prerelease sections)
 
@@ -173,6 +177,24 @@ they are the highest-value lines in this file.
 - **Sting, Bilbo's Sword and Orcrist, Goblin-cleaver: rares → traps, do not play.** *"Two trap
   equipment... I think you should basically never play them."* Sting is designed for four-player
   games; Orcrist is *"super clunky on both ends"* and only barely creeps into playable.
+
+**Post-play → week-two (2026-08-15 → 2026-08-18/20).** The freshest reversal in the file, and the
+one the 08-18 episode is titled for:
+
+- **Mirkwood Nurturer: "filler-feeling engine piece" → Alex's new favourite common.** As late as the
+  08-12→08-15 window he called it *"really going to be a fairly filler-feeling card, but in some
+  decks... a really nice engine piece"* (see Card tips, Multicolor and hybrid). By 08-18 he built an
+  entire B/G value deck around it and named the video for the discovery: *"the real sauce of this
+  deck... was the nurturer picking up the goblins, the bent blades. That was all pretty nice... the
+  more I talk about it, the more the deck was like pretty good."* The upgrade is specifically about
+  **what** it picks up — Crude Bent Blade and the goblin/amass commons — not the card's own stats,
+  which he still rates as clunky in isolation. **This is the common the "I Have a New Favourite
+  Common!" title refers to.**
+- **Kíli the Resourceful, confirmed hard to splash.** Building a real Sealed pool on 08-20, he
+  explicitly rejects splashing Kíli despite having the fixing for it: *"Kíli, we can't splash Kíli.
+  That just doesn't make any sense"* — his pool only had ~5 real triggers (dwarves/equipment) for it,
+  below the density the card needs to be worth a splash slot. Confirms the existing **Must-kill**
+  card tip: it snowballs hard when it's *your* card, but it is not a generically splashable rare.
 
 **Between prerelease episodes (First Impressions → primer):**
 
@@ -308,6 +330,17 @@ There is **a lot** of fixing and, in both reviewers' read, **very little worth s
 - **Old Thrush** — {2} 1/2 flier, gain 2, put a basic on top. Flying plus lifegain are meaningful upgrades on this template, but Mark: *"I've never played this type of card when I wasn't three colors... I could see myself going the entire format without ever putting this card in the deck."*
 - **Long-Bodied Grey Dog** — {3} 2/2 flash reach, makes a tapped Treasure. Both reviewers baffled by it. Little flying in the set makes reach near-dead. No home.
 
+**Sealed pool-building method (2026-08-20 Arena Direct):** with light, non-committal fixing (a couple
+of Thrór's Maps, a Troop of Ponies, a Hobbit Hole) it's worth actually building out competing
+two-color decks before locking in, rather than eyeballing which colors "look" strongest. Alex builds
+three candidate 23-card lists side by side (B/R baseline, R/W, B/W) and picks the winner by **average
+card quality across the whole deck, not just the top end** — his tiebreaker: *"there's no card in
+there I'm like, 'oh yep, sucks when I draw that one.'"* When two pairs are close, that consistency
+check is the deciding factor, not raw bomb count. He then splashes the strongest 1–2 cards from the
+loser (here: Fíli the Pathfinder and Celebrate the Mountain-king) off the light fixing already in the
+pool — see Kíli the Resourceful in Card tips for a case where he ran the same math and **declined**
+the splash.
+
 ## Card tips
 
 Format: `- **Card** — list position (source). Note.` Positions are the primer's rankings, not grades. "both" = it appeared on both lists.
@@ -326,20 +359,6 @@ Format: `- **Card** — list position (source). Note.` Positions are the primer'
 - **Thorin's Last Stand** — not ranked. {2}{W}{W} instant, modal: +2/+1 to your team **or** destroy an artifact/enchantment. Mark nearly put it in his top three white commons — *not* because the set goes wide, but because **instant-speed artifact destruction is genuinely good in a set this full of equipment**, and it answers The Arkenstone.
 - **Well-Worn Spatula (?)** — not ranked. Referred to only as *"a one mana short sword that I think gains two life."* {1} is the only common equipment matching. The 23rd card you play to reach equipment critical mass for **Thorin, Mountain-king**.
 
-
-**Week-two addendum (2026-08-18 draft VOD):**
-
-- **Crude Bent Blade is a design mistake, and that is the format's shape.** Alex: *"I do think this
-  card is a mistake. It's too good to be common — it would be fine as an uncommon, a very good one."*
-  His structural complaint is that it inverts what synergy is supposed to do: a synergy piece is
-  normally a weak card that plays well with others, but Blade *"is just a good card on its own and it
-  makes so many other cards better"* — the rich get richer. This is his one solid criticism of a set
-  he otherwise likes more than most players do.
-- **Black is now contested at the table.** *"Black is very good. People have caught on."* His current
-  pattern: start black, then either move out of it or bully your way back in.
-- **Mirkwood Nurturer is the payoff card he's building around.** Picking up Crude Bent Blade with it
-  is *"one of the key synergies in blue-black"*; picking up Stony-Voiced Goblins or Down, Down to
-  Goblin-town turns filler into a value engine. He'll play two or three copies and take them early.
 
 **Post-play additions (2026-08-12 → 08-15):**
 
@@ -452,6 +471,21 @@ Format: `- **Card** — list position (source). Note.` Positions are the primer'
   Many black decks are light on real creatures, and the four-drop slot is crowded. Better once you
   have premium cheap creatures worth rebuying.
 - **Inside Information** — not discussed post-play by LLU, but note 17Lands marks it a trap.
+
+**Week-two additions (2026-08-18 → 08-20):**
+
+- **Crude Bent Blade is a design mistake — and that's a compliment to how good it is.** Alex: *"I do
+  think this card is a mistake. It's too good to be common — it would be fine as an uncommon, a very
+  good one."* His structural complaint is that it inverts what synergy is supposed to do: a synergy
+  piece is normally a weak card that plays well with others, but Blade *"is just a good card on its
+  own and it makes so many other cards better"* — the rich get richer. This is his one solid
+  criticism of a set he otherwise likes more than most players do. Confirmed again on 08-20: *"you
+  don't open a bunch of good rares, you hope to at least open some Bent Blades"* — treated as
+  rare-level value when building a Sealed pool.
+- **Black is now contested at the table, and the deck plan has shifted accordingly.** *"Black is very
+  good. People have caught on."* His current draft pattern: start black, then either move out of it
+  or bully your way back in — a sharper version of the week-one "black is your default, not your
+  commitment" framing (see Week-one verdict).
 ### Red
 
 - **Goblin-town Flunkies** — top common #1 (both). {1}{R} 1/1 haste goblin, amass Goblins 1 on entry. Mark's case: it blocks well, attacks well, grows your army, gives you one or two bodies you're happy to sacrifice, and carries relevant creature types. The haste matters more than it looks, and amass onto an existing army is effectively hasty too. Compare Rally at the Hornburg from LTR.
@@ -589,6 +623,18 @@ Format: `- **Card** — list position (source). Note.` Positions are the primer'
   The one elf card to build toward.
 - **Bard's Company** — *"very, very good... big old power-level buff to the deck."*
 - **Thranduil's Company** — a genuine bomb; take it and build blue-green *without* the elf theme.
+
+**Week-two addition (2026-08-18 draft VOD) — see Supersessions for the full reversal:**
+
+- **Mirkwood Nurturer is Alex's new favourite common,** the card the "I Have a New Favourite Common!"
+  video is named for. He built a B/G value deck around it: picking up **Crude Bent Blade** with it is
+  *"one of the key synergies in blue-black [or black-green],"* and picking up Stony-Voiced Goblins or
+  Down, Down to Goblin-town turns filler into a value engine. He'll play two or three copies and take
+  them early. Post-draft verdict: *"the real sauce of this deck... was the nurturer picking up the
+  goblins, the bent blades."* Reconciles with — doesn't overwrite — the "filler-feeling" line above:
+  the *card* is still unexciting in a vacuum, what changed is how highly he now values **what it can
+  pick up**, so pair it deliberately with cheap, sacrificeable/discardable value rather than judging
+  it on rate alone.
 ### Colorless
 
 - **Dwarven Mattock** — synergy uncommon (Mark). {2} equipment: auto-attaches to a dwarf on entry; +2/+2 and ward 1; equip {3}. The one-into-two curve attacks for four on turn two. **Pretty bad without the free attach — wants ~10 dwarves.** Note it does *not* get Dwarven Mauler's equip discount on the free attach, so that combo loses a little value.
@@ -617,7 +663,7 @@ Format: `- **Card** — list position (source). Note.` Positions are the primer'
 - **The Eagles Are Coming!** — top-3 rare on **both** lists (order differs). {1}{W} instant, kicker {2}{W}: return your own creature(s) to hand; at the next upkeep, make a 4/4 white flier for each. Alex: *"this is either busted or very busted."* Four distinct modes: (1) turn-two return a one-drop, attack with a 4/4 flier on turn three; (2) a two-mana protection spell that leaves a 4/4; (3) kicked offensively at six mana on your turn — birds arrive on their upkeep, can block, attack next turn; (4) kicked defensively as a combat blowout, birds arrive summoning-sick. **Timing warning: the birds appear at the next upkeep, so you must cast it on your own turn if you want to attack with them.** It picks up nontokens without letting you recast them — irrelevant, they're 4/4 fliers now.
 - **An Unexpected Party // At the Door** — top-3 rare on **both** lists. {2}{W}{W} enchantment: choose a creature type (dwarves or humans), those creatures get **+2/+2**. The adventure At the Door is {X}{2}{W} making X 2/2 red Dwarf tokens. Usually you cast At the Door for three tokens on turn six, then the enchantment on turn seven for **12 power and toughness from one card**. But there are real turn-four anthem plays — most anthems are +1/+1, and **+2/+2 is huge**. Mirkwood Nurturer can re-buy the enchantment in a grindy game.
 - **Fíli the Pathfinder** — top-3 rare on **both** lists. {3}{W} 2/2 legendary dwarf with storied: with an enduring story your creatures get +1/+1, and every nontoken dwarf entering (including itself) makes a 2/2 dwarf token. Four mana for two 2/2s minimum, and you'll usually have storied by then or the turn after. Mark: **"a straight A in any red-white deck, roughly C+ in a non-dwarf deck"** — it needs both abilities, so it is *not* an exciting splash.
-- **Kíli the Resourceful** — top-10 rare (both). {1}{W} 1/2 legendary dwarf with storied: with an enduring story, the first equip each turn costs {0}; and whenever another dwarf or equipment enters, **draw a card — but only once each turn**. Mark's correction to Alex: the once-per-turn gate matters more than it sounds, because several equipment come stapled to a dwarf and would otherwise double-trigger. Still a two-drop that snowballs and fuels itself. **Must-kill.**
+- **Kíli the Resourceful** — top-10 rare (both). {1}{W} 1/2 legendary dwarf with storied: with an enduring story, the first equip each turn costs {0}; and whenever another dwarf or equipment enters, **draw a card — but only once each turn**. Mark's correction to Alex: the once-per-turn gate matters more than it sounds, because several equipment come stapled to a dwarf and would otherwise double-trigger. Still a two-drop that snowballs and fuels itself. **Must-kill.** **Post-play (2026-08-20, Sealed):** confirmed hard to splash — with only ~5 dwarf/equipment triggers live in a real pool, Alex rejected the splash outright: *"Kíli, we can't splash Kíli. That just doesn't make any sense."* Great when it's natively in your two colors; not a generic splash target the way Fíli the Pathfinder or Celebrate the Mountain-king are.
 - **Settle the Wreckage** — **deliberately excluded from both top 10s.** Alex thinks it's overrated by trauma: *"there are fewer situations where this card is going to be the blowout you think it is, and more situations than you might think where you have to use it on one creature"* — four mana to remove one creature and ramp them is a bad card. It also misses noncombat threats entirely (any landfall lord triggering every turn), and good players play around it. Alex's prediction: **this will be one of the biggest deltas between top-player and bottom-player stats on 17Lands.** He'll still play it; he just won't take it early. **Know it exists** — an opponent with {2}{W}{W} open should change your attacks; swing with five creatures instead of seven.
 
 ## Source episodes
@@ -631,6 +677,7 @@ Format: `- **Card** — list position (source). Note.` Positions are the primer'
 - 2026-08-13 — The Top Common That No One Saw Coming | The Hobbit Draft (`hEXTpSCKK7A`)
 - 2026-08-15 — The Hobbit State of the Format Address! | Draft Guide (`o6jz8EmwdmY`)
 - 2026-08-18 — I Have a New Favourite Common! | The Hobbit Draft (`UZ07TLhx5ls`)
+- 2026-08-20 — The First of Many Hobbit Arena Direct Runs! | Arena Win-A-Box Event #1 (`Kc03EadPn9Y`)
 
 Card names were verified against the Scryfall `set:hob` card list (193 cards) and the 188-card HOB
 17Lands list — auto-captions mangled most of them. Names that could not be pinned down with

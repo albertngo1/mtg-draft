@@ -2,9 +2,9 @@
 
 ## ⚠ Recency rule (read first)
 
-**Two episodes distilled, and both are the weakest evidence tier there is.** LR 865 and 866 are the release-week set reviews — grades made largely from card images. 866 is marginally better sourced than 865 because both hosts had played some games by then and repeatedly cite specific play experiences ("I had this card in a deck and it performed well"), but it is still a review, not a format read. Marshall and LSV say so themselves ("we don't give out any A's in the review and then retroactively one of the uncommons hits like the A-minus level"). On any conflict, the **newest source wins**; the eventual Format Overview and Sunset Show supersede everything here, and **the 17Lands data in the card reference supersedes both** on anything measurable.
+**Three episodes distilled now, and the newest is a different evidence tier than the first two.** LR 865 and 866 are the release-week set reviews — grades made largely from card images. 866 is marginally better sourced than 865 because both hosts had played some games by then and repeatedly cite specific play experiences ("I had this card in a deck and it performed well"), but it is still a review, not a format read. Marshall and LSV say so themselves ("we don't give out any A's in the review and then retroactively one of the uncommons hits like the A-minus level"). **LR 867 (the Format Overview) is the first genuinely post-play source** — recorded after real games, with Marshall citing live win-rate/play-rate numbers on air. Note the asymmetry: Marshall played heavily (three boxes plus an Arena Direct run) and drives most of 867's data; LSV opted out of the format after ~3 sealed/3 drafts and contributes general impressions plus his Sealed experience, not deep draft reps. On any conflict, the **newest source wins**; 867 supersedes 865/866 wherever they conflict, and **the 17Lands data in the card reference supersedes all three** on anything measurable.
 
-**Not yet distilled:** the format overview (announced at the end of 866 as "next week") and the Sunset Show.
+**Not yet distilled:** the Sunset Show.
 
 Coverage is now **complete** — all 188 cards have an LR grade: 115 commons/uncommons from 865, 68 rares/mythics from 866. (Five commons and eleven uncommons in the 17Lands list carry no LR grade because they are the adventure/land halves LR discussed under a different name.)
 
@@ -16,8 +16,19 @@ Grades are LR's A–F scale with +/− subgrades, plus two subgrades: **sideboar
 |---|---|---|---|---|
 | 2026-08-04 | 865 | The Hobbit Set Review: Commons and Uncommons | release-week | **Weakest** |
 | 2026-08-11 | 866 | The Hobbit Set Review: Rares and Mythics | release-week, some games played | **Weakest** |
+| 2026-08-21 | 867 | The Hobbit Format Overview and Level-Up: Mental Toughness | Format overview (post-play) | **Strongest-in-file** |
 
 ## Supersessions
+
+### 867 over 865/866 — post-play corrections
+
+867 is where Marshall and LSV walk back the review grades against real win-rate data. These are the highest-confidence calls in the file.
+
+- **Crude Bent Blade was badly underrated in 865 — the single biggest miss of the review.** Neither host could remember the exact grade on air, guessing "C or D," and Marshall was adamant "there is no way we gave this thing a D." Whatever it was, it's wrong: 867 calls it **the best common in the set**, at a win rate on par with rares (60.7%, next to Rhovanion Rampager's 60.4%). The reasoning that got it wrong: "generally speaking, three-mana edicts aren't very good" undersold how good a same-turn Shock-plus-equipment is in a format that's a board-state race. Treat the 865 grade for Crude Bent Blade as void; it is a first-pick-quality common.
+- **Equipment was underrated in 865, and 867 extends 866's on-air correction rather than revising it.** Goblin Plate Mail gets the same treatment as Crude Bent Blade — Marshall and LSV call the pair "two excellent cards" / "egregious common equipment" / "very pushed." No new letter grade was stated, but the description (equip 4 routinely gets paid late-game, "I've seen goblin plate mail equipped countless times") confirms 866's "treat every equipment grade as one step low" instruction rather than replacing it.
+- **Simic Elves (GU) was the highest-hyped archetype in 866 and it flopped.** 866 had Marshall calling blue-green "incredible" off the strength of Thranduil, Sindarin Liege. 867's real-play verdict: Simic Elves "has been absolutely terrible" — the deck has individually powerful pieces that "just doesn't have the tools to keep up with a quick start from a more assertive deck," and falling behind is fatal in this format. **LSV's 866 dissent was the one that held up**: "blue-green misses a lot of the time." Thranduil the card is fine in isolation ("this card is not the reason why") — it's the archetype shell around it that doesn't work.
+- **Black-Red (Rakdos, goblins/amass) and Black-Green (Golgari, wolves/ferocious) are confirmed as the top two decks** by both play rate and win rate, validating 866/865's black-heavy card-quality reads. Black overall is "definitely the best" color; white and green are "the worst performing colors" overall — a meaningfully worse read on white than either set review gave it credit for.
+- **The format-is-fast / punish-for-falling-behind read from 866 is confirmed, and extends to Sealed too:** "it's very difficult to come back in this format once you fall behind, even in sealed."
 
 ### 866 over 865
 
@@ -50,26 +61,39 @@ What follows are grades that moved during the 865 discussion. These are the card
 - **Splashing looks bad and the fixing is a trap.** LR saw no gold cards pulling toward 3+ colors, and graded Old Thrush D specifically because bad fixing misleads inexperienced players.
 - **Adventure heuristic:** compare the adventure half's cost to the creature's. If the adventure is *cheaper* you'll get both halves nearly every time (Bilbo Baggins Burglar, Gollum Silent Slinker) — a real grade bump. If it's *more expensive* (Bilbo, Luckwearer's Burglar's Plot) you're usually giving the spell half up.
 - **Sealed-specific:** LR called out **Sound the Trumpets** as D+ in draft but **C+ in Sealed** ("sealed matters a lot these days"), and **Master's Councillors** as potentially excellent in Sealed. The general shape — slower games, more room for reactive cards — applies.
-- Vibe check: both hosts ended positive. "Refreshing to be in a normal fantasy environment," Core-Set-like simplicity, an actual vanilla creature. Caveat: small sets historically have short runway.
+- **Post-play (867), Sealed confirmed:** Red-Black is the most-played pair (mirrors draft), and RB/BG matchups turn into removal-heavy grindfests. Curve as a **valley, not a slope** — stock up on 1–2 drops, thin the middle, then load the top end — because you still cannot afford to punt the early board just because the deck plans to grind. Pinecone Strike and Ravening Warg overperform in Sealed specifically because they hold the fort early. Marshall now runs a **second Smaug, the Great Calamity** in Sealed decks — "a little too slow" for draft speed, but the extra removal-plus-flier at the top is worth it in the longer Sealed games. Blue-White has also quietly worked for Marshall as a third Sealed option alongside RB and BG.
+- Vibe check: both hosts ended positive on the set's design (867 doubles down: "core set adjacent," deliberate and well thought-out, unlike Spider-Man). But **867 is much colder on the small-set format itself** — both hosts expect no long-term depth or replay runway ("I cannot see this set having any longevity... at draft 100 I think I'm just going to be bored to tears") and LSV stopped drafting it entirely after ~3 sealed/3 drafts. Treat this guide as covering a format with a short shelf life.
+
+### Post-play archetype ranking (867)
+
+Real play rate and win rate, not review-time guessing:
+
+1. **Black-Red (Rakdos, goblins/amass)** — best win rate *and* most-drafted. Black dictates most drafts by the third pick.
+2. **Black-Green (Golgari, wolves/ferocious)** — right there with BR on both metrics; a rarity for green.
+3. **Blue-White (Azorius, recruit)** and **Red-White (Boros, storied/equipment)** — both "fine."
+4. **Blue-Black (WB / Orzhov)** — not one of the five signposted pairs, far fewer games played (~3,300 vs. 40,000–70,000+ for the top decks), but a real win-rate outlier when it comes together — likely a card-quality artifact (you only submit it when your black-white removal is "unassailable"), not a repeatable draft plan.
+5. **Green-Blue (Simic, elves)** — "absolutely terrible" in practice. See Supersessions above; do not chase this archetype off 866's hype.
+
+Overall color power: **black best**, blue and red solid, **white and green worst-performing**.
 
 ## Archetypes
 
 Five supported pairs, not ten. LR did **not** rank them — no gameplay data existed. What follows is their read on each from the signpost cards.
 
 ### Blue-White Humans — recruit
-Signposts: **Bard the Bowman** (B), **Patient Instructor** (C+), **Eagle's Rescue** (B). Recruit gives looting to white and leaves a 1/1 behind on a nonland discard, which feeds the go-wide payoffs and the draw-your-second-card cards. LSV on Eagle's Rescue: an aura that makes every token a 3/3 flier, so you have to be assertive. LR were positive on the shell but skeptical of the draw-two payoffs in isolation.
+Signposts: **Bard the Bowman** (B), **Patient Instructor** (C+), **Eagle's Rescue** (B). Recruit gives looting to white and leaves a 1/1 behind on a nonland discard, which feeds the go-wide payoffs and the draw-your-second-card cards. LSV on Eagle's Rescue: an aura that makes every token a 3/3 flier, so you have to be assertive. LR were positive on the shell but skeptical of the draw-two payoffs in isolation. **Post-play (867): "fine."** Neither a breakout nor a trap — mid-pack by play rate and win rate.
 
 ### Black-Red Goblins — amass + sacrifice
-Signposts: **Goblin Plate Mail** (C/C+), **Fearsome Goblin Pair** (B−), **Bolg of the North** (C+). The deck wants sacrifice outlets because amass pays you for re-making the Army rather than growing it. **Snowslope Hunter** (B) is a free, no-mana sac outlet that turns Army tokens into cards — LR were highest on it. Bolg was the disappointment: LSV thinks it's much harder to line up than it reads.
+Signposts: **Goblin Plate Mail** (C/C+), **Fearsome Goblin Pair** (B−), **Bolg of the North** (C+). The deck wants sacrifice outlets because amass pays you for re-making the Army rather than growing it. **Snowslope Hunter** (B) is a free, no-mana sac outlet that turns Army tokens into cards — LR were highest on it. Bolg was the disappointment: LSV thinks it's much harder to line up than it reads. **Post-play (867): the best archetype in the format** — highest win rate and most-drafted, "mostly off the strength of black" with red as "a very good complement." Black's commons are strong enough that black dictates draft direction by pick three most of the time.
 
 ### Black-Green Wolves — ferocious
-Signposts: **Duskwatch Hunter** (C/C+), **The Chief Warg** (B), **Large Bear** (B−). Every ferocious trigger in the episode was an *attack* trigger, so the deck has to be able to attack profitably. **Desolation Prowler** (B+) is the best card in the archetype and the highest-graded card of the review — a 2-mana putrid leech that turns ferocious on by itself.
+Signposts: **Duskwatch Hunter** (C/C+), **The Chief Warg** (B), **Large Bear** (B−). Every ferocious trigger in the episode was an *attack* trigger, so the deck has to be able to attack profitably. **Desolation Prowler** (B+) is the best card in the archetype and the highest-graded card of the review — a 2-mana putrid leech that turns ferocious on by itself. **Post-play (867): right behind Rakdos** on both play rate and win rate — "a rarity for green," per Marshall, since green is otherwise one of the weakest colors.
 
 ### Red-White Dwarves — storied + equipment
-Signposts: **Nori, Teller of Tales** (C), **Thorin Oakenshield** (C+), **Bifur, Melodic Rider** (B). LR expect storied to come on naturally in this deck. **Dwarven Mattock** is a build-around B *inside* Dwarves and a D outside it — the equipment payoffs live entirely in this one archetype.
+Signposts: **Nori, Teller of Tales** (C), **Thorin Oakenshield** (C+), **Bifur, Melodic Rider** (B). LR expect storied to come on naturally in this deck. **Dwarven Mattock** is a build-around B *inside* Dwarves and a D outside it — the equipment payoffs live entirely in this one archetype. **Post-play (867): "fine."** Mid-pack, unremarkable in either direction.
 
 ### Green-Blue Elves — landfall + ramp
-Signposts: **Mirkwood Nurturer** (C/C−), **Silvan Reveler** (B), **Thranduil, Sindarin Liege** (B+). Thranduil was the highest-graded signpost in the set — 3-mana Mulch on the adventure half, then an elf lord that makes a token on every landfall. Marshall: "blue green looks incredible." LSV's counter, and the one to weight: "blue-green misses a lot of the time — it's one of the decks that misses the most often, up to and including the last Lord of the Rings."
+Signposts: **Mirkwood Nurturer** (C/C−), **Silvan Reveler** (B), **Thranduil, Sindarin Liege** (B+). Thranduil was the highest-graded signpost in the set — 3-mana Mulch on the adventure half, then an elf lord that makes a token on every landfall. Marshall: "blue green looks incredible." LSV's counter, and the one to weight: "blue-green misses a lot of the time — it's one of the decks that misses the most often, up to and including the last Lord of the Rings." **Post-play (867) confirms LSV's dissent, not Marshall's hype: this archetype "has been absolutely terrible."** The individual pieces are powerful but the deck can't keep pace with a faster start and this format punishes falling behind hard. Do not draft toward Elves off the signpost grades alone — see Supersessions.
 
 ## Card tips
 
@@ -103,7 +127,7 @@ Signposts: **Mirkwood Nurturer** (C/C−), **Silvan Reveler** (B), **Thranduil, 
 - **Plunder the Trollshaws** — C+. Think Twice. Triggers the draw-two payoffs on both halves, and the flashback works on their turn.
 - **Enchanted River's Grasp** — C+. Blue's clean removal aura. Taps, strips counters, removes abilities — templated specifically to kill Armies.
 - **Uneasy Partings** — C+. Put a creature on top or bottom; costs 1 less against attacking nontokens. Solid blue playable.
-- **Long Lake Nuisance** — C. Four-mana 3/1 flier with recruit. Good stat line for a flier.
+- **Long Lake Nuisance** — C. Four-mana 3/1 flier with recruit. Good stat line for a flier. 867 confirms LSV's power-over-toughness read from the review: "been a fine four drop playable... it dies to basically anything, but who cares? It bashes pretty decent."
 - **Lake-town Mariners** — C. 6/5 vigilance ward 2 + Gone Fishing (blink two of your permanents at instant speed). Two mediocre halves that add up.
 - **Thranduil's Decree** — C. Six-mana counter that lets you cast a countered permanent free. LR: "it's going to be an F or an A, not in between." Much worse in Bo1.
 - **Confusticate and Bebother** — C−. Force Spike-for-4 or draw two discard one. Careful with reactive card counts.
@@ -130,7 +154,7 @@ Signposts: **Mirkwood Nurturer** (C/C−), **Silvan Reveler** (B), **Thranduil, 
 - **Rage into the Valley** — C+. Draw a card, lose a life, amass 2.
 - **Ravening Warg** — C. Two-mana 2/2 deathtouch that gains 2 life on a ferocious attack.
 - **Gollum, Silent Slinker** — C−/D (split). 4/3 menace at common + a 1-mana adventure (counter + 2 life). You get both halves nearly always.
-- **Crude Bent Blade** — C−/D (split). Equipment stapled to an Edict. LSV: edicts will be bad in a format full of tokens and Armies.
+- **Crude Bent Blade** — **B** (865: C−/D split; corrected on air in 867, see Supersessions). Equipment stapled to an Edict — auto-sac an opposing creature, then equip 2 for +2/+1 stays behind. **The best common in the set post-play**, sitting near rare-level win rate (60.7%, essentially tied with Rhovanion Rampager). The 865 "edicts will be bad" read was wrong for this format: it's a board-state race, and same-turn removal-plus-a-stat-stick is exactly what wins that race.
 - **Gollum the Abandoned** — D+ overall, **C/C+ in an aggressive deck with sacrifice fodder.** Can't block, which is a much bigger liability than aggro drafters expect.
 - **Dreaded Bat-Cloud** — C+/D+ (split). 4/2 flying deathtouch that costs 3 less if a creature died this turn. Morbid is harder to enable than it looks.
 - **Great Fierce Bee** — D/D+. Three-mana 2/2 flier that scries on any creature death.
@@ -152,10 +176,10 @@ Signposts: **Mirkwood Nurturer** (C/C−), **Silvan Reveler** (B), **Thranduil, 
 - **Óin the Brave** — C. 1/3 legend with storied, rummage activation. "Would have been a rare a decade ago."
 - **Gundabad Opportunist** — C. Four-mana 4/2 that exiles-to-play the top card. A two-for-one served up to cheap removal.
 - **Burn, Burn, Tree and Fern** — C. Saga: 6 damage → destroy an artifact → add R → add R. Four-mana sorcery-speed kill spell, frontloaded.
-- **Smaug, the Great Calamity** — C. Seven-mana 5/5 flying legendary dragon **at common**, with a 5-mana "deal 5 damage" adventure. LR loved the design, doubted the mana cost. Note: dies to The Black Arrow; the *mythic* Smaug does not.
+- **Smaug, the Great Calamity** — C. Seven-mana 5/5 flying legendary dragon **at common**, with a 5-mana "deal 5 damage" adventure. LR loved the design, doubted the mana cost. Note: dies to The Black Arrow; the *mythic* Smaug does not. 867, Sealed-specific: worth a **second copy** — still "a little too slow" for draft's pace, but in Sealed's slower, removal-heavy games the extra burn spell plus a durable top-end flier earns the slot.
 - **Dwarven Mauler** — C−. One-mana 2/1 that reduces equip costs by 2. Play it if you want a 1-mana 2/1 dwarf.
 - **Smaug's Fury** — D+. +3/+0, reach and first strike. Generic pump with no payoffs behind it.
-- **Iron Hills Stalwart** — D. Five-mana 4/5 reach trample that reattaches an equipment. "Not interested."
+- **Iron Hills Stalwart** — D. Five-mana 4/5 reach trample that reattaches an equipment. "Not interested." 867 confirms it's "been a bit of a flop" — the classic five-drop problem of competing with better options at the slot.
 
 ### Green
 
@@ -191,7 +215,7 @@ Signposts: **Mirkwood Nurturer** (C/C−), **Silvan Reveler** (B), **Thranduil, 
 - **Bolg of the North** (BR) — C+. Five-mana 5/5 that sacs a creature to throw its power at another and amasses the excess. Harder to line up than it looks.
 - **Thorin Oakenshield** (RW) — C+. 3/2 trample, ward 1 for your team with an enduring story. Every RW deck plays it; not a bomb.
 - **Patient Instructor** (WU) — C+. Three-mana 2/2 vigilance that recruits on ETB.
-- **Goblin Plate Mail** (BR) — C/C+. Two-mana equipment that amasses 1 and auto-attaches. Flexible enough to take early; equip 4 is real.
+- **Goblin Plate Mail** (BR) — C/C+ (no new letter grade in 867, but treat as a step up — see Supersessions). Two-mana equipment that amasses 1 and auto-attaches. Flexible enough to take early; equip 4 is real. 867: called out alongside Crude Bent Blade as one of "two excellent cards," "egregious," "very pushed" — equip 4 routinely gets paid late-game rather than sitting unused after the creature dies.
 - **Duskwatch Hunter** (BG) — C/C+. Three-mana 3/1 that can't be blocked by tokens and puts a counter on ETB. Plays as a 4-power creature.
 - **Mirkwood Nurturer** (GU) — C/C−. Three-mana 3/2 that bounces a permanent for a counter. One is fine; don't play three.
 - **Nori, Teller of Tales** (RW) — C. Two-mana 2/2 legend that gives an attacker first strike.
@@ -245,7 +269,7 @@ Marshall and LSV had both played real games before recording this one, and it sh
 ### Black
 
 - **Head of the Hunt** — **A−**. 2B 4/3 wolf with **flash**, and any opposing creature that would die gets exiled and makes you a 2/2 Wolf. Both hosts had lost to it. Play pattern: attack, they block, flash it in.
-- **Rhovanion Rampager** — **A−**. Three-mana 3/2 that eats a creature on attack for counters equal to its power, and amasses its own power on death. Marshall lost to it: *"it grew shockingly fast."* No evasion is the real answer to it.
+- **Rhovanion Rampager** — **A−**. Three-mana 3/2 that eats a creature on attack for counters equal to its power, and amasses its own power on death. Marshall lost to it: *"it grew shockingly fast."* No evasion is the real answer to it. 867 confirms with real numbers: 60.4% win rate, essentially tied with Crude Bent Blade's 60.7% — LR's live take-it-or-leave-it comparison ("threat or an answer") holds up; both are pack-1 priorities over almost anything else in black.
 - **Gollum, Riddle Master** — **B+** (mythic). Two-mana 3/1; name odd or even, then collect draw / counter / drain across three separate triggers. Play order: draw first, then counter, then drain. On the play name even, on the draw name odd.
 - **The Sackville-Bagginses** — **B**. Two-mana 2/2, sac something on ETB for a card and a Treasure, then drain on every token sacrifice. Slots into the amass/sacrifice deck.
 - **The Master of Lake-town** — **C+**. Three-mana 3/2 deathtouch that mills on life loss and draws on death per threshold graveyard. *"I'm trying to find ways that this isn't that good, and it there's no knocks on it."* Two toughness on a 1BB card is the one.
@@ -316,9 +340,20 @@ Two more where the *data* is kinder than LR:
 - **The Misty Mountains Cold** — LR **D**, data **+4.8 IWD** at 80% play. The Treasures do more than the review credited.
 - **The Mountain-king's Return** — LR **D+** (865), data **61.5% GIH / +6.4 IWD**. The "you need a creature in the yard" risk resolves more often than they expected.
 
+## Mindset: tilt management (LR 867, Level-Up: Mental Toughness segment)
+
+Not HOB-specific — this is general limited/tournament mental-game advice from the second half of 867. Kept short; only the parts with concrete in-draft or in-match application are here.
+
+- **Check in mid-event, not after.** LSV's literal checkpoint after a couple of losses in a row: "Am I actually making good decisions here, or am I just submitting a deck in 30 seconds and playing bad? Am I not mulliganing well enough?" Use it as a real question between rounds/drafts of a Sealed run or Arena Direct.
+- **Fix the cheap inputs first.** Water, food, a short walk, a bathroom break — check these before assuming the fix has to be mental. "Part of what could lead you to be tilted is to actually be lacking in some of these... status bars."
+- **Cut distractions when the stakes are real.** Phone, Discord, background video all measurably cost win rate mid-match. Fine for a casual bedtime draft; turn them off for a paid Sealed/Direct run.
+- **After a loss, review your own decisions before blaming variance.** "What could I have done differently on turn five?" is the only question that improves next time — losses chalked up entirely to luck don't teach you anything.
+- **Don't punt the rest of a multi-round event over one bad beat.** In Sealed pods or team drafts, tilting off costs you rounds you could still win, not just the one that just ended. Save venting for teammates afterward, never for the opponent across the table.
+
 ## Source episodes
 
 - 2026-08-04 — Limited Resources 865 – The Hobbit Set Review: Commons and Uncommons (`G9bqewk4i4Y`)
 - 2026-08-11 — Limited Resources 866 – The Hobbit Set Review: Rares and Mythics (`b-mJNcpSo-w`)
+- 2026-08-21 — Limited Resources 867 – The Hobbit Format Overview and Level-Up: Mental Toughness (`zZeHP3gwA7U`)
 
-*Auto-caption caveat: these are speech transcripts, so card names came through mangled ("Fely the Pathfinder", "Belladonna Tuk Tuk", "Eland Moonreader", "Ratagast of Rosabel"). **All card names in this file have been verified against the 188-card HOB list and corrected** — no `(?)` readings remain.*
+*Auto-caption caveat: these are speech transcripts, so card names came through mangled ("Fely the Pathfinder", "Belladonna Tuk Tuk", "Eland Moonreader", "Ratagast of Rosabel", "Raian Rampager" for Rhovanion Rampager, "Merkwood" for Mirkwood). **All card names in this file have been verified against the 188-card HOB list and corrected** — no `(?)` readings remain.*
