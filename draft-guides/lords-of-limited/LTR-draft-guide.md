@@ -1,13 +1,14 @@
 # The Lord of the Rings: Tales of Middle-earth (LTR) — Draft Guide
 
-> Synthesized from 5 Lords of Limited episodes (Early Access through retrospective). This guide is the lead lens that **decodes** the 17Lands data — every GIH WR is archetype-conditional (trust where it transfers, discount where it inflates; see AGENTS.md). This guide is secondary. Source episodes span 2023-06-17 → 2023-08-08.
+> Synthesized from 6 Lords of Limited episodes (Early Access through retrospective, plus a 2026 flashback-queue recap). This guide is the lead lens that **decodes** the 17Lands data — every GIH WR is archetype-conditional (trust where it transfers, discount where it inflates; see AGENTS.md). This guide is secondary. Source episodes span 2023-06-17 → 2023-08-08 for the original format; the 2026-08-24 episode adds flashback-queue-specific predictions only (see recency rule).
 
 ## ⚠ Recency rule (read first)
 
-- Notes span **2023-06-17 → 2023-08-08**. On any conflict, the **newest episode wins**.
+- Notes span **2023-06-17 → 2026-08-24**. On any conflict, the **newest episode wins** — with one exception below.
 - The **2023-06-17 Early Access** episode (H833J6KUFAs) was played BEFORE the public launch — weakest evidence, treat as day-zero impressions.
 - The **2023-07-03 Extended Edition** (LnO6bWR-7Gc) is a mid-format deep-dive; strong signal but still evolving meta.
-- The **2023-08-08 "50 Takes in 50 Minutes"** retrospective (hKHM128ThfQ) is the MOST AUTHORITATIVE source — fully settled reads, format wrap-up. When it disagrees with earlier episodes, the retro wins.
+- The **2023-08-08 "50 Takes in 50 Minutes"** retrospective (hKHM128ThfQ) is the MOST AUTHORITATIVE source on the original 2023 format — fully settled reads, format wrap-up. When it disagrees with earlier 2023 episodes, the retro wins.
+- **The 2026-08-24 episode is a three-years-later flashback recap, not new evidence about the 2023 format.** Recorded from memory the week the Arena LTR flashback queue opened, with zero new games played — it does NOT outrank the 2023 retrospective on anything about the original settled format, and everywhere it restates a take it's consistent with the retro (no reversals). Its actual value is different: it's the **only source in this file about the modern Arena flashback queue specifically** — predictions of how *that* metagame will differ from 2023 (see Signals and seat reads). Keep the two uses separate: original-format verdicts still come from 2023-08-08; flashback-queue predictions come from 2026-08-24 only, and are unverified guesses, not post-play reads.
 - **This guide decodes the 17Lands data rather than ranking beneath it.** Every GIH WR is archetype-conditional — use the guide to tell which archetype's deck a number came from: trust the WR where it transfers (cleanly-castable cards), discount it where it inflates (payoffs/multicolor). See AGENTS.md.
 
 ## Source timeline
@@ -18,7 +19,8 @@
 | 2023-07-03 | LTR: The Extended Edition — LOL Episode 329 UNEDITED | Mid-format | Medium-high — deep theory episode |
 | 2023-07-24 | How to 6-0 PT LTR — Podcast Episode 332 | Pre-PT / late | High — PT prep, card rankings finalized |
 | 2023-08-04 | PT LTR Draft Review — Episode 333 | Post-PT | High — reviewing real Pro Tour drafts |
-| 2023-08-08 | 50 LTR Takes in 50 Minutes — Episode 334 | Retrospective wrap-up | **Decisive — most authoritative, final verdicts** |
+| 2023-08-08 | 50 LTR Takes in 50 Minutes — Episode 334 | Retrospective wrap-up | **Decisive — most authoritative, final verdicts (original 2023 format)** |
+| 2026-08-24 | NEW Draft Tips for The Hobbit and Lord of the Rings (LTR half only) | Flashback recap, recalled from memory, no new games — recorded ahead of the Arena LTR flashback queue opening | Reaffirms the 2023 retro (no reversals); sole source on flashback-queue-specific predictions |
 
 ## TL;DR meta read
 
@@ -79,6 +81,7 @@ Ranked by the **2023-08-08 retrospective** final consensus. Earlier episodes hyp
 - Lorien Revealed is almost always a spell you want to cast (draw three) not just cycle — budget mana to cast it when possible.
 - Oliphaunt is usually just a tapped mountain. Do not seriously expect to cast it.
 - 17 lands + land cyclers is the correct default for control blue decks that need every land drop.
+- 2026-08-24 flashback recap, broader framing: most decks across the format — not only green — ran 15–16 lands once they had two to three one-mana cyclers, not just 17. Treat 17 as the floor for decks light on cyclers, not the universal default.
 
 **Curve and body sizing:**
 - 1/3s have never been better; 2/1s have never been worse. The format rewards defensive bodies that also attack well later when ring-tempted.
@@ -105,7 +108,7 @@ Ranked by the **2023-08-08 retrospective** final consensus. Earlier episodes hyp
 Dedupe across episodes; retro takes win where conflicts exist. (?) marks names uncertain due to caption garble.
 
 ### White
-- [**Errand-Rider of Gondor (?)**](https://scryfall.com/search?q=Errand-Rider%20of%20Gondor%20%28%3F%29) — Best white common. Three-mana 3/2 that lets you loot (discard/draw) and draws a second card if you control a legendary. Essential to white decks of all types: aggro, control, midrange. If this card is not good for you, you are building wrong.
+- [**Errand-Rider of Gondor (?)**](https://scryfall.com/search?q=Errand-Rider%20of%20Gondor%20%28%3F%29) — Best white common. Three-mana 3/2 that lets you loot (discard/draw) and draws a second card if you control a legendary. Essential to white decks of all types: aggro, control, midrange. If this card is not good for you, you are building wrong. Name and text confirmed via the 2026-08-24 recap (read verbatim on air: "two in a white for a 3-2 human soldier... draw a card, then if you don't control a legendary creature, put a card from your hand on the bottom of your library") — the (?) can be treated as resolved.
 - [**Protector of Gondor (?)**](https://scryfall.com/search?q=Protector%20of%20Gondor%20%28%3F%29) — Solid four-drop 3/3 that makes a 1/1 token. Good filler; fills the curve.
 - [**Banish from Ederas (?)**](https://scryfall.com/search?q=Banish%20from%20Ederas%20%28%3F%29) — Overperformer award. A five-mana sorcery exile spell that costs two less if the target is tapped. Went from "never play this" to "happy to run two copies."
 - [**Reprieve**](https://scryfall.com/search?q=Reprieve) — One-mana instant that bounces a spell and draws a card. Nathan Sawyer ran three copies at the PT; Ben/Ethan prefer Relentless Rohirrim over it for ring-tempting, but it has real applications particularly in white-heavy controlling builds.
@@ -135,7 +138,7 @@ Dedupe across episodes; retro takes win where conflicts exist. (?) marks names u
 - [**Bitter Downfall**](https://scryfall.com/search?q=Bitter%20Downfall) — Black instant removal. Premium; always take it when it arrives.
 - [**Lash of the Balrog**](https://scryfall.com/search?q=Lash%20of%20the%20Balrog) — One-black instant: sac a creature or pay four to destroy target creature. Efficient flexible removal.
 - [**Nasty End (?)**](https://scryfall.com/search?q=Nasty%20End%20%28%3F%29) — One-black instant: sac a creature as additional cost; draw two cards (draw three if the creature was legendary). Critical in any black deck NOT paired with blue. Black's way to stay in the game on cards. One or two copies is ideal; run it.
-- [**Torment of Gollum**](https://scryfall.com/search?q=Torment%20of%20Gollum) — Three-mana black sorcery: look at opponent's hand, they discard a card, amass two. Good four-drop that clogs a very competitive slot. Excellent but there are so many competing four-drops in black.
+- [**Torment of Gollum**](https://scryfall.com/search?q=Torment%20of%20Gollum) — Three-mana black sorcery: look at opponent's hand, they discard a card, amass two. Good four-drop that clogs a very competitive slot. Excellent but there are so many competing four-drops in black. Sequencing tip (2026-08-24 recap): Pelargir Survivor on two into Torment of Gollum on three is a clean curve for black-blue.
 - [**Black Breath**](https://scryfall.com/search?q=Black%20Breath) — Two-black sorcery: creatures your opponent controls get -1/-1 until end of turn, ring tempts you. Silver-bullet vs wide strategies. Run one copy in all black decks; the ring-tempt on a situational spell makes it maindeckable.
 - [**Gollum's Bite**](https://scryfall.com/search?q=Gollum%27s%20Bite) — Small black removal spell at uncommon. Top-five black uncommon.
 - [**Haunt of the Dead Marshes (?)**](https://scryfall.com/search?q=Haunt%20of%20the%20Dead%20Marshes%20%28%3F%29) — One-black 1/1: ETB scry one, and you can pay two-black to return it from the graveyard tapped (requires controlling a legend). Excellent with Gollum Patient Plotter. Appears in all black decks.
@@ -164,8 +167,8 @@ Dedupe across episodes; retro takes win where conflicts exist. (?) marks names u
 - [**Gandalf's Sanction (?)**](https://scryfall.com/search?q=Gandalf%27s%20Sanction%20%28%3F%29) — See Blue section (blue-red signpost).
 
 ### Green
-- [**Many Partings**](https://scryfall.com/search?q=Many%20Partings) — Best green fixing common. One-green sorcery: search for a basic land, put it into your hand, make a food token. The backbone of multi-color green fixing. Cannot be interacted with (unlike Wose's Pathfinder). Ben's preferred green card.
-- [**Wose's Pathfinder (?)**](https://scryfall.com/search?q=Wose%27s%20Pathfinder%20%28%3F%29) — One-green 1/1: tap to add one mana of any color (for spells). A mana dork that opens green acceleration and any splash. Ethan prefers this; enables turn-two pathfinder into four-drop strategies. Does die to removal.
+- [**Many Partings**](https://scryfall.com/search?q=Many%20Partings) — Best green fixing common. One-green sorcery: search for a basic land, put it into your hand, make a food token. The backbone of multi-color green fixing. Cannot be interacted with (unlike Wose's Pathfinder). Ben's preferred green card. Nuance from the 2026-08-24 recap: it was surprisingly NOT green's top common in the green-white legends deck specifically — Great Hall of the Citadel does the same fixing job better there, and running two or three Great Halls alongside heavy Many Partings gets awkward (Many Partings wants ~10 Forests, but a Great-Hall-heavy manabase can't support that many basics at only 15 lands).
+- [**Wose's Pathfinder (?)**](https://scryfall.com/search?q=Wose%27s%20Pathfinder%20%28%3F%29) — One-green 1/1: tap to add one mana of any color (for spells). A mana dork that opens green acceleration and any splash. Ethan prefers this; enables turn-two pathfinder into four-drop strategies. Does die to removal. Per the 2026-08-24 recap, this is the better fix specifically for a Great-Hall-of-the-Citadel-heavy green-white legends manabase, where Many Partings' basic-land hunger doesn't fit.
 - [**Generous Ent**](https://scryfall.com/search?q=Generous%20Ent) — Five-green 5/7 with Forest-cycling one. Excellent land cycler with a meaningful body you can actually cast in ramp decks. #2 land cycler overall.
 - [**Frodo Baggins**](https://scryfall.com/search?q=Frodo%20Baggins) — One-green-white 1/3 legendary uncommon: ETB ring tempts you, whenever another legend ETBs under your control the ring tempts you again, and Frodo must be blocked if able when it is your ring bearer. Best non-rare for the legends deck. Snowbally and must-kill.
 - [**Peregrin Took (?)**](https://scryfall.com/search?q=Peregrin%20Took%20%28%3F%29) — Two-green 2/3: whenever you make a token you get an additional food token. Best in green-white token strategies.
@@ -189,6 +192,7 @@ Dedupe across episodes; retro takes win where conflicts exist. (?) marks names u
 - [**Palantir of Orthanc**](https://scryfall.com/search?q=Palantir%20of%20Orthanc) — Colorless rare artifact. Creates value over time; contested how good it actually is. Ben loves it (top-three rares), Ethan thinks it is overrated. Retro verdict: still strong but requires play and is beatable.
 - [**Inherited Envelope (?)**](https://scryfall.com/search?q=Inherited%20Envelope%20%28%3F%29) — Two-mana artifact: taps for any color, ring tempts you. Colorless fixing with ring-tempt. Useful in multi-color decks.
 - [**Mirror of Galadriel (?)**](https://scryfall.com/search?q=Mirror%20of%20Galadriel%20%28%3F%29) — Two-mana artifact: pay five (one less per legend you control), tap to scry one and draw a card. Strong in legends decks where the cost can get to two or three mana.
+- [**Lembas (?)**](https://scryfall.com/search?q=Lembas%20%28%3F%29) — New to the notes (2026-08-24 recap). Cheap artifact cantrip that can be sacrificed to gain 3 life, and shuffles itself back into your library when it does. Ben's blue-white Bath Song control piece: buffers your life total after you've thinned the deck, so an opponent trying to mill/deck you out runs out of outs first. Part of the "clear the mind"-style loop with Bath Song's chapter three, not a card to prioritize outside that build.
 
 ### Lands
 - Land cyclers: ranked Lorien Revealed > Generous Ent > Troll of Khazad-Dum > Eagles of the North > Oliphaunt.
@@ -209,6 +213,12 @@ Dedupe across episodes; retro takes win where conflicts exist. (?) marks names u
 
 ## Signals and seat reads
 
+**Flashback-queue predictions (2026-08-24, unverified — see recency note above).** Recorded ahead of the Arena LTR flashback queue opening, not from games. Treat these as a hypothesis to test, not a settled read:
+- **Red-black is expected to be unusually contested for this pair's normal tier**, because the queue's early population skews toward players coming straight off The Hobbit, where red-black is the best archetype — expect that mentality (and the pick priorities that go with it) to carry over and crowd the lane, at least initially.
+- **Green-white legends is expected to be more open than its power level would suggest**, especially early in the two-week queue window before the table catches on; the hosts expect it to skew toward newer/returning players early and toward experienced/optimizing drafters later.
+- **General queue-population read:** early in a flashback queue's run, expect more new/unfamiliar players; late in the run, expect the remaining population to skew toward committed, experienced drafters who've done their homework. Adjust openness reads accordingly as the queue matures.
+
+**Signals from the original 2023 format (retro-settled):**
 - **Black being open:** If black commons (Dunland Crebain, Claim the Precious, Lash of the Balrog) are wheeling past pick five, black is open. This does not happen often at competitive tables; do not count on it. More commonly, one or two good black cards come and then it dries up by pick three or four.
 - **Blue being open:** Blue goes deeper than black — Pelargir Survivor, Stern Scolding, Birthday Escape, even Lorien Revealed can wheel more often than expected, especially at Arena tables. Blue is the most consistently available color throughout a draft.
 - **Red-White signals:** Rohirrim Lancer and Rally at the Hornburg wheeling (pick eight or later) are strong signals that red-white is open and you are essentially alone in the lane.
@@ -278,3 +288,4 @@ The transcripts are YouTube auto-captions with heavy garbling of Magic card name
 - 2023-07-24 — How to 6-0 PT LTR — Podcast Episode 332 (CMJylQBx6n4)
 - 2023-08-04 — PT LTR Draft Review — Episode 333 (MydOJ_rhDSY)
 - 2023-08-08 — 50 LTR Takes in 50 Minutes — Episode 334 (hKHM128ThfQ)
+- 2026-08-24 — NEW Draft Tips for The Hobbit and Lord of the Rings — LTR half only (`CLSCSyv03hw`), flashback recap ahead of the Arena LTR flashback queue; the HOB half of this episode is covered in HOB-draft-guide.md

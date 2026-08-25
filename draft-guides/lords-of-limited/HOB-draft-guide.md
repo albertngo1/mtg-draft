@@ -2,16 +2,17 @@
 
 ## ⚠ Recency rule (read first)
 
-**Two episodes, and the second one is the real guide.** The 2026-08-11 crash course was recorded on Arena release day with **no drafts played** — Ben Morning and Ethan Sachs skipped previews, skipped first impressions, and neither prereleased (*"we're kind of going in blind"*). The 2026-08-17 episode is their **week-one post-play info dump**: Ethan drafted heavy blue to mythic, Ben got shoved into red-black repeatedly and won a Collector Booster box, both are ~10 drafts deep, best-of-one, pick-one only.
+**Three episodes now; the newest is the strongest evidence.** The 2026-08-11 crash course was recorded on Arena release day with **no drafts played** — Ben Warney and Ethan Sachs skipped previews, skipped first impressions, and neither prereleased (*"we're kind of going in blind"*). The 2026-08-17 episode is their **week-one post-play info dump**: Ethan drafted heavy blue to mythic, Ben got shoved into red-black repeatedly and won a Collector Booster box, both are ~10 drafts deep, best-of-one, pick-one only. The 2026-08-24 episode is a **post-play read with two weeks of results behind it** — Arena Direct/sealed reps (14 Arena Directs, 3 boxes won) plus a full pick-by-pick pack one/two draft log — recorded the same week HOB's coverage winds down in favor of an LTR flashback (that half is out of scope for this file; see LTR-draft-guide.md).
 
-**Where the two conflict, 2026-08-17 wins.** The crash-course grades were predictions; the week-one reads are from games.
+**Where episodes conflict, the newest wins.** The crash-course grades were predictions; the week-one and week-two reads are from games, and week-two carries the most reps.
 
 ### Source timeline
 
 | Date | Title | Phase | Weight |
 |---|---|---|---|
 | 2026-08-11 | Prerelease Crash Course: The Hobbit (1h 27m) | pre-format, no drafts played | **Weakest** |
-| 2026-08-17 | Down, Down to Grixis-Town! | week one, ~10 drafts each, mythic | **Strongest** |
+| 2026-08-17 | Down, Down to Grixis-Town! | week one, ~10 drafts each, mythic | Strong |
+| 2026-08-24 | NEW Draft Tips for The Hobbit and Lord of the Rings (HOB half only) | week two, 14 Arena Directs + pack-by-pack draft log, post-play with two weeks of results | **Strongest** |
 
 ## Supersessions
 
@@ -28,6 +29,12 @@ Crash-course take → week-one take, and the verdict.
 - **Gathering of Darkness is worse than it reads.** Unintuitive week-one reversal: red-black runs only 8–10 creatures and much of the format's removal exiles, so the gravedigger half misses. **Rage into the Valley is now firmly better.**
 - **Not a splashy format — confirmed and hardened.** *"You're not supposed to splash in this format."* Only splash a card that does the specific thing you need (removal), and cut tap lands down to **one, sometimes zero** — stumbling on a tapped land loses games outright.
 - **Blocking: still unresolved, now with sides.** Ben (red-black): blocking is effectively illegal, play defence with removal, always be attacking. Ethan (blue): on the draw he takes every trade offered, and thinks refusing to trade is *why* the play/draw gap is so large. Both agree the gap is real — the Discord figure quoted is ~56% on the play vs ~44% on the draw.
+
+**From the 2026-08-24 week-two check-in (supersedes 2026-08-17 where noted):**
+
+- **Ragged Short Spear was dismissed, now a real include.** Ben originally graded it *"the worst equipment ever made"* and never revisited the card text. Week two: 17Lands Arena Direct best-of-one data has it around a C+, ahead of cards he expected to beat it, and he's come around on it specifically for flood insurance and card filtering in a format that can grind to a halt. Still a *"hope not to play it"* card if the rest of the deck is good enough — not a pickup, a floor-raiser.
+- **Thrór's Map: Ben flips from out to in, but only outside straight draft.** He'd previously been off it; two weeks in he wants it for the land-drop insurance it shares with Old Thrush, mainly in Arena Direct and sealed pools where the fixing matters more. He's explicit he still doesn't want it as a turn-two play, which keeps the existing "never your turn-two play" verdict below intact for regular draft.
+- **Black is starting to close off at the two-week mark.** Ethan's live read, not yet backed by 17Lands numbers: the format's meta is visibly shifting as black gets more contested table to table, which is worth weighing against the week-one "get deep into blue or black" advice below — that advice ages as the format matures and black dries up.
 
 ## Format speed / meta read
 
@@ -71,6 +78,14 @@ Crash-course take → week-one take, and the verdict.
 - **Blue's own removal is weak** (Enchanted River's Grasp, Uneasy Partings are just fine), so blue decks want **single-pipped white interaction** — Magnificent End and Celebrate the Mountain-king — as the second colour.
 - **The 17Lands disagreement, stated on air.** Sorting by archetype win rate on 2026-08-16 put both blue pairs *last*, which Ben calls *"so counterintuitive to my experience"* — the commons leaderboard is all Grixis cards. Their hypothesis: heavy-blue decks get bucketed as mono-blue or as an off-pair, and blue is bad in any deck **not** built on Lakeshore Apothecary. Treat blue as a base-colour read, not a colour-pair read.
 
+### Week-two check-in (2026-08-24)
+
+Recorded two weeks post-release, mostly a pick-by-pick pack one/two draft log plus Arena Direct/sealed talk (14 Directs, 3 Collector Booster boxes won) rather than a fresh format-truths list — the color and archetype rankings above stand unreversed. What's new:
+
+- **The format is compressing, not just speeding up.** Ben: a normal format's learning curve plays out over 4–6 weeks; HOB is doing the same arc in about two. Both hosts still rate it their favorite of the recent run of small sets (Hobbit, TMT, Marvel Super Heroes), crediting the common-oriented, pattern-recognizable gameplay — but flag it can feel more like a mirrored constructed matchup than open-ended limited once you know the format (e.g., red-black mirrors playing near-identical turn two/three/four sequences).
+- **A hot pack in your best archetype doesn't mean every pack stays hot.** Ben's pack one in a red-black draft handed him six straight first-pickable cards (two Gollum the Abandoned, Bothersome Noisemaker, Goblin Plate Mail, Dáin Ironfoot, Down, Down to Goblin-town); pack two of the same draft was dry for red-black. Read this as normal variance from a neighbor also fighting for the lane, not a signal to abandon a proven-open start. Free speculation into an off-color card when a pack is simply empty in your colors (Ethan speculating on Bilbo, Luckwearer when a pack had no red-black) is low-cost, but don't let it talk you out of the lane that's actually open.
+- **Green-splash tech, restated.** Attercop, when green is your unavoidable second color, is now explicitly a *"really serviceable"* two-drop Ben has *"come way up"* on — compared directly to Ravening Warg in black as the same shape of card: demands an answer, gets there eventually.
+
 ## Archetypes
 
 **Week-one ranking (2026-08-17): B/R > blue-X > U/W > B/G > R/W dwarves > U/G.** Ethan's ranking of what to pair with base blue: **white > black > red >> green**. Ben's caveat on U/B specifically — *"two great tastes that don't taste great together"*: blue wants to grow Apothecaries and grind, black wants to amass and pressure, and the deck often can't decide which it is.
@@ -106,7 +121,7 @@ Ranked by Ben's crash-course power rankings (pre-format, superseded above).
 - **Lake-town Lookout** — Ethan tried to defend it as Crude Bent Blade insurance; Ben's rule wins — *"don't play bad cards to make their good cards worse."*
 ### Blue
 
-- **Bilbo, Luckwearer** — both hosts' #1 blue uncommon. "They finally made Switcheroo playable" by stapling it to a looter; the joke line is trading your recruit token for their best creature.
+- **Bilbo, Luckwearer** — both hosts' #1 blue uncommon. "They finally made Switcheroo playable" by stapling it to a looter; the joke line is trading your recruit token for their best creature. Signal note (week two): seeing it as late as pick six is a strong tell that blue is wide open at your table.
 - **Old Fat Spider Can't See Me** — *"in the data dumpster,"* and both hosts are massive fans anyway. It neuters an amass army without letting red-black rebuy the trade, and the free chapter-three/four draws trigger blue's draw-two payoffs without spending mana. Ethan's heuristic reversed from *"hold it"* to **get it down as early as possible**.
 - **Bilbo Baggins, Burglar** — top-three common, but week one it is **not clearly blue's most important card** — Lakeshore Apothecary is. Take Bilbo first anyway; the Apothecaries are the ones that wheel.
 - **Plunder the Trollshaws** — "the full package". Pitch it to recruit, then have a draw-two sitting in the graveyard.
@@ -116,12 +131,13 @@ Ranked by Ben's crash-course power rankings (pre-format, superseded above).
 - **Enchanted River's Grasp** — one of Ben's two notable omissions. Too much bounce, self-bounce and sacrifice running around for an aura to stick.
 - **Thranduil's Decree** — Ethan was initially high on this six-mana counter, then never wanted to pick it in the practice draft: "that must not be very good if I don't actually want to pick it out of a pack."
 
-- **Master's Conciliator** — the second half of blue's two-drop core. Grows to a 5/3 vigilance quickly, and multiples genuinely mill out the blue mirror. Fill your own graveyard to seven first.
-- **Confiscate and Bother** — a draw-two trigger you can hold up on their turn; part of why the blue deck plays at instant speed.
-- **Thrór's Map** — mostly a **blue** card: a repeatable way to trigger draw-two. Never your turn-two play.
+- **Master's Councillors** — the second half of blue's two-drop core. Grows to a 5/3 vigilance quickly, and multiples genuinely mill out the blue mirror. Fill your own graveyard to seven first.
+- **Confusticate and Bebother** — a draw-two trigger you can hold up on their turn; part of why the blue deck plays at instant speed.
+- **Thrór's Map** — mostly a **blue** card: a repeatable way to trigger draw-two. Never your turn-two play. Week two: Ben went from off it to actively wanting it, but mainly for the land-drop insurance in Arena Direct/sealed pools where fixing is scarcer — still not a card he's happy to play on turn two in a straight draft deck.
+- **Old Thrush** — a mover up in week two. 2-mana 1/2 flyer with a triggered ability (?) that gains 2 life and tutors a basic land onto the library, then shuffles. Plays the Crude Bent Blade game from both sides — fine to sacrifice to it, and grows into a real threat as a 3/2 flyer when equipped — and the life gain plus land-hitting matters more than it looks. Seen more in Arena Direct/sealed than draft so far, but Ben has started valuing it there too.
 ### Black
 
-- **Gollum the Abandoned** — Ethan's #1 black uncommon. "Hits like a truck on turn two" — the drain happens even when there's nothing to exile, and exiling flashback cards off a recruit is oppressive. The threat of recursion is real.
+- **Gollum the Abandoned** — Ethan's #1 black uncommon. "Hits like a truck on turn two" — the drain happens even when there's nothing to exile, and exiling flashback cards off a recruit is oppressive. The threat of recursion is real. Two-copy tech (week two): sacrifice one to the other's ability to return it to hand, then replay — a repeatable drain loop given enough mana; Ben took an opponent from 10 to 0 juggling a pair of them.
 - **Gnashing of Teeth** — Ben's #1 black uncommon. "Absolutely premium." Sweeps the 1/1s and X/1s or finishes something post-combat: "why does black get to wreck all of blue-white's work in one card for free?"
 - **Down, Down to Goblin-town** — both hosts' #2 black uncommon. "Torment of Hailfire plus" — hand disruption, a body, and a double drain.
 - **Desolation Prowler** — the Putrid Leech reprint; both say it could easily have made their top black uncommons list.
@@ -135,6 +151,7 @@ Ranked by Ben's crash-course power rankings (pre-format, superseded above).
 
 - **Gathering of Darkness** — **week-one mover down.** Red-black plays only 8–10 creatures and much of the format's removal exiles, so the gravedigger half whiffs. Rage into the Valley is just better.
 - **Ravening Warg** — the filler two-drop to prefer when your deck is short on point-and-click removal: a death-touch body your opponent must answer beats Front Porch Sentries' death trigger.
+- **Reverent Howl** — new to the notes (week two). 2-mana black instant, modal: target player draws two and loses two life, or target creature gets +2/+2 and lifelink until end of turn. Live disagreement: Ben calls it a "hope not to play it" card, cut from his best red-black decks; Ethan actively wants a copy — it's a Sign in Blood that can also close a race, and the lifelink mode is game-winning if it lands unanswered. Goes up in a contested lane or in sealed.
 ### Red
 
 - **Pinecone Strike** — Ben's format truth #3: broken. Best or second-best common in the set, and it lines up against nearly every premium uncommon in the format.
@@ -145,9 +162,12 @@ Ranked by Ben's crash-course power rankings (pre-format, superseded above).
 - **Tidings of War** — both hosts' #1 sleeper common pre-format, and week one Ben's engine card for red-black **aggro**: turn-one amass, flash back for three more, curve into Goblin Plate Mail and Rage into the Valley. Ethan is cooler on it and thinks it's much worse in the midrange builds.
 - **Smaug, the Great Calamity** — week one both hosts are **off it** as a high pick. Fine in red-black midrange, actively wrong in the aggro build. Ben also notes the visual trap: it looks like the deal-three, and Pinecone Strike is the deal-three.
 - **Dori, Bearer of Friends** — two-thirds of the way to storied on its own, since it's a legend that makes a treasure. Two-drop into Dori and you have an enduring story.
+- **Dáin Ironfoot** — new to the notes (week two). 2R legendary rare, makes and attaches an Axe equipment on ETB, and grants double strike to every equipped attacking creature when Dáin attacks. Ben's pack-one-pick-one over Crude Bent Blade in a red-black draft log episode; Ethan's counter, unresolved live disagreement — he'd take Crude Bent Blade instead and feels "much more comfortable starting black than red."
+- **Ragged Short Spear** — week-two mover up. 1R equipment: ETB may discard a card to draw two; equipped creature gets +2/+2, equip cost 3. Ben had it graded as unplayable and never revisited the card text; 17Lands Arena Direct best-of-one data has it around a C+, and he now rates it for the flood insurance and filtering a grindy format needs. Still a card you'd rather not need.
 
 ### Green
 
+- **Beorn the Fierce** — new to the notes (week two). 3GG mythic 6/6 trample bomb: other bears you control get +2/+2 at the beginning of combat on your turn, and it can put a trample counter on a creature to make it a bear too (draw two if you control three-plus bears). Ben's pack-three-pick-one, called it broken on sight; carried a green splash off Dáin Ironfoot to a strong finish. The kind of rare that can justify green when nothing else does.
 - **Troll Negotiations** — Ethan's clear #1 green uncommon and "probably the right top uncommon". Ben is scared to cast four mana into open mana; the case for it is casting it on turn four while they're tapped out.
 - **Beorn's Hospitality** — Ben's #1 green uncommon. Landfall counters, and a seven-mana mode that turns it into a land-count creature. "Fine — don't love it, don't hate it."
 - **Old Fat Spider** — Ben's #2 green uncommon. "This could be a common by today's standards." Once it sticks on six mana it's very annoying.
@@ -158,6 +178,7 @@ Ranked by Ben's crash-course power rankings (pre-format, superseded above).
 - **Boughside Wanderers** — Ben's sleeper, low confidence. Fine top end and a two-for-one at common, but black and blue get their two-for-ones at three mana instead of six.
 
 - **Wilderland Scrounger** — week-one **mover up**: a single-pipped 3/6 ferocious body that has bodied both hosts. The green card to play if green is genuinely your second colour.
+- **Attercop** — week-two **mover up**. 1G 2/1 deathtouch with landfall (gets a +1/+1 counter). Ben: "come way up" on it — if you have to play green at all, it's a "really serviceable" two-drop, the same shape as Ravening Warg in black: it demands an answer and eventually gets its man.
 ### Multicolor and hybrid
 
 - **Bolg of the North** — Ethan's #1 multicolour and "one of the best, or maybe the best, uncommon in the set".
@@ -175,10 +196,15 @@ Ranked by Ben's crash-course power rankings (pre-format, superseded above).
 - **Bard the Bowman** — Ethan grades it "a B−" and mostly likes it because he likes blue-white. Ben thinks it's too understated and anemic, and wishes it could recruit itself.
 - **Eagle's Rescue** — the dream is pitching it to recruit, then reanimating it onto a 1/1 token. Ben: "that's a lot of work for a four-mana 3/3 flier." Ethan: "yeah, but you also got to draw a card."
 - **Mirkwood Nurturer** — Ben doesn't think it's a good card but concedes the juice is real: picking up Crude Bent Blade, a Stony-Voiced Goblins body, or a saga. The question is whether you survive to get it.
+- **Long-Bodied Grey Dog** — new to the notes (week two), colorless. 3-mana 2/2 flash reach that makes a tapped Treasure on ETB. Ethan's shorthand: "a colorless Dori" that also reaches — it can ambush and trade, sets up Crude Bent Blade sacrifices safely, and the Treasure enables splashes (e.g. Celebrate the Mountain-king). Was doing quiet work in Arena Directs; include when it supports the plan rather than as an auto-play.
+- **Dwarven Mattock** — new to the notes (week two), colorless equipment. 2-mana, auto-equips to a dwarf on ETB, gives +2/+2 and ward 1, equip cost 3. The reason to end up in red-white dwarves off a late red-black-gets-closed pivot: wheeling a second copy on top of one you already have "hits hard."
 
 ## Source episodes
 
 - 2026-08-11 — Prerelease Crash Course: The Hobbit (`XLh9YSRvotE`), 1h 27m
 - 2026-08-17 — Down, Down to Grixis-Town! (`dXfR2zxQa3E`), week-one info dump
+- 2026-08-24 — NEW Draft Tips for The Hobbit and Lord of the Rings (`CLSCSyv03hw`), week-two check-in + pack-by-pack draft log (HOB half only — the episode splits into an LTR flashback segment covered in LTR-draft-guide.md)
 
-Card names were verified against the Scryfall `set:hob` list — auto-captions mangled most of them ("Bulg of the North" → Bolg of the North, "Sven Reveler" → Silvan Reveler, "Nashing of Teeth" → Gnashing of Teeth, "Merkwood Nurturer" → Mirkwood Nurturer, "Bejorn's Hospitality" → Beorn's Hospitality).
+Host name note (week two): the intro clearly names him "Ben Warney" — earlier notes in this file spell it "Ben Morning," likely an auto-caption mangle; not corrected retroactively throughout, flagged here.
+
+Card names were verified against the Scryfall `set:hob` list — auto-captions mangled most of them ("Bulg of the North" → Bolg of the North, "Sven Reveler" → Silvan Reveler, "Nashing of Teeth" → Gnashing of Teeth, "Merkwood Nurturer" → Mirkwood Nurturer, "Bejorn's Hospitality" → Beorn's Hospitality, "Dne Ironfoot" / "Dane" → Dáin Ironfoot, "adder cop" → Attercop, "Bejorn the fierce" → Beorn the Fierce, "Reverend Howl" → Reverent Howl, "Longbodied gray dog" → Long-Bodied Grey Dog, "Dwarven Madic" / "Dwarven Maddox" → Dwarven Mattock).
