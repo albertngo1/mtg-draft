@@ -1,8 +1,11 @@
 ## Format brief — everything that isn't a single card
 
-> Rare and mythic tiles are a first impression, not a verdict — this format is young and small, so
-> only the commons have been drafted enough to trust. Claims attributed to **Samp** are pre-data:
-> he drafted the whole format blind, which is what makes his read decorrelated and also unvalidated.
+> **Updated 2026-08-30** — 17Lands refreshed to 397,637 two-colour decks (from 260,869 on 08-20) and
+> the format is settled. Twelve new expert episodes distilled, including two post-data retrospectives.
+> Rare and mythic tiles are still a first impression; the commons are fully converged.
+> Claims attributed to **Samp** from episodes 73–75 are pre-data — he drafted the format blind — but
+> **episode 76 is his data reveal and scores that blind read against 17Lands**, so where the two
+> conflict, ep 76 wins.
 
 ### What the data says
 
@@ -27,6 +30,83 @@ best is Pinecone Strike.
 Trollshaws, Long Lake Nuisance, Lakeshore Apothecary, Patient Instructor, Bilbo Baggins Burglar,
 Uneasy Partings, Sound the Trumpets, Esgaroth Garrison. These are not merely playable late; several
 of them win the game you draw them in, and they arrive on the back half of the pack.
+
+### The week-three correction: blue and white are under-drafted
+
+**This is the single biggest change since the format opened, and it comes from two sources that
+reached it independently in the same week.**
+
+Limited Level-Ups #257 (2026-08-28) found blue open and reported that **Blue-White is the top winning
+deck for top players, not Rakdos** — checked twice, two weeks apart. Rough Drafts' data reveal
+(ep 76, same week) got there from the opposite direction: he soft-forced black all format, posted a
+64.7% win rate but only **6 trophies in 22 drafts**, and diagnosed the gap as a deckbuilding failure
+caused by misvaluing exactly these cards.
+
+What the aggregate says, once you look:
+
+- **Celebrate the Mountain King is the highest win-rate uncommon in the set** — above Desolation
+  Prowler, which is remarkable given how far black outperforms white overall.
+- **Mountain King's Return and Stone by Sunlight are both B+**, and both are routinely graded C by
+  people reading them cold. The saga is three mana for card selection, a 1/1 token, a reanimated
+  3-drop and a counter.
+- **The best blue cards are the defensive two-drops, not the flashy three-drop.** Below-rare blue by
+  win rate: Bilbo Luckwearer > Plunder the Troll Shaws > Long Lake Nuisance ≈ Master's Counselors ≈
+  Lakeshore Apothecary > **Bilbo Baggins, Burglar (only a C+)**. A three-mana 2/1 blocks nothing in a
+  menace format; a two-mana 1/3 that grows blocks everything.
+- **The top gold cards below rare are Bard the Bowman, Patient Instructor and Thranduil** — all three
+  point back into blue/white.
+
+The mechanism is the blue engine: Lakeshore Apothecary and Master's Counselors as payoffs, a dense
+pile of recruit and draw enablers, five or six removal spells, and **no top end at all** — Gandalf is
+a trap in these decks. It is portable across all four blue pairs, not a Blue-White-only theme.
+
+**Caveat that matters: none of this transfers to Sealed.** See the Sealed section below.
+
+### Play/draw is the largest ever recorded on Arena
+
+**HOB has the highest on-the-play win rate of any set in Arena's history — roughly 55%** — and is
+also near the fastest by average turn count. Not "high for a fast format"; the highest, by a clear
+margin, ever.
+
+The mechanism is amass: the player on the play can always size their army just past profitable
+blocking, so the player on the draw absorbs free damage for the first several turns. Amass has now
+been printed three times in Limited (WAR, LTR, HOB) and warped all three.
+
+Two consequences worth acting on:
+
+1. **Cheap defensive bodies are worth more than they read.** Ravening Warg is a top-six black common
+   despite reading like filler, purely because it blocks an amass army and Desolation Prowler on
+   curve. The same logic is why the blue 1/3s outperform.
+2. **Do not go all-in on an early threat.** A big amassed creature or an aura on turn four asks to be
+   blown out on tempo — most opponents have one or two removal spells and are ten cards deep.
+
+### Sealed is a different format — default Rakdos
+
+The 17Lands Sealed numbers diverge sharply from draft, and the gap runs the opposite way to the
+week-three draft correction:
+
+| Pair | Sealed | Draft |
+|---|---|---|
+| Rakdos (BR) | **59.7%** (39.7% share) | 57.1% |
+| Boros (RW) | 57.4% | 55.8% |
+| Golgari (BG) | 57.0% | 56.2% |
+| **Azorius (WU)** | **51.0%** | **55.7%** |
+| Simic (UG) | 49.2% | 51.8% |
+
+**Azorius loses nearly five points moving from draft to Sealed**; Rakdos gains two and takes almost
+40% of the field. NumotTheNummy, running over 66% in HOB Sealed against a 54% draft rate across the
+same weeks, reaches the same verdict from the pool side: *"six of my seven boxes are Rakdos"*, and
+white is *"unplayable right off the bat"* in most six-pack pools.
+
+Sealed build rules that recur in every one of his eight Sealed VODs:
+
+- **You cannot start your curve at three.** Five or six two-drops is the floor.
+- **Hobbit Hole is a dead land without Halflings** — cut to zero or one. (This directly contradicts
+  the draft advice to run up to four in Blue-Black and Blue-Green; both are correct in their format.)
+- **18 lands is a real option** when the curve tops at six, and 16 is a real option when it does not.
+  The land range is wider in Sealed than in draft.
+- **Five to eight removal spells**, counted explicitly at build time.
+- **Bo1 means narrow cards get cut harder** than they would in Bo3.
 
 ### The draft plan
 

@@ -45,7 +45,14 @@ the signal. The post-release episodes are **Alex solo**.
 | 2026-08-13 | The Top Common That No One Saw Coming | week 1, day 2 | Stronger |
 | 2026-08-15 | The Hobbit State of the Format Address! | week 1 retrospective + coaching data | Strongest (theory) |
 | 2026-08-18 | I Have a New Favourite Common! (draft VOD) | week 2, day 1 | **Strongest (play)** |
-| 2026-08-20 | Arena Direct Win-A-Box Event #1 (Sealed VOD) | week 2, Sealed | **Strongest (play)** |
+| 2026-08-20 | Arena Direct Win-A-Box Event #1 (Sealed VOD) | week 2, Sealed | Strong (play) |
+| 2026-08-25 | This Deck Was SO Fun To Play! (Win-A-Box Sealed VOD) | week 3, Sealed | Strong (play) |
+| 2026-08-27 | The Most Broken Pool I Opened All Event (Win-A-Box, ft. Abram) | week 3, Sealed | **Strongest (sealed)** |
+| **2026-08-28** | **A Hobbit Draft Meta Update + The Art of Card Selection (LLU #257)** | **week 3 meta update** | **Strongest (theory)** |
+
+**Note:** #257 is likely the channel's last word on HOB — he says so on air (*"I honestly don't know
+if I'll be talking about Hobbit next… Lord of the Rings is coming back"*). Treat it as the settled
+read.
 
 ## Week-one verdict (2026-08-15 — read this before the prerelease sections)
 
@@ -315,6 +322,100 @@ doesn't need elf density — it is self-fuelling. If you open **Thranduil's Comp
 wide open, take it and build stompy/draw-two rather than tribal.
 
 **Unsupported pairs:** W/B, W/G, U/B, U/R, R/G have no signposts and no payoffs. Of these, U/R and U/B are live off raw card quality (see the Grixis note above).
+
+## Week-three meta update (LLU #257, 2026-08-28) — supersedes the week-one archetype read
+
+**The thesis: blue is the open colour, and Blue-White is the best deck in good hands.** This is a
+straight reversal of the "black and red are the colours, everyone knows it" consensus that the
+week-one sections below are built on.
+
+> *"The word is out that black and red are great — these are the known-quantity good colours. But I
+> think that blue is also really strong, it just hasn't quite gotten as much hype."*
+
+- **Blue-White is the top winning deck for top players, not Red-Black.** He checked this twice across
+  two weeks and it held: *"In some formats where there's a dominant deck, it's dominant across the
+  board… it is pretty interesting to note that in the hands of good players, top players are
+  drafting, building, playing Blue-White to good effect."* His explanation is that the deck is almost
+  entirely card-selection decisions, which is where skill separates.
+- **Lean blue when the pick is close.** Not a blanket instruction — *"this is not a sweeping
+  generalisation of avoid black and go for blue, this is more just turning the knobs a little"* — but
+  he now takes Lakeshore Apothecary over Ravening Warg at pick three, which he says he would not have
+  done a week earlier.
+- **By week three, black and red are so heavily drafted that you can be the only blue-green drafter
+  in the pod.** Being alone in a lane is necessary but not sufficient; you still need the payoffs.
+- **Independent corroboration:** Rough Drafts' data-reveal (ep 76, same week) reached the same
+  conclusion from the opposite direction — he soft-forced black, underrated every good white and blue
+  uncommon, and blames exactly that for a 6-trophies-in-22-drafts run at a 64.7% win rate.
+
+### The blue package — the actual engine
+
+Two payoffs and a pile of enablers, and it is **portable across all four blue pairs**, not a
+Blue-White-only theme:
+
+- **Payoffs:** Lakeshore Apothecary (2-mana 1/3, grows on your second draw each turn) and Master's
+  Counselors (1/3 vigilance, +2/+0 per graveyard with 7+ cards, mills 3 on your second draw). Blue-
+  White adds **Bard the Bowman** as a third payoff of roughly equal quality, and Toy Maker as a
+  filler fourth if you are below ~7 payoffs.
+- **Enablers, in his order:** Bilbo Luckwearer (*"one of the best uncommons in the set"*) > Plunder
+  the Troll Shaws > Patient Instructor (*"still underrated — sometimes goes last pick in pack one"*)
+  ≈ Long Lake Nuisance (*"people see four-mana 3/1 flyer and think that's bad; recruit adds a lot"*)
+  > Bilbo Baggins, Burglar (*"solid, but not a slam dunk… it doesn't spark joy"*).
+- **Ratio rule:** play every payoff you can get, then make sure the rest of the deck triggers them.
+  *"Even the first Apothecary I'm skeptical about if I don't think I'm going to trigger it basically
+  every turn."* A heavy blue deck ends up as three card classes only — enablers, payoffs, and five or
+  six removal spells.
+- **Do not build it as a control deck.** *"A control game plan is very difficult in this format… it's
+  just very difficult to answer every threat that matters in a set with really good equipment."* He
+  is explicit that **Gandalf is just bad** here and that these decks need no finisher slot: *"you
+  don't really need to dedicate slots to top-end cards."*
+- **Master's Counselors micro-rule:** when both graveyards are about even, **mill yourself**, not the
+  opponent — you want your own Plunder the Troll Shaws in the bin, and you do not want to switch on
+  their flashback cards early.
+
+### The blue pairs, ranked as he presents them
+
+- **Blue-White** — the top deck for top players. Best white pickups are the two recruit uncommons:
+  **Celebrate the Mountain King** (a top common-slot card) and **Mountain King's Return**
+  (*"excellent, phenomenal"* — recruit + reanimate a 3-drop + a counter, for three mana). Dwarven
+  Provisioner fills the two-drop hole and is better here than in Red-White, because Blue-White is the
+  one deck that actually goes wide.
+- **Blue-Black** — *"difficult to draft wrong"*; a good-stuff deck. Core synergy is Merkwood Nurturer
+  picking up Crude Bent Blade to re-trigger the sacrifice. Reverend Howl triggers your draw-twos on
+  the opponent's turn and can steal a race by giving a huge Apothecary lifelink. **One of the two
+  best Hobbit Hole decks** — nearly every Halfling in the set is blue or black.
+- **Blue-Red** — red supplies what blue lacks: real two-drops and real removal. Pine Cone Strike is
+  *"excellent"*, Bothersome Noise Maker is *"amazing"* here, and Óin enables the draw-twos while
+  rummaging away extra copies of itself.
+- **Blue-Green** — an elf/landfall deck, and really a green deck with blue trimmings. Three reasons
+  to be here: Thranduil's Company, Thranduil, and Down in the Valley. **Go hard on landfall, not on
+  elves** — most blue elves are bad and he will not play five bad ones to turn on a payoff. This deck
+  wants **up to four Hobbit Holes**: *"think of it as a land you have to pay a mana for that gives
+  you two elves… you're getting the mana's worth."* Wood Elves is reclassified from a ramp card
+  (which he dismissed last week) to a **combo card** and is now playable.
+
+### Two rules of thumb he restates
+
+- **Legend count:** two copies of any legend is fine; three if it is genuinely strong (B-level or
+  better). Cards with an adventure or a rummage outlet blur this upward, because extra copies still
+  do something.
+- **16 lands in blue:** live but exceptional. Fewer lands means more recruit fodder — but **multiple
+  copies of Plunder the Troll Shaws argue against it**, because card-draw decks need to keep hitting
+  land drops. Only cut to 16 when your draw-two triggers are recruit cards rather than true draw.
+
+## Sealed (Arena Direct / Win-A-Box)
+
+> Added 2026-08-30. Three Win-A-Box VODs. Contract note: Sealed folds into this per-set file rather
+> than a separate one; where a Sealed observation conflicts with a draft note, the format is named.
+
+- **His Sealed builds run heavier and slower than his draft decks**, and he is far more willing to
+  play the expensive cards he tells you to cut in draft — the six-pack pool simply has fewer
+  two-drops to go around.
+- **The blue/white read does not carry over cleanly.** Where #257 has Blue-White as the top draft
+  deck for good players, the 17Lands Sealed numbers put Azorius at 51.0% against Rakdos at 59.7% —
+  and NumotTheNummy, drafting the same pools the same week, calls white *"unplayable right off the
+  bat"* in most Sealed pools. **In Sealed, default Rakdos; in draft, look for the open blue lane.**
+- **Bo1 Sealed rewards the same card-selection skill #257 closes on** — knowing what the current game
+  needs before you loot or scry, rather than judging each card in isolation.
 
 ## Fixing
 
@@ -678,6 +779,9 @@ Format: `- **Card** — list position (source). Note.` Positions are the primer'
 - 2026-08-15 — The Hobbit State of the Format Address! | Draft Guide (`o6jz8EmwdmY`)
 - 2026-08-18 — I Have a New Favourite Common! | The Hobbit Draft (`UZ07TLhx5ls`)
 - 2026-08-20 — The First of Many Hobbit Arena Direct Runs! | Arena Win-A-Box Event #1 (`Kc03EadPn9Y`)
+- 2026-08-25 — This Deck Was SO Fun To Play! | Arena Win-A-Box Event (`F20eK8jfn0k`)
+- 2026-08-27 — The Most Broken Pool I Opened All Event (Ft. OG LLU Co-Host, Abram!) | Arena Win-A-Box Event (`kOKbei8_Mzc`)
+- 2026-08-28 — A Hobbit Draft Meta Update + The Art of Card Selection | LLU #257 (`oNXRbDHscVE`)
 
 Card names were verified against the Scryfall `set:hob` card list (193 cards) and the 188-card HOB
 17Lands list — auto-captions mangled most of them. Names that could not be pinned down with

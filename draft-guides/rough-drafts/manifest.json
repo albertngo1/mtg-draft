@@ -4,7 +4,7 @@
   "note": "Fingerprint of distilled scrape. sha1 = sha1 of the cleaned transcript .txt.",
   "counts": {
     "sets": 5,
-    "videos_distilled": 33,
+    "videos_distilled": 34,
     "videos_no_captions": 0
   },
   "sets": {
@@ -42,6 +42,7 @@
         "ITX7YYszOUU",
         "_i4F6a_REL8",
         "bLdNnPWOx2w",
+        "js8iakBn_UU",
         "yzC8k78oDwQ"
       ]
     },
@@ -203,6 +204,12 @@
       "set": "SOS",
       "sha1": "b25adcb2af786dd89a166d1e32747877d2f45b26",
       "words": 11310,
+      "distilled": true
+    },
+    "js8iakBn_UU": {
+      "set": "HOB",
+      "sha1": "4ef70405fec32fcf928f11dc5bf6597a39ca1c44",
+      "words": 7913,
       "distilled": true
     },
     "kAiVNx5nm0U": {

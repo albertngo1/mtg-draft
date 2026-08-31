@@ -36,10 +36,10 @@
     "numot": {
       "name": "NumotTheNummy (Kenji Egashira)",
       "youtube": "https://www.youtube.com/@NumotTheNummyYT",
-      "content_type": "regular Arena draft VODs (cube/sealed/constructed/alchemy excluded)",
+      "content_type": "regular Arena draft VODs + Sealed (cube/constructed/alchemy excluded)",
       "guide_dir": "draft-guides/numot",
       "guide_filename": "<SET>.md",
-      "notes": "Channel #2. Gameplay-driven; auto-captions of speech (names mangled, mark (?)).",
+      "notes": "Channel #2. Gameplay-driven; auto-captions of speech (names mangled, mark (?)). Scope WIDENED 2026-08-30: Sealed and Pick-Two Draft are now IN scope (both were previously excluded). Sealed matters because Arena Win-A-Box events are Sealed, and Pick-Two because it is a real ladder event.",
       "distill_format": {
         "house_style": "shared",
         "per_set_file": "<SET>.md",
@@ -63,7 +63,9 @@
         "manifest": true,
         "special_rules": [
           "Tier-1 sets (MKM, SOS) get a `## vs Lords of Limited` section noting ONLY genuine conflicts with draft-guides/lords-of-limited/<SET>-draft-guide.md. Never modify the LoL files.",
-          "Tier 1 = ALL VODs for that set (deepest); Tier 2 = ~4 end-of-format VODs per other set."
+          "Tier 1 = ALL VODs for that set (deepest); Tier 2 = ~4 end-of-format VODs per other set.",
+          "Sealed VODs fold into the SAME per-set <SET>.md as draft, under a dedicated `## Sealed` section placed after `## Archetypes`. Never split Sealed into its own file. Sealed archetype strength diverges sharply from draft (HOB: Azorius is 55.7% in draft but 51.0% in Sealed), so never let a Sealed observation silently overwrite a draft card note — attribute the format on the bullet when they disagree.",
+          "Pick-Two Draft is IN scope as of 2026-08-30, reversing the 2026-08-23 out-of-scope ruling. Its picks-two-at-a-time structure changes signal reading and curve math, so keep Pick-Two observations in a `## Pick-Two Draft` section rather than mixed into the regular draft notes."
         ]
       }
     },
@@ -132,7 +134,8 @@
         "manifest": true,
         "special_rules": [
           "This channel splits its set review across per-color episodes — distill ALL of them into one <SET>.md grouped by color, attributing each grade to its color-review episode.",
-          "Preserve the letter grade on every card bullet; coverage should be near-complete since every card gets reviewed."
+          "Preserve the letter grade on every card bullet; coverage should be near-complete since every card gets reviewed.",
+          "Arena Win-A-Box (Sealed) episodes are in scope as of 2026-08-30 and fold into the per-set <SET>.md under `## Sealed`, same contract as numot."
         ]
       }
     },

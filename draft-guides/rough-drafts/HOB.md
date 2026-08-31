@@ -1,6 +1,7 @@
 # HOB — Rough Drafts notes
 
-> Source: **Rough Drafts** (Sam Pratt, "Samp") — 5 The Hobbit episodes/streams. Distilled 2026-08-23
+> Source: **Rough Drafts** (Sam Pratt, "Samp") — 6 The Hobbit episodes/streams. Distilled 2026-08-23,
+> **episode 76 (the data reveal) added 2026-08-30**
 > from YouTube auto-caption transcripts; card names corrected against the printed HOB list where
 > confident, uncertain readings marked `(?)`.
 >
@@ -23,9 +24,10 @@
   cards for the first time in the pack. Live, unfiltered, and explicitly provisional.
 - **Episodes 74 and 75 are the argued reads** — ~6 drafts in and ~2 weeks in respectively. Ep 75 is
   the strongest thing here.
-- **Episode 76 (~2026-08-27) is the data reveal and is NOT downloaded.** That is the episode where he
-  lifts the veil, looks at 17Lands, and grades his own blind read. **It supersedes everything in this
-  file.** Until it is fetched and distilled, treat every verdict below as pre-data.
+- **Episode 76 is the data reveal and is now distilled (2026-08-30).** He lifts the veil, opens
+  17Lands for the first time, and grades his own blind read card by card. **It supersedes every
+  pre-data verdict in this file** — read `## Episode 76: the data reveal` first, then treat the
+  sections below it as the blind read it is scoring.
 - These notes **decode** the 17Lands data rather than ranking beneath it. See AGENTS.md.
 
 ### Source timeline
@@ -37,7 +39,7 @@
 | 2026-08-14 | — | Day 2 Hobbit Drafts! | Blind gameplay, drafts 4–6, first BR deck | pre-data | Weak |
 | 2026-08-15 | 74 | Plunder the Trollshaws | Card-titled essay, ~6 drafts in | pre-data | Medium |
 | **2026-08-20** | **75** | **Goblin Plate Mail** | **Card-titled essay, ~2 weeks in** | **pre-data** | **Medium-strong** |
-| ~2026-08-27 | 76 | *(NOT DOWNLOADED)* — data reveal + final format thoughts | Retrospective | **post-data** | **Would be Strongest** |
+| **2026-08-27** | **76** | **Celebrate the Mountain King — data reveal + self-scoring** | **Retrospective** | **post-data** | **Strongest** |
 
 ## Supersessions (newer take wins)
 
@@ -67,6 +69,79 @@
 - **Uneasy Partings — he corrects himself on air.** He noticed on Day 1 that the discount reads
   *nontoken*, forgot it, then re-read it live in ep 75: *"I'm just reading that — that says nontoken
   creature, so this doesn't even work against armies like I thought it did."*
+
+## Episode 76: the data reveal (2026-08-30 distillation — supersedes everything below)
+
+**His own run, stated plainly:** 22 drafts silver→Mythic (19 excluding day one), **64.7% match win
+rate overall, 63.6% from Platinum on** — and only **6 trophies in 22 drafts**, which he calls a low
+trophy rate for that win rate. His diagnosis of the gap is the most useful thing in the episode and
+it is a deckbuilding diagnosis, not a gameplay one: *"I was really starting to lack an edge in deck
+building against my opponents… I was sort of soft forcing black."*
+
+### What the blind read got right
+
+- **The archetype order, exactly.** He predicted BR clear first, BG second, RW and WU close together
+  in the middle, UG a distant fifth. The data: **BR 57.2 > BG 56.4 > RW 55.6 ≈ WU 55.4 >> UG 51.5**,
+  against a format average around 55.5. His one miss was magnitude — he expected Rakdos nearer 58%.
+- **All ten white commons are bad.** *"There's no white common above a C in the data. I did correctly
+  represent that in my own tier list."*
+- **Desolation Prowler is the real thing** (he had A, data says A−), and **Crude Bent Blade is the
+  #1 common in the set** — he named it correctly, just one grade light.
+
+### What the blind read got wrong — and it is all one mistake
+
+**He misvalued white and blue so badly that it cost him a lane.** This is the episode's thesis and
+the single biggest correction in this file:
+
+- **Celebrate the Mountain King is the highest win-rate uncommon in the entire set** — above
+  Desolation Prowler. He had it as the best white uncommon but only at B, and calls the real number
+  *"wild when you consider the colour imbalance."*
+- **Mountain King's Return and Stone by Sunlight are both B+**; he had them at C, level with Iron
+  Hills Blacksmith. On the saga: *"a card that does a lot of little things really well and adds up to
+  a very robust package"* — card selection + a 1/1 token + reanimation + a counter, all for three.
+- **Blue's real top cards are not the ones that read best.** The below-rare blue order by win rate is
+  **Bilbo Luckwearer > Plunder the Troll Shaws > Long Lake Nuisance ≈ Master's Counselors ≈ Lakeshore
+  Apothecary > Bilbo Baggins, Burglar**. He had common Bilbo as the #1 blue card below rare; the data
+  has it a C+ and sixth. His own explanation: a three-mana 2/1 blocks nothing in a menace format,
+  while the defensive two-drops are exactly what a format this fast on the play wants.
+- **The top gold cards below rare are Bard the Bowman > Patient Instructor > Thranduil** — all three
+  of which he had "way lower," and all three of which point back at blue/white.
+
+He is explicit about the feedback loop this created: *"I was not getting into them in the drafts and
+also not building them correctly when I actually did draft blue and white… I was probably supposed to
+be in a blue white lane."* **Two independent sources now say the same thing** — see Limited
+Level-Ups #257, which found blue open and under-drafted in the same week from the other direction.
+
+### The play/draw finding — the hardest number in this file
+
+**HOB has the highest on-the-play win rate of any set in Arena's history — almost 55%.** Not "high
+for a fast format": *"the literal highest win rate on the play by a clear margin out of any set we've
+ever had on arena."* The format is also near the fastest by average turn count.
+
+His mechanism, and it is worth internalising: **amass is unblockable-by-default on the draw.** *"The
+player on the play always gets to make their amass army just big enough so the opponent can't
+profitably block in the first couple turns, and so when you're on the draw versus amass you just end
+up incidentally taking like 10 points of damage."* He notes amass has now been printed three times
+(WAR, LTR, HOB) and dominated Limited all three times.
+
+**This is the reason Ravening Warg is a top-six black common** (data B−; he had it C, tenth) — it is
+one of the few commons that blocks an amass army profitably *and* blocks Desolation Prowler on curve.
+He accepts the correction: the card does not read strong, but the format context makes it strong.
+
+### Smaller self-corrections
+
+- **Gandalf, Spark-Starter** (six mana, arc-lightnings on entry) — he had C/C−, data says **B, fourth
+  best red below rare**. He kept passing it for being a six-drop in a fast format; he now believes
+  the data. *"It is the type of card that can sort of swing a battlefield around."*
+- **Glóin the Mighty** — underrated; he kept losing to the adventure's one-damage sweep and wrote it
+  off as variance. The aggregate says it was not variance.
+- **Smaug the Great Calamity** — data has it middle-of-the-pack red; he had it near the bottom and
+  **does not accept this one**: *"my opponents kept casting this and it just wouldn't matter."* Live
+  disagreement, flagged as such.
+- **Green: the cheap cards carry it.** Murkwood Pathmaker and Nasty Little Rabbit are B; the
+  expensive green cards (Bowside Wanderers, Old Fat Spider) underperform where the expensive *red*
+  cards overperform. His read on why: expensive green cards end up in the bad UG decks.
+- **Dreaded Batcloud** — data has it mid, he had it near-worst, and he sticks with his read.
 
 ## Format speed / meta read
 
@@ -359,4 +434,4 @@ Both are format-theory essays wearing a card's name.)*
 - 2026-08-14 — Day 2 Hobbit Drafts! (`bLdNnPWOx2w`)
 - 2026-08-15 — Episode 74 - Plunder the Trollshaws (`0_k700j_mEU`)
 - 2026-08-20 — Episode 75 - Goblin Plate Mail (`yzC8k78oDwQ`)
-- ~2026-08-27 — Episode 76 - *(data reveal; NOT DOWNLOADED — supersedes this entire file)*
+- 2026-08-27 — Episode 76 - Celebrate the Mountain King (`js8iakBn_UU`) — *data reveal; supersedes the pre-data sections above*

@@ -20,9 +20,26 @@ flagged inline below) but the number wins.
 | 2026-08-14 | WOLVES DOMINATE HOBBITS (Premier Draft) | week 1, day 2 | Weakest |
 | 2026-08-15 | This Bear Means Business (Premier Draft) | week 1 | Middle |
 | 2026-08-16 | THE PERFECT HOBBIT DRAFT! (Premier Draft) | week 1 | Strong |
-| 2026-08-17 | MONO COLOR FORMAT BREAKER (Premier Draft) | week 1, 17 drafts deep | **Strongest** |
+| 2026-08-17 | MONO COLOR FORMAT BREAKER (Premier Draft) | week 1, 17 drafts deep | **Strongest (draft)** |
+| 2026-08-18 | Learning To Love The Hobbit (Premier Draft) | week 2 | Strong |
+| 2026-08-19 | YES. THIS IS FINE AND GOOD. (Premier Draft) | week 2 | Strong |
+| 2026-08-21 | This Format Is Complete Garbage (Premier Draft) | week 2 | Strong |
+| 2026-08-22 | This Draft Is An Awful Idea (Contender Draft) | week 2 | Middle |
+| 2026-08-13 | THE HOBBIT RELEASE DAY!!! (Sealed) | week 1, practice | Weak |
+| 2026-08-14 | I've Already Broke The Hobbit (Sealed) | week 1, practice | Weak |
+| 2026-08-16 | Smaug Is So MAGNIFICENT! (Sealed) | week 1, practice | Middle |
+| 2026-08-20 | Can It Be That Easy? (Win-A-Box, **collector**) | week 2, 7-0 | **Strongest (sealed)** |
+| 2026-08-21 | Rakdos Just The Best (Win-A-Box, **collector**) | week 2, 5 wins | Strong |
+| 2026-08-22 | Get That Double! (Win-A-Box, **collector**) | week 2, 1-for-4 runs | Strong |
+| 2026-08-24 | Not Rakdos? Then Die! (Win-A-Box, **collector**) | week 3, 4 wins | Strong |
+| **2026-08-28** | **THE PERFECT RUN (Win-A-Box, _play booster_)** | **week 3, 7-0** | **Strongest (sealed)** |
+| 2026-08-25 | Picking Two… Two Times? (Pick-Two Draft) | week 3 | Middle |
+| 2026-08-26 | Actually The Best Format Ever? (Pick-Two Draft) | week 3 | Middle |
 
-Sealed VODs from the same week are out of scope for this channel and were not distilled.
+**Scope note (2026-08-30):** Sealed and Pick-Two Draft were previously excluded from this channel's
+contract and are now in scope. Sealed material lives in `## Sealed` below, Pick-Two in
+`## Pick-Two Draft` — both kept out of the draft card notes, because his own numbers say the formats
+diverge sharply.
 
 ## Supersessions
 
@@ -109,6 +126,113 @@ pairs** — which is itself the takeaway.
 - **Blue-green elves** — never drafted, and late-wheeling Bilbos in VOD 1 make him say *"I'm
   guessing blue-green was the place I was supposed to be"* — meaning it was **open because nobody
   wanted it**, not because it was good.
+
+## Sealed
+
+> Added 2026-08-30. Eight Sealed VODs: three week-one practice pools plus five Arena Direct
+> "Win-A-Box" runs. **Four of the five Win-A-Box runs are the _collector_ box event; only
+> `o4kF3Cvm4lo` (2026-08-28) is the _play booster_ box event.** Both share the same structure —
+> 8,000 gems, Bo1, seven wins before two losses — but the prize and his opinion of them differ.
+
+### His Sealed record, in his own words
+
+The single most useful number in these VODs. Around 29 HOB Premier Drafts in, he says:
+
+> *"Right now I'm sitting on about 30 premier drafts with a 54% win rate, which for me is an all-time
+> low. I have two trophies in 29 drafts. I am apparently horrendous at this format… my sealed win
+> rate in this format's great, we did so well in the arena directs, I was running over 66%."*
+
+**A pro is 12 points better at HOB Sealed than at HOB draft.** He never explains the gap, and treats
+it as a fact about himself rather than the format — but he repeats it across three VODs, and it is
+the closest thing to a format-level recommendation in the whole corpus: *"I'm saving all of my Hobbit
+luck for the winner box event. Screw the drafts."*
+
+### The prize-EV verdict (unprompted, from a player who went 7-0)
+
+> *"The winner box events for the Arena Directs — for the play booster boxes — are generally not
+> worth it. They're the same entry fee to enter as the collector box events, and the value of those
+> two boxes is generally less than half of a collector box."*
+
+His numbers: collector box ≈ $700–800 USD, play booster box ≈ $150, so two ≈ $300–350. Note this is
+said *while winning* the play-booster event, so it is not sour grapes. On the collector event he is
+the reverse: *"bare minimum I am up like 6,000 gems"*, and *"if you can just get your money back in
+these events, that's still really, really good."*
+
+**Payout structure he reads off screen:** nothing at 0–2 wins; roughly half the entry fee back at 3;
+about the entry fee back at 4; a meaningful gem profit at 5–6; the box at 7 (and, in the
+play-booster event, one box at 6 and two at 7).
+
+### Sealed archetypes — Rakdos, and then everything else
+
+> *"Six of my seven boxes are Rakdos. Two of my six wins are also Rakdos. The only non-Rakdos trophy
+> I have is a red white deck."*
+
+- **Red-black is the default and he says so every single build.** *"Is this just an easy red black
+  build? Gosh, it might be."* / *"I just don't even think there's anything close to red black."* /
+  *"Red black is too good."* This tracks the 17Lands Sealed data, where BR is 59.7% at a 39.7%
+  metagame share — a far heavier concentration than in draft.
+- **Red-white dwarves/equipment is the real second deck**, and the only non-Rakdos build that has
+  trophied for him. He built it around ~10 dwarves and 7 equipment and called it *"the get-them
+  curve-out synergy."*
+- **Green-black is a fine third**, and is what his 7-0 play-booster run actually was — Murkwood
+  Pathmaker ×2, Chief Warg's Company, Cruel Bent Blade ×2, Merkwood Nurturer, Master of Lake Town.
+- **Blue and white are frequently unplayable in a six-pack pool.** *"White is unplayable. Just right
+  off the bat."* recurs across pools. This is the sharpest divergence from draft, where the same week
+  two other sources were calling blue and white under-drafted and strong.
+- **Three-colour and "soup" builds get talked into and then rejected** almost every time. When he did
+  ship a three-colour deck (BW splashing blue) he went 4 wins and judged it *"reasonable, but I
+  wouldn't say it's a consistent, hey, I'm going to do really well."*
+
+### Sealed deckbuilding rules he applies every pool
+
+- **You cannot start your curve at three.** *"I can't have a curve that starts at three in this
+  format."* He counts two-drops out loud in every build and treats five or six as the floor.
+- **Hobbit Hole is a trap without Halflings.** *"I don't really want too many tap lands. With no
+  halflings it's not as good."* — and *"I do not have a halfling in the deck, so Hobbit Hole doesn't
+  serve much of a use."* He cuts them to zero or one. Contrast Limited Level-Ups, who wants up to
+  four in blue-black and blue-green *draft* decks; the disagreement is real and it is format-driven.
+- **18 lands is a live option**, not a joke, when the curve tops at six: *"I'm almost wondering if I
+  want to run 18 lands in this deck because getting up to six is so good."* He shipped 18 in one RB
+  build and 16 in one low-curve build — the range is wider in Sealed than in draft.
+- **Five to eight removal spells is the target** and he counts them explicitly every build. In one
+  pool: *"just under a third of my deck is removal."*
+- **Bo1 changes the cuts.** *"And best of one sealed — yeah, I think I'm okay cutting this one"* about
+  a situational card. Narrow cards get cut harder here than in Bo3.
+
+### Play/draw in Sealed
+
+He is emphatic and it matches the Rough Drafts data finding: *"Play versus draw is insane in this
+format, so just winning the die roll is huge."* One loss he attributes entirely to it: *"this is
+entirely play versus draw difference, man — they're down three cards if I'm on the play."* In another
+run he notes he went 4-0 *"despite losing every single die roll."*
+
+## Pick-Two Draft
+
+> Added 2026-08-30 (this format was previously ruled out of scope). Two VODs, both week 3.
+
+**The headline is his lifetime numbers, not the HOB content:**
+
+> *"Pick two is generally far easier, in my experience. My all-time pick-two win rate is close to 70%,
+> and I've trophied nearly half of those drafts — 51 out of 113 pick-two drafts I've done have been
+> trophies."*
+
+A ~70% lifetime win rate and a ~45% trophy rate mark this out as **the easiest event on Arena for a
+strong player**, by his measure — far above his own Premier Draft baseline and enormously above his
+54% HOB draft rate. If your own Pick-Two results are *worse* than your Premier results, that gap is
+about how you are approaching the format, not about the format being hard.
+
+- **Take the two best cards, and prefer pairs that go together.** His opening pick was Sackville
+  Baggins + Thorin Oakenshield over the individually-stronger Bilbo, on the grounds that *"these go
+  better together"* — Pick-Two rewards taking a pair that builds one deck over two orphan good cards.
+- **Removal density is the thing that goes wrong.** His losing run had none: *"I feel like I haven't
+  seen removal in just like any of the colors… the removal in this draft was effectively
+  non-existent."* Because you take two at a time, a pod can drain a colour's removal much faster than
+  in a normal draft — check removal count early, not at deckbuilding.
+- **Filler two-power creatures get better.** Goblin-town Flunkies and Old Thrush both move from
+  unplayable to playable *"when you have the equipment"* — Pick-Two pools reliably have more
+  equipment than draft pools.
+- **He still lost the first one and blamed the format read, not the picks**: *"I don't know what it
+  is about this format, I just am not good at it."*
 
 ## Card interactions & combos
 
@@ -347,6 +471,20 @@ format where the games are short.
 - 2026-08-15 — This Bear Means Business | The Hobbit Premier Draft | MTG Arena (`l4HWAeytwhM`)
 - 2026-08-16 — THE PERFECT HOBBIT DRAFT! | The Hobbit Premier Draft | MTG Arena (`8Fk-Ocr5GpE`)
 - 2026-08-17 — MONO COLOR FORMAT BREAKER | The Hobbit Premier Draft | MTG Arena (`BecCy-GGJN4`)
+- 2026-08-18 — Learning To Love The Hobbit | The Hobbit Premier Draft | MTG Arena (`gl5nZs1VBg4`)
+- 2026-08-19 — YES. THIS IS FINE AND GOOD. | The Hobbit Premier Draft | MTG Arena (`FoIesl3D87k`)
+- 2026-08-21 — This Format Is Complete Garbage | The Hobbit Premier Draft | MTG Arena (`xaQKcPUoTlI`)
+- 2026-08-22 — This Draft Is An Awful Idea | The Hobbit Contender Draft | MTG Arena (`rKsgD0WPkqw`)
+- 2026-08-13 — THE HOBBIT RELEASE DAY!!! | The Hobbit Sealed | MTG Arena (`Y0exIOOwZLk`)
+- 2026-08-14 — I've Already Broke The Hobbit | The Hobbit Sealed | MTG Arena (`mpa2mvb8XE4`)
+- 2026-08-16 — Smaug Is So MAGNIFICENT! | The Hobbit Sealed | MTG Arena (`TpxXjjWryXs`)
+- 2026-08-20 — Can It Be That Easy? | Arena Win-A-Box (collector) | The Hobbit Sealed (`-96O2f5cJh8`)
+- 2026-08-21 — Rakdos Just The Best | Arena Win-A-Box (collector) | The Hobbit Sealed (`4lJ3n9_mLqY`)
+- 2026-08-22 — Get That Double! | Arena Win-A-Box (collector) | The Hobbit Sealed (`9UcXD0NDA7c`)
+- 2026-08-24 — Not Rakdos? Then Die! | Arena Win-A-Box (collector) | The Hobbit Sealed (`JNpXx9oqs10`)
+- 2026-08-28 — THE PERFECT RUN | Arena Win-A-Box (play booster) | The Hobbit Sealed (`o4kF3Cvm4lo`)
+- 2026-08-25 — Picking Two… Two Times? | The Hobbit Pick-Two Draft | MTG Arena (`B5zrOokB1Zc`)
+- 2026-08-26 — Actually The Best Format Ever? | The Hobbit Pick-Two Draft | MTG Arena (`DW9cEYEkT48`)
 
 Card names were verified against the 188-card HOB 17Lands list — auto-captions mangle nearly every
 proper noun in this set ("vent blade", "Bjorn", "adop", "Shelob's company", "Romanian Rampager").
