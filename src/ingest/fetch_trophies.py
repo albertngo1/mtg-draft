@@ -223,9 +223,14 @@ def main():
     ap.add_argument("--format", default="ArenaDirect_Sealed")
     ap.add_argument("--stats-format", default="Sealed", help="17Lands card-stats format to join on")
     ap.add_argument("--days", default="120")
-    ap.add_argument("--unbiased-only", action="store_true",
-                    help="derive from the unfiltered 100-most-recent decks only, discarding "
-                         "the colour sweep. Measured to beat the reweighted stratified corpus.")
+    # DEFAULT, not an opt-in. A plain run rewrote the shipped aggregate on the swept
+    # corpus twice before this flipped: the sweep is stratified, so aggregating it
+    # silently biases every published frequency, and post-stratification buys back so
+    # little that it lost a head-to-head against the unbiased 100 (pair@2 68% vs 77%).
+    # The swept decks are still fetched and still browsable — they just do not vote.
+    ap.add_argument("--include-swept", action="store_true",
+                    help="aggregate the colour-swept decks too, post-stratified. Off by "
+                         "default: measured worse than the unbiased sample alone.")
     ap.add_argument("--offline", action="store_true",
                     help="re-derive from cached events + the saved index; no network at all")
     ap.add_argument("--delay", type=float, default=2.0,
@@ -246,10 +251,14 @@ def main():
         json.dump({"unbiased": sorted(unbiased), "entries": entries}, open(index_path, "w"))
         print(f"{len(entries)} unique trophy decks after the colour sweep "
               f"({len(unbiased)} of them from the unbiased unfiltered query)")
-    if a.unbiased_only:
+    fetch_list = entries
+    if not a.include_swept:
         entries = [e for e in entries if e["aggregate_id"] in unbiased]
-    events = (load_cached(a.expansion, a.format, entries) if a.offline
-              else fetch_events(a.expansion, a.format, entries, a.delay))
+    # Fetch everything (the extra decks are browsable via sealed_algo --decks), but
+    # aggregate only what `entries` was narrowed to above.
+    if not a.offline:
+        fetch_events(a.expansion, a.format, fetch_list, a.delay)
+    events = load_cached(a.expansion, a.format, entries)
     carddb, agg = derive(a.expansion, a.format, events, sealed, unbiased)
     json.dump(carddb, open(os.path.join(CACHE, f"carddb_{a.expansion}.json"), "w"), indent=1)
     json.dump(agg, open(os.path.join(CACHE, f"trophy_{a.expansion}_{a.format}.json"), "w"), indent=1)

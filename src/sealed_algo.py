@@ -459,6 +459,11 @@ def shapes(expansion, fmt, db, tro):
         md = [cards[str(i)]["name"] for i in e["decks"][0]["groups"][0]["cards"]]
         if len(md) != 40 or any(m not in db for m in md if m not in BASIC):
             continue
+        # 17Lands returns 40 Plains as a placeholder for a deck its owner has not
+        # shared. It parses fine and means nothing — drop it before it reaches a
+        # mean or a colour read.
+        if all(m in BASIC for m in md):
+            continue
         basics = [m for m in md if m in BASIC]
         util = [m for m in md if m not in BASIC and is_land(db[m])]
         spells = [m for m in md if m not in BASIC and not is_land(db[m])]
@@ -604,6 +609,11 @@ def decklists(expansion, fmt, db):
         cards = e["cards"]
         md = [cards[str(i)]["name"] for i in e["decks"][0]["groups"][0]["cards"]]
         if len(md) != 40 or any(m not in db for m in md if m not in BASIC):
+            continue
+        # 17Lands returns 40 Plains as a placeholder for a deck its owner has not
+        # shared. It parses fine and means nothing — drop it before it reaches a
+        # mean or a colour read.
+        if all(m in BASIC for m in md):
             continue
         m = meta.get(aid, {})
         up, lo = deck_colors(md, db, text)
