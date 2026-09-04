@@ -582,6 +582,7 @@ def decklists(expansion, fmt, db):
         meta = {e["aggregate_id"]: e for e in idx["entries"]}
     except Exception:
         unbiased, meta = set(), {}
+    text = _oracle_cache.setdefault(expansion, _oracle(expansion))
     out = []
     for f in sorted(glob.glob(os.path.join(d, "*.json"))):
         aid = os.path.basename(f).split("_")[0]
@@ -596,13 +597,15 @@ def decklists(expansion, fmt, db):
         if len(md) != 40 or any(m not in db for m in md if m not in BASIC):
             continue
         m = meta.get(aid, {})
-        up, lo = deck_colors(md, db, _oracle_cache.setdefault(expansion, _oracle(expansion)))
+        up, lo = deck_colors(md, db, text)
         pair = "".join(sorted(up, key=WUBRG.index))
         colors = pair + "".join(sorted(lo, key=WUBRG.index)).lower()
         counts = collections.Counter(md)
         def group(pred):
             g = [{"name": k, "n": v, "mv": db[k].get("cmc", 0),
                   "cost": db[k].get("mana_cost", ""), "rarity": db[k].get("rarity", ""),
+                  "img": db[k].get("img", ""),
+                  "fix": fixing_kind(k, db, text)[0] if k not in BASIC else None,
                   "off": (k not in BASIC and not castable(db[k], up))}
                  for k, v in counts.items() if pred(k)]
             return sorted(g, key=lambda x: (x["mv"], x["name"]))

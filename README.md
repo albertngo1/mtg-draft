@@ -120,8 +120,8 @@ the other way around.
   python3 src/sealed_algo.py --set HOB --decks                                 # the 40s themselves
   ```
 
-  The Mac mini's card-reference site (port 8340) drives the same script from a browser: `/catalog`
-  ranks the set, `/sealed` shows the deck shapes, `/decks` browses the trophy lists.
+  The Mac mini's card-reference site (port 8340) drives the same script from a browser: `/decks`
+  renders `--decks` and `--shapes` on one page — the trophy lists with the aggregate they add up to.
 
   Leave-one-out over the 100 HOB Arena Direct Sealed trophy decks: colour pair correct **47%** of
   the time (always-guess-BR baseline: 42%), in the top two **77%**, and when the pair matches
