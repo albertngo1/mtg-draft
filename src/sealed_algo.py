@@ -304,27 +304,49 @@ def main():
 # produce the off-colour pip: an on-colour basic, a dual, a land that FETCHES a basic
 # (Hobbit Hole, 87% maindecked, reads as a colourless land but is a source for every
 # colour), and Treasure makers, which are one-shot but do cast the one card you splashed.
-FIX_DUAL_RX = re.compile(r"\{T\}[^.]{0,40}: Add ([^.]{0,40})")
-FIX_ANY_RX = re.compile(r"mana of any color|any color", re.I)
-FIX_FETCH_RX = re.compile(r"[Ss]earch your library for a basic land", re.I)
-FIX_TREASURE_RX = re.compile(r"[Tt]reasure token")
+FIX_TAP_RX = re.compile(r"\{T\}[^.\n]{0,45}: Add ([^.\n]{0,45})")
+FIX_ANY_RX = re.compile(r"any color", re.I)
+FIX_TO_PLAY_RX = re.compile(
+    r"[Ss]earch your library for a basic land card, put it onto the battlefield")
+FIX_TO_HAND_RX = re.compile(r"[Ss]earch your library for a basic land")
+FIX_TREASURE_RX = re.compile(r"[Cc]reate (?:a|X|two|three) (?:tapped )?Treasure")
+# "Gift a Treasure" hands the token to the OPPONENT — it fixes their mana, not yours.
+FIX_NOT_YOURS_RX = re.compile(r"they create a Treasure|opponent creates a Treasure")
+# Reminder text spells out what a Treasure does; it must not be read as the card
+# itself having a mana ability.
+# A Treasure's own mana ability is quoted as reminder text on every card that makes one,
+# sometimes nested inside a larger parenthetical (Bilbo's Gambit). Strip the ability text
+# itself, not just the bracket, or the card reads as having a mana ability of its own.
+REMINDER = re.compile(r'"?\{T\}, Sacrifice this token: Add one mana of any color\.?"?')
 
 
 def fixing_kind(name, db, text):
-    """'dual'/'fetch'/'treasure'/None — how a card can pay for an off-colour pip."""
+    """How a card can pay for an off-colour pip, strongest class first.
+
+      'source'   a repeatable mana ability that produces the colour — a dual, or a
+                 rock like Giant's Boulder ({1}, {T}: Add one mana of any color).
+      'fetch'    puts the basic onto the BATTLEFIELD (Hobbit Hole, Elven Passage).
+      'tutor'    finds the basic but only to hand or the top of the library — it fixes
+                 which land you draw, it does not add one, and it costs a land drop.
+      'treasure' one shot, and only if the token is yours.
+
+    Returns (kind, colours it can produce)."""
     body = text.get(name, "")
     if not body:
         return None, set()
-    if FIX_FETCH_RX.search(body):
-        return "fetch", set(WUBRG)                    # any basic, so any colour
-    m = FIX_DUAL_RX.search(body)
+    bare = REMINDER.sub(" ", body)
+    m = FIX_TAP_RX.search(bare)
     if m:
         produced = {c for c in WUBRG if ("{%s}" % c) in m.group(1)}
         if FIX_ANY_RX.search(m.group(1)):
             produced = set(WUBRG)
         if produced:
-            return "dual", produced
-    if FIX_TREASURE_RX.search(body):
+            return "source", produced
+    if FIX_TO_PLAY_RX.search(bare):
+        return "fetch", set(WUBRG)
+    if FIX_TO_HAND_RX.search(bare):
+        return "tutor", set(WUBRG)
+    if FIX_TREASURE_RX.search(bare) and not FIX_NOT_YOURS_RX.search(body):
         return "treasure", set(WUBRG)
     return None, set()
 
@@ -448,7 +470,8 @@ def shapes(expansion, fmt, db, tro):
             if k:
                 fix[k] += 1
         decks.append({
-            "duals": fix["dual"], "fetchers": fix["fetch"], "treasures": fix["treasure"],
+            "duals": fix["source"], "fetchers": fix["fetch"],
+            "tutors": fix["tutor"], "treasures": fix["treasure"],
             "spells": len(spells), "lands": len(basics) + len(util), "util": len(util),
             "creatures": len(creatures), "noncreature": len(spells) - len(creatures),
             "removal": sum(1 for m in spells if REMOVAL_RX.search(text.get(m, ""))),
@@ -472,10 +495,10 @@ def shapes(expansion, fmt, db, tro):
                     kinds[k] += 1
             splashes.append({"color": c, "n_cards": len(off),
                              "basics": n_basic,
-                             "duals": kinds["dual"], "fetchers": kinds["fetch"],
-                             "treasures": kinds["treasure"],
-                             "fixers": kinds["dual"] + kinds["fetch"] + kinds["treasure"],
-                             "sources": n_basic + kinds["dual"] + kinds["fetch"],
+                             "duals": kinds["source"], "fetchers": kinds["fetch"],
+                             "tutors": kinds["tutor"], "treasures": kinds["treasure"],
+                             "fixers": sum(kinds.values()),
+                             "sources": n_basic + kinds["source"] + kinds["fetch"],
                              "sources_all": n_basic + sum(kinds.values()),
                              "cards": [{"name": m,
                                         "cost": db[m].get("mana_cost", ""),
@@ -526,6 +549,7 @@ def shapes(expansion, fmt, db, tro):
             "basics": _dist(s["basics"] for s in splashes),
             "duals": _dist(s["duals"] for s in splashes),
             "fetchers": _dist(s["fetchers"] for s in splashes),
+            "tutors": _dist(s["tutors"] for s in splashes),
             "treasures": _dist(s["treasures"] for s in splashes),
             "sources": _dist(s["sources"] for s in splashes),
             "sources_all": _dist(s["sources_all"] for s in splashes),
