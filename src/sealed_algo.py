@@ -291,12 +291,22 @@ def main():
 
 
 def validate(expansion, fmt, db, pair_prior):
-    """Leave-one-out over the cached trophy events."""
+    """Leave-one-out over the cached trophy events.
+
+    TRAIN on everything, but SCORE only on the unbiased subset (the unfiltered
+    100-most-recent query). The rest of the corpus comes from a colour-stratified
+    sweep, so using it as the test set measures the algorithm against a colour mix
+    that isn't the format's — WU decks are over-represented there roughly 30x."""
     import glob
     d = os.path.join(CACHE, "trophies", f"{expansion}_{fmt}")
-    tro_meta = json.load(open(os.path.join(CACHE, f"trophy_{expansion}_{fmt}.json")))
+    try:
+        unbiased = set(json.load(open(os.path.join(
+            CACHE, f"trophy_index_{expansion}_{fmt}.json")))["unbiased"])
+    except Exception:
+        unbiased = set()
     decks = []
     for f in sorted(glob.glob(os.path.join(d, "*.json"))):
+        aid = os.path.basename(f).split("_")[0]
         e = json.load(open(f)); cards = e["cards"]
         nm = lambda i: cards[str(i)]["name"]
         main = [nm(i) for i in e["decks"][0]["groups"][0]["cards"] if nm(i) not in BASIC]
@@ -305,18 +315,49 @@ def validate(expansion, fmt, db, pair_prior):
         for n in set(main):
             for c in pips(db[n].get("mana_cost", ""))[0]:
                 cs[c] += 1
-        decks.append({"pool": pool, "main": main,
+        # Train on the same decks the shipped aggregate was built from. The cache also holds
+        # colour-swept decks; feeding those in raw trains on a colour mix that isn't the
+        # format's, which is a different (worse) model than the one actually being served.
+        decks.append({"pool": pool, "main": main, "test": (not unbiased) or aid in unbiased,
                       "pair": "".join(sorted((c for c, _ in cs.most_common(2)), key=WUBRG.index))})
+    def weights_for(ds):
+        """Post-stratification weights, same formula fetch_trophies.derive uses: a deck's
+        colour pair's TRUE share (from the unbiased subset) over its share of this sample."""
+        samp = collections.Counter(d["pair"] for d in ds)
+        truth = collections.Counter(d["pair"] for d in ds if d["test"])
+        if not truth or samp == truth:
+            return {}
+        ns, nt = sum(samp.values()), sum(truth.values())
+        return {k: (min(10.0, max(0.1, (truth.get(k, 0) / nt) / (v / ns)))
+                    if truth.get(k) else 0.1)
+                for k, v in samp.items()}
+
     def rows(ds):
-        pc, mc = collections.Counter(), collections.Counter()
+        w = weights_for(ds)
+        pc, mc, w2 = collections.Counter(), collections.Counter(), collections.Counter()
         for x in ds:
+            wx = w.get(x["pair"], 1.0)
             for n in set(x["pool"]):
-                if n not in BASIC: pc[n] += 1
-            for n in set(x["main"]): mc[n] += 1
-        return [{"card": n, "n_pool": pc[n], "n_main": mc.get(n, 0)} for n in pc]
+                if n not in BASIC:
+                    pc[n] += wx
+                    w2[n] += wx * wx
+            for n in set(x["main"]):
+                mc[n] += wx
+        out = []
+        for n, raw in pc.items():
+            if raw <= 0:
+                continue
+            n_eff = raw ** 2 / w2[n] if w2[n] else 0      # Kish effective sample size
+            out.append({"card": n, "n_pool": n_eff,
+                        "n_main": mc.get(n, 0) / raw * n_eff})
+        return out
+    meta = json.load(open(os.path.join(CACHE, f"trophy_{expansion}_{fmt}.json")))
+    train_pool = [d for d in decks if d["test"]] if meta["n_decks"] == meta["n_unbiased"] else decks
     h1 = h2 = 0; ov = []; ovc = []
     for i, x in enumerate(decks):
-        rest = decks[:i] + decks[i + 1:]
+        if not x["test"]:
+            continue
+        rest = [d for d in train_pool if d is not x]
         sc, _ = build_scores(db, rows(rest))
         pc = collections.Counter(y["pair"] for y in rest if len(y["pair"]) == 2)
         r = build(x["pool"], db, sc, pair_priors(pc, len(rest)), pair_prior)
@@ -325,8 +366,9 @@ def validate(expansion, fmt, db, pair_prior):
         ca, cb = collections.Counter(x["main"]), collections.Counter(r["spells"])
         o = sum(min(ca[k], cb[k]) for k in cb) / len(r["spells"])
         ov.append(o); ok and ovc.append(o)
-    n = len(decks)
-    print(f"leave-one-out over {n} trophy decks (pair-prior {pair_prior})")
+    n = len(ov)
+    print(f"leave-one-out: trained on {len(train_pool)} decks, scored on the {n} unbiased ones "
+          f"(pair-prior {pair_prior})")
     print(f"  pair top-1 {100*h1/n:.0f}%  top-2 {100*h2/n:.0f}%")
     print(f"  cards in the real 40: {100*st.mean(ov):.0f}% overall, "
           f"{100*st.mean(ovc):.0f}% when the pair matches")

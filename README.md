@@ -122,10 +122,25 @@ the other way around.
   pastes a pool in, `/catalog` renders the whole set ranked by this score as card tiles.
 
   Leave-one-out over the 100 HOB Arena Direct Sealed trophy decks: colour pair correct **47%** of
-  the time (always-guess-BR baseline: 42%), in the top two **76%**, and when the pair matches
+  the time (always-guess-BR baseline: 42%), in the top two **77%**, and when the pair matches
   **86%** of the algorithm's 23 spells were in the real 40. Trophy play rate correlates with sealed
   GIH WR at r=0.82, so it is worth about one point of card agreement on its own — the honest use of
   it is as a *build-decision* correction, not a second power rating.
+
+  **On enlarging the corpus.** `/api/trophies/` returns only the 100 most recent decks, but it
+  applies the `deck_colors` filter *before* that cap, so sweeping every 1-, 2- and 3-colour
+  combination yields ~1,100 unique ids for a busy format. That sample is **stratified, not random**:
+  a filter that fills its 100-id quota contributes 100 decks whether or not that colour pair is
+  common, so counting it raw makes whichever colour was swept first look like the format's best
+  pair. `fetch_trophies.py` therefore takes pair frequencies only from the unfiltered query and
+  post-stratifies everything else (weight = true pair share / sampled pair share, clipped to
+  [0.1, 10]), reporting a Kish effective sample size rather than the raw weighted count.
+
+  Measured on the same 100-deck test set, 330 stratified decks scored **46% / 68% / 67%** against
+  the unbiased 100's **47% / 77% / 66%** — a wash, because clipping pulled the effective sample from
+  330 down to 124. Pass `--unbiased-only` (the default shipped model) unless a sweep completes far
+  enough that the up-weighted strata carry real extra information. 17Lands IP-bans `event_preview`
+  after roughly 120 fetches even at a 2 s delay, which is why the sweep here stopped at 330.
 
 - **[draft-guides/](./draft-guides/)** — per-set strategy notes distilled from five limited channels
   (Lords of Limited, NumotTheNummy, Limited Resources, Limited Level-Ups, Rough Drafts). The
