@@ -300,6 +300,35 @@ def main():
     return 0
 
 
+# Mana fixing is not only in the lands. A splash is supported by anything that can
+# produce the off-colour pip: an on-colour basic, a dual, a land that FETCHES a basic
+# (Hobbit Hole, 87% maindecked, reads as a colourless land but is a source for every
+# colour), and Treasure makers, which are one-shot but do cast the one card you splashed.
+FIX_DUAL_RX = re.compile(r"\{T\}[^.]{0,40}: Add ([^.]{0,40})")
+FIX_ANY_RX = re.compile(r"mana of any color|any color", re.I)
+FIX_FETCH_RX = re.compile(r"[Ss]earch your library for a basic land", re.I)
+FIX_TREASURE_RX = re.compile(r"[Tt]reasure token")
+
+
+def fixing_kind(name, db, text):
+    """'dual'/'fetch'/'treasure'/None — how a card can pay for an off-colour pip."""
+    body = text.get(name, "")
+    if not body:
+        return None, set()
+    if FIX_FETCH_RX.search(body):
+        return "fetch", set(WUBRG)                    # any basic, so any colour
+    m = FIX_DUAL_RX.search(body)
+    if m:
+        produced = {c for c in WUBRG if ("{%s}" % c) in m.group(1)}
+        if FIX_ANY_RX.search(m.group(1)):
+            produced = set(WUBRG)
+        if produced:
+            return "dual", produced
+    if FIX_TREASURE_RX.search(body):
+        return "treasure", set(WUBRG)
+    return None, set()
+
+
 REMOVAL_RX = re.compile(
     r"\bdestroy target|\bexile target (?:creature|permanent|attacking)|"
     r"deals? \d+ damage to target|target creature gets -|fight target", re.I)
@@ -411,7 +440,15 @@ def shapes(expansion, fmt, db, tro):
         up, lo = deck_colors(md, db, text)
         shape = ("pure 2c" if len(up) == 2 and not lo else
                  "2c + splash" if len(up) == 2 else "3 colours")
+        fix = collections.Counter()
+        for m in md:
+            if m in BASIC:
+                continue
+            k, _ = fixing_kind(m, db, text)
+            if k:
+                fix[k] += 1
         decks.append({
+            "duals": fix["dual"], "fetchers": fix["fetch"], "treasures": fix["treasure"],
             "spells": len(spells), "lands": len(basics) + len(util), "util": len(util),
             "creatures": len(creatures), "noncreature": len(spells) - len(creatures),
             "removal": sum(1 for m in spells if REMOVAL_RX.search(text.get(m, ""))),
@@ -426,12 +463,20 @@ def shapes(expansion, fmt, db, tro):
         off = [m for m in spells if not castable(db[m], up)]
         for c in lo:
             n_basic = sum(1 for m in md if m == BASIC_OF[c])
-            fixers = sum(1 for m in util
-                         if ("{%s}" % c) in text.get(m, "")
-                         or "any color" in text.get(m, "").lower())
+            kinds = collections.Counter()
+            for m in md:
+                if m in BASIC:
+                    continue
+                k, produced = fixing_kind(m, db, text)
+                if k and c in produced:
+                    kinds[k] += 1
             splashes.append({"color": c, "n_cards": len(off),
-                             "basics": n_basic, "fixers": fixers,
-                             "sources": n_basic + fixers,
+                             "basics": n_basic,
+                             "duals": kinds["dual"], "fetchers": kinds["fetch"],
+                             "treasures": kinds["treasure"],
+                             "fixers": kinds["dual"] + kinds["fetch"] + kinds["treasure"],
+                             "sources": n_basic + kinds["dual"] + kinds["fetch"],
+                             "sources_all": n_basic + sum(kinds.values()),
                              "cards": [{"name": m,
                                         "cost": db[m].get("mana_cost", ""),
                                         "mv": db[m].get("cmc", 0),
@@ -464,6 +509,9 @@ def shapes(expansion, fmt, db, tro):
                       "util": st.median([x["util"] for x in v]),
                       "creatures": st.median([x["creatures"] for x in v]),
                       "removal": st.median([x["removal"] for x in v]),
+                      "duals": st.median([x["duals"] for x in v]),
+                      "fetchers": st.median([x["fetchers"] for x in v]),
+                      "no_fetcher": sum(1 for x in v if not x["fetchers"]),
                       "avg_mv": round(st.median([x["avg_mv"] for x in v]), 2)}
                      for k in ("pure 2c", "2c + splash", "3 colours")
                      for v in [[x for x in decks if x["shape"] == k]] if v],
@@ -476,9 +524,14 @@ def shapes(expansion, fmt, db, tro):
             "kinds": dict(collections.Counter(c["kind"] for c in allsp).most_common()),
             "mv": _dist(int(c["mv"]) for c in allsp),
             "basics": _dist(s["basics"] for s in splashes),
-            "fixers": _dist(s["fixers"] for s in splashes),
+            "duals": _dist(s["duals"] for s in splashes),
+            "fetchers": _dist(s["fetchers"] for s in splashes),
+            "treasures": _dist(s["treasures"] for s in splashes),
             "sources": _dist(s["sources"] for s in splashes),
+            "sources_all": _dist(s["sources_all"] for s in splashes),
             "median_sources": st.median([s["sources"] for s in splashes]) if splashes else 0,
+            "median_sources_all": st.median([s["sources_all"] for s in splashes]) if splashes else 0,
+            "naked": sum(1 for s in splashes if s["sources_all"] <= 1),
             "median_gih": round(st.median([c["gih"] for c in allsp if c["gih"]]), 3) if allsp else 0,
             "top": [{"name": k, "n": v,
                      **{f: next(c[f] for c in allsp if c["name"] == k)
