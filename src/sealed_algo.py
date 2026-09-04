@@ -578,9 +578,13 @@ def shapes(expansion, fmt, db, tro):
 def decklists(expansion, fmt, db):
     """The registered 40s themselves, one record per deck, for browsing.
 
-    Unbiased set only, same reason as shapes(). Each deck is split creatures / other
-    spells / lands with copy counts, plus the curve, so a UI can render an index row
-    without re-deriving anything."""
+    Unlike shapes(), this returns EVERY cached deck, not just the unbiased sample. The
+    colour sweep's bias is a bias in *how many* decks of each colour were fetched — it
+    poisons a frequency statistic, but a decklist is still a decklist. Browsing and
+    card-level questions ("who played Troop of Ponies, and what with?") get strictly
+    better with more of them. Each row carries `unbiased` so a UI can say which ones the
+    aggregate was computed from. Each deck is split creatures / other spells / lands with
+    copy counts, plus the curve, so a UI can render an index row without re-deriving."""
     import glob
     d = os.path.join(CACHE, "trophies", f"{expansion}_{fmt}")
     try:
@@ -593,8 +597,6 @@ def decklists(expansion, fmt, db):
     out = []
     for f in sorted(glob.glob(os.path.join(d, "*.json"))):
         aid = os.path.basename(f).split("_")[0]
-        if unbiased and aid not in unbiased:
-            continue
         try:
             e = json.load(open(f))
         except Exception:
@@ -620,6 +622,7 @@ def decklists(expansion, fmt, db):
         curve = collections.Counter(min(int(db[m2].get("cmc", 0)), 7) for m2 in spells)
         out.append({
             "id": aid[:8], "colors": colors, "pair": pair,
+            "unbiased": (not unbiased) or aid in unbiased,
             "shape": ("pure 2c" if len(up) == 2 and not lo else
                       "2c + splash" if len(up) == 2 else "3 colours"),
             "colors_17lands": m.get("colors", ""),
@@ -633,7 +636,8 @@ def decklists(expansion, fmt, db):
             "curve": [curve[i] for i in range(1, 8)],
         })
     out.sort(key=lambda x: (x["pair"], x["shape"]))
-    return {"expansion": expansion, "format": fmt, "n_decks": len(out), "decks": out}
+    return {"expansion": expansion, "format": fmt, "n_decks": len(out),
+            "n_unbiased": sum(1 for x in out if x["unbiased"]), "decks": out}
 
 
 def validate(expansion, fmt, db, pair_prior):
