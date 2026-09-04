@@ -75,7 +75,8 @@ def derive(expansion, fmt, events, sealed_stats):
             carddb.setdefault(v["name"], {
                 "name": v["name"], "mana_cost": v.get("mana_cost", ""),
                 "cmc": v.get("cmc", 0), "types": v.get("types", []),
-                "rarity": v.get("rarity", ""), "mtga_id": v["id"]})
+                "rarity": v.get("rarity", ""), "mtga_id": v["id"],
+                "img": v.get("image_url", "")})
         pool = [nm(i) for i in d["pool"] if nm(i) not in BASIC]
         main_all = [nm(i) for i in d["decks"][0]["groups"][0]["cards"]]
         main = [m for m in main_all if m not in BASIC]
@@ -96,6 +97,8 @@ def derive(expansion, fmt, events, sealed_stats):
         c["gih"] = s["ever_drawn_win_rate"]
         c["gih_n"] = s["ever_drawn_game_count"]
         c["rarity"] = s["rarity"]
+        c.setdefault("img", "")
+        c["img"] = c["img"] or s.get("url", "")
     cards = [{"card": n, "n_pool": pool_ct[n], "n_main": main_ct.get(n, 0),
               "copies_pool": pool_cp[n], "copies_main": main_cp.get(n, 0)}
              for n in pool_ct]

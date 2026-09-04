@@ -26,7 +26,7 @@ Usage:
 Pool file: one card per line, "2x Name" / "2 Name" / "Name" all work; blanks and
 # comments ignored. Basics are ignored.
 """
-import argparse, collections, json, math, os, re, statistics as st
+import argparse, collections, json, math, os, re, statistics as st, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CACHE = os.path.join(ROOT, "data", "cache")
@@ -186,12 +186,16 @@ def build(pool, db, sc, priors, pair_prior=None):
             "cut": [n for _, n in cands[N_SPELLS:]][:12]}
 
 # ---------------------------------------------------------------- io
-def read_pool(path):
+def read_pool(src):
+    """Accept a path or an already-read blob. '2x Name', '2 Name', 'Name', and
+    MTGA's own export line ('2 Name (HOB) 123') all parse."""
+    text = src if "\n" in src or not os.path.exists(src) else open(src).read()
     pool = []
-    for line in open(path):
+    for line in text.splitlines():
         line = line.split("#")[0].strip()
-        if not line:
+        if not line or line.lower() in ("deck", "sideboard", "commander"):
             continue
+        line = re.sub(r"\s*\([A-Z0-9]{3,5}\)\s*\d*\s*$", "", line)  # MTGA export suffix
         m = re.match(r"^(\d+)\s*x?\s+(.*)$", line)
         n, name = (int(m.group(1)), m.group(2).strip()) if m else (1, line)
         pool += [name] * n
@@ -208,23 +212,57 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--set", dest="expansion", required=True)
     ap.add_argument("--format", default="ArenaDirect_Sealed")
-    ap.add_argument("--pool")
+    ap.add_argument("--pool", help="pool file, or - for stdin")
     ap.add_argument("--pair-prior", type=float, default=PAIR_PRIOR)
     ap.add_argument("--json", action="store_true")
     ap.add_argument("--validate", action="store_true")
+    ap.add_argument("--catalog", action="store_true",
+                    help="dump every card's score/GIH/trophy play rate as JSON")
     a = ap.parse_args()
     db, tro = load(a.expansion, a.format)
     if a.validate:
         return validate(a.expansion, a.format, db, a.pair_prior)
+    if a.catalog:
+        sc, (fa, fb) = build_scores(db, tro["cards"])
+        rows = []
+        for n, s in sc.items():
+            c = db[n]
+            rows.append({"name": n, "score": s["score"], "gih": s["gih"],
+                         "play": s["play_adj"], "play_hat": s["play_hat"],
+                         "n_pool": s["n_pool"], "src": s["src"],
+                         "delta": s["play_adj"] - s["play_hat"],
+                         "img": c.get("img", ""), "mana_cost": c.get("mana_cost", ""),
+                         "cmc": c.get("cmc", 0), "rarity": c.get("rarity", ""),
+                         "types": c.get("types", []),
+                         "colors": sorted(pips(c.get("mana_cost", ""))[0])
+                                   or sorted({x for h in pips(c.get("mana_cost", ""))[1] for x in h}),
+                         "is_land": is_land(c), "is_creature": is_creature(c)})
+        rows.sort(key=lambda r: -r["score"])
+        print(json.dumps({"expansion": a.expansion, "format": a.format,
+                          "n_decks": tro["n_decks"], "pairs": tro["pairs"],
+                          "shapes": tro["shapes"], "creatures": tro["creatures"],
+                          "lands": tro["lands"], "fit": [fa, fb], "cards": rows}))
+        return 0
     if not a.pool:
         ap.error("--pool or --validate required")
-    pool = read_pool(a.pool)
+    pool = read_pool(sys.stdin.read() if a.pool == "-" else a.pool)
     unknown = sorted({n for n in pool if n not in db and n not in BASIC})
     if unknown:
-        print("unknown card names (check spelling):", ", ".join(unknown)); return 1
+        msg = {"error": "unknown card names", "unknown": unknown}
+        print(json.dumps(msg) if a.json else
+              "unknown card names (check spelling): " + ", ".join(unknown))
+        return 1
     sc, _ = build_scores(db, tro["cards"])
     r = build(pool, db, sc, pair_priors(tro["pairs"], tro["n_decks"]), a.pair_prior)
     if a.json:
+        r["cards"] = {n: sc[n] | {"img": db[n].get("img", ""),
+                                  "mana_cost": db[n].get("mana_cost", ""),
+                                  "cmc": db[n].get("cmc", 0),
+                                  "rarity": db[n].get("rarity", ""),
+                                  "types": db[n].get("types", [])}
+                      for n in set(r["spells"] + r["splash"] + r["cut"] + r["utility_lands"])}
+        r["trophy_pairs"] = tro["pairs"]
+        r["n_trophy_decks"] = tro["n_decks"]
         print(json.dumps(r, indent=1)); return 0
 
     print(f"POOL {len(pool)} cards | format {a.expansion} {a.format} "

@@ -115,7 +115,11 @@ the other way around.
   python3 src/ingest/fetch_trophies.py --set HOB --format ArenaDirect_Sealed   # once per format
   python3 src/sealed_algo.py --set HOB --pool mypool.txt                       # per pool
   python3 src/sealed_algo.py --set HOB --validate                              # leave-one-out
+  python3 src/sealed_algo.py --set HOB --catalog                               # whole set, as JSON
   ```
+
+  The Mac mini's card-reference site (port 8340) drives the same script from a browser: `/sealed`
+  pastes a pool in, `/catalog` renders the whole set ranked by this score as card tiles.
 
   Leave-one-out over the 100 HOB Arena Direct Sealed trophy decks: colour pair correct **47%** of
   the time (always-guess-BR baseline: 42%), in the top two **76%**, and when the pair matches
