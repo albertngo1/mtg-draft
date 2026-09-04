@@ -469,6 +469,10 @@ def shapes(expansion, fmt, db, tro):
 
     decks, splashes = [], []
     land_use = collections.Counter()
+    # Given a card opened 2+ times, how often is the second copy maindecked? Split by
+    # legendary, because the usual advice is that the legend rule makes copy 2 a dead
+    # draw — a set with legendary COMMONS is exactly where that advice breaks.
+    dup_open, dup_play = collections.Counter(), collections.Counter()
     core = []          # (index into decks) of the unbiased subset, for the colour truth
     for f in sorted(glob.glob(os.path.join(d, "*.json"))):
         aid = os.path.basename(f).split("_")[0]
@@ -478,7 +482,8 @@ def shapes(expansion, fmt, db, tro):
         except Exception:
             continue
         cards = e["cards"]
-        md = [cards[str(i)]["name"] for i in e["decks"][0]["groups"][0]["cards"]]
+        groups = e["decks"][0]["groups"]
+        md = [cards[str(i)]["name"] for i in groups[0]["cards"]]
         if len(md) != 40 or any(m not in db for m in md if m not in BASIC):
             continue
         # 17Lands returns 40 Plains as a placeholder for a deck its owner has not
@@ -486,6 +491,9 @@ def shapes(expansion, fmt, db, tro):
         # mean or a colour read.
         if all(m in BASIC for m in md):
             continue
+        sideboard = [cards[str(i)]["name"] for i in (groups[1]["cards"] if len(groups) > 1 else [])]
+        pool_names = [cards[str(i)]["name"] for i in e.get("pool", [])
+                      if str(i) in cards and cards[str(i)]["name"] not in BASIC]
         basics = [m for m in md if m in BASIC]
         util = [m for m in md if m not in BASIC and is_land(db[m])]
         spells = [m for m in md if m not in BASIC and not is_land(db[m])]
@@ -505,8 +513,30 @@ def shapes(expansion, fmt, db, tro):
                 fix[k] += 1
         if (not unbiased) or aid in unbiased:
             core.append(len(decks))
+        pool_ct, md_ct = collections.Counter(pool_names), collections.Counter(md)
+        for c, q in pool_ct.items():
+            if q >= 2 and c in db:
+                dup_open[c] += 1
+                if md_ct.get(c, 0) >= 2:
+                    dup_play[c] += 1
+        gihs = [sc[m]["gih"] for m in spells if m in sc]
+        rar = collections.Counter(db[m].get("rarity") for m in spells)
+        # A premium card left in the sideboard that the deck could actually cast is the
+        # cleanest available proxy for a build mistake, and winners almost never do it.
+        benched = sum(1 for m in set(sideboard)
+                      if m not in BASIC and m in sc and sc[m]["gih"] >= 0.60
+                      and castable(db[m], up) and not is_land(db[m]))
+        dupes = collections.Counter(md)
         decks.append({
             "pair": "".join(sorted(up, key=WUBRG.index)),
+            "worst": min(gihs) if gihs else 0,
+            "bombs": sum(1 for g in gihs if g >= 0.60),
+            "benched": benched,
+            "rare": rar.get("rare", 0) + rar.get("mythic", 0),
+            "common": rar.get("common", 0), "uncommon": rar.get("uncommon", 0),
+            "pool_used": (len(spells) / len(pool_names)) if pool_names else 0,
+            "legend_dupes": sum(1 for c, q in dupes.items() if q >= 2 and c not in BASIC
+                                and "Legendary" in " ".join(db[c].get("types", []))),
             "duals": fix["source"], "fetchers": fix["fetch"],
             "tutors": fix["tutor"], "treasures": fix["treasure"],
             "spells": len(spells), "lands": len(basics) + len(util), "util": len(util),
@@ -626,6 +656,33 @@ def shapes(expansion, fmt, db, tro):
                     for k, v in sorted(_wdist([c["name"] for c, _ in allsp],
                                               [w for _, w in allsp]).items(),
                                        key=lambda kv: -kv[1])[:12]],
+        },
+        "findings": {
+            "worst": [round(v, 3) for v in _quart([x["worst"] for x in decks], W)],
+            "worst_under": round(sum(w for x, w in zip(decks, W) if x["worst"] < 0.52)
+                                 / sum(W) * n),
+            "bombs": _quart([x["bombs"] for x in decks], W),
+            "bombs_zero": round(sum(w for x, w in zip(decks, W) if not x["bombs"]) / sum(W) * n),
+            "benched": _wdist([x["benched"] for x in decks], W),
+            "benched_any": round(sum(w for x, w in zip(decks, W) if x["benched"]) / sum(W) * n),
+            "rarity": {k: _quart([x[k] for x in decks], W)
+                       for k in ("common", "uncommon", "rare")},
+            "pool_used": round(_quart([x["pool_used"] for x in decks], W)[1] * 100),
+            "legend_dupes": round(sum(w for x, w in zip(decks, W) if x["legend_dupes"])
+                                  / sum(W) * n),
+            "second_copy": {
+                grp: (round(100 * st.median(rates)) if rates else 0)
+                for grp, rates in (
+                    ("legendary", [dup_play.get(c, 0) / v for c, v in dup_open.items()
+                                   if v >= 12 and "Legendary" in " ".join(db[c].get("types", []))]),
+                    ("other", [dup_play.get(c, 0) / v for c, v in dup_open.items()
+                               if v >= 12 and "Legendary" not in " ".join(db[c].get("types", []))]),
+                )},
+            "second_copy_top": sorted(
+                ({"name": c, "rate": round(100 * dup_play.get(c, 0) / v), "n": v}
+                 for c, v in dup_open.items()
+                 if v >= 15 and "Legendary" in " ".join(db[c].get("types", []))),
+                key=lambda x: -x["rate"])[:5],
         },
         "utility_lands": [{"name": k, "n": v, "text": text.get(k, "")}
                           for k, v in land_use.most_common(8)],
