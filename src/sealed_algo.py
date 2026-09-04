@@ -421,11 +421,33 @@ def _dist(vals):
     return {str(k): v for k, v in sorted(collections.Counter(vals).items())}
 
 
-def _quart(vals):
-    v = sorted(vals)
-    if not v:
+def _quart(vals, weights=None):
+    """p25 / median / p75, weighted when the sample is stratified.
+
+    The colour sweep over-collects some colour pairs, so an unweighted median over the
+    whole corpus is a median of the wrong population. Post-stratification weights put
+    each pair back at its true share before the quantiles are read off."""
+    pairs = sorted(zip(vals, weights if weights is not None else [1.0] * len(vals)))
+    if not pairs:
         return [0, 0, 0]
-    return [v[len(v) // 4], st.median(v), v[3 * len(v) // 4]]
+    total = sum(w for _, w in pairs)
+    out, targets, acc, i = [], (0.25, 0.5, 0.75), 0.0, 0
+    for t in targets:
+        cut = t * total
+        while i < len(pairs) - 1 and acc + pairs[i][1] < cut:
+            acc += pairs[i][1]
+            i += 1
+        out.append(pairs[i][0])
+    return out
+
+
+def _wdist(vals, weights):
+    """Distribution in whole decks, scaled so the bars stay readable after reweighting."""
+    agg = collections.Counter()
+    for v, w in zip(vals, weights):
+        agg[v] += w
+    scale = len(vals) / max(sum(agg.values()), 1e-9)
+    return {str(k): round(v * scale, 1) for k, v in sorted(agg.items())}
 
 
 def shapes(expansion, fmt, db, tro):
@@ -447,10 +469,10 @@ def shapes(expansion, fmt, db, tro):
 
     decks, splashes = [], []
     land_use = collections.Counter()
+    core = []          # (index into decks) of the unbiased subset, for the colour truth
     for f in sorted(glob.glob(os.path.join(d, "*.json"))):
         aid = os.path.basename(f).split("_")[0]
-        if unbiased and aid not in unbiased:
-            continue
+        pass
         try:
             e = json.load(open(f))
         except Exception:
@@ -481,7 +503,10 @@ def shapes(expansion, fmt, db, tro):
             k, _ = fixing_kind(m, db, text)
             if k:
                 fix[k] += 1
+        if (not unbiased) or aid in unbiased:
+            core.append(len(decks))
         decks.append({
+            "pair": "".join(sorted(up, key=WUBRG.index)),
             "duals": fix["source"], "fetchers": fix["fetch"],
             "tutors": fix["tutor"], "treasures": fix["treasure"],
             "spells": len(spells), "lands": len(basics) + len(util), "util": len(util),
@@ -505,7 +530,8 @@ def shapes(expansion, fmt, db, tro):
                 k, produced = fixing_kind(m, db, text)
                 if k and c in produced:
                     kinds[k] += 1
-            splashes.append({"color": c, "n_cards": len(off),
+            splashes.append({"w": 1.0, "pair": "".join(sorted(up, key=WUBRG.index)),
+                             "color": c, "n_cards": len(off),
                              "basics": n_basic,
                              "duals": kinds["source"], "fetchers": kinds["fetch"],
                              "tutors": kinds["tutor"], "treasures": kinds["treasure"],
@@ -522,23 +548,41 @@ def shapes(expansion, fmt, db, tro):
                                                  else "creature" if is_creature(db[m])
                                                  else "other spell")}
                                        for m in off]})
+    # Post-stratification: a colour pair's TRUE share comes from the unbiased subset,
+    # its sampled share from everything fetched. Weights are clipped so one rare stratum
+    # cannot dominate, and a pair absent from the unbiased subset is pushed to the floor.
+    truth = collections.Counter(decks[i]["pair"] for i in core)
+    samp = collections.Counter(x["pair"] for x in decks)
+    weight = {}
+    if truth and samp != truth:
+        nt, ns = sum(truth.values()), sum(samp.values())
+        for k, v in samp.items():
+            weight[k] = (min(10.0, max(0.1, (truth.get(k, 0) / nt) / (v / ns)))
+                         if truth.get(k) else 0.1)
+    W = [weight.get(x["pair"], 1.0) for x in decks]
+    for sp_ in splashes:
+        sp_["w"] = weight.get(sp_["pair"], 1.0)
     n = len(decks)
-    allsp = [c for s in splashes for c in s["cards"]]
+    n_eff = (sum(W) ** 2 / sum(w * w for w in W)) if W else 0
+    allsp = [(c, s["w"]) for s in splashes for c in s["cards"]]
     rows = {}
     for k in ("spells", "lands", "creatures", "noncreature", "util",
               "removal", "early", "late"):
-        rows[k] = {"q": _quart([x[k] for x in decks]), "dist": _dist(x[k] for x in decks)}
+        rows[k] = {"q": _quart([x[k] for x in decks], W),
+                   "dist": _wdist([x[k] for x in decks], W)}
     return {
         "expansion": expansion, "format": fmt, "n_decks": n,
+        "n_core": len(core), "n_effective": round(n_eff, 1), "stratified": bool(weight),
         "has_text": bool(text),
         "rows": rows,
-        "avg_mv": [round(v, 2) for v in _quart([x["avg_mv"] for x in decks])],
+        "avg_mv": [round(v, 2) for v in _quart([x["avg_mv"] for x in decks], W)],
         "curve": [{"mv": mv,
-                   "all": round(st.mean(x["curve"][mv] for x in decks), 2),
-                   "creature": round(st.mean(x["ccurve"][mv] for x in decks), 2)}
+                   "all": round(sum(x["curve"][mv] * w for x, w in zip(decks, W)) / sum(W), 2),
+                   "creature": round(sum(x["ccurve"][mv] * w for x, w in zip(decks, W)) / sum(W), 2)}
                   for mv in range(1, 8)],
-        "copies": {"dist": _dist(x["max_copies"] for x in decks),
-                   "with_three_plus": sum(1 for x in decks if x["max_copies"] >= 3)},
+        "copies": {"dist": _wdist([x["max_copies"] for x in decks], W),
+                   "with_three_plus": round(sum(w for x, w in zip(decks, W)
+                                                if x["max_copies"] >= 3) / sum(W) * n)},
         "by_shape": [{"shape": k, "n": len(v),
                       "lands": st.median([x["lands"] for x in v]),
                       "util": st.median([x["util"] for x in v]),
@@ -546,33 +590,42 @@ def shapes(expansion, fmt, db, tro):
                       "removal": st.median([x["removal"] for x in v]),
                       "duals": st.median([x["duals"] for x in v]),
                       "fetchers": st.median([x["fetchers"] for x in v]),
+                      "share": round(100 * sum(weight.get(x["pair"], 1.0) for x in v)
+                                     / max(sum(W), 1e-9)),
                       "no_fetcher": sum(1 for x in v if not x["fetchers"]),
                       "avg_mv": round(st.median([x["avg_mv"] for x in v]), 2)}
                      for k in ("pure 2c", "2c + splash", "3 colours")
                      for v in [[x for x in decks if x["shape"] == k]] if v],
         "splash": {
             "n": len(splashes),
-            "cards_per_deck": _dist(s["n_cards"] for s in splashes),
-            "median_cards": st.median([s["n_cards"] for s in splashes]) if splashes else 0,
-            "colors": dict(collections.Counter(s["color"] for s in splashes).most_common()),
-            "off_pips": _dist(c["off_pips"] for c in allsp),
-            "kinds": dict(collections.Counter(c["kind"] for c in allsp).most_common()),
-            "mv": _dist(int(c["mv"]) for c in allsp),
-            "basics": _dist(s["basics"] for s in splashes),
-            "duals": _dist(s["duals"] for s in splashes),
-            "fetchers": _dist(s["fetchers"] for s in splashes),
-            "tutors": _dist(s["tutors"] for s in splashes),
-            "treasures": _dist(s["treasures"] for s in splashes),
-            "sources": _dist(s["sources"] for s in splashes),
-            "sources_all": _dist(s["sources_all"] for s in splashes),
-            "median_sources": st.median([s["sources"] for s in splashes]) if splashes else 0,
-            "median_sources_all": st.median([s["sources_all"] for s in splashes]) if splashes else 0,
-            "naked": sum(1 for s in splashes if s["sources_all"] <= 1),
-            "median_gih": round(st.median([c["gih"] for c in allsp if c["gih"]]), 3) if allsp else 0,
-            "top": [{"name": k, "n": v,
-                     **{f: next(c[f] for c in allsp if c["name"] == k)
+            "cards_per_deck": _wdist([s["n_cards"] for s in splashes], [s["w"] for s in splashes]),
+            "median_cards": _quart([s["n_cards"] for s in splashes],
+                                    [s["w"] for s in splashes])[1] if splashes else 0,
+            "colors": _wdist([s["color"] for s in splashes], [s["w"] for s in splashes]),
+            "off_pips": _wdist([c["off_pips"] for c,_ in allsp], [w for _,w in allsp]),
+            "kinds": _wdist([c["kind"] for c, _ in allsp], [w for _, w in allsp]),
+            "mv": _wdist([int(c["mv"]) for c,_ in allsp], [w for _,w in allsp]),
+            "basics": _wdist([s["basics"] for s in splashes], [s["w"] for s in splashes]),
+            "duals": _wdist([s["duals"] for s in splashes], [s["w"] for s in splashes]),
+            "fetchers": _wdist([s["fetchers"] for s in splashes], [s["w"] for s in splashes]),
+            "tutors": _wdist([s["tutors"] for s in splashes], [s["w"] for s in splashes]),
+            "treasures": _wdist([s["treasures"] for s in splashes], [s["w"] for s in splashes]),
+            "sources": _wdist([s["sources"] for s in splashes], [s["w"] for s in splashes]),
+            "sources_all": _wdist([s["sources_all"] for s in splashes], [s["w"] for s in splashes]),
+            "median_sources": _quart([s["sources"] for s in splashes],
+                                     [s["w"] for s in splashes])[1] if splashes else 0,
+            "median_sources_all": _quart([s["sources_all"] for s in splashes],
+                                         [s["w"] for s in splashes])[1] if splashes else 0,
+            "naked": round(sum(s["w"] for s in splashes if s["sources_all"] <= 1)
+                           / max(sum(s["w"] for s in splashes), 1e-9) * len(splashes)),
+            "median_gih": round(_quart([c["gih"] for c, _ in allsp if c["gih"]],
+                                       [w for c, w in allsp if c["gih"]])[1], 3) if allsp else 0,
+            "top": [{"name": k, "n": round(v),
+                     **{f: next(c[f] for c, _ in allsp if c["name"] == k)
                         for f in ("cost", "gih", "kind", "img")}}
-                    for k, v in collections.Counter(c["name"] for c in allsp).most_common(12)],
+                    for k, v in sorted(_wdist([c["name"] for c, _ in allsp],
+                                              [w for _, w in allsp]).items(),
+                                       key=lambda kv: -kv[1])[:12]],
         },
         "utility_lands": [{"name": k, "n": v, "text": text.get(k, "")}
                           for k, v in land_use.most_common(8)],
