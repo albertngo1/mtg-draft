@@ -116,10 +116,12 @@ the other way around.
   python3 src/sealed_algo.py --set HOB --pool mypool.txt                       # per pool
   python3 src/sealed_algo.py --set HOB --validate                              # leave-one-out
   python3 src/sealed_algo.py --set HOB --catalog                               # whole set, as JSON
+  python3 src/sealed_algo.py --set HOB --shapes                                # deck shapes, as JSON
+  python3 src/sealed_algo.py --set HOB --decks                                 # the 40s themselves
   ```
 
-  The Mac mini's card-reference site (port 8340) drives the same script from a browser: `/sealed`
-  pastes a pool in, `/catalog` renders the whole set ranked by this score as card tiles.
+  The Mac mini's card-reference site (port 8340) drives the same script from a browser: `/catalog`
+  ranks the set, `/sealed` shows the deck shapes, `/decks` browses the trophy lists.
 
   Leave-one-out over the 100 HOB Arena Direct Sealed trophy decks: colour pair correct **47%** of
   the time (always-guess-BR baseline: 42%), in the top two **77%**, and when the pair matches

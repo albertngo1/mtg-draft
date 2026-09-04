@@ -216,12 +216,22 @@ def main():
     ap.add_argument("--pair-prior", type=float, default=PAIR_PRIOR)
     ap.add_argument("--json", action="store_true")
     ap.add_argument("--validate", action="store_true")
+    ap.add_argument("--decks", action="store_true",
+                    help="dump the cached trophy decklists as JSON")
+    ap.add_argument("--shapes", action="store_true",
+                    help="dump the shape of the cached trophy decks as JSON")
     ap.add_argument("--catalog", action="store_true",
                     help="dump every card's score/GIH/trophy play rate as JSON")
     a = ap.parse_args()
     db, tro = load(a.expansion, a.format)
     if a.validate:
         return validate(a.expansion, a.format, db, a.pair_prior)
+    if a.decks:
+        print(json.dumps(decklists(a.expansion, a.format, db)))
+        return 0
+    if a.shapes:
+        print(json.dumps(shapes(a.expansion, a.format, db, tro)))
+        return 0
     if a.catalog:
         sc, (fa, fb) = build_scores(db, tro["cards"])
         rows = []
@@ -288,6 +298,255 @@ def main():
             print(f"  {n:<34}{sc[n]['score']:>7.4f}  needs {sorted(pips(db[n]['mana_cost'])[0]-set(r['pair']))}")
     print("\nfirst cards below the line:", ", ".join(r["cut"][:8]))
     return 0
+
+
+REMOVAL_RX = re.compile(
+    r"\bdestroy target|\bexile target (?:creature|permanent|attacking)|"
+    r"deals? \d+ damage to target|target creature gets -|fight target", re.I)
+BASIC_OF = {"W": "Plains", "U": "Island", "B": "Swamp", "R": "Mountain", "G": "Forest"}
+COLOR_OF = {v: k for k, v in BASIC_OF.items()}
+MAIN_SOURCE_MIN = 4     # a colour you are actually IN, vs one you are splashing
+
+
+def deck_colors(md, db, text=None):
+    """Main colours and splash colours, read off the registered 40 itself.
+
+    17Lands ships a `colors` string per trophy, but it disagrees with the mana base on
+    11 of 93 HOB decks — it called one deck 'BGw' that runs 7 Swamp, 6 Mountain, 1 Plains
+    and no Forest. The deck is the ground truth, so: a colour with >= MAIN_SOURCE_MIN
+    sources (basics plus any nonbasic land that taps for it) is a main colour; a colour
+    that appears in the spells' pips with fewer sources than that is a splash."""
+    text = text or {}
+    src = collections.Counter()
+    for m in md:
+        if m in BASIC:
+            src[COLOR_OF[m]] += 1
+        elif is_land(db.get(m, {})):
+            body = text.get(m, "")
+            for c in WUBRG:
+                if ("{%s}" % c) in body or "any color" in body.lower():
+                    src[c] += 1
+    used = collections.Counter()
+    for m in md:
+        if m in BASIC or is_land(db.get(m, {})):
+            continue
+        hard, hybrid = pips(db.get(m, {}).get("mana_cost", ""))
+        for c in hard:
+            used[c] += 1
+        for h in hybrid:
+            if len(h) == 1:
+                used[next(iter(h))] += 1
+    main = {c for c in WUBRG if src[c] >= MAIN_SOURCE_MIN}
+    if len(main) < 2:                       # very light mana base — fall back to pip count
+        main = {c for c, _ in used.most_common(2)}
+    splash = {c for c in WUBRG if used[c] and c not in main}
+    return main, splash
+
+
+_oracle_cache = {}
+
+
+def _oracle(expansion):
+    """Oracle text, for the removal heuristic. Absent is fine — removal just goes unreported."""
+    out = {}
+    try:
+        for ln in open(os.path.join(CACHE, f"cards_{expansion}.ndjson")):
+            d = json.loads(ln)
+            if "_meta" not in d:
+                out[d["name"]] = d.get("text", "")
+    except Exception:
+        pass
+    return out
+
+
+def _dist(vals):
+    return {str(k): v for k, v in sorted(collections.Counter(vals).items())}
+
+
+def _quart(vals):
+    v = sorted(vals)
+    if not v:
+        return [0, 0, 0]
+    return [v[len(v) // 4], st.median(v), v[3 * len(v) // 4]]
+
+
+def shapes(expansion, fmt, db, tro):
+    """What the winning 40s actually look like: counts, curve, and splash anatomy.
+
+    Restricted to the UNBIASED deck set (the unfiltered most-recent query) — the colour
+    sweep over-samples whichever colours it swept, which would skew every count here."""
+    import glob
+    d = os.path.join(CACHE, "trophies", f"{expansion}_{fmt}")
+    idx_path = os.path.join(CACHE, f"trophy_index_{expansion}_{fmt}.json")
+    try:
+        idx = json.load(open(idx_path))
+        unbiased = set(idx["unbiased"])
+        meta = {e["aggregate_id"]: e for e in idx["entries"]}
+    except Exception:
+        unbiased, meta = set(), {}
+    text = _oracle(expansion)
+    sc, _ = build_scores(db, tro["cards"])
+
+    decks, splashes = [], []
+    land_use = collections.Counter()
+    for f in sorted(glob.glob(os.path.join(d, "*.json"))):
+        aid = os.path.basename(f).split("_")[0]
+        if unbiased and aid not in unbiased:
+            continue
+        try:
+            e = json.load(open(f))
+        except Exception:
+            continue
+        cards = e["cards"]
+        md = [cards[str(i)]["name"] for i in e["decks"][0]["groups"][0]["cards"]]
+        if len(md) != 40 or any(m not in db for m in md if m not in BASIC):
+            continue
+        basics = [m for m in md if m in BASIC]
+        util = [m for m in md if m not in BASIC and is_land(db[m])]
+        spells = [m for m in md if m not in BASIC and not is_land(db[m])]
+        creatures = [m for m in spells if is_creature(db[m])]
+        curve = collections.Counter(min(int(db[m].get("cmc", 0)), 7) for m in spells)
+        ccurve = collections.Counter(min(int(db[m].get("cmc", 0)), 7) for m in creatures)
+        copies = collections.Counter(spells)
+        up, lo = deck_colors(md, db, text)
+        shape = ("pure 2c" if len(up) == 2 and not lo else
+                 "2c + splash" if len(up) == 2 else "3 colours")
+        decks.append({
+            "spells": len(spells), "lands": len(basics) + len(util), "util": len(util),
+            "creatures": len(creatures), "noncreature": len(spells) - len(creatures),
+            "removal": sum(1 for m in spells if REMOVAL_RX.search(text.get(m, ""))),
+            "early": curve[1] + curve[2], "late": sum(v for k, v in curve.items() if k >= 5),
+            "avg_mv": st.mean(db[m].get("cmc", 0) for m in spells),
+            "max_copies": max(copies.values()), "shape": shape,
+            "curve": curve, "ccurve": ccurve})
+        for m in util:
+            land_use[m] += 1
+        if shape != "2c + splash":
+            continue
+        off = [m for m in spells if not castable(db[m], up)]
+        for c in lo:
+            n_basic = sum(1 for m in md if m == BASIC_OF[c])
+            fixers = sum(1 for m in util
+                         if ("{%s}" % c) in text.get(m, "")
+                         or "any color" in text.get(m, "").lower())
+            splashes.append({"color": c, "n_cards": len(off),
+                             "basics": n_basic, "fixers": fixers,
+                             "sources": n_basic + fixers,
+                             "cards": [{"name": m,
+                                        "cost": db[m].get("mana_cost", ""),
+                                        "mv": db[m].get("cmc", 0),
+                                        "gih": sc[m]["gih"] if m in sc else None,
+                                        "img": db[m].get("img", ""),
+                                        "off_pips": off_colour_pips(db[m], up),
+                                        "kind": ("removal" if REMOVAL_RX.search(text.get(m, ""))
+                                                 else "creature" if is_creature(db[m])
+                                                 else "other spell")}
+                                       for m in off]})
+    n = len(decks)
+    allsp = [c for s in splashes for c in s["cards"]]
+    rows = {}
+    for k in ("spells", "lands", "creatures", "noncreature", "util",
+              "removal", "early", "late"):
+        rows[k] = {"q": _quart([x[k] for x in decks]), "dist": _dist(x[k] for x in decks)}
+    return {
+        "expansion": expansion, "format": fmt, "n_decks": n,
+        "has_text": bool(text),
+        "rows": rows,
+        "avg_mv": [round(v, 2) for v in _quart([x["avg_mv"] for x in decks])],
+        "curve": [{"mv": mv,
+                   "all": round(st.mean(x["curve"][mv] for x in decks), 2),
+                   "creature": round(st.mean(x["ccurve"][mv] for x in decks), 2)}
+                  for mv in range(1, 8)],
+        "copies": {"dist": _dist(x["max_copies"] for x in decks),
+                   "with_three_plus": sum(1 for x in decks if x["max_copies"] >= 3)},
+        "by_shape": [{"shape": k, "n": len(v),
+                      "lands": st.median([x["lands"] for x in v]),
+                      "util": st.median([x["util"] for x in v]),
+                      "creatures": st.median([x["creatures"] for x in v]),
+                      "removal": st.median([x["removal"] for x in v]),
+                      "avg_mv": round(st.median([x["avg_mv"] for x in v]), 2)}
+                     for k in ("pure 2c", "2c + splash", "3 colours")
+                     for v in [[x for x in decks if x["shape"] == k]] if v],
+        "splash": {
+            "n": len(splashes),
+            "cards_per_deck": _dist(s["n_cards"] for s in splashes),
+            "median_cards": st.median([s["n_cards"] for s in splashes]) if splashes else 0,
+            "colors": dict(collections.Counter(s["color"] for s in splashes).most_common()),
+            "off_pips": _dist(c["off_pips"] for c in allsp),
+            "kinds": dict(collections.Counter(c["kind"] for c in allsp).most_common()),
+            "mv": _dist(int(c["mv"]) for c in allsp),
+            "basics": _dist(s["basics"] for s in splashes),
+            "fixers": _dist(s["fixers"] for s in splashes),
+            "sources": _dist(s["sources"] for s in splashes),
+            "median_sources": st.median([s["sources"] for s in splashes]) if splashes else 0,
+            "median_gih": round(st.median([c["gih"] for c in allsp if c["gih"]]), 3) if allsp else 0,
+            "top": [{"name": k, "n": v,
+                     **{f: next(c[f] for c in allsp if c["name"] == k)
+                        for f in ("cost", "gih", "kind", "img")}}
+                    for k, v in collections.Counter(c["name"] for c in allsp).most_common(12)],
+        },
+        "utility_lands": [{"name": k, "n": v, "text": text.get(k, "")}
+                          for k, v in land_use.most_common(8)],
+        "format_median_gih": 0.562,
+    }
+
+
+def decklists(expansion, fmt, db):
+    """The registered 40s themselves, one record per deck, for browsing.
+
+    Unbiased set only, same reason as shapes(). Each deck is split creatures / other
+    spells / lands with copy counts, plus the curve, so a UI can render an index row
+    without re-deriving anything."""
+    import glob
+    d = os.path.join(CACHE, "trophies", f"{expansion}_{fmt}")
+    try:
+        idx = json.load(open(os.path.join(CACHE, f"trophy_index_{expansion}_{fmt}.json")))
+        unbiased = set(idx["unbiased"])
+        meta = {e["aggregate_id"]: e for e in idx["entries"]}
+    except Exception:
+        unbiased, meta = set(), {}
+    out = []
+    for f in sorted(glob.glob(os.path.join(d, "*.json"))):
+        aid = os.path.basename(f).split("_")[0]
+        if unbiased and aid not in unbiased:
+            continue
+        try:
+            e = json.load(open(f))
+        except Exception:
+            continue
+        cards = e["cards"]
+        md = [cards[str(i)]["name"] for i in e["decks"][0]["groups"][0]["cards"]]
+        if len(md) != 40 or any(m not in db for m in md if m not in BASIC):
+            continue
+        m = meta.get(aid, {})
+        up, lo = deck_colors(md, db, _oracle_cache.setdefault(expansion, _oracle(expansion)))
+        pair = "".join(sorted(up, key=WUBRG.index))
+        colors = pair + "".join(sorted(lo, key=WUBRG.index)).lower()
+        counts = collections.Counter(md)
+        def group(pred):
+            g = [{"name": k, "n": v, "mv": db[k].get("cmc", 0),
+                  "cost": db[k].get("mana_cost", ""), "rarity": db[k].get("rarity", ""),
+                  "off": (k not in BASIC and not castable(db[k], up))}
+                 for k, v in counts.items() if pred(k)]
+            return sorted(g, key=lambda x: (x["mv"], x["name"]))
+        spells = [m2 for m2 in md if m2 not in BASIC and not is_land(db[m2])]
+        curve = collections.Counter(min(int(db[m2].get("cmc", 0)), 7) for m2 in spells)
+        out.append({
+            "id": aid[:8], "colors": colors, "pair": pair,
+            "shape": ("pure 2c" if len(up) == 2 and not lo else
+                      "2c + splash" if len(up) == 2 else "3 colours"),
+            "colors_17lands": m.get("colors", ""),
+            "wins": m.get("wins"), "losses": m.get("losses"), "time": m.get("time", "")[:10],
+            "creatures": group(lambda k: k not in BASIC and not is_land(db[k]) and is_creature(db[k])),
+            "spells": group(lambda k: k not in BASIC and not is_land(db[k]) and not is_creature(db[k])),
+            "lands": group(lambda k: k in BASIC or is_land(db[k])),
+            "n_creatures": sum(1 for m2 in spells if is_creature(db[m2])),
+            "n_spells": len(spells), "n_lands": 40 - len(spells),
+            "avg_mv": round(st.mean(db[m2].get("cmc", 0) for m2 in spells), 2),
+            "curve": [curve[i] for i in range(1, 8)],
+        })
+    out.sort(key=lambda x: (x["pair"], x["shape"]))
+    return {"expansion": expansion, "format": fmt, "n_decks": len(out), "decks": out}
 
 
 def validate(expansion, fmt, db, pair_prior):
