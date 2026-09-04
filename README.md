@@ -102,6 +102,27 @@ the other way around.
   jumps. GitHub Actions rebuilds and deploys it on every push that changes a reference, so the site
   cannot fall behind the Markdown.
 
+- **[`src/sealed_algo.py`](./src/sealed_algo.py)** — a **sealed** pool → best-40 algorithm, fitted
+  on 17Lands *trophy decks* (a trophy deck won the max matches for its event; 17Lands publishes the
+  full sealed pool alongside the registered 40, so each one is a labelled `pool → deck` pair). It
+  scores every card from sealed GIH WR, adjusts by how much *more or less* often 7-win players
+  maindeck it than that win rate predicts, then searches the ten colour pairs with a front-loaded
+  top-23 mean (bombs pick the colour; the 23rd playable doesn't). Hybrid pips count as either half,
+  utility lands take land slots rather than spell slots, and single-off-colour-pip cards better than
+  your worst include are surfaced as splash candidates.
+
+  ```bash
+  python3 src/ingest/fetch_trophies.py --set HOB --format ArenaDirect_Sealed   # once per format
+  python3 src/sealed_algo.py --set HOB --pool mypool.txt                       # per pool
+  python3 src/sealed_algo.py --set HOB --validate                              # leave-one-out
+  ```
+
+  Leave-one-out over the 100 HOB Arena Direct Sealed trophy decks: colour pair correct **47%** of
+  the time (always-guess-BR baseline: 42%), in the top two **76%**, and when the pair matches
+  **86%** of the algorithm's 23 spells were in the real 40. Trophy play rate correlates with sealed
+  GIH WR at r=0.82, so it is worth about one point of card agreement on its own — the honest use of
+  it is as a *build-decision* correction, not a second power rating.
+
 - **[draft-guides/](./draft-guides/)** — per-set strategy notes distilled from five limited channels
   (Lords of Limited, NumotTheNummy, Limited Resources, Limited Level-Ups, Rough Drafts). The
   ingest pipeline is channel-agnostic — [`src/ingest/channels.json`](./src/ingest/channels.json)

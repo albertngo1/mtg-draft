@@ -326,6 +326,47 @@ format where the conditioning is benign.**
 GIH WR reference bands (for the *tiebreaker* read only): **57%+ bomb · 54–57% excellent · 52–54%
 solid · 50–52% filler · <50% avoid.** Treat these as a sanity check on the guide, not a pick order.
 
+## Sealed deckbuilding — fitted on trophy decks, not on vibes
+
+Draft and sealed are different build problems. In draft you pick 45 cards one at a time and the
+deck falls out of the picks; in sealed you get the whole pool at once and every card is a *build*
+decision. 17Lands publishes, for each trophy deck (max wins for its event), the **full sealed pool
+alongside the registered 40** — so the trophy list is a set of labelled `pool → deck` pairs, the
+only public record of what winners *left in the sideboard*. `src/ingest/fetch_trophies.py` pulls
+them; `src/sealed_algo.py` scores a pool against them. Run the algorithm first, then coach against
+its output — do not eyeball a 90-card pool from scratch.
+
+**Numbers below are from 100 HOB `ArenaDirect_Sealed` trophy decks (2026-09).** Re-derive per format
+with `fetch_trophies.py`; the *shape* rules generalise, the pair frequencies do not.
+
+| shape | trophy decks |
+|---|---|
+| 23 spells / 17 lands | 77 of 93 forty-card decks (24 spells: 14, 25: 2) |
+| utility lands inside the 17 | mean 1.8 (Hobbit Hole is maindecked 87% of the time it is opened) |
+| creatures | median 14, p25 13, p75 16 — **13 is the floor**, not 15 |
+| pure two colours | 47 |
+| two colours + a light splash | 43 |
+| genuine three colours | 10 |
+
+Three rules that follow, in priority order:
+
+1. **Pick the pair, then stop moving.** The pair is chosen by a *front-loaded* mean of its top 23
+   playables — the bombs decide the colour, the 23rd playable does not. Hybrid pips (`{B/R}`) count
+   as either half, so hybrid cards are mono-pair, never gold.
+2. **A light splash is normal; a third colour is not.** 43% of trophy decks splash, but only 10% are
+   actually three colours. The splash is one or two **single-off-colour-pip** cards that beat your
+   worst include, run off basics already in the deck — not a colour you are "in".
+3. **Card power is mostly GIH WR.** Trophy maindeck rate correlates with sealed GIH WR at r=0.82, so
+   it is not a second opinion; it is a small correction for cards winners play more (or less) than
+   their win rate predicts. `sealed_algo.py` applies it as a shrunk residual, weight `LAMBDA=0.06`.
+
+Measured by leave-one-out over those 100 decks: pair correct 47% (always-guess-the-format's-best-pair
+baseline: 42%), top-two 76%, and **86% of the algorithm's 23 spells were in the real 40 when the pair
+matched.** So: trust the card list, argue about the colour pair.
+
+Use `--pair-prior 0` when the pool should speak for itself, and the default `0.003` when you want the
+format's demonstrated pair frequencies to break near-ties (it trades 3 points of top-1 for 9 of top-2).
+
 ## Common leaks to coach against (use for tiebreakers & deckbuilding)
 
 These are the most common drafting mistakes; watch the player's pool for them and steer against them.
