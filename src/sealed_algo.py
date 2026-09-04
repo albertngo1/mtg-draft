@@ -304,16 +304,22 @@ def main():
 # produce the off-colour pip: an on-colour basic, a dual, a land that FETCHES a basic
 # (Hobbit Hole, 87% maindecked, reads as a colourless land but is a source for every
 # colour), and Treasure makers, which are one-shot but do cast the one card you splashed.
-FIX_TAP_RX = re.compile(r"\{T\}[^.\n]{0,45}: Add ([^.\n]{0,45})")
-FIX_ANY_RX = re.compile(r"any color", re.I)
-FIX_TO_PLAY_RX = re.compile(
-    r"[Ss]earch your library for a basic land card, put it onto the battlefield")
-FIX_TO_HAND_RX = re.compile(r"[Ss]earch your library for a basic land")
-FIX_TREASURE_RX = re.compile(r"[Cc]reate (?:a|X|two|three) (?:tapped )?Treasure")
-# "Gift a Treasure" hands the token to the OPPONENT — it fixes their mana, not yours.
-FIX_NOT_YOURS_RX = re.compile(r"they create a Treasure|opponent creates a Treasure")
-# Reminder text spells out what a Treasure does; it must not be read as the card
-# itself having a mana ability.
+FIX_TAP_RX = re.compile(r"\{T\}[^.\n]{0,45}: Add ([^.\n]{0,60})")
+FIX_ANY_RX = re.compile(r"any (?:one )?color", re.I)
+# Match the SHAPE of a land search, not one phrasing of it: "up to two basic land cards
+# ... put one onto the battlefield" has to count the same as "a basic land card, put it
+# onto the battlefield". Whether it reaches the battlefield or only the hand/top is then
+# read off the same sentence.
+FIX_SEARCH_RX = re.compile(
+    r"[Ss]earch your library for[^.]{0,40}basic land[^.]*", re.I)
+FIX_ONTO_RX = re.compile(r"onto the battlefield", re.I)
+FIX_TREASURE_RX = re.compile(r"[Cc]reate (?:a|X|one|two|three|that many) (?:tapped )?Treasure")
+# Effects that hand the mana to the OPPONENT fix their colours, not yours:
+# "Gift a Treasure ... they create a Treasure token"; Settle the Wreckage's basics go to
+# the player whose creatures were exiled.
+FIX_NOT_YOURS_RX = re.compile(
+    r"they create a Treasure|opponent creates a Treasure|"
+    r"[Tt]hat player may search their library|search their library", re.I)
 # A Treasure's own mana ability is quoted as reminder text on every card that makes one,
 # sometimes nested inside a larger parenthetical (Bilbo's Gambit). Strip the ability text
 # itself, not just the bracket, or the card reads as having a mana ability of its own.
@@ -323,11 +329,13 @@ REMINDER = re.compile(r'"?\{T\}, Sacrifice this token: Add one mana of any color
 def fixing_kind(name, db, text):
     """How a card can pay for an off-colour pip, strongest class first.
 
-      'source'   a repeatable mana ability that produces the colour — a dual, or a
-                 rock like Giant's Boulder ({1}, {T}: Add one mana of any color).
-      'fetch'    puts the basic onto the BATTLEFIELD (Hobbit Hole, Elven Passage).
-      'tutor'    finds the basic but only to hand or the top of the library — it fixes
-                 which land you draw, it does not add one, and it costs a land drop.
+      'source'   a repeatable mana ability that produces the colour — a dual, a rock like
+                 Giant's Boulder, or a dork like Woodland Weavemaster ({T}: Add X mana of
+                 any ONE color). Colourless-only abilities ({T}: Add {C}) do not count:
+                 they ramp, they do not fix.
+      'fetch'    puts a basic onto the BATTLEFIELD (Hobbit Hole, Troop of Ponies).
+      'tutor'    finds a basic but only to hand or the top of the library — it fixes which
+                 land you draw, does not add one, and still costs a land drop.
       'treasure' one shot, and only if the token is yours.
 
     Returns (kind, colours it can produce)."""
@@ -342,10 +350,9 @@ def fixing_kind(name, db, text):
             produced = set(WUBRG)
         if produced:
             return "source", produced
-    if FIX_TO_PLAY_RX.search(bare):
-        return "fetch", set(WUBRG)
-    if FIX_TO_HAND_RX.search(bare):
-        return "tutor", set(WUBRG)
+    m = FIX_SEARCH_RX.search(bare)
+    if m and not FIX_NOT_YOURS_RX.search(bare):
+        return ("fetch" if FIX_ONTO_RX.search(m.group(0)) else "tutor"), set(WUBRG)
     if FIX_TREASURE_RX.search(bare) and not FIX_NOT_YOURS_RX.search(body):
         return "treasure", set(WUBRG)
     return None, set()
