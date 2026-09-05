@@ -21,7 +21,7 @@ caches aggressively and resumes.
 Usage:
   python3 src/ingest/fetch_drafts.py --set HOB --format PremierDraft --rank mythic --limit 150
 """
-import argparse, itertools, json, os, time, urllib.request
+import argparse, itertools, json, os, time, urllib.error, urllib.request
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 CACHE = os.path.join(ROOT, "data", "cache")
@@ -60,8 +60,15 @@ def enumerate_trophies(expansion, fmt, ranks, delay=0.8):
 def fetch(expansion, fmt, rank, entries, limit, delay):
     d = os.path.join(CACHE, "drafts", f"{expansion}_{fmt}_{rank}")
     os.makedirs(d, exist_ok=True)
+    # Some trophies have no draft log at all (404) — a private or untracked draft. That
+    # is permanent, not rate limiting, so record it and never ask again. Only a 403/429
+    # or a server error means back off.
+    skip_path = os.path.join(d, "_no_draft.json")
+    skip = set(json.load(open(skip_path))) if os.path.exists(skip_path) else set()
     got, new, backoff = 0, 0, 60
     for e in entries:
+        if e["aggregate_id"] in skip:
+            continue
         if limit and got >= limit:
             break
         aid, di = e["aggregate_id"], e["deck_index"]
@@ -78,13 +85,23 @@ def fetch(expansion, fmt, rank, entries, limit, delay):
                 json.dump(_get(urls[key]), open(paths[key], "w"))
                 new += 1
                 time.sleep(delay)
-            except Exception as ex:
+            except urllib.error.HTTPError as ex:
+                if ex.code in (404, 410):
+                    skip.add(aid)
+                    json.dump(sorted(skip), open(skip_path, "w"))
+                    ok = False
+                    break
                 print(f"  {ex} on {aid} [{key}] — backing off {backoff}s", flush=True)
                 if backoff >= 900:
                     print("  still blocked; stopping. Re-run to resume.", flush=True)
                     return got
                 time.sleep(backoff)
                 backoff *= 4
+                ok = False
+                break
+            except Exception as ex:
+                print(f"  {ex} on {aid} [{key}] — retrying later", flush=True)
+                time.sleep(5)
                 ok = False
                 break
         if ok and all(os.path.exists(p) for p in paths.values()):
@@ -115,7 +132,10 @@ def main():
     # Fetch the unbiased ones FIRST — they are the sample any frequency has to rest on.
     entries.sort(key=lambda e: e["aggregate_id"] not in unbiased)
     got = fetch(a.expansion, a.format, a.rank, entries, a.limit, a.delay)
-    print(f"done: {got} complete drafts cached")
+    d = os.path.join(CACHE, "drafts", f"{a.expansion}_{a.format}_{a.rank}")
+    sp = os.path.join(d, "_no_draft.json")
+    n_skip = len(json.load(open(sp))) if os.path.exists(sp) else 0
+    print(f"done: {got} complete drafts cached ({n_skip} trophies have no draft log)")
 
 
 if __name__ == "__main__":
