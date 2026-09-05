@@ -227,6 +227,66 @@ Sealed build rules that recur in every one of his eight Sealed VODs:
   card.
 - **Thranduil, the Elvenking** is the elf payoff and the worst rare in the set.
 
+#### Measured: which cards actually come back
+
+Everything above is read off play. This is read off packs. 134 Mythic 7-win Premier drafts were
+pulled from 17Lands, which publishes every pack a drafter saw; a card offered by pick 6 and still
+there eight picks later went round the table. Wheel rate mostly just tracks card quality, so what is
+reported is the **residual** — how much more or less a card comes back than a card of its rarity and
+win rate should — and it is fitted **inside each rarity band**, because a pooled fit does not measure
+judgement, it rediscovers that rares go early.
+
+That control matters more than it sounds. Fitted pooled, every card flagged as underrated came out a
+common and every correctly-taken one a rare, six and six, with no exceptions. It is also a finding in
+its own right: **the field reads commons sharply and rares barely at all** — wheel rate falls 5.3
+points per point of win rate among commons, 3.2 among uncommons, and 0.6 among rares. Rares are taken
+early whether or not they are good.
+
+**Comes back more than it should — you can take something else first.**
+
+| Card | Wheels | GIH | vs expected | n |
+|---|---|---|---|---|
+| Esgaroth Garrison | 49% | 0.556 | **+24%** | 323 |
+| Gandalf, Wandering Wizard | 68% | 0.513 | +20% | 315 |
+| Elvenking's Harper | 61% | 0.525 | +20% | 357 |
+| Sound the Trumpets | 35% | 0.550 | +20% | 139 |
+| Uneasy Partings | 40% | 0.558 | +17% | 304 |
+| Thranduil's Decree | 45% | 0.509 | +17% | 143 |
+
+**Never comes back — if you want it, the pick is now.**
+
+| Card | Wheels | GIH | vs expected | n |
+|---|---|---|---|---|
+| Fearsome Goblin Pair | 1% | 0.535 | −19% | 88 |
+| Sting, Bilbo's Sword | **0%** | 0.477 | −16% | 36 |
+| Stir Up Trouble | 5% | 0.562 | −16% | 249 |
+| Bilbo's Deadly Slice | 1% | 0.571 | −15% | 176 |
+| Goblin Plate Mail | 5% | 0.567 | −13% | 233 |
+| Giant's Boulder | 45% | 0.492 | −13% | 330 |
+
+Two claims above now have numbers. **Esgaroth Garrison** is the largest positive residual in the set,
+which is the measured form of "it goes later than any other card in the set that is this good."
+And **Sting, Bilbo's Sword has never once wheeled** in 36 sightings, at a 0.477 win rate — the field
+takes the worst equipment in the set every single time it appears.
+
+The second table also sharpens the *"good in the deck, but not worth a high pick"* bullet. That
+judgement is right about card value and irrelevant to the pick: **Goblin Plate Mail, Stir Up Trouble
+and Bilbo's Deadly Slice are all gone by the wheel**. You cannot take them late as a matter of policy,
+because they are not there late. Either take them where they go or plan without them.
+
+#### Measured: the field underdrafts its own fixing
+
+Across the picks that could be reconstructed, the cards most often passed for something with a lower
+win rate are the **dual lands** — Lake-town 19 times, Mirkwood 14, Goblin-town 12, each giving up
+three to four points of win rate. **Plunder the Trollshaws** (17 times, and the largest median gap at
++0.051) and **Patient Instructor** (14) sit in the same list.
+
+The pull runs the other way at deckbuilding: in Sealed, **Hobbit Hole** is maindecked in about 80% of
+trophy pools that open it, roughly 40 points more than its win rate predicts, because a land that
+fetches a basic is a mana source for every colour and win-rate columns cannot see fixing. Undervalued
+in the pack, overvalued on the table — the same blind spot from both ends.
+
+
 ### Open questions the data can't settle
 
 - **Is Azorius better than its ranking?** The data puts it mid-table and Simic last; Lords of Limited
