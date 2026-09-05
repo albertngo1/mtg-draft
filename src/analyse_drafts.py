@@ -170,7 +170,8 @@ def main():
     print(f"picks provably recovered: {det_tot}/{pick_tot} ({100*det_tot/pick_tot:.0f}%)\n")
 
     floor = max(20, ndrafts // 4)     # scale the sample floor with the corpus
-    rows = [(wheeled[c] / v, v, c, sc.get(c, {}).get("gih"))
+    rows = [(wheeled[c] / v, v, c, sc.get(c, {}).get("gih"),
+             db.get(c, {}).get("rarity", "common"))
             for c, v in seen_early.items() if v >= floor]
     rows = [r for r in rows if r[3]]
     rows.sort(reverse=True)
@@ -178,20 +179,41 @@ def main():
           f"({len(rows)} cards, n>={floor})")
     # Wheel rate mostly just tracks card quality, which tells you nothing you did not
     # already know. The signal is the RESIDUAL: cards that wheel more or less often than
-    # their win rate says they should. Those are the field's blind spots.
-    xs = [r[3] for r in rows]
-    ys = [r[0] for r in rows]
+    # they should. But it MUST be fitted within rarity — drafters take rares early
+    # regardless of win rate, so a single pooled fit just rediscovers rarity: every card
+    # it flags as "underrated" comes out a common and every "correctly taken" one a rare.
+    fits = {}
+    for rar in {r[4] for r in rows}:
+        grp = [r for r in rows if r[4] == rar]
+        if len(grp) < 8:                      # too few to fit; fall back to the pooled line
+            continue
+        xs = [g[3] for g in grp]; ys = [g[0] for g in grp]
+        mx, my = st.mean(xs), st.mean(ys)
+        b = (sum((x - mx) * (y - my) for x, y in zip(xs, ys))
+             / max(sum((x - mx) ** 2 for x in xs), 1e-9))
+        fits[rar] = (my - b * mx, b, len(grp))
+    xs = [r[3] for r in rows]; ys = [r[0] for r in rows]
     mx, my = st.mean(xs), st.mean(ys)
-    b = (sum((x - mx) * (y - my) for x, y in zip(xs, ys))
-         / max(sum((x - mx) ** 2 for x in xs), 1e-9))
-    a = my - b * mx
-    res = sorted(((r[0] - (a + b * r[3])), r) for r in rows)
-    print(f"  wheel rate vs win rate: slope {b:+.2f} per point of GIH\n")
+    pb = (sum((x - mx) * (y - my) for x, y in zip(xs, ys))
+          / max(sum((x - mx) ** 2 for x in xs), 1e-9))
+    pooled = (my - pb * mx, pb, len(rows))
+    def pred(r):
+        a_, b_, _ = fits.get(r[4], pooled)
+        return a_ + b_ * r[3]
+    res = sorted((r[0] - pred(r), r) for r in rows)
+    print("  fitted WITHIN rarity — a pooled fit just rediscovers that rares go early:")
+    for rar in ("common", "uncommon", "rare", "mythic"):
+        if rar in fits:
+            a_, b_, k = fits[rar]
+            print(f"    {rar:<9} n={k:<4} mean wheel "
+                  f"{100*st.mean([r[0] for r in rows if r[4]==rar]):>3.0f}%  "
+                  f"slope {b_:+.2f}/GIH point")
+    print()
     def show(lst, head):
         print(f"  {head}")
-        print(f"    {'card':<32}{'wheel%':>8}{'GIH':>8}{'vs pred':>9}{'n':>5}")
-        for d, (r, v, c, g) in lst:
-            print(f"    {c:<32}{r*100:>7.0f}%{g:>8.3f}{d*100:>+8.0f}%{v:>5}")
+        print(f"    {'card':<32}{'wheel%':>8}{'GIH':>8}{'vs pred':>9}{'n':>5}  rarity")
+        for d, (r, v, c, g, rar) in lst:
+            print(f"    {c:<32}{r*100:>7.0f}%{g:>8.3f}{d*100:>+8.0f}%{v:>5}  {rar}")
     show(res[:6], "PASSED LESS than the win rate predicts — the field is on to these")
     print()
     show(res[-6:][::-1], "WHEELS MORE than it should — the field's blind spot")
