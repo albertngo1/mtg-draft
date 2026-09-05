@@ -140,6 +140,8 @@ def main():
                 if later is not None:
                     back = {c["name"] for c in picks[later]["available"]}
                     for nm in set(names):
+                        if nm in A.BASIC:
+                            continue          # basics always wheel; they are not a signal
                         seen_early[nm] += 1
                         if nm in back:
                             wheeled[nm] += 1
@@ -167,18 +169,32 @@ def main():
         return 1
     print(f"picks provably recovered: {det_tot}/{pick_tot} ({100*det_tot/pick_tot:.0f}%)\n")
 
-    print("WHEELING — offered by pick 6, still there 8 picks later")
     floor = max(20, ndrafts // 4)     # scale the sample floor with the corpus
-    rows = [(wheeled[c] / v, v, c) for c, v in seen_early.items() if v >= floor]
+    rows = [(wheeled[c] / v, v, c, sc.get(c, {}).get("gih"))
+            for c, v in seen_early.items() if v >= floor]
+    rows = [r for r in rows if r[3]]
     rows.sort(reverse=True)
-    print(f"  {'card':<32}{'wheel%':>8}{'n':>6}{'GIH':>8}")
-    for r, v, c in rows[:10]:
-        g = sc.get(c, {}).get("gih")
-        print(f"  {c:<32}{r*100:>7.0f}%{v:>6}{(f'{g:.3f}' if g else '—'):>8}")
-    print("  ...")
-    for r, v, c in rows[-5:]:
-        g = sc.get(c, {}).get("gih")
-        print(f"  {c:<32}{r*100:>7.0f}%{v:>6}{(f'{g:.3f}' if g else '—'):>8}")
+    print(f"WHEELING — offered by pick 6, still there {POD} picks later "
+          f"({len(rows)} cards, n>={floor})")
+    # Wheel rate mostly just tracks card quality, which tells you nothing you did not
+    # already know. The signal is the RESIDUAL: cards that wheel more or less often than
+    # their win rate says they should. Those are the field's blind spots.
+    xs = [r[3] for r in rows]
+    ys = [r[0] for r in rows]
+    mx, my = st.mean(xs), st.mean(ys)
+    b = (sum((x - mx) * (y - my) for x, y in zip(xs, ys))
+         / max(sum((x - mx) ** 2 for x in xs), 1e-9))
+    a = my - b * mx
+    res = sorted(((r[0] - (a + b * r[3])), r) for r in rows)
+    print(f"  wheel rate vs win rate: slope {b:+.2f} per point of GIH\n")
+    def show(lst, head):
+        print(f"  {head}")
+        print(f"    {'card':<32}{'wheel%':>8}{'GIH':>8}{'vs pred':>9}{'n':>5}")
+        for d, (r, v, c, g) in lst:
+            print(f"    {c:<32}{r*100:>7.0f}%{g:>8.3f}{d*100:>+8.0f}%{v:>5}")
+    show(res[:6], "PASSED LESS than the win rate predicts — the field is on to these")
+    print()
+    show(res[-6:][::-1], "WHEELS MORE than it should — the field's blind spot")
 
     print("\nCOMMITMENT — share of determined picks castable in the FINAL colours")
     print("  (partly circular early on: the final colours are chosen by these picks."
@@ -192,9 +208,15 @@ def main():
 
     print("\nPASSED — biggest on-colour win rate given up on a determined pick")
     passed_best.sort(reverse=True)
-    agg = collections.Counter(f"{b} over {t}" for _, b, t in passed_best)
+    # Aggregate by the card GIVEN UP, not by the pair — pairs are nearly all unique.
+    agg = collections.Counter(b for _, b, _ in passed_best)
+    gap = collections.defaultdict(list)
+    for d, b, _ in passed_best:
+        gap[b].append(d)
+    print(f"  {len(passed_best)} of {pick_tot and det_tot} determined picks gave up win rate")
+    print(f"    {'card passed over':<32}{'times':>7}{'median gap':>12}")
     for k, v in agg.most_common(8):
-        print(f"  {v:>3}x  {k}")
+        print(f"    {k:<32}{v:>7}{st.median(gap[k]):>+12.3f}")
     return 0
 
 
