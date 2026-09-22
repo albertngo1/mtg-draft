@@ -141,12 +141,13 @@ Both are populated by every draft — where the field takes a card, and how ofte
 together they track pick priority. Play rate alone (the old default) flattened out across the whole
 playable middle of a set, and a win rate answers a different question: which decks drafted the card.
 
-**AI takes cover all ten sets.** The original five (SOS/MKM/MSH/BLB/ECL) were regenerated 2026-07-12
+**AI takes cover all twelve sets.** The original five (SOS/MKM/MSH/BLB/ECL) were regenerated 2026-07-12
 after the prep record began carrying each card's **oracle text + P/T + mana** (joined from Scryfall — MSH
 by name, since its cards have no `arena_id`) — so the takes read what each card actually does and ground
 the verdict in the expert notes, not just the stat columns. **DFT** (2026-07-18), **OTJ** (2026-07-21),
-**DSK** (2026-07-23), **HOB** (2026-08-13) and **FIN** (2026-08-20, 357 cards) were then added under the
-same pipeline. All ten are 100% covered. (The DSK pass
+**DSK** (2026-07-23), **HOB** (2026-08-13), **FIN** (2026-08-20, 357 cards) **LCI** (2026-09-13,
+286 cards) and **MH3** (2026-09-13, 321 cards) were then added under the same pipeline. All twelve are
+100% covered. (The DSK pass
 also fixed the shared guide-note parser to accept LoL's `[**Card**](link) (mana gloss) — note` bullet form
 and Numot's `**Card:** note` colon-in-bold form, which recovered notes across ~20 sets — e.g. DSK 1→51.)
 
@@ -157,7 +158,10 @@ and Numot's `**Card:** note` colon-in-bold form, which recovered notes across ~2
 | **DSK** | 281 | 272 | 34.6M | 60 | CGB 271 |
 | **ECL** | 288 | 273 | 22.2M | 108 | — |
 | **FIN** | 357 | 348 | 42.1M | 63 | — |
+| **FRA** | 280 | 0 | — | 0 | DS 280 |
 | **HOB** | 188 | 179 | 6.5M | 182 | CGB 188 · LR 183 |
+| **LCI** | 286 | 283 | 27.8M | 70 | — |
+| **MH3** | 321 | 307 | 26.2M | 75 | — |
 | **MKM** | 321 | 296 | 28.6M | 147 | CGB 321 |
 | **MSH** | 334 | 289 | 19.0M | 259 | CGB 276 |
 | **OTJ** | 376 | 364 | 38.6M | 75 | CGB 376 |
@@ -166,10 +170,18 @@ and Numot's `**Card:** note` colon-in-bold form, which recovered notes across ~2
 **Every set is at 100% for images, AI takes and a format brief** — those three are the floor. What
 varies is how much the rest of the world has written about a set:
 
+- **FRA is a prerelease reference and the only set here with no live data at all.** It prereleases
+  2026-09-25 and reaches Arena 2026-10-02, so every win-rate column is blank by design and its card
+  list and images come from Scryfall via `scryfall_cardlist.py` rather than a 17Lands export. It
+  still meets the floor — 280/280 images, 280/280 AI takes, and a format brief — and it carries a
+  full reviewer grade (**DS**, Draftsim's 0–10 set review rescaled to /5). Rebuild it once 17Lands
+  data lands and the blank columns fill in with no other change.
+
 - **Guide-note coverage tracks how many channels covered the set**, not its quality. MSH and HOB have
   four channels each; DSK and OTJ have two, and it shows.
-- **ECL and FIN carry no reviewer grade at all** — no CardGameBase, Draftsim or Limited Resources file
-  exists for them, so their tiles run on live win rates, guide notes and the AI take alone.
+- **ECL, FIN, LCI and MH3 carry no reviewer grade at all** — no CardGameBase, Draftsim or Limited Resources
+  file exists for them, so their tiles run on live win rates, guide notes and the AI take alone. LCI
+  leans hardest on the win-rate column and can afford to: 27.8M games across 283 measured cards.
 - **Sample size varies by two orders of magnitude at card level.** FIN's 42.1M games and OTJ's 38.6M
   are settled; bonus-sheet reprints inside any set sit in the low thousands and deserve much wider
   error bars than the commons beside them.
