@@ -168,6 +168,12 @@ Specific to this format:
 - **Two engines that review is openly skeptical of.** R/G Heartwood ramp: "how often are we
   really happy to pay three mana for a mana rock?" U/R prowess creatures: "these type of cards
   have not held up lately." Both are predictions to check against the first week of data.
+- **Limited Resources versus Limited Level-Ups.** Both podcasts give Craftwork Crusher their top
+  C/U grade (A− from LLU, B+/B from LR) and both rate the Jace duals C+. They split on how good the
+  gold cards are. LR grades `Bloombrute` A−, `Saheeli, Jewel of Avishkar` B+ and `Mabel, Valley
+  Hero` B/B+. LLU has them at B−/C, C and B−/C. LLU also sees no bad colour: Mark ranks black
+  worst and white second-worst, while Alex first called red the weakest and then took it back. BR
+  pings is the archetype both podcasts doubt most.
 - **Card grades where the two reviewers split by two grade steps or more.** Limited Resources
   rates these much higher than Draftsim does: `Vigorbloom Vanguard` (B+/B vs 3/10), `Thalia, the
   Survivor` (B vs 3/10), `Koth of the Homestead` and `Mabel, Valley Hero` (B vs 4/10), `Generous
