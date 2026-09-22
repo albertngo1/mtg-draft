@@ -6,6 +6,7 @@ emits a browsable site into ``docs/`` (the GitHub Pages source):
 
     docs/index.html          landing page — one card per set
     docs/sets/<SET>.html     that set's full reference
+    docs/prerelease/*.html   prerelease guides + player one-pagers (draft-guides/prerelease/)
     docs/assets/site.css     styles  (copied from card-reference/site/)
     docs/assets/site.js      search + filters (copied from card-reference/site/)
 
@@ -30,6 +31,7 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parent.parent
 REF_DIR = REPO / "card-reference"
 GUIDE_DIR = REPO / "draft-guides" / "lords-of-limited"
+PRERELEASE_DIR = REPO / "draft-guides" / "prerelease"
 TEMPLATE_DIR = REF_DIR / "site"
 
 SITE_TITLE = "MTG Card Reference"
@@ -78,6 +80,25 @@ _BOLD_RE = re.compile(r"\*\*(.+?)\*\*", re.S)
 _EM_RE = re.compile(r"(?<![\*\w])\*([^*\n]+?)\*(?!\*)")
 
 
+def _href(target: str) -> str:
+    """Point relative Markdown links at the built page, not the source file.
+
+    The prerelease guides cross-link each other as ``./FRA.md``; on the site
+    those neighbours are ``FRA.html`` in the same folder. Absolute URLs and
+    in-page anchors are left alone.
+    """
+    if target.startswith(("http://", "https://", "#", "mailto:")):
+        return target
+    base = target.split("#", 1)
+    frag = "#" + base[1] if len(base) > 1 else ""
+    path = base[0]
+    if path.endswith(".md"):
+        path = path[:-3] + ".html"
+    if path.startswith("./"):
+        path = path[2:]
+    return path + frag
+
+
 def inline(text: str) -> str:
     """Inline markdown. Raw HTML in the source is intentionally left alone."""
     stash: list[str] = []
@@ -88,7 +109,7 @@ def inline(text: str) -> str:
 
     text = _CODE_RE.sub(keep, text)
     text = _LINK_RE.sub(
-        lambda m: '<a href="%s">%s</a>' % (html.escape(m.group(2), quote=True), m.group(1)),
+        lambda m: '<a href="%s">%s</a>' % (html.escape(_href(m.group(2)), quote=True), m.group(1)),
         text,
     )
     text = _BOLD_RE.sub(r"<strong>\1</strong>", text)
@@ -118,6 +139,13 @@ def render_markdown(md: str) -> str:
         line = lines[i]
 
         if not line.strip():
+            i += 1
+            continue
+
+        # Thematic break. The prerelease guides use --- between sections; without
+        # this it rendered as a literal "---" paragraph.
+        if re.fullmatch(r"\s*(?:-{3,}|\*{3,}|_{3,})\s*", line):
+            out.append("<hr>")
             i += 1
             continue
 
@@ -435,7 +463,70 @@ unofficial fan project, not affiliated with or endorsed by Wizards.</p>
 </div></footer>"""
 
 
-def render_index(sets: list[dict]) -> str:
+PRERELEASE_SKIP = {"README"}
+
+
+def collect_prerelease(src: Path) -> list[dict]:
+    """Every <SET>.md and <SET>-onepager.md in draft-guides/prerelease/.
+
+    These are the event-day documents — the build reference the deckbuilders
+    consult and the short primer handed to a player who isn't building. They
+    live outside card-reference/ but belong on the same site, because the set
+    page and the prerelease guide are read in the same sitting.
+    """
+    if not src.is_dir():
+        return []
+    out = []
+    for path in sorted(src.glob("*.md")):
+        stem = path.stem
+        if stem in PRERELEASE_SKIP:
+            continue
+        code = stem.split("-")[0]
+        onepager = stem.endswith("-onepager")
+        md = path.read_text(encoding="utf-8")
+        # Drop the H1 — the page template supplies its own title.
+        body = re.sub(r"\A#\s+[^\n]*\n", "", md)
+        words = len(md.split())
+        standalone = path.with_suffix(".html")
+        out.append({
+            "stem": stem, "code": code, "onepager": onepager,
+            "title": ("%s — player one-pager" % code) if onepager else ("%s — prerelease guide" % code),
+            "kind": "Player one-pager" if onepager else "Build reference",
+            "words": words,
+            "html": render_markdown(body),
+            "standalone": standalone if standalone.exists() else None,
+        })
+    return out
+
+
+def render_prerelease(doc: dict) -> str:
+    extra = ""
+    if doc["standalone"]:
+        extra = ('<p class="lede"><a href="%s-standalone.html">Open the standalone printable version</a>'
+                 ' — self-contained, styled for a phone.</p>' % html.escape(doc["stem"]))
+    body = f"""<header class="topbar" id="top"><div class="wrap">
+  <span class="brand"><a href="../index.html"><span class="pipmark">&#9670;</span>{SITE_TITLE}</a></span>
+  <span class="setbadge">{html.escape(doc['code'])}</span>
+  <div class="toolbar">
+    <a class="crumb" href="../sets/{html.escape(doc['code'])}.html">Card reference &#8594;</a>
+  </div>
+</div></header>
+
+<main class="wrap">
+  <section class="sethead">
+    <h1>{html.escape(doc['title'])}</h1>
+    <p class="lede">{html.escape(doc['kind'])} &middot; {doc['words']:,} words</p>
+    {extra}
+  </section>
+  <section class="brief">
+    <div class="briefbody prose">{doc['html']}</div>
+  </section>
+</main>
+{footer(1)}"""
+    return shell("%s — %s" % (doc["title"], SITE_TITLE), "", body, depth=1)
+
+
+def render_index(sets: list[dict], pre: list[dict]) -> str:
     total_cards = sum(s["total"] for s in sets)
     briefs = sum(1 for s in sets if s["has_brief"])
 
@@ -465,6 +556,23 @@ def render_index(sets: list[dict]) -> str:
   <div class="tags">{''.join(tags)}</div>
 </a>""")
 
+    pre_section = ""
+    if pre:
+        by_code = {}
+        for d in pre:
+            by_code.setdefault(d["code"], []).append(d)
+        rows = []
+        for code in sorted(by_code):
+            links = "".join(
+                '<a class="tag on" href="prerelease/%s.html">%s</a>' % (html.escape(d["stem"]), html.escape(d["kind"]))
+                for d in sorted(by_code[code], key=lambda x: x["onepager"])
+            )
+            rows.append('<div class="setcard"><div class="row"><span class="code">%s</span></div>'
+                        '<p class="sub">Event-day documents</p><div class="tags">%s</div></div>'
+                        % (html.escape(code), links))
+        pre_section = ('<p class="section-label">Prerelease guides</p>'
+                       '<div class="setgrid">%s</div>' % "".join(rows))
+
     body = f"""<header class="topbar" id="top"><div class="wrap">
   <span class="brand"><span class="pipmark">&#9670;</span>{SITE_TITLE}</span>
   <div class="toolbar"><a class="crumb" href="{REPO_URL}" target="_blank" rel="noopener">GitHub &#8599;</a></div>
@@ -483,6 +591,8 @@ def render_index(sets: list[dict]) -> str:
 
   <p class="section-label">Choose a set</p>
   <div class="setgrid">{''.join(cards)}</div>
+
+  {pre_section}
 
   <p class="section-label">How to read a tile</p>
   <div class="prose">
@@ -503,7 +613,7 @@ def render_index(sets: list[dict]) -> str:
     return shell(SITE_TITLE, "", body, depth=0)
 
 
-def render_set(s: dict) -> str:
+def render_set(s: dict, pre: list[dict] | None = None) -> str:
     jump = "".join(
         '<a href="#%s" data-c="1" style="--dot:%s">%s<b>%d</b></a>'
         % (sec["id"], sec["dot"], html.escape(sec["name"]), sec["count"])
@@ -535,6 +645,12 @@ def render_set(s: dict) -> str:
         for r in ("Common", "Uncommon", "Rare", "Mythic")
     )
 
+    pre_links = "".join(
+        '<a class="crumb" href="../prerelease/%s.html">%s &#8594;</a>'
+        % (html.escape(d["stem"]), html.escape(d["kind"]))
+        for d in sorted(pre or [], key=lambda x: x["onepager"])
+        if d["code"] == s["code"]
+    )
     name = s["name"] or ""
     body = f"""<header class="topbar" id="top"><div class="wrap">
   <span class="brand"><a href="../index.html"><span class="pipmark">&#9670;</span>{SITE_TITLE}</a></span>
@@ -543,6 +659,7 @@ def render_set(s: dict) -> str:
     <label class="search">{SEARCH_SVG}<input id="q" type="search" placeholder="Search cards, stats, notes&hellip;" autocomplete="off" spellcheck="false"></label>
     <div class="chips">{chips}</div>
     <span class="count" id="count">{s['total']} cards</span>
+    {pre_links}
   </div>
 </div></header>
 <nav class="jump"><div class="wrap">{jump}</div></nav>
@@ -582,15 +699,25 @@ def main() -> None:
     # Serve the files as-is: no Jekyll pass, no underscore-folder surprises.
     (out / ".nojekyll").write_text("", encoding="utf-8")
 
+    pre = collect_prerelease(PRERELEASE_DIR)
+    if pre:
+        (out / "prerelease").mkdir(parents=True, exist_ok=True)
+        for d in pre:
+            (out / "prerelease" / ("%s.html" % d["stem"])).write_text(render_prerelease(d), encoding="utf-8")
+            if d["standalone"]:
+                shutil.copyfile(d["standalone"],
+                                out / "prerelease" / ("%s-standalone.html" % d["stem"]))
+            print("  pre  %-22s %5d words -> prerelease/%s.html" % (d["stem"], d["words"], d["stem"]))
+
     sets = []
     for path in files:
         s = parse_set(path)
-        (out / "sets" / ("%s.html" % s["code"])).write_text(render_set(s), encoding="utf-8")
+        (out / "sets" / ("%s.html" % s["code"])).write_text(render_set(s, pre), encoding="utf-8")
         sets.append(s)
         print("  %-4s %3d cards, %d sections -> sets/%s.html"
               % (s["code"], s["total"], len(s["sections"]), s["code"]))
 
-    (out / "index.html").write_text(render_index(sets), encoding="utf-8")
+    (out / "index.html").write_text(render_index(sets, pre), encoding="utf-8")
     print("built %d sets, %d card tiles -> %s"
           % (len(sets), sum(s["total"] for s in sets), out))
 

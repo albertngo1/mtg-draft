@@ -1,0 +1,28 @@
+{
+ "channel": "MTG Arena Zone (mtgazone.com)",
+ "scope": "web-prose per-card Limited set reviews (written articles), NOT YouTube transcripts; outside the src/ingest ETL",
+ "note": "One article per colour per set. sha1 = shasum of the committed <SET>.md. Numeric ratings live in grades/mtgazone_<SET>.json (scale is already 0-5) and render as the AZ column.",
+ "counts": {
+  "sets": 1
+ },
+ "sets": {
+  "FRA": {
+   "tier": 1,
+   "file": "FRA.md",
+   "reviewer": "J2SJosh (The Draft Lab)",
+   "captured": "2026-09-21",
+   "published": "2026-09-21",
+   "cards_with_notes": 194,
+   "scale": "0-5, used verbatim",
+   "evidence_note": "Published 4 days before the FRA prerelease and 11 before release — every rating is a pre-gameplay prediction. 17Lands GIH WR supersedes.",
+   "sha1": "b9aebceafe9fb3533f90eb057aff4ffa1ab3009d",
+   "source_urls": [
+    "https://mtgazone.com/reality-fracture-fra-limited-set-review-white/",
+    "https://mtgazone.com/reality-fracture-fra-limited-set-review-blue/",
+    "https://mtgazone.com/reality-fracture-fra-limited-set-review-black/",
+    "https://mtgazone.com/reality-fracture-fra-limited-set-review-red/",
+    "https://mtgazone.com/reality-fracture-fra-limited-set-review-green/"
+   ]
+  }
+ }
+}

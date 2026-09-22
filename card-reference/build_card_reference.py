@@ -6,7 +6,7 @@ and an AI take.
 Sources (relative to the mtg-draft repo root):
   data/cache/17lands_<SET>_PremierDraft_1200d.json   image + 17Lands ratings
   grades/draftsim_<SET>.json                         Draftsim DS grade (0-5)
-  draft-guides/{lords-of-limited,numot,limited-resources,limited-level-ups}/...  expert per-card notes
+  draft-guides/{lords-of-limited,numot,limited-resources,limited-level-ups,draftsim,mtgazone}/...  expert per-card notes
   card-reference/ai_takes_<SET>.json                 pre-generated AI takes (this folder)
   card-reference/briefs/<SET>.md                     REQUIRED per-set format brief (this folder)
 
@@ -169,7 +169,8 @@ GRADE_SOURCES = []          # [(label, {norm_name: grade}), ...] in display orde
 ds, GLABEL, GDESC = {}, "", ""
 for src, label, desc in (("limitedresources", "LR", "Limited Resources letter grade"),
                          ("cardgamebase", "CGB", "CardGameBase letter grade"),
-                         ("draftsim", "DS", "Draftsim grade /5")):
+                         ("draftsim", "DS", "Draftsim grade /5"),
+                         ("mtgazone", "AZ", "MTG Arena Zone grade /5")):
     path = f"{ROOT}/grades/{src}_{SET}.json"
     if os.path.exists(path):
         table = {norm(k): v for k, v in json.load(open(path)).items() if not k.startswith("_")}
@@ -243,6 +244,11 @@ GUIDE_SRCS = [
     ("🎧 LR",    "🎧 Limited Resources",  parse_guide(f"{ROOT}/draft-guides/limited-resources/{SET}.md", CARD_KEYS, "LR")),
     ("🎓 LLU",   "🎓 Limited Level-Ups",  parse_guide(f"{ROOT}/draft-guides/limited-level-ups/{SET}.md", CARD_KEYS, "LLU")),
     ("🎬 RD",    "🎬 Rough Drafts",       parse_guide(f"{ROOT}/draft-guides/rough-drafts/{SET}.md", CARD_KEYS, "RD")),
+    # Web-prose reviews. Most sets' files here are archetype prose with no
+    # "## Card notes" section, so they contribute nothing and cost nothing;
+    # a set whose review is per-card (FRA) lights them up.
+    ("📝 DS",    "📝 Draftsim",           parse_guide(f"{ROOT}/draft-guides/draftsim/{SET}.md", CARD_KEYS, "DS")),
+    ("🅰 AZ",    "🅰 MTG Arena Zone",     parse_guide(f"{ROOT}/draft-guides/mtgazone/{SET}.md", CARD_KEYS, "AZ")),
 ]
 
 # ---- grouping / ordering ----------------------------------------------------

@@ -10,6 +10,10 @@ This is separate from **`grades/draftsim_<SET>.json`**, which holds Draftsim's *
 grades (the `DS` column, out of 5) consumed by `src/mtgdraft/grades.py`. The files here are the
 **written strategy prose** (archetypes, mechanics, removal rankings) — reviewer/theory opinion.
 
+**FRA is the first file here with a `## Card notes` section.** Draftsim's FRA article is a full
+per-card set review rather than archetype prose, so its reasoning renders on the card tiles as
+**📝 DS**. The other sets here carry no card notes by design and contribute none.
+
 As everywhere in this repo: **17Lands GIH WR is primary**; Draftsim grades/takes are a cross-reference
 lens, and every WR in a soup format like SOS is archetype-conditional (multicolor/Converge inflated).
 
@@ -18,4 +22,5 @@ lens, and every WR in a soup format like SOS is archetype-conditional (multicolo
 | Set | Guide | Source | Captured |
 |-----|-------|--------|----------|
 | Secrets of Strixhaven (SOS) | [SOS.md](./SOS.md) | [mtg-sos-draft-guide](https://draftsim.com/mtg-sos-draft-guide/) | 2026-06-21 |
+| Reality Fracture (FRA) | [FRA.md](./FRA.md) | [mtg-fra-limited-set-review](https://draftsim.com/mtg-fra-limited-set-review/) | 2026-09-21 |
 | Marvel Super Heroes (MSH) | [MSH.md](./MSH.md) | [mtg-msh-draft-archetypes](https://draftsim.com/mtg-msh-draft-archetypes-6-3-26/) | 2026-06-23 |

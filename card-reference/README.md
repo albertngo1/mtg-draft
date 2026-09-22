@@ -31,6 +31,14 @@ Single-file, visual card references for a set: every draftable card as a tile in
 
 ## Browsable web version — https://albertngo1.github.io/mtg-draft/
 
+**Prerelease guides are published too.** `build_site.py` also renders everything in
+[`draft-guides/prerelease/`](../draft-guides/prerelease/) into `docs/prerelease/` — each set's build
+reference and its player one-pager — and links them from the landing page and from the matching set
+page's top bar. Where a one-pager ships a standalone styled `.html` alongside its Markdown, that file
+is copied verbatim as `<name>-standalone.html` and linked from the rendered page, so the
+phone-friendly version survives. Relative `./FOO.md` links inside those guides are rewritten to
+`FOO.html` at build time.
+
 The same references, published as a static site: a landing page listing every set (card count,
 colour split, grade source, whether it carries a format brief) and a per-set page with the full
 card grid. Each set page adds what a Markdown file can't do — a search box that matches card names,
@@ -72,7 +80,7 @@ without changing a file: `gh workflow run pages.yml --ref main`.
   from `data/cache/17lands_<SET>_PremierDraft_1200d.json`
 - **🤖 AI take** — independent, data-decoding verdict (flags soup-inflated win-rates, gives pick priority)
 - **📘 Lords of Limited / 🎙 NumotTheNummy / 🎧 Limited Resources / 🎓 Limited Level-Ups / 🎬 Rough
-  Drafts** — expert notes parsed from `draft-guides/`. Names are matched exactly first, then a single
+  Drafts / 📝 Draftsim / 🅰 MTG Arena Zone** — expert notes parsed from `draft-guides/`. Names are matched exactly first, then a single
   fuzzy pass against the set's real card list, because auto-caption transcripts mangle card names
   ("Cactus Durantula" for Cactarantula, "Magitech Armor" for Magitek Armor). The pass uses a 0.78
   similarity cutoff and **refuses near-ties**, so a garble that could plausibly be two different cards
@@ -158,7 +166,7 @@ and Numot's `**Card:** note` colon-in-bold form, which recovered notes across ~2
 | **DSK** | 281 | 272 | 34.6M | 60 | CGB 271 |
 | **ECL** | 288 | 273 | 22.2M | 108 | — |
 | **FIN** | 357 | 348 | 42.1M | 63 | — |
-| **FRA** | 280 | 0 | — | 0 | DS 280 |
+| **FRA** | 280 | 0 | — | 265 | DS 280 · AZ 194 |
 | **HOB** | 188 | 179 | 6.5M | 182 | CGB 188 · LR 183 |
 | **LCI** | 286 | 283 | 27.8M | 70 | — |
 | **MH3** | 321 | 307 | 26.2M | 75 | — |
@@ -173,9 +181,11 @@ varies is how much the rest of the world has written about a set:
 - **FRA is a prerelease reference and the only set here with no live data at all.** It prereleases
   2026-09-25 and reaches Arena 2026-10-02, so every win-rate column is blank by design and its card
   list and images come from Scryfall via `scryfall_cardlist.py` rather than a 17Lands export. It
-  still meets the floor — 280/280 images, 280/280 AI takes, and a format brief — and it carries a
-  full reviewer grade (**DS**, Draftsim's 0–10 set review rescaled to /5). Rebuild it once 17Lands
-  data lands and the blank columns fill in with no other change.
+  still meets the floor — 280/280 images, 280/280 AI takes, and a format brief — and it is the
+  best-reviewed set here for a set with no data: **two** reviewer grades side by side (**DS**,
+  Draftsim's 0–10 rescaled to /5, all 280; **AZ**, MTG Arena Zone's 0–5, 194) plus per-card notes on
+  265 of 280 tiles from those same two reviews. Rebuild it once 17Lands data lands and the blank
+  win-rate columns fill in with no other change.
 
 - **Guide-note coverage tracks how many channels covered the set**, not its quality. MSH and HOB have
   four channels each; DSK and OTJ have two, and it shows.
