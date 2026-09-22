@@ -92,7 +92,7 @@ the other way around.
   theory plus how to drive this tool pick-by-pick.
 - **[card-reference/](./card-reference/)** — a visual grid of every card in a set: image, 17Lands
   ratings, a reviewer letter grade where one exists, notes from the expert guides, and a per-card AI
-  take. **Ten sets, 3,038 cards** — BLB, DFT, DSK, ECL, FIN, HOB, MKM, MSH, OTJ, SOS. Each set also
+  take. **Thirteen sets, 3,925 cards** — BLB, DFT, DSK, ECL, FIN, FRA, HOB, LCI, MH3, MKM, MSH, OTJ, SOS. Each set also
   ships a **format brief** (`card-reference/briefs/<SET>.md`): the archetype table with real 17Lands
   win rates and metagame share, the draft plan, and the things a win-rate column can't tell you —
   sequencing, combat math, copy counts, splash policy. See its README to regenerate.
