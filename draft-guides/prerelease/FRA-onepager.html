@@ -1,0 +1,239 @@
+<title>Andy's One-Pager — Reality Fracture Prerelease</title>
+<style>
+  :root {
+    --paper:   #EDEEEA;
+    --raised:  #F6F7F4;
+    --ink:     #16191C;
+    --slate:   #5A6169;
+    --rule:    #CFD3CC;
+    --ember:   #B4442A;
+    --brass:   #8A6E32;
+
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+    --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+    --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #14171A; --raised: #1B1F22; --ink: #E4E6E2; --slate: #9BA3A6;
+      --rule: #2C3236; --ember: #D9694A; --brass: #C09A4E;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #14171A; --raised: #1B1F22; --ink: #E4E6E2; --slate: #9BA3A6;
+    --rule: #2C3236; --ember: #D9694A; --brass: #C09A4E;
+  }
+  :root[data-theme="light"] {
+    --paper: #EDEEEA; --raised: #F6F7F4; --ink: #16191C; --slate: #5A6169;
+    --rule: #CFD3CC; --ember: #B4442A; --brass: #8A6E32;
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  .sheet {
+    max-width: 40rem;
+    margin: 0 auto;
+    padding: 2.75rem 1.35rem 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.25rem;
+  }
+  p { max-width: 62ch; }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--brass);
+  }
+
+  header { display: flex; flex-direction: column; gap: 0.7rem; }
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(1.9rem, 6vw, 2.5rem);
+    line-height: 1.08;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+  .readtime { color: var(--slate); font-size: 0.92rem; }
+
+  h2 {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 1.2;
+    text-wrap: balance;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  section { display: flex; flex-direction: column; gap: 0.9rem; }
+
+  /* the thesis */
+  .thesis {
+    background: var(--raised);
+    border-left: 3px solid var(--ember);
+    padding: 1.1rem 1.2rem;
+    display: flex; flex-direction: column; gap: 0.55rem;
+  }
+  .thesis .big {
+    font-family: var(--serif);
+    font-size: 1.32rem;
+    line-height: 1.3;
+    font-weight: 700;
+    text-wrap: balance;
+  }
+  .thesis p { margin: 0; color: var(--slate); font-size: 0.95rem; }
+
+  /* genuine sequence — numbers earned */
+  ol.night { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; counter-reset: n; }
+  ol.night > li {
+    counter-increment: n;
+    display: grid; grid-template-columns: 1.6rem 1fr; gap: 0 0.7rem; align-items: baseline;
+  }
+  ol.night > li::before {
+    content: counter(n);
+    font-family: var(--mono); font-size: 0.82rem; color: var(--ember);
+    font-variant-numeric: tabular-nums;
+  }
+
+  ul.habits { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+  ul.habits > li { display: flex; flex-direction: column; gap: 0.25rem; }
+  ul.habits b { font-size: 1.02rem; }
+  ul.habits span { color: var(--slate); font-size: 0.95rem; }
+
+  .scroll { overflow-x: auto; border: 1px solid var(--rule); }
+  table { width: 100%; border-collapse: collapse; font-size: 0.92rem; background: var(--raised); }
+  th, td { text-align: left; padding: 0.6rem 0.8rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  thead th {
+    font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--brass); white-space: nowrap;
+  }
+  tbody tr:last-child td { border-bottom: 0; }
+  td:first-child { font-weight: 650; white-space: nowrap; }
+
+  .watch { display: flex; flex-direction: column; gap: 1rem; }
+  .card {
+    border: 1px solid var(--rule); background: var(--raised);
+    padding: 0.9rem 1rem; display: flex; flex-direction: column; gap: 0.35rem;
+  }
+  .card .name { font-family: var(--serif); font-size: 1.08rem; font-weight: 700; }
+  .card .meta { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--brass); }
+  .card p { margin: 0; font-size: 0.95rem; }
+
+  .closer {
+    border-top: 2px solid var(--ink);
+    padding-top: 1.1rem;
+    display: flex; flex-direction: column; gap: 0.5rem;
+  }
+  .closer .line { font-family: var(--serif); font-size: 1.15rem; font-weight: 700; text-wrap: balance; }
+  .closer p { margin: 0; color: var(--slate); font-size: 0.95rem; }
+
+  em.q { font-style: italic; color: var(--ink); }
+</style>
+
+<div class="sheet">
+
+  <header>
+    <span class="eyebrow">Reality Fracture · Trio Prerelease</span>
+    <h1>You don't have to build anything.</h1>
+    <p class="readtime">Three minutes. Skip the long guide — that one's for building, and you're not building.</p>
+  </header>
+
+  <div class="thesis">
+    <span class="big">There's no drafting. We build all three decks together, hand you one, and you play it.</span>
+    <p>The hard part of Limited — knowing what's good, reading a card pool, cutting the right stuff — is the part you're skipping entirely.</p>
+  </div>
+
+  <section>
+    <h2>What the night actually looks like</h2>
+    <ol class="night">
+      <li>Everyone opens their six packs. We photograph them so we can split the cards back afterward.</li>
+      <li>All 18 packs go into one pile and the three of us build three decks. About an hour.</li>
+      <li>Someone hands you a deck. You play three or four rounds, best of three, roughly 50 minutes each.</li>
+    </ol>
+    <p><strong>Prereleases are the most casual event in Magic.</strong> People bring their kids. Nobody has played this set before either — the cards came out today. Everyone at your table is also reading cards for the first time.</p>
+  </section>
+
+  <section>
+    <h2>Your deck: Green/White Lifegain</h2>
+    <div class="thesis">
+      <span class="big">Play a creature every turn, gain life doing it, and your cards get better.</span>
+    </div>
+    <p>Roughly 16 creatures, a few things that gain life, and not much removal. The trick to this deck is that <strong>gaining life isn't defensive here</strong> — it's a trigger. <em class="q">Bloombrute</em> draws you a card whenever you gain life; <em class="q">Lyra, Archangel of Dawn</em> grows. It's an engine, not a stall.</p>
+    <p><strong>Ward</strong> on some of your creatures makes opponents pay extra to target them. Free protection — you don't have to do anything.</p>
+    <p>This is the closest deck on the table to your mono-green landfall deck. Go first, curve out, hit them. You already know how to do this.</p>
+    <p><strong>One honest warning:</strong> yours has the least removal of the three decks. You win by having the better board, not by killing their stuff. That's the plan, not an oversight.</p>
+  </section>
+
+  <section>
+    <h2>Three habits to bring</h2>
+    <ul class="habits">
+      <li>
+        <b>Attack the planeswalker.</b>
+        <span>Almost everyone in this set makes a blue <em class="q">Jace</em> token. It looks harmless — it just draws them cards. Left alone it draws four or five. Losing two turns of damage to kill it is a good trade, and most opponents won't expect you to do it.</span>
+      </li>
+      <li>
+        <b>Don't dump your whole hand.</b>
+        <span>Some cards kill every small creature at once. If you're already ahead on board, hold one or two creatures back. Going from "way ahead" to "nothing" in a single card is the most common way this deck loses.</span>
+      </li>
+      <li>
+        <b>Play first.</b>
+        <span>When you win the die roll, choose to play. It's almost never wrong.</span>
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Five things you'll see across the table</h2>
+    <div class="scroll">
+      <table>
+        <thead>
+          <tr><th>Mechanic</th><th>What it means</th><th>What to do</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Empower Jace</td><td>They make a blue Jace planeswalker token and stack loyalty on it. It draws them cards</td><td>Attack it. This is the big one</td></tr>
+          <tr><td>Prepared</td><td>A creature with a spell on its other half — they cast that spell free, every turn</td><td>Kill the creature if you can, otherwise race. It's usually small damage</td></tr>
+          <tr><td>Surveil</td><td>They look at the top card and may bin it</td><td>Nothing. It's just smoothing</td></tr>
+          <tr><td>Ward</td><td>You pay extra to target that creature</td><td>Not a trick. Budget the mana before you commit</td></tr>
+          <tr><td>Cadet tokens</td><td>Colorless 2/2s. Several cards make them</td><td>Ordinary creatures. Block them normally</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Two cards worth knowing on sight</h2>
+    <div class="watch">
+      <div class="card">
+        <span class="meta">5 mana · black · instant</span>
+        <span class="name">Rise of the Deathbringer</span>
+        <p>All creatures get <em class="q">-3/-3</em>. This is the card that punishes overextending. Opponent in black, five lands up, and you're way ahead on board? That's the moment to stop adding creatures.</p>
+      </div>
+      <div class="card">
+        <span class="meta">3 mana · red/green · creature</span>
+        <span class="name">Aerid Konstrari</span>
+        <p>A 5/4 flier for three. If it lands early you probably can't block it. Race it — don't trade your whole board trying to answer it.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>When you don't know something</h2>
+    <p><strong>Ask.</strong> Ask your opponent what their card does — they'll tell you, it's expected. Ask us, we're sitting right there. Nobody at a prerelease minds, and reading a card carefully is not cheating.</p>
+    <p>Unsure whether to attack? Ask yourself: <em class="q">if they block and I lose this creature, am I still fine?</em> If yes, attack.</p>
+  </section>
+
+  <div class="closer">
+    <span class="line">We need two wins out of three, not three.</span>
+    <p>Kyle and Alby cover the other two seats, and both of their decks are built around removal specifically so yours doesn't have to be. You're on the deck that's hardest to misplay, on purpose.</p>
+  </div>
+
+</div>

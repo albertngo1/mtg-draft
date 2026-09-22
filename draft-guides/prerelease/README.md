@@ -26,6 +26,20 @@ If a set in this folder already has a post-release guide in another folder, pref
 | Set | Guide | Prerelease | Superseded by |
 |-----|-------|-----------|---------------|
 | The Hobbit (HOB) | [HOB.md](./HOB.md) | 2026-08-07 | largely — [`limited-level-ups/HOB.md`](../limited-level-ups/HOB.md) covers archetypes, commons, uncommons, **rares and mythics**; [`limited-resources/HOB.md`](../limited-resources/HOB.md) covers commons + uncommons. Retire once 17Lands GIH WR lands (Arena 2026-08-11). |
+| Reality Fracture (FRA) | [FRA.md](./FRA.md) | 2026-09-25 | not yet — no channel guide exists. Retire once 17Lands GIH WR lands, or when any of `limited-resources/`, `limited-level-ups/`, `lords-of-limited/` publish FRA. |
+
+### ⚠ FRA is a different kind of guide from HOB
+
+HOB synthesized five published expert reviews. **FRA synthesizes none** — at capture time
+(2026-09-21) no reviewer had covered the set. It is derived from **full Scryfall set data
+analyzed directly**, which changes what you can trust in it:
+
+- **Reliable:** removal density per color, mechanic distribution, archetype support, curve shape,
+  pool math. These are counts, not predictions.
+- **Weak:** individual card grades and bomb ordering. One analyst reading card text, zero games.
+
+If a future set is in the same position, prefer this shape — counting beats guessing — but label
+the two tiers separately the way `FRA.md` does.
 
 ## Companion files
 

@@ -1,9 +1,9 @@
 {
   "channel": "Prerelease syntheses (multi-source web prose)",
   "scope": "written prerelease guides synthesized from several article sources at once; NOT YouTube transcripts; outside the src/ingest ETL",
-  "note": "Weakest evidence tier in the repo by construction \u2014 every grade is a pre-gameplay prediction. Retire or rewrite each file once 17Lands data and the channel guides land. sha1 = shasum of the committed <SET>.md.",
+  "note": "Weakest evidence tier in the repo by construction — every grade is a pre-gameplay prediction. Retire or rewrite each file once 17Lands data and the channel guides land. sha1 = shasum of the committed <SET>.md.",
   "counts": {
-    "sets": 1
+    "sets": 2
   },
   "sets": {
     "HOB": {
@@ -40,8 +40,8 @@
       ],
       "role": "prerelease aggregate; expanded Trios/Team Sealed section is the part not duplicated elsewhere",
       "superseded_by": [
-        "limited-level-ups/HOB.md (LLU 5-part primer, 2026-07-30..08-06) \u2014 archetypes, commons, uncommons, RARES + MYTHICS",
-        "limited-resources/HOB.md (LR 865) \u2014 commons + uncommons"
+        "limited-level-ups/HOB.md (LLU 5-part primer, 2026-07-30..08-06) — archetypes, commons, uncommons, RARES + MYTHICS",
+        "limited-resources/HOB.md (LR 865) — commons + uncommons"
       ],
       "source_videos": [
         {
@@ -55,7 +55,7 @@
           "note": "ad hoc fetch; OzMTG not registered in src/ingest/channels.json"
         }
       ],
-      "trios_variant": "A \u2014 shared pool, 18 boosters (confirmed 2026-08-09)",
+      "trios_variant": "A — shared pool, 18 boosters (confirmed 2026-08-09)",
       "scryfall_queries_verified": "2026-08-09",
       "play_data": {
         "sources": [
@@ -73,7 +73,7 @@
         "note": "first games-played evidence; supersedes all pre-gameplay sources in this file"
       },
       "removed_sources": {
-        "Draftsim": "removed 2026-08-09 \u2014 ratings contradicted by played results; two verifiable factual errors (Fili/Kili rarity, card count)"
+        "Draftsim": "removed 2026-08-09 — ratings contradicted by played results; two verifiable factual errors (Fili/Kili rarity, card count)"
       },
       "trio_config": "R/W + B/R + B/G (all three locked); W/U replaces B/G only if green empty AND 4+ blue enablers AND a white bomb",
       "companions": {
@@ -84,6 +84,56 @@
         "HOB-onepager.html": {
           "role": "styled phone-readable version of the same primer",
           "sha1": "500b284cbf3a6665fb42f6e1ed0662ba2d2c67dc"
+        }
+      }
+    },
+    "FRA": {
+      "tier": 1,
+      "file": "FRA.md",
+      "captured": "2026-09-21",
+      "prerelease": "2026-09-25",
+      "arena_release": null,
+      "source_urls": [],
+      "sha1": "3fc36b5629880db203daa286bae074c0b24196cb",
+      "words": 4546,
+      "card_data": {
+        "source": "Scryfall set:fra",
+        "cards": 285,
+        "breakdown": {
+          "common": 86,
+          "uncommon": 109,
+          "rare": 64,
+          "mythic": 26
+        },
+        "fetched": "2026-09-21",
+        "embedded_images": 0
+      },
+      "aggregates": [
+        "Scryfall (full set data, primary and only source)"
+      ],
+      "role": "prerelease aggregate; UNLIKE HOB this is derived from card data alone, not from expert reviews — none existed at capture time. Trio choreography carried over from HOB.md",
+      "evidence_note": "Counting claims (removal density per color, mechanic distribution, archetype support, pool math) are derived from full set data and are reliable. Card GRADES are single-analyst reads of card text with zero play data — weakest tier in the repo.",
+      "superseded_by": [],
+      "retire_when": "17Lands GIH WR lands after FRA Arena release; or when limited-resources/FRA.md, limited-level-ups/FRA.md, or lords-of-limited/FRA-draft-guide.md are captured",
+      "trios_variant": "A — shared pool, 18 boosters (assumed same as HOB; CONFIRM ON THE DAY)",
+      "scryfall_queries_verified": "2026-09-21",
+      "trio_config": "U/B + B/R + G/W (doubles black, the only deep removal color; all five colors used, exactly one ring adjacency). Runner-up R/W-free shape: B/R + R/G + W/U doubling red",
+      "key_findings": [
+        "Removal by color (common+uncommon, unconditional): B 9, R 5, W 3, G 3 (all fight effects), U 0",
+        "Empower Jace appears at common in all five colors; all sources feed ONE shared Jace token",
+        "Five allied factions only — Charms, dual lands and Prepared hybrids are allied-exclusive",
+        "Five color-hosed removal spells that only answer specific colors",
+        "Elder Sphinx mythic cycle is highly unequal: Kwia Vigorbloom (GW) and Aerid Konstrari (RG) are bombs, Ingris Stingerquill (BR) is not"
+      ],
+      "companions": {
+        "FRA-onepager.md": {
+          "role": "3-minute primer for a non-building teammate",
+          "sha1": "1df282626bc0c2e5955bb3a0fe82b78f22e5c486",
+          "seat": "G/W Vigorbloom"
+        },
+        "FRA-onepager.html": {
+          "role": "styled phone-readable version of the same primer",
+          "sha1": "8288b7b784dd54480d41a0e760d4b268bc5eb269"
         }
       }
     }
