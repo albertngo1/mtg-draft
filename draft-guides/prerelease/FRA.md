@@ -1,57 +1,56 @@
 # FRA — Reality Fracture: prerelease draft & Sealed guide
 
 **Set:** Reality Fracture (`FRA`) · **Release:** 2026-10-02 · **Prerelease weekend:** 2026-09-25 → 09-27
-**Card data:** Scryfall `set:fra`, fetched 2026-09-21 — 285 unique cards (86 common, 109 uncommon, 64 rare, 26 mythic)
+**Sources captured:** 2026-09-21 — Wizards official prerelease guide, Draftsim full set review
+(Andrew Quinn, 0–10), LimitedMTG draft & sealed study guide, MTG Arena Zone color reviews (J2SJosh),
+plus Scryfall `set:fra` (285 unique cards: 86 common, 109 uncommon, 64 rare, 26 mythic).
 
 ---
 
-## ⚠ What this document is, and how much to trust it
+## ⚠ Evidence tier
 
-This is the **weakest evidence tier in the repo**, by construction. See
-[`README.md`](./README.md). No games of FRA Limited have been played anywhere. There is no
-17Lands data, no Limited Resources set review, no Lords of Limited crash course.
+Prerelease sources are the **weakest tier in the repo** — every grade below is a prediction made
+before a single game. See [`README.md`](./README.md). Retire this file once 17Lands GIH WR lands
+after the Arena release.
 
-**Where the HOB guide differed:** that one synthesized five published expert reviews. This one
-does not, because at the time of writing none exist for FRA. Every evaluation below is derived
-from **the card text itself** — full set data pulled from Scryfall and analyzed directly. That is
-a genuinely different evidence basis, and it cuts both ways:
+Two things in here are stronger than the grades, and worth separating:
 
-- **Better than prerelease punditry at:** counting. Removal density per color, curve shape,
-  mechanic distribution, archetype support — these are facts about the set, not predictions.
-- **Worse than expert review at:** knowing which cards overperform. Card evaluation from text
-  alone misses speed, misses which bombs are actually beatable, misses the traps.
-
-**Treat the counting as reliable and the grades as a starting point.** Retire this file once
-17Lands GIH WR lands after the Arena release.
+- **Counts** (removal per color, mechanic distribution, per-pair two-drop and removal density) come
+  from full set data — Scryfall directly, cross-checked against LimitedMTG's independent count.
+  These are facts about the set.
+- **Draftsim's 0–10 grades** are captured in full at [`grades/draftsim_FRA.json`](../../grades/draftsim_FRA.json)
+  (converted to /5, all 280 non-basic cards) and drive the bomb list below.
 
 ---
 
 ## Format in one line
 
-**A five-faction set built on a shared planeswalker token, where black is the only color that
-reliably kills things and blue does not kill anything at all.**
+**Ten two-color archetypes sharing one Jace token and one cheap-answer pool — black and red hold
+most of the removal, blue-green is the trap, and every pair has a common dual land that enters
+untapped if you control a planeswalker.**
 
 ---
 
-## The eight format principles
+## The nine format principles
 
-1. **Black is the removal color.** By a wide margin — see the removal table below. Any deck that
-   wants to interact should have a serious reason not to be in black.
-2. **Blue has zero unconditional removal** at common or uncommon. It has bounce, a soft counter,
-   and a Pacifism aura. Never build blue as your *only* interactive color.
-3. **Empower Jace is free value in every color.** It appears on commons in all five colors. The
-   loyalty accumulates on one shared token, so unrelated cards combine.
-4. **But the Jace token is a liability too.** It's a permanent your opponent can attack. Loyalty
-   you never spend is loyalty you wasted.
-5. **Five allied factions, and the set only supports allied pairs.** Charms, dual lands, and the
-   Prepared hybrids are all allied-only. Enemy pairs exist but are unsupported.
-6. **Legendary creatures are commons-tier abundant.** 60+ legendary uncommons. Several cards
-   check for "a legendary creature" or "a legendary card" — this turns on far more often than
-   your instincts say.
-7. **A lot of removal is color-hosed.** Five separate cards only kill specific colors. Check
-   before you maindeck.
-8. **Prepared creatures are recurring free spells.** Three of them re-prepare every upkeep with
-   no input. In a grindy Sealed game that is the strongest engine in the set.
+1. **All ten pairs are real archetypes.** Allied pairs are the Hexhaven colleges; enemy pairs are
+   the Echoverse characters. Wizards documents all ten with signposts.
+2. **Every pair has a dual land at common** — ten of them — and each enters untapped if you
+   control a planeswalker. **A Jace token counts.** Fixing is abundant and splashing is cheap.
+3. **Black and red hold the removal.** LimitedMTG's count: black 14, red 11, white 7, blue 5,
+   green 5, gold/colorless 18. B/R is the consensus best pair.
+4. **Blue-green is the consensus trap.** Fewest removal spells of any pair, and the Jace cards it
+   wants are the ones every other drafter is taking anyway.
+5. **The Jace token is the shared engine.** 35 cards empower, 11 at common, in every color. All
+   sources feed one token.
+6. **Prepared is the other engine**, and it's a *common* cycle — each allied pair's plan in
+   miniature, on ten common creatures.
+7. **The format plays at normal speed.** Average mana value 3.2, 68% of spells cost ≤3, 3 damage
+   kills 68% of creatures. Nothing pushes it fast.
+8. **Echoed pairs mean legends are everywhere.** 32 characters appear twice, usually in different
+   colors. Cards that check for "a legendary creature" turn on constantly.
+9. **Cheap answers, so hold your removal.** 28 removal spells cost one or two mana, 22 are
+   instants. Both players have interaction; play around it.
 
 ---
 
@@ -62,368 +61,293 @@ reliably kills things and blue does not kill anything at all.**
 > *Put N loyalty counters on a Jace token you control. If you don't control one, first create a
 > blue Jace planeswalker token with "[−1]: Surveil 1" and "[−3]: Draw a card."*
 
-**36 cards in the set reference Jace. 19 of them empower.** They appear at common in all five
-colors, which is unusual and important: this is not a blue mechanic, it is a colorless one wearing
-blue clothes.
+**35 cards, 11 at common, in all five colors.** You only ever have one Jace token and every
+empower card feeds it, so unrelated cards combine. Five cards reading "Empower Jace 2" make one
+10-loyalty planeswalker.
 
-The critical rule is **you only ever have one Jace token**, and every empower card feeds it.
-Five cards that each say "Empower Jace 2" make a single 10-loyalty planeswalker, not five small
-ones. That is what makes the mechanic build-aroundable in Sealed — you don't need a payoff card,
-you just need volume.
-
-**What the token actually does:**
-
-| Ability | Effect | Real cost |
+| Ability | Effect | Cost |
 |---|---|---|
-| −1 | Surveil 1 | Cheap filtering, use it most turns |
+| −1 | Surveil 1 | Use it most turns |
 | −3 | Draw a card | 3 loyalty per card |
 
-So a Jace at 12 loyalty is **four cards**, spread over four turns, that your opponent can attack
-down. Compare to a 4-mana "draw two" — the Jace is slower but free, because the loyalty came
-attached to cards you were casting anyway.
+**Three interactions that matter more than the token's own text:**
 
-**How to value it in deckbuilding:**
+- **It turns on the common duals.** All ten enter untapped if you control a planeswalker. A turn-one
+  Jace fixes your mana for the rest of the game.
+- **`Compel Brutality` turns it into removal.** Its second mode has a planeswalker you control deal
+  damage equal to its loyalty. A Jace that `Protege's Awakening` just built kills almost anything.
+- **`Silence the Echo` can eat a spent token.** It needs a creature or planeswalker sacrificed — a
+  drained Jace is the ideal fodder.
 
-- An empower rider on a card you'd already play is **pure profit**. Take it every time.
-- A card that *only* empowers (`Protege's Awakening`, {3}{U} sorcery, Empower Jace 6) is a real
-  card but a slow one — two cards for four mana, delivered over two later turns. Playable filler,
-  not a build-around.
-- `Jace's Machinations` ({2}{U} instant, Empower Jace 8, plus lets you activate loyalty at instant
-  speed) is the single biggest empower card in the set.
-- `Sanctum Lurker` ({2}{B} rare) is the true build-around: **planeswalkers you control don't die
-  at 0 loyalty**, and they gain "[+2]: deal 1 damage to each opponent and gain 1 life." With any
-  Jace on board that is an inevitable win condition that never runs out.
+**Cheapest loyalty:** `Arcane Amphisbaena` and `Academic Ascent` at two mana, `Campus Crier` from
+the graveyard for one, `Protege's Awakening` for six loyalty at four mana, `Jace's Machinations`
+for eight.
 
-**Playing against it:** attack the Jace. Most players will let it sit because it doesn't threaten
-the board. A Jace that resolves four draws has won the long game on its own.
+**Playing against it:** attack the Jace. LimitedMTG's read is that *a Jace token left alone decides
+more games than a two-drop does*, and most opponents will let yours sit.
 
-### Prepared — recurring free spells
+### Prepared — a common cycle, not a rare curiosity
 
 > *While it's prepared, you may cast a copy of its spell. Doing so unprepares it.*
-> *(Only creatures with prepare spells can become prepared.)*
 
-Prepared lives on **split-faced cards** — a creature on the front, a small spell on the back.
-When the creature is prepared, you may cast a **copy** of its spell for free. Casting it
-unprepares the creature.
+**24 cards, 10 at common.** Each allied pair owns one spell, and that spell is the pair's whole
+plan in miniature:
 
-Three of the five allied hybrids **re-prepare themselves at the beginning of your upkeep**, with
-no cost and no condition:
-
-| Card | Colors | Free spell, every turn |
+| Spell | Pair | Effect |
 |---|---|---|
-| `Paradox Shaper // Omit Variables` | U/B | Mill three |
-| `Stingerquill Voxmancer // Vicious Verse` | B/R | 1 damage to target opponent |
-| `Woodwork Prodigy // Soul Tether` | R/G | Create a Heartwood token (R/G mana artifact) |
+| `Peer Review` | W/U | Make a 2/2 Cadet and surveil |
+| `Omit Variables` | U/B | Mill three |
+| `Vicious Verse` | B/R | 1 damage to an opponent |
+| `Soul Tether` | R/G | Make a Heartwood token (taps for R or G) |
+| `Seed Suture` | G/W | +1/+1 counter and 1 life |
 
-Several rares instead **enter prepared** — a one-shot, not an engine: `Diviner of Victory //
-Unwind`, `Variable Chaser // Arc of Fortune`, `Pompous Battlemage // Improv`, `Pyre Rhymer //
-Molten Tide`, `Carnivorous Cultivator // Entrench`.
+**The commons enter prepared and fire once.** `Fatehold Chronologist`, `Semester Foreseer`,
+`Theorix Metamage`, `Void Extrapolator`, `Hallway Heckler`, `Whiplash Wordsmith`, `Konstrari
+Improviser`, `Emergency Phytomedic`, `Blossom-Blessed Angel`.
 
-**Two ways to break it open:**
+**Three uncommons re-prepare at your upkeep, so they fire every turn, forever:** `Stingerquill
+Voxmancer` (B/R), `Paradox Shaper` (U/B), `Woodwork Prodigy` (R/G). In a long Sealed game these
+are the best engines in the format.
 
-- `Codie, Ravenous Codex` ({3} rare artifact creature) — **copies every prepared spell you cast.**
-  Doubles the engine.
-- `Hexhaven Dueling Arena` (uncommon land) — {4},{T}: make a creature prepared. Re-arms a card
-  that entered prepared and already fired. A colorless land slot that does real work.
+`Codie, Ravenous Codex` copies every prepared spell — but Draftsim rates it **2.0/5**, and that's
+right: it needs a critical mass a Sealed pool won't reliably have.
 
-**In Sealed this is stronger than it looks.** A B/R deck with `Stingerquill Voxmancer` on turn one
-is dealing a free damage every single turn for the rest of the game, unanswerable except by
-killing a 1-mana creature. Games go long in Sealed. Take these highly.
+### Heartwood tokens
+
+Red-green artifacts that tap for {R} or {G}. Made by `Soul Tether`, `Konstrari Improviser`,
+`Woodwork Prodigy`, `Tenured Tethermage`, `Hungering Puppetbeast`, `Aerid Konstrari`. They're the
+R/G ramp plan and they turn on `Pia, Determined Rebuilder` and `Craterclaw Colossus`.
 
 ### Returning mechanics
 
-| Mechanic | Count | Notes |
+Surveil (43 cards, 14 common — the set's most-used keyword), prowess (8), threshold (5),
+flashback (5), basic landcycling (4 commons, and the key to splashing), landfall (3).
+
+---
+
+## The ten archetypes
+
+LimitedMTG's per-pair counts, with the official name and signpost. **Removal** is that pair's
+total castable removal; **2-drops** is depth at two mana.
+
+| Pair | Name | Plan | Signpost | Removal | 2-drops | Avg MV |
+|---|---|---|---|---|---|---|
+| **B/R** | Stingerquill | Face burn / noncombat damage | `Grim Repriser` | **26** | 12 | 3.10 |
+| **W/B** | Liliana's Attrition | Small creatures dying for value | `Twisted Fates` | 23 | 11 | 3.10 |
+| **B/G** | Garruk's Bestiary | Deathtouch trades, value creatures | `Primal Witchstalker` | 21 | 11 | 3.28 |
+| **U/B** | Theorix | Graveyard math, threshold at 7 | `Recursive Recruitment` | 20 | **14** | **3.01** |
+| **R/W** | Ajani's Army | Go-wide, +1/+1 counters, Cadets | `Warrior's Blades` | 20 | 13 | 3.23 |
+| **R/G** | Konstrari | Heartwood ramp into fatties | `Craftwork Crusher` | 18 | 15 | **3.39** |
+| **U/R** | Chandra's Prowess | Noncreature spells matter | `Clash of Elements` | 17 | 15 | 3.11 |
+| **G/W** | Vigorbloom | Lifegain → counters and cards | `Bloombrute` | 13 | 15 | 3.35 |
+| **W/U** | Fatehold | Surveil aggro, cheap fliers | `Desperate Futurescribe` | 13 | **16** | 3.07 |
+| **G/U** | Jace's Mastery | Empower Jace, planeswalker value | `Mind Meanderer` | **11** | 16 | 3.27 |
+
+**LimitedMTG's pick is B/R.** No color has more removal at common than black or red, and the pair
+has the most overall.
+
+**LimitedMTG's trap is G/U**, and the reasoning is sound: least removal of any pair, its signpost
+is a six-mana flier, and the loyalty it needs comes from cards every other deck wants too. *Take
+the Jace pieces for whatever you end up in and leave the pair alone.*
+
+Three worth a note beyond the table:
+
+- **W/B is a removal deck with a sacrifice angle, not the reverse.** Draft it as black removal
+  with white bodies. Don't expect to race — few pairs are lighter on two-drops.
+- **U/B is the cheapest pair and the deepest at two mana**, and its enablers feed its payoffs more
+  directly than any other. The cost is the wait: before the seventh card in the graveyard, none of
+  the threshold bonuses are on.
+- **R/G has the highest curve in the set** and gets away with it only because of Heartwood ramp
+  plus basic landcycling on its big commons.
+
+---
+
+## Removal
+
+LimitedMTG counts **60 removal spells** in the set. By color:
+
+| Color | Count | Notes |
 |---|---|---|
-| **Surveil** | ~40 cards reference it | The most common keyword in the set. `Denzilore Fatehold` and `Proft, Consulting Detective` pay you for it |
-| **Prowess** | 8 | Mostly U/R. `Ruric Thar, Biomagus` has *prowess twice* |
-| **Threshold** | 5 | Seven cards in graveyard. Enabled by the heavy mill/surveil |
-| **Flashback** | 5 | `Predictive Preparations` and `Bestial Incursion` are both fine commons |
-| **Basic landcycling** | 4 commons (U/B/R/G) | {2}, discard: fetch a basic. Free mana-smoothing on real cards |
-| **Landfall** | 3 | Minor |
-| **Domain, Convoke, Behold, Exhaust** | 1–2 each | Effectively flavor |
+| **Black** | **14** | `Last Gasp` and `Extended Absence` at common are the workhorses |
+| **Red** | **11** | `No Admittance` and `Wrath of the Bloodmane` at common |
+| White | 7 | `Prophesied End` is the best of them — two mana, instant, unconditional |
+| Blue | 5 | `Unsummon` and `Infinite Coursework`. Blue does not kill things, it delays them |
+| Green | 5 | Mostly fight effects — they need a body and they're card disadvantage into removal |
+| Gold/colorless | 18 | The Charms and the gold uncommons |
+
+At common the split is tighter than the totals suggest: red 4, black 3, green 3, white 2, blue 2.
+
+**Five color-hosed spells** only answer specific colors — premium rates, punishing conditions:
+
+| Card | Cost | Hits only |
+|---|---|---|
+| `Refute Destiny` | {1}{W} | Green or blue |
+| `Terminal Criticism` | {1}{B} | Blue or red |
+| `Essence Burn` | {1}{R} | Black or green |
+| `Flourishing Grapple` | {G} | Red or white |
+| `Precise Redaction` | {1}{U} | White or black |
+
+Against the right half of the field these are the best cards in your deck. Sideboard them in
+aggressively after game one.
+
+**What to play around** (28 spells cost one or two mana, 22 are instants): white has `Prophesied
+End` at two for anything; blue holds `Unsummon` for one and `Icy Reception` for two; black has
+`Last Gasp`; red has `Wrath of the Bloodmane` at instant speed; green has `Compel Brutality`.
 
 ---
 
-## The five factions
+## Bombs — Draftsim's top of the set
 
-All five are **allied pairs**, and the set supports them three ways each — a Charm at uncommon, a
-dual land at rare, and a Prepared hybrid at uncommon. Enemy pairs have gold cards but none of
-this scaffolding.
+Full grades for all 280 non-basic cards: [`grades/draftsim_FRA.json`](../../grades/draftsim_FRA.json).
+Shown as Draftsim's original 0–10.
 
-| Faction | Colors | What it does | Charm | Dual land | Mythic |
-|---|---|---|---|---|---|
-| **Fatehold** | W/U | Scry/surveil → +1/+1 counters, fliers | `Fatehold Charm` | `Deserted Beach` | `Denzilore Fatehold` |
-| **Theorix** | U/B | Graveyard, mill, threshold, Cadet tokens | `Theorix Charm` | `Shipwreck Marsh` | `Uldaros Theorix` |
-| **Stingerquill** | B/R | Noncombat damage, sacrifice, prowess, aggro | `Stingerquill Charm` | `Haunted Ridge` | `Ingris Stingerquill` |
-| **Konstrari** | R/G | Artifacts (Heartwood tokens), big trampling creatures | `Konstrari Charm` | `Rockfall Vale` | `Aerid Konstrari` |
-| **Vigorbloom** | G/W | Lifegain → draw and counters | `Vigorbloom Charm` | `Overgrown Farmland` | `Kwia Vigorbloom` |
-
-### The Elder Sphinx mythic cycle
-
-One per faction, and they are **not** close to equal. This matters enormously for a shared pool —
-opening one of these largely decides a seat.
-
-| Card | Cost | Body | Verdict |
-|---|---|---|---|
-| `Kwia Vigorbloom` | {3}{G}{W} | 6/6 flying, vigilance, lifelink, ward {2} | **Best card in the set.** Five mana, wins the game unanswered, and ward {2} beats most removal |
-| `Aerid Konstrari` | {1}{R}{G} | 5/4 flying | **Absurd rate.** A 5/4 flier on turn three ends games before anything matters |
-| `Uldaros Theorix` | {3}{U}{B} | 5/5 flying + huge graveyard ETB | Bomb, but the ETB needs a stocked graveyard to be more than a 5/5 flier |
-| `Denzilore Fatehold` | {1}{W}{U} | 3/4 flash flying, pumps team on scry/surveil | Very strong, not a bomb. Needs a board |
-| `Ingris Stingerquill` | {B}{R}{R} | 1/4 flying, pings on attack | **The weak one.** A 1/4 body for three. Good in a wide deck, unplayable in a bad one |
-
-**Build rule:** `Kwia` or `Aerid` in the pool is reason enough to lock that seat's colors. The
-other three are strong cards you build toward, not around.
-
----
-
-## Removal — the most important table in this document
-
-Counting every card at common and uncommon that kills, exiles, or permanently neutralizes a
-creature:
-
-| Color | Common | Uncommon | **Unconditional total** | The spells |
+| Card | Colors | Cost | Body | DS |
 |---|---|---|---|---|
-| **Black** | 3 | 6 | **9** | `Last Gasp`, `Silence the Echo`, `Extended Absence`, `Break Under Pressure`, `Multiply by Zero`, `Winter, Tormented Loner`, `Proft, Sinister Mastermind`, `Loot, the Anomaly`, + `Terminal Criticism` (hosed) |
-| **Red** | 3 | 2 | **5** | `No Admittance`, `Wrath of the Bloodmane`, `Awaken the Inferno`, `Fulminous Forte`, `Violent Echoes`, + `Essence Burn` (hosed) |
-| **White** | 1 | 2 | **3** | `Surgical Precision` (toughness 4+ only), `Prophesied End`, `Your Fate Ends Here`, + `Refute Destiny` (hosed) |
-| **Green** | 2 | 1 | **3** | `Sureshot Sower` (fliers only), `Compel Brutality`, `Yoshimaru, Scrappy Stray` — all fight effects, all need a creature |
-| **Blue** | 0 | 0 | **0** | `Unsummon` (bounce), `Icy Reception` (soft counter), `Infinite Coursework` (aura) — nothing dies |
+| `Chandra, Torch of Defiance` | R | 4 | PW | **10** |
+| `Ajani Unrelenting` | R | 6 | PW | **10** |
+| `Craterclaw Colossus` | R | 7 | 5/5 haste | **10** |
+| `Garruk, Curse Breaker` | G | 5 | PW | **10** |
+| `Verdant Kraken` | G | 7 | 6/6 | **10** |
+| `Kwia Vigorbloom` | G/W | 6 | 6/6 flying vig lifelink ward2 | **10** |
+| `Denzilore Fatehold` | W/U | 4 | 3/4 flash flier | **10** |
+| `The Theorist, Jace Beleren` | U | 4 | PW | **10** |
+| `Lyra, Tolarian Archangel` | U | 3 | 3/3 flier | **10** |
+| `Aerid Konstrari` | R/G | 4 | 5/4 flier | 9 |
+| `Uldaros Theorix` | U/B | 6 | 5/5 flier | 9 |
+| `Ingris Stingerquill` | B/R | 3 | 1/4 flier | 9 |
+| `Garruk, Veiled Butcher` | B | 5 | PW | 9 |
+| `Overwrite the Multiverse` | B | 6 | Exile all creatures | 9 |
+| `Draconic Visitor` | R | 5 | 5/5 flier | 9 |
+| `Guiding Hydra` | W | X+1 | Grows the team | 9 |
+| `Hungering Puppetbeast` | G | 5 | 5/5 | 9 |
 
-**Three consequences, and they drive everything below:**
+**Red and green are where the top end lives** — five of the nine perfect scores. If you open a red
+or green mythic, that is your color.
 
-1. **Black is not a preference, it's close to a requirement** for any deck that needs to answer a
-   bomb. In a shared-pool trio, black is the color you fight over.
-2. **A blue deck must be paired with black or red.** W/U is the trap archetype of this format on
-   paper — it has the second-worst removal color paired with the worst.
-3. **Green's "removal" is three fight effects.** They are card disadvantage against a removal
-   spell and blanks when you're behind on board. Do not count them as removal when you're
-   building a curve.
+### Where I disagreed with Draftsim, and lost
 
-### The color-hosed removal — read this before maindecking
+Recorded because the disagreements are the useful part:
 
-Five cards only answer specific colors:
-
-| Card | Cost | Only hits | Rarity |
-|---|---|---|---|
-| `Refute Destiny` | {1}{W} | Green or blue | Uncommon |
-| `Terminal Criticism` | {1}{B} | Blue or red | Uncommon |
-| `Essence Burn` | {1}{R} | Black or green | Uncommon |
-| `Flourishing Grapple` | {G} | Red or white | Uncommon |
-| `Precise Redaction` | {1}{U} | White or black (counter) | Uncommon |
-
-These are **premium rates for punishing costs** — `Essence Burn` is 5 damage and exile for two
-mana. Against the right half of the field they're the best cards in your deck; against the wrong
-half they're blank.
-
-**In a trio specifically this is an information advantage.** You know what your two teammates are
-playing, which tells you nothing about opponents — but it *does* mean your sideboard decisions are
-free after game one. Board them in aggressively; these are sideboard cards that steal games.
-
----
-
-## Rares & mythics worth building around
-
-### The unconditional bombs
-
-| Card | Colors | Why |
-|---|---|---|
-| `Kwia Vigorbloom` | G/W | 6/6 flier with lifelink and ward {2} for five |
-| `Aerid Konstrari` | R/G | 5/4 flier for three |
-| `Garruk, Veiled Butcher` | B | Exiles opposing creatures that would die, +2 shrinks, −2 makes a 4/4 |
-| `Chandra, Torch of Defiance` | R | Card advantage, mana, and a −3 that kills |
-| `Garruk, Curse Breaker` | G | Draws on every fat creature, −3 makes 4/4 tramplers |
-| `Verdant Kraken` | G | 6/6 that makes a 3/3 land creature **every upkeep, both players'** |
-| `Draconic Visitor` | R | 5/5 flier for five, upgrades artifact tokens into 5/5 Dragons |
-| `Curse-Marred Demon` | R | 4/4 flying trample for four that tutors |
-| `The Theorist, Jace Beleren` | U | Draws an extra card every opponent's draw step |
-
-### The build-arounds that need the right pool
-
-| Card | Needs | Payoff if you have it |
-|---|---|---|
-| `Sanctum Lurker` | Any Jace token | Planeswalkers stop dying at 0 loyalty and drain every turn. Wins alone |
-| `Codie, Ravenous Codex` | 2+ Prepared creatures | Every free spell happens twice |
-| `Omnipresence` | Seven mana and a wide board | Cast your hand for free. Game over, but seven mana in Sealed is real |
-| `Return to the Light Realms` | Nine mana, full graveyard | The most unfair thing in the set if a game reaches nine mana |
-| `Kindred Judgment` | A tribal-ish board | One-sided wrath for seven. Cadet tokens are all Wizard Soldiers — a real synergy |
-| `Puppet Crafting` | Any artifact or enchantment | Two mana, turns a Heartwood token into a 5/5 |
-
-### Traps — cards that read stronger than they play
-
-- **`Tarmogoyf`** — yes, really. In Limited it's often a 2/3 or 3/4 for two. Fine, not a bomb.
-- **`Hexhaven Invigorator`** — {G}{G}{G} 6/6 is a real cost; triple-pip on turn three is a
-  fantasy in a two-color Sealed deck.
-- **`Extrapolate the Impossible`** — a wish card. Dead unless you're sideboarding from outside
-  the game, which is not how prerelease works.
-- **`Face Yourself`** — seven mana, copies **their** board, and the copies die at end of turn
-  unless you control a planeswalker. Too many conditions.
-- **`Frostbite Pyromental`** — 4/4 trample haste that draws two, then **sacrifices itself**. It's
-  a two-card Lava Spike. Fine, not the bomb the stat line suggests.
-
----
-
-## Commons that carry decks
-
-Ranked within color. These are the cards you're actually building 40 out of.
-
-**White** — `Memory Trap` (unconditional exile at 3, the best white common), `Surgical Precision`,
-`Shatterwing Pegasus`, `Hexhaven Battalion` (three 2/2s + empower for six), `Graft Surgeon`,
-`Predictive Preparations`.
-
-**Blue** — `Surveillance Phantasm` (2/3 flier that attacks the turn you surveil — excellent),
-`Divining Duelist`, `Icy Reception`, `Undulating Witness`, `Mindseeker Oculus`, `Sphinx's Approach`.
-
-**Black** — `Last Gasp` (best black common), `Extended Absence`, `Apex Witchstalker` (6/4 menace,
-gains life twice, landcycles when you don't want it), `Silence the Echo`, `Rampart Hunter`,
-`Theoretical Necromancer`.
-
-**Red** — `No Admittance` (3 damage any target plus empower), `Wrath of the Bloodmane` (4 damage,
-often for two mana in this legend-dense set), `Awaken the Inferno`, `Tether Technician`,
-`Heartstring Puller`, `Chandra's Emberling`.
-
-**Green** — `Bestial Incursion` (4/4 trample with flashback — two bodies from one card),
-`Vinelasher Adept`, `Wrecking Gecko` (5/5 ward {2} for five), `Sureshot Sower`, `Budding
-Insurgent`, `Compel Brutality`.
-
-**Colorless** — `Medic's Kitesail` and `Murmuring Volume` are real playables in any deck.
-`Afterthought Sentry` is filler that flies.
+- **`Ingris Stingerquill` (9/10).** A 1/4 body for three looked weak to me. Draftsim is right that
+  the ping-on-attack plus the Cadet-and-haste activation *is* the B/R deck's engine, and a 4
+  toughness flier blocks the format's two-drops all day.
+- **`Denzilore Fatehold` (10/10).** I read it as strong-not-a-bomb. Flash, flying, and a
+  team-wide counter on every scry or surveil in a set with 43 surveil cards is a bomb.
+- **`Sanctum Lurker` (5/10).** I called it an inevitable win condition. It needs a planeswalker you
+  already care about; in a Sealed pool that's a Jace token you were using anyway.
+- **`Codie, Ravenous Codex` (4/10).** Needs a prepared critical mass Sealed won't give you.
 
 ---
 
 ## Sealed: building your 40
 
-Standard shape, with two FRA-specific adjustments.
+Wizards' own template, which is a fine baseline:
 
-**The baseline:** 17 lands, 23 spells, 15–17 creatures, curve topping around six.
+| MV | Cards |
+|---|---|
+| 1 | 1–2 |
+| 2 | 7–8 |
+| 3 | 5–6 |
+| 4 | 3–4 |
+| 5 | 2–3 |
+| 6 | 0–1 |
 
-**Adjustment 1 — you can go to 16 lands more comfortably than usual.** Four commons have basic
-landcycling and several cards filter. But only do this if you actually have 3+ of those effects.
+Plus **17 lands**. Order of operations: find your bombs first, then your removal, then let those
+two pick your colors.
 
-**Adjustment 2 — count your removal honestly.** Using the table above, not vibes. If your two
-colors total fewer than four real answers, you are going to lose to a bomb you can't beat, and
-you should seriously consider splashing black off a dual land or `Murmuring Volume`.
+**Splashing is unusually easy in this format** and you should be readier than normal to do it.
+Ten common dual lands, all untapped with any planeswalker out; basic landcycling on big commons in
+four colors; `Room of Refuge` and `Murmuring Volume` colorless. A third color for one removal spell
+is affordable.
 
-**Splashing** is well-supported: five allied dual lands at rare, `Room of Refuge` (colorless land,
-any color), `Murmuring Volume` (3-mana any-color rock), `Heartwood` tokens in R/G, Treasures off
-`Vraska, the Cutting Glare`. A single black splash for `Extended Absence` or a bomb is very
-reasonable.
+**If you're blue,** you need a second color that kills things. Blue's five "removal" spells bounce
+or tap. That is not a deck on its own.
 
 ---
 
-## Trios / Team Sealed — the part that isn't documented anywhere else
+## Trios / Team Sealed
 
 **Format:** three prerelease kits opened together, **18 boosters, one shared pool**, three decks
-built collectively. This is *not* official 12-booster Team Sealed. Confirmed as the HOB format;
-assumed unchanged for FRA.
+built collectively. Not official 12-booster Team Sealed. **Confirm on the day.**
 
-**Match structure:** three seats play simultaneously against the opposing trio. **You need 2 of 3
-seat wins**, not 3.
+**Match structure:** three seats play simultaneously. **You need 2 of 3 seat wins, not 3.**
 
-### What 18 packs actually gives you
+### What 18 packs gives you
 
-Play Booster math, approximate — treat these as planning numbers, not guarantees:
+Approximate Play Booster math — planning numbers, not guarantees:
 
-| Slot | Per pack | × 18 | Notes |
+| Slot | × 18 | Notes |
+|---|---|---|
+| Commons | ~126 | From 81 non-basic commons → ~25 per color |
+| Uncommons | ~54 | From 109 |
+| Rare/mythic | ~18 + 3 kit promos = **~21** | Against 90 rares+mythics → expect **4–7 real bombs** |
+| Common duals | ~15 across all ten pairs | Fixing is not a constraint |
+
+### 🔒 Recommended configuration: **B/R + B/G + W/U**
+
+With all ten pairs live the choice is wide open, so the constraints that actually bind are: take
+the consensus best pair, avoid the consensus trap, cover all five colors, and double the color
+with the most removal to split between two seats.
+
+- **Lock B/R** — most removal in the format, both sources agree.
+- **Never build G/U** — the trap. Take its Jace pieces for whichever decks want them.
+- **B/G and W/U** complete the five colors with one doubled color (black) and no Simic.
+
+Total castable removal across the three: **26 + 21 + 13 = 60**.
+
+| Seat | Pair | Role | Plan |
 |---|---|---|---|
-| Commons | ~7 | **~126** | From 81 non-basic commons → ~25 per color |
-| Uncommons | ~3 | **~54** | From 109 unique |
-| Rare/mythic | 1 | **~18** | Plus 3 kit promos = **~21** |
-| Wildcard slot | 1 | ~18 | Any rarity, skews common |
+| **Albert** | **B/G Garruk's Bestiary** | **Decider** | Deathtouch trades, grindy value, wins the long game one trade at a time. The most blocking decisions on the table |
+| **Kyle** | **B/R Stingerquill** | **Scribe** + contested-card pass | The best deck in the pool. Removal plus reach — hardest sequencing, most rewarding |
+| **Andy** | **W/U Fatehold** | **Clock** | Cheap fliers, surveil, curve out and attack. Deepest two-drop pair in the set and the cheapest |
 
-**The number that matters: roughly 7 copies of black removal in the pool.** (~25 black commons ×
-3 removal commons ÷ 11 black commons.) Split across two black decks that's 3–4 each, plus
-uncommons. Tight but workable — and it is the single strongest argument for the configuration
-below.
+**Why W/U for the newest player even though it has the least removal of the three:** that's the
+point. Holding removal correctly — use it now or save it? — is the decision new Limited players
+get wrong most often. A deck with little removal has few of those decisions. W/U is also the
+cheapest pair in the set with the most two-drops, so "curve out and attack" is a plan that
+survives misplay.
 
-**On rares:** ~21 rare/mythic slots against a 90-card rare+mythic pool means you should expect
-**4–7 genuine bombs**, and roughly a coin flip on seeing at least one Elder Sphinx. Enough that
-all three seats can have a real threat.
+### Runner-up: **B/R + W/B + U/G**
 
-### Trio configuration — the ring math
+Higher raw removal (26+23+11 = 60) but it forces someone into Simic. Only take it if the pool's
+green and white are both empty and the blue is deep.
 
-FRA's five factions form a **closed ring**: W/U → U/B → B/R → R/G → G/W → back to W/U. Each color
-appears in exactly two factions.
+### The census gate — before anyone sorts into decks
 
-Pick any three factions from a five-cycle and you cannot avoid at least one shared color. You get
-one of exactly two shapes:
-
-- **One adjacency** — one doubled color, all five colors used. *This is what you want.*
-- **Two adjacencies** — two doubled colors, only four colors used. Wasteful; you're leaving a
-  whole color's cards in the box.
-
-So the real question is only: **which color do you double?** And given the removal table, the
-answer is black.
-
-### 🔒 Recommended configuration: **U/B + B/R + G/W**
-
-Doubles black. Uses all five colors. Exactly one adjacency. Mathematically clean and it doubles
-the only color that reliably kills things.
-
-| Seat | Faction | Role | Plan |
-|---|---|---|---|
-| **Albert** | **U/B Theorix** | **Decider** | Grindy control. Removal, surveil, threshold, Jace. Hardest deck to pilot, so it goes to the most experienced seat |
-| **Kyle** | **B/R Stingerquill** | **Scribe** + contested-card pass | Aggro with the deepest removal in the pool. Prowess, noncombat damage, Cadet tokens |
-| **Andy** | **G/W Vigorbloom** | **Clock** | Creatures, lifegain, +1/+1 counters, attack. Lowest decision density on the table, deliberately |
-
-**Why G/W gets the newest player** even though it's the removal-poor seat: it's the deck whose
-game plan survives misplay. Curve out, gain life, attack. It also has the best possible bomb if
-`Kwia Vigorbloom` shows up. The two removal-rich decks go to the two players who'll sequence
-removal correctly.
-
-**Why not W/U anywhere:** worst removal color paired with the no-removal color. Avoid unless a
-white *and* a blue bomb both appear.
-
-### Runner-up configuration: **B/R + R/G + W/U**
-
-Doubles red. Take this if the pool's black is genuinely shallow — which would be surprising — or
-if two red bombs show up. Also all five colors, one adjacency.
-
-### The census gate — run this before locking anything
-
-Open everything, then answer these four questions **before** anyone starts sorting into decks:
-
-1. **Did an Elder Sphinx appear?** `Kwia` or `Aerid` locks that seat's colors immediately.
-2. **How many real black removal spells are there?** Under 5 total → the double-black plan is
-   dead, fall back to the runner-up.
-3. **Is there a `Sanctum Lurker` plus 4+ empower cards?** That's a deliberate Jace deck and it
-   belongs in the U/B seat.
-4. **Are there 2+ self-preparing hybrids?** (`Paradox Shaper`, `Stingerquill Voxmancer`,
-   `Woodwork Prodigy`.) If yes, plus `Codie`, that's a real engine — build toward it.
+1. **Did a red or green mythic appear?** Five of Draftsim's nine perfect scores are red or green.
+   That locks a seat.
+2. **How many black removal spells are there?** Two black seats need roughly 7+ between them.
+   Under 5 → drop to one black seat and move the third pair to R/W or U/R.
+3. **How many common duals?** Expect ~15. If you got unlucky, splashes come off the table and the
+   configuration tightens.
+4. **Are there 2+ of the self-preparing uncommons?** (`Stingerquill Voxmancer`, `Paradox Shaper`,
+   `Woodwork Prodigy`.) Those are engines; put them where they're on-plan.
 
 ### Build choreography — ~75 minutes, six phases
 
-Carried over from HOB, which worked. One FRA-specific change is marked.
-
 | Phase | Time | What happens |
 |---|---|---|
-| **1. Open + stage** | 10 min | Everyone opens their six packs. **Photograph each player's own pulls separately before merging** — this is the only way a split-back is possible later |
-| **2. Sort silently, in parallel** | 12 min | Split the pool by color. **No reading.** Just piles. Three people, five piles plus gold plus colorless |
-| **3. Census + lock config** | 8 min | Run the four gate questions above. Lock the three factions and who pilots what. **Do not skip this — everything after depends on it** |
-| **4. Read only your two colors** | 15 min | Each pilot reads only their assigned pair. Nobody reads 285 cards. Scryfall links below |
-| **5. Build three 40s in parallel** | 20 min | Each pilot builds their own deck. Uncontested cards go straight in |
+| **1. Open + stage** | 10 min | Open six each. **Photograph each player's own pulls before merging** — the only way a split-back is possible later |
+| **2. Sort silently, in parallel** | 12 min | Split by color. **No reading.** Piles only |
+| **3. Census + lock config** | 8 min | Run the four gate questions. Lock the three pairs and the pilots. Everything after depends on this |
+| **4. Read only your two colors** | 15 min | Each pilot reads only their pair. Nobody reads 285 cards |
+| **5. Build three 40s in parallel** | 20 min | Uncontested cards go straight in |
 | **6. Contested zone + lands + cross-check** | 10 min | Resolve the shared pile together, add lands, sleeve, and have someone other than the pilot count each deck |
 
-**⚠ FRA-specific change to phase 4:** the **color-hosed removal must be read by everyone**, not
-just the pilot whose color it's in. Five cards only kill certain colors, and whether they're
-maindeck or sideboard depends on the field, not the deck. Call them out loud during phase 3.
+**FRA-specific additions to phase 3:** call out the **color-hosed removal** aloud — whether it's
+maindeck or sideboard depends on the field, not on the deck it sits in. And **count the common
+duals** before anyone plans a splash.
 
 ### The contested-card rule
 
 **A contested card goes to whichever deck has the worse alternative — not the deck that uses it
-best.**
+best.** You need 2 of 3 seat wins, so you are maximizing the floor across three decks, not the
+ceiling of one.
 
-You need 2 of 3 seat wins. That means you are maximizing the *floor* across three decks, not the
-ceiling of any one. A card that makes the strong deck slightly stronger, taken from the weak deck
-that has nothing in that slot, actively loses matches.
+In FRA this bites hardest on **black removal** with two black seats. Split it roughly evenly and
+give tiebreakers to whichever deck's curve has the bigger hole.
 
-In FRA this bites hardest on **black removal** with two black seats. Resist giving all of it to
-the aggro deck because "removal is better in aggro." Split it roughly evenly and give the
-tiebreakers to whichever deck's curve has the bigger hole.
-
-### The split rule — agree on this before the event, in writing
-
-The one thing that cannot be fixed at the table. Send it to your teammates the night before.
-Suggested text:
+### The split rule — agree in writing, before the event
 
 > *Everyone keeps what they personally opened. We photograph each person's six packs before
 > merging. Cards go into a shared pool for the event only. Afterwards we split back by photo. If
@@ -432,72 +356,63 @@ Suggested text:
 
 ---
 
-## Reading your colors at the table — Scryfall links
+## Reading your colors at the table
 
-Each pilot opens only their own. Set the view to **Images** and scroll.
-
-| Seat | Query | Approx. cards |
+| Seat | Scryfall query | Cards |
 |---|---|---|
-| U/B Theorix | `set:fra ci<=ub -ci:c` | 88 |
-| B/R Stingerquill | `set:fra ci<=br -ci:c` | 88 |
-| G/W Vigorbloom | `set:fra ci<=gw -ci:c` | 86 |
+| B/G | `set:fra ci<=bg -ci:c` | 88 |
+| B/R | `set:fra ci<=br -ci:c` | 88 |
+| W/U | `set:fra ci<=wu -ci:c` | 88 |
 | Everyone, night before | `set:fra rarity:common` | 86 (81 + 5 basics) |
 
-**Do the commons the night before.** 81 real cards, about 25 minutes, and it removes most of the
-reading load at the table. This was the fix that saved the HOB build and it applies more here —
-FRA has 285 cards to HOB's 193.
+**Do the commons the night before** — 81 cards, about 25 minutes in Scryfall's Images view. It
+removes most of the reading load at the table.
 
 ---
 
 ## Playing the games
 
-- **Play first.** Almost never wrong in Limited.
-- **Attack the Jace.** Opponents leave their own alone and expect you to as well. Four free cards
-  is worth two turns of attacking a planeswalker instead of a player.
-- **Track your own Jace's loyalty out loud.** One token, many sources, easy to lose count.
-  −1 surveil most turns; save −3 for when you need gas.
-- **Prepared creatures re-arm at your upkeep.** Set a habit of checking them before you draw. A
-  missed free spell every turn is how these games get lost.
-- **Assume opposing removal is black.** If they're not in black, they probably can't kill your
-  creature — attack accordingly.
-- **Ward {2} is everywhere** on the good creatures (`Kwia`, `Wrecking Gecko`, `Unflinching
-  Hortimancer` at ward {1}). Hold removal until you can pay.
-- **Cadet tokens are 2/2 Wizard Soldiers.** Colorless. They matter for `Kindred Judgment` and
-  `Command the Stage`.
+- **Play first.**
+- **Attack the Jace.** Most opponents won't expect it and won't defend it.
+- **Track your own Jace's loyalty out loud.** One token, many sources.
+- **A big Jace is a removal spell** with `Compel Brutality`, and sacrifice fodder for
+  `Silence the Echo` once it's spent.
+- **Check your prepared creatures at upkeep**, before you draw. A missed free spell every turn is
+  how these games get lost.
+- **Your common duals want a planeswalker out.** Sequencing a cheap empower spell before you play
+  the land is often worth a whole turn.
+- **3 damage kills 68% of creatures**; the step to 4 buys 19 points more. Worth knowing when
+  choosing between burn spells.
+- **32% of creatures have toughness 4+**, which is why `Surgical Precision` is live more often
+  than it reads.
 
 ---
 
-## Before you leave the house
+## Where the sources disagree
 
-1. Read all 81 non-basic commons on Scryfall — `set:fra rarity:common`, Images view. ~25 minutes.
-2. Send teammates the split rule text above.
-3. Confirm the trio config is only a *default* — it gets re-locked at phase 3 after the census.
-4. Bring: sleeves, a token/loyalty counter for Jace (a die works), pen and paper for the Scribe.
-5. Print or phone-load `FRA-onepager.html` for whoever isn't building.
-
----
-
-## Where this guide is weakest
-
-Stated plainly, so it's not mistaken for more than it is:
-
-- **No play data.** Zero games. Format speed is unknown, and speed is what decides whether the
-  grindy U/B seat is correct at all.
-- **No expert consensus.** Every grade is one analyst reading card text.
-- **Bomb ordering is the least reliable part.** Counting removal is a fact; ranking `Uldaros`
-  against `Denzilore` is a guess.
-- **Play Booster composition is assumed**, not verified against FRA's actual product spec. The
-  pool math above could be off by 10–15%.
-- **The trio config assumes the HOB format** (18 packs, shared pool). Confirm on the day.
+- **Best pair.** LimitedMTG picks B/R on removal density. Wizards is neutral by design. Draftsim's
+  top grades cluster in **red and green**, which argues R/G is underrated by the removal-first
+  framing. If the pool hands you two red or green mythics, believe the bombs over the table above.
+- **G/U.** LimitedMTG calls it the trap. Wizards presents "Jace's Mastery" as a normal archetype.
+  Trust LimitedMTG here — it's counting, Wizards is describing.
+- **Prepared's ceiling.** LimitedMTG treats the self-preparing uncommons as major engines;
+  Draftsim grades them 6/10. Both can be right: strong in a long game, mediocre in a short one.
+- **Coverage gap.** Neither source has play data, and neither has seen the format's actual speed.
 
 ---
 
 ## Sources
 
-- **Scryfall** — `set:fra`, full card data, fetched 2026-09-21. 285 unique cards. This is the
-  basis for every count in this document.
-- **Prior art:** [`HOB.md`](./HOB.md) — the trio choreography, contested-card rule, split rule,
-  and phase structure are carried over from there, where they were tested at a real event.
-- **No expert reviews were available at time of writing.** When Limited Level-Ups, Limited
-  Resources, or Lords of Limited publish FRA coverage, those supersede the card evaluations here.
-- **17Lands GIH WR supersedes everything** once FRA hits Arena.
+- **Wizards of the Coast** — [Reality Fracture Prerelease Guide](https://magic.wizards.com/en/news/feature/reality-fracture-prerelease-guide),
+  Jubilee Finnegan, 2026-09-18. Authoritative on the ten archetypes and pack contents.
+- **LimitedMTG** — [Reality Fracture draft & sealed guide](https://limitedmtg.com/reality-fracture/).
+  Per-pair removal and curve counts, format speed, the B/R pick and the G/U trap call. The
+  strongest source here; it counts rather than predicts.
+- **Draftsim** — [The Ultimate Reality Fracture Limited Set Review](https://draftsim.com/mtg-fra-limited-set-review/),
+  Andrew Quinn. 0–10 on every card; captured in full to `grades/draftsim_FRA.json`.
+- **MTG Arena Zone** — [FRA Limited Set Review](https://mtgazone.com/reality-fracture-fra-limited-set-review-black/),
+  J2SJosh, color by color.
+- **Scryfall** — `set:fra`, 285 unique cards, fetched 2026-09-21.
+- **Prior art:** [`HOB.md`](./HOB.md) — the trio choreography, contested-card rule and split rule
+  are carried over from there, where they were tested at a real event.
+- **17Lands GIH WR supersedes everything here** once FRA hits Arena.

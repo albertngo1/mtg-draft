@@ -27,25 +27,25 @@ That's it. The hard part of Limited — knowing what's good, reading a card pool
 
 ---
 
-## Your deck: Green/White Lifegain
+## Your deck: White/Blue Fliers
 
-One sentence: **play a creature every turn, gain life doing it, and your cards get better.**
+One sentence: **play a cheap creature every turn, get in the air, and keep attacking.**
 
-- You'll have ~16 creatures, a few things that gain life, and not much removal
-- This deck's whole trick is that **gaining life isn't defensive here** — it's a trigger. Cards like `Bloombrute` draw you a card whenever you gain life. `Lyra, Archangel of Dawn` grows. It's an engine, not a stall
-- **Ward** on some of your creatures means opponents have to pay extra to target them. Free protection, you don't do anything
+- You'll have ~16 creatures, a lot of them small fliers, and a couple of tricks
+- This is the **cheapest deck in the set** and the one with the most 2-drops. You will almost always have something to do on turn two, which is more than most decks here can say
+- **Surveil** shows up constantly — look at your top card, keep it or bin it. Several of your creatures get better on any turn you did it. It's free, so do it when you can
 
-This is the closest deck on the table to your mono-green landfall deck. Go first, curve out, hit them. You already know how to do this.
+You win by being ahead early and staying in the air. Ground stalls are fine for you — you're flying over them.
 
-**One honest warning:** your deck has the least removal of the three. You mostly win by having a better board, not by killing their stuff. That's fine — it's the plan.
+**One honest warning:** your deck has the least removal of the three. You mostly win by having a better board, not by killing their stuff. That's the plan, not an oversight — and it means you have fewer tricky "should I use this now?" decisions than your teammates do.
 
 ---
 
 ## Three habits to bring
 
-**1. Attack the planeswalker.** Almost everyone in this set makes a blue **Jace** token. It looks harmless, it just draws them cards. Left alone it draws them four or five. Hit it. Losing two turns of damage to kill a Jace is a good trade, and most opponents won't expect it.
+**1. Attack the planeswalker.** Almost everyone in this set makes a blue **Jace** token. It looks harmless — it just draws them cards. Left alone it draws four or five. Hit it. Your fliers are the best thing on the table for this, because nothing blocks them.
 
-**2. Don't dump your whole hand.** There are cards in this set that kill every small creature at once. If you're already winning on board, hold one or two creatures back. Going from "way ahead" to "nothing" in one card is the most common way this deck loses.
+**2. Don't dump your whole hand.** There are cards that kill every small creature at once, and your creatures are small. If you're already winning on board, hold one or two back. Going from "way ahead" to "nothing" in a single card is the most common way this deck loses.
 
 **3. Play first.** When you win the die roll, choose to play. It's almost never wrong.
 
@@ -56,17 +56,17 @@ This is the closest deck on the table to your mono-green landfall deck. Go first
 | Thing | What it means | What to do |
 |---|---|---|
 | **Empower Jace** | They make a blue Jace planeswalker token and stack loyalty on it. It draws them cards | Attack it. This is the big one |
-| **Prepared** | A creature with a spell on its other half. They cast the spell **free, every turn** | Kill the creature if you can, or just race — it's usually small damage |
-| **Surveil** | They look at the top card and can bin it | Nothing to do. It's just smoothing |
-| **Ward** | You must pay extra to target that creature | Not a trick. Just budget the mana before you commit |
-| **Cadet tokens** | Colorless 2/2s. Several cards make them | Ordinary creatures. Block them normally |
+| **Prepared** | A creature with a spell on its other half. They cast that spell **free, every turn** | Kill the creature if you can, otherwise just race it |
+| **Deathtouch** | Any damage from it kills your creature | Don't trade a good flier into it. Fly over instead |
+| **Ward** | You pay extra to target that creature | Not a trick. Budget the mana before you commit |
+| **Cadet tokens** | Colourless 2/2s. Several cards make them | Ordinary creatures. They don't fly, so they don't stop you |
 
 ---
 
 ## Two cards to actually watch for
 
-- **`Rise of the Deathbringer`** — 5 mana, black, instant. *All* creatures get -3/-3. This is the card that punishes you for overextending. If an opponent is in black and has five lands up and you're way ahead on board, that's the moment to stop adding creatures.
-- **`Aerid Konstrari`** — a 5/4 flier for only three mana, red/green. If this lands early you probably can't block it. Race it, and don't trade your whole board trying to answer it.
+- **`Prophesied End`** — 2 mana, white, instant. Kills any creature. Here's the useful bit: **they only draw a card from it if the creature wasn't attacking.** So attacking into it is genuinely the cheaper line. Don't freeze up over it.
+- **`Rise of the Deathbringer`** — 5 mana, black, instant. *All* creatures get -3/-3, which kills most of your board at once. If an opponent is in black with five lands up and you're way ahead, that's the moment to stop adding creatures.
 
 ---
 

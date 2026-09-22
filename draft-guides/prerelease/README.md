@@ -28,18 +28,23 @@ If a set in this folder already has a post-release guide in another folder, pref
 | The Hobbit (HOB) | [HOB.md](./HOB.md) | 2026-08-07 | largely — [`limited-level-ups/HOB.md`](../limited-level-ups/HOB.md) covers archetypes, commons, uncommons, **rares and mythics**; [`limited-resources/HOB.md`](../limited-resources/HOB.md) covers commons + uncommons. Retire once 17Lands GIH WR lands (Arena 2026-08-11). |
 | Reality Fracture (FRA) | [FRA.md](./FRA.md) | 2026-09-25 | not yet — no channel guide exists. Retire once 17Lands GIH WR lands, or when any of `limited-resources/`, `limited-level-ups/`, `lords-of-limited/` publish FRA. |
 
-### ⚠ FRA is a different kind of guide from HOB
+### FRA sources
 
-HOB synthesized five published expert reviews. **FRA synthesizes none** — at capture time
-(2026-09-21) no reviewer had covered the set. It is derived from **full Scryfall set data
-analyzed directly**, which changes what you can trust in it:
+FRA synthesizes four written sources plus full set data: the Wizards official prerelease guide,
+Draftsim's 0–10 set review, LimitedMTG's counted draft & sealed guide, and MTG Arena Zone's
+colour-by-colour reviews.
 
-- **Reliable:** removal density per color, mechanic distribution, archetype support, curve shape,
-  pool math. These are counts, not predictions.
-- **Weak:** individual card grades and bomb ordering. One analyst reading card text, zero games.
+Draftsim's grades for all 280 non-basic FRA cards are captured to
+[`grades/draftsim_FRA.json`](../../grades/draftsim_FRA.json) (converted from 0–10 to the /5 the
+card-reference generator renders), so the set already carries a reviewer-grade file before release.
 
-If a future set is in the same position, prefer this shape — counting beats guessing — but label
-the two tiers separately the way `FRA.md` does.
+**A note on method.** The first draft of `FRA.md` was written from card data alone, on the
+assumption that no reviews existed yet. They did — nobody had checked. That version also analysed
+only mono-coloured cards and silently skipped all 75 multicolour ones, which produced a wrong
+structural read (five allied factions rather than the real ten archetypes) and wrong removal
+counts. Both errors were caught by reconciling against the published sources. The lesson for the
+next set in this folder: **search for coverage before concluding there is none, and check that a
+set-wide count actually covers gold and hybrid cards.**
 
 ## Companion files
 

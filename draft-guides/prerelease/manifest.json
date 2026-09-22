@@ -92,10 +92,20 @@
       "file": "FRA.md",
       "captured": "2026-09-21",
       "prerelease": "2026-09-25",
+      "release": "2026-10-02",
       "arena_release": null,
-      "source_urls": [],
-      "sha1": "3fc36b5629880db203daa286bae074c0b24196cb",
-      "words": 4546,
+      "source_urls": [
+        "https://magic.wizards.com/en/news/feature/reality-fracture-prerelease-guide",
+        "https://limitedmtg.com/reality-fracture/",
+        "https://draftsim.com/mtg-fra-limited-set-review/",
+        "https://mtgazone.com/reality-fracture-fra-limited-set-review-white/",
+        "https://mtgazone.com/reality-fracture-fra-limited-set-review-blue/",
+        "https://mtgazone.com/reality-fracture-fra-limited-set-review-black/",
+        "https://mtgazone.com/reality-fracture-fra-limited-set-review-red/",
+        "https://mtgazone.com/reality-fracture-fra-limited-set-review-green/"
+      ],
+      "sha1": "cc399c9a9064170479312c6b2fc681e99a6114a6",
+      "words": 3629,
       "card_data": {
         "source": "Scryfall set:fra",
         "cards": 285,
@@ -109,31 +119,52 @@
         "embedded_images": 0
       },
       "aggregates": [
-        "Scryfall (full set data, primary and only source)"
+        "Wizards of the Coast prerelease guide (authoritative on the ten archetypes)",
+        "LimitedMTG (per-pair removal/curve counts; the strongest source — counts rather than predicts)",
+        "Draftsim set review, Andrew Quinn (0-10 on every card)",
+        "MTG Arena Zone colour reviews, J2SJosh",
+        "Scryfall"
       ],
-      "role": "prerelease aggregate; UNLIKE HOB this is derived from card data alone, not from expert reviews — none existed at capture time. Trio choreography carried over from HOB.md",
-      "evidence_note": "Counting claims (removal density per color, mechanic distribution, archetype support, pool math) are derived from full set data and are reliable. Card GRADES are single-analyst reads of card text with zero play data — weakest tier in the repo.",
+      "role": "prerelease aggregate; the Trios/Team Sealed section is the part not duplicated elsewhere",
+      "evidence_note": "No play data exists. Counts (removal per colour, per-pair density, mechanic distribution) are reliable; all grades are pre-game predictions.",
       "superseded_by": [],
-      "retire_when": "17Lands GIH WR lands after FRA Arena release; or when limited-resources/FRA.md, limited-level-ups/FRA.md, or lords-of-limited/FRA-draft-guide.md are captured",
-      "trios_variant": "A — shared pool, 18 boosters (assumed same as HOB; CONFIRM ON THE DAY)",
+      "retire_when": "17Lands GIH WR lands after the FRA Arena release; or when limited-resources/FRA.md, limited-level-ups/FRA.md, or lords-of-limited/FRA-draft-guide.md are captured",
+      "trios_variant": "A — shared pool, 18 boosters (assumed; CONFIRM ON THE DAY)",
       "scryfall_queries_verified": "2026-09-21",
-      "trio_config": "U/B + B/R + G/W (doubles black, the only deep removal color; all five colors used, exactly one ring adjacency). Runner-up R/W-free shape: B/R + R/G + W/U doubling red",
+      "trio_config": "B/R + B/G + W/U — locks the consensus best pair (B/R), avoids the consensus trap (G/U), covers all five colours, doubles black across two seats. Runner-up B/R + W/B + U/G only if green and white are both empty.",
       "key_findings": [
-        "Removal by color (common+uncommon, unconditional): B 9, R 5, W 3, G 3 (all fight effects), U 0",
-        "Empower Jace appears at common in all five colors; all sources feed ONE shared Jace token",
-        "Five allied factions only — Charms, dual lands and Prepared hybrids are allied-exclusive",
-        "Five color-hosed removal spells that only answer specific colors",
-        "Elder Sphinx mythic cycle is highly unequal: Kwia Vigorbloom (GW) and Aerid Konstrari (RG) are bombs, Ingris Stingerquill (BR) is not"
+        "TEN two-colour archetypes, not five — allied pairs are the Hexhaven colleges, enemy pairs the Echoverse characters; Wizards documents all ten with signposts",
+        "Every pair has a DUAL LAND AT COMMON (10 total), each untapped if you control a planeswalker — and a Jace token counts",
+        "Removal by colour (LimitedMTG count, 60 total): B 14, R 11, W 7, U 5, G 5, gold/colourless 18",
+        "Consensus best pair B/R (26 castable removal); consensus trap G/U (11, fewest of any pair)",
+        "Empower Jace: 35 cards, 11 at common, all five colours, all feeding ONE shared token",
+        "Prepared is a COMMON cycle (24 cards, 10 common); three uncommons re-prepare every upkeep for a free spell per turn",
+        "Format speed normal: avg MV 3.2, 68% of spells cost <=3, 3 damage kills 68% of creatures",
+        "Draftsim's top grades cluster in red and green — 5 of 9 perfect scores"
       ],
+      "corrections_applied": {
+        "date": "2026-09-21",
+        "what": [
+          "First draft claimed no expert reviews existed. They did — four written sources were already published; nobody had searched.",
+          "First draft's per-colour analysis covered only mono-coloured cards and skipped all 75 multicolour ones, producing a wrong structural read (five allied factions) and wrong removal counts.",
+          "First draft's mana costs were truncated to 9 characters by the dump script, understating several costs (Kwia Vigorbloom is 6 mana not 5; Aerid Konstrari 4 not 3)."
+        ],
+        "lesson": "Search for published coverage before concluding none exists; verify a set-wide count includes gold and hybrid cards."
+      },
+      "grades_file": "grades/draftsim_FRA.json (280 non-basic cards, Draftsim 0-10 converted to /5)",
+      "card_reference": {
+        "brief": "card-reference/briefs/FRA.md (written 2026-09-21)",
+        "grid_status": "BLOCKED — build_card_reference.py requires data/cache/17lands_<SET>_PremierDraft_1200d.json, which cannot exist until FRA is on Arena (2026-10-02, usable samples ~1 week later)"
+      },
       "companions": {
         "FRA-onepager.md": {
           "role": "3-minute primer for a non-building teammate",
-          "sha1": "1df282626bc0c2e5955bb3a0fe82b78f22e5c486",
-          "seat": "G/W Vigorbloom"
+          "sha1": "1822fe2638f77df1f1488e88db7ac0402dabd764",
+          "seat": "W/U Fatehold"
         },
         "FRA-onepager.html": {
           "role": "styled phone-readable version of the same primer",
-          "sha1": "8288b7b784dd54480d41a0e760d4b268bc5eb269"
+          "sha1": "074dbad68c5d1baa2b9a28019b3512ffd2e9327f"
         }
       }
     }
