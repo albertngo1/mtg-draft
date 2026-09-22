@@ -3,8 +3,8 @@
   "scope": "audio podcast on YouTube: card-by-card set reviews (letter grades) + format overviews",
   "note": "Fingerprint of distilled scrape. sha1 = sha1 of the cleaned transcript .txt.",
   "counts": {
-    "sets": 8,
-    "videos_distilled": 39,
+    "sets": 9,
+    "videos_distilled": 40,
     "videos_no_captions": 0
   },
   "sets": {
@@ -47,6 +47,13 @@
         "jc_hGY8V2J0",
         "tDde9t-8Qsg",
         "tl9GsggFFtg"
+      ]
+    },
+    "FRA": {
+      "tier": 1,
+      "file": "FRA.md",
+      "video_ids": [
+        "mLABrUxyTKw"
       ]
     },
     "HOB": {
@@ -275,6 +282,12 @@
       "set": "ECL",
       "sha1": "dbbdbb94292a503cc51f4f7212e5a102b17d1202",
       "words": 20018,
+      "distilled": true
+    },
+    "mLABrUxyTKw": {
+      "set": "FRA",
+      "sha1": "d13814aa870a16b2669898b6ce6ec38ae008e19c",
+      "words": 55555,
       "distilled": true
     },
     "mxysznkjMB4": {

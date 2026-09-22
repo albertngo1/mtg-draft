@@ -160,6 +160,19 @@ Specific to this format:
 - **Prepared's ceiling.** One source treats the self-preparing uncommons as major engines, another
   grades them as solid-but-unexceptional. Both readings survive: strong in a long game, mediocre
   in a short one, and nobody yet knows which kind of game this format produces.
+- **G/W, per Limited Resources.** The removal count ranks G/W near the bottom (13). The Limited
+  Resources commons-and-uncommons review ranks it near the top, on the strength of its gold cards:
+  `Bloombrute` (A−, "this card's busted"), `Vigorbloom Charm` and `Vigorbloom Vanguard` (both B+),
+  plus deep lifegain filler. The same review agrees with the count on B/R (good) and G/U (fragile:
+  "the fancier the deck, the likelier it does nothing").
+- **Two engines that review is openly skeptical of.** R/G Heartwood ramp: "how often are we
+  really happy to pay three mana for a mana rock?" U/R prowess creatures: "these type of cards
+  have not held up lately." Both are predictions to check against the first week of data.
+- **Card grades where the two reviewers split by two grade steps or more.** Limited Resources
+  rates these much higher than Draftsim does: `Vigorbloom Vanguard` (B+/B vs 3/10), `Thalia, the
+  Survivor` (B vs 3/10), `Koth of the Homestead` and `Mabel, Valley Hero` (B vs 4/10), `Generous
+  Revival` (C+ vs 2/10). Draftsim rates `Loot, the Anomaly` higher (5/10 vs D). Neither side has
+  played a game; the first week of 17Lands data decides these.
 
 ### Open questions the data can't settle
 

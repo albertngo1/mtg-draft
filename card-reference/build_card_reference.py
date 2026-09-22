@@ -165,6 +165,10 @@ CARD_KEYS = [norm(c["name"]) for c in cards]   # fuzzy-match target for garbled 
 
 # A set can carry several reviewer-grade files; show every one that exists rather
 # than only the first, since they differ in both coverage and authority.
+# Reviewer sources deliberately hidden for a set, by file slug. FRA: Albert chose to
+# drop the Draftsim and MTG Arena Zone grades + notes and keep Limited Resources only.
+EXCLUDED_SOURCES = {"FRA": {"draftsim", "mtgazone"}}.get(SET, set())
+
 GRADE_SOURCES = []          # [(label, {norm_name: grade}), ...] in display order
 ds, GLABEL, GDESC = {}, "", ""
 for src, label, desc in (("limitedresources", "LR", "Limited Resources letter grade"),
@@ -172,7 +176,7 @@ for src, label, desc in (("limitedresources", "LR", "Limited Resources letter gr
                          ("draftsim", "DS", "Draftsim grade /5"),
                          ("mtgazone", "AZ", "MTG Arena Zone grade /5")):
     path = f"{ROOT}/grades/{src}_{SET}.json"
-    if os.path.exists(path):
+    if src not in EXCLUDED_SOURCES and os.path.exists(path):
         table = {norm(k): v for k, v in json.load(open(path)).items() if not k.startswith("_")}
         GRADE_SOURCES.append((label, table, desc))
         if not ds:                       # first one also feeds the legacy single-grade path
@@ -250,6 +254,8 @@ GUIDE_SRCS = [
     ("📝 DS",    "📝 Draftsim",           parse_guide(f"{ROOT}/draft-guides/draftsim/{SET}.md", CARD_KEYS, "DS")),
     ("🅰 AZ",    "🅰 MTG Arena Zone",     parse_guide(f"{ROOT}/draft-guides/mtgazone/{SET}.md", CARD_KEYS, "AZ")),
 ]
+_EXCL_TAG = {"draftsim": "📝 DS", "mtgazone": "🅰 AZ"}
+GUIDE_SRCS = [g for g in GUIDE_SRCS if g[0] not in {_EXCL_TAG[x] for x in EXCLUDED_SOURCES}]
 
 # ---- grouping / ordering ----------------------------------------------------
 GROUP_KEY = {"W":"1-White","U":"2-Blue","B":"3-Black","R":"4-Red","G":"5-Green"}
@@ -364,7 +370,7 @@ L.append("**Legend** — **GIH** = Games-in-Hand WR (primary) · **IWD** = Impro
          f"**Play** = play rate{_grade_legend}.  "
          f"🤖 AI · {_guide_legend}.\n")
 CAVEAT = {
-    "FRA": '> **No data yet \u2014 this is a prerelease reference.** FRA (Reality Fracture) prereleases **2026-09-25** and hits Arena **2026-10-02**, so there is **no 17Lands data of any kind**: every GIH WR, IWD, ALSA and play-rate column on this page is deliberately blank, and the card list and images are sourced from Scryfall rather than a 17Lands export. The only external signal on each tile is **DS** \u2014 Draftsim\u2019s published 0\u201310 set review (Andrew Quinn), rescaled to /5. There are also **no expert guide notes**, because no channel has covered the set yet. Treat every AI take as a read of the card text, not a measurement. Format shape: **ten two-colour archetypes** \u2014 allied pairs are the colleges of Hexhaven, enemy pairs the Echoverse versions of major characters \u2014 sharing one **Jace token** that every colour can build, and a **Prepared** cycle that gives each allied pair a recurring free spell at common. **Every pair has a dual land at common**, each entering untapped if you control a planeswalker (a Jace token counts), so fixing is close to free and splashing a removal spell or bomb is normal. Rebuild this page once 17Lands data lands and the blank columns fill in.\n',
+    "FRA": '> **No data yet \u2014 this is a prerelease reference.** FRA (Reality Fracture) prereleases **2026-09-25** and hits Arena **2026-10-02**, so there is **no 17Lands data of any kind**: every GIH WR, IWD, ALSA and play-rate column on this page is deliberately blank, and the card list and images are sourced from Scryfall rather than a 17Lands export. The only expert signal is **🎧 Limited Resources 872** \u2014 Marshall Sutcliffe and LSV\u2019s release-week commons-and-uncommons review, with LR\u2019s letter grade on each card note. It was recorded before anyone had played the set, and rares and mythics are not covered yet (that\u2019s episode 873). Treat every grade and every AI take as a read of the card text, not a measurement. Format shape: **ten two-colour archetypes** \u2014 allied pairs are the colleges of Hexhaven, enemy pairs the Echoverse versions of major characters \u2014 sharing one **Jace token** that every colour can build, and a **Prepared** cycle that gives each allied pair a recurring free spell at common. **Every pair has a dual land at common**, each entering untapped if you control a planeswalker (a Jace token counts), so fixing is close to free and splashing a removal spell or bomb is normal. Rebuild this page once 17Lands data lands and the blank columns fill in.\n',
     "MH3": '> **Settled data.** MH3 (Modern Horizons 3) ran from **June 2024**; these ratings are **26.2M PremierDraft games** with **307 of 321 cards** carrying a GIH WR, so the numbers are mature and there is no early-data hedge to make. **MH3 carries no reviewer grade** (no CardGameBase, Draftsim or Limited Resources file exists for the set), so tiles run on live win rates, two expert guides (Lords of Limited, Numot) and the AI take. Format shape: a **three-wedge, high-synergy format in which the aggressive wedges won** — Jeskai energy, Abzan modified, Temur Eldrazi, plus standalone UB draw-three and BR artifacts. Two structural facts govern every pick: **pivoting across wedges is close to impossible** (commit by pack two), and **double-colorless costs cannot be paid with basics** — you need landscape lands or Eldrazi Spawn as real colorless sources. Note that bonus-sheet reprints (Fury, Solitude, Persist) sit in the low thousands of games and deserve much wider error bars than the commons beside them.\n',
     "LCI": '> **Settled data.** LCI (The Lost Caverns of Ixalan) ran **Nov 2023 → Jan 2024**; these ratings are **27.8M PremierDraft games** with **283 of 286 cards** carrying a GIH WR — one of the largest, most settled samples in this reference, so there is no early-data hedge to make. **LCI carries no reviewer grade** (no CardGameBase, Draftsim or Limited Resources file exists for the set), so tiles run on live win rates, two expert guides (Lords of Limited, Numot) and the AI take. Format shape: a **craft-and-tempo format that is faster than it looks** — cheap evasive creatures beat big ground bodies — with two mechanic traps that decide games: **explore on a non-evasive creature is bad** (you want the +1/+1 counter, not the land), and **descend does not count tokens**.\n',
     "HOB": "> **Settled data.** HOB hit Arena on **2026-08-11**; these numbers are from **6,001,733 PremierDraft games** as of **2026-08-19**, with **179 of 188 cards** carrying a GIH WR. Evaluations have converged \u2014 the median per-card GIH WR move over the previous two days was **0.21pp** and the largest was 1.0pp, so treat this as close to final. The 9 cards without a win rate are genuinely unplayed rather than merely unmeasured. Two reviewer-grade sources render side by side: **LR** (Limited Resources 865 + 866, all 188) and **CGB** (CardGameBase, all 188).\n>\n> Removal cannot kill small creatures (no Shock, no Stab), so **two-drops are safe** and curve-out plans are rewarded. Damage-based removal caps at 5, making **6-toughness creatures near-unanswerable** at common. See the **Format brief** below for the archetype reads, gameplay rules and traps distilled from all four expert guides.\n",
