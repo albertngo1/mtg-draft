@@ -174,6 +174,10 @@ Specific to this format:
   Hero` B/B+. LLU has them at B−/C, C and B−/C. LLU also sees no bad colour: Mark ranks black
   worst and white second-worst, while Alex first called red the weakest and then took it back. BR
   pings is the archetype both podcasts doubt most.
+- **Colour ranking: three sources, three answers.** Numot (Kenji Egashira, first read-through)
+  ranks white first and blue last. LLU's Mark has black worst and white second-worst. LR is highest
+  on black and red. Kenji's own first Early Access Sealed pool (3-3) ended up U/B because blue
+  was its deepest colour. Treat the set as having no bad colour until 17Lands says otherwise.
 - **Card grades where the two reviewers split by two grade steps or more.** Limited Resources
   rates these much higher than Draftsim does: `Vigorbloom Vanguard` (B+/B vs 3/10), `Thalia, the
   Survivor` (B vs 3/10), `Koth of the Homestead` and `Mabel, Valley Hero` (B vs 4/10), `Generous

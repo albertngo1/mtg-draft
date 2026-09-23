@@ -4,7 +4,7 @@
   "note": "Fingerprint of distilled scrape. sha1 = sha1 of the cleaned transcript .txt.",
   "counts": {
     "sets": 42,
-    "videos_distilled": 258,
+    "videos_distilled": 255,
     "videos_no_captions": 2
   },
   "sets": {
@@ -65,16 +65,6 @@
         "PXKmenzcS3c",
         "jks7xU16V14",
         "zIWnPQ3LjBs"
-      ]
-    },
-    "DFT": {
-      "tier": 2,
-      "file": "DFT.md",
-      "video_ids": [
-        "0B0hKW-nEJs",
-        "2txhzhsqel4",
-        "3PBbv7C6z9s",
-        "xkdoihX3S04"
       ]
     },
     "DMU": {
@@ -145,6 +135,13 @@
         "G0_9xEcUpTw",
         "Nbc0LlvJNjs",
         "y7K026GJ6vg"
+      ]
+    },
+    "FRA": {
+      "tier": 2,
+      "file": "FRA.md",
+      "video_ids": [
+        "jorRsIuS7RY"
       ]
     },
     "GRN": {
@@ -562,12 +559,6 @@
       "words": 6552,
       "distilled": true
     },
-    "0B0hKW-nEJs": {
-      "set": "DFT",
-      "sha1": "99489d53aa4a8f3b94752a9d6208afa5e1d7c2f1",
-      "words": 5598,
-      "distilled": true
-    },
     "16oJ4bPycsw": {
       "set": "M21",
       "sha1": "5611fc30a689ee7b663b63ff77de7cc79621dc0e",
@@ -610,12 +601,6 @@
       "words": 3698,
       "distilled": true
     },
-    "2txhzhsqel4": {
-      "set": "DFT",
-      "sha1": "c9a70f506cb41470b4da1739f8a517eade83237e",
-      "words": 5228,
-      "distilled": true
-    },
     "3IJsy3JMQJM": {
       "set": "PIO",
       "sha1": "d2bb3e6e8eea9057348af5a5a3c3752cc3c6032a",
@@ -626,12 +611,6 @@
       "set": "MKM",
       "sha1": "b957dc254127b664a71dd42ad5e8d82af2df38a0",
       "words": 5323,
-      "distilled": true
-    },
-    "3PBbv7C6z9s": {
-      "set": "DFT",
-      "sha1": "4b66274dc97e62c25d1dd59f5c0d1e96ea788a65",
-      "words": 5022,
       "distilled": true
     },
     "3VNufZ4uF3Y": {
@@ -1716,6 +1695,12 @@
       "words": 5062,
       "distilled": true
     },
+    "jorRsIuS7RY": {
+      "set": "FRA",
+      "sha1": "8c21fb9c5d2cf425a37092e09e84b758f007d4fb",
+      "words": 22000,
+      "distilled": true
+    },
     "kA9GKYqrfoE": {
       "set": "DMU",
       "sha1": "88f1a9f2c806b120b0193079c8976cc9be2d6f63",
@@ -2038,12 +2023,6 @@
       "set": "MSH",
       "sha1": "2658b96bcb1399dc59695fdfe71531ae6aef6c99",
       "words": 5094,
-      "distilled": true
-    },
-    "xkdoihX3S04": {
-      "set": "DFT",
-      "sha1": "5a741f8706e42edb38290d33255910009a401d7f",
-      "words": 6024,
       "distilled": true
     },
     "y7K026GJ6vg": {

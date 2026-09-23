@@ -440,6 +440,35 @@ removes most of the reading load at the table.
 
 ---
 
+## First gameplay: Numot's Early Access Sealed (2026-09-23)
+
+The only real FRA games in this repo so far: **one pool, six Bo1 games, 3-3.** It's a sample of
+one, so read it as *how cards played*, not *how good they are*. Full notes are in
+[`numot/FRA.md`](../numot/FRA.md).
+
+- **Deck:** U/B splashing Ajani's Anguish off 3 red sources (9 blue, 9 black). He dropped green
+  because its best cards were double-green and couldn't be splashed. Hapatra went with it, since
+  she needs the green landcyclers to fuel her.
+- **What won games:** `Ruric Thar, Biomagus` (won two; targeting it just drew him cards),
+  `Sphinx of False Conclusions` (recurs), `Theorist's Proxy` (a 0/3 wall that stabilised a
+  losing board) and `Mabel, Bitter Recluse` (kills a Jace token).
+- **What beat him:** a menace attacker off the top, and a Heartwood + Garruk + unblockable/surveil
+  deck piloted by an Arena Championship player.
+
+**Lessons for our trio, in order of how cheap they are to apply:**
+1. **Make the Jace before you play a Jace-land.** He lost a turn playing it tapped: "I should have
+   played Oculus and then played this."
+2. **Cast your creature first, then decide what to do with Jace.** He named this as his own punt.
+3. **Play every landcycler.** He forgot Awaken the Inferno and regretted it twice. The cyclers
+   also shuffle your library, which gets back a card you surveiled to the bottom.
+4. **A 3-source splash can strand the card.** Ajani's Anguish sat in hand in the game that
+   mattered. For a trio seat, give a splash 4 sources, or play a landcycler that can fetch the
+   splash colour.
+5. **Hold cheap removal for the first real threat.** He lost one game for want of a Last Gasp,
+   and lost another at the opponent's 1 life to their cheap removal.
+
+---
+
 ## Playing the games
 
 - **Play first.**
@@ -480,7 +509,13 @@ removes most of the reading load at the table.
   needs a lifegain trigger every turn, and Mabel only counters creatures that entered this turn.
 - **Prepared's ceiling.** LimitedMTG treats the self-preparing uncommons as major engines. Both
   podcasts grade them C-range. Strong in a long game, mediocre in a short one.
-- **Coverage gap.** Nobody has play data, and neither podcast has graded rares yet.
+- **Best colour: three sources, three answers.** Kenji (Numot) ranks **white first and blue last**
+  from the card read ("every single card" in white is playable). LLU's Mark has white
+  *second-worst* and black worst. LR is highest on black and red. Kenji's own Sealed pool then
+  pushed him **into** blue ("I have too many good blue cards"). Read this as a set with no bad
+  colour: build from your pool, not from a ranking.
+- **Coverage gap.** One Sealed run is the only play data, and neither podcast has graded rares
+  yet.
 
 ---
 
@@ -491,6 +526,8 @@ removes most of the reading load at the table.
 - **LimitedMTG** — [Reality Fracture draft & sealed guide](https://limitedmtg.com/reality-fracture/).
   Per-pair removal and curve counts, format speed, the B/R pick and the G/U trap call. The
   strongest source here; it counts rather than predicts.
+- **NumotTheNummy** — *QUICK* Reality Fracture Set Review + 1 Early Access Sealed, Kenji
+  Egashira, 2026-09-23 (`jorRsIuS7RY`). Distilled in [`numot/FRA.md`](../numot/FRA.md).
 - **Limited Resources 872** — Reality Fracture Set Review: Commons and Uncommons, Marshall
   Sutcliffe + LSV, 2026-09-21. Distilled in [`limited-resources/FRA.md`](../limited-resources/FRA.md).
 - **Limited Level-Ups** — Reality Fracture set review (6 parts; blue not yet transcribed) plus
