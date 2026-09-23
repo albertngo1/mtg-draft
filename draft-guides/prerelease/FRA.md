@@ -1,9 +1,11 @@
 # FRA — Reality Fracture: prerelease draft & Sealed guide
 
 **Set:** Reality Fracture (`FRA`) · **Release:** 2026-10-02 · **Prerelease weekend:** 2026-09-25 → 09-27
-**Sources captured:** 2026-09-21 — Wizards official prerelease guide, Draftsim full set review
-(Andrew Quinn, 0–10), LimitedMTG draft & sealed study guide, MTG Arena Zone color reviews (J2SJosh),
-plus Scryfall `set:fra` (285 unique cards: 86 common, 109 uncommon, 64 rare, 26 mythic).
+**Sources:** card evaluations come from the two podcast set reviews, **Limited Resources 872**
+(Marshall Sutcliffe + LSV, 2026-09-21) and **Limited Level-Ups** (Alex + Mark, 2026-09-22; blue not
+yet transcribed). Counts come from the Wizards prerelease guide, LimitedMTG's study guide and Scryfall
+`set:fra` (285 unique cards: 86 common, 109 uncommon, 64 rare, 26 mythic). Rewritten 2026-09-22 to
+drop the Draftsim and MTG Arena Zone grades.
 
 ---
 
@@ -18,8 +20,12 @@ Two things in here are stronger than the grades, and worth separating:
 - **Counts** (removal per color, mechanic distribution, per-pair two-drop and removal density) come
   from full set data — Scryfall directly, cross-checked against LimitedMTG's independent count.
   These are facts about the set.
-- **Draftsim's 0–10 grades** are captured in full at [`grades/draftsim_FRA.json`](../../grades/draftsim_FRA.json)
-  (converted to /5, all 280 non-basic cards) and drive the bomb list below.
+- **Two independent podcast reviews** grade every common and uncommon (LR: [`limited-resources/FRA.md`](../limited-resources/FRA.md),
+  LLU: [`limited-level-ups/FRA.md`](../limited-level-ups/FRA.md)). **Where both agree, that's the
+  strongest card read in this file.** Where they split, both grades are shown.
+- **Neither has graded rares and mythics yet.** LLU's rares video is due Thursday 2026-09-24,
+  the day before the prerelease; LR's (#873) comes after it. Until then, judge a rare yourself with
+  the rule in *Rares* below.
 
 ---
 
@@ -31,7 +37,7 @@ untapped if you control a planeswalker.**
 
 ---
 
-## The nine format principles
+## The eleven format principles
 
 1. **All ten pairs are real archetypes.** Allied pairs are the Hexhaven colleges; enemy pairs are
    the Echoverse characters. Wizards documents all ten with signposts.
@@ -51,6 +57,11 @@ untapped if you control a planeswalker.**
    colors. Cards that check for "a legendary creature" turn on constantly.
 9. **Cheap answers, so hold your removal.** 28 removal spells cost one or two mana, 22 are
    instants. Both players have interaction; play around it.
+10. **Four toughness is the magic number** (LLU). It blocks the two- and three-drops and dodges
+    red's 3-damage spells and black's −3/−3. Three-toughness four-drops with no ETB are traps.
+11. **Sealed will be wild.** Only 71 commons, and a pack can hold up to six rares. LLU expects a
+    typical deck to be mostly uncommons and rares, so **card quality beats synergy** and "fine"
+    filler bodies often don't make the cut.
 
 ---
 
@@ -106,11 +117,12 @@ plan in miniature:
 Improviser`, `Emergency Phytomedic`, `Blossom-Blessed Angel`.
 
 **Three uncommons re-prepare at your upkeep, so they fire every turn, forever:** `Stingerquill
-Voxmancer` (B/R), `Paradox Shaper` (U/B), `Woodwork Prodigy` (R/G). In a long Sealed game these
-are the best engines in the format.
+Voxmancer` (B/R), `Paradox Shaper` (U/B), `Woodwork Prodigy` (R/G). The podcasts are lukewarm on
+all three: Voxmancer LR B / LLU D+–C−, Paradox Shaper C+ / C–D+, Woodwork Prodigy C+ / C+–C.
+They're good in a long game, but the free spells are small. Play them on-plan; don't build around them.
 
-`Codie, Ravenous Codex` copies every prepared spell — but Draftsim rates it **2.0/5**, and that's
-right: it needs a critical mass a Sealed pool won't reliably have.
+`Codie, Ravenous Codex` copies every prepared spell, but it needs a critical mass of prepared
+creatures that a Sealed pool won't reliably have.
 
 ### Heartwood tokens
 
@@ -160,6 +172,22 @@ Three worth a note beyond the table:
 - **R/G has the highest curve in the set** and gets away with it only because of Heartwood ramp
   plus basic landcycling on its big commons.
 
+**What the two podcasts add to the counts:**
+
+- **B/R: keep the removal, drop the face-burn plan.** Both podcasts doubt the pinging deck most.
+  LLU's Mark: "the school I doubt most." Red has one good two-drop (`Skilled Battlecarver`), and
+  both reviews say B/R plays as **grindy removal midrange**, not burn-out. The removal count
+  still stands.
+- **G/U: both podcasts agree it's fragile.** LR: "the fancier the deck, the likelier it does
+  nothing." LLU calls `Kiora of Salt and Sand` an "upside trap." This matches the removal count.
+- **R/G is the easy deck.** Wizards designed it to be simple, to offset the set's complexity (LLU,
+  citing designer Ben White), and `Craftwork Crusher` is both podcasts' top C/U. LR doubts the
+  Heartwood ramp; LLU likes it.
+- **G/W: LR's favourite, LLU's middle.** It rests on `Bloombrute`, the card the podcasts split on
+  hardest (A− vs B−/C).
+- **Colours:** neither podcast calls a colour bad. LLU's Mark ranks black worst and white
+  second-worst, "but not by much." LR is highest on black and red removal.
+
 ---
 
 ## Removal
@@ -170,7 +198,7 @@ LimitedMTG counts **60 removal spells** in the set. By color:
 |---|---|---|
 | **Black** | **14** | `Last Gasp` and `Extended Absence` at common are the workhorses |
 | **Red** | **11** | `No Admittance` and `Wrath of the Bloodmane` at common |
-| White | 7 | `Prophesied End` is the best of them — two mana, instant, unconditional |
+| White | 7 | `Your Fate Ends Here` is the best (LR B, LLU B−/B). `Prophesied End` is only good against attackers (LR C, LLU C+/C) |
 | Blue | 5 | `Unsummon` and `Infinite Coursework`. Blue does not kill things, it delays them |
 | Green | 5 | Mostly fight effects — they need a body and they're card disadvantage into removal |
 | Gold/colorless | 18 | The Charms and the gold uncommons |
@@ -196,46 +224,58 @@ End` at two for anything; blue holds `Unsummon` for one and `Icy Reception` for 
 
 ---
 
-## Bombs — Draftsim's top of the set
+## What to take — the two podcasts' top commons and uncommons
 
-Full grades for all 280 non-basic cards: [`grades/draftsim_FRA.json`](../../grades/draftsim_FRA.json).
-Shown as Draftsim's original 0–10.
+Both reviews graded all 180-odd commons and uncommons (LLU minus blue). **Both** means both
+podcasts put the card at B− or better. Grades are shown as **LR / LLU**, with LLU split as Alex/Mark.
 
-| Card | Colors | Cost | Body | DS |
+| Card | Colors | Rarity | What it is | LR / LLU |
 |---|---|---|---|---|
-| `Chandra, Torch of Defiance` | R | 4 | PW | **10** |
-| `Ajani Unrelenting` | R | 6 | PW | **10** |
-| `Craterclaw Colossus` | R | 7 | 5/5 haste | **10** |
-| `Garruk, Curse Breaker` | G | 5 | PW | **10** |
-| `Verdant Kraken` | G | 7 | 6/6 | **10** |
-| `Kwia Vigorbloom` | G/W | 6 | 6/6 flying vig lifelink ward2 | **10** |
-| `Denzilore Fatehold` | W/U | 4 | 3/4 flash flier | **10** |
-| `The Theorist, Jace Beleren` | U | 4 | PW | **10** |
-| `Lyra, Tolarian Archangel` | U | 3 | 3/3 flier | **10** |
-| `Aerid Konstrari` | R/G | 4 | 5/4 flier | 9 |
-| `Uldaros Theorix` | U/B | 6 | 5/5 flier | 9 |
-| `Ingris Stingerquill` | B/R | 3 | 1/4 flier | 9 |
-| `Garruk, Veiled Butcher` | B | 5 | PW | 9 |
-| `Overwrite the Multiverse` | B | 6 | Exile all creatures | 9 |
-| `Draconic Visitor` | R | 5 | 5/5 flier | 9 |
-| `Guiding Hydra` | W | X+1 | Grows the team | 9 |
-| `Hungering Puppetbeast` | G | 5 | 5/5 | 9 |
+| `Craftwork Crusher` | R/G | U | 7-mana 7/5 trample, two of: 4 dmg / 2/2 / draw | B+–B / **A−** |
+| `Twisted Fates` | W/B | U | Destroy any nonland permanent + team counters | **A−** / B |
+| `Hapatra, the Desert Fang` | B/G | U | ETB −1/−1 counters = biggest MV in your yard | B+–A− / B–B+ |
+| `Way of the Healer` | W | U | Empower 5; every Jace −2 makes a 2/2 and surveils | B / **A−–B+** |
+| `Stingerquill Charm` | B/R | U | Bolt any target, or deathtouch+first strike, or a hasty 2/2 | B+ / B−–B |
+| `Multiply by Zero` | B | U | 2-mana instant, base 0/0 | B / B |
+| `Violent Echoes` | R | U | 4-mana instant, 6 dmg, excess empowers | B / B−–B+ |
+| `Break Under Pressure` | B | U | Instant edict of their biggest, gain 2 | B+ / B− |
+| `Your Fate Ends Here` | W | U | Instant kill MV 3+ creature or walker, surveil | B / B−–B |
+| `Clash of Elements` | U/R | U | 3-mana instant, answers any nonland permanent | B / B−–B |
+| `Fulminous Forte` | R | U | Instant: 5 dmg, or 1 to each of theirs | B / B− |
+| `Desperate Futurescribe` | W/U | U | 4-mana 3/4 flier, grows the team on surveil | B / B−–B |
+| `Fblthp, Knows the Way` | G | U | X-mana domain land fetcher | B+ / B–A− |
+| `Jiang Yanggu, Never Alone` | G | U | 2/2 + 3/3 for four | B+ / B−–B |
+| `Kiora of Fire and Ashes` | R | U | 2/2 + 5/5 flying Dragon for six | B+ / B–B+ |
+| `Vigorbloom Charm` | G/W | U | Protect / draw + gain 3 / counter + fight | B+ / B− |
+| `Teyo, Lightshield Expert` | W | U | Flash hexproof + counter, or +loyalty | B− / B |
+| `Last Gasp` | B | C | 2-mana −3/−3 instant | B / B−–C+ |
+| `No Admittance` | R | C | 2-mana sorcery, 3 dmg anywhere + empower | B / B−–C+ |
 
-**Red and green are where the top end lives** — five of the nine perfect scores. If you open a red
-or green mythic, that is your color.
+**Commons are thin at the top.** Only `Last Gasp` and `No Admittance` reach B from both podcasts.
+Next tier: `Extended Absence` (B / C+–B−), `Surgical Precision` (C / B−–C+), `Memory Trap` (B /
+B−–C+), `Hexhaven Battalion` (C+–B− / B−–C+), `Awaken the Inferno` (B− / C+),
+`Compel Brutality` (C+ / C+). In Sealed that means **your uncommons and rares decide your colors;
+the commons fill the curve.**
 
-### Where I disagreed with Draftsim, and lost
+**Where the two podcasts split hard.** Weigh these as uncertain:
 
-Recorded because the disagreements are the useful part:
+| Card | LR | LLU | The argument |
+|---|---|---|---|
+| `Bloombrute` | **A−** | B− / C | LR: "busted." LLU (Mark): you don't get the card every turn, and Seed Suture cards are fewer than they look |
+| `Saheeli, Jewel of Avishkar` | B+ | C | LLU: fewer spells than Strixhaven, where the Murmuring Mystic comparison finished C+ |
+| `Mabel, Valley Hero` | B–B+ | B− / C | LLU: only creatures that entered *this turn* get counters |
+| `Thalia, the Survivor` | B | C | LR rates the 3/4 lifelink body higher |
+| `Koth of the Homestead` | B | C+ / D+ | Needs ~11 Plains |
+| `Wrath of the Bloodmane` | B | C+ / C | With ~3 legends per pack the discount is real. Both podcasts still play it |
+| `Traxos, Scourge Eternal` | B–C+ | C− / C+ | Colorless 5/4 trampler; plays in any deck either way |
 
-- **`Ingris Stingerquill` (9/10).** A 1/4 body for three looked weak to me. Draftsim is right that
-  the ping-on-attack plus the Cadet-and-haste activation *is* the B/R deck's engine, and a 4
-  toughness flier blocks the format's two-drops all day.
-- **`Denzilore Fatehold` (10/10).** I read it as strong-not-a-bomb. Flash, flying, and a
-  team-wide counter on every scry or surveil in a set with 43 surveil cards is a bomb.
-- **`Sanctum Lurker` (5/10).** I called it an inevitable win condition. It needs a planeswalker you
-  already care about; in a Sealed pool that's a Jace token you were using anyway.
-- **`Codie, Ravenous Codex` (4/10).** Needs a prepared critical mass Sealed won't give you.
+### Rares — no podcast grades yet
+
+LLU's rares video lands **Thursday 2026-09-24**; ingest it the night before the prerelease. Until
+then, use the rule both reviews applied to every uncommon: **a rare is a bomb if it removes
+something or makes a threat the turn it lands, and survives three damage.** Seven-plus-mana cards
+and "does nothing the turn it lands" enchantments were marked down by both podcasts no matter the
+payoff.
 
 ---
 
@@ -263,6 +303,25 @@ is affordable.
 **If you're blue,** you need a second color that kills things. Blue's five "removal" spells bounce
 or tap. That is not a deck on its own.
 
+**Deckbuilding rules both podcasts applied:**
+
+- **Play the duals.** Both grade all ten C+, and Alex (LLU) wants about **two fixing lands per
+  deck** even with no splash. `Room of Refuge` is C+ from both too.
+- **Land cyclers are free slots.** `Hexhaven Battalion`, `Awaken the Inferno`, `Undulating
+  Witness`, `Vinelasher Adept` and `Apex Witchstalker` graded C+ to B−. They're a threat late
+  and a land early.
+- **Cap pure card draw at one or two.** So many cards empower Jace that `Protege's Awakening`,
+  `Sphinx's Approach` and `Way of the Mind Sculptor` crowd each other out (LR).
+- **Big Ways yes, cheap Ways no.** `Way of the Healer`, `Way of the Wildspeaker` and `Way of the
+  Warlord` are fine. The 2–3-mana Ways (Mentor, Necromancer, Cryomancer, Paradox) don't touch the
+  board, and both podcasts graded them D to C.
+- **Colour hosers are sideboard cards** (both podcasts, all five). Bring them in for games 2–3.
+- **Cut "fine" bodies without a reason.** LR marked down Budding Insurgent, Shatterwing Pegasus,
+  both Yargles and Rampart Hunter; LLU agreed on most. This is a synergy set, and the rare-dense
+  pool gives you better options.
+- **Respect Unsummon.** LLU calls it "a shadow hanging over" token makers and big green creatures.
+  Don't stack auras or counters onto one body against blue.
+
 ---
 
 ## Trios / Team Sealed
@@ -289,7 +348,9 @@ With all ten pairs live the choice is wide open, so the constraints that actuall
 the consensus best pair, avoid the consensus trap, cover all five colors, and double the color
 with the most removal to split between two seats.
 
-- **Lock B/R** — most removal in the format, both sources agree.
+- **Lock B/R** — most removal in the format. Both podcasts doubt its ping plan but rate its
+  removal highly (`Stingerquill Charm`, `Multiply by Zero`, `Violent Echoes`, `Fulminous Forte`,
+  `Last Gasp`, `No Admittance`), so **build it as removal midrange**.
 - **Never build G/U** — the trap. Take its Jace pieces for whichever decks want them.
 - **B/G and W/U** complete the five colors with one doubled color (black) and no Simic.
 
@@ -298,14 +359,21 @@ Total castable removal across the three: **26 + 21 + 13 = 60**.
 | Seat | Pair | Role | Plan |
 |---|---|---|---|
 | **Albert** | **B/G Garruk's Bestiary** | **Decider** | Deathtouch trades, grindy value, wins the long game one trade at a time. The most blocking decisions on the table |
-| **Kyle** | **B/R Stingerquill** | **Scribe** + contested-card pass | The best deck in the pool. Removal plus reach — hardest sequencing, most rewarding |
+| **Kyle** | **B/R Stingerquill** | **Scribe** + contested-card pass | The removal deck. Kill everything, win with whatever's left — not a burn-out deck. Hardest sequencing, most rewarding |
 | **Andy** | **W/U Fatehold** | **Clock** | Cheap fliers, surveil, curve out and attack. Deepest two-drop pair in the set and the cheapest |
 
 **Why W/U for the newest player even though it has the least removal of the three:** that's the
 point. Holding removal correctly — use it now or save it? — is the decision new Limited players
 get wrong most often. A deck with little removal has few of those decisions. W/U is also the
 cheapest pair in the set with the most two-drops, so "curve out and attack" is a plan that
-survives misplay.
+survives misplay. LLU's Mark adds that W/U "may be one of the strongest decks" because its cards
+all push the same way.
+
+**Re-checked against the podcasts (2026-09-22): the configuration holds.** Both podcasts agree on
+the two load-bearing calls: black/red removal is the format's best, and G/U is fragile. One
+alternative worth knowing: **if the pool has `Craftwork Crusher` plus 3+ Heartwood makers, R/G
+can replace W/U as the newest player's deck.** It was designed to be the easy deck, and Crusher
+is both podcasts' top uncommon.
 
 ### Runner-up: **B/R + W/B + U/G**
 
@@ -314,14 +382,16 @@ green and white are both empty and the blue is deep.
 
 ### The census gate — before anyone sorts into decks
 
-1. **Did a red or green mythic appear?** Five of Draftsim's nine perfect scores are red or green.
-   That locks a seat.
+1. **Which top cards appeared?** Check the *What to take* table: `Craftwork Crusher`,
+   `Twisted Fates`, `Hapatra, the Desert Fang`, `Way of the Healer` and any rare that passes the
+   bomb rule. Two or more in one pair locks a seat, even if the pair isn't in the plan above.
 2. **How many black removal spells are there?** Two black seats need roughly 7+ between them.
    Under 5 → drop to one black seat and move the third pair to R/W or U/R.
 3. **How many common duals?** Expect ~15. If you got unlucky, splashes come off the table and the
    configuration tightens.
 4. **Are there 2+ of the self-preparing uncommons?** (`Stingerquill Voxmancer`, `Paradox Shaper`,
-   `Woodwork Prodigy`.) Those are engines; put them where they're on-plan.
+   `Woodwork Prodigy`.) Put them where they're on-plan, but don't bend a seat for them. Both
+   podcasts graded them C-range.
 
 ### Build choreography — ~75 minutes, six phases
 
@@ -385,19 +455,32 @@ removes most of the reading load at the table.
   choosing between burn spells.
 - **32% of creatures have toughness 4+**, which is why `Surgical Precision` is live more often
   than it reads.
+- **Aim one attacker at their Jace, the rest at face** (LLU's Mark). Send the attacker that's
+  hardest to block at the Jace. Pushing it to zero is "functional life gain," but don't swing 15
+  power into a 2-loyalty Jace.
+- **Early, −3 to draw. Late, −1 to surveil.** Once you don't need lands, surveil is as good as
+  the card (LLU).
+- **One activation per turn.** Empowering a Jace that still has loyalty gives no second
+  activation. Empowering after it died does, because the new token is a fresh planeswalker (LLU).
+- **Cast spells before combat** when the opponent might hold `Countersculpt`. It makes them a Jace,
+  and you want your attackers still untapped to hit it (LR).
+- **With `Way of the Healer` out, every Jace activation is the −2** for a 2/2 and a surveil (LLU).
 
 ---
 
 ## Where the sources disagree
 
-- **Best pair.** LimitedMTG picks B/R on removal density. Wizards is neutral by design. Draftsim's
-  top grades cluster in **red and green**, which argues R/G is underrated by the removal-first
-  framing. If the pool hands you two red or green mythics, believe the bombs over the table above.
-- **G/U.** LimitedMTG calls it the trap. Wizards presents "Jace's Mastery" as a normal archetype.
-  Trust LimitedMTG here — it's counting, Wizards is describing.
-- **Prepared's ceiling.** LimitedMTG treats the self-preparing uncommons as major engines;
-  Draftsim grades them 6/10. Both can be right: strong in a long game, mediocre in a short one.
-- **Coverage gap.** Neither source has play data, and neither has seen the format's actual speed.
+- **B/R: the count and the podcasts.** LimitedMTG picks B/R on removal density. Both podcasts doubt
+  its ping plan. Both are right: take the removal, skip the face-burn build.
+- **G/U.** LimitedMTG calls it the trap, and both podcasts agree it's fragile. Wizards presents
+  "Jace's Mastery" as a normal archetype. Three sources to one.
+- **The gold uncommons, LR versus LLU.** LR is much higher on `Bloombrute` (A− vs B−/C),
+  `Saheeli, Jewel of Avishkar` (B+ vs C) and `Mabel, Valley Hero` (B/B+ vs B−/C). If one of these
+  decides a seat, LLU's objection is concrete and worth checking against your pool: Bloombrute
+  needs a lifegain trigger every turn, and Mabel only counters creatures that entered this turn.
+- **Prepared's ceiling.** LimitedMTG treats the self-preparing uncommons as major engines. Both
+  podcasts grade them C-range. Strong in a long game, mediocre in a short one.
+- **Coverage gap.** Nobody has play data, and neither podcast has graded rares yet.
 
 ---
 
@@ -408,10 +491,13 @@ removes most of the reading load at the table.
 - **LimitedMTG** — [Reality Fracture draft & sealed guide](https://limitedmtg.com/reality-fracture/).
   Per-pair removal and curve counts, format speed, the B/R pick and the G/U trap call. The
   strongest source here; it counts rather than predicts.
-- **Draftsim** — [The Ultimate Reality Fracture Limited Set Review](https://draftsim.com/mtg-fra-limited-set-review/),
-  Andrew Quinn. 0–10 on every card; captured in full to `grades/draftsim_FRA.json`.
-- **MTG Arena Zone** — [FRA Limited Set Review](https://mtgazone.com/reality-fracture-fra-limited-set-review-black/),
-  J2SJosh, color by color.
+- **Limited Resources 872** — Reality Fracture Set Review: Commons and Uncommons, Marshall
+  Sutcliffe + LSV, 2026-09-21. Distilled in [`limited-resources/FRA.md`](../limited-resources/FRA.md).
+- **Limited Level-Ups** — Reality Fracture set review (6 parts; blue not yet transcribed) plus
+  First Impressions #261, Alex + Mark, 2026-09-18 → 09-22. Distilled in
+  [`limited-level-ups/FRA.md`](../limited-level-ups/FRA.md).
+- **Not used:** Draftsim's and MTG Arena Zone's reviews were dropped 2026-09-22. Their captures stay
+  on disk (`grades/draftsim_FRA.json`, `draft-guides/draftsim/`, `draft-guides/mtgazone/`).
 - **Scryfall** — `set:fra`, 285 unique cards, fetched 2026-09-21.
 - **Prior art:** [`HOB.md`](./HOB.md) — the trio choreography, contested-card rule and split rule
   are carried over from there, where they were tested at a real event.

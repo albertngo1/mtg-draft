@@ -97,15 +97,11 @@
       "source_urls": [
         "https://magic.wizards.com/en/news/feature/reality-fracture-prerelease-guide",
         "https://limitedmtg.com/reality-fracture/",
-        "https://draftsim.com/mtg-fra-limited-set-review/",
-        "https://mtgazone.com/reality-fracture-fra-limited-set-review-white/",
-        "https://mtgazone.com/reality-fracture-fra-limited-set-review-blue/",
-        "https://mtgazone.com/reality-fracture-fra-limited-set-review-black/",
-        "https://mtgazone.com/reality-fracture-fra-limited-set-review-red/",
-        "https://mtgazone.com/reality-fracture-fra-limited-set-review-green/"
+        "https://lrcast.com/limited-resources-872-reality-fracture-set-review-commons-and-uncommons/",
+        "https://www.youtube.com/@limitedlevel-ups"
       ],
-      "sha1": "cc399c9a9064170479312c6b2fc681e99a6114a6",
-      "words": 3629,
+      "sha1": "bd2e6b374918272c363f12e99db0af28fb73f835",
+      "words": 4913,
       "card_data": {
         "source": "Scryfall set:fra",
         "cards": 285,
@@ -166,7 +162,8 @@
           "role": "styled phone-readable version of the same primer",
           "sha1": "074dbad68c5d1baa2b9a28019b3512ffd2e9327f"
         }
-      }
+      },
+      "rewritten": "2026-09-22: card grades switched to Limited Resources 872 + Limited Level-Ups; Draftsim/MTGAZone dropped"
     }
   }
 }
