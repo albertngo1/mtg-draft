@@ -279,6 +279,316 @@ payoff.
 
 ---
 
+## Every card — what each expert said
+
+All three expert sources, card by card. **LR** = Limited Resources 872 letter grade (commons and uncommons only). **LLU** = Limited Level-Ups grade, `Alex / Mark` where they split (commons and uncommons only; **blue is missing**, see Sources). **Numot** = Kenji's verdict from his read of the whole set, in his words; he gives verdicts, not grades. A dash means that source didn't cover the card. Within each colour: mythic, rare, uncommon, common, then alphabetical. The full reasoning for each card is in the three channel guides linked under Sources.
+
+### White
+
+| Card | R | LR | LLU | Numot |
+|---|---|---|---|---|
+| `Ajani Resolute` | M | — | — | crazy two drop, two mana planeswalker crazy. |
+| `Enlightened Confidant` | M | — | — | the life gain dark confidant… This is just a good two drop. |
+| `Return to the Light Realms` | M | — | — | very strong card, but nine mana is like turn 15 |
+| `Flickering Hound` | R | — | — | probably not very good… when it is good, it's crazy, but generally it'… |
+| `Germinate Recruits` | R | — | — | more often than not it's going to suck |
+| `Gideon's Memorial` | R | — | — | solid… Yeah, it's fine |
+| `Guiding Hydra` | R | — | — | Wow, that's great. |
+| `Kindred Judgment` | R | — | — | very expensive |
+| `Liliana the Faultless` | R | — | — | a soul warden with upside, so just good. |
+| `Loyal Tutor` | R | — | — | probably not playable… generally, this is just going to be bad… probab… |
+| `Lyra, Archangel of Dawn` | R | — | — | just great… Just very good. |
+| `Repurposed Enforcer` | R | — | — | going to be extremely annoying… games where your opponent plays this o… |
+| `Danitha, Sword of Hope` | U | C+/B− (LSV "B− just flat") | Alex C+ / Mark C | not bad… Solid enough |
+| `Generous Revival` | U | C+ | C− | This is good. A lot of value for one card… if you're playing white, yo… |
+| `Ghalta the Immovable` | U | C−/D+ | Alex D+ / Mark D− | just a big dumb dork |
+| `Koth of the Homestead` | U | B (maybe B+; the captions garble the final call) | Alex C+ / Mark D+ | seems kind of insane for an uncommon… real good. |
+| `Prophesied End` | U | C | Alex C+ / Mark C | Great, can always play that. Will splash for it most likely. |
+| `Refute Destiny` | U | sideboard | sideboard (no letter) | very good sideboard card |
+| `Rescue Girl, First Responder` | U | C/B− (LSV B−, build-around) | Alex C+ / Mark C− | is kind of bad |
+| `Saheeli, Consul of Oversight` | U | B | C− | she's just great. |
+| `Teyo, Lightshield Expert` | U | B− | B | just really good uncommon… just great. |
+| `Thalia, the Survivor` | U | B | C | annoying… Yeah, that's solid. |
+| `Tomik, Orzhov Lawmage` | U | C+ | B− | 2 mana 2/1 flying with multiple potential upsides. Solid. |
+| `Way of the Healer` | U | B | A− / B+ | Excellent… just good. |
+| `Way of the Mentor` | U | build-around C | Alex D− / Mark D | totally reasonable… it's good. |
+| `Yoshimaru, Beloved Companion` | U | build-around B | Alex D / Mark D+ | works well with the counter synergies |
+| `Your Fate Ends Here` | U | B | Alex B− / Mark B | Great. Always play that. We'll play multiple… that card's amazing. |
+| `Yuriko, Blade of the Mighty` | U | C | Alex D+ / Mark D | not bad. That's good… kind of sweet. |
+| `Academic Ascent` | C | C− | C− | with a bonus mini planeswalker |
+| `Campus Crier` | C | C | C+ | Just a solid solid two drop. |
+| `Fateshaper Aspirant` | C | C (slides to D) | Alex C− / Mark D | pretty solid common |
+| `Graft Surgeon` | C | C | C− | Fine. Three. Drop filler. |
+| `Hexhaven Battalion` | C | C → C+ (LSV B−) | Alex B− / Mark C+ | fantastic. That is very good. |
+| `Memory Trap` | C | C+/B → B | Alex B− / Mark C+ | Good. Just classic three mana O-ring style effect. |
+| `Predictive Preparations` | C | D+ | Alex D+ / Mark D− | just travel preps. Good. |
+| `Shatterwing Pegasus` | C | C− | Alex C− / Mark D+ | That's fine. It's whatever. |
+| `Surgical Precision` | C | C | Alex B− / Mark C+ | going to be one of the best white commons… It's just great. |
+| `Unflinching Hortimancer` | C | C | Alex C+ / Mark C− (C+ graded only for GW; attribution inferr | a very good common… for the life gain deck. |
+
+### Blue
+
+| Card | R | LR | LLU | Numot |
+|---|---|---|---|---|
+| `Chandra, Chill of Compliance` | M | — | — | it's okay… not crazy like Jace. |
+| `Seasoned Cryomancer` | M | — | — | it's just great. |
+| `The Theorist, Jace Beleren` | M | — | — | it's insane… Card's insane. |
+| `Cruel Calculations` | R | — | — | unplayable. |
+| `Diviner of Victory` | R | — | — | for a one drop, that's just very good… As good of a one drop as you ca… |
+| `Jace's Machinations` | R | — | — | that's great… excellent, it's just a better divination. |
+| `Jace, Reality Sculptor` | R | — | — | it's okay. It's actually not crazy. |
+| `Lyra, Tolarian Archangel` | R | — | — | That card sweet… if it ever makes extra flyers you're just winning. |
+| `Samut, Tyrant of Naktamun` | R | — | — | Just an annoying two drop |
+| `Sphinx of False Conclusions` | R | — | — | Oh my god, Barf. I already hate that card. It's too good. |
+| `Theorist's Proxy` | R | — | — | Two mana 0/3 draw a card with flash. That's good. |
+| `Variable Chaser` | R | — | — | is fine on its own |
+| `Arni, Humble Scribe` | U | B+/B | — | Yeah, I'd play that. |
+| `Countersculpt` | U | C | — | baseline, I think it's not bad. |
+| `Fblthp, Impossibly Lost` | U | D− (joking "build-around A+" for the alt-win) | — | Oftentimes it's a two mana draw two… like okay. |
+| `Geist of Saint Thalia` | U | build-around C+ | — | never going to want to play… I don't like this type of card. |
+| `Hapatra, the Desert Frost` | U | C+ | — | that's fine. It's a big Frost Lynx with an ability. |
+| `Perfected Theory` | U | D | — | That's not bad. I'll play that. |
+| `Plan for All Outcomes` | U | B/C+ | — | that card's sweet… I like it a lot. |
+| `Precise Redaction` | U | sideboard B | — | good sideboard card |
+| `Proft, Consulting Detective` | U | no grade given | — | that's cool… it's good two drop. |
+| `Ruric Thar, Biomagus` | U | B− | — | He's big. He's annoying… I'd play that at my top end. |
+| `Tetsuko Umezawa, Fugitive` | U | B− | — | probably fine. |
+| `Traxos, Academy Guardian` | U | B | — | a very annoying flyer… That's cool. |
+| `Way of the Cryomancer` | U | D | — | I like it. |
+| `Way of the Mind Sculptor` | U | build-around B ("B or B+") | — | a little expensive. Five mana is actually quite a bit. |
+| `Yargle, Goliath of Otaria` | U | sideboard C/C− vs R/G; D/F main | — | Pass. |
+| `Yuriko, Hope from the Shadows` | U | C−/C+ (?) | — | that's a solid one drop. |
+| `Cryotheory Adept` | C | D/C− | — | fine filler, I guess. |
+| `Divining Duelist` | C | C | — | fine for three mana. Versatile enough… Playable. |
+| `Icy Reception` | C | C/C+ | — | probably a decent common |
+| `Infinite Coursework` | C | C+/B | — | the classic blue tap down removal spell… that's fine. |
+| `Mindseeker Oculus` | C | B | — | Wow. That's a really good common… Very good one. |
+| `Protege's Awakening` | C | C | — | four mana, empower J6, but also draw a card… That's not bad. |
+| `Sphinx's Approach` | C | D | — | cool if you ever get that ability, but it's not going to happen. |
+| `Surveillance Phantasm` | C | C/C+ | — | probably plays a lot better than it looks… I like that. |
+| `Undulating Witness` | C | C+ | — | not that good… compare that to the white one and there's no comparison… |
+| `Unsummon` | C | C/C+ | (First Impressions, no grade) "Good for decades, it's still  | playable. Not amazing. |
+
+### Black
+
+| Card | R | LR | LLU | Numot |
+|---|---|---|---|---|
+| `Bloodline Recollector` | M | — | — | just a good two drop. High upside two drop |
+| `Darklight Phoenix` | M | — | — | Yeah, that's bad. |
+| `Garruk, Veiled Butcher` | M | — | — | That is very good. Yikes. Would play that. |
+| `Overwrite the Multiverse` | M | — | — | Insane. |
+| `Dark Matter Manipulator` | R | — | — | That seems bad. |
+| `Gideon the Oathless` | R | — | — | a good three drop. Very solid annoying three drop. |
+| `Lich's Relic` | R | — | — | That thing's insane… That card's absurd… take that if you see it. Spla… |
+| `Liliana the Repentant` | R | — | — | this is just good. |
+| `Rise of the Deathbringer` | R | — | — | kind of legit. Seems good. |
+| `Sanctum Lurker` | R | — | — | This thing is insane… That's crazy. |
+| `Vraska's Final Mercy` | R | — | — | Just great. Excellent card. |
+| `Break Under Pressure` | U | B+ ("B, at least") | B− | That's good… sacks their biggest thing. |
+| `Danitha, Spear of Agony` | U | B | Alex C / Mark D → D+ | That's good. |
+| `Gallia, Tragic Host` | U | B− | C+ | Ah, good. Two drop. |
+| `Loot, the Anomaly` | U | D | Alex D+ / Mark D | It's fine. |
+| `Mabel, Bitter Recluse` | U | B | C+ | Oh that's really good for a one drop… kill their Jace token. |
+| `Massacre Girl, Most Wanted` | U | B | Alex D+ / Mark D | the drainer that gets bigger. Not bad. |
+| `Multiply by Zero` | U | B | B | Oh, that card's amazing. |
+| `Proft, Sinister Mastermind` | U | B | Alex B− / Mark C | This seems fine. |
+| `Rewrite Regrets` | U | C+ | C (possibly higher ceiling) | strong for four mana. |
+| `Terminal Criticism` | U | sideboard B | sideboard (no letter) | Good sideboard. |
+| `Teyo, Diamondblade Mage` | U | D (maybe D+) | C− | That's fine. |
+| `Tinybones, Pocket Nuisance` | U | C (almost C+) | C | maybe not good, but it's very very playable. |
+| `Way of the Deathbringer` | U | C | Alex C / Mark C− | That seems really solid. |
+| `Way of the Necromancer` | U | D / build-around C | Alex F / Mark D− | Solid. |
+| `Winter, Tormented Loner` | U | C / build-around C+ | Alex C+ / Mark C− ("maybe I'd meet you in the middle") | That's not bad at all. |
+| `Yargle, Glutton of Urborg` | U | D/F | no grade heard (garbled in captions) | Classic Yargle. Unplayable. |
+| `Apex Witchstalker` | C | C+/B− | Alex C / Mark C− | Oh yeah, that's good. |
+| `Cast Away Doubt` | C | C/C− | Alex D / Mark D+ | That's fine… not excited about it. |
+| `Extended Absence` | C | B+ → B | Alex C+ / Mark B− | That's good. Four mana instant. Solid. |
+| `Last Gasp` | C | B | Alex B− / Mark C+ | reprint. That's good. |
+| `Rampart Hunter` | C | D | Alex D / Mark C− | It's whatever. |
+| `Rank Rat` | C | C | C | the new ravenous rats… Probably fine. |
+| `Screeching Soulbreaker` | C | C+ | Alex C / Mark D+ | not bad. Very annoying. Big butt flyer |
+| `Silence the Echo` | C | C | Alex C / Mark D+ | That's good. Solid common. |
+| `Solve for Disappointment` | C | D− (started at D) | C− | still good… seems really solid. |
+| `Theoretical Necromancer` | C | D+ | D+ ("a theoretical D plus") | I hate this type of card. It's like fine. |
+
+### Red
+
+| Card | R | LR | LLU | Numot |
+|---|---|---|---|---|
+| `Ajani Unrelenting` | M | — | — | This card is dumb… it is insane. |
+| `Chandra, Torch of Defiance` | M | — | — | reprint also just very good. |
+| `Craterclaw Colossus` | M | — | — | real good with the heartwood tokens… not hard to just insta win. |
+| `Stingcaster Mage` | M | — | — | Solid mythic as well |
+| `Ajani's Anguish` | R | — | — | This card's nuts… just good. |
+| `Curse-Marred Demon` | R | — | — | This is very good. |
+| `Draconic Visitor` | R | — | — | if this triggers once you basically win |
+| `Face Yourself` | R | — | — | really cool… always going to want to play, but man, this one could be … |
+| `Identity Echo` | R | — | — | It's bad, but it's neat. |
+| `Master of Barbs` | R | — | — | I don't feel like that extra ability is going to matter much, but what… |
+| `Pompous Battlemage` | R | — | — | It's fine. Not great. Fine. |
+| `Pyre Rhymer` | R | — | — | Fine… not exciting. |
+| `Samut, Hazoret's Champion` | R | — | — | That's just good. Just a good two drop. |
+| `Arni, Renowned Champion` | U | C | D− | I hate this type of card. I have no doubt I will lose to it |
+| `Command the Stage` | U | build-around C+ (Marshall) | Alex C+ / Mark C | deck dependent, but has the potential to be pretty good. |
+| `Essence Burn` | U | sideboard B | sideboard (no letter) | Good sideboard. |
+| `Fulminous Forte` | U | B (maybe B+) | B− | Oh, this card's nice… very solid three mana instant. |
+| `Gallia, the Merrymaker` | U | C−/C | C− | Yeah, fine. Two drop. |
+| `Jiang Yanggu, Alone` | U | C+/B− | C+ | okay. I'm not going to say it's crazy. It's like fine. |
+| `Kiora of Fire and Ashes` | U | B+ | Alex B / Mark B+ | Just a great uncommon even without the eight mana ability. |
+| `Koth, the Geomancer` | U | B− | Alex C− / Mark D+ | That's kind of neat. Sure. Yeah. Play that. |
+| `Marwyn, the Clearcutter` | U | C+ (started C) | Alex C / Mark C+ | Just solid one drop. |
+| `Pia, Determined Rebuilder` | U | B− → B | C+ | a classic solid card. |
+| `Tetsuko Umezawa, Pursuer` | U | C+ | Alex C− / Mark D | That card's annoying. |
+| `Tomik, Izzet Sparkmage` | U | build-around B | Alex D+ / Mark C− | You're going to need a handful of ways to make that relevant… I don't … |
+| `Violent Echoes` | U | B | Alex B− / Mark B+ (Mark nearly gave A−) | Yeah, great… Seems excellent. |
+| `Way of the Pyromancer` | U | C+/B (LSV B) | Alex D+ → C / Mark C | real nice… it's very good. |
+| `Way of the Warlord` | U | B/B+ (LSV B+) | Alex C+ / Mark D+ (the biggest red split) | Card's great. Excellent card. |
+| `Winter, Team Player` | U | C (build-around lean) | Alex D+ / Mark D | That doesn't seem good to me. |
+| `Artifist Acumen` | C | no grade given | Alex D+ / Mark D | I'm not saying it's good. |
+| `Awaken the Inferno` | C | B− | C+ | Still solid enough to play basically always |
+| `Blazing Crescendo` | C | C−/D | Alex C / Mark C− | I like this card. I don't know how good it is. |
+| `Chandra's Emberling` | C | C (optimistic; "probably a D") | Alex D / Mark D+ | Spellgorger Weird with haste… cool card. |
+| `Eardrum Rattler` | C | D → D+/C− | Alex D+ / Mark D− | Okay, it's a two drop. |
+| `Heartstring Puller` | C | C+/B− | C+ (Mark nearly B−) | This is a great common… just a good common. |
+| `No Admittance` | C | B | Alex B− / Mark C+ | Good… you're not going to do much better for two mana. |
+| `Skilled Battlecarver` | C | C− | C | Very annoying aggro card. |
+| `Tether Technician` | C | C | Alex C / Mark D+ | the classically good big red creature. |
+| `Wrath of the Bloodmane` | C | B | Alex C+ / Mark C | that's just really good… Good common. |
+
+### Green
+
+| Card | R | LR | LLU | Numot |
+|---|---|---|---|---|
+| `Garruk, Curse Breaker` | M | — | — | Seems good… You could do worse. |
+| `Hexhaven Invigorator` | M | — | — | But even if you're not playing this until like turn six. That's pretty… |
+| `Omnipresence` | M | — | — | Unplayable. |
+| `Tarmogoyf` | M | — | — | not unplayable… This is like a common, maybe uncommonish in power leve… |
+| `Carnivorous Cultivator` | R | — | — | already good… Real good. |
+| `Gardenize` | R | — | — | unplayable |
+| `Hungering Puppetbeast` | R | — | — | that thing's insane… Wow, that thing's nuts. |
+| `Puppet Crafting` | R | — | — | Probably bad though. |
+| `Simulacrum Shaper` | R | — | — | Insane, the most value you're ever going to get from a three drop. |
+| `Verdant Kraken` | R | — | — | this card's nuts… You cast this, you win. Insane. |
+| `Edgar, Moonlit Sovereign` | U | B+/B− → B | Alex C− / Mark D+ | That's cool… that's not bad. |
+| `Fblthp, Knows the Way` | U | B+ | Alex B / Mark A− | this one's gross… fibble is great. |
+| `Flourishing Grapple` | U | sideboard B | sideboard (no letter) | sideboard hoser. |
+| `Ghalta the Unstoppable` | U | B → B− ("I got carried away, I like dinosaurs") | Alex C− / Mark D+ ("probably too low") | Yeah, solid. |
+| `Hunter's Axe` | U | C+/C− (LSV "C… maybe C−") | Alex D / Mark D+ | It's probably okay… kind of spicy. |
+| `Jiang Yanggu, Never Alone` | U | B+ | Alex B− / Mark B | Very good. Four drop. |
+| `Loot, the Nexus` | U | B | Alex C+ / Mark C− | Good. Three mana ramper. |
+| `Marwyn, the Preserver` | U | B− | Alex C+ / Mark B− | 2 mana 3/2 baseline's fine. |
+| `Pia, Aether Ascetic` | U | build-around C | Alex C+ / Mark C− | very very good |
+| `Restore with Empathy` | U | build-around, split: Marshall B in GW lifegain, LSV D (a UG  | Alex D+ / Mark D | Love it… this is good. |
+| `Ruric Thar, Magecrusher` | U | C+ | Alex C+ → B− / Mark B− | very annoying. Pretty good. It is seven mana. |
+| `Titanbones, Towering Heart` | U | B | Alex C− → D+ / Mark D | going to get real fat real quickly. |
+| `Way of the Paradox` | U | C/C+ (LSV C+; B in a dedicated Jace deck, D without support) | C (synergy tag for UG walker decks) | three mana empower five already good by itself. |
+| `Way of the Wildspeaker` | U | B+ | Alex B− / Mark C+ (Mark: "I like your grade more than mine") | That's pretty good. |
+| `Yoshimaru, Scrappy Stray` | U | B−/B (LSV B) | Alex C+ / Mark C | Yep, solid. Solid dog. |
+| `Arcane Amphisbaena` | C | C+ | Alex C / Mark C+ | That's a common, play all of them. Great card. |
+| `Bestial Incursion` | C | B/B− (LSV B−) | C+ | a better Shadow Beast Sighting. Good card. |
+| `Budding Insurgent` | C | C−/D+ | Alex C− / Mark D+ | Yeah, solid enough. |
+| `Compel Brutality` | C | C+ | C+ | That's good. |
+| `Greenhouse Propagator` | C | C+ | Alex C+ / Mark C | card's great, very good common. |
+| `Inspired Tethermage` | C | C/D+ → C− | D+ | wow, that's just a good common. |
+| `Something Worth Saving` | C | C | C | That's not bad. Sure. |
+| `Sureshot Sower` | C | C | Alex C / Mark C− | That's fine. |
+| `Tethermage's Advantage` | C | D | Alex C / Mark C− | Decent. |
+| `Vinelasher Adept` | C | C+ | Alex C / Mark C− | That's not bad. That's better than the blue and better than the red. |
+| `Wrecking Gecko` | C | D+/C− | Alex C− / Mark D+ | just a big dumb green creature that will eventually kill you. |
+
+### Multicolor
+
+| Card | R | LR | LLU | Numot |
+|---|---|---|---|---|
+| `Aerid Konstrari` | M | — | — | I assume all of these sphinx are just going to be bombs or at the very… |
+| `Avatar of Burgeoning Echoes` | M | — | — | That card's insane… empower Jace 2 [on landfall] is nuts. |
+| `Denzilore Fatehold` | M | — | — | I hate it. It's great. |
+| `Ingris Stingerquill` | M | — | — | That seems very good… Yeah, that card's great. |
+| `Kwia Vigorbloom` | M | — | — | Seems pretty good. |
+| `Uldaros Theorix` | M | — | — | Whoa… That card is sweet. |
+| `Codie, Ravenous Codex` | R | — | — | cool, but you have to build a prepared deck. |
+| `Entrust the Spark` | R | — | — | Obviously not good in limited. |
+| `Frostbite Pyromental` | R | — | — | That's cool |
+| `Karn, Gilded Guardian` | R | — | — | Also lame. Not a good payoff card. |
+| `Null Summoner` | R | — | — | That's great… Card's great. |
+| `Proctor of Potential` | R | — | — | seems good |
+| `Solarium Sentry` | R | — | — | Just better watch, I guess. Sure. |
+| `Solitary Cell` | R | — | — | It's fine. Not amazing. |
+| `Stinging Vitriol` | R | — | — | maybe not very solid, but it's… good. |
+| `Tam, the Possibility` | R | — | — | Oh garbage. |
+| `Tenured Tethermage` | R | — | — | Whoa, this card's nuts… it's very good. |
+| `Vindictive Triumph` | R | — | — | It's good. It's good. |
+| `Vraska, Soul of Stone` | R | — | — | That's good… Hard to cast maybe. |
+| `Vraska, the Cutting Glare` | R | — | — | that's great |
+| `Bloombrute` | U | A− (LSV B+–A−) | Alex B− / Mark C | Great. |
+| `Clash of Elements` | U | B | Alex B− / Mark B | That's neat. Three mana tuck. |
+| `Craftwork Crusher` | U | B+/B (LSV "maybe A− if you're enabling it") | **A−** | That's insane… an insane uncommon. What? Wow. |
+| `Desperate Futurescribe` | U | B | Alex B− / Mark B | also great |
+| `Edgar, Ancient Bloodlord` | U | B−/B | C+ | It's decent. |
+| `Fatehold Charm` | U | B | C+ ("might even be too low… could creep into B−"; Alex later | seems like an insane charm. Damn. |
+| `Grim Repriser` | U | B | C+ | a fine two drop. |
+| `Hapatra, the Desert Fang` | U | B+/A− (LSV A−, "it's just always going to work") | Alex B / Mark B+ | Oh, that's good… kill something a lot of times. |
+| `Heartwood Crafter` | U | B− | Alex C+ / Mark B− | pretty solid |
+| `Kiora of Salt and Sand` | U | build-around B/B− (A− floated first) | Alex C / Mark C− (Alex talked down a tier) | that's fine |
+| `Konstrari Charm` | U | C | C+ | That's okay… Easily the worst charm we've seen. |
+| `Mabel, Valley Hero` | U | B/B+ | Alex B− / Mark C (Alex conceded mid-discussion but stated no | That's cool. |
+| `Mind Meanderer` | U | B−/B (LSV B) | Alex B− / Mark C+ | still good |
+| `Paradox Shaper` | U | C+ (B− if UB lacks threshold enablers) | Alex C / Mark D+ | repeatable self mill… Neato. |
+| `Primal Witchstalker` | U | B (maybe B+) | Alex B− / Mark C+ | That seems good too. |
+| `Prudent Fateseer` | U | C+/B− | C | solid |
+| `Recursive Recruitment` | U | B | Alex B− / Mark C+ | Still a good card… Eight mana later on, two five fives. Great. |
+| `Saheeli, Jewel of Avishkar` | U | B+ | C ("a responsible C") | Great. |
+| `Stingerquill Charm` | U | B+ | Alex B− / Mark B | that one's pretty good, too. |
+| `Stingerquill Voxmancer` | U | B, if BR works | Alex D+ / Mark C− | this is a good one drop… consistent source of bing. |
+| `Theorix Charm` | U | B | C+ | still good, but that seems a lot worse than the blue white one. |
+| `Twisted Fates` | U | B+ → A− | B | That's sweet… good enough. |
+| `Vigorbloom Charm` | U | B+ | B− | another good charm |
+| `Vigorbloom Vanguard` | U | B+/B | C+ | Good. |
+| `Warrior's Blades` | U | B | Alex C+ / Mark C | Lightning Helix on a trusty machete is good. |
+| `Woodwork Prodigy` | U | C+ | Alex C+ / Mark C | It's fine. |
+| `Blessed Ghoul` | C | C+/C | Alex D / Mark D+ | I hate this type of card. |
+| `Blossom-Blessed Angel` | C | C | C ("may have graded a little too low") | Good. |
+| `Charge the Sanctum` | C | C/C− | — | I don't like these type of cards but that's probably fine. |
+| `Emergency Phytomedic` | C | C/C+ (LSV C+) | C− (Alex: "maybe even C+") | Good enough. |
+| `Fatehold Chronologist` | C | B− | C | Seems fine. |
+| `Ferocity of the Hunt` | C | C−/C | Alex D+ / Mark C− | a good take on this effect |
+| `Hallway Heckler` | C | C | Alex D+ / Mark C− | a 3-mana 2/3 rummager that pings |
+| `Konstrari Improviser` | C | C−/C | C | 2-mana 2/2 that makes a Heartwood |
+| `Semester Foreseer` | C | C | C− (graded in the multicolor episode alongside Peer Review) | decent common |
+| `Tam's Resistance` | C | C | C− | It's really good for two mana. |
+| `Theorix Metamage` | C | C+ | Alex C− / Mark D+ | Okay, cool. |
+| `Twinned Vision` | C | C+/C− | Alex C / Mark C+ | no verdict. |
+| `Void Extrapolator` | C | C | Alex D+ / Mark C− | no strong verdict |
+| `Whiplash Wordsmith` | C | C/C+ | D+ ("somewhat optimistic") | that's like okay. |
+
+### Colorless
+
+| Card | R | LR | LLU | Numot |
+|---|---|---|---|---|
+| `Emrakul, the Exigent Doom` | M | — | — | so so expensive… it's going to rot in my hand. But it's cool. That's a… |
+| `The Echoverse Fulcrum` | M | — | — | Oh, that's cool. Another wrath effect. |
+| `Karn, Argent Defender` | R | — | — | blah blah blah |
+| `Archive Arbiter` | U | C+ | Alex C / Mark C− | This is probably better than it looks. |
+| `Eye of Jace` | U | build-around C (Marshall, "prove it") / C+ (LSV) | Alex C / Mark C− | That's not bad… That seems okay |
+| `Traxos, Scourge Eternal` | U | B/C+ | Alex C− / Mark C+ | Four mana 5/4 trampler then. Not bad. |
+| `Afterthought Sentry` | C | D | D+ | Filler with artifact synergy |
+| `Keeper of the Quiet Hour` | C | C/C− | Alex C− / Mark C | Colorless common… that's just good… We'll play that. |
+| `Living Library` | C | no letter grade; clearly negative ("Nah | Alex D+ / Mark D | not awful… playable |
+| `Medic's Kitesail` | C | D+/C− | C− | going to be a really annoying card. |
+| `Murmuring Volume` | C | D | C− | I don't hate it… I'm a mana rock enjoyer. |
+
+### Lands
+
+| Card | R | LR | LLU | Numot |
+|---|---|---|---|---|
+| `Hall of Echoes` | R | — | — | not bad… I'll play that in my two color decks. |
+| `Roiling Canopy` | R | — | — | a mono green payoff land… It's weird. |
+| `Theorist's Sanctum` | R | — | — | Oh, that's sweet too. Empower Jace, too, on a land. |
+| `Hexhaven Dueling Arena` | U | F | Alex F / Mark D− ("the coward's D−") | This one I don't think I like. |
+| `Room of Refuge` | C | C+ | C+ | not bad. Still even play this in your two-color decks. |
+
+---
+
 ## Sealed: building your 40
 
 Wizards' own template, which is a fine baseline:
