@@ -282,6 +282,8 @@ payoff.
 
 All three expert sources, card by card, with the card image so you can read it in place. **🎧 LR** = Limited Resources 872 letter grade. **🎓 LLU** = Limited Level-Ups grade, `Alex / Mark` where they split. Both podcasts cover commons and uncommons only. **🎙 Numot** = Kenji's verdict in his words, from his read of the whole set; he gives verdicts, not grades. A line is left out when that source didn't cover the card. Within each colour: mythic, rare, uncommon, common, then alphabetical. The full reasoning is in the three channel guides linked under Sources.
 
+**Jump to:** [White (38)](#white) · [Blue (38)](#blue) · [Black (37)](#black) · [Red (39)](#red) · [Green (36)](#green) · [Multicolor (60)](#multicolor) · [Colorless (11)](#colorless) · [Lands (5)](#lands)
+
 ### White
 
 <table class="expertcards">
@@ -324,6 +326,8 @@ All three expert sources, card by card, with the card image so you can read it i
 <tr><td width="250"><img src="https://cards.scryfall.io/normal/front/d/3/d3acf176-ef02-4729-88c4-0f0dfbfdada4.jpg?1789385570" width="240" alt="Surgical Precision" loading="lazy"></td><td><b>Surgical Precision</b> · Common<br><br>🎧 <b>LR C.</b> Sorcery: kill a toughness-4+ creature and gain life, or draw and gain 2. It has no losing case; sorcery speed keeps it off C+.<br><br>🎓 <b>LLU Alex B− / Mark C+.</b> Much better than Marvel&#x27;s Murdock&#x27;s Crusade because the fallback mode cycles. Alex: &quot;one of the best commons.&quot;<br><br>🎙 <b>Numot:</b> &quot;going to be one of the best white commons… It&#x27;s just great.&quot;</td></tr>
 <tr><td width="250"><img src="https://cards.scryfall.io/normal/front/6/3/63f82985-c9c2-4d0a-ac4f-560166bebd9f.jpg?1789556741" width="240" alt="Unflinching Hortimancer" loading="lazy"></td><td><b>Unflinching Hortimancer</b> · Common<br><br>🎧 <b>LR C.</b> 2/1 ward 1 that grows on lifegain; a good common payoff for GW.<br><br>🎓 <b>LLU Alex C+ / Mark C− (C+ graded only for GW; attribution inferred).</b> A ward-1 Ajani&#x27;s Pridemate; &quot;a pillar of green-white.&quot;<br><br>🎙 <b>Numot:</b> &quot;a very good common… for the life gain deck.&quot;</td></tr>
 </table>
+
+**Jump to:** [White (38)](#white) · [Blue (38)](#blue) · [Black (37)](#black) · [Red (39)](#red) · [Green (36)](#green) · [Multicolor (60)](#multicolor) · [Colorless (11)](#colorless) · [Lands (5)](#lands)
 
 ### Blue
 
@@ -368,6 +372,8 @@ All three expert sources, card by card, with the card image so you can read it i
 <tr><td width="250"><img src="https://cards.scryfall.io/normal/front/d/d/ddad9f16-52d5-49de-82b0-b1a5294a9c44.jpg?1789556722" width="240" alt="Unsummon" loading="lazy"></td><td><b>Unsummon</b> · Common<br><br>🎧 <b>LR C/C+.</b> Cheap bounce is good in a fast format and against tokens.<br><br>🎓 <b>LLU B−.</b> &quot;One of the best commons&quot;: the set&#x27;s 4/4 and 5/5 tokens and big creatures make bounce strong.<br><br>🎙 <b>Numot:</b> &quot;playable. Not amazing.&quot;</td></tr>
 </table>
 
+**Jump to:** [White (38)](#white) · [Blue (38)](#blue) · [Black (37)](#black) · [Red (39)](#red) · [Green (36)](#green) · [Multicolor (60)](#multicolor) · [Colorless (11)](#colorless) · [Lands (5)](#lands)
+
 ### Black
 
 <table class="expertcards">
@@ -409,6 +415,8 @@ All three expert sources, card by card, with the card image so you can read it i
 <tr><td width="250"><img src="https://cards.scryfall.io/normal/front/7/b/7beaa8c9-1a2c-4c88-b579-91e371d8d9e3.jpg?1788878155" width="240" alt="Solve for Disappointment" loading="lazy"></td><td><b>Solve for Disappointment</b> · Common<br><br>🎧 <b>LR D− (started at D).</b> Missing is a disaster.<br><br>🎓 <b>LLU C−.</b> Weak as a late topdeck; Alex&#x27;s grade assumes the attrition plan works.<br><br>🎙 <b>Numot:</b> &quot;still good… seems really solid.&quot;</td></tr>
 <tr><td width="250"><img src="https://cards.scryfall.io/normal/front/e/3/e36a7908-1e22-494b-adb4-e72ac0974d62.jpg?1789556734" width="240" alt="Theoretical Necromancer" loading="lazy"></td><td><b>Theoretical Necromancer</b> · Common<br><br>🎧 <b>LR D+.</b> A 4/1 for 3 with an expensive late Raise Dead. &quot;Not pushed.&quot;<br><br>🎓 <b>LLU D+ (&quot;a theoretical D plus&quot;).</b> Four mana to do nothing to the board.<br><br>🎙 <b>Numot:</b> &quot;I hate this type of card. It&#x27;s like fine.&quot;</td></tr>
 </table>
+
+**Jump to:** [White (38)](#white) · [Blue (38)](#blue) · [Black (37)](#black) · [Red (39)](#red) · [Green (36)](#green) · [Multicolor (60)](#multicolor) · [Colorless (11)](#colorless) · [Lands (5)](#lands)
 
 ### Red
 
@@ -454,6 +462,8 @@ All three expert sources, card by card, with the card image so you can read it i
 <tr><td width="250"><img src="https://cards.scryfall.io/normal/front/b/5/b5b55617-684a-4036-be9b-a3b24fc9cd5a.jpg?1789385820" width="240" alt="Wrath of the Bloodmane" loading="lazy"></td><td><b>Wrath of the Bloodmane</b> · Common<br><br>🎧 <b>LR B.</b> Instant, 4 damage, costs 1 less with a legendary creature (there are many).<br><br>🎓 <b>LLU Alex C+ / Mark C.</b> With about 3 legends per pack it&#x27;s often 2 mana; Mark said he should have joined Alex at C+.<br><br>🎙 <b>Numot:</b> &quot;that&#x27;s just really good… Good common.&quot;</td></tr>
 </table>
 
+**Jump to:** [White (38)](#white) · [Blue (38)](#blue) · [Black (37)](#black) · [Red (39)](#red) · [Green (36)](#green) · [Multicolor (60)](#multicolor) · [Colorless (11)](#colorless) · [Lands (5)](#lands)
+
 ### Green
 
 <table class="expertcards">
@@ -494,6 +504,8 @@ All three expert sources, card by card, with the card image so you can read it i
 <tr><td width="250"><img src="https://cards.scryfall.io/normal/front/e/5/e5ed142b-2b61-4ef5-8b23-2db2a0a0319d.jpg?1789556814" width="240" alt="Vinelasher Adept" loading="lazy"></td><td><b>Vinelasher Adept</b> · Common<br><br>🎧 <b>LR C+.</b> 6-mana 2/4 reach plus three counters, with basic landcycling 2.<br><br>🎓 <b>LLU Alex C / Mark C−.</b> &quot;One of the lesser land cyclers.&quot;<br><br>🎙 <b>Numot:</b> green landcycler. &quot;That&#x27;s not bad. That&#x27;s better than the blue and better than the red.&quot;</td></tr>
 <tr><td width="250"><img src="https://cards.scryfall.io/normal/front/3/d/3d693cb0-681e-480a-8f70-07e94c39225c.jpg?1789385843" width="240" alt="Wrecking Gecko" loading="lazy"></td><td><b>Wrecking Gecko</b> · Common<br><br>🎧 <b>LR D+/C−.</b> 5-mana 5/5 ward 2; the ward is what lifts it.<br><br>🎓 <b>LLU Alex C− / Mark D+.</b> &quot;Not an embarrassing card to play.&quot;<br><br>🎙 <b>Numot:</b> &quot;just a big dumb green creature that will eventually kill you.&quot;</td></tr>
 </table>
+
+**Jump to:** [White (38)](#white) · [Blue (38)](#blue) · [Black (37)](#black) · [Red (39)](#red) · [Green (36)](#green) · [Multicolor (60)](#multicolor) · [Colorless (11)](#colorless) · [Lands (5)](#lands)
 
 ### Multicolor
 
@@ -560,6 +572,8 @@ All three expert sources, card by card, with the card image so you can read it i
 <tr><td width="250"><img src="https://cards.scryfall.io/normal/front/8/0/8096bc9a-a610-448f-bef2-7230e17e9777.jpg?1789127692" width="240" alt="Whiplash Wordsmith // Vicious Verse" loading="lazy"></td><td><b>Whiplash Wordsmith // Vicious Verse</b> · Common<br><br>🎧 <b>LR C/C+.</b> 5 mana: a prepare-ping, then a 3/3 flying haste.<br><br>🎓 <b>LLU D+ (&quot;somewhat optimistic&quot;).</b> Awful on defense.<br><br>🎙 <b>Numot:</b> &quot;that&#x27;s like okay.&quot;</td></tr>
 </table>
 
+**Jump to:** [White (38)](#white) · [Blue (38)](#blue) · [Black (37)](#black) · [Red (39)](#red) · [Green (36)](#green) · [Multicolor (60)](#multicolor) · [Colorless (11)](#colorless) · [Lands (5)](#lands)
+
 ### Colorless
 
 <table class="expertcards">
@@ -576,6 +590,8 @@ All three expert sources, card by card, with the card image so you can read it i
 <tr><td width="250"><img src="https://cards.scryfall.io/normal/front/d/6/d68eab2e-89dd-4377-b7af-01512b1804a0.jpg?1789385977" width="240" alt="Murmuring Volume" loading="lazy"></td><td><b>Murmuring Volume</b> · Common<br><br>🎧 <b>LR D.</b> 3-mana rock with a loot; RG has better ramp. &quot;Prove it.&quot;<br><br>🎓 <b>LLU C−.</b> For multicolour or ramp decks, not a single splash.<br><br>🎙 <b>Numot:</b> &quot;I don&#x27;t hate it… I&#x27;m a mana rock enjoyer.&quot;</td></tr>
 </table>
 
+**Jump to:** [White (38)](#white) · [Blue (38)](#blue) · [Black (37)](#black) · [Red (39)](#red) · [Green (36)](#green) · [Multicolor (60)](#multicolor) · [Colorless (11)](#colorless) · [Lands (5)](#lands)
+
 ### Lands
 
 <table class="expertcards">
@@ -585,6 +601,8 @@ All three expert sources, card by card, with the card image so you can read it i
 <tr><td width="250"><img src="https://cards.scryfall.io/normal/front/9/1/9128ce00-6744-4d36-bfbe-ef75d78110b0.jpg?1789556985" width="240" alt="Hexhaven Dueling Arena" loading="lazy"></td><td><b>Hexhaven Dueling Arena</b> · Uncommon<br><br>🎧 <b>LR F.</b> Colourless land with prepare activations. &quot;I would bet the win rate is negative.&quot;<br><br>🎓 <b>LLU Alex F / Mark D− (&quot;the coward&#x27;s D−&quot;).</b> <br><br>🎙 <b>Numot:</b> &quot;This one I don&#x27;t think I like.&quot;</td></tr>
 <tr><td width="250"><img src="https://cards.scryfall.io/normal/front/9/a/9a467560-6676-4fc2-9400-768a79650aa4.jpg?1789557010" width="240" alt="Room of Refuge" loading="lazy"></td><td><b>Room of Refuge</b> · Common<br><br>🎧 <b>LR C+.</b> Tapped any-colour land; late game, 5 and sac for two +1/+1 counters.<br><br>🎓 <b>LLU C+.</b> Taken at about the same rate as the duals.<br><br>🎙 <b>Numot:</b> &quot;not bad. Still even play this in your two-color decks.&quot;</td></tr>
 </table>
+
+**Jump to:** [White (38)](#white) · [Blue (38)](#blue) · [Black (37)](#black) · [Red (39)](#red) · [Green (36)](#green) · [Multicolor (60)](#multicolor) · [Colorless (11)](#colorless) · [Lands (5)](#lands)
 
 ---
 
