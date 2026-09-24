@@ -2,8 +2,7 @@
 
 **Set:** Reality Fracture (`FRA`) · **Release:** 2026-10-02 · **Prerelease weekend:** 2026-09-25 → 09-27
 **Sources:** card evaluations come from the two podcast set reviews, **Limited Resources 872**
-(Marshall Sutcliffe + LSV, 2026-09-21) and **Limited Level-Ups** (Alex + Mark, 2026-09-22; blue not
-yet transcribed). Counts come from the Wizards prerelease guide, LimitedMTG's study guide and Scryfall
+(Marshall Sutcliffe + LSV, 2026-09-21) and **Limited Level-Ups** (Alex + Mark, 2026-09-22). Counts come from the Wizards prerelease guide, LimitedMTG's study guide and Scryfall
 `set:fra` (285 unique cards: 86 common, 109 uncommon, 64 rare, 26 mythic). Rewritten 2026-09-22 to
 drop the Draftsim and MTG Arena Zone grades.
 
@@ -226,7 +225,7 @@ End` at two for anything; blue holds `Unsummon` for one and `Icy Reception` for 
 
 ## What to take — the two podcasts' top commons and uncommons
 
-Both reviews graded all 180-odd commons and uncommons (LLU minus blue). **Both** means both
+Both reviews graded all 180-odd commons and uncommons. **Both** means both
 podcasts put the card at B− or better. Grades are shown as **LR / LLU**, with LLU split as Alex/Mark.
 
 | Card | Colors | Rarity | What it is | LR / LLU |
@@ -281,311 +280,311 @@ payoff.
 
 ## Every card — what each expert said
 
-All three expert sources, card by card. **LR** = Limited Resources 872 letter grade (commons and uncommons only). **LLU** = Limited Level-Ups grade, `Alex / Mark` where they split (commons and uncommons only; **blue is missing**, see Sources). **Numot** = Kenji's verdict from his read of the whole set, in his words; he gives verdicts, not grades. A dash means that source didn't cover the card. Within each colour: mythic, rare, uncommon, common, then alphabetical. The full reasoning for each card is in the three channel guides linked under Sources.
+All three expert sources, card by card, with the card image so you can read it in place. **🎧 LR** = Limited Resources 872 letter grade. **🎓 LLU** = Limited Level-Ups grade, `Alex / Mark` where they split. Both podcasts cover commons and uncommons only. **🎙 Numot** = Kenji's verdict in his words, from his read of the whole set; he gives verdicts, not grades. A line is left out when that source didn't cover the card. Within each colour: mythic, rare, uncommon, common, then alphabetical. The full reasoning is in the three channel guides linked under Sources.
 
 ### White
 
-| Card | R | LR | LLU | Numot |
-|---|---|---|---|---|
-| `Ajani Resolute` | M | — | — | crazy two drop, two mana planeswalker crazy. |
-| `Enlightened Confidant` | M | — | — | the life gain dark confidant… This is just a good two drop. |
-| `Return to the Light Realms` | M | — | — | very strong card, but nine mana is like turn 15 |
-| `Flickering Hound` | R | — | — | probably not very good… when it is good, it's crazy, but generally it'… |
-| `Germinate Recruits` | R | — | — | more often than not it's going to suck |
-| `Gideon's Memorial` | R | — | — | solid… Yeah, it's fine |
-| `Guiding Hydra` | R | — | — | Wow, that's great. |
-| `Kindred Judgment` | R | — | — | very expensive |
-| `Liliana the Faultless` | R | — | — | a soul warden with upside, so just good. |
-| `Loyal Tutor` | R | — | — | probably not playable… generally, this is just going to be bad… probab… |
-| `Lyra, Archangel of Dawn` | R | — | — | just great… Just very good. |
-| `Repurposed Enforcer` | R | — | — | going to be extremely annoying… games where your opponent plays this o… |
-| `Danitha, Sword of Hope` | U | C+/B− (LSV "B− just flat") | Alex C+ / Mark C | not bad… Solid enough |
-| `Generous Revival` | U | C+ | C− | This is good. A lot of value for one card… if you're playing white, yo… |
-| `Ghalta the Immovable` | U | C−/D+ | Alex D+ / Mark D− | just a big dumb dork |
-| `Koth of the Homestead` | U | B (maybe B+; the captions garble the final call) | Alex C+ / Mark D+ | seems kind of insane for an uncommon… real good. |
-| `Prophesied End` | U | C | Alex C+ / Mark C | Great, can always play that. Will splash for it most likely. |
-| `Refute Destiny` | U | sideboard | sideboard (no letter) | very good sideboard card |
-| `Rescue Girl, First Responder` | U | C/B− (LSV B−, build-around) | Alex C+ / Mark C− | is kind of bad |
-| `Saheeli, Consul of Oversight` | U | B | C− | she's just great. |
-| `Teyo, Lightshield Expert` | U | B− | B | just really good uncommon… just great. |
-| `Thalia, the Survivor` | U | B | C | annoying… Yeah, that's solid. |
-| `Tomik, Orzhov Lawmage` | U | C+ | B− | 2 mana 2/1 flying with multiple potential upsides. Solid. |
-| `Way of the Healer` | U | B | A− / B+ | Excellent… just good. |
-| `Way of the Mentor` | U | build-around C | Alex D− / Mark D | totally reasonable… it's good. |
-| `Yoshimaru, Beloved Companion` | U | build-around B | Alex D / Mark D+ | works well with the counter synergies |
-| `Your Fate Ends Here` | U | B | Alex B− / Mark B | Great. Always play that. We'll play multiple… that card's amazing. |
-| `Yuriko, Blade of the Mighty` | U | C | Alex D+ / Mark D | not bad. That's good… kind of sweet. |
-| `Academic Ascent` | C | C− | C− | with a bonus mini planeswalker |
-| `Campus Crier` | C | C | C+ | Just a solid solid two drop. |
-| `Fateshaper Aspirant` | C | C (slides to D) | Alex C− / Mark D | pretty solid common |
-| `Graft Surgeon` | C | C | C− | Fine. Three. Drop filler. |
-| `Hexhaven Battalion` | C | C → C+ (LSV B−) | Alex B− / Mark C+ | fantastic. That is very good. |
-| `Memory Trap` | C | C+/B → B | Alex B− / Mark C+ | Good. Just classic three mana O-ring style effect. |
-| `Predictive Preparations` | C | D+ | Alex D+ / Mark D− | just travel preps. Good. |
-| `Shatterwing Pegasus` | C | C− | Alex C− / Mark D+ | That's fine. It's whatever. |
-| `Surgical Precision` | C | C | Alex B− / Mark C+ | going to be one of the best white commons… It's just great. |
-| `Unflinching Hortimancer` | C | C | Alex C+ / Mark C− (C+ graded only for GW; attribution inferr | a very good common… for the life gain deck. |
+<table class="expertcards">
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/a/5/a5e1a7dd-8c49-4435-935c-bcc78704082b.jpg?1788329189" width="240" alt="Ajani Resolute" loading="lazy"></td><td><b>Ajani Resolute</b> · Mythic<br>🎙 <b>Numot:</b> “crazy two drop, two mana planeswalker crazy.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/4/8/483fcc58-cc6e-4452-a696-7b38e117c837.jpg?1788329184" width="240" alt="Enlightened Confidant" loading="lazy"></td><td><b>Enlightened Confidant</b> · Mythic<br>🎙 <b>Numot:</b> “the life gain dark confidant… This is just a good two drop.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/6/5/65e9f4df-02e5-4ac7-86da-795688bfb66f.jpg?1788878434" width="240" alt="Return to the Light Realms" loading="lazy"></td><td><b>Return to the Light Realms</b> · Mythic<br>🎙 <b>Numot:</b> “very strong card, but nine mana is like turn 15”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/6/8/686f3a25-305d-4f02-8972-eba7b8e9635f.jpg?1789470769" width="240" alt="Flickering Hound" loading="lazy"></td><td><b>Flickering Hound</b> · Rare<br>🎙 <b>Numot:</b> “probably not very good… when it is good, it&#x27;s crazy, but generally it&#x27;s not going to be worth it.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/1/b/1b5d7d19-b32a-4786-ae9a-00da5e6658ad.jpg?1789644810" width="240" alt="Germinate Recruits" loading="lazy"></td><td><b>Germinate Recruits</b> · Rare<br>🎙 <b>Numot:</b> “more often than not it&#x27;s going to suck”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/7/6/768c0e64-9907-417a-a763-c836fdf36883.jpg?1789127685" width="240" alt="Gideon&#x27;s Memorial" loading="lazy"></td><td><b>Gideon&#x27;s Memorial</b> · Rare<br>🎙 <b>Numot:</b> “solid… Yeah, it&#x27;s fine”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/a/5/a53eb840-039d-4c45-b701-d58cb26b1a6c.jpg?1789644816" width="240" alt="Guiding Hydra" loading="lazy"></td><td><b>Guiding Hydra</b> · Rare<br>🎙 <b>Numot:</b> “Wow, that&#x27;s great.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/6/f/6f9f814b-8249-4e48-a05e-4c84060fe6fb.jpg?1789470776" width="240" alt="Kindred Judgment" loading="lazy"></td><td><b>Kindred Judgment</b> · Rare<br>🎙 <b>Numot:</b> “very expensive”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/7/0/70d8c400-87dc-4f15-808f-e54a95d779fc.jpg?1788329194" width="240" alt="Liliana the Faultless" loading="lazy"></td><td><b>Liliana the Faultless</b> · Rare<br>🎙 <b>Numot:</b> “a soul warden with upside, so just good.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/4/9/490dae91-94ce-42a9-a11f-6c5e77c4e486.jpg?1788878096" width="240" alt="Loyal Tutor" loading="lazy"></td><td><b>Loyal Tutor</b> · Rare<br>🎙 <b>Numot:</b> “probably not playable… generally, this is just going to be bad… probably don&#x27;t want to play this card.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/8/6/86a3866e-68a8-402c-baf0-1908e98e3995.jpg?1789127693" width="240" alt="Lyra, Archangel of Dawn" loading="lazy"></td><td><b>Lyra, Archangel of Dawn</b> · Rare<br>🎙 <b>Numot:</b> “just great… Just very good.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/3/5/35000e93-85d3-44f8-976a-5918ee4c71e0.jpg?1788878108" width="240" alt="Repurposed Enforcer" loading="lazy"></td><td><b>Repurposed Enforcer</b> · Rare<br>🎙 <b>Numot:</b> “going to be extremely annoying… games where your opponent plays this on turn two… and you just lose… Insane.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/d/5/d5cb9810-3c2d-4ae4-b8b6-0155ca3f47ad.jpg?1789127178" width="240" alt="Danitha, Sword of Hope" loading="lazy"></td><td><b>Danitha, Sword of Hope</b> · Uncommon<br>🎧 <b>LR:</b> C+/B− (LSV &quot;B− just flat&quot;)<br>🎓 <b>LLU:</b> Alex C+ / Mark C<br>🎙 <b>Numot:</b> “not bad… Solid enough”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/f/8/f82f181b-a43b-4cec-b8f6-f6c1dd4c64fd.jpg?1788433351" width="240" alt="Generous Revival" loading="lazy"></td><td><b>Generous Revival</b> · Uncommon<br>🎧 <b>LR:</b> C+<br>🎓 <b>LLU:</b> C−<br>🎙 <b>Numot:</b> “This is good. A lot of value for one card… if you&#x27;re playing white, you&#x27;re generally going to want to play one of these.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/a/9/a9f3aa55-908f-42db-8135-4201433df850.jpg?1789014423" width="240" alt="Ghalta the Immovable" loading="lazy"></td><td><b>Ghalta the Immovable</b> · Uncommon<br>🎧 <b>LR:</b> C−/D+<br>🎓 <b>LLU:</b> Alex D+ / Mark D−<br>🎙 <b>Numot:</b> “just a big dumb dork”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/9/2/920703fd-2a2f-454b-8829-af8f2afda4f4.jpg?1789568532" width="240" alt="Koth of the Homestead" loading="lazy"></td><td><b>Koth of the Homestead</b> · Uncommon<br>🎧 <b>LR:</b> B (maybe B+; the captions garble the final call)<br>🎓 <b>LLU:</b> Alex C+ / Mark D+<br>🎙 <b>Numot:</b> “seems kind of insane for an uncommon… real good.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/1/f/1f95399a-9766-4f3d-aa6a-ece55e0530d9.jpg?1788951920" width="240" alt="Prophesied End" loading="lazy"></td><td><b>Prophesied End</b> · Uncommon<br>🎧 <b>LR:</b> C<br>🎓 <b>LLU:</b> Alex C+ / Mark C<br>🎙 <b>Numot:</b> “Great, can always play that. Will splash for it most likely.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/2/c/2c588954-c6eb-4aae-a2fa-0651ccf2d90a.jpg?1789470778" width="240" alt="Refute Destiny" loading="lazy"></td><td><b>Refute Destiny</b> · Uncommon<br>🎧 <b>LR:</b> sideboard<br>🎓 <b>LLU:</b> sideboard (no letter)<br>🎙 <b>Numot:</b> “very good sideboard card”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/6/9/699874e3-1ccf-4a6c-8371-61040de82d08.jpg?1789645598" width="240" alt="Rescue Girl, First Responder" loading="lazy"></td><td><b>Rescue Girl, First Responder</b> · Uncommon<br>🎧 <b>LR:</b> C/B− (LSV B−, build-around)<br>🎓 <b>LLU:</b> Alex C+ / Mark C−<br>🎙 <b>Numot:</b> “is kind of bad”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/0/7/07572be0-6610-493c-a21e-14b78e9805c9.jpg?1789645608" width="240" alt="Saheeli, Consul of Oversight" loading="lazy"></td><td><b>Saheeli, Consul of Oversight</b> · Uncommon<br>🎧 <b>LR:</b> B<br>🎓 <b>LLU:</b> C−<br>🎙 <b>Numot:</b> “she&#x27;s just great.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/5/f/5f7521d7-9f1f-4f03-b2ea-dd2a1b1e4e5b.jpg?1789471515" width="240" alt="Teyo, Lightshield Expert" loading="lazy"></td><td><b>Teyo, Lightshield Expert</b> · Uncommon<br>🎧 <b>LR:</b> B−<br>🎓 <b>LLU:</b> B<br>🎙 <b>Numot:</b> “just really good uncommon… just great.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/8/0/80226231-9e70-430e-aabc-f262f70b9226.jpg?1789127700" width="240" alt="Thalia, the Survivor" loading="lazy"></td><td><b>Thalia, the Survivor</b> · Uncommon<br>🎧 <b>LR:</b> B<br>🎓 <b>LLU:</b> C<br>🎙 <b>Numot:</b> “annoying… Yeah, that&#x27;s solid.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/7/c/7ca95235-6e54-4ff8-bc2e-6a3d483ff007.jpg?1789729766" width="240" alt="Tomik, Orzhov Lawmage" loading="lazy"></td><td><b>Tomik, Orzhov Lawmage</b> · Uncommon<br>🎧 <b>LR:</b> C+<br>🎓 <b>LLU:</b> B−<br>🎙 <b>Numot:</b> “2 mana 2/1 flying with multiple potential upsides. Solid.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/5/0/50326a2a-7e10-464b-a97e-e880bda0558c.jpg?1789729503" width="240" alt="Way of the Healer" loading="lazy"></td><td><b>Way of the Healer</b> · Uncommon<br>🎧 <b>LR:</b> B<br>🎓 <b>LLU:</b> A− / B+<br>🎙 <b>Numot:</b> “Excellent… just good.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/1/a/1a59d5b1-12d6-486b-bd29-ca371359addd.jpg?1789729554" width="240" alt="Way of the Mentor" loading="lazy"></td><td><b>Way of the Mentor</b> · Uncommon<br>🎧 <b>LR:</b> build-around C<br>🎓 <b>LLU:</b> Alex D− / Mark D<br>🎙 <b>Numot:</b> “totally reasonable… it&#x27;s good.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/3/8/384f3b7d-8d7f-41bf-bebd-64e8babe7fca.jpg?1789470881" width="240" alt="Yoshimaru, Beloved Companion" loading="lazy"></td><td><b>Yoshimaru, Beloved Companion</b> · Uncommon<br>🎧 <b>LR:</b> build-around B<br>🎓 <b>LLU:</b> Alex D / Mark D+<br>🎙 <b>Numot:</b> “works well with the counter synergies”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/2/5/25000a17-b701-4d69-b2ef-2c74029199d3.jpg?1789729751" width="240" alt="Your Fate Ends Here" loading="lazy"></td><td><b>Your Fate Ends Here</b> · Uncommon<br>🎧 <b>LR:</b> B<br>🎓 <b>LLU:</b> Alex B− / Mark B<br>🎙 <b>Numot:</b> “Great. Always play that. We&#x27;ll play multiple… that card&#x27;s amazing.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/c/c/ccbe92a5-42bc-4228-9d5a-212df2f5dc15.jpg?1789128047" width="240" alt="Yuriko, Blade of the Mighty" loading="lazy"></td><td><b>Yuriko, Blade of the Mighty</b> · Uncommon<br>🎧 <b>LR:</b> C<br>🎓 <b>LLU:</b> Alex D+ / Mark D<br>🎙 <b>Numot:</b> “not bad. That&#x27;s good… kind of sweet.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/7/3/730d8c28-1e58-4b8e-89e9-445d154d2e83.jpg?1788878081" width="240" alt="Academic Ascent" loading="lazy"></td><td><b>Academic Ascent</b> · Common<br>🎧 <b>LR:</b> C−<br>🎓 <b>LLU:</b> C−<br>🎙 <b>Numot:</b> “with a bonus mini planeswalker”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/6/0/6047b14c-91d5-4f8e-af3f-057a541e2546.jpg?1788878120" width="240" alt="Campus Crier" loading="lazy"></td><td><b>Campus Crier</b> · Common<br>🎧 <b>LR:</b> C<br>🎓 <b>LLU:</b> C+<br>🎙 <b>Numot:</b> “Just a solid solid two drop.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/f/0/f0c8400d-824f-4d79-84bc-7615a0deb831.jpg?1789556683" width="240" alt="Fateshaper Aspirant" loading="lazy"></td><td><b>Fateshaper Aspirant</b> · Common<br>🎧 <b>LR:</b> C (slides to D)<br>🎓 <b>LLU:</b> Alex C− / Mark D<br>🎙 <b>Numot:</b> “pretty solid common”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/3/2/32a7a905-11bf-4b66-a28e-1066a0e372b8.jpg?1789644811" width="240" alt="Graft Surgeon" loading="lazy"></td><td><b>Graft Surgeon</b> · Common<br>🎧 <b>LR:</b> C<br>🎓 <b>LLU:</b> C−<br>🎙 <b>Numot:</b> “Fine. Three. Drop filler.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/3/b/3b6ac80e-c726-4bd0-893a-e666041a04a6.jpg?1789556695" width="240" alt="Hexhaven Battalion" loading="lazy"></td><td><b>Hexhaven Battalion</b> · Common<br>🎧 <b>LR:</b> C → C+ (LSV B−)<br>🎓 <b>LLU:</b> Alex B− / Mark C+<br>🎙 <b>Numot:</b> “fantastic. That is very good.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/2/f/2f5345ae-4489-4d05-b2d5-c71285254f05.jpg?1788866058" width="240" alt="Memory Trap" loading="lazy"></td><td><b>Memory Trap</b> · Common<br>🎧 <b>LR:</b> C+/B → B<br>🎓 <b>LLU:</b> Alex B− / Mark C+<br>🎙 <b>Numot:</b> “Good. Just classic three mana O-ring style effect.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/5/0/50a0e5f0-3c39-4f16-9a73-eec8ef71f12e.jpg?1789556696" width="240" alt="Predictive Preparations" loading="lazy"></td><td><b>Predictive Preparations</b> · Common<br>🎧 <b>LR:</b> D+<br>🎓 <b>LLU:</b> Alex D+ / Mark D−<br>🎙 <b>Numot:</b> “just travel preps. Good.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/e/2/e29095de-59ec-4562-ba8e-73f952e457ae.jpg?1789385580" width="240" alt="Shatterwing Pegasus" loading="lazy"></td><td><b>Shatterwing Pegasus</b> · Common<br>🎧 <b>LR:</b> C−<br>🎓 <b>LLU:</b> Alex C− / Mark D+<br>🎙 <b>Numot:</b> “That&#x27;s fine. It&#x27;s whatever.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/d/3/d3acf176-ef02-4729-88c4-0f0dfbfdada4.jpg?1789385570" width="240" alt="Surgical Precision" loading="lazy"></td><td><b>Surgical Precision</b> · Common<br>🎧 <b>LR:</b> C<br>🎓 <b>LLU:</b> Alex B− / Mark C+<br>🎙 <b>Numot:</b> “going to be one of the best white commons… It&#x27;s just great.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/6/3/63f82985-c9c2-4d0a-ac4f-560166bebd9f.jpg?1789556741" width="240" alt="Unflinching Hortimancer" loading="lazy"></td><td><b>Unflinching Hortimancer</b> · Common<br>🎧 <b>LR:</b> C<br>🎓 <b>LLU:</b> Alex C+ / Mark C− (C+ graded only for GW; attribution inferred)<br>🎙 <b>Numot:</b> “a very good common… for the life gain deck.”</td></tr>
+</table>
 
 ### Blue
 
-| Card | R | LR | LLU | Numot |
-|---|---|---|---|---|
-| `Chandra, Chill of Compliance` | M | — | — | it's okay… not crazy like Jace. |
-| `Seasoned Cryomancer` | M | — | — | it's just great. |
-| `The Theorist, Jace Beleren` | M | — | — | it's insane… Card's insane. |
-| `Cruel Calculations` | R | — | — | unplayable. |
-| `Diviner of Victory` | R | — | — | for a one drop, that's just very good… As good of a one drop as you ca… |
-| `Jace's Machinations` | R | — | — | that's great… excellent, it's just a better divination. |
-| `Jace, Reality Sculptor` | R | — | — | it's okay. It's actually not crazy. |
-| `Lyra, Tolarian Archangel` | R | — | — | That card sweet… if it ever makes extra flyers you're just winning. |
-| `Samut, Tyrant of Naktamun` | R | — | — | Just an annoying two drop |
-| `Sphinx of False Conclusions` | R | — | — | Oh my god, Barf. I already hate that card. It's too good. |
-| `Theorist's Proxy` | R | — | — | Two mana 0/3 draw a card with flash. That's good. |
-| `Variable Chaser` | R | — | — | is fine on its own |
-| `Arni, Humble Scribe` | U | B+/B | — | Yeah, I'd play that. |
-| `Countersculpt` | U | C | — | baseline, I think it's not bad. |
-| `Fblthp, Impossibly Lost` | U | D− (joking "build-around A+" for the alt-win) | — | Oftentimes it's a two mana draw two… like okay. |
-| `Geist of Saint Thalia` | U | build-around C+ | — | never going to want to play… I don't like this type of card. |
-| `Hapatra, the Desert Frost` | U | C+ | — | that's fine. It's a big Frost Lynx with an ability. |
-| `Perfected Theory` | U | D | — | That's not bad. I'll play that. |
-| `Plan for All Outcomes` | U | B/C+ | — | that card's sweet… I like it a lot. |
-| `Precise Redaction` | U | sideboard B | — | good sideboard card |
-| `Proft, Consulting Detective` | U | no grade given | — | that's cool… it's good two drop. |
-| `Ruric Thar, Biomagus` | U | B− | — | He's big. He's annoying… I'd play that at my top end. |
-| `Tetsuko Umezawa, Fugitive` | U | B− | — | probably fine. |
-| `Traxos, Academy Guardian` | U | B | — | a very annoying flyer… That's cool. |
-| `Way of the Cryomancer` | U | D | — | I like it. |
-| `Way of the Mind Sculptor` | U | build-around B ("B or B+") | — | a little expensive. Five mana is actually quite a bit. |
-| `Yargle, Goliath of Otaria` | U | sideboard C/C− vs R/G; D/F main | — | Pass. |
-| `Yuriko, Hope from the Shadows` | U | C−/C+ (?) | — | that's a solid one drop. |
-| `Cryotheory Adept` | C | D/C− | — | fine filler, I guess. |
-| `Divining Duelist` | C | C | — | fine for three mana. Versatile enough… Playable. |
-| `Icy Reception` | C | C/C+ | — | probably a decent common |
-| `Infinite Coursework` | C | C+/B | — | the classic blue tap down removal spell… that's fine. |
-| `Mindseeker Oculus` | C | B | — | Wow. That's a really good common… Very good one. |
-| `Protege's Awakening` | C | C | — | four mana, empower J6, but also draw a card… That's not bad. |
-| `Sphinx's Approach` | C | D | — | cool if you ever get that ability, but it's not going to happen. |
-| `Surveillance Phantasm` | C | C/C+ | — | probably plays a lot better than it looks… I like that. |
-| `Undulating Witness` | C | C+ | — | not that good… compare that to the white one and there's no comparison… |
-| `Unsummon` | C | C/C+ | (First Impressions, no grade) "Good for decades, it's still  | playable. Not amazing. |
+<table class="expertcards">
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/2/4/240f58ab-944c-4f4c-9df9-5f40b132bf3e.jpg?1788329242" width="240" alt="Chandra, Chill of Compliance" loading="lazy"></td><td><b>Chandra, Chill of Compliance</b> · Mythic<br>🎙 <b>Numot:</b> “it&#x27;s okay… not crazy like Jace.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/f/1/f1a15a83-2f74-4513-ae4b-4cdc17016a84.jpg?1789470965" width="240" alt="Seasoned Cryomancer" loading="lazy"></td><td><b>Seasoned Cryomancer</b> · Mythic<br>🎙 <b>Numot:</b> “it&#x27;s just great.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/2/0/20bb8c55-4b0b-425f-8201-b54fa2fdde86.jpg?1788329228" width="240" alt="The Theorist, Jace Beleren" loading="lazy"></td><td><b>The Theorist, Jace Beleren</b> · Mythic<br>🎙 <b>Numot:</b> “it&#x27;s insane… Card&#x27;s insane.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/f/7/f76c4d8e-3e1f-4264-99af-1b8adb9a06be.jpg?1789127482" width="240" alt="Cruel Calculations" loading="lazy"></td><td><b>Cruel Calculations</b> · Rare<br>🎙 <b>Numot:</b> “unplayable.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/0/8/0853bb80-8664-432a-8457-600139fd96d5.jpg?1788878145" width="240" alt="Diviner of Victory // Unwind History" loading="lazy"></td><td><b>Diviner of Victory // Unwind History</b> · Rare<br>🎙 <b>Numot:</b> “for a one drop, that&#x27;s just very good… As good of a one drop as you can get.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/2/8/282588b9-3656-453b-aa25-2419e078ddc1.jpg?1788878150" width="240" alt="Jace&#x27;s Machinations" loading="lazy"></td><td><b>Jace&#x27;s Machinations</b> · Rare<br>🎙 <b>Numot:</b> “that&#x27;s great… excellent, it&#x27;s just a better divination.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/7/4/74087795-0b38-4fd2-9841-147583baca41.jpg?1789644880" width="240" alt="Jace, Reality Sculptor" loading="lazy"></td><td><b>Jace, Reality Sculptor</b> · Rare<br>🎙 <b>Numot:</b> “it&#x27;s okay. It&#x27;s actually not crazy.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/a/5/a5183681-447b-4023-91f7-00e9338f4417.jpg?1789128032" width="240" alt="Lyra, Tolarian Archangel" loading="lazy"></td><td><b>Lyra, Tolarian Archangel</b> · Rare<br>🎙 <b>Numot:</b> “That card sweet… if it ever makes extra flyers you&#x27;re just winning.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/6/d/6d7d8fa7-ce69-4a8c-9af0-55571393a244.jpg?1789729644" width="240" alt="Samut, Tyrant of Naktamun" loading="lazy"></td><td><b>Samut, Tyrant of Naktamun</b> · Rare<br>🎙 <b>Numot:</b> “Just an annoying two drop”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/0/8/08ffbd51-2bd3-4262-8809-09576ce2b6f5.jpg?1789385594" width="240" alt="Sphinx of False Conclusions" loading="lazy"></td><td><b>Sphinx of False Conclusions</b> · Rare<br>🎙 <b>Numot:</b> “Oh my god, Barf. I already hate that card. It&#x27;s too good.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/7/1/710302ca-c4be-4069-8ce1-f531414c74e9.jpg?1788878151" width="240" alt="Theorist&#x27;s Proxy" loading="lazy"></td><td><b>Theorist&#x27;s Proxy</b> · Rare<br>🎙 <b>Numot:</b> “Two mana 0/3 draw a card with flash. That&#x27;s good.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/e/3/e3afedb1-bf9d-4e31-9700-433514cc29b1.jpg?1789470807" width="240" alt="Variable Chaser // Arc of Fortune" loading="lazy"></td><td><b>Variable Chaser // Arc of Fortune</b> · Rare<br>🎙 <b>Numot:</b> “is fine on its own”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/8/e/8e3a2239-9348-4639-9318-e9e35b2cf86b.jpg?1789568409" width="240" alt="Arni, Humble Scribe" loading="lazy"></td><td><b>Arni, Humble Scribe</b> · Uncommon<br>🎧 <b>LR:</b> B+/B<br>🎓 <b>LLU:</b> Alex C+ / Mark C− (Mark: &quot;I think I like your take&quot;)<br>🎙 <b>Numot:</b> “Yeah, I&#x27;d play that.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/1/4/145b928d-a7ff-4fe5-ae4d-bbae7b1d955b.jpg?1788878107" width="240" alt="Countersculpt" loading="lazy"></td><td><b>Countersculpt</b> · Uncommon<br>🎧 <b>LR:</b> C<br>🎓 <b>LLU:</b> B (Mark moved up from B− to Alex&#x27;s B)<br>🎙 <b>Numot:</b> “baseline, I think it&#x27;s not bad.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/a/3/a3a2edbb-d144-4670-acad-17316cea98d2.jpg?1789127697" width="240" alt="Fblthp, Impossibly Lost" loading="lazy"></td><td><b>Fblthp, Impossibly Lost</b> · Uncommon<br>🎧 <b>LR:</b> D− (joking &quot;build-around A+&quot; for the alt-win)<br>🎓 <b>LLU:</b> D+<br>🎙 <b>Numot:</b> “Oftentimes it&#x27;s a two mana draw two… like okay.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/9/c/9c334530-0880-46b5-a358-9603eee3cecf.jpg?1789128026" width="240" alt="Geist of Saint Thalia" loading="lazy"></td><td><b>Geist of Saint Thalia</b> · Uncommon<br>🎧 <b>LR:</b> build-around C+<br>🎓 <b>LLU:</b> Alex C / Mark C−<br>🎙 <b>Numot:</b> “never going to want to play… I don&#x27;t like this type of card.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/8/5/85faaa9d-4656-4365-871d-7cba53ed0996.jpg?1789387113" width="240" alt="Hapatra, the Desert Frost" loading="lazy"></td><td><b>Hapatra, the Desert Frost</b> · Uncommon<br>🎧 <b>LR:</b> C+<br>🎓 <b>LLU:</b> Alex C / Mark C−<br>🎙 <b>Numot:</b> “that&#x27;s fine. It&#x27;s a big Frost Lynx with an ability.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/d/0/d0ecae06-bc5a-4886-84df-c2900816f226.jpg?1788329222" width="240" alt="Perfected Theory" loading="lazy"></td><td><b>Perfected Theory</b> · Uncommon<br>🎧 <b>LR:</b> D<br>🎓 <b>LLU:</b> Alex C / Mark D+<br>🎙 <b>Numot:</b> “That&#x27;s not bad. I&#x27;ll play that.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/c/4/c4effc17-0d0e-423a-b5f2-597ea6c71f67.jpg?1789576786" width="240" alt="Plan for All Outcomes" loading="lazy"></td><td><b>Plan for All Outcomes</b> · Uncommon<br>🎧 <b>LR:</b> B/C+<br>🎓 <b>LLU:</b> B (Alex moved up from C+ to Mark&#x27;s B)<br>🎙 <b>Numot:</b> “that card&#x27;s sweet… I like it a lot.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/9/2/9244efad-35ab-45c0-b173-4bc68276cb67.jpg?1789470790" width="240" alt="Precise Redaction" loading="lazy"></td><td><b>Precise Redaction</b> · Uncommon<br>🎧 <b>LR:</b> sideboard B<br>🎓 <b>LLU:</b> sideboard (no letter)<br>🎙 <b>Numot:</b> “good sideboard card”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/b/8/b8466593-40fe-4557-89b2-760c1c92087b.jpg?1789127178" width="240" alt="Proft, Consulting Detective" loading="lazy"></td><td><b>Proft, Consulting Detective</b> · Uncommon<br>🎧 <b>LR:</b> no grade given<br>🎓 <b>LLU:</b> C<br>🎙 <b>Numot:</b> “that&#x27;s cool… it&#x27;s good two drop.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/0/0/00af4e87-5576-4a43-9422-4c35b2b66775.jpg?1789127229" width="240" alt="Ruric Thar, Biomagus" loading="lazy"></td><td><b>Ruric Thar, Biomagus</b> · Uncommon<br>🎧 <b>LR:</b> B−<br>🎓 <b>LLU:</b> Alex C− / Mark C<br>🎙 <b>Numot:</b> “He&#x27;s big. He&#x27;s annoying… I&#x27;d play that at my top end.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/3/9/3983d71e-3c23-4b36-b331-08e0707d8245.jpg?1789127702" width="240" alt="Tetsuko Umezawa, Fugitive" loading="lazy"></td><td><b>Tetsuko Umezawa, Fugitive</b> · Uncommon<br>🎧 <b>LR:</b> B−<br>🎓 <b>LLU:</b> Alex B− / Mark C+<br>🎙 <b>Numot:</b> “probably fine.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/a/3/a349800f-b634-4e74-a9d9-185df37ad909.jpg?1789568451" width="240" alt="Traxos, Academy Guardian" loading="lazy"></td><td><b>Traxos, Academy Guardian</b> · Uncommon<br>🎧 <b>LR:</b> B<br>🎓 <b>LLU:</b> Alex B− / Mark C<br>🎙 <b>Numot:</b> “a very annoying flyer… That&#x27;s cool.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/8/3/838b0efb-7398-4df9-8fdf-b8af43b47938.jpg?1789014637" width="240" alt="Way of the Cryomancer" loading="lazy"></td><td><b>Way of the Cryomancer</b> · Uncommon<br>🎧 <b>LR:</b> D<br>🎓 <b>LLU:</b> Alex C+ / Mark D+<br>🎙 <b>Numot:</b> “I like it.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/5/8/5838af68-66c3-4fe8-ab89-0a1721b0cfeb.jpg?1789729565" width="240" alt="Way of the Mind Sculptor" loading="lazy"></td><td><b>Way of the Mind Sculptor</b> · Uncommon<br>🎧 <b>LR:</b> build-around B (&quot;B or B+&quot;)<br>🎓 <b>LLU:</b> Alex D+ / Mark C− (?)<br>🎙 <b>Numot:</b> “a little expensive. Five mana is actually quite a bit.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/f/4/f45ba926-6496-4bd4-96eb-663946d56bbf.jpg?1789128043" width="240" alt="Yargle, Goliath of Otaria" loading="lazy"></td><td><b>Yargle, Goliath of Otaria</b> · Uncommon<br>🎧 <b>LR:</b> sideboard C/C− vs R/G; D/F main<br>🎓 <b>LLU:</b> F (?)<br>🎙 <b>Numot:</b> “Pass.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/4/5/45e81487-8b8c-480b-922a-eaa9edc7201d.jpg?1789127717" width="240" alt="Yuriko, Hope from the Shadows" loading="lazy"></td><td><b>Yuriko, Hope from the Shadows</b> · Uncommon<br>🎧 <b>LR:</b> C−/C+ (?)<br>🎓 <b>LLU:</b> Alex C / Mark C+ (?)<br>🎙 <b>Numot:</b> “that&#x27;s a solid one drop.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/9/b/9ba1f7ce-3404-4932-9795-22967707f762.jpg?1789556701" width="240" alt="Cryotheory Adept" loading="lazy"></td><td><b>Cryotheory Adept</b> · Common<br>🎧 <b>LR:</b> D/C−<br>🎓 <b>LLU:</b> Alex D+ / Mark D−<br>🎙 <b>Numot:</b> “fine filler, I guess.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/9/6/960c7335-331d-488b-be68-2ad1c1c695dc.jpg?1789556709" width="240" alt="Divining Duelist" loading="lazy"></td><td><b>Divining Duelist</b> · Common<br>🎧 <b>LR:</b> C<br>🎓 <b>LLU:</b> C− / D+<br>🎙 <b>Numot:</b> “fine for three mana. Versatile enough… Playable.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/8/d/8d754b96-5e44-45af-9c7a-b0da59fbe4c3.jpg?1788779540" width="240" alt="Icy Reception" loading="lazy"></td><td><b>Icy Reception</b> · Common<br>🎧 <b>LR:</b> C/C+<br>🎓 <b>LLU:</b> C+<br>🎙 <b>Numot:</b> “probably a decent common”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/a/5/a5988272-faaa-463d-a0a1-a8e96b946bad.jpg?1789385916" width="240" alt="Infinite Coursework" loading="lazy"></td><td><b>Infinite Coursework</b> · Common<br>🎧 <b>LR:</b> C+/B<br>🎓 <b>LLU:</b> Alex C− / Mark C+<br>🎙 <b>Numot:</b> “the classic blue tap down removal spell… that&#x27;s fine.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/f/5/f5324741-353a-4a70-adb2-b631b00806dd.jpg?1789556707" width="240" alt="Mindseeker Oculus" loading="lazy"></td><td><b>Mindseeker Oculus</b> · Common<br>🎧 <b>LR:</b> B<br>🎓 <b>LLU:</b> B−<br>🎙 <b>Numot:</b> “Wow. That&#x27;s a really good common… Very good one.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/a/0/a08c7ec2-4c6a-4db2-85a7-41afe8731523.jpg?1788878176" width="240" alt="Protege&#x27;s Awakening" loading="lazy"></td><td><b>Protege&#x27;s Awakening</b> · Common<br>🎧 <b>LR:</b> C<br>🎓 <b>LLU:</b> Alex C / Mark C−<br>🎙 <b>Numot:</b> “four mana, empower J6, but also draw a card… That&#x27;s not bad.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/f/4/f49be090-c745-40e5-bc1c-605b8d98acdf.jpg?1789644816" width="240" alt="Sphinx&#x27;s Approach" loading="lazy"></td><td><b>Sphinx&#x27;s Approach</b> · Common<br>🎧 <b>LR:</b> D<br>🎓 <b>LLU:</b> D<br>🎙 <b>Numot:</b> “cool if you ever get that ability, but it&#x27;s not going to happen.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/9/d/9df8a06d-c7de-49af-8c01-06dca3dfef4b.jpg?1789385597" width="240" alt="Surveillance Phantasm" loading="lazy"></td><td><b>Surveillance Phantasm</b> · Common<br>🎧 <b>LR:</b> C/C+<br>🎓 <b>LLU:</b> C+<br>🎙 <b>Numot:</b> “probably plays a lot better than it looks… I like that.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/0/a/0adbb4b2-a142-48da-8f4b-fa91529dbac4.jpg?1789556706" width="240" alt="Undulating Witness" loading="lazy"></td><td><b>Undulating Witness</b> · Common<br>🎧 <b>LR:</b> C+<br>🎓 <b>LLU:</b> Alex C− / Mark D+<br>🎙 <b>Numot:</b> “not that good… compare that to the white one and there&#x27;s no comparison.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/d/d/ddad9f16-52d5-49de-82b0-b1a5294a9c44.jpg?1789556722" width="240" alt="Unsummon" loading="lazy"></td><td><b>Unsummon</b> · Common<br>🎧 <b>LR:</b> C/C+<br>🎓 <b>LLU:</b> B−<br>🎙 <b>Numot:</b> “playable. Not amazing.”</td></tr>
+</table>
 
 ### Black
 
-| Card | R | LR | LLU | Numot |
-|---|---|---|---|---|
-| `Bloodline Recollector` | M | — | — | just a good two drop. High upside two drop |
-| `Darklight Phoenix` | M | — | — | Yeah, that's bad. |
-| `Garruk, Veiled Butcher` | M | — | — | That is very good. Yikes. Would play that. |
-| `Overwrite the Multiverse` | M | — | — | Insane. |
-| `Dark Matter Manipulator` | R | — | — | That seems bad. |
-| `Gideon the Oathless` | R | — | — | a good three drop. Very solid annoying three drop. |
-| `Lich's Relic` | R | — | — | That thing's insane… That card's absurd… take that if you see it. Spla… |
-| `Liliana the Repentant` | R | — | — | this is just good. |
-| `Rise of the Deathbringer` | R | — | — | kind of legit. Seems good. |
-| `Sanctum Lurker` | R | — | — | This thing is insane… That's crazy. |
-| `Vraska's Final Mercy` | R | — | — | Just great. Excellent card. |
-| `Break Under Pressure` | U | B+ ("B, at least") | B− | That's good… sacks their biggest thing. |
-| `Danitha, Spear of Agony` | U | B | Alex C / Mark D → D+ | That's good. |
-| `Gallia, Tragic Host` | U | B− | C+ | Ah, good. Two drop. |
-| `Loot, the Anomaly` | U | D | Alex D+ / Mark D | It's fine. |
-| `Mabel, Bitter Recluse` | U | B | C+ | Oh that's really good for a one drop… kill their Jace token. |
-| `Massacre Girl, Most Wanted` | U | B | Alex D+ / Mark D | the drainer that gets bigger. Not bad. |
-| `Multiply by Zero` | U | B | B | Oh, that card's amazing. |
-| `Proft, Sinister Mastermind` | U | B | Alex B− / Mark C | This seems fine. |
-| `Rewrite Regrets` | U | C+ | C (possibly higher ceiling) | strong for four mana. |
-| `Terminal Criticism` | U | sideboard B | sideboard (no letter) | Good sideboard. |
-| `Teyo, Diamondblade Mage` | U | D (maybe D+) | C− | That's fine. |
-| `Tinybones, Pocket Nuisance` | U | C (almost C+) | C | maybe not good, but it's very very playable. |
-| `Way of the Deathbringer` | U | C | Alex C / Mark C− | That seems really solid. |
-| `Way of the Necromancer` | U | D / build-around C | Alex F / Mark D− | Solid. |
-| `Winter, Tormented Loner` | U | C / build-around C+ | Alex C+ / Mark C− ("maybe I'd meet you in the middle") | That's not bad at all. |
-| `Yargle, Glutton of Urborg` | U | D/F | no grade heard (garbled in captions) | Classic Yargle. Unplayable. |
-| `Apex Witchstalker` | C | C+/B− | Alex C / Mark C− | Oh yeah, that's good. |
-| `Cast Away Doubt` | C | C/C− | Alex D / Mark D+ | That's fine… not excited about it. |
-| `Extended Absence` | C | B+ → B | Alex C+ / Mark B− | That's good. Four mana instant. Solid. |
-| `Last Gasp` | C | B | Alex B− / Mark C+ | reprint. That's good. |
-| `Rampart Hunter` | C | D | Alex D / Mark C− | It's whatever. |
-| `Rank Rat` | C | C | C | the new ravenous rats… Probably fine. |
-| `Screeching Soulbreaker` | C | C+ | Alex C / Mark D+ | not bad. Very annoying. Big butt flyer |
-| `Silence the Echo` | C | C | Alex C / Mark D+ | That's good. Solid common. |
-| `Solve for Disappointment` | C | D− (started at D) | C− | still good… seems really solid. |
-| `Theoretical Necromancer` | C | D+ | D+ ("a theoretical D plus") | I hate this type of card. It's like fine. |
+<table class="expertcards">
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/4/f/4fcc913e-f736-460a-b24b-022fa2e861b9.jpg?1788329264" width="240" alt="Bloodline Recollector // Ancestral Craving" loading="lazy"></td><td><b>Bloodline Recollector // Ancestral Craving</b> · Mythic<br>🎙 <b>Numot:</b> “just a good two drop. High upside two drop”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/1/6/16c5f0f3-2578-40d3-9012-6eaef17fa0b1.jpg?1789471442" width="240" alt="Darklight Phoenix" loading="lazy"></td><td><b>Darklight Phoenix</b> · Mythic<br>🎙 <b>Numot:</b> “Yeah, that&#x27;s bad.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/d/4/d48bfb8a-d135-45f3-be99-4694b4b9ab93.jpg?1788329269" width="240" alt="Garruk, Veiled Butcher" loading="lazy"></td><td><b>Garruk, Veiled Butcher</b> · Mythic<br>🎙 <b>Numot:</b> “That is very good. Yikes. Would play that.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/c/4/c4554f5b-791b-48f6-bf54-ad28699e1beb.jpg?1788952080" width="240" alt="Overwrite the Multiverse" loading="lazy"></td><td><b>Overwrite the Multiverse</b> · Mythic<br>🎙 <b>Numot:</b> “Insane.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/4/e/4ec912d5-cbe7-4d07-9ece-b03ac02d3055.jpg?1789385959" width="240" alt="Dark Matter Manipulator" loading="lazy"></td><td><b>Dark Matter Manipulator</b> · Rare<br>🎙 <b>Numot:</b> “That seems bad.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/c/9/c985b0d1-25bd-4069-aab7-a566ff27a8f6.jpg?1789127990" width="240" alt="Gideon the Oathless" loading="lazy"></td><td><b>Gideon the Oathless</b> · Rare<br>🎙 <b>Numot:</b> “a good three drop. Very solid annoying three drop.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/b/1/b105511d-5022-4a84-b6ce-4bb433e93a62.jpg?1789644819" width="240" alt="Lich&#x27;s Relic" loading="lazy"></td><td><b>Lich&#x27;s Relic</b> · Rare<br>🎙 <b>Numot:</b> “That thing&#x27;s insane… That card&#x27;s absurd… take that if you see it. Splashable, too.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/1/e/1eb25a6c-d6b4-465d-990e-f1ab86b26b69.jpg?1788329273" width="240" alt="Liliana the Repentant" loading="lazy"></td><td><b>Liliana the Repentant</b> · Rare<br>🎙 <b>Numot:</b> “this is just good.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/8/1/811719ad-b5a3-4d31-8c6f-5dbdfccf7c1f.jpg?1789470807" width="240" alt="Rise of the Deathbringer" loading="lazy"></td><td><b>Rise of the Deathbringer</b> · Rare<br>🎙 <b>Numot:</b> “kind of legit. Seems good.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/2/1/2185c08f-bb4d-49d5-8b6c-c629a48bb61c.jpg?1789556729" width="240" alt="Sanctum Lurker" loading="lazy"></td><td><b>Sanctum Lurker</b> · Rare<br>🎙 <b>Numot:</b> “This thing is insane… That&#x27;s crazy.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/9/9/992bd991-7cfb-459f-bafd-9a44f3c925c5.jpg?1789699369" width="240" alt="Vraska&#x27;s Final Mercy" loading="lazy"></td><td><b>Vraska&#x27;s Final Mercy</b> · Rare<br>🎙 <b>Numot:</b> “Just great. Excellent card.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/4/6/46974d94-e900-43e4-92b5-4fb9b9f7cf46.jpg?1789385622" width="240" alt="Break Under Pressure" loading="lazy"></td><td><b>Break Under Pressure</b> · Uncommon<br>🎧 <b>LR:</b> B+ (&quot;B, at least&quot;)<br>🎓 <b>LLU:</b> B−<br>🎙 <b>Numot:</b> “That&#x27;s good… sacks their biggest thing.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/6/4/6489814b-3d10-423e-988c-324740d36748.jpg?1789127194" width="240" alt="Danitha, Spear of Agony" loading="lazy"></td><td><b>Danitha, Spear of Agony</b> · Uncommon<br>🎧 <b>LR:</b> B<br>🎓 <b>LLU:</b> Alex C / Mark D → D+<br>🎙 <b>Numot:</b> “That&#x27;s good.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/4/9/498fa810-8522-4020-b773-52ad404c9f65.jpg?1789385697" width="240" alt="Gallia, Tragic Host" loading="lazy"></td><td><b>Gallia, Tragic Host</b> · Uncommon<br>🎧 <b>LR:</b> B−<br>🎓 <b>LLU:</b> C+<br>🎙 <b>Numot:</b> “Ah, good. Two drop.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/4/f/4f6fd2fa-8bc8-4743-bbc8-b56475d64eff.jpg?1789568430" width="240" alt="Loot, the Anomaly" loading="lazy"></td><td><b>Loot, the Anomaly</b> · Uncommon<br>🎧 <b>LR:</b> D<br>🎓 <b>LLU:</b> Alex D+ / Mark D<br>🎙 <b>Numot:</b> “It&#x27;s fine.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/b/2/b2a412b0-2ae4-4552-bc5e-70654b6b9b4e.jpg?1789385677" width="240" alt="Mabel, Bitter Recluse" loading="lazy"></td><td><b>Mabel, Bitter Recluse</b> · Uncommon<br>🎧 <b>LR:</b> B<br>🎓 <b>LLU:</b> C+<br>🎙 <b>Numot:</b> “Oh that&#x27;s really good for a one drop… kill their Jace token.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/9/0/9028d31f-9c41-47e3-885b-6a869bca8178.jpg?1789644882" width="240" alt="Massacre Girl, Most Wanted" loading="lazy"></td><td><b>Massacre Girl, Most Wanted</b> · Uncommon<br>🎧 <b>LR:</b> B<br>🎓 <b>LLU:</b> Alex D+ / Mark D<br>🎙 <b>Numot:</b> “the drainer that gets bigger. Not bad.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/9/0/90d684a4-9639-4792-8760-2011a7a85370.jpg?1789644823" width="240" alt="Multiply by Zero" loading="lazy"></td><td><b>Multiply by Zero</b> · Uncommon<br>🎧 <b>LR:</b> B<br>🎓 <b>LLU:</b> B<br>🎙 <b>Numot:</b> “Oh, that card&#x27;s amazing.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/d/3/d36b0e06-cb82-4c48-bf35-e76f109116f6.jpg?1789127196" width="240" alt="Proft, Sinister Mastermind" loading="lazy"></td><td><b>Proft, Sinister Mastermind</b> · Uncommon<br>🎧 <b>LR:</b> B<br>🎓 <b>LLU:</b> Alex B− / Mark C<br>🎙 <b>Numot:</b> “This seems fine.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/4/5/453cfde7-c460-4b55-9472-b714e16f24bb.jpg?1788952087" width="240" alt="Rewrite Regrets" loading="lazy"></td><td><b>Rewrite Regrets</b> · Uncommon<br>🎧 <b>LR:</b> C+<br>🎓 <b>LLU:</b> C (possibly higher ceiling)<br>🎙 <b>Numot:</b> “strong for four mana.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/7/e/7ebd7e38-b27c-4c6e-aaea-e8ee5ba5e5df.jpg?1789470810" width="240" alt="Terminal Criticism" loading="lazy"></td><td><b>Terminal Criticism</b> · Uncommon<br>🎧 <b>LR:</b> sideboard B<br>🎓 <b>LLU:</b> sideboard (no letter)<br>🎙 <b>Numot:</b> “Good sideboard.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/1/0/100c3b67-0c92-4224-b5ed-67789c612df7.jpg?1789470892" width="240" alt="Teyo, Diamondblade Mage" loading="lazy"></td><td><b>Teyo, Diamondblade Mage</b> · Uncommon<br>🎧 <b>LR:</b> D (maybe D+)<br>🎓 <b>LLU:</b> C−<br>🎙 <b>Numot:</b> “That&#x27;s fine.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/2/f/2f47ddf7-35b6-4205-8045-f057914c5f64.jpg?1788329294" width="240" alt="Tinybones, Pocket Nuisance" loading="lazy"></td><td><b>Tinybones, Pocket Nuisance</b> · Uncommon<br>🎧 <b>LR:</b> C (almost C+)<br>🎓 <b>LLU:</b> C<br>🎙 <b>Numot:</b> “maybe not good, but it&#x27;s very very playable.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/1/2/12dd46b2-e892-4660-b120-55766fd4d878.jpg?1789729576" width="240" alt="Way of the Deathbringer" loading="lazy"></td><td><b>Way of the Deathbringer</b> · Uncommon<br>🎧 <b>LR:</b> C<br>🎓 <b>LLU:</b> Alex C / Mark C−<br>🎙 <b>Numot:</b> “That seems really solid.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/a/0/a0ff9689-ea49-4fff-b37c-4abbaeb0f73d.jpg?1789729526" width="240" alt="Way of the Necromancer" loading="lazy"></td><td><b>Way of the Necromancer</b> · Uncommon<br>🎧 <b>LR:</b> D / build-around C<br>🎓 <b>LLU:</b> Alex F / Mark D−<br>🎙 <b>Numot:</b> “Solid.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/9/6/9670f754-f41f-45ac-8e8b-025ad2c0f66b.jpg?1789127724" width="240" alt="Winter, Tormented Loner" loading="lazy"></td><td><b>Winter, Tormented Loner</b> · Uncommon<br>🎧 <b>LR:</b> C / build-around C+<br>🎓 <b>LLU:</b> Alex C+ / Mark C− (&quot;maybe I&#x27;d meet you in the middle&quot;)<br>🎙 <b>Numot:</b> “That&#x27;s not bad at all.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/0/4/04c816fb-5951-4db1-8834-ed3f0b36bfe1.jpg?1789127722" width="240" alt="Yargle, Glutton of Urborg" loading="lazy"></td><td><b>Yargle, Glutton of Urborg</b> · Uncommon<br>🎧 <b>LR:</b> D/F<br>🎓 <b>LLU:</b> no grade heard (garbled in captions)<br>🎙 <b>Numot:</b> “Classic Yargle. Unplayable.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/c/d/cd56f047-6bdc-4e83-8a7c-923ebad26302.jpg?1789556710" width="240" alt="Apex Witchstalker" loading="lazy"></td><td><b>Apex Witchstalker</b> · Common<br>🎧 <b>LR:</b> C+/B−<br>🎓 <b>LLU:</b> Alex C / Mark C−<br>🎙 <b>Numot:</b> “Oh yeah, that&#x27;s good.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/3/b/3b5b28a4-0abd-4dc2-9856-c9a8d27f6a2d.jpg?1788353191" width="240" alt="Cast Away Doubt" loading="lazy"></td><td><b>Cast Away Doubt</b> · Common<br>🎧 <b>LR:</b> C/C−<br>🎓 <b>LLU:</b> Alex D / Mark D+<br>🎙 <b>Numot:</b> “That&#x27;s fine… not excited about it.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/e/b/eb4b6ed8-782e-4473-abc9-d50bf2275c6a.jpg?1789556713" width="240" alt="Extended Absence" loading="lazy"></td><td><b>Extended Absence</b> · Common<br>🎧 <b>LR:</b> B+ → B<br>🎓 <b>LLU:</b> Alex C+ / Mark B−<br>🎙 <b>Numot:</b> “That&#x27;s good. Four mana instant. Solid.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/2/3/2381d123-d8c7-4822-98fe-b1c365beb5ed.jpg?1789127524" width="240" alt="Last Gasp" loading="lazy"></td><td><b>Last Gasp</b> · Common<br>🎧 <b>LR:</b> B<br>🎓 <b>LLU:</b> Alex B− / Mark C+<br>🎙 <b>Numot:</b> “reprint. That&#x27;s good.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/f/4/f4a80225-7459-4151-86bb-8fdea31c39a6.jpg?1789127211" width="240" alt="Rampart Hunter" loading="lazy"></td><td><b>Rampart Hunter</b> · Common<br>🎧 <b>LR:</b> D<br>🎓 <b>LLU:</b> Alex D / Mark C−<br>🎙 <b>Numot:</b> “It&#x27;s whatever.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/4/f/4ff6da82-d7dd-4b59-b7e6-30670cea7169.jpg?1789556727" width="240" alt="Rank Rat" loading="lazy"></td><td><b>Rank Rat</b> · Common<br>🎧 <b>LR:</b> C<br>🎓 <b>LLU:</b> C<br>🎙 <b>Numot:</b> “the new ravenous rats… Probably fine.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/7/3/738667a1-c184-43ea-829f-49fbb69b6fc0.jpg?1789385960" width="240" alt="Screeching Soulbreaker" loading="lazy"></td><td><b>Screeching Soulbreaker</b> · Common<br>🎧 <b>LR:</b> C+<br>🎓 <b>LLU:</b> Alex C / Mark D+<br>🎙 <b>Numot:</b> “not bad. Very annoying. Big butt flyer”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/f/1/f1d274db-751b-4414-a38d-762198168e91.jpg?1789385640" width="240" alt="Silence the Echo" loading="lazy"></td><td><b>Silence the Echo</b> · Common<br>🎧 <b>LR:</b> C<br>🎓 <b>LLU:</b> Alex C / Mark D+<br>🎙 <b>Numot:</b> “That&#x27;s good. Solid common.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/7/b/7beaa8c9-1a2c-4c88-b579-91e371d8d9e3.jpg?1788878155" width="240" alt="Solve for Disappointment" loading="lazy"></td><td><b>Solve for Disappointment</b> · Common<br>🎧 <b>LR:</b> D− (started at D)<br>🎓 <b>LLU:</b> C−<br>🎙 <b>Numot:</b> “still good… seems really solid.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/e/3/e36a7908-1e22-494b-adb4-e72ac0974d62.jpg?1789556734" width="240" alt="Theoretical Necromancer" loading="lazy"></td><td><b>Theoretical Necromancer</b> · Common<br>🎧 <b>LR:</b> D+<br>🎓 <b>LLU:</b> D+ (&quot;a theoretical D plus&quot;)<br>🎙 <b>Numot:</b> “I hate this type of card. It&#x27;s like fine.”</td></tr>
+</table>
 
 ### Red
 
-| Card | R | LR | LLU | Numot |
-|---|---|---|---|---|
-| `Ajani Unrelenting` | M | — | — | This card is dumb… it is insane. |
-| `Chandra, Torch of Defiance` | M | — | — | reprint also just very good. |
-| `Craterclaw Colossus` | M | — | — | real good with the heartwood tokens… not hard to just insta win. |
-| `Stingcaster Mage` | M | — | — | Solid mythic as well |
-| `Ajani's Anguish` | R | — | — | This card's nuts… just good. |
-| `Curse-Marred Demon` | R | — | — | This is very good. |
-| `Draconic Visitor` | R | — | — | if this triggers once you basically win |
-| `Face Yourself` | R | — | — | really cool… always going to want to play, but man, this one could be … |
-| `Identity Echo` | R | — | — | It's bad, but it's neat. |
-| `Master of Barbs` | R | — | — | I don't feel like that extra ability is going to matter much, but what… |
-| `Pompous Battlemage` | R | — | — | It's fine. Not great. Fine. |
-| `Pyre Rhymer` | R | — | — | Fine… not exciting. |
-| `Samut, Hazoret's Champion` | R | — | — | That's just good. Just a good two drop. |
-| `Arni, Renowned Champion` | U | C | D− | I hate this type of card. I have no doubt I will lose to it |
-| `Command the Stage` | U | build-around C+ (Marshall) | Alex C+ / Mark C | deck dependent, but has the potential to be pretty good. |
-| `Essence Burn` | U | sideboard B | sideboard (no letter) | Good sideboard. |
-| `Fulminous Forte` | U | B (maybe B+) | B− | Oh, this card's nice… very solid three mana instant. |
-| `Gallia, the Merrymaker` | U | C−/C | C− | Yeah, fine. Two drop. |
-| `Jiang Yanggu, Alone` | U | C+/B− | C+ | okay. I'm not going to say it's crazy. It's like fine. |
-| `Kiora of Fire and Ashes` | U | B+ | Alex B / Mark B+ | Just a great uncommon even without the eight mana ability. |
-| `Koth, the Geomancer` | U | B− | Alex C− / Mark D+ | That's kind of neat. Sure. Yeah. Play that. |
-| `Marwyn, the Clearcutter` | U | C+ (started C) | Alex C / Mark C+ | Just solid one drop. |
-| `Pia, Determined Rebuilder` | U | B− → B | C+ | a classic solid card. |
-| `Tetsuko Umezawa, Pursuer` | U | C+ | Alex C− / Mark D | That card's annoying. |
-| `Tomik, Izzet Sparkmage` | U | build-around B | Alex D+ / Mark C− | You're going to need a handful of ways to make that relevant… I don't … |
-| `Violent Echoes` | U | B | Alex B− / Mark B+ (Mark nearly gave A−) | Yeah, great… Seems excellent. |
-| `Way of the Pyromancer` | U | C+/B (LSV B) | Alex D+ → C / Mark C | real nice… it's very good. |
-| `Way of the Warlord` | U | B/B+ (LSV B+) | Alex C+ / Mark D+ (the biggest red split) | Card's great. Excellent card. |
-| `Winter, Team Player` | U | C (build-around lean) | Alex D+ / Mark D | That doesn't seem good to me. |
-| `Artifist Acumen` | C | no grade given | Alex D+ / Mark D | I'm not saying it's good. |
-| `Awaken the Inferno` | C | B− | C+ | Still solid enough to play basically always |
-| `Blazing Crescendo` | C | C−/D | Alex C / Mark C− | I like this card. I don't know how good it is. |
-| `Chandra's Emberling` | C | C (optimistic; "probably a D") | Alex D / Mark D+ | Spellgorger Weird with haste… cool card. |
-| `Eardrum Rattler` | C | D → D+/C− | Alex D+ / Mark D− | Okay, it's a two drop. |
-| `Heartstring Puller` | C | C+/B− | C+ (Mark nearly B−) | This is a great common… just a good common. |
-| `No Admittance` | C | B | Alex B− / Mark C+ | Good… you're not going to do much better for two mana. |
-| `Skilled Battlecarver` | C | C− | C | Very annoying aggro card. |
-| `Tether Technician` | C | C | Alex C / Mark D+ | the classically good big red creature. |
-| `Wrath of the Bloodmane` | C | B | Alex C+ / Mark C | that's just really good… Good common. |
+<table class="expertcards">
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/b/c/bc3c096f-7f6c-474c-a2c8-75d3e6ddd6f5.jpg?1788329317" width="240" alt="Ajani Unrelenting" loading="lazy"></td><td><b>Ajani Unrelenting</b> · Mythic<br>🎙 <b>Numot:</b> “This card is dumb… it is insane.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/4/0/40cb22c8-cb03-45c9-bb0e-b8cabdcc43cd.jpg?1788329325" width="240" alt="Chandra, Torch of Defiance" loading="lazy"></td><td><b>Chandra, Torch of Defiance</b> · Mythic<br>🎙 <b>Numot:</b> “reprint also just very good.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/4/7/47793a51-08c6-4ad2-a7e5-a4484d83a5cd.jpg?1788329298" width="240" alt="Craterclaw Colossus" loading="lazy"></td><td><b>Craterclaw Colossus</b> · Mythic<br>🎙 <b>Numot:</b> “real good with the heartwood tokens… not hard to just insta win.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/2/d/2d8e8e5f-3bf5-490d-aa9c-9df2b26f1460.jpg?1788329303" width="240" alt="Stingcaster Mage" loading="lazy"></td><td><b>Stingcaster Mage</b> · Mythic<br>🎙 <b>Numot:</b> “Solid mythic as well”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/d/9/d9039a58-2f17-4b8a-b714-3a2f0b46f057.jpg?1789470674" width="240" alt="Ajani&#x27;s Anguish" loading="lazy"></td><td><b>Ajani&#x27;s Anguish</b> · Rare<br>🎙 <b>Numot:</b> “This card&#x27;s nuts… just good.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/8/f/8f827e50-0a08-4bc8-98b1-b26c9af15ef2.jpg?1789470818" width="240" alt="Curse-Marred Demon" loading="lazy"></td><td><b>Curse-Marred Demon</b> · Rare<br>🎙 <b>Numot:</b> “This is very good.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/1/1/112f8478-bd89-4a14-9721-8ab750613129.jpg?1789470842" width="240" alt="Draconic Visitor" loading="lazy"></td><td><b>Draconic Visitor</b> · Rare<br>🎙 <b>Numot:</b> “if this triggers once you basically win”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/3/c/3ccf8f64-19bd-4fdf-b70a-30a042bacf2f.jpg?1789127528" width="240" alt="Face Yourself" loading="lazy"></td><td><b>Face Yourself</b> · Rare<br>🎙 <b>Numot:</b> “really cool… always going to want to play, but man, this one could be real bad.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/e/6/e600b33b-8916-43dd-95d3-d7cbf874933d.jpg?1789385968" width="240" alt="Identity Echo" loading="lazy"></td><td><b>Identity Echo</b> · Rare<br>🎙 <b>Numot:</b> “It&#x27;s bad, but it&#x27;s neat.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/4/4/4404d9d4-9cdd-4dad-a4f6-574d90db5052.jpg?1789127596" width="240" alt="Master of Barbs" loading="lazy"></td><td><b>Master of Barbs</b> · Rare<br>🎙 <b>Numot:</b> “I don&#x27;t feel like that extra ability is going to matter much, but whatever.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/a/a/aa0f77ac-741a-444a-8bf0-a42c644726bf.jpg?1788878186" width="240" alt="Pompous Battlemage // Improvised Act" loading="lazy"></td><td><b>Pompous Battlemage // Improvised Act</b> · Rare<br>🎙 <b>Numot:</b> “It&#x27;s fine. Not great. Fine.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/2/b/2b0ebea0-86de-4da4-9fe8-dacc1e75c161.jpg?1789470850" width="240" alt="Pyre Rhymer // Molten Tide" loading="lazy"></td><td><b>Pyre Rhymer // Molten Tide</b> · Rare<br>🎙 <b>Numot:</b> “Fine… not exciting.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/b/a/ba920f23-f05c-410e-8516-c93abedf1d4d.jpg?1789729662" width="240" alt="Samut, Hazoret&#x27;s Champion" loading="lazy"></td><td><b>Samut, Hazoret&#x27;s Champion</b> · Rare<br>🎙 <b>Numot:</b> “That&#x27;s just good. Just a good two drop.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/b/d/bd8db649-1dba-457d-8327-e1f1da1aab36.jpg?1789557035" width="240" alt="Arni, Renowned Champion" loading="lazy"></td><td><b>Arni, Renowned Champion</b> · Uncommon<br>🎧 <b>LR:</b> C<br>🎓 <b>LLU:</b> D−<br>🎙 <b>Numot:</b> “I hate this type of card. I have no doubt I will lose to it”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/f/3/f3307da2-6dad-4ef2-9614-a7d34f38088e.jpg?1789644825" width="240" alt="Command the Stage" loading="lazy"></td><td><b>Command the Stage</b> · Uncommon<br>🎧 <b>LR:</b> build-around C+ (Marshall)<br>🎓 <b>LLU:</b> Alex C+ / Mark C<br>🎙 <b>Numot:</b> “deck dependent, but has the potential to be pretty good.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/d/2/d2e958de-70de-4156-8f9b-b2c0c1ba704a.jpg?1789470825" width="240" alt="Essence Burn" loading="lazy"></td><td><b>Essence Burn</b> · Uncommon<br>🎧 <b>LR:</b> sideboard B<br>🎓 <b>LLU:</b> sideboard (no letter)<br>🎙 <b>Numot:</b> “Good sideboard.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/1/9/19acb2b5-3b3e-43f0-bd81-8426ed3d9c55.jpg?1789614832" width="240" alt="Fulminous Forte" loading="lazy"></td><td><b>Fulminous Forte</b> · Uncommon<br>🎧 <b>LR:</b> B (maybe B+)<br>🎓 <b>LLU:</b> B−<br>🎙 <b>Numot:</b> “Oh, this card&#x27;s nice… very solid three mana instant.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/f/2/f27d50f0-d76e-4ce1-a8d9-d997af6a5b41.jpg?1789385716" width="240" alt="Gallia, the Merrymaker" loading="lazy"></td><td><b>Gallia, the Merrymaker</b> · Uncommon<br>🎧 <b>LR:</b> C−/C<br>🎓 <b>LLU:</b> C−<br>🎙 <b>Numot:</b> “Yeah, fine. Two drop.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/e/8/e8c1ce21-b77d-40bf-9ed1-478604e71f5f.jpg?1789014416" width="240" alt="Jiang Yanggu, Alone" loading="lazy"></td><td><b>Jiang Yanggu, Alone</b> · Uncommon<br>🎧 <b>LR:</b> C+/B−<br>🎓 <b>LLU:</b> C+<br>🎙 <b>Numot:</b> “okay. I&#x27;m not going to say it&#x27;s crazy. It&#x27;s like fine.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/0/8/08657053-86f9-4c52-abf0-d9cdd443ae3b.jpg?1789127995" width="240" alt="Kiora of Fire and Ashes" loading="lazy"></td><td><b>Kiora of Fire and Ashes</b> · Uncommon<br>🎧 <b>LR:</b> B+<br>🎓 <b>LLU:</b> Alex B / Mark B+<br>🎙 <b>Numot:</b> “Just a great uncommon even without the eight mana ability.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/5/4/54f64e95-5a97-4d7c-9939-7f33a3165562.jpg?1789470892" width="240" alt="Koth, the Geomancer" loading="lazy"></td><td><b>Koth, the Geomancer</b> · Uncommon<br>🎧 <b>LR:</b> B−<br>🎓 <b>LLU:</b> Alex C− / Mark D+<br>🎙 <b>Numot:</b> “That&#x27;s kind of neat. Sure. Yeah. Play that.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/f/9/f93da73c-ca8b-438e-8387-6109dac3fc1a.jpg?1789644549" width="240" alt="Marwyn, the Clearcutter" loading="lazy"></td><td><b>Marwyn, the Clearcutter</b> · Uncommon<br>🎧 <b>LR:</b> C+ (started C)<br>🎓 <b>LLU:</b> Alex C / Mark C+<br>🎙 <b>Numot:</b> “Just solid one drop.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/d/d/dd3faaf4-45ca-4714-8dbe-37102ec131cf.jpg?1789385851" width="240" alt="Pia, Determined Rebuilder" loading="lazy"></td><td><b>Pia, Determined Rebuilder</b> · Uncommon<br>🎧 <b>LR:</b> B− → B<br>🎓 <b>LLU:</b> C+<br>🎙 <b>Numot:</b> “a classic solid card.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/d/f/df818900-ce5e-4b0d-a927-c975cbef7eda.jpg?1789128002" width="240" alt="Tetsuko Umezawa, Pursuer" loading="lazy"></td><td><b>Tetsuko Umezawa, Pursuer</b> · Uncommon<br>🎧 <b>LR:</b> C+<br>🎓 <b>LLU:</b> Alex C− / Mark D<br>🎙 <b>Numot:</b> “That card&#x27;s annoying.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/5/c/5c5afd5f-6f37-4c3e-83f0-68fdcea98810.jpg?1789729773" width="240" alt="Tomik, Izzet Sparkmage" loading="lazy"></td><td><b>Tomik, Izzet Sparkmage</b> · Uncommon<br>🎧 <b>LR:</b> build-around B<br>🎓 <b>LLU:</b> Alex D+ / Mark C−<br>🎙 <b>Numot:</b> “You&#x27;re going to need a handful of ways to make that relevant… I don&#x27;t think I would normally want to play.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/a/d/ad03ba90-2442-4a71-94df-2088b5b63662.jpg?1789127599" width="240" alt="Violent Echoes" loading="lazy"></td><td><b>Violent Echoes</b> · Uncommon<br>🎧 <b>LR:</b> B<br>🎓 <b>LLU:</b> Alex B− / Mark B+ (Mark nearly gave A−)<br>🎙 <b>Numot:</b> “Yeah, great… Seems excellent.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/c/1/c1a00020-7c14-4503-a057-5763704bb83e.jpg?1788878311" width="240" alt="Way of the Pyromancer" loading="lazy"></td><td><b>Way of the Pyromancer</b> · Uncommon<br>🎧 <b>LR:</b> C+/B (LSV B)<br>🎓 <b>LLU:</b> Alex D+ → C / Mark C<br>🎙 <b>Numot:</b> “real nice… it&#x27;s very good.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/6/d/6d86e410-20c4-4248-96bf-5780ece6274a.jpg?1789729585" width="240" alt="Way of the Warlord" loading="lazy"></td><td><b>Way of the Warlord</b> · Uncommon<br>🎧 <b>LR:</b> B/B+ (LSV B+)<br>🎓 <b>LLU:</b> Alex C+ / Mark D+ (the biggest red split)<br>🎙 <b>Numot:</b> “Card&#x27;s great. Excellent card.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/d/f/df8713cd-3f4b-43ef-adbd-e37c2617c617.jpg?1789128020" width="240" alt="Winter, Team Player" loading="lazy"></td><td><b>Winter, Team Player</b> · Uncommon<br>🎧 <b>LR:</b> C (build-around lean)<br>🎓 <b>LLU:</b> Alex D+ / Mark D<br>🎙 <b>Numot:</b> “That doesn&#x27;t seem good to me.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/7/d/7d3b720d-f27c-462a-8f80-15748e5086e1.jpg?1789729762" width="240" alt="Artifist Acumen" loading="lazy"></td><td><b>Artifist Acumen</b> · Common<br>🎧 <b>LR:</b> no grade given<br>🎓 <b>LLU:</b> Alex D+ / Mark D<br>🎙 <b>Numot:</b> “I&#x27;m not saying it&#x27;s good.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/c/5/c596c4ec-8480-4be9-a45d-700398a126f6.jpg?1789556812" width="240" alt="Awaken the Inferno" loading="lazy"></td><td><b>Awaken the Inferno</b> · Common<br>🎧 <b>LR:</b> B−<br>🎓 <b>LLU:</b> C+<br>🎙 <b>Numot:</b> “Still solid enough to play basically always”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/8/4/8414a98c-0c79-4884-bc9b-061a6456b392.jpg?1789060147" width="240" alt="Blazing Crescendo" loading="lazy"></td><td><b>Blazing Crescendo</b> · Common<br>🎧 <b>LR:</b> C−/D<br>🎓 <b>LLU:</b> Alex C / Mark C−<br>🎙 <b>Numot:</b> “I like this card. I don&#x27;t know how good it is.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/3/a/3a64c5f4-9cfc-4d19-bd99-13d619b1aa9d.jpg?1789385708" width="240" alt="Chandra&#x27;s Emberling" loading="lazy"></td><td><b>Chandra&#x27;s Emberling</b> · Common<br>🎧 <b>LR:</b> C (optimistic; &quot;probably a D&quot;)<br>🎓 <b>LLU:</b> Alex D / Mark D+<br>🎙 <b>Numot:</b> “Spellgorger Weird with haste… cool card.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/5/f/5f8771f9-8128-4818-a11d-41ea368cf697.jpg?1789127173" width="240" alt="Eardrum Rattler" loading="lazy"></td><td><b>Eardrum Rattler</b> · Common<br>🎧 <b>LR:</b> D → D+/C−<br>🎓 <b>LLU:</b> Alex D+ / Mark D−<br>🎙 <b>Numot:</b> “Okay, it&#x27;s a two drop.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/c/b/cbfe3354-7ced-4773-9a4e-a937ae9f94f8.jpg?1789556808" width="240" alt="Heartstring Puller" loading="lazy"></td><td><b>Heartstring Puller</b> · Common<br>🎧 <b>LR:</b> C+/B−<br>🎓 <b>LLU:</b> C+ (Mark nearly B−)<br>🎙 <b>Numot:</b> “This is a great common… just a good common.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/1/1/11ba4fdd-cc03-4bb6-a493-91a9785771d0.jpg?1788878170" width="240" alt="No Admittance" loading="lazy"></td><td><b>No Admittance</b> · Common<br>🎧 <b>LR:</b> B<br>🎓 <b>LLU:</b> Alex B− / Mark C+<br>🎙 <b>Numot:</b> “Good… you&#x27;re not going to do much better for two mana.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/0/e/0e44f959-1322-4abd-b6eb-dea992307c0c.jpg?1789556811" width="240" alt="Skilled Battlecarver" loading="lazy"></td><td><b>Skilled Battlecarver</b> · Common<br>🎧 <b>LR:</b> C−<br>🎓 <b>LLU:</b> C<br>🎙 <b>Numot:</b> “Very annoying aggro card.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/b/7/b75bbf46-a421-467a-9433-6cf22398a3a5.jpg?1789556839" width="240" alt="Tether Technician" loading="lazy"></td><td><b>Tether Technician</b> · Common<br>🎧 <b>LR:</b> C<br>🎓 <b>LLU:</b> Alex C / Mark D+<br>🎙 <b>Numot:</b> “the classically good big red creature.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/b/5/b5b55617-684a-4036-be9b-a3b24fc9cd5a.jpg?1789385820" width="240" alt="Wrath of the Bloodmane" loading="lazy"></td><td><b>Wrath of the Bloodmane</b> · Common<br>🎧 <b>LR:</b> B<br>🎓 <b>LLU:</b> Alex C+ / Mark C<br>🎙 <b>Numot:</b> “that&#x27;s just really good… Good common.”</td></tr>
+</table>
 
 ### Green
 
-| Card | R | LR | LLU | Numot |
-|---|---|---|---|---|
-| `Garruk, Curse Breaker` | M | — | — | Seems good… You could do worse. |
-| `Hexhaven Invigorator` | M | — | — | But even if you're not playing this until like turn six. That's pretty… |
-| `Omnipresence` | M | — | — | Unplayable. |
-| `Tarmogoyf` | M | — | — | not unplayable… This is like a common, maybe uncommonish in power leve… |
-| `Carnivorous Cultivator` | R | — | — | already good… Real good. |
-| `Gardenize` | R | — | — | unplayable |
-| `Hungering Puppetbeast` | R | — | — | that thing's insane… Wow, that thing's nuts. |
-| `Puppet Crafting` | R | — | — | Probably bad though. |
-| `Simulacrum Shaper` | R | — | — | Insane, the most value you're ever going to get from a three drop. |
-| `Verdant Kraken` | R | — | — | this card's nuts… You cast this, you win. Insane. |
-| `Edgar, Moonlit Sovereign` | U | B+/B− → B | Alex C− / Mark D+ | That's cool… that's not bad. |
-| `Fblthp, Knows the Way` | U | B+ | Alex B / Mark A− | this one's gross… fibble is great. |
-| `Flourishing Grapple` | U | sideboard B | sideboard (no letter) | sideboard hoser. |
-| `Ghalta the Unstoppable` | U | B → B− ("I got carried away, I like dinosaurs") | Alex C− / Mark D+ ("probably too low") | Yeah, solid. |
-| `Hunter's Axe` | U | C+/C− (LSV "C… maybe C−") | Alex D / Mark D+ | It's probably okay… kind of spicy. |
-| `Jiang Yanggu, Never Alone` | U | B+ | Alex B− / Mark B | Very good. Four drop. |
-| `Loot, the Nexus` | U | B | Alex C+ / Mark C− | Good. Three mana ramper. |
-| `Marwyn, the Preserver` | U | B− | Alex C+ / Mark B− | 2 mana 3/2 baseline's fine. |
-| `Pia, Aether Ascetic` | U | build-around C | Alex C+ / Mark C− | very very good |
-| `Restore with Empathy` | U | build-around, split: Marshall B in GW lifegain, LSV D (a UG  | Alex D+ / Mark D | Love it… this is good. |
-| `Ruric Thar, Magecrusher` | U | C+ | Alex C+ → B− / Mark B− | very annoying. Pretty good. It is seven mana. |
-| `Titanbones, Towering Heart` | U | B | Alex C− → D+ / Mark D | going to get real fat real quickly. |
-| `Way of the Paradox` | U | C/C+ (LSV C+; B in a dedicated Jace deck, D without support) | C (synergy tag for UG walker decks) | three mana empower five already good by itself. |
-| `Way of the Wildspeaker` | U | B+ | Alex B− / Mark C+ (Mark: "I like your grade more than mine") | That's pretty good. |
-| `Yoshimaru, Scrappy Stray` | U | B−/B (LSV B) | Alex C+ / Mark C | Yep, solid. Solid dog. |
-| `Arcane Amphisbaena` | C | C+ | Alex C / Mark C+ | That's a common, play all of them. Great card. |
-| `Bestial Incursion` | C | B/B− (LSV B−) | C+ | a better Shadow Beast Sighting. Good card. |
-| `Budding Insurgent` | C | C−/D+ | Alex C− / Mark D+ | Yeah, solid enough. |
-| `Compel Brutality` | C | C+ | C+ | That's good. |
-| `Greenhouse Propagator` | C | C+ | Alex C+ / Mark C | card's great, very good common. |
-| `Inspired Tethermage` | C | C/D+ → C− | D+ | wow, that's just a good common. |
-| `Something Worth Saving` | C | C | C | That's not bad. Sure. |
-| `Sureshot Sower` | C | C | Alex C / Mark C− | That's fine. |
-| `Tethermage's Advantage` | C | D | Alex C / Mark C− | Decent. |
-| `Vinelasher Adept` | C | C+ | Alex C / Mark C− | That's not bad. That's better than the blue and better than the red. |
-| `Wrecking Gecko` | C | D+/C− | Alex C− / Mark D+ | just a big dumb green creature that will eventually kill you. |
+<table class="expertcards">
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/9/0/90ca5812-ceb5-46bd-b049-aed7ff10e6af.jpg?1788329370" width="240" alt="Garruk, Curse Breaker" loading="lazy"></td><td><b>Garruk, Curse Breaker</b> · Mythic<br>🎙 <b>Numot:</b> “Seems good… You could do worse.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/9/a/9a446cae-e93c-4574-8ffd-7688f9729a8a.jpg?1788878191" width="240" alt="Hexhaven Invigorator" loading="lazy"></td><td><b>Hexhaven Invigorator</b> · Mythic<br>🎙 <b>Numot:</b> “But even if you&#x27;re not playing this until like turn six. That&#x27;s pretty good.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/9/1/91e787cb-a9b0-4353-86b4-a4340122fd2f.jpg?1789471487" width="240" alt="Omnipresence" loading="lazy"></td><td><b>Omnipresence</b> · Mythic<br>🎙 <b>Numot:</b> “Unplayable.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/8/b/8be5ee47-8f8a-4e3c-b1a1-9ca0e1fdec7f.jpg?1789127270" width="240" alt="Tarmogoyf" loading="lazy"></td><td><b>Tarmogoyf</b> · Mythic<br>🎙 <b>Numot:</b> “not unplayable… This is like a common, maybe uncommonish in power level.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/7/9/79dd5c54-5ea5-47b5-8f9b-50ed57a5ea45.jpg?1789385967" width="240" alt="Carnivorous Cultivator // Enroot" loading="lazy"></td><td><b>Carnivorous Cultivator // Enroot</b> · Rare<br>🎙 <b>Numot:</b> “already good… Real good.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/9/3/930b89c3-4433-48de-829f-20fc3dbfced9.jpg?1789644837" width="240" alt="Gardenize" loading="lazy"></td><td><b>Gardenize</b> · Rare<br>🎙 <b>Numot:</b> “unplayable”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/3/d/3db2da7a-8088-4117-916b-f9c905d1b45b.jpg?1789127646" width="240" alt="Hungering Puppetbeast" loading="lazy"></td><td><b>Hungering Puppetbeast</b> · Rare<br>🎙 <b>Numot:</b> “that thing&#x27;s insane… Wow, that thing&#x27;s nuts.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/6/b/6b8789a6-3b63-4198-af5f-c2f2f49fafd9.jpg?1789470736" width="240" alt="Puppet Crafting" loading="lazy"></td><td><b>Puppet Crafting</b> · Rare<br>🎙 <b>Numot:</b> “Probably bad though.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/7/c/7c725702-8696-4e5a-8318-62f5e2616d52.jpg?1789470857" width="240" alt="Simulacrum Shaper" loading="lazy"></td><td><b>Simulacrum Shaper</b> · Rare<br>🎙 <b>Numot:</b> “Insane, the most value you&#x27;re ever going to get from a three drop.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/2/b/2bb7a8eb-227f-410b-859f-750ef0aea2f0.jpg?1789644841" width="240" alt="Verdant Kraken" loading="lazy"></td><td><b>Verdant Kraken</b> · Rare<br>🎙 <b>Numot:</b> “this card&#x27;s nuts… You cast this, you win. Insane.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/d/a/dad6afc9-8505-4cdd-bf79-e9ba4670f2bb.jpg?1789127966" width="240" alt="Edgar, Moonlit Sovereign" loading="lazy"></td><td><b>Edgar, Moonlit Sovereign</b> · Uncommon<br>🎧 <b>LR:</b> B+/B− → B<br>🎓 <b>LLU:</b> Alex C− / Mark D+<br>🎙 <b>Numot:</b> “That&#x27;s cool… that&#x27;s not bad.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/2/8/28fbb55a-5c9d-45ee-bf42-a84b1048f5d2.jpg?1789127976" width="240" alt="Fblthp, Knows the Way" loading="lazy"></td><td><b>Fblthp, Knows the Way</b> · Uncommon<br>🎧 <b>LR:</b> B+<br>🎓 <b>LLU:</b> Alex B / Mark A−<br>🎙 <b>Numot:</b> “this one&#x27;s gross… fibble is great.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/f/7/f71958e9-6d6d-4393-8b49-567103b50877.jpg?1789470852" width="240" alt="Flourishing Grapple" loading="lazy"></td><td><b>Flourishing Grapple</b> · Uncommon<br>🎧 <b>LR:</b> sideboard B<br>🎓 <b>LLU:</b> sideboard (no letter)<br>🎙 <b>Numot:</b> “sideboard hoser.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/1/d/1d535b5f-c916-4f16-89a7-9477578826d2.jpg?1788878290" width="240" alt="Ghalta the Unstoppable" loading="lazy"></td><td><b>Ghalta the Unstoppable</b> · Uncommon<br>🎧 <b>LR:</b> B → B− (&quot;I got carried away, I like dinosaurs&quot;)<br>🎓 <b>LLU:</b> Alex C− / Mark D+ (&quot;probably too low&quot;)<br>🎙 <b>Numot:</b> “Yeah, solid.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/a/2/a2cc5d0e-9643-4ee2-81de-fa2c3bd1ab09.jpg?1789556822" width="240" alt="Hunter&#x27;s Axe" loading="lazy"></td><td><b>Hunter&#x27;s Axe</b> · Uncommon<br>🎧 <b>LR:</b> C+/C− (LSV &quot;C… maybe C−&quot;)<br>🎓 <b>LLU:</b> Alex D / Mark D+<br>🎙 <b>Numot:</b> “It&#x27;s probably okay… kind of spicy.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/f/5/f5a0bb3e-8119-4739-8684-e61d1d607dcb.jpg?1789014406" width="240" alt="Jiang Yanggu, Never Alone" loading="lazy"></td><td><b>Jiang Yanggu, Never Alone</b> · Uncommon<br>🎧 <b>LR:</b> B+<br>🎓 <b>LLU:</b> Alex B− / Mark B<br>🎙 <b>Numot:</b> “Very good. Four drop.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/3/c/3cfa4fc6-4d90-4576-a83f-6496c7f21104.jpg?1789614764" width="240" alt="Loot, the Nexus" loading="lazy"></td><td><b>Loot, the Nexus</b> · Uncommon<br>🎧 <b>LR:</b> B<br>🎓 <b>LLU:</b> Alex C+ / Mark C−<br>🎙 <b>Numot:</b> “Good. Three mana ramper.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/9/0/90f33f99-7bc5-42e1-815e-bfb4c2b74107.jpg?1789644564" width="240" alt="Marwyn, the Preserver" loading="lazy"></td><td><b>Marwyn, the Preserver</b> · Uncommon<br>🎧 <b>LR:</b> B−<br>🎓 <b>LLU:</b> Alex C+ / Mark B−<br>🎙 <b>Numot:</b> “2 mana 3/2 baseline&#x27;s fine.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/f/f/ff0bc30f-9d20-458e-808f-bdc2825905a5.jpg?1789387120" width="240" alt="Pia, Aether Ascetic" loading="lazy"></td><td><b>Pia, Aether Ascetic</b> · Uncommon<br>🎧 <b>LR:</b> build-around C<br>🎓 <b>LLU:</b> Alex C+ / Mark C−<br>🎙 <b>Numot:</b> “very very good”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/3/5/3546b93b-a7d1-451d-a369-22cc8ddcd00d.jpg?1788865848" width="240" alt="Restore with Empathy" loading="lazy"></td><td><b>Restore with Empathy</b> · Uncommon<br>🎧 <b>LR:</b> build-around, split: Marshall B in GW lifegain, LSV D (a UG rebuy tool at best)<br>🎓 <b>LLU:</b> Alex D+ / Mark D<br>🎙 <b>Numot:</b> “Love it… this is good.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/e/e/eed83302-dc2c-45f4-a4bd-af9da51edef5.jpg?1789358701" width="240" alt="Ruric Thar, Magecrusher" loading="lazy"></td><td><b>Ruric Thar, Magecrusher</b> · Uncommon<br>🎧 <b>LR:</b> C+<br>🎓 <b>LLU:</b> Alex C+ → B− / Mark B−<br>🎙 <b>Numot:</b> “very annoying. Pretty good. It is seven mana.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/e/d/edea6f70-a5a7-475d-b7f2-97933d0f32cf.jpg?1788329375" width="240" alt="Titanbones, Towering Heart" loading="lazy"></td><td><b>Titanbones, Towering Heart</b> · Uncommon<br>🎧 <b>LR:</b> B<br>🎓 <b>LLU:</b> Alex C− → D+ / Mark D<br>🎙 <b>Numot:</b> “going to get real fat real quickly.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/9/8/98dc5470-507a-4364-8480-42607255e56c.jpg?1789729606" width="240" alt="Way of the Paradox" loading="lazy"></td><td><b>Way of the Paradox</b> · Uncommon<br>🎧 <b>LR:</b> C/C+ (LSV C+; B in a dedicated Jace deck, D without support)<br>🎓 <b>LLU:</b> C (synergy tag for UG walker decks)<br>🎙 <b>Numot:</b> “three mana empower five already good by itself.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/a/2/a252cb01-537b-4afe-9abc-81a98c4a1439.jpg?1789729602" width="240" alt="Way of the Wildspeaker" loading="lazy"></td><td><b>Way of the Wildspeaker</b> · Uncommon<br>🎧 <b>LR:</b> B+<br>🎓 <b>LLU:</b> Alex B− / Mark C+ (Mark: &quot;I like your grade more than mine&quot;)<br>🎙 <b>Numot:</b> “That&#x27;s pretty good.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/b/8/b8dfd087-2434-42c6-ac4c-1decbcdde2db.jpg?1789470909" width="240" alt="Yoshimaru, Scrappy Stray" loading="lazy"></td><td><b>Yoshimaru, Scrappy Stray</b> · Uncommon<br>🎧 <b>LR:</b> B−/B (LSV B)<br>🎓 <b>LLU:</b> Alex C+ / Mark C<br>🎙 <b>Numot:</b> “Yep, solid. Solid dog.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/1/b/1bf923c4-f0b7-4271-978c-fd2e79fe1cc8.jpg?1788878190" width="240" alt="Arcane Amphisbaena" loading="lazy"></td><td><b>Arcane Amphisbaena</b> · Common<br>🎧 <b>LR:</b> C+<br>🎓 <b>LLU:</b> Alex C / Mark C+<br>🎙 <b>Numot:</b> “That&#x27;s a common, play all of them. Great card.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/e/0/e0de5f66-f0df-4866-9f73-104ce50411b4.jpg?1789127248" width="240" alt="Bestial Incursion" loading="lazy"></td><td><b>Bestial Incursion</b> · Common<br>🎧 <b>LR:</b> B/B− (LSV B−)<br>🎓 <b>LLU:</b> C+<br>🎙 <b>Numot:</b> “a better Shadow Beast Sighting. Good card.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/1/8/18c59d60-2640-4576-9375-3ba38aa3ecb7.jpg?1789127120" width="240" alt="Budding Insurgent" loading="lazy"></td><td><b>Budding Insurgent</b> · Common<br>🎧 <b>LR:</b> C−/D+<br>🎓 <b>LLU:</b> Alex C− / Mark D+<br>🎙 <b>Numot:</b> “Yeah, solid enough.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/b/d/bd32d736-7a58-46b9-90b4-2cac3c3e80a1.jpg?1788521235" width="240" alt="Compel Brutality" loading="lazy"></td><td><b>Compel Brutality</b> · Common<br>🎧 <b>LR:</b> C+<br>🎓 <b>LLU:</b> C+<br>🎙 <b>Numot:</b> “That&#x27;s good.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/a/5/a56e0f91-b128-4693-a949-53cb403f4fbf.jpg?1789127136" width="240" alt="Greenhouse Propagator" loading="lazy"></td><td><b>Greenhouse Propagator</b> · Common<br>🎧 <b>LR:</b> C+<br>🎓 <b>LLU:</b> Alex C+ / Mark C<br>🎙 <b>Numot:</b> “card&#x27;s great, very good common.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/0/7/073f4998-a204-447b-93d5-746ae87fd6a1.jpg?1788878192" width="240" alt="Inspired Tethermage" loading="lazy"></td><td><b>Inspired Tethermage</b> · Common<br>🎧 <b>LR:</b> C/D+ → C−<br>🎓 <b>LLU:</b> D+<br>🎙 <b>Numot:</b> “wow, that&#x27;s just a good common.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/0/2/02ee7817-40af-4fcf-a2df-eb218b669281.jpg?1788878199" width="240" alt="Something Worth Saving" loading="lazy"></td><td><b>Something Worth Saving</b> · Common<br>🎧 <b>LR:</b> C<br>🎓 <b>LLU:</b> C<br>🎙 <b>Numot:</b> “That&#x27;s not bad. Sure.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/b/6/b635389c-e286-4edb-80d1-23dbe4a18857.jpg?1789614751" width="240" alt="Sureshot Sower" loading="lazy"></td><td><b>Sureshot Sower</b> · Common<br>🎧 <b>LR:</b> C<br>🎓 <b>LLU:</b> Alex C / Mark C−<br>🎙 <b>Numot:</b> “That&#x27;s fine.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/3/8/38589a7c-9cfb-4bcc-845e-9dc205095853.jpg?1789129937" width="240" alt="Tethermage&#x27;s Advantage" loading="lazy"></td><td><b>Tethermage&#x27;s Advantage</b> · Common<br>🎧 <b>LR:</b> D<br>🎓 <b>LLU:</b> Alex C / Mark C−<br>🎙 <b>Numot:</b> “Decent.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/e/5/e5ed142b-2b61-4ef5-8b23-2db2a0a0319d.jpg?1789556814" width="240" alt="Vinelasher Adept" loading="lazy"></td><td><b>Vinelasher Adept</b> · Common<br>🎧 <b>LR:</b> C+<br>🎓 <b>LLU:</b> Alex C / Mark C−<br>🎙 <b>Numot:</b> “That&#x27;s not bad. That&#x27;s better than the blue and better than the red.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/3/d/3d693cb0-681e-480a-8f70-07e94c39225c.jpg?1789385843" width="240" alt="Wrecking Gecko" loading="lazy"></td><td><b>Wrecking Gecko</b> · Common<br>🎧 <b>LR:</b> D+/C−<br>🎓 <b>LLU:</b> Alex C− / Mark D+<br>🎙 <b>Numot:</b> “just a big dumb green creature that will eventually kill you.”</td></tr>
+</table>
 
 ### Multicolor
 
-| Card | R | LR | LLU | Numot |
-|---|---|---|---|---|
-| `Aerid Konstrari` | M | — | — | I assume all of these sphinx are just going to be bombs or at the very… |
-| `Avatar of Burgeoning Echoes` | M | — | — | That card's insane… empower Jace 2 [on landfall] is nuts. |
-| `Denzilore Fatehold` | M | — | — | I hate it. It's great. |
-| `Ingris Stingerquill` | M | — | — | That seems very good… Yeah, that card's great. |
-| `Kwia Vigorbloom` | M | — | — | Seems pretty good. |
-| `Uldaros Theorix` | M | — | — | Whoa… That card is sweet. |
-| `Codie, Ravenous Codex` | R | — | — | cool, but you have to build a prepared deck. |
-| `Entrust the Spark` | R | — | — | Obviously not good in limited. |
-| `Frostbite Pyromental` | R | — | — | That's cool |
-| `Karn, Gilded Guardian` | R | — | — | Also lame. Not a good payoff card. |
-| `Null Summoner` | R | — | — | That's great… Card's great. |
-| `Proctor of Potential` | R | — | — | seems good |
-| `Solarium Sentry` | R | — | — | Just better watch, I guess. Sure. |
-| `Solitary Cell` | R | — | — | It's fine. Not amazing. |
-| `Stinging Vitriol` | R | — | — | maybe not very solid, but it's… good. |
-| `Tam, the Possibility` | R | — | — | Oh garbage. |
-| `Tenured Tethermage` | R | — | — | Whoa, this card's nuts… it's very good. |
-| `Vindictive Triumph` | R | — | — | It's good. It's good. |
-| `Vraska, Soul of Stone` | R | — | — | That's good… Hard to cast maybe. |
-| `Vraska, the Cutting Glare` | R | — | — | that's great |
-| `Bloombrute` | U | A− (LSV B+–A−) | Alex B− / Mark C | Great. |
-| `Clash of Elements` | U | B | Alex B− / Mark B | That's neat. Three mana tuck. |
-| `Craftwork Crusher` | U | B+/B (LSV "maybe A− if you're enabling it") | **A−** | That's insane… an insane uncommon. What? Wow. |
-| `Desperate Futurescribe` | U | B | Alex B− / Mark B | also great |
-| `Edgar, Ancient Bloodlord` | U | B−/B | C+ | It's decent. |
-| `Fatehold Charm` | U | B | C+ ("might even be too low… could creep into B−"; Alex later | seems like an insane charm. Damn. |
-| `Grim Repriser` | U | B | C+ | a fine two drop. |
-| `Hapatra, the Desert Fang` | U | B+/A− (LSV A−, "it's just always going to work") | Alex B / Mark B+ | Oh, that's good… kill something a lot of times. |
-| `Heartwood Crafter` | U | B− | Alex C+ / Mark B− | pretty solid |
-| `Kiora of Salt and Sand` | U | build-around B/B− (A− floated first) | Alex C / Mark C− (Alex talked down a tier) | that's fine |
-| `Konstrari Charm` | U | C | C+ | That's okay… Easily the worst charm we've seen. |
-| `Mabel, Valley Hero` | U | B/B+ | Alex B− / Mark C (Alex conceded mid-discussion but stated no | That's cool. |
-| `Mind Meanderer` | U | B−/B (LSV B) | Alex B− / Mark C+ | still good |
-| `Paradox Shaper` | U | C+ (B− if UB lacks threshold enablers) | Alex C / Mark D+ | repeatable self mill… Neato. |
-| `Primal Witchstalker` | U | B (maybe B+) | Alex B− / Mark C+ | That seems good too. |
-| `Prudent Fateseer` | U | C+/B− | C | solid |
-| `Recursive Recruitment` | U | B | Alex B− / Mark C+ | Still a good card… Eight mana later on, two five fives. Great. |
-| `Saheeli, Jewel of Avishkar` | U | B+ | C ("a responsible C") | Great. |
-| `Stingerquill Charm` | U | B+ | Alex B− / Mark B | that one's pretty good, too. |
-| `Stingerquill Voxmancer` | U | B, if BR works | Alex D+ / Mark C− | this is a good one drop… consistent source of bing. |
-| `Theorix Charm` | U | B | C+ | still good, but that seems a lot worse than the blue white one. |
-| `Twisted Fates` | U | B+ → A− | B | That's sweet… good enough. |
-| `Vigorbloom Charm` | U | B+ | B− | another good charm |
-| `Vigorbloom Vanguard` | U | B+/B | C+ | Good. |
-| `Warrior's Blades` | U | B | Alex C+ / Mark C | Lightning Helix on a trusty machete is good. |
-| `Woodwork Prodigy` | U | C+ | Alex C+ / Mark C | It's fine. |
-| `Blessed Ghoul` | C | C+/C | Alex D / Mark D+ | I hate this type of card. |
-| `Blossom-Blessed Angel` | C | C | C ("may have graded a little too low") | Good. |
-| `Charge the Sanctum` | C | C/C− | — | I don't like these type of cards but that's probably fine. |
-| `Emergency Phytomedic` | C | C/C+ (LSV C+) | C− (Alex: "maybe even C+") | Good enough. |
-| `Fatehold Chronologist` | C | B− | C | Seems fine. |
-| `Ferocity of the Hunt` | C | C−/C | Alex D+ / Mark C− | a good take on this effect |
-| `Hallway Heckler` | C | C | Alex D+ / Mark C− | a 3-mana 2/3 rummager that pings |
-| `Konstrari Improviser` | C | C−/C | C | 2-mana 2/2 that makes a Heartwood |
-| `Semester Foreseer` | C | C | C− (graded in the multicolor episode alongside Peer Review) | decent common |
-| `Tam's Resistance` | C | C | C− | It's really good for two mana. |
-| `Theorix Metamage` | C | C+ | Alex C− / Mark D+ | Okay, cool. |
-| `Twinned Vision` | C | C+/C− | Alex C / Mark C+ | no verdict. |
-| `Void Extrapolator` | C | C | Alex D+ / Mark C− | no strong verdict |
-| `Whiplash Wordsmith` | C | C/C+ | D+ ("somewhat optimistic") | that's like okay. |
+<table class="expertcards">
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/f/1/f17d2792-b075-4c47-ad38-e7a7eaee5f8c.jpg?1788878199" width="240" alt="Aerid Konstrari" loading="lazy"></td><td><b>Aerid Konstrari</b> · Mythic<br>🎙 <b>Numot:</b> “I assume all of these sphinx are just going to be bombs or at the very least very good flyers that are under costed.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/5/9/5905995b-7a20-4602-a7cc-90aa5089a082.jpg?1788878208" width="240" alt="Avatar of Burgeoning Echoes" loading="lazy"></td><td><b>Avatar of Burgeoning Echoes</b> · Mythic<br>🎙 <b>Numot:</b> “That card&#x27;s insane… empower Jace 2 [on landfall] is nuts.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/9/8/986f9e98-9d8d-428b-9187-860745cf3269.jpg?1788878215" width="240" alt="Denzilore Fatehold" loading="lazy"></td><td><b>Denzilore Fatehold</b> · Mythic<br>🎙 <b>Numot:</b> “I hate it. It&#x27;s great.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/6/4/6471b135-33a8-4005-9a07-ebb74e0bf145.jpg?1788878212" width="240" alt="Ingris Stingerquill" loading="lazy"></td><td><b>Ingris Stingerquill</b> · Mythic<br>🎙 <b>Numot:</b> “That seems very good… Yeah, that card&#x27;s great.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/2/d/2d6ff182-a853-4898-895b-072c89324ca7.jpg?1788878236" width="240" alt="Kwia Vigorbloom" loading="lazy"></td><td><b>Kwia Vigorbloom</b> · Mythic<br>🎙 <b>Numot:</b> “Seems pretty good.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/a/7/a7ad622a-42ff-48fa-ae95-12e0a5bd9387.jpg?1788878220" width="240" alt="Uldaros Theorix" loading="lazy"></td><td><b>Uldaros Theorix</b> · Mythic<br>🎙 <b>Numot:</b> “Whoa… That card is sweet.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/c/3/c3192390-1518-49fc-8716-f2c7a0384f39.jpg?1789646811" width="240" alt="Codie, Ravenous Codex" loading="lazy"></td><td><b>Codie, Ravenous Codex</b> · Rare<br>🎙 <b>Numot:</b> “cool, but you have to build a prepared deck.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/c/a/ca894d25-b9fc-4cd6-8746-70d8c2868721.jpg?1789614779" width="240" alt="Entrust the Spark" loading="lazy"></td><td><b>Entrust the Spark</b> · Rare<br>🎙 <b>Numot:</b> “Obviously not good in limited.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/7/a/7a44581f-8fc4-457d-888a-1e211090ee7e.jpg?1789470870" width="240" alt="Frostbite Pyromental" loading="lazy"></td><td><b>Frostbite Pyromental</b> · Rare<br>🎙 <b>Numot:</b> “That&#x27;s cool”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/3/a/3abcae65-5b21-4c98-adad-34b8bc76ea3a.jpg?1789014541" width="240" alt="Karn, Gilded Guardian" loading="lazy"></td><td><b>Karn, Gilded Guardian</b> · Rare<br>🎙 <b>Numot:</b> “Also lame. Not a good payoff card.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/3/a/3afdc75a-1bf5-4f2f-84eb-d82f77a095cd.jpg?1789127648" width="240" alt="Null Summoner" loading="lazy"></td><td><b>Null Summoner</b> · Rare<br>🎙 <b>Numot:</b> “That&#x27;s great… Card&#x27;s great.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/c/f/cf0eec8c-0475-4050-8144-481a9bb13a0f.jpg?1789127661" width="240" alt="Proctor of Potential" loading="lazy"></td><td><b>Proctor of Potential</b> · Rare<br>🎙 <b>Numot:</b> “seems good”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/1/e/1ef12dcf-df50-4da6-8c4c-e2937ba9698e.jpg?1789127651" width="240" alt="Solarium Sentry" loading="lazy"></td><td><b>Solarium Sentry</b> · Rare<br>🎙 <b>Numot:</b> “Just better watch, I guess. Sure.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/5/1/5142bbb6-194c-4b12-b11a-1a21c9fe81a6.jpg?1788260690" width="240" alt="Solitary Cell" loading="lazy"></td><td><b>Solitary Cell</b> · Rare<br>🎙 <b>Numot:</b> “It&#x27;s fine. Not amazing.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/a/7/a7d78297-7411-4ec5-8931-a25146869d5b.jpg?1789385971" width="240" alt="Stinging Vitriol" loading="lazy"></td><td><b>Stinging Vitriol</b> · Rare<br>🎙 <b>Numot:</b> “maybe not very solid, but it&#x27;s… good.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/6/5/6529d399-677e-45a6-ac3e-12a0b10f6c37.jpg?1789644886" width="240" alt="Tam, the Possibility" loading="lazy"></td><td><b>Tam, the Possibility</b> · Rare<br>🎙 <b>Numot:</b> “Oh garbage.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/1/7/1703306d-6a3d-4ab8-bf58-a9992236ef0f.jpg?1789385792" width="240" alt="Tenured Tethermage" loading="lazy"></td><td><b>Tenured Tethermage</b> · Rare<br>🎙 <b>Numot:</b> “Whoa, this card&#x27;s nuts… it&#x27;s very good.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/a/8/a803dbe7-153a-4e92-ad4d-c2babebe003d.jpg?1789127665" width="240" alt="Vindictive Triumph" loading="lazy"></td><td><b>Vindictive Triumph</b> · Rare<br>🎙 <b>Numot:</b> “It&#x27;s good. It&#x27;s good.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/f/3/f3869752-eade-4e7a-8dd1-68cafb9e10be.jpg?1789128008" width="240" alt="Vraska, Soul of Stone" loading="lazy"></td><td><b>Vraska, Soul of Stone</b> · Rare<br>🎙 <b>Numot:</b> “That&#x27;s good… Hard to cast maybe.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/5/c/5c28b012-5efb-488f-a1c1-09e2dddfd6ee.jpg?1789127776" width="240" alt="Vraska, the Cutting Glare" loading="lazy"></td><td><b>Vraska, the Cutting Glare</b> · Rare<br>🎙 <b>Numot:</b> “that&#x27;s great”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/6/b/6b804503-9c70-4b1f-bb13-a65fb6dd3ef8.jpg?1789644843" width="240" alt="Bloombrute" loading="lazy"></td><td><b>Bloombrute</b> · Uncommon<br>🎧 <b>LR:</b> A− (LSV B+–A−)<br>🎓 <b>LLU:</b> Alex B− / Mark C<br>🎙 <b>Numot:</b> “Great.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/b/6/b61bcef7-5832-45e6-a2bc-26d4f23707fc.jpg?1788878210" width="240" alt="Clash of Elements" loading="lazy"></td><td><b>Clash of Elements</b> · Uncommon<br>🎧 <b>LR:</b> B<br>🎓 <b>LLU:</b> Alex B− / Mark B<br>🎙 <b>Numot:</b> “That&#x27;s neat. Three mana tuck.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/0/3/03f9839c-aa07-4ee7-847b-091e47ab80c4.jpg?1789470711" width="240" alt="Craftwork Crusher" loading="lazy"></td><td><b>Craftwork Crusher</b> · Uncommon<br>🎧 <b>LR:</b> B+/B (LSV &quot;maybe A− if you&#x27;re enabling it&quot;)<br>🎓 <b>LLU:</b> A−<br>🎙 <b>Numot:</b> “That&#x27;s insane… an insane uncommon. What? Wow.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/c/f/cfaa3ebd-5c21-4e99-a0dd-8426d19b53a5.jpg?1789644852" width="240" alt="Desperate Futurescribe" loading="lazy"></td><td><b>Desperate Futurescribe</b> · Uncommon<br>🎧 <b>LR:</b> B<br>🎓 <b>LLU:</b> Alex B− / Mark B<br>🎙 <b>Numot:</b> “also great”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/7/c/7c619fed-2394-4efc-8cdc-6df5f51c1f57.jpg?1789127743" width="240" alt="Edgar, Ancient Bloodlord" loading="lazy"></td><td><b>Edgar, Ancient Bloodlord</b> · Uncommon<br>🎧 <b>LR:</b> B−/B<br>🎓 <b>LLU:</b> C+<br>🎙 <b>Numot:</b> “It&#x27;s decent.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/c/f/cfc54011-647e-4428-bcdb-59400e1da49d.jpg?1789127637" width="240" alt="Fatehold Charm" loading="lazy"></td><td><b>Fatehold Charm</b> · Uncommon<br>🎧 <b>LR:</b> B<br>🎓 <b>LLU:</b> C+ (&quot;might even be too low… could creep into B−&quot;; Alex later said he&#x27;d go higher)<br>🎙 <b>Numot:</b> “seems like an insane charm. Damn.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/8/2/8295c48c-b4dd-4bc1-a206-04cf12b79bbd.jpg?1789470746" width="240" alt="Grim Repriser" loading="lazy"></td><td><b>Grim Repriser</b> · Uncommon<br>🎧 <b>LR:</b> B<br>🎓 <b>LLU:</b> C+<br>🎙 <b>Numot:</b> “a fine two drop.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/c/f/cf7c1534-af41-4991-b3c3-f0a34ae330b5.jpg?1789385991" width="240" alt="Hapatra, the Desert Fang" loading="lazy"></td><td><b>Hapatra, the Desert Fang</b> · Uncommon<br>🎧 <b>LR:</b> B+/A− (LSV A−, &quot;it&#x27;s just always going to work&quot;)<br>🎓 <b>LLU:</b> Alex B / Mark B+<br>🎙 <b>Numot:</b> “Oh, that&#x27;s good… kill something a lot of times.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/9/1/910a1f41-17fd-4ab0-9597-7151e79dc760.jpg?1789127630" width="240" alt="Heartwood Crafter // Soul Tether" loading="lazy"></td><td><b>Heartwood Crafter // Soul Tether</b> · Uncommon<br>🎧 <b>LR:</b> B−<br>🎓 <b>LLU:</b> Alex C+ / Mark B−<br>🎙 <b>Numot:</b> “pretty solid”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/8/1/8151f5f5-e9f6-4fbe-b543-f456ebf22aa5.jpg?1789127745" width="240" alt="Kiora of Salt and Sand" loading="lazy"></td><td><b>Kiora of Salt and Sand</b> · Uncommon<br>🎧 <b>LR:</b> build-around B/B− (A− floated first)<br>🎓 <b>LLU:</b> Alex C / Mark C− (Alex talked down a tier)<br>🎙 <b>Numot:</b> “that&#x27;s fine”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/7/d/7d29dfa1-9582-47bc-8f42-62b611bdcc4e.jpg?1789127645" width="240" alt="Konstrari Charm" loading="lazy"></td><td><b>Konstrari Charm</b> · Uncommon<br>🎧 <b>LR:</b> C<br>🎓 <b>LLU:</b> C+<br>🎙 <b>Numot:</b> “That&#x27;s okay… Easily the worst charm we&#x27;ve seen.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/4/7/47abea4b-9848-48aa-bc1b-f04f4799e920.jpg?1789385857" width="240" alt="Mabel, Valley Hero" loading="lazy"></td><td><b>Mabel, Valley Hero</b> · Uncommon<br>🎧 <b>LR:</b> B/B+<br>🎓 <b>LLU:</b> Alex B− / Mark C (Alex conceded mid-discussion but stated no new grade)<br>🎙 <b>Numot:</b> “That&#x27;s cool.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/9/4/94c290ce-252c-42b3-bcb0-c1ef621df566.jpg?1789470861" width="240" alt="Mind Meanderer" loading="lazy"></td><td><b>Mind Meanderer</b> · Uncommon<br>🎧 <b>LR:</b> B−/B (LSV B)<br>🎓 <b>LLU:</b> Alex B− / Mark C+<br>🎙 <b>Numot:</b> “still good”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/e/6/e61b9d48-0ace-4453-afe0-a1024444bac0.jpg?1788329390" width="240" alt="Paradox Shaper // Omit Variables" loading="lazy"></td><td><b>Paradox Shaper // Omit Variables</b> · Uncommon<br>🎧 <b>LR:</b> C+ (B− if UB lacks threshold enablers)<br>🎓 <b>LLU:</b> Alex C / Mark D+<br>🎙 <b>Numot:</b> “repeatable self mill… Neato.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/0/4/04e64af7-cca1-499e-8951-f386e84c8b5b.jpg?1789644850" width="240" alt="Primal Witchstalker" loading="lazy"></td><td><b>Primal Witchstalker</b> · Uncommon<br>🎧 <b>LR:</b> B (maybe B+)<br>🎓 <b>LLU:</b> Alex B− / Mark C+<br>🎙 <b>Numot:</b> “That seems good too.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/6/c/6c1c790b-9e0e-4964-9ea3-554843907f06.jpg?1788329412" width="240" alt="Prudent Fateseer // Peer Review" loading="lazy"></td><td><b>Prudent Fateseer // Peer Review</b> · Uncommon<br>🎧 <b>LR:</b> C+/B−<br>🎓 <b>LLU:</b> C<br>🎙 <b>Numot:</b> “solid”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/6/8/68fddb6a-86d4-4ebb-907d-fdcaadebc4b3.jpg?1789556898" width="240" alt="Recursive Recruitment" loading="lazy"></td><td><b>Recursive Recruitment</b> · Uncommon<br>🎧 <b>LR:</b> B<br>🎓 <b>LLU:</b> Alex B− / Mark C+<br>🎙 <b>Numot:</b> “Still a good card… Eight mana later on, two five fives. Great.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/2/8/28d84ef6-e190-46d4-882d-1cea5e111e2a.jpg?1789644883" width="240" alt="Saheeli, Jewel of Avishkar" loading="lazy"></td><td><b>Saheeli, Jewel of Avishkar</b> · Uncommon<br>🎧 <b>LR:</b> B+<br>🎓 <b>LLU:</b> C (&quot;a responsible C&quot;)<br>🎙 <b>Numot:</b> “Great.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/8/1/81733ff7-e611-43ee-bf38-6bb700676017.jpg?1789127652" width="240" alt="Stingerquill Charm" loading="lazy"></td><td><b>Stingerquill Charm</b> · Uncommon<br>🎧 <b>LR:</b> B+<br>🎓 <b>LLU:</b> Alex B− / Mark B<br>🎙 <b>Numot:</b> “that one&#x27;s pretty good, too.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/8/4/84b1c268-3b8a-41b6-92e3-a2ce0cc3d738.jpg?1788329418" width="240" alt="Stingerquill Voxmancer // Vicious Verse" loading="lazy"></td><td><b>Stingerquill Voxmancer // Vicious Verse</b> · Uncommon<br>🎧 <b>LR:</b> B, if BR works<br>🎓 <b>LLU:</b> Alex D+ / Mark C−<br>🎙 <b>Numot:</b> “this is a good one drop… consistent source of bing.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/2/8/2835c9aa-0904-44db-8da2-e8c4e04201aa.jpg?1789127659" width="240" alt="Theorix Charm" loading="lazy"></td><td><b>Theorix Charm</b> · Uncommon<br>🎧 <b>LR:</b> B<br>🎓 <b>LLU:</b> C+<br>🎙 <b>Numot:</b> “still good, but that seems a lot worse than the blue white one.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/c/7/c7c0765d-38fd-4d7b-bfb4-49b10ff5939b.jpg?1789614785" width="240" alt="Twisted Fates" loading="lazy"></td><td><b>Twisted Fates</b> · Uncommon<br>🎧 <b>LR:</b> B+ → A−<br>🎓 <b>LLU:</b> B<br>🎙 <b>Numot:</b> “That&#x27;s sweet… good enough.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/2/b/2b198e10-b507-4314-a29c-a219f06e48b7.jpg?1789127656" width="240" alt="Vigorbloom Charm" loading="lazy"></td><td><b>Vigorbloom Charm</b> · Uncommon<br>🎧 <b>LR:</b> B+<br>🎓 <b>LLU:</b> B−<br>🎙 <b>Numot:</b> “another good charm”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/a/c/acefc515-bf97-4dc0-b0f7-ae8ae5a61671.jpg?1788329423" width="240" alt="Vigorbloom Vanguard // Seed Suture" loading="lazy"></td><td><b>Vigorbloom Vanguard // Seed Suture</b> · Uncommon<br>🎧 <b>LR:</b> B+/B<br>🎓 <b>LLU:</b> C+<br>🎙 <b>Numot:</b> “Good.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/c/6/c63d5b0e-ee72-42ed-aa7e-484ba84507cd.jpg?1789007648" width="240" alt="Warrior&#x27;s Blades" loading="lazy"></td><td><b>Warrior&#x27;s Blades</b> · Uncommon<br>🎧 <b>LR:</b> B<br>🎓 <b>LLU:</b> Alex C+ / Mark C<br>🎙 <b>Numot:</b> “Lightning Helix on a trusty machete is good.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/7/d/7d17f7e3-7b63-4674-9024-4fd1827f40ec.jpg?1788329429" width="240" alt="Woodwork Prodigy // Soul Tether" loading="lazy"></td><td><b>Woodwork Prodigy // Soul Tether</b> · Uncommon<br>🎧 <b>LR:</b> C+<br>🎓 <b>LLU:</b> Alex C+ / Mark C<br>🎙 <b>Numot:</b> “It&#x27;s fine.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/b/b/bb975803-9bf2-401e-9414-d272df314398.jpg?1789556847" width="240" alt="Blessed Ghoul" loading="lazy"></td><td><b>Blessed Ghoul</b> · Common<br>🎧 <b>LR:</b> C+/C<br>🎓 <b>LLU:</b> Alex D / Mark D+<br>🎙 <b>Numot:</b> “I hate this type of card.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/5/e/5e77fbf0-9d1f-4e7d-a02e-43065d11b0d9.jpg?1789692643" width="240" alt="Blossom-Blessed Angel // Seed Suture" loading="lazy"></td><td><b>Blossom-Blessed Angel // Seed Suture</b> · Common<br>🎧 <b>LR:</b> C<br>🎓 <b>LLU:</b> C (&quot;may have graded a little too low&quot;)<br>🎙 <b>Numot:</b> “Good.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/8/7/87b40df5-5c0a-41f5-a09c-a04f17066a91.jpg?1788521570" width="240" alt="Charge the Sanctum" loading="lazy"></td><td><b>Charge the Sanctum</b> · Common<br>🎧 <b>LR:</b> C/C−<br>🎙 <b>Numot:</b> “I don&#x27;t like these type of cards but that&#x27;s probably fine.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/d/e/de94d388-919d-44ff-baef-8c90a417ac6d.jpg?1789637792" width="240" alt="Emergency Phytomedic // Seed Suture" loading="lazy"></td><td><b>Emergency Phytomedic // Seed Suture</b> · Common<br>🎧 <b>LR:</b> C/C+ (LSV C+)<br>🎓 <b>LLU:</b> C− (Alex: &quot;maybe even C+&quot;)<br>🎙 <b>Numot:</b> “Good enough.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/2/9/29e7ec16-0c16-48aa-8e09-ce6e0d5bd40b.jpg?1789060173" width="240" alt="Fatehold Chronologist // Peer Review" loading="lazy"></td><td><b>Fatehold Chronologist // Peer Review</b> · Common<br>🎧 <b>LR:</b> B−<br>🎓 <b>LLU:</b> C<br>🎙 <b>Numot:</b> “Seems fine.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/a/9/a9793ce9-5a0b-41fe-b9ad-02f6f7da2481.jpg?1789644856" width="240" alt="Ferocity of the Hunt" loading="lazy"></td><td><b>Ferocity of the Hunt</b> · Common<br>🎧 <b>LR:</b> C−/C<br>🎓 <b>LLU:</b> Alex D+ / Mark C−<br>🎙 <b>Numot:</b> “a good take on this effect”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/7/e/7e324816-552f-455d-97c4-5ea6b26d2e6e.jpg?1789127576" width="240" alt="Hallway Heckler // Vicious Verse" loading="lazy"></td><td><b>Hallway Heckler // Vicious Verse</b> · Common<br>🎧 <b>LR:</b> C<br>🎓 <b>LLU:</b> Alex D+ / Mark C−<br>🎙 <b>Numot:</b> “a 3-mana 2/3 rummager that pings”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/4/2/42e28bd2-486b-45d4-8840-6e33c19c2d57.jpg?1789556881" width="240" alt="Konstrari Improviser // Soul Tether" loading="lazy"></td><td><b>Konstrari Improviser // Soul Tether</b> · Common<br>🎧 <b>LR:</b> C−/C<br>🎓 <b>LLU:</b> C<br>🎙 <b>Numot:</b> “2-mana 2/2 that makes a Heartwood”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/7/e/7e5a640b-fd88-4b5a-9dfc-1d8f5a5cef41.jpg?1789127516" width="240" alt="Semester Foreseer // Peer Review" loading="lazy"></td><td><b>Semester Foreseer // Peer Review</b> · Common<br>🎧 <b>LR:</b> C<br>🎙 <b>Numot:</b> “decent common”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/b/3/b3d33df2-a77b-4c2e-ba7f-2cc9c1505f9b.jpg?1788878215" width="240" alt="Tam&#x27;s Resistance" loading="lazy"></td><td><b>Tam&#x27;s Resistance</b> · Common<br>🎧 <b>LR:</b> C<br>🎓 <b>LLU:</b> C−<br>🎙 <b>Numot:</b> “It&#x27;s really good for two mana.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/f/b/fb6bad96-841d-4738-8e62-92f346f914fd.jpg?1789556930" width="240" alt="Theorix Metamage // Omit Variables" loading="lazy"></td><td><b>Theorix Metamage // Omit Variables</b> · Common<br>🎧 <b>LR:</b> C+<br>🎓 <b>LLU:</b> Alex C− / Mark D+<br>🎙 <b>Numot:</b> “Okay, cool.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/5/5/55f85984-0137-4899-8993-bbc8c4794d33.jpg?1789556940" width="240" alt="Twinned Vision" loading="lazy"></td><td><b>Twinned Vision</b> · Common<br>🎧 <b>LR:</b> C+/C−<br>🎓 <b>LLU:</b> Alex C / Mark C+<br>🎙 <b>Numot:</b> “no verdict.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/0/e/0eae2efb-bf25-48ee-9c07-9098008110ad.jpg?1789556787" width="240" alt="Void Extrapolator // Omit Variables" loading="lazy"></td><td><b>Void Extrapolator // Omit Variables</b> · Common<br>🎧 <b>LR:</b> C<br>🎓 <b>LLU:</b> Alex D+ / Mark C−<br>🎙 <b>Numot:</b> “no strong verdict”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/8/0/8096bc9a-a610-448f-bef2-7230e17e9777.jpg?1789127692" width="240" alt="Whiplash Wordsmith // Vicious Verse" loading="lazy"></td><td><b>Whiplash Wordsmith // Vicious Verse</b> · Common<br>🎧 <b>LR:</b> C/C+<br>🎓 <b>LLU:</b> D+ (&quot;somewhat optimistic&quot;)<br>🎙 <b>Numot:</b> “that&#x27;s like okay.”</td></tr>
+</table>
 
 ### Colorless
 
-| Card | R | LR | LLU | Numot |
-|---|---|---|---|---|
-| `Emrakul, the Exigent Doom` | M | — | — | so so expensive… it's going to rot in my hand. But it's cool. That's a… |
-| `The Echoverse Fulcrum` | M | — | — | Oh, that's cool. Another wrath effect. |
-| `Karn, Argent Defender` | R | — | — | blah blah blah |
-| `Archive Arbiter` | U | C+ | Alex C / Mark C− | This is probably better than it looks. |
-| `Eye of Jace` | U | build-around C (Marshall, "prove it") / C+ (LSV) | Alex C / Mark C− | That's not bad… That seems okay |
-| `Traxos, Scourge Eternal` | U | B/C+ | Alex C− / Mark C+ | Four mana 5/4 trampler then. Not bad. |
-| `Afterthought Sentry` | C | D | D+ | Filler with artifact synergy |
-| `Keeper of the Quiet Hour` | C | C/C− | Alex C− / Mark C | Colorless common… that's just good… We'll play that. |
-| `Living Library` | C | no letter grade; clearly negative ("Nah | Alex D+ / Mark D | not awful… playable |
-| `Medic's Kitesail` | C | D+/C− | C− | going to be a really annoying card. |
-| `Murmuring Volume` | C | D | C− | I don't hate it… I'm a mana rock enjoyer. |
+<table class="expertcards">
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/e/e/ee609b68-5c9c-43e0-aff4-eb1bbc8b2911.jpg?1789060230" width="240" alt="Emrakul, the Exigent Doom" loading="lazy"></td><td><b>Emrakul, the Exigent Doom</b> · Mythic<br>🎙 <b>Numot:</b> “so so expensive… it&#x27;s going to rot in my hand. But it&#x27;s cool. That&#x27;s all it is.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/d/7/d71d250f-c0e0-44b2-877c-76f3bcab4f34.jpg?1789385887" width="240" alt="The Echoverse Fulcrum" loading="lazy"></td><td><b>The Echoverse Fulcrum</b> · Mythic<br>🎙 <b>Numot:</b> “Oh, that&#x27;s cool. Another wrath effect.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/1/e/1ebbbddb-2dc3-4194-b72b-13bcebe2ab89.jpg?1788878301" width="240" alt="Karn, Argent Defender" loading="lazy"></td><td><b>Karn, Argent Defender</b> · Rare<br>🎙 <b>Numot:</b> “blah blah blah”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/0/2/024bce1e-a5f3-4292-bc17-d0355a5d65e1.jpg?1789614867" width="240" alt="Archive Arbiter" loading="lazy"></td><td><b>Archive Arbiter</b> · Uncommon<br>🎧 <b>LR:</b> C+<br>🎓 <b>LLU:</b> Alex C / Mark C−<br>🎙 <b>Numot:</b> “This is probably better than it looks.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/0/e/0edba64a-39cf-4a8d-ba20-4f7da10b6c3d.jpg?1789614864" width="240" alt="Eye of Jace" loading="lazy"></td><td><b>Eye of Jace</b> · Uncommon<br>🎧 <b>LR:</b> build-around C (Marshall, &quot;prove it&quot;) / C+ (LSV)<br>🎓 <b>LLU:</b> Alex C / Mark C−<br>🎙 <b>Numot:</b> “That&#x27;s not bad… That seems okay”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/0/5/05102c46-96f8-44a0-a1e6-e388fa5e0841.jpg?1789557046" width="240" alt="Traxos, Scourge Eternal" loading="lazy"></td><td><b>Traxos, Scourge Eternal</b> · Uncommon<br>🎧 <b>LR:</b> B/C+<br>🎓 <b>LLU:</b> Alex C− / Mark C+<br>🎙 <b>Numot:</b> “Four mana 5/4 trampler then. Not bad.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/4/d/4d4b3bf7-a149-4099-b97d-4e36a87dfa60.jpg?1789385875" width="240" alt="Afterthought Sentry" loading="lazy"></td><td><b>Afterthought Sentry</b> · Common<br>🎧 <b>LR:</b> D<br>🎓 <b>LLU:</b> D+<br>🎙 <b>Numot:</b> “Filler with artifact synergy”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/b/6/b6331218-dbb8-44a9-8ba5-5fb1ab41c5c0.jpg?1788878239" width="240" alt="Keeper of the Quiet Hour" loading="lazy"></td><td><b>Keeper of the Quiet Hour</b> · Common<br>🎧 <b>LR:</b> C/C−<br>🎓 <b>LLU:</b> Alex C− / Mark C<br>🎙 <b>Numot:</b> “Colorless common… that&#x27;s just good… We&#x27;ll play that.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/5/d/5d4a8e5f-0024-4da3-a2f5-edb48b12e733.jpg?1789556949" width="240" alt="Living Library" loading="lazy"></td><td><b>Living Library</b> · Common<br>🎧 <b>LR:</b> no letter grade; clearly negative (&quot;Nah<br>🎓 <b>LLU:</b> Alex D+ / Mark D<br>🎙 <b>Numot:</b> “not awful… playable”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/8/b/8b07409a-1dce-461d-95e4-1130521ff4c4.jpg?1789556945" width="240" alt="Medic&#x27;s Kitesail" loading="lazy"></td><td><b>Medic&#x27;s Kitesail</b> · Common<br>🎧 <b>LR:</b> D+/C−<br>🎓 <b>LLU:</b> C−<br>🎙 <b>Numot:</b> “going to be a really annoying card.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/d/6/d68eab2e-89dd-4377-b7af-01512b1804a0.jpg?1789385977" width="240" alt="Murmuring Volume" loading="lazy"></td><td><b>Murmuring Volume</b> · Common<br>🎧 <b>LR:</b> D<br>🎓 <b>LLU:</b> C−<br>🎙 <b>Numot:</b> “I don&#x27;t hate it… I&#x27;m a mana rock enjoyer.”</td></tr>
+</table>
 
 ### Lands
 
-| Card | R | LR | LLU | Numot |
-|---|---|---|---|---|
-| `Hall of Echoes` | R | — | — | not bad… I'll play that in my two color decks. |
-| `Roiling Canopy` | R | — | — | a mono green payoff land… It's weird. |
-| `Theorist's Sanctum` | R | — | — | Oh, that's sweet too. Empower Jace, too, on a land. |
-| `Hexhaven Dueling Arena` | U | F | Alex F / Mark D− ("the coward's D−") | This one I don't think I like. |
-| `Room of Refuge` | C | C+ | C+ | not bad. Still even play this in your two-color decks. |
+<table class="expertcards">
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/4/a/4a771010-b397-4849-ac9b-08e4dd5d6a72.jpg?1789644859" width="240" alt="Hall of Echoes" loading="lazy"></td><td><b>Hall of Echoes</b> · Rare<br>🎙 <b>Numot:</b> “not bad… I&#x27;ll play that in my two color decks.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/d/b/db61361b-bd12-453e-abc2-bbe09b66e3d9.jpg?1789514074" width="240" alt="Roiling Canopy" loading="lazy"></td><td><b>Roiling Canopy</b> · Rare<br>🎙 <b>Numot:</b> “a mono green payoff land… It&#x27;s weird.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/2/2/22db5bba-46c9-4a26-821d-303ddb386ea4.jpg?1788878256" width="240" alt="Theorist&#x27;s Sanctum" loading="lazy"></td><td><b>Theorist&#x27;s Sanctum</b> · Rare<br>🎙 <b>Numot:</b> “Oh, that&#x27;s sweet too. Empower Jace, too, on a land.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/9/1/9128ce00-6744-4d36-bfbe-ef75d78110b0.jpg?1789556985" width="240" alt="Hexhaven Dueling Arena" loading="lazy"></td><td><b>Hexhaven Dueling Arena</b> · Uncommon<br>🎧 <b>LR:</b> F<br>🎓 <b>LLU:</b> Alex F / Mark D− (&quot;the coward&#x27;s D−&quot;)<br>🎙 <b>Numot:</b> “This one I don&#x27;t think I like.”</td></tr>
+<tr><td width="250"><img src="https://cards.scryfall.io/normal/front/9/a/9a467560-6676-4fc2-9400-768a79650aa4.jpg?1789557010" width="240" alt="Room of Refuge" loading="lazy"></td><td><b>Room of Refuge</b> · Common<br>🎧 <b>LR:</b> C+<br>🎓 <b>LLU:</b> C+<br>🎙 <b>Numot:</b> “not bad. Still even play this in your two-color decks.”</td></tr>
+</table>
 
 ---
 
@@ -821,7 +820,8 @@ one, so read it as *how cards played*, not *how good they are*. Full notes are i
   podcasts grade them C-range. Strong in a long game, mediocre in a short one.
 - **Best colour: three sources, three answers.** Kenji (Numot) ranks **white first and blue last**
   from the card read ("every single card" in white is playable). LLU's Mark has white
-  *second-worst* and black worst. LR is highest on black and red. Kenji's own Sealed pool then
+  *second-worst* and black worst, and in their blue episode LLU calls blue maybe the best colour
+  at common/uncommon. LR is highest on black and red. Kenji's own Sealed pool then
   pushed him **into** blue ("I have too many good blue cards"). Read this as a set with no bad
   colour: build from your pool, not from a ranking.
 - **Coverage gap.** One Sealed run is the only play data, and neither podcast has graded rares
@@ -840,7 +840,7 @@ one, so read it as *how cards played*, not *how good they are*. Full notes are i
   Egashira, 2026-09-23 (`jorRsIuS7RY`). Distilled in [`numot/FRA.md`](../numot/FRA.md).
 - **Limited Resources 872** — Reality Fracture Set Review: Commons and Uncommons, Marshall
   Sutcliffe + LSV, 2026-09-21. Distilled in [`limited-resources/FRA.md`](../limited-resources/FRA.md).
-- **Limited Level-Ups** — Reality Fracture set review (6 parts; blue not yet transcribed) plus
+- **Limited Level-Ups** — Reality Fracture set review (6 parts; blue transcribed locally with whisper after YouTube refused its captions) plus
   First Impressions #261, Alex + Mark, 2026-09-18 → 09-22. Distilled in
   [`limited-level-ups/FRA.md`](../limited-level-ups/FRA.md).
 - **Not used:** Draftsim's and MTG Arena Zone's reviews were dropped 2026-09-22. Their captures stay

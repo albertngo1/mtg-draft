@@ -1,11 +1,11 @@
 # FRA — Limited Level-Ups draft notes
 
-> Source: **Limited Level-Ups**. The host is **Alex**; co-host **Mark** joins on the set review. **6 Reality Fracture videos** so far (2026-09-18 → 2026-09-22), built 2026-09-22 from YouTube auto-captions. Card names are heavily mangled in the captions; every name below was matched against the FRA card list, and uncertain readings are marked `(?)`.
+> Source: **Limited Level-Ups**. The host is **Alex**; co-host **Mark** joins on the set review. **7 Reality Fracture videos** so far (2026-09-18 → 2026-09-22), built 2026-09-22 from YouTube auto-captions. Card names are heavily mangled in the captions; every name below was matched against the FRA card list, and uncertain readings are marked `(?)`.
 >
 > The set review is split across six videos: Multicolor + Colorless, then one per colour. Commons and uncommons get an **A+→F letter grade** from both hosts, shown as `Alex X / Mark Y` where they split. Those grades are this channel's distinctive product.
 >
 > ⚠ **Gaps:**
-> - **Blue (5/6, `ke_XTZAqxWI`) is missing.** YouTube had not published its auto-captions yet at build time, so blue has no LLU grades here. Re-run `src/ingest/fetch_subs.sh limited-level-ups` and distill it once captions exist.
+> - **Blue (5/6, `ke_XTZAqxWI`) comes from a local whisper transcript, not YouTube captions.** YouTube refused this one video's captions from this machine (HTTP 429) for over a day, so the audio was transcribed locally with whisper.cpp (medium model) on 2026-09-23. That transcript has no speaker markers, so blue attributions lean harder on the I = Mark rule, and a few grades are marked `(?)`.
 > - **Rares and mythics are not reviewed yet.** The hosts say they come in a separate video after early access ("Thursday"). A handful of rares appear below only because the green episode ran through them without marking a rare section.
 
 ## ⚠ Recency rule (read first)
@@ -23,7 +23,7 @@
 | 2026-09-22 | Set Review 2/6: GREEN (`Gq7DmwSLcJk`) | early (pre-play grades) | Weak-Medium |
 | 2026-09-22 | Set Review 3/6: RED (`rzZTGt7DQqw`) | early (pre-play grades) | Weak-Medium |
 | 2026-09-22 | Set Review 4/6: BLACK (`svT3Ige5E3E`) | early (pre-play grades) | Weak-Medium |
-| 2026-09-22 | Set Review 5/6: BLUE (`ke_XTZAqxWI`) | **not distilled — no captions yet** | — |
+| 2026-09-22 | Set Review 5/6: BLUE (`ke_XTZAqxWI`) — whisper transcript | early (pre-play grades) | Weak-Medium |
 | 2026-09-22 | Set Review 6/6: WHITE (`BmIJbG1z69Q`) | early (pre-play grades) | Weak-Medium |
 
 ## Supersessions (grade/opinion flips between first-impressions and later reviews)
@@ -50,7 +50,7 @@ These are Alex's First Impressions calls (09-18) against the graded review four 
   - Against an opponent's Jace, send your most awkward-to-block attacker at it and everything else at face. Pushing it to zero is "functional life gain", but don't alpha-strike 15 power into a small Jace.
   - You need early 2-power creatures to pressure an opposing Jace.
 - **Getting to 7–8 mana is easier than usual,** because Jace finds lands. Green ramp has real 6–7-drop targets, but Alex warns the payoff has to repay the lost tempo.
-- **Colour ranking: the hosts disagree, and nobody calls a colour bad.** Mark has black as "the worst color, but not by much" and white as "second worst". Alex called red the weakest, then conceded after four good red commons in a row ("red's good… good burn, good top end").
+- **Colour ranking: the hosts disagree, and nobody calls a colour bad.** Mark has black as "the worst color, but not by much" and white as "second worst". Alex called red the weakest, then conceded after four good red commons in a row ("red's good… good burn, good top end"). In the blue episode, one host calls blue "my vote for best color at common/uncommon, but … not by much", and the other agrees.
 - **Complexity.** Designer Ben White said feedback called the set too complex. RG (and to a degree GW) was made easy to play to compensate. Alex calls it a "skill testing set for deck building", and says to expect timeouts.
 
 ## Archetypes (10 two-color pairs, ranked)
@@ -108,9 +108,34 @@ Grades are from the 09-22 colour review unless noted; `Alex X / Mark Y` where th
 
 ### Blue (U)
 
-**Not yet distilled** — the Blue review (`ke_XTZAqxWI`) had no auto-captions at build time. From other LLU episodes only:
-- **Unsummon** — (First Impressions, no grade) "Good for decades, it's still good today, and that's exactly what blue red wants." In the colour reviews the hosts repeatedly cite it as the main answer to green's big creatures and tokens.
-- **Semester Foreseer** — C− (graded in the multicolor episode alongside Peer Review). Small card advantage, and you surveil twice.
+*Whisper transcript. See the caveat at the top.* One host calls blue "my vote for best color at common/uncommon, but … not by much and … not with a high degree of confidence", and the other agrees. That's the opposite of Numot's read.
+
+- **Countersculpt** — B (Mark moved up from B− to Alex's B). "A great set for Cancel": there are many good expensive things to counter, and at worst it's a Dissolve plus Empower Jace 1.
+- **Plan for All Outcomes** — B (Alex moved up from C+ to Mark's B). Sorcery-speed tuck removal; "every spell is basically surveil 1 tacked on."
+- **Mindseeker Oculus** — B−. "Great card." Empower 4 is usually better than 3.
+- **Unsummon** — B−. "One of the best commons": the set's 4/4 and 5/5 tokens and big creatures make bounce strong.
+- **Tetsuko Umezawa, Fugitive** — Alex B− / Mark C+. "Deceptively good": it also makes Jace-pressuring small creatures unblockable.
+- **Traxos, Academy Guardian** — Alex B− / Mark C (both stayed put). Alex says prepared spells make the discount reliable; it's a great Jace protector.
+- **Surveillance Phantasm** — C+. "By far the best template like this": a vigilant flier that enables itself and defends Jace. Don't attack after tapping out into the G/W +2/+2 reach/flying tricks.
+- **Icy Reception** — C+. A Mana Leak for creatures, legends and Ways, or −5/−0, which matters with this much deathtouch.
+- **Yuriko, Hope from the Shadows** — Alex C / Mark C+ (?). Blanks a deathtouch attacker or saves yours.
+- **Arni, Humble Scribe** — Alex C+ / Mark C− (Mark: "I think I like your take"). A 3/2 looter for UB threshold and flashback.
+- **Way of the Cryomancer** — Alex C+ / Mark D+. Alex: "one of the scariest just sitting in play." Mark: awkward to time; it wants 7–8 empower cards.
+- **Infinite Coursework** — Alex C− / Mark C+. Aura lockdown; weak to the green untap trick and Unsummon.
+- **Protege's Awakening** — Alex C / Mark C−. Only good if you can spend loyalty in big chunks (UG, e.g. with Kiora).
+- **Perfected Theory** — Alex C / Mark D+. "Seems pushed" as a UR trick; Mark would cut it first.
+- **Geist of Saint Thalia** — Alex C / Mark C−. Mostly a UR card.
+- **Proft, Consulting Detective** — C. It can rarely be activated before turn 5 or so; "a little bit worse than it reads."
+- **Hapatra, the Desert Frost** — Alex C / Mark C−. A "big Frost Lynx"; 3 toughness is rough here.
+- **Ruric Thar, Biomagus** — Alex C− / Mark C. Fine, but not a high pick. (Numot's Sealed run disagrees: it won him two games.)
+- **Divining Duelist** — C− / D+ (speakers unclear). Flexible filler.
+- **Undulating Witness** — Alex C− / Mark D+. Probably the worst landcycler, but still some fixing.
+- **Way of the Mind Sculptor** — Alex D+ / Mark C− (?). Either overkill card draw or what puts you over the top.
+- **Fblthp, Impossibly Lost** — D+. Damaging a Jace doesn't count toward its trigger. "More interesting than good."
+- **Sphinx's Approach** — D. The five-copy Sphinx tutor is a meme.
+- **Cryotheory Adept** — Alex D+ / Mark D−. The prowess 2/1 doesn't hold up.
+- **Yargle, Goliath of Otaria** — F (?). The joke 3/9.
+- **Precise Redaction** — sideboard (no letter).
 
 ### Black (B)
 
@@ -283,5 +308,5 @@ Grades are from the 09-22 colour review unless noted; `Alex X / Mark Y` where th
 - 2026-09-22 — Reality Fracture Limited Set Review! | Green | 2/6 (Gq7DmwSLcJk)
 - 2026-09-22 — Reality Fracture Limited Set Review! | Red | 3/6 (rzZTGt7DQqw)
 - 2026-09-22 — Reality Fracture Limited Set Review! | Black | 4/6 (svT3Ige5E3E)
-- 2026-09-22 — Reality Fracture Limited Set Review! | Blue | 5/6 (ke_XTZAqxWI) — **not yet distilled, no captions**
+- 2026-09-22 — Reality Fracture Limited Set Review! | Blue | 5/6 (ke_XTZAqxWI) — transcribed locally with whisper
 - 2026-09-22 — Reality Fracture Limited Set Review! | White | 6/6 (BmIJbG1z69Q)

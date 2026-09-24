@@ -348,3 +348,14 @@ a:hover { text-decoration: underline; }
   html { scroll-behavior: auto; }
   * { transition: none !important; }
 }
+
+/* Prerelease guide: per-card expert table (image beside the three expert takes). */
+table.expertcards { width: 100%; min-width: 0; border-collapse: collapse; }
+table.expertcards td { vertical-align: top; padding: 8px 10px; border-bottom: 1px solid var(--line, rgba(128,128,128,.25)); }
+table.expertcards img { display: block; width: 240px; max-width: 100%; height: auto; border-radius: 10px; }
+@media (max-width: 640px) {
+  table.expertcards, table.expertcards tbody { display: block; width: 100%; }
+  table.expertcards td { display: block; width: auto !important; padding: 6px 0; border-bottom: 0; }
+  table.expertcards tr { display: block; border-bottom: 1px solid var(--line, rgba(128,128,128,.25)); padding: 8px 0; }
+  table.expertcards img { width: 100%; max-width: 320px; }
+}

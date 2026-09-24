@@ -101,8 +101,8 @@
         "https://www.youtube.com/@limitedlevel-ups",
         "https://www.youtube.com/watch?v=jorRsIuS7RY"
       ],
-      "sha1": "16f83539d7a05a9d433dcdb11e971a10215c480c",
-      "words": 10897,
+      "sha1": "d6a83a1f3541908c086a10870f4adee292aa37c2",
+      "words": 11980,
       "card_data": {
         "source": "Scryfall set:fra",
         "cards": 285,
@@ -113,7 +113,7 @@
           "mythic": 26
         },
         "fetched": "2026-09-21",
-        "embedded_images": 0
+        "embedded_images": 264
       },
       "aggregates": [
         "Wizards of the Coast prerelease guide (authoritative on the ten archetypes)",

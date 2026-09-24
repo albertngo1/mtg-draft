@@ -175,7 +175,7 @@ Specific to this format:
   worst and white second-worst, while Alex first called red the weakest and then took it back. BR
   pings is the archetype both podcasts doubt most.
 - **Colour ranking: three sources, three answers.** Numot (Kenji Egashira, first read-through)
-  ranks white first and blue last. LLU's Mark has black worst and white second-worst. LR is highest
+  ranks white first and blue last. LLU's Mark has black worst and white second-worst, and LLU's blue episode calls blue maybe the best at common/uncommon. LR is highest
   on black and red. Kenji's own first Early Access Sealed pool (3-3) ended up U/B because blue
   was its deepest colour. Treat the set as having no bad colour until 17Lands says otherwise.
 - **Card grades where the two reviewers split by two grade steps or more.** Limited Resources
