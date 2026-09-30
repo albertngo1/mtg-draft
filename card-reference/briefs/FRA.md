@@ -6,13 +6,17 @@ token, every allied pair a recurring free spell at common, and every colour pair
 common. The result is a format where fixing is nearly free, splashing is cheap, and the games are
 decided by whether you answered the right threat and whether anyone attacked the Jace.
 
-### ⚠ This brief has no play data
+### ⚠ This brief predates play data
 
-Captured 2026-09-21, four days before the prerelease and eleven before release. There is no
-17Lands GIH WR, no win-rate table, no measured pick order. Everything below is either a **count**
-taken from full set data, or a **pre-game prediction** from a published reviewer. The two are
-labelled where it matters, and the counts are the part to trust. Rewrite this brief once real
-data lands.
+Captured 2026-09-21, four days before the prerelease and eleven before release. Everything below
+is either a **count** taken from full set data, or a **pre-game prediction** from a published
+reviewer. The two are labelled where it matters.
+
+**Day-one 17Lands data now exists (2026-09-30, ~17.8k PremierDraft decks)** and already
+contradicts parts of this brief: U/B, W/U and B/G lead the archetype table, B/R is mid-table,
+and W/B is last. The archetype table and every card's GIH WR on this page are the live numbers;
+where they disagree with the predictions below, the numbers win. Rewrite this brief once the
+sample settles (~1 week).
 
 ### The ten archetypes
 
