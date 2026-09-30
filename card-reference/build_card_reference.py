@@ -174,7 +174,8 @@ ds, GLABEL, GDESC = {}, "", ""
 for src, label, desc in (("limitedresources", "LR", "Limited Resources letter grade"),
                          ("cardgamebase", "CGB", "CardGameBase letter grade"),
                          ("draftsim", "DS", "Draftsim grade /5"),
-                         ("mtgazone", "AZ", "MTG Arena Zone grade /5")):
+                         ("mtgazone", "AZ", "MTG Arena Zone grade /5"),
+                         ("tcgplayer", "TCG", "TCGplayer (LSV / Jůza) grade /5")):
     path = f"{ROOT}/grades/{src}_{SET}.json"
     if src not in EXCLUDED_SOURCES and os.path.exists(path):
         table = {norm(k): v for k, v in json.load(open(path)).items() if not k.startswith("_")}
@@ -253,8 +254,9 @@ GUIDE_SRCS = [
     # a set whose review is per-card (FRA) lights them up.
     ("📝 DS",    "📝 Draftsim",           parse_guide(f"{ROOT}/draft-guides/draftsim/{SET}.md", CARD_KEYS, "DS")),
     ("🅰 AZ",    "🅰 MTG Arena Zone",     parse_guide(f"{ROOT}/draft-guides/mtgazone/{SET}.md", CARD_KEYS, "AZ")),
+    ("🃏 TCG",   "🃏 TCGplayer",          parse_guide(f"{ROOT}/draft-guides/tcgplayer/{SET}.md", CARD_KEYS, "TCG")),
 ]
-_EXCL_TAG = {"draftsim": "📝 DS", "mtgazone": "🅰 AZ"}
+_EXCL_TAG = {"draftsim": "📝 DS", "mtgazone": "🅰 AZ", "tcgplayer": "🃏 TCG"}
 GUIDE_SRCS = [g for g in GUIDE_SRCS if g[0] not in {_EXCL_TAG[x] for x in EXCLUDED_SOURCES}]
 
 # ---- grouping / ordering ----------------------------------------------------

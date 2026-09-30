@@ -62,6 +62,7 @@ GUIDES = [
     ("LLU",   "limited-level-ups", "{SET}.md"),
     ("DS",    "draftsim",          "{SET}.md"),
     ("AZ",    "mtgazone",          "{SET}.md"),
+    ("TCG",   "tcgplayer",         "{SET}.md"),
 ]
 
 def load_cards(SET):
