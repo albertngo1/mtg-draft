@@ -6,6 +6,16 @@ While you draft, it reads the pack you're looking at straight out of Arena's log
 real [17Lands](https://www.17lands.com/) win-rate data, and shows you what each card does — so every
 pick is backed by data instead of a gut read.
 
+> ### 🌐 [Browse the card references online →](https://albertngo1.github.io/mtg-draft/)
+>
+> **Every card in 13 sets, no install needed:** card image, live 17Lands win rates, expert grades
+> and notes, and an AI take on each card, with search across all of it.
+>
+> **Newest — Reality Fracture (FRA):** [card reference](https://albertngo1.github.io/mtg-draft/sets/FRA.html)
+> · [prerelease guide](https://albertngo1.github.io/mtg-draft/prerelease/FRA.html)
+>
+> Also: BLB · DFT · DSK · ECL · FIN · HOB · LCI · MH3 · MKM · MSH · OTJ · SOS
+
 No account login. No browser extension. Nothing forced on you — the core is just a Python script
 reading the log file Arena already writes on your own machine.
 
@@ -92,7 +102,7 @@ the other way around.
   theory plus how to drive this tool pick-by-pick.
 - **[card-reference/](./card-reference/)** — a visual grid of every card in a set: image, 17Lands
   ratings, a reviewer letter grade where one exists, notes from the expert guides, and a per-card AI
-  take. **Thirteen sets, 3,925 cards** — BLB, DFT, DSK, ECL, FIN, FRA, HOB, LCI, MH3, MKM, MSH, OTJ, SOS. Each set also
+  take. **Thirteen sets, 3,935 cards** — BLB, DFT, DSK, ECL, FIN, FRA, HOB, LCI, MH3, MKM, MSH, OTJ, SOS. Each set also
   ships a **format brief** (`card-reference/briefs/<SET>.md`): the archetype table with real 17Lands
   win rates and metagame share, the draft plan, and the things a win-rate column can't tell you —
   sequencing, combat math, copy counts, splash policy. See its README to regenerate.
