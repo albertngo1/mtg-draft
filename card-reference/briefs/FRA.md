@@ -12,9 +12,9 @@ Captured 2026-09-21, four days before the prerelease and eleven before release. 
 is either a **count** taken from full set data, or a **pre-game prediction** from a published
 reviewer. The two are labelled where it matters.
 
-**Day-one 17Lands data now exists (2026-09-30, ~17.8k PremierDraft decks)** and already
-contradicts parts of this brief: U/B, W/U and B/G lead the archetype table, B/R is mid-table,
-and W/B is last. The archetype table and every card's GIH WR on this page are the live numbers;
+**Early 17Lands data now exists (2026-10-01, ~64.6k PremierDraft decks)** and already
+contradicts parts of this brief: W/U, B/G and U/B lead the archetype table, B/R is 7th of 10,
+and W/B is near the bottom. The archetype table and every card's GIH WR on this page are the live numbers;
 where they disagree with the predictions below, the numbers win. Rewrite this brief once the
 sample settles (~1 week).
 
