@@ -27,6 +27,10 @@ Single-file, visual card references for a set: every draftable card as a tile in
   workaround of averaging the gold cards legal in each pair — that proxy conflates card quality with
   archetype quality, rests on 3-8 cards, and measured against this endpoint it mis-ranked pairs by up
   to five places. The archetype table above each brief comes from here.
+- `fetch_pair_synergy.py` — each card's IWD **inside each colour pair** vs its set-wide IWD
+  (17Lands `colors=` filter). `python3 fetch_pair_synergy.py <SET> [--refresh] [--min 1000] [--z 2.5]`.
+  Surfaces cards that only work in one shell and which colour half carries a pair; it feeds the
+  "Synergy by pair" section of a set's brief (FRA first).
 - `build_site.py` + `site/` — the static-site generator behind the browsable web version (below).
 
 ## Browsable web version — https://albertngo1.github.io/mtg-draft/
