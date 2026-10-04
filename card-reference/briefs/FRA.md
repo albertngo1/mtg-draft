@@ -128,6 +128,31 @@ bottom four (53.5–53.7%).**
   `Tinybones, Pocket Nuisance` +6.4 and `Extended Absence` +6.2 lead. `Void Extrapolator` is −5.7
   here (no self-mill to turn on threshold).
 
+#### What Reddit adds (and where it's wrong)
+
+From 67 post-release threads on r/lrcast, r/MagicArena and r/magicTCG (2026-09-29 → 10-04; full
+notes in `draft-guides/reddit/FRA.md`). Trophy posts are survivorship-biased, so where Reddit and
+the numbers disagree, the numbers win.
+
+- **Kill your own Jace to activate twice in a turn.** Use the token's −3 to draw, taking it to 0;
+  it dies, and the next empower card makes a fresh token that can activate again that turn. (It
+  doesn't work with `Sanctum Lurker` out, which keeps 0-loyalty planeswalkers alive.)
+- **`Ajani Unrelenting` (74.0%, the best card in the set) feeds on Jace.** It makes a Cadet on
+  *any* loyalty activation, the Jace token's included, so keep a Jace on 1 loyalty to fire every
+  turn. Its −3 spares your tokens and kills everything with toughness 4 or less.
+- **Bounce is removal here.** `Unsummon` (57.8%) beats its grade because the board is full of
+  tokens and big bodies that cost a turn to recast; `Twinned Vision` (58.5%, 4th-best common) is
+  the grind card everyone under-picked.
+- **Leave colour hosers in the sideboard in Bo1:** `Refute Destiny` 51.3%, `Terminal Criticism` 51.1%.
+- **Reddit gets these wrong:**
+  - "B/R is great": the trophy feed is full of B/R 7-0s, but the pair is tied bottom.
+  - "The set wants three colours": true three-colour decks win 53.6% vs 55.4% for two, and every
+    three-colour deck with white is 52.5% or worse. Splash a card; don't play a third colour.
+  - "White is bad": white is the half carrying W/U. It is bad only outside W/U.
+  - "`Surgical Precision` is bad": it is the 12th-best common (57.3%); a third of creatures have 4+ toughness.
+  - "The re-preparing uncommons are engines": `Stingerquill Voxmancer` 54.0%, `Paradox Shaper` 55.7%,
+    `Woodwork Prodigy` 52.8% are all at or below the set median, and `Command the Stage` is 49.6%.
+
 #### Take on power vs take only in the lane
 
 | Good in any deck it's castable in | Good only in its lane |
