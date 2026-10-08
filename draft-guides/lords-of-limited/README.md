@@ -28,6 +28,7 @@ via `src/ingest/fetch_subs.sh lords-of-limited`).
 | Edge of Eternities (EOE) | [EOE-draft-guide.md](./EOE-draft-guide.md) | 6 | 2025-07 → 2025-10 | "Play to the board"; spacecraft format. |
 | Foundations (FDN) | [FDN-draft-guide.md](./FDN-draft-guide.md) | 6 | 2024-11 → 2024-12 | White is the best color at common. |
 | Final Fantasy (FIN) | [FIN-draft-guide.md](./FIN-draft-guide.md) | 6 | 2025-05 → 2025-07 | Balanced, moderate-synergy; reward lane-finding. |
+| Reality Fracture (FRA) | [FRA-draft-guide.md](./FRA-draft-guide.md) | 1 | 2026-10 | **Thin** — week-one post-play read (ep 499); "reach each card's ceiling", attack Jace by default. 3 earlier FRA eps not yet distilled. |
 | Guilds of Ravnica (GRN) | [GRN-draft-guide.md](./GRN-draft-guide.md) | 1 | 2018-11 | **Thin** — single gameplay video. |
 | Ikoria: Lair of Behemoths (IKO) | [IKO-draft-guide.md](./IKO-draft-guide.md) | 6 | 2020-04 → 2020-06 | Cycling is best; RW cycling the flagship. |
 | Kaldheim (KHM) | [KHM-draft-guide.md](./KHM-draft-guide.md) | 1 | 2024-10 | **Thin** — one flashback draft; UR Giants/Snow. |

@@ -4,7 +4,7 @@
   "note": "Fingerprint of distilled scrape. sha1 = sha1 of the cleaned transcript .txt.",
   "counts": {
     "sets": 42,
-    "videos_distilled": 255,
+    "videos_distilled": 256,
     "videos_no_captions": 2
   },
   "sets": {
@@ -141,6 +141,7 @@
       "tier": 2,
       "file": "FRA.md",
       "video_ids": [
+        "JDZ3n8Uk-Jw",
         "jorRsIuS7RY"
       ]
     },
@@ -1025,6 +1026,12 @@
       "set": "SIR",
       "sha1": "e66b783284990977390f7020863133474e79c300",
       "words": 5562,
+      "distilled": true
+    },
+    "JDZ3n8Uk-Jw": {
+      "set": "FRA",
+      "sha1": "91cfee698fb3ccb9429b2f43c729455009f63591",
+      "words": 9487,
       "distilled": true
     },
     "JNpXx9oqs10": {

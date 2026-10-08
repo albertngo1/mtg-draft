@@ -1,5 +1,143 @@
 # FRA — Reddit notes
 
+## Week two (Arena, 2026-10-05 → 10-08)
+
+> Source: **r/lrcast** (primary) + **r/MagicArena**, posts dated 2026-10-05 → 10-08. 400 post
+> headers were scanned, and 32 threads were read in full, with the top 25 comments per thread by
+> score. Pulled 2026-10-08 via the arctic_shift archive API (`/api/posts/search?subreddit=…&after=2026-10-05`,
+> paged with `before=`, then `/api/comments/search?link_id=…`). Raw JSON is in
+> `data/cache/reddit_FRA_week2/`. **Posts from 10-07/08 mostly show 0 comments, because the archive had
+> not ingested replies yet.** This section leans on 10-05/06 threads plus the full text of a few 10-07/08
+> posts.
+>
+> **Evidence class:** post-play Arena anecdote, as above, with the same caveats: survivorship-biased
+> trophy posts and single-player runs. **Week two adds one new kind of evidence: Arena Direct
+> (Collector Box) Bo1 Sealed**, which ran all week and dominates the posts. Sealed reads are not draft
+> reads. GIH WR below is 17Lands PremierDraft as of 2026-10-08 unless a thread quoted its own number.
+
+### Format read (what changed since week one)
+
+- **"Card quality or synergy?" is the week's argument, and both sides have trophies.**
+  - *Quality side:* "This is absolutely a card quality over synergy set… outside of UW and GW there is
+    very little A+B synergy" (1wymly0). The top of 1wz89x8 ("Really do not understand how this format is
+    being defined as a synergy set", 102 comments) argues that bombs ask nothing of you and that
+    everything with Empower Jace or extra cardboard is good. The rest is bad.
+  - *Synergy side:* rareless or bombless trophies posted all week. Examples: a **0-rare U/R prowess
+    deck that won its 3rd Arena Direct box** (1wzg44r, 58), a G/W lifegain deck with "0 A-tier bombs
+    and 0 unconditional removal" (1x04f34), and a W/U lifegain 7-0 "without any disgusting bombs"
+    (1wy6crt). The synthesis most people upvoted: "it's card quality > synergy, but card quality is
+    often achieved by maximizing micro synergies" (1wymly0). Coherence still matters: you don't
+    play Hapatra, the Desert Fang without self-mill.
+  - **17Lands-skeptic camp, strong this week:** "17lands winrate is giving you cards that are
+    generically good, but it is really bad at giving you information about cards that require
+    synergy packages" (1wz89x8). Named examples: Way of the Pyromancer, Way of the Cryomancer, both
+    Ghaltas, Rescue Girl, Theoretical Necromancer, white Tomik, white Danitha. This echoes the Lords
+    of Limited 10-05 episode, which the sub argued about (1wz27th, 45 comments).
+- **Blue is still the colour to be in.** "There's genuinely no point if you're not blue or don't have
+  bombs" (1wxvggg). One player's last 11 drafts: blue as a main colour 10 times, splashed once
+  (1wyl769). "Most great decks are U… the card quality is just too good to ignore at common (all the
+  draw spells basically)" (1wzg44r). The counter-view: "Blue has a problem with you going wide" (1wyl769).
+- **Creature-curve aggro mostly fails.** "There's too much removal so aggro is really hard. You have
+  to either have critical density of flyers or have that excellent lifelink synergy or get rares in red
+  at 1 and 2 drop" (1wxvggg, 11). The G/W aggro trophy in 1wyqygi admits it was on the play about half
+  the time. Replies: "being on the play with synergy decks feels so crucial."
+- **Removal count keeps going up.** "I play as many removal spells as I can get, usually 7-8"
+  (1wxvggg). A 7-0 Ajani deck ran **9 creatures** (1wz5pxe). Its owner's summary: "10+ removals, and
+  whoever is lucky enough to stick 1 creature wins". Best removal per colour, one answer in 1wymly0:
+  **W Memory Trap, U Infinite Coursework, R No Admittance, B any (Last Gasp, Multiply by Zero)**,
+  with green's removal too situational. The Infinite Coursework pick contradicts Lords of Limited,
+  who called it "so bad".
+- **Splashing is normal and easy.** The long U/B guide (1x09l76) says "Any midrange or controlling
+  deck should be trying to splash." Best tools: duals, Room of Refuge, landcyclers. For U/B the best
+  splash is **green** (B/G gold cards), then white, then red. A 7-0 with 4-colour soup (1wzkjpx) and a
+  4-colour LGS draft win (1wzesg1) were posted. Commenters compared Sealed to Strixhaven soup.
+- **Landcycler land counts (Sealed):** one Arena Direct 7-0 ran **15 lands + 4 landcyclers**, with the
+  rule of thumb **"cut a land for every 2 landcyclers"**. Keep the extra land if the deck is mana-hungry
+  or relies on cyclers as top-end threats (1wzesg1). Replies thought 15 was greedy and that the deck ran
+  hot.
+- **Echoed pairs: the one you'd guess is weaker is often better.** 1x03mfo, using 17Lands data:
+  Fblthp, Impossibly Lost (blue) over Fblthp, Knows the Way (green); Chandra, Chill of Compliance (blue)
+  ≥ Chandra, Torch of Defiance; the two Garruks about even. Pack-structure note (1wzkpne): **Tam,
+  the Possibility and Jace, Reality Sculptor are an echoed pair**, and each pack can carry one extra
+  unpaired card from the pair sheet.
+- **Opinion on the games:** most like the long games and comebacks ("way better than the Hobbit").
+  The minority complaint is that games come down to bombs and pod luck. The Arena Direct complaint is
+  the rare count: pools with 6–14 rares, and Ajani Unrelenting everywhere ("FRA weekend 1
+  visualized", 1wzbsyp, 92).
+
+### U/B in depth (1x09l76, "How to Draft Blue/Black in Reality Fracture", 10-08)
+
+The longest strategy post of the week. It is one player's view (u/wormhole222), and the archive shows
+no replies yet. Three U/B decks, in order of how often to draft them:
+
+1. **U/B "controlling" (best):** removal plus card advantage, still killing with value creatures
+   (Theoretical Necromancer and Mindseeker Oculus "can also kill quickly"). **Two-drops can be
+   counterspells and removal, not 2/2s:** "This isn't The Hobbit." Self-mill to about 10 cards left in
+   your library most games. There is no way for the opponent to mill you. The author thinks blue
+   controlling with any partner is "maybe the best way to play the whole set right now".
+2. **U/B hard control:** about zero creatures besides Fblthp + Tetsuko Umezawa, Fugitive. It wins
+   with Fblthp, Impossibly Lost decking yourself, or with Jace, Reality Sculptor. Paradox Shaper sets
+   up the deck: bottom Countersculpt, then Fblthp, then Tetsuko.
+3. **U/B hyper-mill aggro:** "the support exists, but don't play it", not yet.
+
+Card calls: **Countersculpt "BOMB… arguably the best uncommon in the set"**; **Recursive Recruitment
+a bomb** (its flashback alone makes two 4/4s, usually two 6/6s); **Rewrite Regrets good with 2+
+landcyclers**; **Surveillance Phantasm is not just a W/U card**; **Unsummon is fine but not premium**
+(often cut); **Tam's Resistance is fine even with no creature target**. Jace tips: **play your duals
+before you kill your own Jace**, so they enter untapped. **With a 4-loyalty Jace and a land drop needed
+next turn, use the −1 surveil now**, and keep the draw for next turn. **Taking a Jace to 0 and making a
+new one gives you another activation.**
+
+### Card notes (week two)
+
+- **Kindred Judgment** — the sub's "passed too late" rare (1wxvuz3, 19). It is the highest-WR mono-white
+  card (61.9% per the thread, 61.5% on 10-08), yet players keep getting it pick 4–6. It is a 7-mana
+  one-sided wrath, and Clerics and Wizards overlap so you can usually keep 2–3 creatures. Reviews
+  panned it, so "people who rely on rating tools just pass it". Dissent: cut it from low-curve
+  aggressive white decks. Kenji also called it "fantastic" (numot FRA.md).
+- **Theoretical Necromancer** — top comment of "Favorite mid common?" (1wy105v, 62): "secretly black's
+  second best common". Its **GIH WR (55.9%) understates it, because you want to mill it, not draw
+  it**, so look at games-played WR instead. It is the defining common for U/B and B/G and goes late.
+  The same point appears in Rough Drafts ep 82.
+- **Medic's Kitesail** — "59.9% in WG", much higher than its 54.9% overall: "A lot of cards are much more
+  powerful in the right shell" (1wy105v). It also won a 19-turn game as the real MVP over white Ajani
+  (1wzd6h2).
+- **Blossom-Blessed Angel**, **Campus Crier**, **Heartstring Puller**, **Apex Witchstalker** — the
+  other "favourite mid commons". Campus Crier + Way of the Healer makes three 2/2s a turn (1wy105v).
+- **Eye of Jace** — mostly "bad" (1wxy9d1, 20): a terrible topdeck, and U/W and U/B already get
+  plenty of surveil triggers. It is only playable in heavy U/W surveil or discard (Arni) decks, and is
+  better in Sealed. It is rarely in 7-0 lists.
+- **Ruric Thar, Biomagus** — players are surprised it's only 56.4% (1wydmff). Consensus: a fine
+  six-drop finisher with no ETB that dies to removal at a tempo loss. Don't take it at B/B+.
+- **Fblthp, Impossibly Lost** — 60.9%, still the sub's favourite card (1wz3qee, 127). Two commenters
+  argue that its GIH WR is inflated because it shuffles back in and gets redrawn in winning games.
+  Samp makes the same argument in Rough Drafts ep 82. Play note: the win is part of the trigger, not a
+  static ability (one player decked himself misreading it).
+- **Gardenize** — near-unanimous "no" (1wykp2h, 75 comments): a 3-mana do-nothing that needs your
+  creatures to die. "An extra land would probably win you more games." Kenji agrees.
+- **Wrecking Gecko** — "cut at least 7 of them"; it does worse than expected (1wyxts8). 55.3%.
+- **Colour hosers (Bo3)** — good sideboard cards. Some say the blue ones are main-deckable because
+  they can hit Jace tokens (1wyhr3d). In Bo1 they are still a trap (Terminal Criticism 50.3%,
+  Refute Destiny 50.1%).
+- **Hungering Puppetbeast** — 61.8% on 10-08. The thread said "a 62.5% winrate card dragged down by its worst colours,
+  in RG it's currently sitting at 67.2%" (1wxzc2e). The same draft review faulted the drafter for
+  **not taking dual lands** to support a first-pick Null Summoner splash.
+- **Craftwork Crusher gets splashed anyway** (1x0pupt, 7-2) despite its double-red, double-green cost. The post was image-only, so the
+  splash route isn't stated.
+
+### Where week-two Reddit disagrees with 17Lands or the other guides
+
+1. **Kindred Judgment and Theoretical Necromancer are under-picked relative to their data.** Kindred
+   Judgment's ALSA is 3.23. The data already rates both well. Reddit's point is that drafters don't
+   follow it.
+2. **Build-arounds with low GIH (Way of the Pyromancer 52.1%, Rescue Girl 52.6%) split the sub.**
+   The skeptic camp backs Lords of Limited. Another top reply: "if the explanation is just 'people are
+   playing it wrong' then I don't find it very convincing, especially when it's about cards that do seem
+   bad" (1wz27th).
+3. **W/U at the top of the archetype data matches the sub's "be blue" consensus.** G/W (54.3%) is
+   still the pair most players report giving up on (1wyl769), though its trophies are on the play and
+   with specific payoffs (Lyra, Lili, Titanbones).
+
 ## Post-release (Arena, 2026-09-29 → 10-04)
 
 > Source: **r/lrcast** (primary) + **r/MagicArena** + **r/magicTCG**, 67 threads, 2,539 comments

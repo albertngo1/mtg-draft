@@ -1,6 +1,6 @@
 # FRA — Reality Fracture (NumotTheNummy)
 
-> Source: **NumotTheNummy (Kenji Egashira)**, one stream VOD so far: *"\*QUICK\* Reality Fracture Set Review - 1 Early Access Sealed After!"* (2026-09-23, `jorRsIuS7RY`, 3h46m). It has two parts: a card-by-card read of the whole set on mtgset.review, then **one MTG Arena Early Access Sealed run**, the first real gameplay of FRA in this repo. Built 2026-09-23 from YouTube auto-captions. Card names are mangled in the captions; every name below is matched to the FRA card list, and uncertain readings are marked `(?)`.
+> Source: **NumotTheNummy (Kenji Egashira)**, one stream VOD so far: *"\*QUICK\* Reality Fracture Set Review - 1 Early Access Sealed After!"* (2026-09-23, `jorRsIuS7RY`, 3h46m). It has two parts: a card-by-card read of the whole set on mtgset.review, then **one MTG Arena Early Access Sealed run**, the first real gameplay of FRA in this repo. Built 2026-09-23 from YouTube auto-captions. **Updated 2026-10-08** with the Arena Direct (Win-A-Box) Sealed compilation *"DOMINATION COMPILATION"* (2026-10-07, `JDZ3n8Uk-Jw`, 2h10m), which covers four FRA Collector-Box Sealed runs (his runs ~21–27). The other post-release FRA VODs (release-day drafts 09-29 → 10-02 and the Win-A-Box videos dated 10-02 → 10-06) are not distilled; YouTube rate-limited caption downloads on 2026-10-08. Card names are mangled in the captions; every name below is matched to the FRA card list, and uncertain readings are marked `(?)`.
 
 ## ⚠ Recency rule (read first)
 
@@ -14,6 +14,7 @@
 |---|---|---|---|
 | 2026-09-23 | *QUICK* Reality Fracture Set Review (first ~2/3 of `jorRsIuS7RY`) | pre-release read-through | **Weakest** |
 | 2026-09-23 | 1 Early Access Sealed After! (last ~1/3 of `jorRsIuS7RY`) | Early Access, 6 games | Weak (n=1) |
+| 2026-10-07 | DOMINATION COMPILATION — Arena Win-A-Box Event (`JDZ3n8Uk-Jw`) | live Arena Direct Sealed (Bo1, 7 wins or 2 losses), 4 pools after ~20 prior runs | **Strongest so far** (Sealed only) |
 
 ## Format speed / meta read
 
@@ -66,6 +67,60 @@ No ranking. What he names per pair:
 7. **Keep removal up for early threats.** He regretted not having Last Gasp for G5's first threat, and lost G6 to one cheap removal spell.
 
 **What played well:** Ruric Thar, Biomagus (won two games), Sphinx of False Conclusions (recurs), Theorist's Proxy ("the 0/3 is surprisingly good"), Mabel, Bitter Recluse. **Opposing cards that beat him:** Garruk, Curse Breaker, the unblockable-plus-surveil engine, and a menace attacker.
+
+### Arena Direct Sealed, week two (2026-10-07 compilation, `JDZ3n8Uk-Jw`)
+
+**Bo1 Sealed for an FRA Collector Booster box: 6,000 gems, 7 wins or 2 losses.** Kenji's running
+tally across the event: run 21 started with "20 done, boxed in three". Later it was "26 events, four
+boxes", about 10 scrub-outs, and no 6-win runs. He put his game win rate at about 65% and called that
+low-rolling. This video shows four pools, and every one ended early (two 0-2 runs, plus runs of
+about 1-2 and 2-2). Several losses came from flood ("10 lands in 15 cards") or from opponents' bombs.
+He holds that the builds were right: **"Best of one sealed is already pretty crazy variance."**
+
+**Pool texture:** pools have 6–9 rares (some are lands or unplayables). Of his pools, **landcyclers
+were scarce**: often only one in his colours.
+
+**Build lessons (his):**
+1. **Base two colours with the removal, splash the best removal.** Pool 1: R/G main, splashing
+   Extended Absence off one Swamp + one B/G dual + Loot + one landcycler ("fourish" black sources).
+   Pool 2: Jund. "The power and the removal in Jund is too good" even though it meant leaving behind
+   a Jace and other good blue cards. **Don't greed-splash blue just because you opened the Jace** if the
+   deck doesn't need it.
+2. **Murmuring Volume is good in pairs.** Two copies fix Jund and help against flood.
+3. **A removal pile with few creatures can win.** Pool 3 was W/B (Esper fixing available) with about
+   seven removal spells (Memory Trap, Break Under Pressure, Multiply by Zero, Extended Absence, Last
+   Gasp …) and about 12 creatures, splashing only Way of the Mind Sculptor. "You don't need crazy
+   bombs to win."
+4. **16 lands is viable** in a low-curve G/W lifegain/counters pool (Titanbones, Edgar, two Wrecking
+   Gecko, Kindred Judgment at the top).
+5. **Five-colour soup is good if the pool supports it.** He lost to a five-colour deck with double
+   Murmuring Volume. His own pool lacked the fixing.
+
+**Play notes:**
+- **Ignore a 1-loyalty Jace and go face** when your deck has plenty of its own empower. "One loyalty
+  Jace does not concern me." This conflicts with the Lords of Limited default of always attacking
+  Jace. The difference is context: his deck had its own engine.
+- **Play out your lands when you hold Way of the Mind Sculptor**, so you can cast it plus another
+  spell. He missed this once.
+- **Cycle a landcycler early even if it's one of your best cards** (Hexhaven Battalion) when you
+  need the land.
+- Kill a Jace with removal that would otherwise be weak against tokens (Break Under Pressure).
+
+**Card verdicts from these runs:**
+- **Kindred Judgment** — "fantastic", much better than Face Yourself at seven mana. It also beat him:
+  Kindred Judgment into Sphinx of False Conclusions.
+- **Tether Technician** — chat called it mid-to-bad. He disagrees strongly: "there is no world where
+  technician is mid to bad."
+- **Edgar, Moonlit Sovereign** (?) — "Edgar's real good right now" in the G/W pool. Which Edgar is
+  not certain; the green one fits that pool.
+- **Gardenize** — "never worth playing unless you are literally mono green, and even then it's
+  frequently not going to do anything."
+- **Medic's Kitesail** — he considered it over Hunter's Axe: "Flying is just so good."
+- **Lich's Relic** — an opponent beat him with Lich's Relic plus two Garruks (which Garruk is unclear
+  from captions). "Maybe
+  that's not beatable, period."
+- **Big-picture verdict:** "lots of interesting decisions and deckbuilding", "but the power level of
+  some of the bombs is certainly painful".
 
 ## Card interactions & combos
 - **Campus Crier:** the graveyard exile is not sorcery speed. Block on the opponent's turn, then empower Jace at end of turn.

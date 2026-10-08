@@ -153,6 +153,39 @@ bottom four (53.3–53.7%).**
   `Tinybones, Pocket Nuisance` +6.4 and `Extended Absence` +5.3 lead. `Void Extrapolator` is −5.1
   here (no self-mill to turn on threshold).
 
+#### Expert takes since day six (2026-10-05 → 10-08)
+
+New since the last update: Lords of Limited ep 499 (10-05), Rough Drafts ep 82 (10-08), Numot's
+Arena Direct sealed compilation (10-07) and 32 Reddit threads (10-05 → 10-08). Full notes in
+`draft-guides/{lords-of-limited,rough-drafts,numot,reddit}/`. Where these disagree with the
+17Lands numbers above, the numbers win.
+
+- **Colour order (Rough Drafts): blue first, then black and green, red and white well behind;
+  avoid R/W.** Blue-first and R/W-last match the data. *White behind* does not: W/U is the top
+  pair at 56.9%, and in W/U the white cards play slightly above their set-wide level (+0.6) while the blue ones play below it.
+- **`Mindseeker Oculus` is "clearly the best common"** (Rough Drafts; 60.2% GIH, +7.1 IWD in
+  U/B). The claim that it still goes late on Arena doesn't hold: 17Lands has its average last-seen
+  pick at 3.7, so it is already taken early.
+- **`Theoretical Necromancer`: two in every black deck** (Rough Drafts, Reddit). Its 55.9% GIH
+  understates it because you want to mill it, not draw it. The Omit Variables creatures move up
+  from D to a solid C.
+- **Discount `Fblthp`'s 60.9%.** It shuffles back in and gets redrawn in winning games, which
+  inflates the number (Rough Drafts, Reddit).
+- **Self-mill decks play exactly 40 cards** unless they lack Fblthp, a second Paradox Shaper and
+  real finishers (Rough Drafts).
+- **Draft for ceiling, and attack the opponent's Jace by default** (Lords of Limited). Their
+  ramp combo is `Way of the Pyromancer` + `Way of the Paradox` + `Inspired Tethermage`; note that
+  Pyromancer is 52.1% and Tethermage under-performs everywhere except G/U, so treat it as a
+  ceiling play, not a default. Numot disagrees on Jace: he ignores a 1-loyalty Jace when his own
+  deck has plenty of empower.
+- **`Kindred Judgment` (61.5%) and `Countersculpt` (60.7%, +7.1 in U/B)** are named on Reddit as
+  under-picked; the U/B guide calls Countersculpt "arguably the best uncommon". 17Lands pick data
+  disagrees on the under-picked part (average last seen at pick 3.2 and 4.2), so expect to take
+  them early, not wheel them.
+- **U/B wins without bombs.** A rareless U/B deck of discard, removal and three or four `Theorix
+  Metamage` went 7-1 (Lords of Limited), and Reddit favours U/B splashing green for control. Both
+  agree with U/B at 56.6%.
+
 #### What Reddit adds (and where it's wrong)
 
 From 67 post-release threads on r/lrcast, r/MagicArena and r/magicTCG (2026-09-29 → 10-04; full
