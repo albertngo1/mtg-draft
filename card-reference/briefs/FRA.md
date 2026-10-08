@@ -295,6 +295,32 @@ Specific to this format:
   for two at instant speed, and it draws its controller a card only if the creature wasn't
   attacking — so attacking into it is the cheaper line.
 
+### Limited Level-Ups after play (State of the Format, 2026-10-05)
+
+Alex's first post-play address. It's opinion informed by early access and the first Arena days, not
+data, but it answers two of the open questions below.
+
+- **Speed: grindy.** Turns 2–5 are setup, and by turns 5–6 boards are stable at 15–20 life each.
+  The player who runs out of ways to spend mana loses. Build in mana sinks, 3–4 card-draw spells,
+  and **6–7 removal spells** (counterspells count). Prefer removal that hits planeswalkers.
+- **Aggro is niche.** The real aggressive decks are U/W flyers and go-wide, plus near-mono-red when
+  red is wide open. B/R adds little to the red plan.
+- **Favoured shells:** U/W surveil and go-wide (the easiest deck to win with), B/G (often Sultai)
+  graveyard recursion with Rewrite Regrets, and R/G ramp as the base for 3–5-colour decks.
+  W/B is the lowest-winning pair on 17Lands, but it works as white go-wide plus black removal.
+- **Splash freely, even double pips.** Fixing is the best in years: duals, Murmuring Volume,
+  landcyclers and Heartwood tokens. Hold 7–8 sources for any double-pip splash. Splash off-colour
+  removal to reach the removal count.
+- **Ways: top three are Healer, Mind Sculptor, Paradox.** Run three at most, since Jace activates
+  only once per turn. Way of the Mind Sculptor is the big flip from the review (D+/C− → "one of the best
+  non-rare ways to go over the top"). Pyromancer, Warlord, Deathbringer, Mentor and Necromancer are
+  weak or niche.
+- **Cards he says are underrated:** Twinned Vision, Protege's Awakening, Countersculpt, Recursive
+  Recruitment (around A− on 17Lands), Something Worth Saving, Rewrite Regrets.
+- **Reading 17Lands here:** high win rates are reliable. C−/D+ win rates often belong to build-arounds played in
+  decks without enough support (Danitha, Sword of Hope wants 9–10 targeting effects). At
+  recording, Ajani Unrelenting had about a 73% GIH WR.
+
 ### Where the sources disagree
 
 - **Removal density versus raw power.** The per-pair counts point at B/R. The reviewer grades
@@ -331,10 +357,10 @@ Specific to this format:
 
 ### Open questions the data can't settle
 
-- **Format speed.** The averages say normal — mana value 3.2, 68% of spells at three or less — but
+- **Format speed.** *(LLU 10-05 calls it grindy after play; see above. 17Lands still decides.)* The averages say normal — mana value 3.2, 68% of spells at three or less — but
   averages have been wrong about speed before, and speed decides whether the grindy graveyard pair
   is real.
-- **Whether Jace is a build-around or a rider.** Every colour can empower. Nobody knows yet
+- **Whether Jace is a build-around or a rider.** *(LLU 10-05: the Ways want 5–7 other empower cards to shine; three Ways at most.)* Every colour can empower. Nobody knows yet
   whether decks that lean in beat decks that take the free loyalty and move on.
 - **How much the colour-hosed removal actually costs you.** In a diverse field it's a liability;
   in a field that settles on black and red it's close to unconditional.

@@ -1,6 +1,6 @@
 # FRA — Limited Level-Ups draft notes
 
-> Source: **Limited Level-Ups**. The host is **Alex**; co-host **Mark** joins on the set review. **8 Reality Fracture videos** so far (2026-09-18 → 2026-09-25), built 2026-09-27 from YouTube auto-captions. Card names are heavily mangled in the captions; every name below was matched against the FRA card list, and uncertain readings are marked `(?)`.
+> Source: **Limited Level-Ups**. The host is **Alex**; co-host **Mark** joins on the set review. **9 Reality Fracture videos** so far (2026-09-18 → 2026-10-05), built 2026-09-27 and updated 2026-10-05 with the State of the Format Address, all from YouTube auto-captions. Card names are heavily mangled in the captions; every name below was matched against the FRA card list, and uncertain readings are marked `(?)`.
 >
 > The set review is split across six videos: Multicolor + Colorless, then one per colour. Commons and uncommons get an **A+→F letter grade** from both hosts, shown as `Alex X / Mark Y` where they split. Those grades are this channel's distinctive product.
 >
@@ -10,7 +10,8 @@
 
 ## ⚠ Recency rule (read first)
 
-- **Every grade here is a pre-play prediction.** FRA is not on Arena until 2026-10-02. Order of authority, weakest first: First Impressions (09-18, Alex solo, no grades) → per-colour set review (09-22) → rares + mythics review (09-25, after one day of early access). Later LLU videos (State of the Format, send-off) will supersede this file, and **17Lands GIH WR supersedes all of it** once there are samples (~2026-10-09).
+- **The letter grades are pre-play predictions; the State of the Format Address (10-05) is not.** Order of authority, weakest first: First Impressions (09-18, Alex solo, no grades) → per-colour set review (09-22) → rares + mythics review (09-25, after one day of early access) → **State of the Format Address (10-05, Alex solo, after early access plus the first Arena days, citing live 17Lands numbers)**. Where a card's note carries a **SotF 10-05** tag, that tag wins over the letter grade beside it. A later send-off episode would supersede this file, and **17Lands GIH WR supersedes all of it** as samples grow.
+- **Alex's caution on 17Lands for this set (10-05):** trust the high win rates, but the C− to D+ cards hide a lot of variance. Many are build-arounds that look bad because they're played in decks without enough support (Danitha, Sword of Hope sits at D+ on 17Lands; it wants 9–10 targeting effects, not 4–5). "Draft decks, not cards."
 - **The hosts distrust their own grades on this set.** Alex: "the conversation around the grades is absolutely more important than the grade itself." Mark: he won't trust most stats on this set because "there's so many ways you can use or misuse cards." They expect a large gap between top-player and all-player win rates, which makes 17Lands numbers noisier than usual.
 - **Speaker attribution is best-effort.** It follows the rule verified on earlier LLU sets: in "I gave X / you gave Y", *I* is Mark and *you* is Alex. Splits where no such line was spoken are flagged. Auto-captions write "C plus" as "C++"; every case is read as C+.
 
@@ -26,8 +27,32 @@
 | 2026-09-22 | Set Review 5/6: BLUE (`ke_XTZAqxWI`) — whisper transcript | early (pre-play grades) | Weak-Medium |
 | 2026-09-22 | Set Review 6/6: WHITE (`BmIJbG1z69Q`) | early (pre-play grades) | Weak-Medium |
 | 2026-09-25 | Rare + Mythic Limited Set Review (`XPPMF-xrFjk`) | early access (1 day of play) | Medium |
+| 2026-10-05 | The Reality Fracture State of the Format Address (`rj0RpGFKg0k`) | mid (early access + first Arena days, Alex solo, no letter grades) | **Strongest so far** |
 
 ## Supersessions (grade/opinion flips between first-impressions and later reviews)
+
+### State of the Format (10-05) vs the graded reviews
+
+Alex solo, after early access and the first days on Arena. No letter grades; these are his post-play verdicts.
+
+- **Way of the Mind Sculptor**: Alex D+ / Mark C− (?) → **one of the two best Ways**, "one of the best non-rare ways to truly go over the top." A 5-mana draw four that plays like a draw eight with enough empower. Alex has looked at an opponent's turn-5 Mind Sculptor and thought "this game's over." The biggest flip in the file.
+- **Way of the Healer**: A− / B+ → still a top-two Way, but "not quite as good as we gave it… we came in really hot." It reaches A− only with 5–7 other empower cards; as one of the few empower cards in a deck it's just "fine."
+- **Way of the Paradox**: C → **the #3 Way**. Paired with card draw it gives an extra land drop most turns, which is "sort of broken territory."
+- **Recursive Recruitment**: Alex B− / Mark C+ → "one of the top uncommons… sitting in like the A− range" on 17Lands.
+- **Countersculpt**: B → "one of the top uncommons. Really truly great. You should take this card very very highly."
+- **Twinned Vision**: Alex C / Mark C+ → "the best of the bunch" of card draw spells; fine to take 4th or 5th pick, and RG plays it too.
+- **Protege's Awakening**: Alex C / Mark C− → good card draw ("a slow draw three"), and Empower 6 matters with Ways out.
+- **Sphinx's Approach**: D → playable: a 3-mana instant draw two if you have 10–11 blue sources. Usually available late.
+- **Rewrite Regrets**: C → "awesome, I love this card." The key recursion piece in BG.
+- **Something Worth Saving**: C → "pretty underrated."
+- **Bestial Incursion**: C+ → "keeps going up and up for me", as long as the opponent has no Unsummon.
+- **Murmuring Volume**: C− → "the glue of a lot of my multicolour or ramp decks."
+- **Fblthp, Impossibly Lost**: D+ → "not a meme… just an okay way to draw cards", better in UW than BG.
+- **Ruric Thar, Magecrusher**: B− → good top end but "not close" to Craftwork Crusher or Kiora of Fire and Ashes: it can be chump-blocked and gives no guaranteed value.
+- **Way of the Warlord**: Alex C+ → only for a red aggro deck that cares about face damage; red's other removal is better.
+- **Held up / confirmed:** Way of the Pyromancer (Alex still unimpressed; D on 17Lands), Way of the Mentor and Way of the Necromancer (unplayable), Kiora of Fire and Ashes ("could have cost seven and she would still be really really good"), Craftwork Crusher, Hexhaven Battalion ("just a great card"), Skilled Battlecarver (red's best aggressive 2-drop).
+
+### First Impressions (09-18) vs the graded review (09-22)
 
 These are Alex's First Impressions calls (09-18) against the graded review four days later (09-22). There is no post-play data yet.
 
@@ -39,6 +64,21 @@ These are Alex's First Impressions calls (09-18) against the graded review four 
 - **Held up:** Surgical Precision ("one of the best commons") → Alex B− / Mark C+. Twisted Fates ("really pushed") → B. Compel Brutality ("really, really good") → C+. Craftwork Crusher ("a sicko") → **A−, the top grade in the review**.
 
 ## Format speed / meta read
+
+**State of the Format (10-05), Alex's three truths:**
+
+- **Fun and balanced.** Every colour is good, so Alex isn't picky about his opening colours. He thinks Empower Jace's numbers are tuned "exactly right." He calls it the best set of 2026.
+- **Complex: draft decks, not cards.** Almost no cards are junk, but filler surrounding a few good cards loses to decks where every card has a job. 17Lands aggregates are less useful for your specific deck in this set than in a simple one like HOB.
+- **Grindy: never run out of things to do with your mana.** Alex's single biggest tip. Turns 2–5 are setup; by turn 5–6 the board is stable at 15–20 life each, and whoever can't spend their mana loses. Losing decks he reviewed had too many 2-drops and too few late-game mana sinks. Even a filler card such as Inspired Tethermage (pay 6: Empower 2) earns a slot in a deck short on sinks.
+- **Card draw:** run about 3–4 cards that put you up a card or more (Twinned Vision, Protege's Awakening, Sphinx's Approach). The more Empower Jace cards you have, the fewer you need.
+- **Removal count: 6–7, up from his usual 5.** There are many must-answer cards, mostly rares and planeswalkers, so removal that hits walkers (Violent Echoes, Extended Absence) gains value. Don't spend it on a 4/4 Beast token unless you must. He now splashes off-colour removal to reach the count, paying with a tap land or two. **Counterspells count as removal** (Countersculpt, Icy Reception).
+- **Jace heuristics:**
+  - Attack an opposing Jace at 3+ loyalty when the attack is fairly free, and protect your own at 3+. Both matter more when life totals are high and the game will run long.
+  - Cash in −3 for a card as soon as you can. Surveil instead only in a stalled board when digging for something specific, or to set up a land drop (surveil this turn, then draw twice next turn).
+- **Ways:** they stack poorly, since Jace activates only once per turn. Run three at most.
+- **Fixing is the best in years.** Planeswalker duals, Murmuring Volume, the basic landcyclers (he will take one 4th pick from a weak pack), Heartwood tokens (so green splashes red most easily), and Fblthp, Knows the Way. Alex has splashed **double-pip** cards, e.g. a BG deck splashing Kindred Judgment with about 13 sources of every colour. Keep 7–8 sources for a double-pip splash. Splash even more freely in Sealed.
+
+**Earlier reads (09-18 → 09-25):**
 
 - **Shaped by uncommons and rares.** There are only 71 commons, a pack can hold up to 6 rares, and a typical deck is roughly 13 uncommons, 3 rares and 8 commons. Merely "fine" filler bodies often won't make the cut, and digging effects gain value.
 - **Echoed pairs as a signal.** Each pack has 3 echo-pair cards: one full pair plus half of another. When a passed pack is missing part of a pair, you can narrow down which side your neighbour took. About 95% of the paired uncommons are legendary creatures, so there are roughly 3 legends per pack. That makes "if you control a legend" discounts (Wrath of the Bloodmane) reliable.
@@ -62,7 +102,17 @@ These are Alex's First Impressions calls (09-18) against the graded review four 
 
 ## Archetypes (10 two-color pairs, ranked)
 
-The hosts give **no ranking**. Alex's First Impressions guess is about 60% of decks from the allied schools and 40% from the enemy pairs. The **schools** are on-rails: each has a hybrid common and a hybrid uncommon that share one prepared spell, plus a charm and another gold uncommon. The **enemy pairs** are broader, "know what makes a good midrange deck" decks with two gold uncommons each. Mark's advice: draft good stuff first, then decide how far to push the synergies. Grouped by how the hosts talk about them:
+**State of the Format (10-05): Alex's synergy packages.** Alex now thinks in synergy packages built on a base pair rather than in colour pairs, and adds colours for synergy pieces, not only for raw power. He's "happy drafting pretty much every color pair." His four clusters, roughly in the order he favours them:
+
+1. **WU surveil / go-wide flyers — the easy, good aggressive deck.** Chip damage from cheap flyers plus a wide board. Pieces: Hexhaven Battalion, Way of the Healer, Fatehold Chronologist, Saheeli, Consul of Oversight. Payoffs: Shatterwing Pegasus, Prudent Fateseer, Fatehold Charm, Desperate Futurescribe, plus Surveillance Phantasm and Proft, Consulting Detective. Usually two colours, no splash. "The mono-white of Vintage Cube": draft it if you're struggling.
+2. **BG (often Sultai) graveyard — Alex's favourite.** Mill flashback cards (Bestial Incursion, Recursive Recruitment) and rebuy ETB value (Hapatra, Null Summoner, landcyclers) with Rewrite Regrets; Restore with Empathy is the stand-in. Enablers: Primal Witchstalker, Something Worth Saving, Void Extrapolator, Theorix Metamage, Paradox Shaper. Generous Revival is a good splash.
+3. **RG ramp — the base of most multicolour decks.** Often 3–5 colours. Splash removal or card draw. Top end: Craftwork Crusher and Kiora of Fire and Ashes, then Ruric Thar a clear step down.
+4. **Red aggro — niche.** It needs to be as close to mono-red as possible, in a seat where red is very open. Few non-red commons help. Skilled Battlecarver is the key 2-drop; Tomik, Izzet Sparkmage enables pinger combos. BR adds Stingerquill Charm and Grim Repriser but little else.
+
+- **WB** is the **lowest-winning pair on 17Lands** at recording; its sacrifice theme isn't supported. It still works as white go-wide plus black removal, but you need a stronger push to end up there than in UW.
+- Spells decks and real GW lifegain decks exist too; Alex's GW decks often became go-wide instead.
+
+**Before play (09-18 → 09-25):** the hosts give **no ranking**. Alex's First Impressions guess is about 60% of decks from the allied schools and 40% from the enemy pairs. The **schools** are on-rails: each has a hybrid common and a hybrid uncommon that share one prepared spell, plus a charm and another gold uncommon. The **enemy pairs** are broader, "know what makes a good midrange deck" decks with two gold uncommons each. Mark's advice: draft good stuff first, then decide how far to push the synergies. Grouped by how the hosts talk about them:
 
 **Hosts positive**
 - **RG Konstrari — ramp.** "An actual tried and true dedicated ramp deck." Craftwork Crusher (**A−**) "comes down on six pretty often." It's easy to play by design. The Heartwood tokens from Soul Tether also fix a splash.
@@ -82,29 +132,29 @@ The hosts give **no ranking**. Alex's First Impressions guess is about 60% of de
 
 ## Card tips
 
-Grades are from the 09-22 colour review unless noted; rares and mythics come from the 09-25 rares review and sit in a **Rares + mythics** block at the end of each section (in Multicolor, at the end of each pair, tagged (R)/(M)); `Alex X / Mark Y` where they split. Cards are ordered best to worst within each section.
+Grades are from the 09-22 colour review unless noted, and a **SotF 10-05** tag (State of the Format, post-play) overrides the grade beside it; rares and mythics come from the 09-25 rares review and sit in a **Rares + mythics** block at the end of each section (in Multicolor, at the end of each pair, tagged (R)/(M)); `Alex X / Mark Y` where they split. Cards are ordered best to worst within each section.
 
 ### White (W)
 
-- **Way of the Healer** — A− / B+ (likely Alex A− / Mark B+; no explicit I/you line). "The best of the Ways." With it out, "every time you activate Jace, it should just be a minus two." The best white uncommon.
+- **Way of the Healer** — A− / B+ (likely Alex A− / Mark B+; no explicit I/you line). "The best of the Ways." With it out, "every time you activate Jace, it should just be a minus two." The best white uncommon. **SotF 10-05:** Top-two Way, but "we came in really hot": A− only with 5–7 other empower cards. With Hexhaven Battalion it makes four 2/2s.
 - **Teyo, Lightshield Expert** — B. Flash hexproof plus a counter, or loyalty onto a walker, which can push Jace to a draw. "A lot of play to this card."
 - **Your Fate Ends Here** — Alex B− / Mark B. Hits almost everything that matters, including mythic planeswalkers.
 - **Tomik, Orzhov Lawmage** — B−. A 2-mana 2/1 flyer; its one-attacker-per-walker clause is mostly upside. "All around a very solid card."
 - **Surgical Precision** — Alex B− / Mark C+. Much better than Marvel's Murdock's Crusade because the fallback mode cycles. Alex: "one of the best commons."
 - **Memory Trap** — Alex B− / Mark C+. The standard O-Ring. "Good removal spell."
-- **Hexhaven Battalion** — Alex B− / Mark C+. Three Cadets plus Empower Jace 2, with basic landcycling. "One of the better land cyclers we've ever seen," but below Imperial Oath.
+- **Hexhaven Battalion** — Alex B− / Mark C+. Three Cadets plus Empower Jace 2, with basic landcycling. "One of the better land cyclers we've ever seen," but below Imperial Oath. **SotF 10-05:** "Just a great card"; a core WU/W go-wide piece.
 - **Campus Crier** — C+. Don't use its graveyard empower to save a Jace; let Jace die and empower at end of turn. "Good common."
 - **Prophesied End** — Alex C+ / Mark C. Fine in UW flyers and for closing games, and walkers make even control opponents attack. Mark: "I kind of like your grade more than mine."
-- **Danitha, Sword of Hope** — Alex C+ / Mark C. Draws off RW Blades, tricks and Seed Suture. A deathtouch counter trick both draws and wins the fight.
+- **Danitha, Sword of Hope** — Alex C+ / Mark C. Draws off RW Blades, tricks and Seed Suture. A deathtouch counter trick both draws and wins the fight. **SotF 10-05:** D+ on 17Lands, but Alex says it's far better with 9–10 targeting effects, against the usual 4–5.
 - **Unflinching Hortimancer** — Alex C+ / Mark C− (C+ graded only for GW; attribution inferred). A ward-1 Ajani's Pridemate; "a pillar of green-white."
 - **Rescue Girl, First Responder** — Alex C+ / Mark C−. A value engine for slow white decks with ETBs and Ways. Both call the grade "a little fake": it'll often be misused.
 - **Koth of the Homestead** — Alex C+ / Mark D+. Needs about 11 Plains. Alex: "I'm probably a little bit too high on it."
 - **Thalia, the Survivor** — C. A 3/4 lifelink whose tax is "potentially better than ward 1."
 - **Academic Ascent** — C−. Alex: "I might be a little low on this."
 - **Graft Surgeon** — C−. "Super perfect C− card."
-- **Shatterwing Pegasus** — Alex C− / Mark D+. They'd like it far more if the pump cost 4.
-- **Generous Revival** — C−. Its home is WB grind. It's a card the grade scale "lets down."
-- **Saheeli, Consul of Oversight** — C−. Good only if a Jace token is reliably out when you cast it (curve it off Way of the Healer); otherwise it's "an Air Elemental."
+- **Shatterwing Pegasus** — Alex C− / Mark D+. They'd like it far more if the pump cost 4. **SotF 10-05:** A main payoff for white go-wide.
+- **Generous Revival** — C−. Its home is WB grind. It's a card the grade scale "lets down." **SotF 10-05:** A good splash in BG for its high-value targets.
+- **Saheeli, Consul of Oversight** — C−. Good only if a Jace token is reliably out when you cast it (curve it off Way of the Healer); otherwise it's "an Air Elemental." **SotF 10-05:** Listed as a WU go-wide piece.
 - **Fateshaper Aspirant** — Alex C− / Mark D. "The definition of filler."
 - **Yuriko, Blade of the Mighty** — Alex D+ / Mark D. Small body, weak immediate impact.
 - **Yoshimaru, Beloved Companion** — Alex D / Mark D+. Weak on curve.
@@ -118,7 +168,7 @@ Grades are from the 09-22 colour review unless noted; rares and mythics come fro
 - **Guiding Hydra** — A−. White's best rare or mythic: "we finally got a set where there's not busted white cards all over the place." Cast for 4 it's a 5/4 that puts a counter on each other creature every combat.
 - **Liliana the Faultless** — Alex B+ / Mark B−. Soul Sister plus Mother of Runes. Mark had to force his opponent to tap out or use their last card to get around it: "I could see you being right."
 - **Repurposed Enforcer** — B. Both hosts faced it and it did nothing, but the threat of a big Empower pushed them into conservative lines. Opponents block it, so it walks into your tricks.
-- **Kindred Judgment** — Alex B− / Mark C+. A 7-mana wrath. No tribe is heavy enough to matter, so you can usually save one creature, or name nothing and wipe everything. Mark moved it up because slow formats reward wraths.
+- **Kindred Judgment** — Alex B− / Mark C+. A 7-mana wrath. No tribe is heavy enough to matter, so you can usually save one creature, or name nothing and wipe everything. Mark moved it up because slow formats reward wraths. **SotF 10-05:** Alex splashed it (double pip) in a five-colour BG deck.
 - **Enlightened Confidant** (M) — Alex C+ / Mark B−. A lifelink Dark Confidant. Gaining 1 life turns on the surveil, and it hands you back any land it bins. "Pretty good, not a bomb."
 - **Lyra, Archangel of Dawn** — B− → C+ (both). Graded below the blue Lyra. The only other angel is the common 2/4 vigilance prepared angel. A single-pip 3-mana 3/3 flyer is still a good floor.
 - **Gideon's Memorial** — C−, graded mostly on the discard mode (4 damage to an attacker or blocker). Siggy's RW deck hard-cast it to make tokens and ramp into Ajani Unrelenting.
@@ -132,29 +182,29 @@ Grades are from the 09-22 colour review unless noted; rares and mythics come fro
 
 *Whisper transcript. See the caveat at the top.* One host calls blue "my vote for best color at common/uncommon, but … not by much and … not with a high degree of confidence", and the other agrees. That's the opposite of Numot's read.
 
-- **Countersculpt** — B (Mark moved up from B− to Alex's B). "A great set for Cancel": there are many good expensive things to counter, and at worst it's a Dissolve plus Empower Jace 1.
+- **Countersculpt** — B (Mark moved up from B− to Alex's B). "A great set for Cancel": there are many good expensive things to counter, and at worst it's a Dissolve plus Empower Jace 1. **SotF 10-05:** "One of the top uncommons… take this card very very highly."
 - **Plan for All Outcomes** — B (Alex moved up from C+ to Mark's B). Sorcery-speed tuck removal; "every spell is basically surveil 1 tacked on."
 - **Mindseeker Oculus** — B−. "Great card." Empower 4 is usually better than 3.
 - **Unsummon** — B−. "One of the best commons": the set's 4/4 and 5/5 tokens and big creatures make bounce strong.
 - **Tetsuko Umezawa, Fugitive** — Alex B− / Mark C+. "Deceptively good": it also makes Jace-pressuring small creatures unblockable.
 - **Traxos, Academy Guardian** — Alex B− / Mark C (both stayed put). Alex says prepared spells make the discount reliable; it's a great Jace protector.
-- **Surveillance Phantasm** — C+. "By far the best template like this": a vigilant flier that enables itself and defends Jace. Don't attack after tapping out into the G/W +2/+2 reach/flying tricks.
-- **Icy Reception** — C+. A Mana Leak for creatures, legends and Ways, or −5/−0, which matters with this much deathtouch.
+- **Surveillance Phantasm** — C+. "By far the best template like this": a vigilant flier that enables itself and defends Jace. Don't attack after tapping out into the G/W +2/+2 reach/flying tricks. **SotF 10-05:** "Just great" in WU; it usually attacks without paying for the surveil.
+- **Icy Reception** — C+. A Mana Leak for creatures, legends and Ways, or −5/−0, which matters with this much deathtouch. **SotF 10-05:** Counts as removal: it counters creatures, legends, Ways and walkers.
 - **Yuriko, Hope from the Shadows** — Alex C / Mark C+ (?). Blanks a deathtouch attacker or saves yours.
 - **Arni, Humble Scribe** — Alex C+ / Mark C− (Mark: "I think I like your take"). A 3/2 looter for UB threshold and flashback.
-- **Way of the Cryomancer** — Alex C+ / Mark D+. Alex: "one of the scariest just sitting in play." Mark: awkward to time; it wants 7–8 empower cards.
+- **Way of the Cryomancer** — Alex C+ / Mark D+. Alex: "one of the scariest just sitting in play." Mark: awkward to time; it wants 7–8 empower cards. **SotF 10-05:** Mediocre in an average deck. Good with 8–9 removal spells, especially value removal (copy Violent Echoes or Fulminous Forte).
 - **Infinite Coursework** — Alex C− / Mark C+. Aura lockdown; weak to the green untap trick and Unsummon.
-- **Protege's Awakening** — Alex C / Mark C−. Only good if you can spend loyalty in big chunks (UG, e.g. with Kiora).
+- **Protege's Awakening** — Alex C / Mark C−. Only good if you can spend loyalty in big chunks (UG, e.g. with Kiora). **SotF 10-05:** Upgraded: "a slow draw three", the second-best card draw after Twinned Vision.
 - **Perfected Theory** — Alex C / Mark D+. "Seems pushed" as a UR trick; Mark would cut it first.
 - **Geist of Saint Thalia** — Alex C / Mark C−. Mostly a UR card.
-- **Proft, Consulting Detective** — C. It can rarely be activated before turn 5 or so; "a little bit worse than it reads."
+- **Proft, Consulting Detective** — C. It can rarely be activated before turn 5 or so; "a little bit worse than it reads." **SotF 10-05:** "Pretty nice" card advantage even in WU aggro.
 - **Hapatra, the Desert Frost** — Alex C / Mark C−. A "big Frost Lynx"; 3 toughness is rough here.
 - **Ruric Thar, Biomagus** — Alex C− / Mark C. Fine, but not a high pick. (Numot's Sealed run disagrees: it won him two games.)
 - **Divining Duelist** — C− / D+ (speakers unclear). Flexible filler.
-- **Undulating Witness** — Alex C− / Mark D+. Probably the worst landcycler, but still some fixing.
-- **Way of the Mind Sculptor** — Alex D+ / Mark C− (?). Either overkill card draw or what puts you over the top.
-- **Fblthp, Impossibly Lost** — D+. Damaging a Jace doesn't count toward its trigger. "More interesting than good."
-- **Sphinx's Approach** — D. The five-copy Sphinx tutor is a meme.
+- **Undulating Witness** — Alex C− / Mark D+. Probably the worst landcycler, but still some fixing. **SotF 10-05:** Still the landcycler Alex likes least, but "perfectly serviceable."
+- **Way of the Mind Sculptor** — Alex D+ / Mark C− (?). Either overkill card draw or what puts you over the top. **SotF 10-05:** **Flipped to a top-two Way.** Plays like a draw eight with enough empower and can end the game on turn 5.
+- **Fblthp, Impossibly Lost** — D+. Damaging a Jace doesn't count toward its trigger. "More interesting than good." **SotF 10-05:** "Not a meme": two mana to draw two, best in WU.
+- **Sphinx's Approach** — D. The five-copy Sphinx tutor is a meme. **SotF 10-05:** Upgraded to playable: a 3-mana instant draw two (needs 10–11 blue sources).
 - **Cryotheory Adept** — Alex D+ / Mark D−. The prowess 2/1 doesn't hold up.
 - **Yargle, Goliath of Otaria** — F (?). The joke 3/9.
 - **Precise Redaction** — sideboard (no letter).
@@ -176,21 +226,21 @@ Grades are from the 09-22 colour review unless noted; rares and mythics come fro
 
 ### Black (B)
 
-- **Multiply by Zero** — B (both could see B+). "In the aggregate… still a great card."
+- **Multiply by Zero** — B (both could see B+). "In the aggregate… still a great card." **SotF 10-05:** Cited as typical of the efficient removal.
 - **Break Under Pressure** — B−. Mark started at B+ and tempered it. Alex: "I think we're too low on this card." It hits the intended target about 70% of the time.
 - **Last Gasp** — Alex B− / Mark C+ (attribution by the speaker rule; a missing marker is possible). "Great rate, not much to say."
-- **Extended Absence** — Alex C+ / Mark B−. The drain-1 lifts it from filler to "actively good." Alex: "I could be too low even."
+- **Extended Absence** — Alex C+ / Mark B−. The drain-1 lifts it from filler to "actively good." Alex: "I could be too low even." **SotF 10-05:** Valued for hitting planeswalkers.
 - **Proft, Sinister Mastermind** — Alex B− / Mark C. Alex's grade is a build-around grade for UB/BG turbo-mill, with an expected cast around turn 6.
 - **Mabel, Bitter Recluse** — C+. Good even drawn late; removing counters matters most against walkers.
 - **Gallia, Tragic Host** — C+. Recurs with no finality counter. Good in UB.
 - **Winter, Tormented Loner** — Alex C+ / Mark C− ("maybe I'd meet you in the middle"). Sacrifice a 1-loyalty Jace to make them sacrifice a real creature. Alex: most black decks will have fodder.
-- **Rank Rat** — C. Weak in this set: little sac payoff, and a 1/1 can't pressure Jace.
+- **Rank Rat** — C. Weak in this set: little sac payoff, and a 1/1 can't pressure Jace. **SotF 10-05:** Its discard rarely hurts in a format with this much card draw.
 - **Silence the Echo** — Alex C / Mark D+. Play one copy; multiples get clunky.
 - **Screeching Soulbreaker** — Alex C / Mark D+. Alex sees a near-pillar of BR; Mark says it only pressures Jace for 1.
-- **Apex Witchstalker** — Alex C / Mark C−. A land-cycling 6-drop; pairs with Rewrite Regrets.
-- **Way of the Deathbringer** — Alex C / Mark C−. Reads as "draw a card, leave two loyalty"; few good sac targets.
+- **Apex Witchstalker** — Alex C / Mark C−. A land-cycling 6-drop; pairs with Rewrite Regrets. **SotF 10-05:** "I really like" it; reanimate it on turn 4 with Rewrite Regrets.
+- **Way of the Deathbringer** — Alex C / Mark C−. Reads as "draw a card, leave two loyalty"; few good sac targets. **SotF 10-05:** Niche: the sacrifice strategy it wants is under-supported and lines up badly against all the card draw.
 - **Tinybones, Pocket Nuisance** — C. Pings on any discard, so it combos with Rank Rat and red rummagers.
-- **Rewrite Regrets** — C (possibly higher ceiling). Reanimation targets include the land cyclers and Kiora of Fire and Ashes.
+- **Rewrite Regrets** — C (possibly higher ceiling). Reanimation targets include the land cyclers and Kiora of Fire and Ashes. **SotF 10-05:** **Upgraded:** "awesome, I love this card." BG's main recursion piece; it also rebuys walkers.
 - **Danitha, Spear of Agony** — Alex C / Mark D → D+. Mark had forgotten Vicious Verse triggers it.
 - **Solve for Disappointment** — C−. Weak as a late topdeck; Alex's grade assumes the attrition plan works.
 - **Teyo, Diamondblade Mage** — C−. Better as a trick than as a body.
@@ -220,10 +270,10 @@ Grades are from the 09-22 colour review unless noted; rares and mythics come fro
 
 ### Red (R)
 
-- **Kiora of Fire and Ashes** — Alex B / Mark B+ (attribution inferred; Alex said "I might be even a little too low"). Two must-kill threats, and a great RG ramp target, "far better than the UG Kiora."
-- **Violent Echoes** — Alex B− / Mark B+ (Mark nearly gave A−). "Kill a 3-toughness creature, draw a card." It often won't cantrip against 4+ toughness.
-- **Fulminous Forte** — B−. It meets Mark's "2 more damage than mana" burn rule, and the instant sweep hits the set's many 2/2 tokens.
-- **No Admittance** — Alex B− / Mark C+. The top-graded red common.
+- **Kiora of Fire and Ashes** — Alex B / Mark B+ (attribution inferred; Alex said "I might be even a little too low"). Two must-kill threats, and a great RG ramp target, "far better than the UG Kiora." **SotF 10-05:** "An absurd card… could have cost seven and still be really really good." Needs two removal spells.
+- **Violent Echoes** — Alex B− / Mark B+ (Mark nearly gave A−). "Kill a 3-toughness creature, draw a card." It often won't cantrip against 4+ toughness. **SotF 10-05:** "An excellent uncommon". It hits walkers, and copying it with Way of the Cryomancer is very strong.
+- **Fulminous Forte** — B−. It meets Mark's "2 more damage than mana" burn rule, and the instant sweep hits the set's many 2/2 tokens. **SotF 10-05:** Copy it with Way of the Cryomancer to sweep 2/2s.
+- **No Admittance** — Alex B− / Mark C+. The top-graded red common. **SotF 10-05:** Part of red's strong removal suite.
 - **Wrath of the Bloodmane** — Alex C+ / Mark C. With about 3 legends per pack it's often 2 mana; Mark said he should have joined Alex at C+.
 - **Heartstring Puller** — C+ (Mark nearly B−). Mixed body sizes; a good target for the deathtouch hybrid trick.
 - **Awaken the Inferno** — C+. Playable even if never cycled; a "premium top common" like WOE's Cut In. Alex expects it to be overlooked early.
@@ -231,14 +281,14 @@ Grades are from the 09-22 colour review unless noted; rares and mythics come fro
 - **Pia, Determined Rebuilder** — C+. The floor is already good, and Heartwood tokens help its pump.
 - **Jiang Yanggu, Alone** — C+ (both raised it from their first grade). Triggers on itself and gives card quality plus stats.
 - **Marwyn, the Clearcutter** — Alex C / Mark C+. Good early stats and late card advantage.
-- **Skilled Battlecarver** — C (both said it "could definitely be a C+"). Possibly red's only good 2-drop attacker.
-- **Way of the Pyromancer** — Alex D+ → C / Mark C. On turn 2 it lets you cast a 4-drop on turn 3, and an up-ticking Jace demands an answer.
+- **Skilled Battlecarver** — C (both said it "could definitely be a C+"). Possibly red's only good 2-drop attacker. **SotF 10-05:** Red aggro's most important 2-drop: one of the only 2-drops that attacks well early without spending more mana.
+- **Way of the Pyromancer** — Alex D+ → C / Mark C. On turn 2 it lets you cast a 4-drop on turn 3, and an up-ticking Jace demands an answer. **SotF 10-05:** Alex still unimpressed (D on 17Lands): its Jace dies easily, and it spends your Jace activations on mana instead of cards.
 - **Blazing Crescendo** — Alex C / Mark C−. A clean 2-for-1 in low-curve red.
 - **Tether Technician** — Alex C / Mark D+. They agreed to disagree; Mark says it's worse than DSK's Boilerbilges Ripper.
-- **Way of the Warlord** — Alex C+ / Mark D+ (the biggest red split). Alex later said "C plus is probably a little bit high."
+- **Way of the Warlord** — Alex C+ / Mark D+ (the biggest red split). Alex later said "C plus is probably a little bit high." **SotF 10-05:** Only for focused red aggro that cares about the face damage; −4 is a lot.
 - **Gallia, the Merrymaker** — C−. The RW seeded uncommon; good with Mabel.
 - **Koth, the Geomancer** — Alex C− / Mark D+. Heartwood ramp doesn't trigger landfall.
-- **Tomik, Izzet Sparkmage** — Alex D+ / Mark C−. A "dorky stat line"; combos with Fulminous Forte.
+- **Tomik, Izzet Sparkmage** — Alex D+ / Mark C−. A "dorky stat line"; combos with Fulminous Forte. **SotF 10-05:** A combo piece for mono-red pingers.
 - **Tetsuko Umezawa, Pursuer** — Alex C− / Mark D. Boom or bust; great with trample from Konstrari Charm.
 - **Artifist Acumen** — Alex D+ / Mark D. Only for UR spells.
 - **Chandra's Emberling** — Alex D / Mark D+. Starts too small; Mark wanted trample.
@@ -265,20 +315,20 @@ Grades are from the 09-22 colour review unless noted; rares and mythics come fro
 
 ### Green (G)
 
-- **Fblthp, Knows the Way** — Alex B / Mark A−. At 5 mana it's a 3/2 that draws three lands. Mark suggests adding an off-colour basic even when not splashing. Alex: "maybe I'm too low on it" as long as you're heavy green.
+- **Fblthp, Knows the Way** — Alex B / Mark A−. At 5 mana it's a 3/2 that draws three lands. Mark suggests adding an off-colour basic even when not splashing. Alex: "maybe I'm too low on it" as long as you're heavy green. **SotF 10-05:** Listed among the strong fixers.
 - **Jiang Yanggu, Never Alone** — Alex B− / Mark B. Five power and toughness across two bodies, and it untaps Heartwood tokens.
-- **Way of the Wildspeaker** — Alex B− / Mark C+ (Mark: "I like your grade more than mine"). It turns every other empower card into a 4/4 threat. "One of the better uncommons to pick up early," but Unsummon hurts it.
-- **Ruric Thar, Magecrusher** — Alex C+ → B− / Mark B−. A good ramp target; weak to deathtouch and edicts.
+- **Way of the Wildspeaker** — Alex B− / Mark C+ (Mark: "I like your grade more than mine"). It turns every other empower card into a 4/4 threat. "One of the better uncommons to pick up early," but Unsummon hurts it. **SotF 10-05:** "I like it, I don't love it": too small for the mana here. Take it mid to late.
+- **Ruric Thar, Magecrusher** — Alex C+ → B− / Mark B−. A good ramp target; weak to deathtouch and edicts. **SotF 10-05:** Good top end, but "not close" to Crusher or Kiora: it can be chump-blocked and gives no guaranteed value.
 - **Marwyn, the Preserver** — Alex C+ / Mark B−. Good early stats and late card advantage with mill.
 - **Compel Brutality** — C+. "Top green common territory." With a high-loyalty walker it hits for 4–6.
-- **Bestial Incursion** — C+. Card advantage, and good when milled or discarded. Unsummon ruins it.
-- **Arcane Amphisbaena** — Alex C / Mark C+. Mark: "the two drop of choice in a lot of decks."
+- **Bestial Incursion** — C+. Card advantage, and good when milled or discarded. Unsummon ruins it. **SotF 10-05:** "Keeps going up and up for me"; a great card to mill.
+- **Arcane Amphisbaena** — Alex C / Mark C+. Mark: "the two drop of choice in a lot of decks." **SotF 10-05:** "Great card." Cheap empower that helps the duals enter untapped.
 - **Greenhouse Propagator** — Alex C+ / Mark C. Lifegain "sells me on it"; curves into Bloombrute.
 - **Yoshimaru, Scrappy Stray** — Alex C+ / Mark C (both said it could land in the B range). Fight is weak and needs the bigger creature already out.
 - **Loot, the Nexus** — Alex C+ / Mark C−. "Really darn solid," but hard to set up on purpose.
 - **Pia, Aether Ascetic** — Alex C+ / Mark C−. Needs a top enchantment to tutor; don't take it early.
-- **Something Worth Saving** — C. Digs for strong uncommons and rares. Play one, two at most.
-- **Way of the Paradox** — C (synergy tag for UG walker decks). "Three mana Explore with more play."
+- **Something Worth Saving** — C. Digs for strong uncommons and rares. Play one, two at most. **SotF 10-05:** **Upgraded:** "pretty underrated". It mills 4, picks your best permanent, and the 1 life matters.
+- **Way of the Paradox** — C (synergy tag for UG walker decks). "Three mana Explore with more play." **SotF 10-05:** **Upgraded to the #3 Way**: with card draw it gives an extra land most turns.
 - **Tethermage's Advantage** — Alex C / Mark C−. Mark dropped from a planned C+ once he counted how little empower some decks run.
 - **Sureshot Sower** — Alex C / Mark C−. "Mostly just filler."
 - **Vinelasher Adept** — Alex C / Mark C−. "One of the lesser land cyclers."
@@ -286,10 +336,10 @@ Grades are from the 09-22 colour review unless noted; rares and mythics come fro
 - **Wrecking Gecko** — Alex C− / Mark D+. "Not an embarrassing card to play."
 - **Edgar, Moonlit Sovereign** — Alex C− / Mark D+. Two turns invested in one Unsummon target.
 - **Ghalta the Unstoppable** — Alex C− / Mark D+ ("probably too low"). Castable for about 5 off a 4/4, but it can rot in hand.
-- **Inspired Tethermage** — D+. "Too vanilla for too long."
+- **Inspired Tethermage** — D+. "Too vanilla for too long." **SotF 10-05:** Still filler, but a mana sink for decks short on them.
 - **Titanbones, Towering Heart** — Alex C− → D+ / Mark D. "Big dummy"; 3 toughness dies to everything.
 - **Hunter's Axe** — Alex D / Mark D+. Does nothing on defense.
-- **Restore with Empathy** — Alex D+ / Mark D. Needs a slow format and good bombs to rebuy.
+- **Restore with Empathy** — Alex D+ / Mark D. Needs a slow format and good bombs to rebuy. **SotF 10-05:** A fine stand-in for Rewrite Regrets in BG.
 - **Flourishing Grapple** — sideboard (no letter). Mark: not a disaster to maindeck in Bo1, since about 70% of opposing pairs have a target.
 
 **Rares + mythics** (09-25 review; (M) = mythic)
@@ -307,25 +357,25 @@ Grades are from the 09-22 colour review unless noted; rares and mythics come fro
 ### Multicolor
 
 **WU Fatehold**
-- **Desperate Futurescribe** — Alex B− / Mark B. A Jace token enables its counter immediately. Mark: "just incredible."
-- **Fatehold Charm** — C+ ("might even be too low… could creep into B−"; Alex later said he'd go higher).
-- **Fatehold Chronologist** — C. Helps WU tempo flyers on both halves.
-- **Prudent Fateseer** — C. It would have been very strong with flying on either side.
+- **Desperate Futurescribe** — Alex B− / Mark B. A Jace token enables its counter immediately. Mark: "just incredible." **SotF 10-05:** "Also quite good."
+- **Fatehold Charm** — C+ ("might even be too low… could creep into B−"; Alex later said he'd go higher). **SotF 10-05:** A WU go-wide payoff (the team pump mode).
+- **Fatehold Chronologist** — C. Helps WU tempo flyers on both halves. **SotF 10-05:** A WU go-wide piece.
+- **Prudent Fateseer** — C. It would have been very strong with flying on either side. **SotF 10-05:** A WU go-wide payoff.
 - **Denzilore Fatehold** (M) — A. The flash is "a little bit fake", since most surveils come from main-phase Jace activations. Mark's P1P1 in early access.
 - **Proctor of Potential** (R) — B. It self-enables its return: cast a creature pre-combat to surveil, trade, then bring it back.
 
 **UB Theorix**
-- **Recursive Recruitment** — Alex B− / Mark C+. Board presence buys time for the flashback; Mark calls it splashable in BG.
+- **Recursive Recruitment** — Alex B− / Mark C+. Board presence buys time for the flashback; Mark calls it splashable in BG. **SotF 10-05:** **Upgraded:** "one of the top uncommons", around A− on 17Lands.
 - **Theorix Charm** — C+. More like two mana's worth; Mark is confident it doesn't reach B.
-- **Paradox Shaper** — Alex C / Mark D+. An engine for a deck-yourself-to-zero plan.
-- **Theorix Metamage** — Alex C− / Mark D+. Too understated on curve.
-- **Void Extrapolator** — Alex D+ / Mark C−. Filler 2-drop.
+- **Paradox Shaper** — Alex C / Mark D+. An engine for a deck-yourself-to-zero plan. **SotF 10-05:** Rarely loops your deck, but it fills the graveyard and finds key cards.
+- **Theorix Metamage** — Alex C− / Mark D+. Too understated on curve. **SotF 10-05:** Fine filler for filling the graveyard.
+- **Void Extrapolator** — Alex D+ / Mark C−. Filler 2-drop. **SotF 10-05:** Fine filler for filling the graveyard.
 - **Uldaros Theorix** (M) — Alex A+ / Mark A. Even rebuying a landcycler plus a trick is a huge six-drop.
 - **Null Summoner** (R) — A. Better than Torment of Gollum. The exiled card is gone for good: killing it does not return the card.
 
 **BR Stingerquill**
-- **Stingerquill Charm** — Alex B− / Mark B. "Probably the best charm." Alex started at B and dropped it because the rest of BR is weak.
-- **Grim Repriser** — C+. Good if you end up BR; not worth pivoting into pings for.
+- **Stingerquill Charm** — Alex B− / Mark B. "Probably the best charm." Alex started at B and dropped it because the rest of BR is weak. **SotF 10-05:** "Really good."
+- **Grim Repriser** — C+. Good if you end up BR; not worth pivoting into pings for. **SotF 10-05:** One of the few non-red cards for red aggro.
 - **Hallway Heckler** — Alex D+ / Mark C−. Rummage is much weaker on a 3-drop.
 - **Stingerquill Voxmancer** — Alex D+ / Mark C−. Fragile; only good with many payoffs.
 - **Whiplash Wordsmith** — D+ ("somewhat optimistic"). Awful on defense.
@@ -333,7 +383,7 @@ Grades are from the 09-22 colour review unless noted; rares and mythics come fro
 - **Stinging Vitriol** (R) — Alex C+ / Mark B−. Two damage plus Thoughtseize-style discard. RB aggro may want to cast its ping payoffs first.
 
 **RG Konstrari**
-- **Craftwork Crusher** — **A−** (both; "could go higher next week"). Compared to Titan of Industry. **The highest grade in the review.**
+- **Craftwork Crusher** — **A−** (both; "could go higher next week"). Compared to Titan of Industry. **The highest grade in the review.** **SotF 10-05:** One of the two best RG payoffs.
 - **Heartwood Crafter** — Alex C+ / Mark B−. Soul Tether on turn 2 is strong. Great in an opening hand, weak as a topdeck.
 - **Konstrari Charm** — C+. The counters + trample mode is "a very good combat trick" and the main use.
 - **Woodwork Prodigy** — Alex C+ / Mark C. Endless Heartwoods with diminishing returns.
@@ -358,13 +408,13 @@ Grades are from the 09-22 colour review unless noted; rares and mythics come fro
 
 **UR**
 - **Clash of Elements** — Alex B− / Mark B. Cheaper top-or-bottom removal. Against a token, don't choose top.
-- **Twinned Vision** — Alex C / Mark C+. "The most gluey of glue cards."
+- **Twinned Vision** — Alex C / Mark C+. "The most gluey of glue cards." **SotF 10-05:** **Upgraded:** "the best of the bunch" of card draw. Alex takes it 4th or 5th pick and plays it in RG.
 - **Saheeli, Jewel of Avishkar** — C ("a responsible C"). Splashable into artifact-leaning decks.
 - **Frostbite Pyromental** (R) — Alex D+ / Mark C (Mark: "very low confidence"). A card-drawing Ball Lightning; hard to connect in a controlling deck.
 
 **BG**
-- **Hapatra, the Desert Fang** — Alex B / Mark B+. The MV-6 land cyclers make it kill almost anything.
-- **Primal Witchstalker** — Alex B− / Mark C+. The BG graveyard-midrange signpost.
+- **Hapatra, the Desert Fang** — Alex B / Mark B+. The MV-6 land cyclers make it kill almost anything. **SotF 10-05:** Recurring it is a core BG plan.
+- **Primal Witchstalker** — Alex B− / Mark C+. The BG graveyard-midrange signpost. **SotF 10-05:** "Such a strong card", often a 3-for-1.
 - **Ferocity of the Hunt** — Alex D+ / Mark C−. Mark argued it up; Alex was convinced but kept his grade.
 - **Vraska, the Cutting Glare** (R) — A− (Mark A → A−). The ETB needs six *lands*, and Heartwood tokens don't count. Recursion decks loop it.
 
@@ -394,7 +444,7 @@ Grades are from the 09-22 colour review unless noted; rares and mythics come fro
 - **Archive Arbiter** — Alex C / Mark C− (attribution least certain). It can destroy a Jace, a removal enchantment or a Way.
 - **Keeper of the Quiet Hour** — Alex C− / Mark C. Fine filler.
 - **Medic's Kitesail** — C−. A flyer and lifegain engine for board stalls. Don't play a second copy.
-- **Murmuring Volume** — C−. For multicolour or ramp decks, not a single splash.
+- **Murmuring Volume** — C−. For multicolour or ramp decks, not a single splash. **SotF 10-05:** **Upgraded:** "the glue of a lot of my multicolour or ramp decks."
 - **Afterthought Sentry** — D+. Filler; RB may need the 2-drop.
 - **Living Library** — Alex D+ / Mark D. "Very slow."
 
@@ -427,3 +477,4 @@ Grades are from the 09-22 colour review unless noted; rares and mythics come fro
 - 2026-09-22 — Reality Fracture Limited Set Review! | Blue | 5/6 (ke_XTZAqxWI) — transcribed locally with whisper
 - 2026-09-22 — Reality Fracture Limited Set Review! | White | 6/6 (BmIJbG1z69Q)
 - 2026-09-25 — Reality Fracture Rare + Mythic Limited Set Review! (XPPMF-xrFjk)
+- 2026-10-05 — The Reality Fracture State of the Format Address| Draft Guide (rj0RpGFKg0k)
