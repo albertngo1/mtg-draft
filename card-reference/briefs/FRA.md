@@ -12,13 +12,13 @@ Captured 2026-09-21, four days before the prerelease and eleven before release. 
 is either a **count** taken from full set data, or a **pre-game prediction** from a published
 reviewer. The two are labelled where it matters.
 
-**17Lands data now exists (2026-10-04, ~181k PremierDraft decks)** and
-contradicts parts of this brief: W/U, U/B and B/G lead the archetype table, B/R is in the tied bottom four,
+**17Lands data now exists (2026-10-08, ~251k PremierDraft decks)** and
+contradicts parts of this brief: W/U and U/B lead the archetype table, B/R tops the tied bottom four,
 and W/B is near the bottom. The archetype table and every card's GIH WR on this page are the live numbers;
-where they disagree with the predictions below, the numbers win. Rewrite this brief once the
-sample settles (~1 week).
+where they disagree with the predictions below, the numbers win. The sample has now settled
+(no card with 1,000+ games moved more than 1.2pp from day six to day ten).
 
-### Synergy by pair — what the play data says (2026-10-04)
+### Synergy by pair — what the play data says (2026-10-08)
 
 This section is post-release and overrides the predictions below it. It rests on two things:
 17Lands **per-pair card data** (each card's IWD *inside* each two-colour deck, compared with the
@@ -41,8 +41,8 @@ Synergy that pays off on turn 6–9 is worth more here than synergy that needs a
    that costs you tempo: take it late and play it only for a real splash. In blue, take it like a
    good playable.
 2. **Black is a U/B colour, not a B/R colour.** The same black commons swing hardest between those
-   two pairs: `Break Under Pressure` +9.5 in U/B vs +0.2 in B/R, `Silence the Echo` +3.0 vs −4.5,
-   `Rank Rat` +3.7 vs −2.7, `Last Gasp` +5.7 vs +0.9. Averaged over all black cards, black
+   two pairs: `Break Under Pressure` +9.5 in U/B vs +0.5 in B/R, `Silence the Echo` +3.6 vs −4.9,
+   `Rank Rat` +3.5 vs −2.3, `Last Gasp` +5.7 vs +0.8. Averaged over all black cards, black
    performs **2.5pp worse in B/R** than its set-wide level and **1.7pp better in U/B**, the largest
    colour effect in the set. Two mechanisms explain most of it: `Silence the Echo` sacrifices a
    spent Jace token for free in blue but costs a real creature or 3 extra mana elsewhere, and
@@ -51,7 +51,7 @@ Synergy that pays off on turn 6–9 is worth more here than synergy that needs a
 3. **Empower is a rider that pays most where the deck is built on it.** Lords of Limited's
    post-early-access read ("you don't need to force Empower Jace", "the Ways are busted") holds:
    the Ways play well in most decks. But the cheap empower cards spike in G/U — `Arcane
-   Amphisbaena` +7.3 there vs +1.4 set-wide, `Tam's Resistance`, `Way of the Paradox`, `Way of the
+   Amphisbaena` +7.5 there vs +1.6 set-wide, `Tam's Resistance`, `Way of the Paradox`, `Way of the
    Wildspeaker` and `Loot, the Nexus` all over-perform. You get one loyalty activation a turn, so
    run **two, at most three Ways**.
 
@@ -59,73 +59,98 @@ Synergy that pays off on turn 6–9 is worth more here than synergy that needs a
 
 | Blue pairs (dual IWD) | Non-blue pairs (dual IWD) |
 |---|---|
-| G/U `Transformative Commons` +3.5 · U/R `Innovative Commons` +1.8 · U/B `Theorix Annex` +1.4 · W/U `Fatehold Annex` 0.0 | R/G `Konstrari Annex` −3.8 · B/G `Formidable Commons` −3.8 · G/W `Vigorbloom Annex` −3.5 · B/R `Stingerquill Annex` −3.4 · R/W `Dedicated Commons` −2.9 · W/B `Meticulous Commons` −1.9 |
+| G/U `Transformative Commons` +3.0 · U/B `Theorix Annex` +1.6 · U/R `Innovative Commons` +0.8 · W/U `Fatehold Annex` +0.5 | B/R `Stingerquill Annex` −4.0 · R/G `Konstrari Annex` −3.7 · B/G `Formidable Commons` −3.5 · R/W `Dedicated Commons` −3.1 · G/W `Vigorbloom Annex` −2.6 · W/B `Meticulous Commons` −1.5 |
+
+#### New at day ten (2026-10-08, ~251k decks)
+
+- **The top tie broke.** W/U (56.9%) and U/B (56.6%) are now the top two on their own. B/G (55.9%)
+  dropped about 1pp behind them and leads a second tier with R/G (55.6%) and U/R (55.4%).
+- **The U/B black finding got stronger.** More black commons now clear the bar in U/B:
+  `Silence the Echo` +3.6 (vs +0.9 set-wide), `Multiply by Zero` +7.8 (vs +5.2) and `Void
+  Extrapolator` +2.8 (vs +1.0). Blue's cheap interaction joins them: `Unsummon` +5.2 (vs +3.4)
+  and `Icy Reception` +5.5 (vs +3.8). Black in B/R is still −2.5, the worst colour half in the set.
+- **G/U's green cards are the best-fitting half in the set (+2.6), and the pair is still 10th.**
+  New over-performers there: `Way of the Wildspeaker` +6.5 (vs +2.5), `Keeper of the Quiet Hour`
+  +6.1 (vs +1.4), `Compel Brutality` +4.3 (vs +1.1), `Inspired Tethermage` +2.0 (vs −1.3). The
+  cards work together; the deck loses on removal count. Treat these as reasons to stay in G/U if
+  you land there, not reasons to aim for it.
+- **Off-pair duals play well in U/R.** `Fatehold Annex` +6.7 and `Stingerquill Annex` +4.4 inside
+  U/R (vs +0.8 and −1.2 set-wide), on about 1,000 games each. It fits finding 1: a blue deck makes
+  Jace tokens, so a dual enters untapped and a splash costs almost nothing. Small sample — watch it.
+- **R/W's white is now the weakest half after B/R's black (−1.8).** `Fateshaper Aspirant` −5.3,
+  `Saheeli, Consul of Oversight` −3.8 and `Memory Trap` −1.2 all fall well below their set-wide
+  numbers in R/W.
+- **R/G: two more cards to skip.** `Awaken the Inferno` −0.8 (vs +1.4, 10.5k games) and `Something
+  Worth Saving` −1.4 (vs +1.2) under-perform there; `Eardrum Rattler` fell to −6.7.
+- **Newly rated cards (under 700 games, so ±3pp):** `Austere Command` 62.7%, `Splinter Twin`
+  62.3%, `Consider` 57.4%; `Flourishing Grapple` 45.6% and `Codie, Ravenous Codex` 46.8% are
+  near the bottom of the set.
 
 #### Per pair
 
-**W/U Fatehold — surveil fliers (57.1%, joint best).** *White carries it*: W/U's white cards run
-slightly above their set-wide level while its blue cards run 1.4pp below (`Icy Reception`,
-`Mindseeker Oculus` are both weaker here than anywhere). Engine: `Fblthp, Impossibly Lost` +7.7
-(evasion turns it into a draw-two every turn), `Way of the Healer` +5.7 (its −2 makes a Cadet *and*
-surveils), `Desperate Futurescribe` +5.1, `Thalia, the Survivor` +5.3. Every empower card is a
+**W/U Fatehold — surveil fliers (56.9%, joint best).** *White carries it*: W/U's white cards run
+slightly above their set-wide level while its blue cards run 1.3pp below (`Icy Reception`,
+`Mindseeker Oculus` are both weaker here than anywhere). Engine: `Fblthp, Impossibly Lost` +7.8
+(evasion turns it into a draw-two every turn), `Way of the Healer` +6.2 (its −2 makes a Cadet *and*
+surveils), `Desperate Futurescribe` +5.2, `Thalia, the Survivor` +5.4. Every empower card is a
 surveil source, because the token's −1 is Surveil 1; that makes 35 enablers in the set, and `Eye
 of Jace` surveils every upkeep. Futurescribe checks at beginning of combat, so surveil in your
 first main phase. `Surveillance Phantasm` still blocks as a 2/3 flier without the trigger. Trap:
 13 removal spells — take `Prophesied End` and `Your Fate Ends Here` early.
 
-**U/B Theorix — removal and two-for-ones (56.8%, joint best).** The only pair where *both* halves
-over-perform (U +1.3, B +1.7). What wins is not turbo-mill — threshold is printed on only six
-cards, and `Theorix Metamage` is just +1.3 in U/B across 8,757 games — but the value shell:
-`Break Under Pressure` +9.5, `Extended Absence` +8.5, `Tam's Resistance` +8.2 (splashed off the
-hybrid), `Fblthp, Impossibly Lost` +8.1, `Countersculpt` +7.7, `Mindseeker Oculus` +7.6.
-`Prudent Fateseer` is +6.7 here. Self-mill is a side plan: `Fblthp, Impossibly Lost` wins the game
+**U/B Theorix — removal and two-for-ones (56.6%, joint best).** The only pair where *both* halves
+over-perform (U +1.2, B +1.8). What wins is not turbo-mill — threshold is printed on only six
+cards, and `Theorix Metamage` is just +1.4 in U/B across 13,009 games — but the value shell:
+`Break Under Pressure` +9.5, `Extended Absence` +8.4, `Tam's Resistance` +8.2 (splashed off the
+hybrid), `Fblthp, Impossibly Lost` +8.1, `Countersculpt` +7.1, `Mindseeker Oculus` +7.1.
+`Prudent Fateseer` is +4.4 here (down from +6.7 on day six). Self-mill is a side plan: `Fblthp, Impossibly Lost` wins the game
 if you draw from an empty library, and `Paradox Shaper`'s bottom-of-library ability is your brake.
 Reach seven cards in the graveyard only if you have about four mill-3 effects (`Omit Variables`
 carriers, `Theorix Charm`).
 
-**B/G Garruk's Bestiary — graveyard grind (56.6%, joint best).** Deathtouch is incidental; the
-engine is recursion and big bodies. Engine: `Ghalta the Unstoppable` +5.7, `Extended Absence`
-+5.4, `Wrecking Gecko` +5.2, `Hapatra, the Desert Fang` +5.1, `Break Under Pressure` +5.0,
-`Winter, Tormented Loner` +4.5. Key pair: `Hapatra` reads the greatest mana value in your
+**B/G Garruk's Bestiary — graveyard grind (55.9%, 3rd — slipped out of the top tie).** Deathtouch is incidental; the
+engine is recursion and big bodies. Engine: `Hapatra, the Desert Fang` +5.0, `Break Under Pressure` +5.3,
+`Extended Absence` +5.0, `Ghalta the Unstoppable` +4.4, `Wrecking Gecko` +4.2,
+`Winter, Tormented Loner` +3.4. (Ghalta, Gecko and Winter all cooled 1–1.3pp since day six.) Key pair: `Hapatra` reads the greatest mana value in your
 graveyard, so a landcycled `Apex Witchstalker` makes it six −1/−1 counters. Black loses some edge
-here (−1.2): `Multiply by Zero` drops to +1.2 from +5.0. Skip `Formidable Commons` (−3.8).
+here (−1.4): `Multiply by Zero` drops to +1.1 from +5.2. Skip `Formidable Commons` (−3.5).
 
-**R/G Konstrari — ramp into two uncommons (55.9%, 4th).** Below rare there are only three
+**R/G Konstrari — ramp into two uncommons (55.6%, 4th).** Below rare there are only three
 Heartwood makers and one artifact payoff, so this is not an artifact deck. It is "make mana, cast
-`Kiora of Fire and Ashes` (+9.1) or `Craftwork Crusher` (+8.3)". Both work on their own. Both
-halves under-perform slightly, the dual is the worst land in the set here (−3.8), and
-`Eardrum Rattler` (−5.0) and `Inspired Tethermage` (−3.3) are aggro and Jace cards in a deck that
+`Kiora of Fire and Ashes` (+9.5) or `Craftwork Crusher` (+8.6)". Both work on their own. Both
+halves under-perform slightly, the dual is among the worst lands in the set here (−3.7), and
+`Eardrum Rattler` (−6.7) and `Inspired Tethermage` (−3.4) are aggro and Jace cards in a deck that
 has neither plan. Green can splash red's double pips through Heartwood for Crusher; red can't do
 the reverse.
 
 **U/R Chandra's Prowess — red removal plus blue cards (55.4%, 5th).** *Red is the better half
-here* (+1.3; blue −1.1). Red's removal plays best in this pair: `No Admittance` +5.0, `Wrath of the
-Bloodmane` +4.1, `Violent Echoes` +6.6, `Way of the Warlord` +5.6 (a noncreature spell that adds a
-removal ability to Jace). `Kiora of Fire and Ashes` peaks here at +11.3. The pair has 27
+here* (+1.1; blue −1.2). Red's removal plays best in this pair: `No Admittance` +5.3, `Wrath of the
+Bloodmane` +3.3, `Violent Echoes` +7.4, `Way of the Warlord` +4.2 (a noncreature spell that adds a
+removal ability to Jace). `Kiora of Fire and Ashes` peaks here at +10.2. The pair has 27
 noncreature spells at common and uncommon, counting Ways and `Eye of Jace`. Pick one lane — red
 spells-aggro or blue control — and don't mix the payoffs. `Twinned Vision` is glue.
 
-**G/W Vigorbloom — lifegain into counters (54.2%, 6th).** Eighteen lifegain sources at common
+**G/W Vigorbloom — lifegain into counters (54.3%, 6th).** Eighteen lifegain sources at common
 and uncommon, only four payoffs (`Unflinching Hortimancer`, `Titanbones`, `Bloombrute`, `Way of
 the Mentor`). What matters is *repeatable* gain — `Greenhouse Propagator`, `Medic's Kitesail`,
 `Koth of the Homestead` landfall — because `Bloombrute` triggers once per turn. Engine: `Generous
-Revival` +5.4, `Way of the Paradox` +4.5, `Koth` +4.5, `Bloombrute` +4.3. Skip the dual (−3.5)
+Revival` +4.3, `Way of the Paradox` +4.2, `Koth` +4.0, `Bloombrute` +4.2. Skip the dual (−2.6)
 and don't take `Greenhouse Propagator` early.
 
 **R/W Ajani's Army, B/R Stingerquill, G/U Jace's Mastery, W/B Liliana's Attrition — the tied
-bottom four (53.5–53.7%).**
-- **R/W:** both halves under-perform (W −1.3, R −1.0). It needs `Mabel, Valley Hero` and
+bottom four (53.3–53.7%).**
+- **R/W:** both halves under-perform (W −1.8, R −1.2). It needs `Mabel, Valley Hero` and
   `Warrior's Blades`; without them it is a burn deck with white bodies, and it is an aggro deck in
-  a slow format. Best cards here are generic: `Jiang Yanggu, Alone` +5.0, `Prophesied End` +4.5.
+  a slow format. Best cards here are generic: `Jiang Yanggu, Alone` +3.3, `Prophesied End` +3.8.
 - **B/R:** see finding 2 — black's control cards don't fit a face-damage deck. The payoffs check
   for noncombat damage *this turn*, and `Stingerquill Voxmancer` is the only repeatable source
-  below rare. If you are B/R, draft red removal and the gold cards (`Violent Echoes` +4.8,
-  `Kiora of Fire and Ashes` +4.9, `Fulminous Forte` +3.4) and treat pings as reach.
+  below rare. If you are B/R, draft red removal and the gold cards (`Violent Echoes` +5.1,
+  `Kiora of Fire and Ashes` +4.8, `Fulminous Forte` +3.3) and treat pings as reach.
 - **G/U:** the least-drafted pair. Its cards synergise (finding 3) but it has the fewest removal
   spells. If you land here, max out cheap empower and play `Kiora of Salt and Sand`, whose −8
-  needs real loyalty density; `Mind Meanderer` +7.2 is its removal. Don't aim for it.
+  needs real loyalty density; `Mind Meanderer` +6.9 is its removal. Don't aim for it.
 - **W/B:** draft it as black removal plus white bodies; the sacrifice theme is thin.
-  `Tinybones, Pocket Nuisance` +6.4 and `Extended Absence` +6.2 lead. `Void Extrapolator` is −5.7
+  `Tinybones, Pocket Nuisance` +6.4 and `Extended Absence` +5.3 lead. `Void Extrapolator` is −5.1
   here (no self-mill to turn on threshold).
 
 #### What Reddit adds (and where it's wrong)
