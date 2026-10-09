@@ -4,7 +4,7 @@
   "note": "Fingerprint of distilled scrape. sha1 = sha1 of the cleaned transcript .txt.",
   "counts": {
     "sets": 6,
-    "videos_distilled": 36,
+    "videos_distilled": 37,
     "videos_no_captions": 0
   },
   "sets": {
@@ -39,7 +39,8 @@
       "file": "FRA.md",
       "video_ids": [
         "6nlNgC1BEE4",
-        "ST6ahmQdFkU"
+        "ST6ahmQdFkU",
+        "uKBtX0S0Ea4"
       ]
     },
     "HOB": {
@@ -120,8 +121,8 @@
     },
     "6nlNgC1BEE4": {
       "set": "FRA",
-      "sha1": "5ddc7744644c87b66c30f54cea1ed5ff462be418",
-      "words": 11690,
+      "sha1": "0c2537f803551b232e3ba9893122e6acef5a07e0",
+      "words": 11692,
       "distilled": true
     },
     "9pEzqFLl13Q": {
@@ -272,6 +273,12 @@
       "set": "FIN",
       "sha1": "d0bd68068b31ce875a39b4b803ebf694fbf35776",
       "words": 4267,
+      "distilled": true
+    },
+    "uKBtX0S0Ea4": {
+      "set": "FRA",
+      "sha1": "8338507c868e775d5d9728ff8fd7217e66b9c5d5",
+      "words": 5906,
       "distilled": true
     },
     "vH2dVk3NnAc": {

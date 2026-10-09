@@ -1,10 +1,10 @@
 # FRA — Rough Drafts notes
 
-> Source: **Rough Drafts** (Samp — Sam Pardee) — 2 Reality Fracture episodes distilled: ep 80
-> (Hot Topics preview, 11.7k words) and **ep 82 "Theorix Metamage" (2026-10-08, played, ~7.1k words,
-> added 2026-10-08)**. Ep 81 "Campus Crier" (2026-10-01) is not distilled yet. Ep 82 was transcribed
-> locally with whisper.cpp (medium.en) from the Libsyn podcast audio, because YouTube rate-limited
-> caption downloads (HTTP 429) that day. Ep 80 was distilled 2026-09-27 from YouTube auto-caption
+> Source: **Rough Drafts** (Samp — Sam Pardee) — all 3 Reality Fracture episodes so far distilled:
+> ep 80 (Hot Topics preview, 11.7k words), **ep 81 "Campus Crier" (2026-10-01, played, ~5.9k words,
+> added 2026-10-09)** and **ep 82 "Theorix Metamage" (2026-10-08, played, ~7.1k words, added
+> 2026-10-08)**. Eps 81 and 82 were transcribed locally with whisper (medium.en) from the podcast
+> audio, because YouTube rate-limited caption downloads (HTTP 429). Ep 80 was distilled 2026-09-27 from YouTube auto-caption
 > transcripts. Card names are corrected against the printed FRA card list (Scryfall), uncertain readings marked `(?)`.
 >
 > **Ep 80 — pure preview, nothing played.** Episode 80 went up 2026-09-24, the day *before* the FRA
@@ -22,15 +22,18 @@
 
 ## ⚠ Recency rule (read first)
 
-- **The newest episode wins on any conflict.** Episode 82 (2026-10-08) is the first FRA episode
-  recorded after real games: about a week of Arena drafts, mostly in Sultai colours. It overrides the
-  ep-80 preview wherever they disagree. See `## Supersessions`.
+- **The newest episode wins on any conflict.** Episode 82 (2026-10-08) is the newest and most-played FRA
+  episode: about a week of Arena drafts, mostly in Sultai colours. It overrides eps 80 and 81 wherever
+  they disagree. See `## Supersessions`.
 - **Episode 80 (Hot Topics) is a PREVIEW** recorded before anyone had played the set: zero drafts,
   no Early Access, no prerelease. By design it asks questions instead of giving answers. Weakest
   evidence class. On MSH, the Hot Topics episode was the one later episodes overturned most often
   (see `MSH.md`).
-- **Expected next:** episode 81 around 2026-10-02/03, probably titled after **Ferocity of the Hunt**
-  if the card *"actually pans out being good."* Whatever it says overrides this file.
+- **Episode 81 (2026-10-01) sits between them.** Recorded after one day of seven drafts. Despite the
+  title it is **not a Campus Crier episode** (the card gets two mentions in ~5.9k words). It is a
+  two-drop taxonomy: five stat-line buckets and which deck wants which. Ep 82 overrides it on conflict.
+  The ep-80 prediction that ep 81 would be titled after Ferocity of the Hunt did not happen; that card
+  is not mentioned in ep 81.
 - The last ~8 minutes (54:00 onward) are a **cube segment**. It is kept separate below and is not
   Limited advice.
 - These notes **decode** the 17Lands data rather than ranking beneath it, once that data exists.
@@ -41,13 +44,23 @@
 | # | Date | Episode | Phase | Played? | Weight |
 |---|------|---------|-------|---------|--------|
 | 80 | 2026-09-24 | Reality Fracture Hot Topics | Hot-Topics — preview, zero games, questions not answers | **No** (pre-prerelease, no Early Access) | **Weakest** |
-| 81 | 2026-10-01 | Campus Crier | card-episode | Yes | *not distilled yet* |
+| 81 | 2026-10-01 | Campus Crier | card-episode in name only — a two-drop taxonomy (stat-line buckets → deck role) | **Yes** (7 drafts the day before recording; 3 of them W/R) | Middle — early played read |
 | 82 | 2026-10-08 | Theorix Metamage | card-episode (graveyard/self-mill theory + colour hierarchy) | **Yes** (~1 week of Arena, heavy Sultai) | **Strongest so far** |
 
 ## Supersessions
 
-Ep 80 preview → ep 82 (played), and the verdict.
+Ep 80 preview → ep 81 / ep 82 (played), and the verdict.
 
+- **Ep 81 "I played white-red three times in seven drafts" → ep 82 "Boros is the one pair I do not
+  want to be".** Ep 81 found W/R workable in several shapes (straight beatdown; go-wide with Hexhaven
+  Battalion plus pumps), after one day of drafts. A week later, ep 82 ranks red and white bottom and
+  avoids them as a base colour. **Ep 82 wins.**
+- **Ep 80 "the format should not be soupy, find the open pair" → ep 81 "a synergy-based format, not a
+  raw card-quality one".** Ep 81 does not address splashing; it says good cards are abundant in every
+  colour and the edge is knowing your deck's game plan. Ep 82 then goes further (full Sultai). **Ep 82
+  wins** on soupiness; ep 81's synergy point is not contradicted.
+- **Arcane Amphisbaena: ep 80 "borderline, a litmus test" → ep 81 "I do really like this", for slower
+  green decks only.** A phenomenal blocker that does not pressure.
 - **"The format is not soupy" → he is "playing full Sultai a decent amount."** Ep 80 predicted that
   finding an open pair would beat card quality, with only green able to splash (into red). Ep 82: his
   green-black decks keep playing blue cards "because they're just good". He treats single-pipped
@@ -102,6 +115,32 @@ the graveyard.** The format is balanced overall, but the colours are not as bala
 - **White is the least graveyard-relevant colour.** He built one W/B deck after first-picking
   Kindred Judgment, carried by its black graveyard cards. Campus Crier and Generous Revival are white's
   graveyard cards.
+
+### Episode 81 read (2026-10-01, after 7 drafts — ep 82 overrides on conflict)
+
+**Thesis: FRA is a synergy format with deep uncommons, so pick your two-drops by game plan, not by
+power.** He calls it *"less rare dominant than we have seen in the other sets in 2026"*. The gold
+uncommons are very strong, good cards are not hard to get in any colour, and *"what makes your deck
+special is what you do with them."* The two-drop slot is where you commit to that plan, because every
+deck must play cards there. He has *"not found my niche"* yet and drafted different decks each time.
+
+**The five buckets** (he says they are loose):
+
+- **2/2 (default).** Trades, then gets walled by 2/3s. Only as good as its extra ability. Marwyn, the
+  Preserver (a 3/2) plays closer to a 2/2 than to a 3/1.
+- **1/3 (big game).** Can attack or block and survive, so it suits cards with a passive or repeated
+  ability. Weak at pressuring life totals, and it does not deter attacks from multiple 2/2s.
+- **3/1 (small game, misunderstood).** Pressures well on an empty board, trades **up** with 2/3s and
+  4/3s, and is a fine blocker in a deck that wants to trade and then draw cards. Mid-range decks want
+  these. **No 1/1 tokens below rare in FRA**, so the usual "3/1s die to 1/1 tokens" objection is weak
+  here. The real 3/1 killer is lots of pings (Wilds of Eldraine).
+- **Evasive two-drops.** Played to attack, not to block. A turn-2 2/1 flier is *"maybe my favorite stat
+  line in all of magic"* and usually deals ~6 damage.
+- **Value 1/1s (Elvish Visionary type).** Not a strong turn-2 play. Best as a double-spell later. Mix
+  them with real two-drop bodies; *"if you are in a deck that thinks it's going to be attacking more
+  often than it's blocking"*, don't run many.
+- **Secret sixth option: no two-drop creatures.** Control decks (he names Grixis spells/control) can
+  fill the slot with cheap interaction or card draw so every card stays relevant late.
 
 ### Episode 80 preview (2026-09-24, weakest — kept for the record)
 
@@ -241,6 +280,49 @@ Hedges are his. Where a card also has an ep-80 note further down, this one is ne
   Tetsuko Umezawa, Fugitive** (makes it unblockable). With Paradox Shaper, milling your library
   becomes a real win condition.
 - **Murmuring Volume** — a loop engine with Blessed Ghoul and Marwyn, the Preserver.
+
+### Episode 81 notes (2026-10-01, after 7 drafts — ep 82 overrides on conflict)
+
+Two-drop evaluations only. The bucket each card sits in is his.
+
+- **Campus Crier** — the namesake, two mentions. A 3/1 for two that exiles from the graveyard to
+  empower Jace 2. *"I think this card is really, really nice."* The instant-speed ability *"plays
+  pretty trickily"* and works with a lot of the white cards he likes.
+- **Vigorbloom Vanguard** — *"a really good"* two-mana 2/2. Enters prepared with Seed Suture. *"You'll
+  always play"* it; arguably a three-drop split in two.
+- **Void Extrapolator** — a 2/2 example, but *"I don't think this is a very good card."* Ep 82 later
+  upgraded it to solid C.
+- **Paradox Shaper** / **Tetsuko Umezawa, Fugitive** — the set's two 1/3s. Both *"really good"* for
+  being 1/3s, because they stay on the battlefield.
+- **Living Library** — a 0/4 for two. *"I don't think is very good."*
+- **Tomik, Izzet Sparkmage** — 1/2 prowess that adds 1 to noncombat damage. Survives combat with
+  instants. Classed with the 1/3s.
+- **Edgar, Ancient Bloodlord** — W/B 2/3. A big-game card you want to stick, not trade.
+- **Sureshot Sower** — green 3/1 reach with a discard-to-kill-a-flier mode. *"Decent, nothing
+  special."* Good for keeping the board small in green mid-range.
+- **Cryotheory Adept** / **Gallia, the Merrymaker** — 2/1s he does *"not really like"*. Gallia can't go
+  into combat without dying, *"the reason Gallia is not a very good card."*
+- **Gallia, Tragic Host** — *"I do really like this one."* A 2/1 menace that returns from the
+  graveyard.
+- **Tomik, Orzhov Lawmage** — 2/1 flier. Usually attacks, but blocks like any 2/1.
+- **Geist of Saint Thalia** — 1/2 flier, noncreature spells cost 1 less. Keep it out of combat and
+  peck.
+- **Skilled Battlecarver** — red 2/1, first strike on your turn, pumpable. Close to unblockable for the
+  first few turns, walled around turn 4. He likes it in aggressive R/G and R/W.
+- **Arcane Amphisbaena** — *"a phenomenal blocker"* and good as a later double-spell with other empower
+  cards, but it does not pressure opponents or their walkers. **Slower green decks only**; be careful
+  playing it on the front foot.
+- **Fatehold Chronologist** — *"fine"*. A value card: you want to cast its prepared spell before it
+  enters combat.
+- **Rank Rat**, **Teyo, Lightshield Expert**, **Fblthp, Impossibly Lost**, **Yoshimaru, Scrappy Stray**
+  (?) — value two-drops you don't run out on turn 2, but efficient for double-spelling later.
+- **Unflinching Hortimancer** — hard to classify. You build lifegain around it to grow it to 4/3+, and
+  might rather double-spell it on turn 4–5 than jam it on turn 2.
+- **Surveillance Phantasm** — 2/3 defender flier that can attack if you surveilled. *"Decent enough"*;
+  play it *"when and only when you have a lot of surveil."*
+- **Icy Reception**, **Last Gasp**, **No Admittance**, **Twinned Vision**, **Something Worth Saving**,
+  **Solve for Disappointment** — his named two-mana non-creature options for decks that skip two-drop
+  creatures.
 
 ### Episode 80 notes (2026-09-24 preview)
 
@@ -397,6 +479,9 @@ These are the episode's actual output. Check each one against episode 81+.
 decking. The better U/B is graveyard value inside Sultai (often full three colours). Grixis spells is a
 B/R-control fallback, not the main build.
 
+**Ep 81 touched #3:** Fatehold Chronologist is *"fine"* as a value card, not a tempo play. He did not
+say whether efficiency matters in general.
+
 1. How much empower Jace do you want before one-activation-per-turn makes extra copies dead?
 2. When should you attack the opponent's Jace, and when should you go face? When should you let
    your own Jace die?
@@ -444,10 +529,20 @@ Crusher**; **"kindred vision"** → **Kindred Judgment** (?) (described as "the 
 **"Sam Pratt"** → Samp (host); **"Sam Black"** in ep 82 is the real Sam Black ("the person to go to"
 for Paradox Shaper mill-out decks), not the host.
 
+**Ep 81 (whisper transcript) garble:** **"atomic is it spark mage"** → **Tomik, Izzet Sparkmage**;
+**"tomic Orzhov Law Mage"** → **Tomik, Orzhov Lawmage**; **"galley of the merrymaker"** → **Gallia, the
+Merrymaker**; **"tail light shield expert"** → **Teyo, Lightshield Expert**; **"sure shot sower"** →
+**Sureshot Sower**; **"Skilled Battle Carver"** → **Skilled Battlecarver**; **"twin division"** →
+**Twinned Vision**; **"Lore and Eclipse"** → Lorwyn Eclipsed; **"fibble thip"** → **Fblthp**;
+**"Yoshimaru"** (a 1/1 for two whose ETB makes another creature fight) → **Yoshimaru, Scrappy Stray**
+(?) — FRA has two Yoshimarus and he gave no subtitle; the green one is the likely fight card.
+**"Grix's"** → Grixis.
+
 ## Source episodes
 
 - Episode 80 — 2026-09-24 — Reality Fracture Hot Topics (`6nlNgC1BEE4`) — *preview, recorded before
   prerelease, zero games played*
+- Episode 81 — 2026-10-01 — Campus Crier (`uKBtX0S0Ea4`) — *played (7 drafts the day before);
+  actually a two-drop stat-line taxonomy; whisper transcript of the audio*
 - Episode 82 — 2026-10-08 — Theorix Metamage (`ST6ahmQdFkU`) — *played (~1 week of Arena); graveyard
   theory + colour hierarchy; whisper.cpp transcript of the Libsyn audio*
-- Episode 81 — 2026-10-01 — Campus Crier (`uKBtX0S0Ea4`) — *not distilled yet*
