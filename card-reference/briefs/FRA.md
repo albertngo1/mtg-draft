@@ -16,13 +16,22 @@ advantage, removal, and whether anyone attacked the Jace.
 ### The format in six lines
 
 1. **Slow.** Games average 9.68 turns, on-the-play wins only 52.1%, and boards stall at 15–20
-   life by turn 5–6. The player who runs out of things to do with their mana loses.
+   life by turn 5–6. The player who runs out of things to do with their mana loses. *Why:* Jace
+   tokens soak attacks the way life gain does, five sweepers punish over-extending, and 1/3
+   two-drops hold the ground (LR 874, Rough Drafts 81).
+   Synergy that pays off on turn 6–9 is worth more here than synergy that needs a perfect turn 3.
 2. **Blue is the best colour; W/U (56.9%) and U/B (56.6%) are the best pairs.** W/B and B/R are
    in the tied bottom four (53.3–53.7%). The spread is only about 4pp, so every pair is playable.
+   *Why blue:* its best commons and uncommons are card draw and counters, which is exactly what a
+   long game rewards, and blue makes the most Jace tokens, which is what turns the duals untapped.
 3. **Card draw and removal win.** Play 6–7 removal spells (counterspells count) and 3–4 card-draw
-   spells. Cheap bodies with no lasting impact fall off.
+   spells. Cheap bodies with no lasting impact fall off. *Why:* in a long game both players reach
+   their bombs, so the deck with more answers and more cards to find them wins; counters earn
+   their slot because they answer the expensive bombs those games come down to.
 4. **Two colours, plus a splash.** Splash freely, even double pips, with 7–8 sources. True
-   three-colour decks win 53.6% vs 55.4% for two-colour decks.
+   three-colour decks win 53.6% vs 55.4% for two-colour decks. *Why the split:* a splash costs
+   one or two cards and the landcyclers and duals pay for it; a real third colour means a pile of
+   duals, and outside blue those enter tapped (see The mana), so the deck loses tempo every game.
 5. **Jace is a resource and a target.** Run two or three Ways at most, fire the −3 whenever you
    can, and attack the opponent's token by default.
 6. **Aggro is niche.** The only real aggressive decks are W/U fliers and go-wide, plus
@@ -34,7 +43,11 @@ advantage, removal, and whether anyone attacked the Jace.
    is taken early (average last seen at pick 3.7). `Countersculpt`, `Kindred Judgment`,
    `Twinned Vision`, `Unsummon` and `Icy Reception` all beat their grades.
 2. **Aim for W/U or U/B; take black for U/B, not B/R.** Black is 1.7pp better than its set-wide
-   level in U/B and 2.5pp worse in B/R.
+   level in U/B and 2.5pp worse in B/R — the largest colour effect in the set. *Why:* `Silence the
+   Echo` sacrifices a spent Jace token for free in blue but costs a real creature elsewhere, and
+   black's discard and edicts (`Rank Rat`, `Break Under Pressure`) are control cards that a
+   face-damage deck can't cash in. Same cards, opposite results: `Break Under Pressure` +9.5 in U/B
+   vs +0.5 in B/R.
 3. **Value card draw like removal.** `Protege's Awakening`, `Sphinx's Approach`, `Twinned
    Vision` and `Countersculpt` all moved up after play (LR 874, LLU).
 4. **Take duals only for blue decks**, and landcyclers for any deck. They're good early plays
@@ -63,6 +76,12 @@ rarities; it was the pre-release ranking signal and turned out *not* to predict 
 The allied pairs are the colleges of Hexhaven; the enemy pairs are built around the Echoverse
 versions of major characters. Numbers after a card below are its IWD inside that pair (how much
 drawing it raised win rate in that pair's decks); set-wide figures are in brackets.
+
+*Why these numbers are trustworthy:* IWD compares games where a card was drawn with games where
+it wasn't, *within the same decks*, so it controls for deck quality — a card that gains IWD in one
+pair is genuinely better in that shell, not just sitting in better decks. Only results on 1,000+
+games with a z-score of 2.5 or more are quoted as findings (`card-reference/fetch_pair_synergy.py
+FRA` reproduces them). Single rows can be noise; patterns across several cards are not.
 
 **W/U Fatehold — surveil fliers (1st).** *White carries it*: W/U's white cards run slightly above
 their set-wide level (+0.6), while its blue cards run 1.3pp below (`Icy Reception`, `Mindseeker
@@ -109,7 +128,9 @@ Fire and Ashes` (+9.5) or `Craftwork Crusher` (+8.6)". It is also the base for 3
   can".
 - Green can splash red's double pips through Heartwood for Crusher; red can't do the reverse.
 - Skip: the dual (−3.7), `Eardrum Rattler` (−6.7), `Inspired Tethermage` (−3.4), `Awaken the
-  Inferno` (−0.8 vs +1.4), `Something Worth Saving` (−1.4 vs +1.2).
+  Inferno` (−0.8 vs +1.4), `Something Worth Saving` (−1.4 vs +1.2). *Why:* Rattler is an aggro card
+  and Tethermage a Jace card, in a deck that has neither plan; and R/G makes few Jace tokens, so
+  its dual is just a tapland.
 
 **U/R Chandra's Prowess — red removal plus blue cards (5th).** *Red is the better half here*
 (+1.1; blue −1.2). Prowess creatures "aren't good at being aggressive enough" (LR 874).
@@ -132,19 +153,24 @@ Mentor`).
 
 **The tied bottom four (53.3–53.7%).**
 - **R/W:** both halves under-perform (W −1.8, R −1.2). It is an aggro deck in a slow format and
-  needs `Mabel, Valley Hero` and `Warrior's Blades`. Mabel "really underperformed" and `Graft
+  needs `Mabel, Valley Hero` and `Warrior's Blades`; without them it is a burn deck with white
+  bodies that run into 1/3 blockers and Jace tokens. Mabel "really underperformed" and `Graft
   Surgeon` is one to avoid (LR 874). R/W's white is weak: `Fateshaper Aspirant` −5.3, `Saheeli,
   Consul of Oversight` −3.8. Best cards here are generic: `Prophesied End` +3.8, `Jiang Yanggu,
   Alone` +3.3. Rough Drafts' ep 82 ranks it the pair to avoid.
 - **B/R:** the most removal of any pair, and still bottom. Black's control cards don't fit a
-  face-damage deck. The payoffs check for noncombat damage *this turn*, and `Stingerquill
+  face-damage deck (draft plan, step 2): `Silence the Echo` −4.9 and `Rank Rat` −2.3 here, both
+  positive in U/B. Removal count was the wrong yardstick — it measures answers, not whether the
+  rest of the deck can win a long game. The payoffs check for noncombat damage *this turn*, and `Stingerquill
   Voxmancer` is the only repeatable source below rare. If you are B/R, draft red removal and the
   gold cards (`Violent Echoes` +5.1, `Kiora of Fire and Ashes` +4.8, `Fulminous Forte` +3.3)
   and treat pings as reach.
 - **G/U:** the least-drafted pair. Its green cards fit better than any other half in the set
   (+2.6): `Arcane Amphisbaena` +7.5 (vs +1.6), `Way of the Wildspeaker` +6.5, `Keeper of the
-  Quiet Hour` +6.1, `Compel Brutality` +4.3. It loses on removal count. Stay if you land here,
-  but don't aim for it. Max out cheap empower and play `Kiora of Salt and Sand`, whose −8 needs
+  Quiet Hour` +6.1, `Compel Brutality` +4.3. It loses on removal count. *Why the fit:* empower is
+  a rider that pays most where the deck is built on it, and the cheap empower cards spike here.
+  *Why it still loses:* 11 removal spells, the fewest in the set, and green's are fight effects.
+  Stay if you land here, but don't aim for it. Max out cheap empower and play `Kiora of Salt and Sand`, whose −8 needs
   real loyalty density; `Mind Meanderer` +6.9 is its removal.
 - **W/B:** draft it as black removal plus white bodies; the sacrifice theme is thin and few
   pairs are lighter at two mana. `Tinybones, Pocket Nuisance` +6.4 and `Extended Absence` +5.3
