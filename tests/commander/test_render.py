@@ -1,0 +1,658 @@
+"""Tests for render.py: the text reports and the JSON wrapper, from small hand-made result dicts in fixtures/.
+
+The fixtures are in the shapes the design lists for each command (the engine's output), so a golden substring
+here is also a check that the report reads the documented keys. Every report must stay within 100 characters a
+line (phone width), even for long card names and long evidence. Nothing here touches the network."""
+import json, os, unittest
+from mtgcommander import render
+
+FIXTURES = os.path.join(os.path.dirname(os.path.abspath(__file__)), "fixtures")
+COMMANDS = ("check", "upgrade", "build", "suggest", "themes", "warm", "validate")
+
+
+def fixture(command):
+    with open(os.path.join(FIXTURES, f"render_{command}.json"), encoding="utf-8") as f:
+        return json.load(f)
+
+
+def line_with(text, start):
+    """The first line that begins with `start`."""
+    return next(line for line in text.splitlines() if line.startswith(start))
+
+
+class WidthMixin:
+    def assertFits(self, text):
+        for line in text.splitlines():
+            self.assertLessEqual(len(line), 100, line)
+            self.assertEqual(line, line.rstrip(), "trailing space: " + repr(line))
+
+
+class JsonTests(unittest.TestCase):
+    def test_the_schema_comes_first_and_the_rest_follows(self):
+        out = json.loads(render.as_json({"command": "check", "warnings": []}))
+        self.assertEqual(list(out), ["schema", "command", "warnings"])
+        self.assertEqual(out["schema"], 1)
+
+    def test_the_text_starts_with_the_schema_line(self):
+        self.assertTrue(render.as_json(fixture("upgrade")).startswith('{\n  "schema": 1,\n  "command": "upgrade"'))
+
+    def test_a_schema_key_in_the_result_does_not_win(self):
+        self.assertEqual(json.loads(render.as_json({"schema": 7, "command": "x"}))["schema"], 1)
+
+    def test_accents_stay_readable(self):
+        out = render.as_json({"command": "build", "cards": [{"name": "Lim-Dûl's Vault"}]})
+        self.assertIn("Lim-Dûl's Vault", out)
+        self.assertNotIn("\\u00fb", out)
+
+    def test_sets_become_sorted_lists_instead_of_failing(self):
+        out = json.loads(render.as_json({"command": "build", "owned": {"b", "a"}}))
+        self.assertEqual(out["owned"], ["a", "b"])
+
+    def test_every_fixture_survives_a_round_trip(self):
+        for command in COMMANDS:
+            with self.subTest(command=command):
+                result = fixture(command)
+                body = json.loads(render.as_json(result))
+                self.assertEqual({k: v for k, v in body.items() if k != "schema"}, result)
+
+
+class EveryReportTests(unittest.TestCase, WidthMixin):
+    def test_each_fixture_renders_within_phone_width(self):
+        for command in COMMANDS:
+            with self.subTest(command=command):
+                text = render.text(fixture(command))
+                self.assertTrue(text.strip())
+                self.assertFits(text)
+
+    def test_long_names_long_evidence_and_long_warnings_still_fit(self):
+        long_name = "Aaaaaaaaaaaaaaaaaaaaaaaaaaa, Bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb // Ccccccccccccccccccccccccccc Dddd"
+        long_text = "in 62% of 1,125 Bracket 3 Hazel decks " * 8
+        up = fixture("upgrade")
+        up["deck"]["name"] = long_name
+        up["swaps"][0].update(cut=long_name, add=long_name, evidence_add=long_text, evidence_cut=long_text)
+        up["blocked"][0]["reason"] = long_text
+        up["warnings"] = [long_text]
+        build = fixture("build")
+        build["cards"][0].update(name=long_name, evidence=long_text)
+        build["warnings"] = [long_text]
+        check = fixture("check")
+        check["legality"]["problems"][0]["message"] = long_text
+        check["bracket_check"]["notes"] = [long_text]
+        for result, verbose in ((up, True), (build, True), (check, False)):
+            with self.subTest(command=result["command"]):
+                self.assertFits(render.text(result, verbose=verbose))
+
+    def test_a_result_with_only_its_command_still_prints(self):
+        for command in COMMANDS:
+            with self.subTest(command=command):
+                text = render.text({"command": command})
+                self.assertIsInstance(text, str)
+                self.assertFits(text)
+
+    def test_the_text_has_no_trailing_newline_so_print_adds_exactly_one(self):
+        self.assertFalse(render.text(fixture("check")).endswith("\n"))
+
+    def test_an_unknown_command_is_an_error_not_an_empty_report(self):
+        with self.assertRaises(ValueError):
+            render.text({"command": "frobnicate"})
+        with self.assertRaises(ValueError):
+            render.text({})
+
+    def test_the_footer_names_every_source_with_its_fetch_date(self):
+        text = render.text(fixture("upgrade"))
+        for needle in ("EDHREC 2026-10-11", "EDHTop16 2026-10-10", "Commander Spellbook 2026-10-11",
+                       "Scryfall 2026-10-09", "MTGJSON 2026-10-01"):
+            self.assertIn(needle, " ".join(text.split()))      # the footer wraps, so compare without line breaks
+
+
+class UpgradeTests(unittest.TestCase, WidthMixin):
+    def setUp(self):
+        self.result = fixture("upgrade")
+        self.text = render.text(self.result)
+
+    def test_the_header_follows_the_designs_example(self):
+        self.assertEqual(self.text.splitlines()[0], "Squirreled Away → Bracket 3, budget $75 (spent $42.10); "
+                                                    "themes: tokens; playstyle: aristocrats")
+        self.assertEqual(self.text.splitlines()[1], "Hazel of the Rootbloom (BG), 100 cards")
+
+    def test_a_swap_is_one_line_with_gain_and_price_and_an_indented_evidence_line(self):
+        lines = self.text.splitlines()
+        i = lines.index(" 1  CUT Haywire Mite  →  ADD Ashnod's Altar   +0.42  $1.20")
+        self.assertTrue(lines[i + 1].startswith("    in 38% of 2,310 Bracket 3 Hazel decks (all brackets 35%"))
+        self.assertIn("fills: ramp", lines[i + 1] + lines[i + 2])
+
+    def test_an_owned_add_costs_nothing_and_says_why(self):
+        self.assertIn(" 2  CUT Poison-Tip Archer  →  ADD Blood Artist   +0.31  $0.00  (owned)", self.text)
+
+    def test_fills_lists_every_role_the_add_covers(self):
+        self.assertIn("fills: finisher, draw", self.text)
+
+    def test_blocked_cards_say_why(self):
+        self.assertIn("Blocked: Pitiless Plunderer — completes a two-card infinite combo with Chatterfang", self.text)
+        self.assertIn("Blocked: Ruination — mass land denial, which Bracket 3 does not allow", self.text)
+
+    def test_only_the_roles_that_changed_are_listed_plus_lands(self):
+        roles = line_with(self.text, "Roles:")
+        self.assertEqual(roles, "Roles: lands 36→36  ramp 9→11  draw 8→10  removal 7→5  tutors 0→1  "
+                                "finishers 3→4")
+        for unchanged in ("wipes", "protection", "recursion", "counters"):
+            self.assertNotIn(unchanged, roles)
+
+    def test_a_role_still_outside_its_range_is_called_out(self):
+        self.assertIn("Still off target: removal 5 (want 6-12)", self.text)
+
+    def test_value_and_bracket_lines(self):
+        self.assertIn("Value: 18.2 → 21.7 (+3.5)", self.text)
+        self.assertIn("Bracket 3 limits: met before → met after; Game Changers 0 → 1 of 3", self.text)
+
+    def test_a_deck_value_dict_prints_its_total(self):
+        self.result["value_before"] = {"total": 18.2, "power": 15.0, "theme": 3.2}
+        self.result["value_after"] = {"total": 21.7, "power": 17.0, "theme": 4.7}
+        self.assertIn("Value: 18.2 → 21.7 (+3.5)", render.text(self.result))
+
+    def test_cheap_adds_are_listed_when_there_are_some(self):
+        self.assertIn("Cheapest useful adds:", self.text)
+        self.assertIn("  Mind Stone  +0.09  $0.30", self.text)
+        self.result["cheap_adds"] = []
+        self.assertNotIn("Cheapest useful adds", render.text(self.result))
+
+    def test_the_footer_says_plainly_that_below_bracket_five_these_are_builder_choices(self):
+        flat = " ".join(self.text.split())
+        self.assertIn("At Bracket 3 these numbers show what deck builders chose, not how often decks won.", flat)
+        for bracket in (1, 2, 3, 4):
+            with self.subTest(bracket=bracket):
+                self.result["bracket"] = bracket
+                self.assertIn(f"At Bracket {bracket} these numbers show what deck builders chose",
+                              " ".join(render.text(self.result).split()))
+
+    def test_bracket_five_does_not_claim_the_numbers_are_builder_choices(self):
+        self.result["bracket"] = 5
+        flat = " ".join(render.text(self.result).split())
+        self.assertNotIn("not how often decks won", flat)
+        self.assertIn("lean on tournament decks and results", flat)
+
+    def test_a_source_reads_as_its_name(self):
+        self.result["sources"]["scryfall_tags"] = {"fetched": "2026-10-09T04:00:00Z", "cache": "fresh"}
+        self.result["sources"]["new_site"] = {"fetched": "2026-10-09T04:00:00Z", "cache": "fresh"}
+        flat = " ".join(render.text(self.result).split())
+        self.assertIn("Scryfall function tags 2026-10-09", flat)
+        self.assertIn("new site 2026-10-09", flat)              # an unknown source still reads as words
+
+    def test_a_stale_source_is_marked_in_the_footer(self):
+        self.result["sources"]["edhrec"]["cache"] = "stale"
+        self.assertIn("EDHREC 2026-10-11 (stale)", " ".join(render.text(self.result).split()))
+
+    def test_warnings_come_last(self):
+        lines = self.text.splitlines()
+        self.assertIn("Warnings:", lines)
+        self.assertGreater(lines.index("Warnings:"), max(i for i, l in enumerate(lines) if l.startswith("Sources:")))
+        self.assertIn("  - edhtop16: only 40 tournament entries", self.text)
+
+    def test_a_forced_cut_comes_with_its_reason(self):
+        swap = self.result["swaps"][0]
+        swap.update(forced=True, owned=False, reason="Bracket 3 allows up to 3 Game Changers; this list has 4.")
+        text = render.text(self.result)
+        self.assertIn("+0.42  $1.20  (forced)", text)
+        self.assertIn("    forced: Bracket 3 allows up to 3 Game Changers; this list has 4.", text)
+
+    def test_owned_and_forced_marks_go_together(self):
+        self.result["swaps"][1]["forced"] = True
+        self.assertIn("(owned, forced)", render.text(self.result))
+
+    def test_evidence_for_the_cut_shows_only_when_verbose(self):
+        self.assertNotIn("cut: in 3% of 2,310", self.text)
+        self.assertIn("    cut: in 3% of 2,310 Bracket 3 Hazel decks", render.text(self.result, verbose=True))
+
+    def test_the_verbose_flag_can_also_ride_in_the_result(self):
+        self.result["verbose"] = True
+        self.assertIn("cut: in 3% of 2,310", render.text(self.result))
+        self.assertNotIn("cut: in 3% of 2,310", render.text(self.result, verbose=False))
+
+    def test_two_long_names_move_to_two_lines_instead_of_overflowing(self):
+        name = "Mmmmmmmmmmmmmmmmm, Nnnnnnnnnnnnnn // Ooooooooooooooooo"   # 52 characters, a long double-faced card
+        self.result["swaps"][0].update(cut=name, add=name)
+        text = render.text(self.result)
+        self.assertIn(f" 1  CUT {name}", text.splitlines())
+        self.assertIn(f"    ADD {name}   +0.42  $1.20", text.splitlines())
+        self.assertFits(text)
+
+    def test_a_card_without_data_says_so(self):
+        self.result["swaps"][3].update(evidence_add="", fills=[])
+        self.assertIn("    no deck data for this card", render.text(self.result))
+
+    def test_no_swaps_says_why_nothing_is_shown(self):
+        self.result["swaps"] = []
+        self.assertIn("No swaps: nothing available improves this deck within the budget and the Bracket 3 rules.",
+                      render.text(self.result))
+
+    def test_no_budget_and_no_themes(self):
+        self.result.update(budget=None, spent=0.0)
+        self.result["spec"].update(themes=[], playstyle="value")
+        first = render.text(self.result).splitlines()[0]
+        self.assertEqual(first, "Squirreled Away → Bracket 3, no budget (spent $0.00); themes: none; playstyle: value")
+
+    def test_a_fractional_budget_keeps_its_cents(self):
+        self.result["budget"] = 75.5
+        self.assertIn("budget $75.50 (spent $42.10)", render.text(self.result))
+
+    def test_a_list_still_over_the_limit_after_the_swaps_says_so(self):
+        problem = {"rule": "game_changers", "cards": ["A"], "message": "4 Game Changers; Bracket 3 allows up to 3."}
+        self.result["bracket_after"].update(ok=False, violations=[problem])
+        text = render.text(self.result)
+        self.assertIn("1 problem after", text)
+        self.assertIn("  Still over the limit:\n    - 4 Game Changers; Bracket 3 allows up to 3.", text)
+
+    def test_bare_bracket_numbers_in_place_of_reports_still_print(self):
+        self.result.update(bracket_before=2, bracket_after=3)
+        self.assertIn("Bracket 3 limits: estimated 2 before → estimated 3 after", render.text(self.result))
+
+    def test_the_written_file_is_named(self):
+        self.result["out"] = "upgraded.txt"
+        self.assertIn("Wrote the new list to upgraded.txt", render.text(self.result))
+
+    def test_many_blocked_cards_are_cut_off_with_a_count(self):
+        self.result["blocked"] = [{"card": f"Card {i}", "reason": "completes a combo"} for i in range(13)]
+        text = render.text(self.result)
+        self.assertIn("Blocked: Card 9 — completes a combo", text)
+        self.assertNotIn("Card 10", text)
+        self.assertIn("Blocked: and 3 more (see --json)", text)
+
+    def test_swaps_print_in_the_order_given_numbered_by_rank(self):
+        self.result["swaps"] = list(reversed(self.result["swaps"]))
+        self.result["swaps"][0]["rank"] = 7
+        self.assertIn(" 7  CUT Swarmyard Massacre", render.text(self.result))
+
+
+class BuildTests(unittest.TestCase, WidthMixin):
+    def setUp(self):
+        self.result = fixture("build")
+        self.text = render.text(self.result)
+
+    def test_header_counts_and_sections_in_the_designed_order(self):
+        lines = self.text.splitlines()
+        self.assertEqual(lines[0], "Hazel of the Rootbloom (BG) → Bracket 3, budget $75 (spent $61.20)")
+        self.assertEqual(lines[1], "  themes: tokens; playstyle: go-wide")      # one line would be 102 wide
+        self.assertEqual(lines[2], "25 cards plus the commander")
+        order = [l for l in lines if l.endswith(")") and l.split(" ")[0] in render.SECTIONS]
+        self.assertEqual([l.split(" ")[0] for l in order], ["Creatures", "Sorceries", "Artifacts", "Lands"])
+        self.assertIn("Lands (18)", lines)                     # one nonbasic land and 17 basics
+
+    def test_a_card_is_one_line_with_its_score_price_owned_mark_and_roles(self):
+        line = line_with(self.text, "  Sol Ring")
+        self.assertEqual(" ".join(line.split()), "Sol Ring 0.86 $0.00 owned, ramp")
+        self.assertEqual(" ".join(line_with(self.text, "  Skullclamp").split()), "Skullclamp 0.58 $19.13 draw")
+
+    def test_basics_are_one_line_most_numerous_first(self):
+        self.assertIn("  Basics: Forest 9, Swamp 8", self.text)
+
+    def test_cards_keep_the_engines_order_within_a_section(self):
+        lines = self.text.splitlines()
+        at = lambda start: lines.index(line_with(self.text, start))
+        self.assertLess(at("  Sol Ring"), at("  Arcane Signet"))
+        self.assertLess(at("  Arcane Signet"), at("  Skullclamp"))
+        self.result["cards"].reverse()
+        flipped = render.text(self.result).splitlines()
+        self.assertLess(flipped.index(line_with("\n".join(flipped), "  Skullclamp")),
+                        flipped.index(line_with("\n".join(flipped), "  Sol Ring")))
+
+    def test_roles_against_targets_flag_what_is_off(self):
+        roles = " ".join(" ".join(l.strip() for l in self.text.splitlines()
+                                  if l.startswith("Roles:") or l.startswith("       ")).split())
+        self.assertIn("lands 18 (34-38) LOW", roles)
+        self.assertIn("counters 0 (0-6) protection", roles)    # in range: no flag
+        self.assertIn("top-end 0 (max 7)", roles)
+
+    def test_spent_and_value(self):
+        self.assertIn("Spent $61.20 of $75; 2 of the cards are ones you own", self.text)
+        self.assertIn("Value: 33.5 (power 29.8, theme 3.7)", self.text)
+
+    def test_the_fantasy_cost_block(self):
+        self.assertIn("Fantasy cost: The theme costs 2.1 points of strength (6%).", self.text)
+        self.assertIn("  Strength 33.5 with the theme, 35.6 without it.", self.text)
+        self.assertIn("  Left out: Rhystic Study (0.45), Eternal Witness (0.40).", self.text)
+        self.assertIn("  Theme picks: Zulaport Cutthroat (tokens).", self.text)
+
+    def test_the_gap_percent_is_the_engines_percent_number(self):
+        for stored, shown in ((5.9, "(6%)"), (12.2, "(12%)"), (0.3, "(<1%)")):
+            with self.subTest(stored=stored):
+                self.result["fantasy_cost"]["gap_pct"] = stored
+                self.assertIn(f"points of strength {shown}.", render.text(self.result))
+
+    def test_without_a_gap_percent_it_is_worked_out_from_the_two_strengths(self):
+        self.result["fantasy_cost"].pop("gap_pct")
+        self.assertIn("The theme costs 2.1 points of strength (6%).", render.text(self.result))
+
+    def test_a_theme_that_costs_nothing_says_so(self):
+        self.result["fantasy_cost"].update(gap=0.0, gap_pct=0.0)
+        self.assertIn("Fantasy cost: the theme costs nothing", render.text(self.result))
+
+    def test_no_fantasy_block_without_a_fantasy_cost(self):
+        self.result["fantasy_cost"] = None
+        self.assertNotIn("Fantasy cost", render.text(self.result))
+
+    def test_the_bracket_check_and_blocked_cards(self):
+        self.assertIn("Bracket 3: ok; Game Changers 1 of 3; extra turns 0; mass land denial 0; two-card combos 0",
+                      self.text)
+        self.assertIn("Blocked: Pitiless Plunderer — completes a two-card infinite combo", self.text)
+
+    def test_a_check_report_stored_under_bracket_itself_is_found_too(self):
+        self.result["bracket"] = self.result.pop("bracket_check")
+        text = render.text(self.result)
+        self.assertIn("Bracket 3: ok; Game Changers 1 of 3", text)
+        self.assertEqual(text.splitlines()[0].split(" → ")[1][:9], "Bracket 3")
+
+    def test_violations_are_listed(self):
+        self.result["bracket_check"].update(ok=False,
+                                            violations=[{"message": "4 Game Changers; Bracket 3 allows up to 3."}])
+        text = render.text(self.result)
+        self.assertIn("Bracket 3: 1 problem;", text)
+        self.assertIn("  - 4 Game Changers; Bracket 3 allows up to 3.", text)
+
+    def evidence_cards(self, count):
+        """`count` creature cards with score 1.00, 0.99, ... and an evidence line marked EVID-<n>."""
+        self.result["cards"] = [{"name": f"Card {i:02}", "section": "Creatures", "roles": [], "score": 1 - i / 100,
+                                 "price": 1.0, "owned": False, "evidence": f"EVID-{i:02}", "kind": "builder"}
+                                for i in range(count)]
+        self.result["basics"] = {}
+
+    def test_only_the_twenty_highest_scoring_cards_get_evidence_by_default(self):
+        self.evidence_cards(30)
+        text = render.text(self.result)
+        self.assertEqual(text.count("EVID-"), 20)
+        self.assertIn("EVID-19", text)
+        self.assertNotIn("EVID-20", text)
+
+    def test_the_twenty_are_chosen_by_score_not_by_position(self):
+        self.evidence_cards(30)
+        self.result["cards"].reverse()                          # the best cards now come last
+        text = render.text(self.result)
+        self.assertIn("EVID-00", text)
+        self.assertNotIn("EVID-29", text)
+
+    def test_verbose_gives_every_card_its_evidence(self):
+        self.evidence_cards(30)
+        self.assertEqual(render.text(self.result, verbose=True).count("EVID-"), 30)
+        self.result["verbose"] = True
+        self.assertEqual(render.text(self.result).count("EVID-"), 30)
+
+    def test_the_commander_is_not_listed_among_the_cards(self):
+        self.result["cards"].append({"name": "Hazel of the Rootbloom", "section": "Creatures", "roles": [],
+                                     "score": 1.0, "price": 4.0, "owned": False, "evidence": "", "kind": "none"})
+        text = render.text(self.result)
+        self.assertNotIn("  Hazel of the Rootbloom ", text)
+        self.assertIn("25 cards plus the commander", text)
+
+    def test_two_commanders(self):
+        self.result.update(commanders=["Thrasios, Triton Hero", "Tymna the Weaver"], ci="WUBG")
+        text = render.text(self.result)
+        self.assertEqual(text.splitlines()[0].split(" → ")[0], "Thrasios, Triton Hero + Tymna the Weaver (WUBG)")
+        self.assertIn("cards plus the commanders", text)
+
+    def test_a_card_with_no_section_still_prints_under_other(self):
+        self.result["cards"].append({"name": "Mystery Card", "section": None, "roles": [], "score": 0.1, "price": 1.0,
+                                     "owned": False, "evidence": "", "kind": "none"})
+        text = render.text(self.result)
+        self.assertIn("Other (1)", text)
+        self.assertIn("  Mystery Card", text)
+
+    def test_a_colorless_commander(self):
+        self.result.update(ci="")
+        self.assertTrue(render.text(self.result).startswith("Hazel of the Rootbloom (colorless) →"))
+
+
+class SuggestTests(unittest.TestCase, WidthMixin):
+    def setUp(self):
+        self.result = fixture("suggest")
+        self.text = render.text(self.result)
+
+    def test_header_and_ranked_commanders(self):
+        lines = self.text.splitlines()
+        self.assertEqual(lines[0], "Commanders for tokens; playstyle: go-wide (Bracket 3, colors BG, budget $100)")
+        self.assertIn(" 1  Hazel of the Rootbloom (BG)   score 0.62", lines)
+        self.assertIn(" 2  Chatterfang, Squirrel General (BG)   score 0.55", lines)
+
+    def test_each_evidence_line_is_indented_under_its_commander(self):
+        lines = self.text.splitlines()
+        i = lines.index(" 1  Hazel of the Rootbloom (BG)   score 0.62")
+        self.assertEqual(lines[i + 1], "      tokens: 1,457 of 12,321 Hazel decks (12%); go-wide themes 21%")
+        self.assertTrue(lines[i + 3].startswith("      40 tournament entries"))
+
+    def test_a_commander_without_evidence_text_is_described_from_its_numbers(self):
+        self.assertIn("      tokens: 9,800 of 24,000 decks (41%)", self.text)
+        self.assertIn("      5,100 decks at this bracket", self.text)
+        self.assertIn("      you own 20% of them", self.text)
+
+    def test_no_match_says_what_to_try(self):
+        self.result["commanders"] = []
+        self.assertIn("No commander matched. Try fewer themes, other colors, or a larger budget.",
+                      render.text(self.result))
+
+    def test_no_filters(self):
+        self.result["filters"] = {"colors": None, "budget": None}
+        self.assertTrue(render.text(self.result).startswith("Commanders for tokens; playstyle: go-wide (Bracket 3)"))
+
+    def test_the_footer_carries_the_builder_choice_caveat(self):
+        self.assertIn("not how often decks won", " ".join(self.text.split()))
+
+
+class CheckTests(unittest.TestCase, WidthMixin):
+    def setUp(self):
+        self.result = fixture("check")
+        self.text = render.text(self.result)
+
+    def test_header(self):
+        self.assertEqual(self.text.splitlines()[0],
+                         "Squirreled Away: Hazel of the Rootbloom (BG), 101 cards; checked at Bracket 3")
+
+    def test_legality_problems_are_listed_with_their_messages(self):
+        self.assertIn("Legality: 3 problems", self.text)
+        self.assertIn("  - 1 card outside the commander's colors (BG): Swords to Plowshares.", self.text)
+        self.assertIn("  - Not found in the card index: Sol Rign (did you mean Sol Ring?).", self.text)
+
+    def test_a_legal_list_says_ok(self):
+        self.result["legality"] = {"ok": True, "problems": []}
+        self.assertIn("Legality: ok", render.text(self.result))
+
+    def test_the_bracket_block(self):
+        self.assertIn("Bracket 3: 1 problem", self.text)
+        self.assertIn("  Game Changers: 2 of 3 (Demonic Tutor, Skullclamp)", self.text)
+        self.assertIn("  Mass land denial: none", self.text)
+        self.assertIn("  Extra turns: none", self.text)
+        self.assertIn("  Two-card combos: 1", self.text)
+
+    def test_a_combo_shows_its_cards_its_result_and_its_link(self):
+        lines = self.text.splitlines()
+        i = lines.index("    Chatterfang, Squirrel General + Pitiless Plunderer (Infinite mana, Infinite tokens)")
+        self.assertEqual(lines[i + 1], "      https://commanderspellbook.com/combo/3000-4871/")
+
+    def test_the_estimate_and_notes(self):
+        flat = " ".join(self.text.split())
+        self.assertIn("Lowest bracket the list fits: 4 (a floor;", flat)
+        self.assertIn("Note: Wizards says intent and how a deck plays decide its bracket", flat)
+
+    def test_no_limit_brackets_say_so(self):
+        self.result["bracket_check"].update(bracket=4, gc_max=None, violations=[], ok=True)
+        self.result["bracket"] = 4
+        self.assertIn("  Game Changers: 2 (no limit) (Demonic Tutor, Skullclamp)", render.text(self.result))
+
+    def test_the_roles_table_gives_count_range_target_and_status(self):
+        rows = {l.split()[0]: " ".join(l.split()) for l in self.text.splitlines() if l.startswith("  ")
+                and l.split() and l.split()[0] in ("lands", "ramp", "draw", "wipes", "top-end")}
+        self.assertEqual(rows["lands"], "lands 36 34-38 36 ok")
+        self.assertEqual(rows["ramp"], "ramp 8 9-14 11 low, 1 short")
+        self.assertEqual(rows["wipes"], "wipes 6 1-5 3 high, 1 over")
+        self.assertEqual(rows["top-end"], "top-end 5 max 7 ok")
+
+    def test_status_is_computed_when_the_result_omits_it(self):
+        del self.result["roles"]["status"]
+        flat = render.text(self.result)
+        self.assertIn("low, 1 short", flat)
+        self.assertIn("high, 1 over", flat)
+
+    def test_the_curve(self):
+        flat = " ".join(self.text.split())
+        self.assertIn("Curve of nonland cards (mana value:count) 0:1 1:9 2:14 3:16 4:9 5:6 6:4 7+:1 average 3.1", flat)
+
+    def test_the_footer_lists_sources_but_makes_no_builder_choice_claim(self):
+        flat = " ".join(self.text.split())
+        self.assertIn("Sources: Commander Spellbook 2026-10-11 (stale), Scryfall 2026-10-09, MTGJSON 2026-10-01.", flat)
+        self.assertNotIn("deck builders chose", flat)
+
+    def test_warnings(self):
+        self.assertIn("  - Commander Spellbook was not reachable", self.text)
+
+
+class ThemesWarmValidateTests(unittest.TestCase, WidthMixin):
+    def test_themes_lists_playstyles_then_themes_with_counts(self):
+        text = render.text(fixture("themes"))
+        lines = text.splitlines()
+        self.assertEqual(lines[0], "Playstyles (choose one with --playstyle)")
+        self.assertTrue(lines[1].startswith("  combat        Combat        Win by attacking"))
+        self.assertIn("Themes for Hazel of the Rootbloom (choose with --theme)", lines)
+        self.assertEqual(" ".join(line_with(text, "  tokens").split()), "tokens Tokens 1,457")
+        self.assertEqual(" ".join(line_with(text, "  squirrels").split()), "squirrels Squirrels")   # no count known
+
+    def test_a_long_theme_list_is_cut_off_with_a_count(self):
+        result = fixture("themes")
+        result["themes"] = [{"slug": f"theme-{i}", "label": f"Theme {i}", "count": 100 - i} for i in range(45)]
+        text = render.text(result)
+        self.assertIn("  theme-29", text)
+        self.assertNotIn("  theme-30", text)
+        self.assertIn("  and 15 more (--json lists them all)", text)
+
+    def test_a_playstyle_that_needs_a_higher_bracket_says_so(self):
+        self.assertIn("(Bracket 4 and up)", render.text(fixture("themes")))
+
+    def test_without_a_commander_the_list_is_called_common(self):
+        result = fixture("themes")
+        result.update(commander=None, commanders=[])
+        self.assertIn("Common themes (choose with --theme;", render.text(result))
+
+    def test_warm_prints_one_row_per_download_with_its_cache_state(self):
+        text = render.text(fixture("warm"))
+        self.assertEqual(text.splitlines()[0], "Downloaded for Hazel of the Rootbloom at Bracket 3; themes: tokens")
+        self.assertEqual(" ".join(line_with(text, "  edhrec        network  2026-10-11  all").split()),
+                         "edhrec network 2026-10-11 all-bracket page (12,321 decks)")
+        self.assertIn("edhrec        stale    2026-10-01  tokens page for this commander (1,457 decks)", text)
+        self.assertIn("fresh = already cached and in date; network = downloaded now; stale = an old copy", text)
+        self.assertIn("ok = in the cache, with no date to show", " ".join(text.split()))
+        self.assertIn("  - edhrec: no page for the Bracket 3 tokens combination; skipped.", text)
+
+    def test_warm_with_nothing_says_so(self):
+        result = fixture("warm")
+        result["fetched"] = []
+        self.assertIn("Nothing was downloaded.", render.text(result))
+
+    def test_validate_table_and_summary(self):
+        text = render.text(fixture("validate"))
+        self.assertEqual(text.splitlines()[0],
+                         "Validation at Bracket 3: leave-one-out against Archidekt Bracket 3 lists")
+        self.assertEqual(" ".join(line_with(text, "  Hazel").split()), "Hazel of the Rootbloom 38 62% 55%")
+        self.assertIn("Overall: overlap 61% against a baseline of 55% (n = 79)", text)
+        self.assertIn("Role counts inside the middle half of real lists: 83%", text)
+        self.assertIn("Builds that follow the Bracket rules: 100%", text)
+
+    def test_validate_prints_free_form_sweep_and_calibration_blocks(self):
+        text = render.text(fixture("validate"))
+        self.assertIn("Weight sweep:", text)
+        self.assertEqual(" ".join(line_with(text, "     0.2").split()), "0.2 0.61")
+        self.assertIn("Calibration:", text)
+        self.assertIn("  k_base: 200", text)
+        self.assertIn("  note: judgment call at Bracket 3", text)
+
+    def test_validate_without_a_sweep_or_calibration_omits_them(self):
+        result = fixture("validate")
+        result.update(sweep=None, calibration=None)
+        text = render.text(result)
+        self.assertNotIn("Weight sweep", text)
+        self.assertNotIn("Calibration", text)
+
+    def test_role_rates_per_role_print_as_a_list(self):
+        result = fixture("validate")
+        result["roles_in_iqr"] = {"ramp": 0.9, "draw": 0.75}
+        text = render.text(result)
+        self.assertIn("Role counts inside the middle half of real lists:", text)
+        self.assertIn("  ramp: 90%", text)
+
+    def test_the_upgrade_check_says_how_many_precons_moved_and_whether_the_money_held(self):
+        text = render.text(fixture("validate"))
+        flat = " ".join(text.split())                              # the header wraps at phone width
+        self.assertIn("Upgrade check at Bracket 3 (budget $50): 1 of 3 precons ended nearer the role targets, "
+                      "1 unchanged, 1 farther; every spend stayed within the budget.", flat)
+        self.assertEqual(" ".join(line_with(text, "  Squirreled Away").split()), "Squirreled Away 9 3 $41.20 8")
+        self.assertIn("0 means every role is inside its band", " ".join(text.split()))
+
+    def test_a_partner_pair_widens_the_commander_column_so_the_figures_stay_lined_up(self):
+        result = fixture("validate")
+        pair = "Rograkh, Son of Rohgahh / Silas Renn, Seeker Adept"
+        result["commanders"].append({"name": pair, "decks": 3, "overlap": 0.93, "baseline": 0.94})
+        text = render.text(result)
+        self.assertFits(text)
+        self.assertEqual(" ".join(line_with(text, "  Rograkh").split()), f"{pair} 3 93% 94%")
+        ends = {len(line_with(text, f"  {name}").rstrip()) for name in ("Hazel", "Chatterfang", "Rograkh")}
+        self.assertEqual(len(ends), 1)                              # every row ends in the same column
+
+    def test_an_overspend_is_named(self):
+        result = fixture("validate")
+        result["upgrade_check"].update(within_budget=False, over_budget=["Squirreled Away"])
+        self.assertIn("over budget: Squirreled Away.", " ".join(render.text(result).split()))
+
+    def test_a_long_precon_name_widens_its_column_so_the_numbers_stay_lined_up(self):
+        text = render.text(fixture("validate"))
+        self.assertFits(text)
+        long_name = "Starter Commander Deck With A Rather Long Name"
+        ends = {line_with(text, f"  {name}").index(figure) for name, figure in
+                (("Squirreled Away", "9"), (long_name, "2"))}
+        self.assertEqual(len(ends), 1)                              # "gap before" ends in one column for every row
+
+    def test_without_an_upgrade_check_the_block_is_left_out(self):
+        result = fixture("validate")
+        result["upgrade_check"] = None
+        self.assertNotIn("Upgrade check", render.text(result))
+
+    def test_a_bracket_5_sweep_prints_as_a_table_of_percentages_with_one_decimal(self):
+        result = fixture("validate")
+        result["sweep"] = [{"w_bracket": w, "k_resid": k, "overlap": 0.7 + w / 100 + k / 10000, "decks": 32}
+                           for w in (0, 1) for k in (25, 50)]
+        text = render.text(result)
+        self.assertIn("Weight sweep (mean overlap for each W_BRACKET[5] and K_RESID):", text)
+        self.assertEqual(" ".join(line_with(text, "          0       25").split()), "0 25 70.2% 32")
+        self.assertEqual(" ".join(line_with(text, "          1       50").split()), "1 50 71.5% 32")
+
+    def test_a_calibration_report_prints_in_a_few_lines(self):
+        result = fixture("validate")
+        result["calibration"] = {
+            "as_of": "2026-10-11", "written": "/repo/commander/role_targets.json",
+            "labels": {"1": "judgment: Bracket 2 values with land target +1", "2": "measured: 60 recent precons",
+                       "5": "measured: 120 EDHTop16 top-cut decks"},
+            "changes": [f"Bracket 2 ramp: 8/10/13 -> 9/12/{n}" for n in range(15)],
+            "brackets": {"1": {"land": [35, 38, 40]}}, "previous": {"1": {"land": [34, 37, 39]}}}
+        text = render.text(result)
+        self.assertIn("Calibration (wrote /repo/commander/role_targets.json):", text)
+        self.assertIn("  Bracket 5: measured: 120 EDHTop16 top-cut decks", text)
+        self.assertIn("  15 role numbers changed:", text)
+        self.assertIn("    Bracket 2 ramp: 8/10/13 -> 9/12/11", text)
+        self.assertNotIn("9/12/12", text)                          # only the first twelve are listed
+        self.assertIn("    and 3 more", text)
+        self.assertNotIn("previous", text)                         # the raw report is not dumped
+        self.assertFits(text)
+
+    def test_a_calibration_that_changed_nothing_says_so(self):
+        result = fixture("validate")
+        result["calibration"] = {"written": None, "labels": {"2": "measured: 60 recent precons"}, "changes": []}
+        text = render.text(result)
+        self.assertIn("Calibration (nothing written):", text)
+        self.assertIn("  0 role numbers changed.", text)
+
+    def test_with_no_real_deck_compared_the_overall_line_says_so_instead_of_printing_question_marks(self):
+        result = fixture("validate")
+        result["commanders"] = [{"name": "Heliod, Sun-Crowned", "decks": 0, "overlap": None, "baseline": None}]
+        result["overall"] = {"overlap": None, "baseline": None, "n": 0}
+        text = render.text(result)
+        self.assertIn("Overall: no real deck was compared (see the warnings).", text)
+        self.assertEqual(" ".join(line_with(text, "  Heliod").split()), "Heliod, Sun-Crowned 0 ? ?")
+        self.assertNotIn("against a baseline", text)
+
+
+if __name__ == "__main__":
+    unittest.main()
