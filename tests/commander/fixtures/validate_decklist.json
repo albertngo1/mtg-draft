@@ -1,0 +1,17 @@
+[
+  {"code": "P01", "fileName": "Precon01_P01", "name": "Precon 01", "releaseDate": "2026-10-02", "type": "Commander Deck"},
+  {"code": "P02", "fileName": "Precon02_P02", "name": "Precon 02", "releaseDate": "2026-09-05", "type": "Commander Deck"},
+  {"code": "P03", "fileName": "Precon03_P03", "name": "Precon 03", "releaseDate": "2026-08-01", "type": "Commander Deck"},
+  {"code": "P04", "fileName": "Precon04_P04", "name": "Precon 04", "releaseDate": "2026-06-20", "type": "Commander Deck"},
+  {"code": "P05", "fileName": "Precon05_P05", "name": "Precon 05", "releaseDate": "2026-05-02", "type": "Commander Deck"},
+  {"code": "P06", "fileName": "Precon06_P06", "name": "Precon 06", "releaseDate": "2026-03-14", "type": "Commander Deck"},
+  {"code": "P07", "fileName": "Precon07_P07", "name": "Precon 07", "releaseDate": "2026-02-06", "type": "Commander Deck"},
+  {"code": "P08", "fileName": "Precon08_P08", "name": "Precon 08", "releaseDate": "2025-11-21", "type": "Commander Deck"},
+  {"code": "P09", "fileName": "Precon09_P09", "name": "Precon 09", "releaseDate": "2025-09-05", "type": "Commander Deck"},
+  {"code": "P10", "fileName": "Precon10_P10", "name": "Precon 10", "releaseDate": "2025-08-01", "type": "Commander Deck"},
+  {"code": "P11", "fileName": "Precon11_P11", "name": "Precon 11", "releaseDate": "2025-06-13", "type": "Commander Deck"},
+  {"code": "P12", "fileName": "Precon12_P12", "name": "Precon 12", "releaseDate": "2025-03-14", "type": "Commander Deck"},
+  {"code": "P01", "fileName": "Precon01CollectorSEdition_P01", "name": "Precon 01 Collector's Edition", "releaseDate": "2026-10-02", "type": "Commander Deck"},
+  {"code": "FUT", "fileName": "Future_FUT", "name": "Future Deck", "releaseDate": "2027-03-01", "type": "Commander Deck"},
+  {"code": "OLD", "fileName": "Precon05_OLD", "name": "Precon 05", "releaseDate": "2019-01-01", "type": "Commander Deck"}
+]

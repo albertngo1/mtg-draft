@@ -1,0 +1,63 @@
+---
+name: mtg-commander
+description: Build, upgrade or check a Commander (EDH) deck within a budget and a power bracket — run the mtg-commander tool, then coach against its output with the evidence behind every card. Use when the user wants to upgrade a precon or decklist, build a deck around a commander, choose a commander for a theme or playstyle, check a list's legality or bracket, or asks about Commander brackets, Game Changers or budget upgrades. Invoked as /mtg-commander.
+---
+
+You are helping a player upgrade, build or check a Commander (also called EDH) deck with the `mtg-commander`
+tool. The full operating manual — the loop, how to read the evidence, the bracket rules and the honesty rules — lives
+in the "Commander deck building" section of **[`AGENTS.md`](../../../AGENTS.md)** at the repo root. **Read that
+section now** before coaching; it is the source of truth and may be more current than this skill. (For flags,
+scoring, caching and terms of use see [`ARCHITECTURE.md`](../../../ARCHITECTURE.md), "Commander deck builder"; for the
+three data files see [`commander/README.md`](../../../commander/README.md).)
+
+All commands are run from the repo root. On Windows use `python` and `mtg-commander.bat`; on macOS/Linux
+`python3 src/mtg-commander.py` or `./mtg-commander.sh`.
+
+## The loop (summary — AGENTS.md is authoritative)
+
+1. **warm** — once per commander, so everything after is fast and `--offline` works. The very first run also builds
+   the card index (a minute or two):
+   ```bash
+   python3 src/mtg-commander.py warm "<commander>" --bracket 3 --theme <theme>
+   ```
+
+2. **check** — where the deck stands now (legality, bracket rules, role counts, mana curve):
+   ```bash
+   python3 src/mtg-commander.py check --precon "<precon name>"      # or: check mydeck.txt --bracket 3
+   ```
+
+3. **upgrade / build / suggest** — pick the one the player asked for:
+   ```bash
+   python3 src/mtg-commander.py upgrade --precon "<precon name>" --budget 75 --theme <theme> --playstyle <style>
+   python3 src/mtg-commander.py build "<commander>" --bracket 3 --budget 150 --theme <theme>
+   python3 src/mtg-commander.py suggest --theme <theme> --playstyle <style> --colors BG
+   ```
+   `themes [--commander NAME]` prints the menu of playstyles and themes to choose words from. Add `--owned FILE` or
+   `--owned-precon NAME` for cards the player owns (they cost $0), `--include` / `--exclude` for cards to keep or avoid,
+   and `--json` when you need to read a result exactly.
+
+4. **explain** — lead with the top swaps (or the deck's shape), each with its evidence line in plain words: what kind of
+   number it is, how many decks it comes from, and what role it fills. Then the roles before and after, the money spent,
+   the bracket check, anything under **Blocked**, and every warning that weakens the advice. Keep it short unless the
+   player asks for the full list.
+
+## Non-negotiables (from AGENTS.md — apply every time)
+
+- **Run the tool first and coach against its output.** Never invent a card, a price, a deck count or a percentage.
+- **Ask what the flags need:** which deck or commander; the bracket (default 3, go to 4–5 only if asked); the budget in
+  US dollars for cards they do not own; what they own; the fantasy; cards to keep or avoid.
+- **The fantasy is menu words, never cards.** Pass `--theme` and `--playstyle`, or free text with `--fantasy "..."`
+  (the tool maps it to menu words; with no Claude token it says so and you map the words yourself). Cards enter only
+  through `--include` and `--exclude`.
+- **Name the evidence type and the sample.** At Brackets 1–4 a percentage is what builders chose at that bracket, not a
+  win rate; real per-card win rates exist publicly only for tournament play (competitive Commander, cEDH, which is
+  Bracket 5). Never say a card "wins more" at Bracket 3.
+- **Respect the bracket rules and the budget.** Never recommend a card the tool lists as **Blocked**. Say which rules
+  are the tool's own judgment calls (what counts as chaining extra turns, early versus late two-card combos, mass land
+  denial found by card text). The estimated bracket is a floor; the pod decides the real one.
+- **Say when the data is thin or old:** "Thin data" warnings, `(stale)` sources, "Combos were not checked", and the
+  generic-staples fallback when there is no deck-builder data.
+- **Show the fantasy cost** `build` reports when a theme is set: what the theme gives up in strength, and the best cards
+  it left out.
+- **Be a good guest on the data sites.** Do not fetch EDHREC, Archidekt, EDHTop16 or Commander Spellbook yourself; run
+  `warm` once and use `--offline` after.

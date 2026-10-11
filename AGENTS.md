@@ -5,6 +5,9 @@ coaching for a player. The repetitive data work (read pack → resolve names →
 rank) is automated by `src/mtg-draft.py`. Your job is the judgment: cross-referencing, color/curve
 reads, and honest recommendations.
 
+(Building or upgrading a **Commander** deck is a separate tool with its own rules; it has its own section at the
+end of this manual: [Commander deck building](#commander-deck-building).)
+
 ## Quick start
 
 **At the start of each draft**, do these one-time prep steps so every pick is fast:
@@ -560,3 +563,175 @@ and it's the antidote to the "answer-heavy / can't-close, too many durdle spells
 - MTGA draft queues: **Quick Draft** (vs. bots, Bo1, cheapest), **Premier Draft** (vs. humans, Bo1),
   **Traditional Draft** (vs. humans, Bo3 with sideboard — the only Bo3 queue). Control/sideboard-
   dependent decks are viable in Traditional; Premier and Quick both reward proactive/tempo decks.
+
+## Commander deck building
+
+Commander (also called EDH) is the 100-card, one-copy-of-each format led by a commander and usually played by three
+or four people. `src/mtg-commander.py` upgrades a deck the player has, builds one around a commander, ranks
+commanders for a theme, and checks a list against Wizards' power brackets (1 Exhibition, 2 Core, 3 Upgraded, 4
+Optimized, 5 cEDH, which is competitive tournament play). Like Sealed, this is a build problem with a tool that does
+the data work, so **run the tool first and coach against its output.** Do not eyeball a 100-card list, and never
+invent a card, a price, a deck count or a percentage: every number you quote comes from the tool's output (use
+`--json` when you need to read it exactly). The full reference is in ARCHITECTURE.md, "Commander deck builder". On
+Windows use `python` and `mtg-commander.bat`; on macOS/Linux `./mtg-commander.sh` works too.
+
+### The loop
+
+| the player says | run |
+|---|---|
+| "make my precon better", "here is my list" | `check` first, then `upgrade` |
+| "build me a deck around X" | `build X` |
+| "what commander fits a squirrel army?" | `themes`, then `suggest` |
+| "is this deck Bracket 3?", "is this card allowed?" | `check` |
+| "I will be offline" | `warm` now; `--offline` later |
+
+```bash
+python3 src/mtg-commander.py warm "Hazel of the Rootbloom" --bracket 3 --theme tokens   # once per commander
+python3 src/mtg-commander.py themes --commander "Hazel of the Rootbloom"                # the menu of words
+python3 src/mtg-commander.py check --precon "Squirreled Away"                           # where the deck stands now
+python3 src/mtg-commander.py upgrade --precon "Squirreled Away" --budget 75 --theme tokens --playstyle aristocrats
+python3 src/mtg-commander.py build "Hazel of the Rootbloom" --bracket 3 --budget 150 --theme squirrels
+python3 src/mtg-commander.py suggest --theme tokens --playstyle go-wide --colors BG
+```
+
+`warm` downloads everything for one commander once, so the later commands are fast and work with `--offline`. The
+first run of most commands also builds the card index (a minute or two, once). Ask the player for what the flags need:
+
+1. **The deck.** A precon name (`--precon`), a decklist file (write a pasted list to a file first; `-` reads standard
+   input), or a commander to build around. If the list does not mark its commander, add `--commander NAME` (twice for
+   a partner pair).
+2. **The bracket.** Default 3 (Upgraded). Offer 2 for a looser table. Go to 4 or 5 only when the player asks for a
+   stronger deck.
+3. **The budget**, in US dollars, for cards they do not own (`--budget`). Cards they own cost $0: `--owned FILE` (a
+   decklist) and `--owned-precon NAME` (they own the box). In `upgrade`, the deck's own cards already count as owned.
+4. **The fantasy**, below.
+5. **Keep and avoid.** `--include CARD` keeps a card; `--exclude CARD` rules one out (both repeatable). Add
+   `--allow-combos` only if the table is happy with two-card combos.
+
+### Pass the fantasy as menu words
+
+A fantasy is the experience the player wants: **themes** (what the deck is made of: squirrels, tokens, dragons), a
+**playstyle** (how it plays and wins: `combat`, `voltron`, `go-wide`, `aristocrats`, `spellslinger`, `control`,
+`combo`, `big-mana`, `graveyard`, `politics`, `stax`, `value`) and a **weight** (`--fantasy-weight`: 0 is pure
+power, 1 is theme above all, default 0.5). Run `themes` to show the menu; `themes --commander NAME` shows that
+commander's own themes with their deck counts. `stax` needs Bracket 4 or higher.
+
+Free text goes through `--fantasy "a squirrel warlord who drowns the table in tokens"`. The tool asks Claude
+(`claude -p`, only when a Claude token is present) to turn the text into menu words and checks every word against
+the menu: a word not on it is dropped with a warning, and **Claude never picks cards.** If the output says the text
+was not read (no token), map the player's words to menu words yourself and pass `--theme` and `--playstyle`. Cards
+come from the tool, never from the fantasy; the player names cards only through `--include` and `--exclude`.
+
+### Say what kind of number it is, and how many decks it comes from
+
+Each swap and each card in a build has an evidence line. Say which kind it is, and quote the deck count:
+
+| the line says | it is | say it like this |
+|---|---|---|
+| `in 66% of 1,125 Bracket 3 Hazel decks (all brackets 59%, synergy +57%)` | **builder choice** | "66% of the 1,125 Bracket 3 Hazel decks on EDHREC play it. That is what builders chose, not how often it wins." Synergy is how much more this commander's decks play it than decks of the same colors |
+| `+10% in sacrifice decks` | builder choice, by theme | "decks tagged sacrifice play it 10 points more often" |
+| `precon-adjusted` | builder choice, discounted | "it sits in the box, and many lists keep it out of habit, so the tool discounts it" |
+| `cEDH results: +x.x pts game win rate over N entries (weight W)` | **tournament result** | "in N cEDH tournament decks, games with it were won x.x points more often". Tournament results carry over to a casual table only for mana, card draw and interaction, which is why the weight is small below Bracket 5 |
+| `in NN% of N cEDH tournament decks` | tournament play rate (Bracket 5) | "NN% of N tournament decks ran it" |
+| `EDHREC rank #N overall (via Scryfall)` | **popularity fallback** | "there was no deck-builder data for this commander, so this is a generic staple for its colors" |
+| `not on this commander's EDHREC lists (under ~5% of decks)` | none | "builders almost never play it with this commander" |
+| `salt 2.4` | player-voted annoyance, 0 to 4 | "players rate it annoying to play against; the tool trims its score at Brackets 1–3" |
+
+**At Brackets 1–4 these are what builders chose, not win rates.** Real per-card win rates exist publicly only for
+tournament (cEDH) play. Never say a card "wins more" at Bracket 3; say that builders at that bracket choose it. The
+report ends with the same warning, and so should your summary.
+
+- `GAIN` is how much a swap raises the deck's value, in the units of a card score: a card every builder plays scores
+  about 1, and filling a role the deck is short of adds about 0.2. Rank by it, but explain a swap by its evidence
+  line and its `fills:` note, not by the number. A big gain on the first swaps usually means the cut card is on none
+  of the commander's lists.
+- Swaps marked **forced** fix a card that is banned, outside the commander's colors, a duplicate, one the player
+  excluded, or over the bracket's limit. Explain these first; they are repairs, not upgrades.
+- `build` reports a **fantasy cost** when a theme is set: the strength the theme gives up, as points and a percent of
+  the strongest build, with the best cards it left out ("Left out") and the cards it pulled in ("Theme picks"). Always
+  show it. It is the price of the player's fantasy, and the player may well decide it is worth paying.
+
+### Respect the bracket rules and the budget
+
+- The bracket rules are hard limits: Game Changers (none at Brackets 1–2, up to three at 3), no mass land denial at
+  1–3, limits on extra turns at 1–3, limits on two-card combos at 1–3. Never recommend a card the tool lists under
+  **Blocked**; relay its reason ("completes a two-card combo with X"). `--allow-combos` lifts only the combo check.
+- Three of the rules are the tool's own judgment calls, and its messages say so: more than one extra-turn card counts
+  as chaining; at Bracket 3 it blocks every two-card combo Commander Spellbook rates above Bracket 3, because it cannot
+  tell early from late; mass land denial beyond Wizards' named cards is found by card text, so check it with the pod.
+  Say "the tool reads it this way". Do not present these as Wizards' rules.
+- `check` prints the lowest bracket the list fits. That is a floor: Wizards says intent and how the deck plays decide
+  the real bracket. Suggest the player talk it over with their pod before the game.
+- `--budget` caps what the player spends on cards they do not own, at Scryfall's cheapest printing in US dollars. If
+  it leaves few or no swaps, say the budget is the limit and show the "Cheapest useful adds". Do not suggest cards
+  the tool did not list, or go over the budget.
+
+### Say when the data is thin
+
+The tool says when its evidence is weak. Relay these before the recommendations they weaken:
+
+- "Thin data: only N Bracket B ... decks": under 50 decks at the bracket it borrows from the neighboring brackets.
+- In `suggest`, an EDHTop16 line marked "(too few to judge)": under 100 tournament entries (the tournament bonus only
+  counts from 30).
+- A source marked `(stale)`, or a warning that data is N days old: the site failed, or `--offline` used an old copy.
+- "Combos were not checked": the Commander Spellbook lookup failed (or, with `--offline`, that exact list was never
+  looked up). Say the combo limit was not verified.
+- No deck-builder data at all ("EDHREC rank ... via Scryfall"): the list is generic good-stuff for the colors. Say so.
+  The fix is to include a deck-builder source in `--sources`, or to get online and run `warm`.
+
+Exit codes: `0` fine; `1` a mistake you can fix (a mistyped card comes with "did you mean ..."); `2` data the command
+cannot do without is unavailable (offline with nothing cached): run `warm` while online.
+
+### Reading `--json`
+
+`--json` prints one JSON object on stdout and nothing else (progress and errors go to stderr). Always present:
+`schema` (1), `command`, `warnings` (read these first) and `sources` (each with `fetched`, `cache` as `fresh`,
+`network` or `stale`, and `age_days`).
+
+| command | keys to read |
+|---|---|
+| `check` | `legality` (`ok`, `problems[]` with `kind`, `cards`, `message`), `bracket`, `bracket_check` (the bracket report: `ok`, `violations[]`, `game_changers`, `gc_max`, `two_card_combos[]`, `estimated`, `notes`), `roles` (`counts`, `targets`, `status`), `curve` |
+| `upgrade` | `swaps[]` (`rank`, `cut`, `add`, `gain`, `price`, `owned`, `forced`, `reason`, `fills`, `evidence_add`, `kind_add`, `evidence_cut`), `blocked[]` (`card`, `reason`, `gain`), `cheap_adds[]`, `spent`, `roles_before`, `roles_after`, `targets`, `value_before`, `value_after`, `bracket_before`, `bracket_after`, `deck_after` |
+| `build` | `cards[]` (`name`, `section`, `roles`, `score`, `price`, `owned`, `evidence`, `kind`), `basics`, `count`, `spent`, `roles`, `targets`, `value`, `fantasy_cost`, `bracket_check`, `blocked` |
+| `suggest` | `commanders[]` (`rank`, `name`, `ci`, `score`, `theme_share`, `playstyle_share`, `bracket_decks`, `salt`, `tournament`, `core_cost`, `owned_share`, `evidence[]`) |
+| `themes`, `warm` | `playstyles[]` and `themes[]` (`slug`, `label`, `count`); `fetched[]` (`source`, `what`, `cache`, `fetched`) |
+| `validate` | `method`, `commanders[]` (`name`, `decks`, `overlap`, `baseline`), `overall` (`overlap`, `baseline`, `n`), `roles_in_iqr`, `bracket_ok_rate`, `sweep`, `calibration`, `upgrade_check` |
+
+`kind` / `kind_add` is `builder`, `tournament`, `popularity` or `none`: the evidence type from the table above.
+Every result's `bracket` is the target bracket number; the rule reports are `bracket_check` (`check`, `build`) and
+`bracket_before` / `bracket_after` (`upgrade`).
+
+### Validation
+
+`validate` checks the builder against real decks it never saw, the way `sealed_algo.py --validate` does for Sealed. It
+holds a real list out, builds for the commander without it, and counts how many of that list's non-basic cards the
+build also plays, beside a baseline that takes the same number of most-played cards. At Bracket 5 the real lists are
+EDHTop16 top-cut decks, held out one at a time; at Brackets 1–4 they are Archidekt lists tagged with that bracket. It
+also reports the share of builds that follow the bracket's rules, how many of a build's role counts fall inside the
+middle half of the real lists, and, at Bracket 3, whether upgrading the newest precons within $50 moves their role
+counts toward the bracket's targets. Results:
+
+**Results, 2026-10-11** (`validate --bracket 5 --limit 10` and `validate --bracket 3 --limit 10`):
+
+| Check | Build | Most-played baseline |
+|---|---|---|
+| Bracket 5: overlap with 40 held-out EDHTop16 top-cut decks (Kraum/Tymna, Kinnan, Rograkh/Thrasios, Rograkh/Silas) | 81% | 82% |
+| Bracket 3: overlap with 60 recent Archidekt Bracket 3 lists (six commanders) | 49% | 51% |
+| Bracket 3: build role counts inside the middle half of those lists | 47% of roles | — |
+| Builds that meet the bracket's limits (Brackets 3 and 5) | 100% | — |
+| Bracket 3: the 10 newest precons upgraded within $50 | 10 of 10 nearer the role targets, none over budget | — |
+
+Read them plainly. The build lands a point or two under the baseline: the most-played cards are what most builders
+start from, so copying them is hard to beat on overlap, and the build trades a little of it for the budget, the
+bracket's limits and the role targets, which the baseline ignores. At Bracket 5 the `--sweep` grid moved overlap only
+between 78% and 81%, so the tournament weights are not the lever. Overlap with real lists shows the tool builds like
+a real player at that bracket. It does not show that its decks win, and at Brackets 1–4 no public data could. Coach
+from that: trust the rule checks, the budget math and the role balance; present card picks as "what experienced
+builders at this bracket play", not as proven winners.
+
+### Be a good guest on the data sites
+
+The tool paces its requests, caches everything and names itself in the User-Agent. Do not fetch EDHREC, Archidekt,
+EDHTop16 or Commander Spellbook yourself to fill a gap (no `WebFetch`, no scraping), do not loop the tool, and prefer
+`warm` once and `--offline` after. Some of those sites' terms restrict scripted access (ARCHITECTURE.md, "Terms of
+use"); `--sources` chooses which of the three evidence sources a run uses.
