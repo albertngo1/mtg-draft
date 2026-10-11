@@ -604,6 +604,8 @@ first run of most commands also builds the card index (a minute or two, once). A
    stronger deck.
 3. **The budget**, in US dollars, for cards they do not own (`--budget`). Cards they own cost $0: `--owned FILE` (a
    decklist) and `--owned-precon NAME` (they own the box). In `upgrade`, the deck's own cards already count as owned.
+   With a budget, `upgrade` also shows what less money would buy, at a few price points on the way up to it
+   (`--price-points 25,50,100` picks the amounts).
 4. **The fantasy**, below.
 5. **Keep and avoid.** `--include CARD` keeps a card; `--exclude CARD` rules one out (both repeatable). Add
    `--allow-combos` only if the table is happy with two-card combos.
@@ -665,6 +667,14 @@ report ends with the same warning, and so should your summary.
 - `--budget` caps what the player spends on cards they do not own, at Scryfall's cheapest printing in US dollars. If
   it leaves few or no swaps, say the budget is the limit and show the "Cheapest useful adds". Do not suggest cards
   the tool did not list, or go over the budget.
+- With a budget, `upgrade` prints **price points**: one line for each step ($25, $50, ... up to the budget) with the
+  money spent, the deck's value (and its change) and the number of swaps so far. Each line includes the ones above it,
+  and the swap list is split by headings such as `Up to $50:`. Answer "what does less money buy?" from them: the swaps
+  up to that heading are the answer. Forced swaps come before the first heading; they are repairs, not part of any
+  step, and may cost more than the first price point. For other amounts, run `upgrade` again with `--price-points`
+  (for example `--price-points 30,60`); never make up the line for an amount the tool did not print.
+- `upgrade` has no limit on swaps unless `--max-swaps N` is set, so a large budget can give dozens. Lead with the
+  first ones and the price-point lines, and offer the rest.
 
 ### Say when the data is thin
 
@@ -691,7 +701,7 @@ cannot do without is unavailable (offline with nothing cached): run `warm` while
 | command | keys to read |
 |---|---|
 | `check` | `legality` (`ok`, `problems[]` with `kind`, `cards`, `message`), `bracket`, `bracket_check` (the bracket report: `ok`, `violations[]`, `game_changers`, `gc_max`, `two_card_combos[]`, `estimated`, `notes`), `roles` (`counts`, `targets`, `status`), `curve` |
-| `upgrade` | `swaps[]` (`rank`, `cut`, `add`, `gain`, `price`, `owned`, `forced`, `reason`, `fills`, `evidence_add`, `kind_add`, `evidence_cut`), `blocked[]` (`card`, `reason`, `gain`), `cheap_adds[]`, `spent`, `roles_before`, `roles_after`, `targets`, `value_before`, `value_after`, `bracket_before`, `bracket_after`, `deck_after` |
+| `upgrade` | `swaps[]` (`rank`, `cut`, `add`, `gain`, `price`, `owned`, `forced`, `reason`, `fills`, `evidence_add`, `kind_add`, `evidence_cut`, `price_point`: the step that found it, null for a forced swap), `price_points[]` (`budget`, `spent`, `value`, `swaps`: totals up to that step; empty without a budget), `blocked[]` (`card`, `reason`, `gain`), `cheap_adds[]`, `spent`, `roles_before`, `roles_after`, `targets`, `value_before`, `value_after`, `bracket_before`, `bracket_after`, `deck_after` |
 | `build` | `cards[]` (`name`, `section`, `roles`, `score`, `price`, `owned`, `evidence`, `kind`), `basics`, `count`, `spent`, `roles`, `targets`, `value`, `fantasy_cost`, `bracket_check`, `blocked` |
 | `suggest` | `commanders[]` (`rank`, `name`, `ci`, `score`, `theme_share`, `playstyle_share`, `bracket_decks`, `salt`, `tournament`, `core_cost`, `owned_share`, `evidence[]`) |
 | `themes`, `warm` | `playstyles[]` and `themes[]` (`slug`, `label`, `count`); `fetched[]` (`source`, `what`, `cache`, `fetched`) |
@@ -716,12 +726,12 @@ counts toward the bracket's targets. Results:
 | Check | Build | Most-played baseline |
 |---|---|---|
 | Bracket 5: overlap with 40 held-out EDHTop16 top-cut decks (Kraum/Tymna, Kinnan, Rograkh/Thrasios, Rograkh/Silas) | 81% | 82% |
-| Bracket 3: overlap with 60 recent Archidekt Bracket 3 lists (six commanders) | 49% | 51% |
+| Bracket 3: overlap with 60 recent Archidekt Bracket 3 lists (six commanders) | 48% | 51% |
 | Bracket 3: build role counts inside the middle half of those lists | 47% of roles | — |
 | Builds that meet the bracket's limits (Brackets 3 and 5) | 100% | — |
-| Bracket 3: the 10 newest precons upgraded within $50 | 10 of 10 nearer the role targets, none over budget | — |
+| Bracket 3: the 10 newest precons upgraded within $50 (no swap limit: 23 to 48 swaps each) | 10 of 10 nearer the role targets, none over budget | — |
 
-Read them plainly. The build lands a point or two under the baseline: the most-played cards are what most builders
+Read them plainly. The build lands one to three points under the baseline: the most-played cards are what most builders
 start from, so copying them is hard to beat on overlap, and the build trades a little of it for the budget, the
 bracket's limits and the role targets, which the baseline ignores. At Bracket 5 the `--sweep` grid moved overlap only
 between 78% and 81%, so the tournament weights are not the lever. Overlap with real lists shows the tool builds like

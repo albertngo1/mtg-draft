@@ -551,6 +551,7 @@ minute or two, once; the index is rebuilt after 7 days. Everything else it downl
 | **Bracket** | Wizards of the Coast's 1–5 power scale: 1 Exhibition, 2 Core, 3 Upgraded, 4 Optimized, 5 cEDH. **cEDH** is competitive Commander, meaning tournament play. The default is Bracket 3. |
 | **Game Changer** | a card on Wizards' list of cards that push a deck up the scale (53 on 2026-10-11, flagged on each card in Scryfall's data). Bracket 3 allows up to three; Brackets 1 and 2 allow none. |
 | **Precon** | a preconstructed deck sold ready to play. Precon lists come from MTGJSON. |
+| **Price point** | a dollar amount `upgrade` stops at on the way up to your budget (for $200: $25, $50, $100 and $200). The report shows what the swaps found up to each amount come to. |
 | **Inclusion** | the share of a commander's decks that play a card. **Synergy** is EDHREC's inclusion with this commander minus the inclusion across all decks of the same colors. |
 | **Role** | a job a deck needs in numbers: ramp (extra mana), card draw, removal, board wipes, counterspells, protection, recursion, tutors, finishers. |
 | **Fantasy** | the experience the player wants from the deck: themes (squirrels, tokens), a playstyle (go-wide, control), how much to favor them, and cards to keep or avoid. |
@@ -580,17 +581,28 @@ rate), `popularity` (Scryfall's overall EDHREC rank, used only when no deck-buil
 (on no list). Example output, from cached data of 2026-10-11 (the numbers move as the data and weights are updated):
 
 ```
-Squirreled Away → Bracket 3, budget $75 (spent $65.44); themes: tokens; playstyle: aristocrats
- 1  CUT Forest  →  ADD Thornvault Forager   +1.31  $2.88
-    in 66% of 1,125 Bracket 3 Hazel decks (all brackets 59%, synergy +57%); +10% in sacrifice decks,
-    +3% in tokens decks; fills: ramp, tutor
+Squirreled Away → Bracket 3, budget $75 (spent $71.44); themes: tokens; playstyle: aristocrats
+Hazel of the Rootbloom (BG), 100 cards
+
+Price points (each includes the ones above it):
+  $20   spend $19.41   value 90.5 (+10.7)   25 swaps
+  $40   spend $39.72   value 92.2 (+12.4)   31 swaps
+  $75   spend $71.44   value 92.9 (+13.1)   35 swaps
+
+Up to $20:
+ 1  CUT Swamp  →  ADD Peregrin Took   +0.96  $0.42
+    in 57% of 1,125 Bracket 3 Hazel decks (all brackets 49%, synergy +45%); +8% in sacrifice decks
 ...
 Sources: EDHREC 2026-10-11, EDHTop16 2026-10-11, Scryfall 2026-10-11, MTGJSON 2026-10-11.
 At Bracket 3 these numbers show what deck builders chose, not how often decks won.
 ```
 
-The number after the swap (`+1.31`) is its gain: the change in the deck's value, in the same units as a card score (a
+The number after the swap (`+0.96`) is its gain: the change in the deck's value, in the same units as a card score (a
 card every builder plays scores about 1; see [How a deck is valued](#how-a-deck-is-valued-and-how-swaps-are-chosen)).
+With a budget the report also shows what less money would buy: each *price point* line sums up every swap found up to
+that amount (the money it spends, the deck's value and its change from the start, the number of swaps), and the swap
+list is split with a heading such as `Up to $20:` where a step begins (how the steps work is in
+[How a deck is valued and how swaps are chosen](#how-a-deck-is-valued-and-how-swaps-are-chosen)).
 
 ### Commander commands and flags
 
@@ -604,9 +616,9 @@ build    COMMANDER [--partner NAME] [--bracket N] [--budget USD] [--theme T] [--
          [--fantasy TEXT] [--fantasy-weight W] [--keep-fun | --no-keep-fun] [--include CARD]
          [--exclude CARD] [--owned FILE] [--owned-precon NAME] [--allow-combos] [--out FILE] [-v]
 upgrade  [DECKFILE] [--precon NAME] [--commander NAME] [--bracket N] [--budget USD] [--max-swaps N]
-         [--theme T] [--playstyle P] [--fantasy TEXT] [--fantasy-weight W] [--keep-fun | --no-keep-fun]
-         [--include CARD] [--exclude CARD] [--owned FILE] [--owned-precon NAME] [--allow-combos]
-         [--out FILE] [-v]
+         [--price-points LIST] [--theme T] [--playstyle P] [--fantasy TEXT] [--fantasy-weight W]
+         [--keep-fun | --no-keep-fun] [--include CARD] [--exclude CARD] [--owned FILE]
+         [--owned-precon NAME] [--allow-combos] [--out FILE] [-v]
 check    [DECKFILE] [--precon NAME] [--commander NAME] [--bracket N]
 warm     COMMANDER [--partner NAME] [--bracket N] [--theme T]
 validate --bracket N [--commanders NAME [NAME ...]] [--limit N] [--sweep] [--calibrate]
@@ -638,7 +650,8 @@ The four flags every command takes, then the rest (help text as `--help` prints 
 | `--commander NAME` | themes | list this commander's own themes |
 | `--bracket N` | suggest, build, upgrade, check, warm; required by validate | power level 1-5 (default 3): 1 Exhibition, 2 Core, 3 Upgraded, 4 Optimized, 5 cEDH |
 | `--budget USD` | suggest, build, upgrade | build and upgrade: most to spend on cards you do not own; suggest: most to spend on the deck's core cards |
-| `--max-swaps N` | upgrade | most swaps to suggest (default 15) |
+| `--max-swaps N` | upgrade | most swaps to suggest (default: no limit) |
+| `--price-points LIST` | upgrade | dollar amounts, comma-separated, to show what the swaps buy on the way up to `--budget`, e.g. `25,50,100`; needs `--budget`. Default: the budget, half of it, a quarter, and so on (at most four, none under $10) |
 | `--theme T` | suggest, build, upgrade, warm | a theme to build around, e.g. tokens (repeat the flag or separate with commas); for `warm`, a theme to download |
 | `--playstyle P` | suggest, build, upgrade | how the deck plays, e.g. go-wide (see `themes`) |
 | `--fantasy TEXT` | suggest, build, upgrade | the deck you imagine, in your own words (Claude turns it into themes; needs a token) |
@@ -734,8 +747,10 @@ $ ./mtg-commander.sh upgrade --precon "Squirreled Away" --budget 75 --theme toke
          ├─ build.upgrade(ctx, deck, db, ...)
          │    ├─ providers.spellbook.find_combos   combos in the deck, and combos one card away
          │    ├─ brackets.check / blocked_adds     Game Changers, mass land denial, extra turns, two-card combos
-         │    ├─ forced swaps first, then the best swap one at a time, under budget and bracket
-         │    └─ combo check of the finished list; a swap that completes a banned combo is undone
+         │    ├─ forced swaps first, then the best swap one at a time, under budget and bracket;
+         │    │  with a budget, step by step up the price points
+         │    ├─ combo check of the finished list; a swap that completes a banned combo is undone
+         │    └─ the price-point lines: the kept swaps replayed on the starting list, one line per point
          └─ render.text(result), or render.as_json(result) with --json
 ```
 
@@ -835,7 +850,9 @@ re-scoring the deck, because the search asks for it tens of thousands of times.
 | `MIN_GAIN` | 0.02 | a swap must beat this to be printed |
 | `MAX_CANDIDATES`, `MAX_LAND_CANDIDATES` | 250, 80 | adds considered, best first (`build` also considers 80 nonbasic lands) |
 | `BUILD_ITERATIONS` | 300 | cap on `build`'s swap search |
-| `NONBASIC_MIN` | 0.10 | a nonbasic land needs at least this score to take a slot from a basic |
+| `NONBASIC_MIN` | 0.10 | a nonbasic land needs at least this score to take a slot from a basic, in `build` and in `upgrade` |
+| `MANA_FLOOR` | 8 | no swap leaves a color with fewer lands that make it than this (or than it had, if it had fewer) |
+| `PRICE_POINTS_SHOWN`, `PRICE_POINT_MIN`, `PRICE_POINT_ROUND` | 4, $10, $5 | when `upgrade` picks the price points itself: at most four (the budget included), none under $10, each halved amount rounded half-up to a multiple of $5 |
 | `COMBO_ROUNDS` | 3 | how often a banned combo found in the finished list is repaired |
 | `LAND_BUDGET_SHARE` | 0.10 | the share of a `build` budget held back for nonbasic lands |
 
@@ -844,14 +861,41 @@ Both searches are local, not optimal: a swap that needs two cards to change at o
 - **`upgrade`** makes forced swaps first: anything that breaks the format (banned or not legal, outside the
   commander's colors, extra copies, a card you `--exclude`d) or the bracket (too many Game Changers, extra-turn cards or
   mass land denial; the weaker half of a banned combo). Each is replaced by the best legal add that fits the budget (a
-  basic land if none does). Then it repeats the best affordable swap above `MIN_GAIN`, up to `--max-swaps`. It never
-  cuts the commander or an `--include` card. The deck's own cards and anything you own cost $0; other adds are priced
-  at Scryfall's cheapest printing. With a budget, the swaps are run again with a growing penalty per dollar and the
-  run that ends with the most valuable deck is kept, so one pricey card does not eat the whole budget. When a budget
+  basic land if none does). Then it repeats the best affordable swap above `MIN_GAIN`. There is no limit on how many
+  unless you set `--max-swaps`: it stops when nothing beats `MIN_GAIN` or the money is gone. It never cuts the
+  commander or an `--include` card. The deck's own cards and anything you own cost $0; other adds are priced at
+  Scryfall's cheapest printing. With a budget, the swaps are run again with a growing penalty per dollar and the run
+  that ends with the most valuable deck is kept, so one pricey card does not eat the whole budget. When a budget
   allows no swap, the report lists the cheapest useful adds.
+- **Price points.** With a budget, `upgrade` climbs in steps instead of searching once for the whole amount. The steps
+  are the budget, half of it, a quarter, and so on (at most four, none under $10, each halved amount rounded to a
+  multiple of $5): a $200 budget gives $25, $50, $100 and $200, and $75 gives $20, $40 and $75. `--price-points
+  25,50,100` sets your own; an amount at or over the budget is dropped, and the budget is always the last step. Each
+  step is the search above with its amount as the cap, starting from the list the step before left. Money already
+  spent counts toward the cap, and a card bought in an earlier step is never cut later. So the first swaps are what a
+  small budget would buy, and each bigger step only adds to them. The forced swaps come first and may spend up to the
+  whole budget, even if that is more than the first step. `--max-swaps` counts across all the steps. After the combo
+  check, each step is summed up from the swaps that were kept: the money spent, the deck's value, and how many swaps
+  there are so far. The report prints one line per step and splits the swap list where a step begins; `--json` has
+  `price_points[]`, and each swap says which step found it (`price_point`; none for a forced swap). With one step (the
+  budget alone, or no budget) the report is unchanged.
+- **Basic lands in an upgrade.** A basic land scores 0, so any scored nonbasic land looks like an improvement over one,
+  and a long upgrade could replace every basic. Three rules prevent that.
+  1. A nonbasic land needs a score of at least `NONBASIC_MIN` to take a basic's slot, the rule `build` already used.
+  2. The deck keeps the basics its land searchers need: as many as the cards in it can take, and at least as many as it
+     has colors. Cultivate takes two and Evolving Wilds one; a search for a *basic* land counts, but a search for
+     "a Forest card" does not, because it can fetch a dual land that has the type. Those basics are split among the
+     colors the way `build` splits basics (one each, the rest by colored mana symbols), so the searchers can still
+     find every color. A swap that would cut a basic below the total, or below its color's share, is skipped. A swap
+     that cuts anything else is always allowed, even one that adds a searcher to a deck that is short of basics. As
+     before, no swap leaves a color with fewer than `MANA_FLOOR` lands that make it.
+  3. When cutting a basic ties with cutting another card, an unscored nonbasic land goes first, then the basic of
+     the color with the most lands per colored mana symbol. A deck that needs more green loses Swamps before Forests.
 - **`build`** fills the nonland slots greedily by marginal value (your `--include` cards first), swaps until nothing
-  improves, adds nonbasic lands that score at least `NONBASIC_MIN`, then splits basics by the colored mana symbols
-  in the deck. It checks the finished list for banned combos and repairs it, up to `COMBO_ROUNDS` times.
+  improves, adds nonbasic lands that score at least `NONBASIC_MIN` (leaving room for the basics its land searchers can
+  take: a searching land counts its own search, and is skipped if it no longer fits), then splits basics by the
+  colored mana symbols in the deck. It checks the finished list for banned combos and repairs it, up to
+  `COMBO_ROUNDS` times.
 - **Fantasy cost.** When you ask for a theme, `build` builds the deck a second time with the fantasy weight at 0 (pure
   power), values both under power-only scores, and reports the gap in points and as a percent, the strongest cards the
   theme left out, and the cards it pulled in.
@@ -1059,7 +1103,7 @@ the list's non-basic cards the build also plays. That number alone says little (
 would guess), so every overlap sits beside a baseline that needs no model, the same number of most-played cards. The
 baseline is hard to beat on overlap, since it is what most builders start from; the build gives a little of it up for
 the budget, the bracket's limits and the role targets. The measured results are in AGENTS.md ("Commander deck
-building"): 81% against 82% at Bracket 5, 49% against 51% at Bracket 3, every build within the bracket's limits.
+building"): 81% against 82% at Bracket 5, 48% against 51% at Bracket 3, every build within the bracket's limits.
 
 - **Bracket 5** (needs `edhtop16`). For each commander, take its newest 150 EDHTop16 entries and hold out its top-cut
   decks one at a time, up to `--limit`. The build is handed the tournament results of every other entry, and reads

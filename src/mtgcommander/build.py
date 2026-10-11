@@ -17,9 +17,18 @@ search asks for it tens of thousands of times. Whole-card counts are still kept:
 `fills` and the bracket rules read.
 
 `upgrade` makes forced swaps first (anything that breaks the bracket or the format), then repeats the best
-affordable swap above MIN_GAIN. `build` fills the nonland slots greedily, swaps until nothing improves, then
-picks lands. Both are local searches, not optima: a swap that needs two cards to change at once is invisible
-to them, and each result says what it left out and why.
+affordable swap above MIN_GAIN, with no limit on how many unless the caller sets one. With a budget it does so
+in steps, the price points: each step may spend up to its dollar amount and builds on the one before, so the
+report shows what $50 buys on the way to $200. `build` fills the nonland slots greedily, swaps until nothing
+improves, then picks lands. Both are local searches, not optima: a swap that needs two cards to change at once
+is invisible to them, and each result says what it left out and why.
+
+Lands get rules of their own, because a basic land scores 0 and so any scored nonbasic land looks like an
+upgrade over it. A nonbasic land must score NONBASIC_MIN to take a basic's slot, no swap strips a color of its
+lands (MANA_FLOOR), and the deck keeps as many basics as its land searchers can take (Cultivate, Evolving Wilds)
+and at least as many as it has colors, split among the colors the way `build` splits basics so a searcher can
+still find each one. When two basics are equally good to cut, the one whose color has the most lands per colored
+mana symbol goes first.
 
 The fantasy has a price, and `build` reports it: it builds a second deck with the theme weight at 0 and
 compares the two under power-only scores.
@@ -43,6 +52,9 @@ COMBO_ROUNDS = 3          # how often a combo found in the finished list is repa
 MANA_FLOOR = 8            # a swap may not leave a color with fewer lands that make it (or fewer than it had)
 LAND_BUDGET_SHARE = 0.10  # share of a build budget held back for nonbasic lands while the spells are chosen
 PRICE_LAMBDAS = (0.0, 0.002, 0.005, 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1.0, 2.0, 5.0, 10.0)  # value per dollar
+PRICE_POINTS_SHOWN = 4    # price points `upgrade` picks for a budget when the caller names none (budget included)
+PRICE_POINT_MIN = 10      # dollars: no halved price point is below this (a smaller budget stands alone)
+PRICE_POINT_ROUND = 5     # dollars: a halved price point is a multiple of this (the budget itself is as given)
 BLOCKED_SHOWN = 5
 BLOCKED_MIN_SCORE = 0.15  # a card the rules kept out is only worth naming if builders play it this often
 CHEAP_ADDS = 5
@@ -71,7 +83,7 @@ STATE_ROLES = roles.ROLES + ("land", "topend")
 EPS = 1e-9
 LAND_TABLE = 150
 
-Facts = collections.namedtuple("Facts", "name score theme roles w land topend gc extra mld sources basic")
+Facts = collections.namedtuple("Facts", "name score theme roles w land topend gc extra mld sources basic fetch")
 
 
 def _dedupe(lines):
@@ -197,7 +209,7 @@ class Model:
         if found is None:
             rec = self.db.get(name)
             if rec is None:
-                found = Facts(name, 0.0, 0.0, (), 0.0, False, False, 0, 0, 0, frozenset(), False)
+                found = Facts(name, 0.0, 0.0, (), 0.0, False, False, 0, 0, 0, frozenset(), False, 0)
             else:
                 basic = "Basic" in rec["types"]
                 sc = None if basic else self.scores.get(rec["name"])
@@ -208,7 +220,7 @@ class Model:
                               its_roles, 1 / math.sqrt(len(its_roles)) if its_roles else 0.0, rec["land"],
                               not rec["land"] and rec["cmc"] >= 6, int(bool(rec["gc"])),
                               int(brackets.is_extra_turn(rec)), int(brackets.is_mass_land_denial(rec)),
-                              lands_for, basic)
+                              lands_for, basic, roles.basic_land_searches(rec))
             self._facts[name] = found
         return found
 
@@ -307,8 +319,8 @@ class Plan:
 
     The search is the heart of both `upgrade` and `build`. For an add `a` and a cut `c` the gain is
     add_value(a) - cut_value(c) + overlap(c, a); cuts that are interchangeable (same roles, land-ness, rule
-    flags and, for lands, colors) differ only by score, so each such group is represented by its weakest
-    member. That keeps a round near 250 adds x 35 groups instead of 250 x 100."""
+    flags and, for lands, colors, basic-ness and fetching) differ only by score, so each such group is
+    represented by its weakest member. That keeps a round near 250 adds x 35 groups instead of 250 x 100."""
 
     def __init__(self, model, db, ci, bracket, *, prices, owned, budget=None, blocked=None):
         self.m, self.db, self.ci, self.bracket = model, db, ci, bracket
@@ -322,10 +334,15 @@ class Plan:
         self.score_sum = 0.0
         self.rules = {"gc": 0, "extra_turns": 0, "mld": 0}   # what can_add reads (commanders count)
         self.sources = collections.Counter()             # color -> lands that make it
+        self.basics = 0                                  # copies of basic lands in the list
+        self.basics_by_color = collections.Counter()     # color -> copies of basic lands that make it
+        self.basic_demand = 0                            # basics the list's land searchers can take, every copy
+        self.pips = collections.Counter()                # color -> colored mana symbols of the nonland cards
         self.bought = {}                                 # name -> price paid in this run (refunded on a cut)
         self.spent = 0.0
         self.locked = set()                              # names that may not be cut
         self._rule_memo = {}
+        self._split_memo = {}
 
     def clone(self):
         """An independent copy (the model, card index and price table are shared; they never change)."""
@@ -334,8 +351,11 @@ class Plan:
         other.cards, other.order = collections.Counter(self.cards), list(self.order)
         other.counts, other.mass, other.score_sum = dict(self.counts), dict(self.mass), self.score_sum
         other.rules, other.sources = dict(self.rules), collections.Counter(self.sources)
+        other.basics, other.basic_demand, other.pips = self.basics, self.basic_demand, collections.Counter(self.pips)
+        other.basics_by_color = collections.Counter(self.basics_by_color)
         other.bought, other.spent, other.locked = dict(self.bought), self.spent, set(self.locked)
         other._rule_memo = self._rule_memo           # depends only on (card, rule state), so it can be shared
+        other._split_memo = self._split_memo         # depends only on (basics, symbols), so it can be shared
         return other
 
     # --- money
@@ -372,6 +392,11 @@ class Plan:
         self.rules["mld"] += f.mld
         for c in f.sources:
             self.sources[c] += 1
+            self.basics_by_color[c] += f.basic
+        self.basics += f.basic
+        self.basic_demand += f.fetch
+        for c, v in self._pips_of(f.name).items():
+            self.pips[c] += v
         if buy:
             paid = self.price(f.name) or 0.0
             self.bought[f.name] = self.bought.get(f.name, 0.0) + paid
@@ -394,8 +419,18 @@ class Plan:
         self.rules["mld"] -= f.mld
         for c in f.sources:
             self.sources[c] -= 1
+            self.basics_by_color[c] -= f.basic
+        self.basics -= f.basic
+        self.basic_demand -= f.fetch
+        for c, v in self._pips_of(f.name).items():
+            self.pips[c] -= v
         refund = self.bought.pop(f.name, 0.0)
         self.spent -= refund
+
+    def _pips_of(self, name):
+        """The colored mana symbols one copy of `name` adds to `pips`; a land has none."""
+        rec = self.db.get(name)
+        return {} if rec is None or rec["land"] else _pips(rec, self.ci)
 
     def swap(self, cut, add):
         self.remove(cut)
@@ -412,7 +447,7 @@ class Plan:
     def rule_ok(self, fa, cut=None):
         """Whether adding card `fa` keeps the Game Changer, extra-turn and mass-land-denial limits, with
         `cut` (a Facts) leaving the list first."""
-        gone = cut or Facts("", 0, 0, (), 0.0, False, False, 0, 0, 0, frozenset(), False)
+        gone = cut or Facts("", 0, 0, (), 0.0, False, False, 0, 0, 0, frozenset(), False, 0)
         state = (self.rules["gc"] - gone.gc, self.rules["extra_turns"] - gone.extra,
                  self.rules["mld"] - gone.mld)
         key = (fa.name, state)
@@ -432,20 +467,66 @@ class Plan:
                 return False
         return True
 
+    def basics_ok(self, cut, add):
+        """A swap that cuts a basic land must leave the basics the deck still needs. Cards that search the library
+        for a basic land (Cultivate, Evolving Wilds) find nothing once the last basic is gone, so after the swap
+        the list keeps as many basics as its searchers can take, counting the search of the card being added, and
+        at least as many as it has colors. Those basics are split among the colors the way `build` splits basics
+        (one each, the rest by colored mana symbols), so a searcher can still fix either color; without the split
+        the cut order alone took every Swamp from a green-heavy deck. A nonbasic land may only take a basic's slot
+        if it scores NONBASIC_MIN, the same rule `build` applies. A swap that cuts anything else passes: adding a
+        searcher by cutting a spell stays legal even when the deck is already short of basics."""
+        if not cut.basic:
+            return True
+        if add.land and not add.basic and add.score < NONBASIC_MIN:
+            return False
+        keep = max(len(self.colors), self.basic_demand + add.fetch)
+        if self.basics - 1 + add.basic < keep:
+            return False
+        need = self._basic_shares(keep)
+        return all(self.basics_by_color[c] - 1 + (add.basic and c in add.sources) >= need.get(c, 0)
+                   for c in cut.sources)
+
+    def _basic_shares(self, total):
+        """{color: basics} for `total` basics split like `build` splits them: one per color, the rest in
+        proportion to the colored mana symbols of the nonland cards (memoized: the search asks this for every
+        add it prices)."""
+        key = (total, tuple(self.pips[c] for c in self.colors))
+        split = self._split_memo.get(key)
+        if split is None:
+            split = self._split_memo[key] = _allocate(total, {c: self.pips[c] for c in self.colors})
+        return split
+
     # --- search
+    def _lands_per_symbol(self, color):
+        """Lands that make `color` for each colored mana symbol of that color in the nonland cards (the +1
+        keeps a color that no card uses finite). The color with the fewest gets the next basic; the one with the
+        most gives up the next one."""
+        return self.sources[color] / (self.pips[color] + 1)
+
+    def _cut_order(self, f):
+        """Sort key of the group `f` belongs to, for ties between equal gains: nonbasic cards first (an unscored
+        utility land goes before a basic), then basic lands, the color with the most lands per symbol first. A
+        basic that makes none of the deck's colors (Wastes in a colored deck) costs no color, so it leads."""
+        if not f.basic:
+            return 0, 0.0
+        return 1, -max((self._lands_per_symbol(c) for c in f.sources), default=math.inf)
+
     def _groups(self, cuts):
-        """Cut candidates grouped by interchangeable role signature, weakest first within a group:
-        [[(Facts, loss, refund), ...], ...]."""
+        """Cut candidates grouped by interchangeable signature, weakest first within a group:
+        [[(Facts, loss, refund), ...], ...]. The search keeps the first of several equal gains, so the order of
+        the groups decides ties: see `_cut_order`."""
         groups = {}
         for name in cuts:
             f = self.m.facts(name)
-            sig = (f.roles, f.land, f.topend, f.gc, f.extra, f.mld, f.sources)
+            sig = (f.roles, f.land, f.topend, f.gc, f.extra, f.mld, f.sources, f.basic, f.fetch)
             groups.setdefault(sig, []).append(f)
         out = []
         for members in groups.values():
             members.sort(key=lambda f: (f.score, f.name))
             out.append([(f, self.m.cut_value(self.counts, self.mass, f), self.bought.get(f.name, 0.0))
                         for f in members])
+        out.sort(key=lambda group: self._cut_order(group[0][0]))        # stable: nonbasic groups keep their order
         return out
 
     def best_swap(self, cuts, adds, *, min_gain=MIN_GAIN, lam=0.0, watch=None):
@@ -468,6 +549,8 @@ class Plan:
             for members in groups:
                 for fc, loss, refund in members:
                     if (fc.land or fa.land) and not self.mana_ok(fc, fa):
+                        break
+                    if not self.basics_ok(fc, fa):
                         break
                     gain = win - loss + self.m.overlap(self.counts, self.mass, fc, fa)
                     if any_gain is None or gain > any_gain:
@@ -518,16 +601,10 @@ class Plan:
         return best
 
     def filler(self):
-        """A basic land for a slot nothing else can fill: the color with the fewest lands per pip."""
+        """A basic land for a slot nothing else can fill: the color with the fewest lands per colored symbol."""
         if not self.colors:
             return "Wastes"
-        pips = collections.Counter()
-        for n, k in self.cards.items():
-            rec = self.db.get(n)
-            if rec and not rec["land"]:
-                for c, v in _pips(rec, self.ci).items():
-                    pips[c] += v * k
-        return BASIC_FOR[min(self.colors, key=lambda c: (self.sources[c] / (pips[c] + 1), c))]
+        return BASIC_FOR[min(self.colors, key=lambda c: (self._lands_per_symbol(c), c))]
 
 
 def _pips(rec, ci):
@@ -683,18 +760,23 @@ class _Ledger:
         return 0.0 if name in self.owned else self.price.get(name)
 
     def record(self, cut, add, gain, forced, reason, fills):
+        """One swap's record. "price_point" is the step of the price ladder that found it; `upgrade` fills it in
+        for the optional swaps, and a forced swap belongs to no step."""
         fc = self.m.facts(cut)
         sc_add, sc_cut = self.ctx["scores"].get(add) or {}, self.ctx["scores"].get(cut) or {}
         return {"cut": cut, "add": add, "gain": gain, "price": self.cost(add), "owned": add in self.owned,
                 "forced": forced, "reason": reason, "fills": fills,
                 "evidence_add": sc_add.get("evidence", ""), "kind_add": sc_add.get("kind", "none"),
-                "evidence_cut": "basic land" if fc.basic else sc_cut.get("evidence", "not scored")}
+                "evidence_cut": "basic land" if fc.basic else sc_cut.get("evidence", "not scored"),
+                "price_point": None}
 
 
 def _optional_swaps(plan, ledger, pool, max_swaps, lam, watch):
-    """Apply up to `max_swaps` best swaps to `plan`; returns their records, best first as they were found."""
+    """Apply the best swaps to `plan` one at a time, at most `max_swaps` of them (None: no limit); returns their
+    records, best first as they were found. With no limit it still ends: each swap locks the card it adds and
+    cuts one that was not locked, and the search stops when nothing beats MIN_GAIN or the money runs out."""
     out = []
-    while len(out) < max_swaps:
+    while max_swaps is None or len(out) < max_swaps:
         choice = plan.best_swap([n for n in plan.cards if n not in plan.locked],
                                 [a for a in pool if a not in plan.cards], lam=lam, watch=watch)
         if not choice:
@@ -713,14 +795,65 @@ def _budget_bound(watch):
     return any(g > MIN_GAIN for g, _ in (watch.get("costly") or {}).values())
 
 
-def upgrade(ctx, deck, db, *, budget=None, max_swaps=15, combos_fn=None, allow_combos=False, prices=None):
+def default_price_points(budget):
+    """The dollar amounts an upgrade is stepped through on the way to `budget`, smallest first and the budget
+    last: the budget, half of it, a quarter, and so on, at most PRICE_POINTS_SHOWN of them and no half under
+    PRICE_POINT_MIN. Each halved amount is rounded half-up to a multiple of PRICE_POINT_ROUND so the steps read as
+    round numbers: $200 gives 25, 50, 100 and 200; $75 gives 20, 40 and 75 (the next half, $9.38, is too small);
+    a budget under $20 has no half worth a step and stands alone."""
+    points, half = [float(budget)], budget / 2
+    while len(points) < PRICE_POINTS_SHOWN and half >= PRICE_POINT_MIN:
+        points.append(float(math.floor(half / PRICE_POINT_ROUND + 0.5) * PRICE_POINT_ROUND))
+        half /= 2
+    return sorted(set(points))
+
+
+def _price_ladder(budget, price_points):
+    """The steps one upgrade climbs, smallest first, the budget last. Without a budget there is nothing to step
+    toward, so there are none. Amounts the caller names count when they are above $0 and under the budget (each
+    once); with none named (None) the steps are default_price_points(budget)."""
+    if budget is None:
+        return []
+    if price_points is None:
+        return default_price_points(budget)
+    return sorted({float(p) for p in price_points if 0 < p < budget}) + [float(budget)]
+
+
+def _price_point_summaries(ladder, swaps, deck_names, ctx, db):
+    """What each price point came to: [{"budget", "spent", "value", "swaps"}], by replaying the kept swaps onto
+    the starting list in order. "swaps" and "spent" are totals so far (forced swaps included, since they come
+    first), "value" is deck_value of the list at that point. Replaying instead of remembering what the search
+    saw keeps the lines true after the combo repair has undone a swap."""
+    names, spent, done, out = list(deck_names), 0.0, 0, []
+    for point in ladder:
+        while done < len(swaps) and (swaps[done]["price_point"] is None or swaps[done]["price_point"] <= point):
+            names.remove(swaps[done]["cut"])
+            names.append(swaps[done]["add"])
+            spent += swaps[done]["price"] or 0.0
+            done += 1
+        out.append({"budget": point, "spent": round(spent, 2), "value": deck_value(names, ctx, db)["total"],
+                    "swaps": done})
+    return out
+
+
+def upgrade(ctx, deck, db, *, budget=None, max_swaps=None, price_points=None, combos_fn=None, allow_combos=False,
+            prices=None):
     """Ranked cut/add swaps for `deck` ({"commanders", "cards": [(count, name)]}, names canonical) within a
     budget and the target bracket. See the module docstring for the method; the result shape is in the design
-    doc ("Command line and result shapes"). The deck's own cards and `ctx["owned"]` cost nothing.
+    doc ("Command line and result shapes"). The deck's own cards and `ctx["owned"]` cost nothing. `max_swaps`
+    caps the optional swaps; None, the default, lets the search run until nothing beats MIN_GAIN or the money is
+    gone.
 
     With a budget the greedy "best gain first" can spend it all on one pricey card, so the optional swaps are
     run again with a growing penalty per dollar (PRICE_LAMBDAS) and the run that ends with the most valuable
-    deck wins. Every printed gain is still the real gain of that swap at the moment it was made."""
+    deck wins. Every printed gain is still the real gain of that swap at the moment it was made.
+
+    A budget is also climbed in steps, the price points (`price_points`, else default_price_points(budget); the
+    budget is always the last). Each step is that whole search with the budget set to the point, starting from the
+    list the step before left: money spent earlier counts toward the point, and what an earlier step bought is
+    never cut. So the first swaps are what a smaller budget would do, and each later step only adds to them. A
+    swap says which step found it ("price_point"; None for a forced swap), and the result's "price_points" sums up
+    each step. Without a budget there are no steps."""
     warnings = list(ctx["warnings"])
     bracket, ci = ctx["bracket"], ctx["ci"]
     commanders = list(deck.get("commanders") or ctx["commanders"])
@@ -779,17 +912,29 @@ def upgrade(ctx, deck, db, *, budget=None, max_swaps=15, combos_fn=None, allow_c
         plan.locked.add(add)
         swaps.append(ledger.record(cut, add, gain, True, why, fills))
 
-    # --- the best swaps, one at a time; with a budget, try several prices-matter settings
-    watch = {}
-    trial = plan.clone()
-    taken = _optional_swaps(trial, ledger, pool, max_swaps, 0.0, watch)
-    if budget is not None and _budget_bound(watch):
-        for lam in PRICE_LAMBDAS[1:]:
-            other, other_watch = plan.clone(), {}
-            got = _optional_swaps(other, ledger, pool, max_swaps, lam, other_watch)
-            if other.value() > trial.value() + EPS:
-                trial, taken, watch = other, got, other_watch
-    plan, swaps = trial, swaps + taken
+    # --- the best swaps, one at a time. With a budget, climb the price points: each step spends up to its amount
+    # on top of what the steps before spent, and tries several prices-matter settings. `watch` is the last
+    # step's, so it describes the finished list.
+    ladder = _price_ladder(budget, price_points)
+    watch, taken = {}, []
+    for point in ladder or [None]:                           # no budget: one step with no cap
+        room = None if max_swaps is None else max_swaps - len(taken)
+        if room is not None and room <= 0:
+            break                                            # the cap counts across steps
+        if point is not None:
+            plan.budget = max(point, plan.spent)             # forced swaps may already have spent past a small point
+        trial, step_watch = plan.clone(), {}
+        got = _optional_swaps(trial, ledger, pool, room, 0.0, step_watch)
+        if point is not None and _budget_bound(step_watch):
+            for lam in PRICE_LAMBDAS[1:]:
+                other, other_watch = plan.clone(), {}
+                more = _optional_swaps(other, ledger, pool, room, lam, other_watch)
+                if other.value() > trial.value() + EPS:
+                    trial, got, step_watch = other, more, other_watch
+        for x in got:
+            x["price_point"] = point
+        plan, taken, watch = trial, taken + got, step_watch
+    swaps = swaps + taken
 
     # --- a combo that only appeared once the swaps were made
     combos_after = combos
@@ -840,7 +985,8 @@ def upgrade(ctx, deck, db, *, budget=None, max_swaps=15, combos_fn=None, allow_c
             "deck": {"name": deck.get("name", ""), "commanders": commanders,
                      "count": len(final_names) + len(commanders), "ci": ci},
             "bracket": bracket, "budget": budget, "spent": round(spent, 2), "spec": ctx["spec"],
-            "swaps": swaps, "blocked": blocked_list, "cheap_adds": cheap,
+            "swaps": swaps, "price_points": _price_point_summaries(ladder, swaps, deck_names, ctx, db),
+            "blocked": blocked_list, "cheap_adds": cheap,
             "roles_before": counts_before, "roles_after": value_after["roles"], "targets": ctx["targets"],
             "value_before": value_before["total"], "value_after": value_after["total"],
             "bracket_before": report_before, "bracket_after": report_after,
@@ -935,14 +1081,21 @@ def _assemble(ctx, db, model, spells, lands, prices, owned, budget, banned, incl
         plan.swap(choice[1], choice[2])
     plan.short, plan.slots = max(0, left), spell_slots
 
-    # nonbasic lands by score, leaving room for at least one basic per color
+    # Nonbasic lands by score, leaving room for the basics the deck needs: one per color, and as many as its land
+    # searchers can take (a candidate that searches adds its own demand).
     plan.budget = budget
-    room = land_target - len(plan.colors) if plan.colors else land_target
+
+    def lands_left(extra_demand=0):
+        """Land slots still open to nonbasic lands once the basics the deck needs are set aside."""
+        return land_target - max(len(plan.colors), plan.basic_demand + extra_demand) - plan.counts["land"]
+
     for name in sorted((n for n in lands if n not in banned and n not in plan.cards),
                        key=lambda n: (-model.facts(n).score, n)):
         f = model.facts(name)
-        if plan.counts["land"] >= room or f.score < NONBASIC_MIN:
-            break
+        if lands_left() <= 0 or f.score < NONBASIC_MIN:
+            break                                       # not even a land that searches for nothing fits
+        if lands_left(f.fetch) <= 0:
+            continue                                    # it fits only without its own search: try the next
         if plan.best_add([name]) is not None:
             plan.add(name, buy=True)
     basics = _basic_split(plan, db, commanders, total_slots - sum(plan.cards.values()))
