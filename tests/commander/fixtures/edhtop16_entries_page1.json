@@ -1,0 +1,33 @@
+{
+  "data": {
+    "commander": {
+      "entries": {
+        "pageInfo": {"hasNextPage": true, "endCursor": "5"},
+        "edges": [
+          {"node": {"id": "E1", "wins": 3, "losses": 1, "draws": 0, "standing": 1,
+                    "maindeck": [{"name": "Sol Ring"}, {"name": "Skullclamp"}, {"name": "Forest"}, {"name": "Swamp"},
+                                 {"name": "Pitiless Plunderer"}],
+                    "tournament": {"TID": "big-open", "name": "Big Open", "size": 64, "topCut": 16,
+                                   "tournamentDate": "2026-10-10T19:00:00.000Z"}}},
+          {"node": {"id": "E2", "wins": 1, "losses": 2, "draws": 1, "standing": 20,
+                    "maindeck": [{"name": "Sol Ring"}, {"name": "Forest"}, {"name": "Swamp"},
+                                 {"name": "Demonic Tutor"}],
+                    "tournament": {"TID": "big-open", "name": "Big Open", "size": 64, "topCut": 16,
+                                   "tournamentDate": "2026-10-10T19:00:00.000Z"}}},
+          {"node": {"id": "E3", "wins": 2, "losses": 2, "draws": 0, "standing": 3,
+                    "maindeck": [],
+                    "tournament": {"TID": "club-night", "name": "Club Night", "size": 12, "topCut": 4,
+                                   "tournamentDate": "2026-10-03T00:00:00.000Z"}}},
+          {"node": {"id": "E4", "wins": 2, "losses": 1, "draws": 1, "standing": 2,
+                    "maindeck": [{"name": "Sol Ring"}, {"name": "Skullclamp"}, {"name": "Forest"}],
+                    "tournament": {"TID": "swiss-only", "name": "Swiss Only", "size": 9, "topCut": 0,
+                                   "tournamentDate": "2026-09-28T10:00:00.000Z"}}},
+          {"node": {"id": "E5", "wins": 0, "losses": 4, "draws": 0, "standing": 31,
+                    "maindeck": null,
+                    "tournament": {"TID": "big-open", "name": "Big Open", "size": 64, "topCut": 16,
+                                   "tournamentDate": "2026-10-10T19:00:00.000Z"}}}
+        ]
+      }
+    }
+  }
+}

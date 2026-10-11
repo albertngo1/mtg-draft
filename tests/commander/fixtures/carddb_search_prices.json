@@ -1,0 +1,5 @@
+{"object": "list", "total_cards": 3, "has_more": false, "data": [
+  {"object": "card", "name": "Sol Ring", "set": "fdc", "prices": {"usd": "0.99", "usd_foil": null, "usd_etched": null}},
+  {"object": "card", "name": "Skullclamp", "set": "plst", "prices": {"usd": null, "usd_foil": "19.13", "usd_etched": null}},
+  {"object": "card", "name": "Mana Crypt", "set": "2xm", "prices": {"usd": null, "usd_foil": null, "usd_etched": null}}
+]}

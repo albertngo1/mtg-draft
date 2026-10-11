@@ -1,0 +1,151 @@
+{
+  "fetched": "2026-10-11T00:00:00Z",
+  "cache": "network",
+  "included": [
+    {
+      "id": "9001-0001",
+      "cards": ["Chatterfang, Squirrel General", "Pitiless Plunderer"],
+      "requires": [],
+      "missing": [],
+      "produces": ["Infinite ETB triggers", "Infinite sacrifice triggers"],
+      "bracket_tag": "S",
+      "min_bracket": 4,
+      "lowest": 3,
+      "two_card": true,
+      "infinite": true,
+      "url": "https://commanderspellbook.com/combo/9001-0001/"
+    },
+    {
+      "id": "9001-0002",
+      "cards": ["Spawnsire of Ulamog", "Pitiless Plunderer"],
+      "requires": [],
+      "missing": [],
+      "produces": ["Infinite colorless mana"],
+      "bracket_tag": "E",
+      "min_bracket": 1,
+      "lowest": 1,
+      "two_card": true,
+      "infinite": true,
+      "url": "https://commanderspellbook.com/combo/9001-0002/"
+    },
+    {
+      "id": "9001-0003",
+      "cards": ["Archaeomancer", "Time Warp"],
+      "requires": [],
+      "missing": [],
+      "produces": ["Extra turn"],
+      "bracket_tag": "C",
+      "min_bracket": 2,
+      "lowest": 2,
+      "two_card": true,
+      "infinite": false,
+      "url": "https://commanderspellbook.com/combo/9001-0003/"
+    },
+    {
+      "id": "9001-0004",
+      "cards": ["Demonic Consultation", "Thassa's Oracle"],
+      "requires": [],
+      "missing": [],
+      "produces": ["Win the game"],
+      "bracket_tag": "P",
+      "min_bracket": 3,
+      "lowest": 3,
+      "two_card": true,
+      "infinite": false,
+      "url": "https://commanderspellbook.com/combo/9001-0004/"
+    },
+    {
+      "id": "9001-0005",
+      "cards": ["Chatterfang, Squirrel General", "Skullclamp", "Woe Strider"],
+      "requires": [],
+      "missing": [],
+      "produces": ["Infinite ETB triggers"],
+      "bracket_tag": "S",
+      "min_bracket": 4,
+      "lowest": 3,
+      "two_card": false,
+      "infinite": true,
+      "url": "https://commanderspellbook.com/combo/9001-0005/"
+    }
+  ],
+  "almost": [
+    {
+      "id": "9002-0001",
+      "cards": ["Chatterfang, Squirrel General", "Pitiless Plunderer"],
+      "requires": [],
+      "missing": ["Pitiless Plunderer"],
+      "produces": ["Infinite ETB triggers", "Infinite sacrifice triggers"],
+      "bracket_tag": "S",
+      "min_bracket": 4,
+      "lowest": 3,
+      "two_card": true,
+      "infinite": true,
+      "url": "https://commanderspellbook.com/combo/9002-0001/"
+    },
+    {
+      "id": "9002-0002",
+      "cards": ["Demonic Consultation", "Thassa's Oracle"],
+      "requires": [],
+      "missing": ["Thassa's Oracle"],
+      "produces": ["Win the game"],
+      "bracket_tag": "P",
+      "min_bracket": 3,
+      "lowest": 3,
+      "two_card": true,
+      "infinite": false,
+      "url": "https://commanderspellbook.com/combo/9002-0002/"
+    },
+    {
+      "id": "9002-0003",
+      "cards": ["Hazel of the Rootbloom", "Skullclamp", "Woe Strider"],
+      "requires": [],
+      "missing": ["Skullclamp", "Woe Strider"],
+      "produces": ["Infinite ETB triggers"],
+      "bracket_tag": "R",
+      "min_bracket": 4,
+      "lowest": 4,
+      "two_card": false,
+      "infinite": true,
+      "url": "https://commanderspellbook.com/combo/9002-0003/"
+    },
+    {
+      "id": "9002-0004",
+      "cards": ["Spawnsire of Ulamog", "Pitiless Plunderer"],
+      "requires": [],
+      "missing": ["Pitiless Plunderer"],
+      "produces": ["Infinite colorless mana"],
+      "bracket_tag": "R",
+      "min_bracket": 4,
+      "lowest": 4,
+      "two_card": true,
+      "infinite": true,
+      "url": "https://commanderspellbook.com/combo/9002-0004/"
+    },
+    {
+      "id": "9002-0005",
+      "cards": ["Chatterfang, Squirrel General", "Skullclamp"],
+      "requires": ["Any sacrifice outlet"],
+      "missing": [],
+      "produces": ["Infinite ETB triggers"],
+      "bracket_tag": "R",
+      "min_bracket": 4,
+      "lowest": 4,
+      "two_card": false,
+      "infinite": true,
+      "url": "https://commanderspellbook.com/combo/9002-0005/"
+    },
+    {
+      "id": "9002-0006",
+      "cards": ["Isochron Scepter", "Dramatic Reversal"],
+      "requires": [],
+      "missing": ["Dramatic Reversal"],
+      "produces": ["Infinite mana"],
+      "bracket_tag": "E",
+      "min_bracket": 1,
+      "lowest": 1,
+      "two_card": true,
+      "infinite": true,
+      "url": "https://commanderspellbook.com/combo/9002-0006/"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "header": "Top 100 Saltiest Cards",
+  "description": "",
+  "container": {
+    "breadcrumb": [{"/top": "Top"}, {"/top/salt": "Salt"}],
+    "title": "Top 100 Saltiest Cards",
+    "json_dict": {
+      "cardlists": [
+        {"header": "", "tag": "", "cardviews": [
+          {"name": "Stasis", "url": "/cards/stasis", "num_decks": 18000, "potential_decks": 0, "salt": 3.05},
+          {"name": "Winter Orb", "url": "/cards/winter-orb", "num_decks": 48000, "potential_decks": 0, "salt": 2.96},
+          {"name": "Tergrid, God of Fright", "url": "/commanders/tergrid-god-of-fright",
+           "cards": [{"name": "Tergrid, God of Fright", "url": "x"}, {"name": "Tergrid's Lantern", "url": "x"}],
+           "num_decks": 9000, "potential_decks": 0, "salt": 2.7},
+          {"name": "Entry Without Salt", "url": "/cards/none", "num_decks": 1, "potential_decks": 0}
+        ]}
+      ]
+    }
+  }
+}

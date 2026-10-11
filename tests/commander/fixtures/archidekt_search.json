@@ -1,0 +1,16 @@
+{
+  "count": 5,
+  "next": "http://archidekt.com/api/decks/v3/?commanderName=Hazel+of+the+Rootbloom&edhBracket=3&page=2",
+  "results": [
+    {"id": 101, "name": "Squirrels", "size": 100, "updatedAt": "2026-10-11T14:40:21.020828Z",
+     "createdAt": "2026-10-11T14:34:35.019043Z", "deckFormat": 3, "edhBracket": 3, "private": false, "unlisted": false},
+    {"id": 102, "name": "Squirrels and their upgrades", "size": 113, "updatedAt": "2026-10-11T10:00:00.000000Z",
+     "deckFormat": 3, "edhBracket": 3, "private": false, "unlisted": false},
+    {"id": 103, "name": "Not rated yet", "size": 99, "updatedAt": "2026-10-10T21:06:19.824656Z",
+     "deckFormat": 3, "edhBracket": null, "private": false, "unlisted": false},
+    {"id": 104, "name": "Kept to myself", "size": 100, "updatedAt": "2026-10-10T20:00:00.000000Z",
+     "deckFormat": 3, "edhBracket": 3, "private": true, "unlisted": false},
+    {"id": 105, "name": "Tap her I barely know Her", "size": 1, "updatedAt": "2026-10-10T15:58:46.649334Z",
+     "deckFormat": 3, "edhBracket": 3, "private": false, "unlisted": false}
+  ]
+}

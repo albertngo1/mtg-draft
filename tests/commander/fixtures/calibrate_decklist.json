@@ -1,0 +1,12 @@
+[
+  {"code": "AAA", "fileName": "NewestDeck_AAA", "name": "Newest Deck", "releaseDate": "2026-10-02", "type": "Commander Deck"},
+  {"code": "AAA", "fileName": "NewestDeckCollectorSEdition_AAA", "name": "Newest Deck Collector's Edition", "releaseDate": "2026-10-02",
+   "type": "Commander Deck"},
+  {"code": "BBB", "fileName": "FutureDeck_BBB", "name": "Future Deck", "releaseDate": "2026-12-01", "type": "Commander Deck"},
+  {"code": "CCC", "fileName": "ReprintedDeck_CCC", "name": "Reprinted Deck", "releaseDate": "2025-06-13", "type": "Commander Deck"},
+  {"code": "DDD", "fileName": "ReprintedDeck_DDD", "name": "Reprinted Deck", "releaseDate": "2021-01-01", "type": "Commander Deck"},
+  {"code": "EEE", "fileName": "MiddleDeck_EEE", "name": "Middle Deck", "releaseDate": "2025-01-01", "type": "Commander Deck"},
+  {"code": "FFF", "fileName": "OldDeck_FFF", "name": "Old Deck", "releaseDate": "2020-05-05", "type": "Commander Deck"},
+  {"code": "GGG", "fileName": "OnlyFancyCollectorSEdition_GGG", "name": "Only Fancy Collector's Edition", "releaseDate": "2024-01-01",
+   "type": "Commander Deck"}
+]

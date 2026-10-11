@@ -1,0 +1,37 @@
+{
+  "source": "measured by src/mtgcommander/calibrate.py; each bracket's label says whether it was measured, interpolated or set by judgment",
+  "as_of": "2026-10-11",
+  "format": "per bracket, each role is [min, target, max] cards counted over the 99 cards (98 with two commanders); topend is the most nonland cards with mana value 6 or more",
+  "method": "Per deck, the 99 cards (98 with two commanders, commanders left out) are counted by role with roles.counts; a list that names each basic land once gets its lands recounted as 100 minus commanders minus nonland cards. Across a bracket's decks, min = 25th percentile, target = median, max = 90th percentile (lands: 10th, median, 90th; topend, the cap on nonland cards of mana value 6 or more: 75th percentile); percentiles interpolate linearly between ranked decks and round half up; counterspells use only decks whose commander has blue. Bracket 2 = 60 MTGJSON Commander precons released 2024-01-22 to 2026-10-02, precons as a Bracket 2 proxy (Wizards no longer ties Core to precons). Bracket 5 = 248 EDHTop16 top-cut decks from the newest 150 entries of each of: Kraum, Ludevic's Opus / Tymna the Weaver (39), Kinnan, Bonder Prodigy (42), Rograkh, Son of Rohgahh / Thrasios, Triton Hero (39), Rograkh, Son of Rohgahh / Silas Renn, Seeker Adept (43), Sisay, Weatherlight Captain (41), Thrasios, Triton Hero / Tymna the Weaver (44). Brackets 3 and 4 = interpolated between 2 and 5, a quarter and half of the way (judgment; no Bracket 3 or 4 deck was sampled). Bracket 1 = Bracket 2 with land target +1 and tutor target 0 (judgment).",
+  "samples": {"1": 0, "2": 60, "3": 0, "4": 0, "5": 248},
+  "samples_blue": {"1": 0, "2": 32, "3": 0, "4": 0, "5": 248},
+  "measured": {"1": false, "2": true, "3": false, "4": false, "5": true},
+  "labels": {"1": "judgment: Bracket 2 values with land target +1 and tutor target 0", "2": "measured: 60 recent precons (precons as a Bracket 2 proxy)", "5": "measured: 248 EDHTop16 top-cut decks", "3": "interpolated (judgment): Bracket 2 plus 1/4 of the way to Bracket 5", "4": "interpolated (judgment): Bracket 2 plus 1/2 of the way to Bracket 5"},
+  "brackets": {
+    "1": {
+      "land": [37, 39, 39], "ramp": [10, 12, 17], "draw": [9, 11, 15], "removal": [7, 9, 14],
+      "wipe": [3, 3, 5], "counter": [0, 1, 2], "protection": [1, 2, 5], "recursion": [1, 3, 9],
+      "tutor": [0, 0, 1], "finisher": [1, 2, 6], "topend": 10
+    },
+    "2": {
+      "land": [37, 38, 39], "ramp": [10, 12, 17], "draw": [9, 11, 15], "removal": [7, 9, 14],
+      "wipe": [3, 3, 5], "counter": [0, 1, 2], "protection": [1, 2, 5], "recursion": [1, 3, 9],
+      "tutor": [0, 0, 1], "finisher": [1, 2, 6], "topend": 10
+    },
+    "3": {
+      "land": [34, 35, 36], "ramp": [11, 14, 20], "draw": [8, 10, 14], "removal": [7, 8, 13],
+      "wipe": [2, 2, 4], "counter": [2, 3, 5], "protection": [1, 2, 5], "recursion": [1, 3, 8],
+      "tutor": [2, 3, 4], "finisher": [1, 2, 5], "topend": 8
+    },
+    "4": {
+      "land": [30, 32, 34], "ramp": [13, 15, 22], "draw": [8, 10, 13], "removal": [6, 8, 11],
+      "wipe": [2, 2, 3], "counter": [5, 6, 8], "protection": [1, 2, 4], "recursion": [2, 3, 6],
+      "tutor": [4, 5, 7], "finisher": [1, 2, 4], "topend": 6
+    },
+    "5": {
+      "land": [23, 26, 28], "ramp": [15, 18, 27], "draw": [6, 8, 11], "removal": [5, 6, 8],
+      "wipe": [0, 0, 1], "counter": [9, 10, 13], "protection": [1, 1, 3], "recursion": [2, 2, 3],
+      "tutor": [8, 10, 12], "finisher": [1, 2, 2], "topend": 1
+    }
+  }
+}

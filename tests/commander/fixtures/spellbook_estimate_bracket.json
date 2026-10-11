@@ -1,0 +1,25 @@
+{
+  "bracketTag": "P",
+  "cards": [
+    {"card": {"name": "Sol Ring"}, "quantity": 1, "banned": false, "gameChanger": false,
+     "massLandDenial": false, "extraTurn": false},
+    {"card": {"name": "Rhystic Study"}, "quantity": 1, "banned": false, "gameChanger": true,
+     "massLandDenial": false, "extraTurn": false},
+    {"card": {"name": "Armageddon"}, "quantity": 1, "banned": false, "gameChanger": false,
+     "massLandDenial": true, "extraTurn": false},
+    {"card": {"name": "Time Warp"}, "quantity": 1, "banned": false, "gameChanger": false,
+     "massLandDenial": false, "extraTurn": true},
+    {"card": {"name": "Black Lotus"}, "quantity": 1, "banned": true, "gameChanger": false,
+     "massLandDenial": false, "extraTurn": false}
+  ],
+  "combos": [
+    {"combo": {"id": "3000-4871", "bracketTag": "S",
+               "uses": [{"card": {"name": "Chatterfang, Squirrel General"}, "quantity": 1},
+                        {"card": {"name": "Pitiless Plunderer"}, "quantity": 1}],
+               "requires": [],
+               "produces": [{"feature": {"name": "Infinite Treasure tokens"}, "quantity": 1}]},
+     "relevant": true, "borderlineRelevant": true, "arguablyTwoCard": true, "definitelyTwoCard": false,
+     "speed": 5, "massLandDenial": false, "extraTurn": false, "lock": false, "skipTurns": false,
+     "controlAllOpponents": false, "controlSomeOpponents": false}
+  ]
+}

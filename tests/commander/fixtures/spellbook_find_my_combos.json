@@ -1,0 +1,49 @@
+{
+  "count": null, "next": null, "previous": null,
+  "results": {
+    "identity": "BG",
+    "included": [
+      {"id": "3000-4871", "bracketTag": "S", "identity": "BG",
+       "uses": [{"card": {"name": "Chatterfang, Squirrel General"}, "quantity": 1, "mustBeCommander": false},
+                {"card": {"name": "Pitiless Plunderer"}, "quantity": 1, "mustBeCommander": false}],
+       "requires": [],
+       "produces": [{"feature": {"name": "Infinite Treasure tokens"}, "quantity": 1},
+                    {"feature": {"name": "Infinite colored mana"}, "quantity": 1}]}
+    ],
+    "includedByChangingCommanders": [],
+    "almostIncluded": [
+      {"id": "1385-3000-5670", "bracketTag": "E", "identity": "BG",
+       "uses": [{"card": {"name": "Warren Soultrader"}, "quantity": 1},
+                {"card": {"name": "Zulaport Cutthroat"}, "quantity": 1},
+                {"card": {"name": "Chatterfang, Squirrel General"}, "quantity": 1}],
+       "requires": [],
+       "produces": [{"feature": {"name": "Infinite Treasure tokens"}, "quantity": 1}]},
+      {"id": "4762-5856", "bracketTag": "R", "identity": "BG",
+       "uses": [{"card": {"name": "Hazel's Brewmaster"}, "quantity": 1},
+                {"card": {"name": "Devoted Druid"}, "quantity": 1}],
+       "requires": [],
+       "produces": [{"feature": {"name": "Infinite colored mana"}, "quantity": 1}]},
+      {"id": "2105-3337--140", "bracketTag": "E", "identity": "R",
+       "uses": [{"card": {"name": "Fable of the Mirror-Breaker // Reflection of Kiki-Jiki"}, "quantity": 1},
+                {"card": {"name": "Combat Celebrant"}, "quantity": 1}],
+       "requires": [{"template": {"name": "Any sacrifice outlet"}, "quantity": 1}],
+       "produces": [{"feature": {"name": "Infinite creature tokens"}, "quantity": 1}]},
+      {"id": "9-9", "bracketTag": "Z", "identity": "BG",
+       "uses": [{"card": {"name": "Card A"}, "quantity": 1}, {"card": {"name": "Card B"}, "quantity": 1}],
+       "requires": [],
+       "produces": [{"feature": {"name": "Win the game"}, "quantity": 1}]},
+      {"id": "8-8", "bracketTag": "Z", "identity": "BG",
+       "uses": [{"card": {"name": "Card A"}, "quantity": 1}, {"card": {"name": "Card C"}, "quantity": 1}],
+       "requires": [],
+       "produces": [{"feature": {"name": "Infinite damage"}, "quantity": 1}]}
+    ],
+    "almostIncludedByAddingColors": [
+      {"id": "7-7", "bracketTag": "R", "identity": "BGR",
+       "uses": [{"card": {"name": "Card D"}, "quantity": 1}, {"card": {"name": "Card E"}, "quantity": 1}],
+       "requires": [],
+       "produces": [{"feature": {"name": "Infinite damage"}, "quantity": 1}]}
+    ],
+    "almostIncludedByChangingCommanders": [],
+    "almostIncludedByAddingColorsAndChangingCommanders": []
+  }
+}

@@ -1,0 +1,375 @@
+{
+  "schema": 1,
+  "as_of": "2026-10-11",
+  "source": [
+    "https://magic.wizards.com/en/formats/commander#brackets",
+    "https://magic.wizards.com/en/formats/commander#gamechangers",
+    "https://magic.wizards.com/en/news/announcements/commander-brackets-beta-update-october-21-2025",
+    "https://magic.wizards.com/en/news/announcements/commander-brackets-beta-update-february-9-2026",
+    "https://magic.wizards.com/en/news/announcements/introducing-commander-brackets-beta",
+    "https://magic.wizards.com/en/news/announcements/commander-brackets-beta-update-april-22-2025",
+    "https://bsky.app/profile/wachelreeks.com/post/3m3ptspaivs27"
+  ],
+  "source_notes": [
+    {
+      "url": "https://magic.wizards.com/en/formats/commander",
+      "date": "bracket entries last updated 2025-11-05; overview and Game Changers text 2026-04-24; Game Changers lists 2026-02-09",
+      "used_for": "wording (the current 'Players expect' text, copied from the page's data) and the Game Changers limits"
+    },
+    {
+      "url": "https://magic.wizards.com/en/news/announcements/commander-brackets-beta-update-october-21-2025",
+      "date": "2025-10-21",
+      "used_for": "expected turns per bracket, tutor limits removed, Game Changers philosophy, the turn-six reading of 'early game'"
+    },
+    {
+      "url": "https://magic.wizards.com/en/news/announcements/commander-brackets-beta-update-february-9-2026",
+      "date": "2026-02-09",
+      "used_for": "newest article; adds Farewell and Biorhythm to the Game Changers list, no bracket changes"
+    },
+    {
+      "url": "https://magic.wizards.com/en/news/announcements/introducing-commander-brackets-beta",
+      "date": "2025-02-11",
+      "used_for": "definition of mass land denial, the chaining rule for extra turns, the two-card combo rule, the Q&A"
+    },
+    {
+      "url": "https://magic.wizards.com/en/news/announcements/commander-brackets-beta-update-april-22-2025",
+      "date": "2025-04-22",
+      "used_for": "intent is the most important part; Wizards has not published an exact mass land destruction list"
+    },
+    {
+      "url": "https://bsky.app/profile/wachelreeks.com/post/3m3ptspaivs27",
+      "date": "2025-10-21",
+      "used_for": "limits_wording: the per-bracket limits table. It is an image made by Commander Format Panel member Rachel Weeks and linked from the Oct 21, 2025 article ('a handy graphic to illustrate the changes'), so its text was transcribed by eye."
+    }
+  ],
+  "status": {
+    "text": "Commander Brackets are currently in beta.",
+    "source": "https://magic.wizards.com/en/formats/commander",
+    "read": "2026-10-11"
+  },
+  "field_notes": {
+    "wording": "Verbatim from the live Wizards format page: what players expect, plus the expected number of turns before anyone wins or loses.",
+    "turns": "The minimum number of turns players should expect to play before anyone wins or loses (null: the game can end on any turn).",
+    "limits_wording": "The deck limits for the bracket as printed in the Oct 21, 2025 graphic (transcribed from an image).",
+    "deck_building_2025_02": "The 'Deck Building' line of the Feb 11, 2025 article, kept for reference. Superseded in part: see conflicts.",
+    "game_changers_max": "Most Game Changers allowed (null: any number). Your commander counts toward the limit.",
+    "mass_land_denial": "true when mass land denial is allowed in this bracket.",
+    "extra_turns": "none: no extra-turn cards. no-chaining: extra turns allowed but not chained or looped; the tool reads that as at most one extra-turn card (its own judgment). any: no limit.",
+    "two_card_combos": "none: no two-card combos; the tool blocks every two-card infinite combo (Commander Spellbook's tags do not cover that rule) and every combo Spellbook rates above this bracket. late-game: only combos that cannot end the game early; the tool cannot judge turn count, so it blocks every combo Spellbook rates above this bracket. any: no limit.",
+    "mass_land_denial_cards": "Curated names, checked against Scryfall's oracle names on 2026-10-11. See mass_land_denial_basis for why each is here.",
+    "mass_land_denial_patterns": "Regexes on lowercased oracle text. Wizards publishes no complete list, so these find cards the curated list misses. See pattern_notes.",
+    "mass_land_denial_exceptions": "Cards the patterns catch that Wizards' wording does not cover."
+  },
+  "brackets": {
+    "1": {
+      "name": "Exhibition",
+      "wording": "Players expect:\n\n- Decks to prioritize a goal, theme, or idea over power\n- Rules around card legality or viable commanders to have some flexibility depending on the pod\n- Win conditions to be highly thematic or substandard\n- Gameplay to be an opportunity to show off your creations\n\nGenerally, you should expect to be able to play at least nine turns before you win or lose. Most importantly, given this bracket's emphasis on theme, players should feel like they have the time to showcase their decks.",
+      "turns": 9,
+      "limits_wording": "RESTRICTED BY THEME: NO Game Changers*; NO Mass Land Denial; NO Extra Turns*; NO 2-Card Combos* (Game-enders, lockouts or infinites); *Exceptions can be made for highly thematic cards",
+      "deck_building_2025_02": "Deck Building: No cards from the Game Changers list. No intentional two-card infinite combos, mass land denial, or extra-turn cards. Tutors should be sparse.",
+      "game_changers_max": 0,
+      "mass_land_denial": false,
+      "extra_turns": "none",
+      "two_card_combos": "none"
+    },
+    "2": {
+      "name": "Core",
+      "wording": "Players expect:\n\n- Decks to be unoptimized and straightforward, with some cards chosen to maximize creativity and/or entertainment\n- Win conditions to be incremental, telegraphed on the board, and disruptable\n- Gameplay to be low pressure with an emphasis on social interaction\n- Gameplay to be proactive and considerate, letting each deck showcase its plan\n\nGenerally, you should expect to be able to play at least eight turns before you win or lose.",
+      "turns": 8,
+      "limits_wording": "NO Game Changers; NO Mass Land Denial; NO Chaining Extra Turns; NO 2-Card Combos (Game-enders, lockouts or infinites)",
+      "deck_building_2025_02": "Deck Building: No cards from the Game Changers list. No intentional two-card infinite combos or mass land denial. Extra-turn cards should only appear in low quantities and are not intended to be chained in succession or looped. Tutors should be sparse.",
+      "game_changers_max": 0,
+      "mass_land_denial": false,
+      "extra_turns": "no-chaining",
+      "two_card_combos": "none"
+    },
+    "3": {
+      "name": "Upgraded",
+      "wording": "Players expect:\n\n- Decks to be powered up with strong synergy and high card quality; they can effectively disrupt opponents\n- Game Changers that are likely to be value engines and game-ending spells\n- Win conditions that can be deployed in one big turn from hand, usually because of steadily accrued resources\n- Gameplay to feature many proactive and reactive plays\n\nGenerally, you should expect to be able to play at least six turns before you win or lose.",
+      "turns": 6,
+      "limits_wording": "0-3 Game Changers; NO Mass Land Denial; NO Chaining Extra Turns; NO 2-Card Combos (before turn 6) (Game-enders, lockouts or infinites)",
+      "deck_building_2025_02": "Deck Building: Up to three cards from the Game Changers list. No intentional early-game two-card infinite combos. Extra-turn cards should only appear in low quantities and are not intended to be chained in succession or looped. No mass land denial.",
+      "game_changers_max": 3,
+      "mass_land_denial": false,
+      "extra_turns": "no-chaining",
+      "two_card_combos": "late-game"
+    },
+    "4": {
+      "name": "Optimized",
+      "wording": "Players expect:\n\n- Decks not to adhere to the cEDH metagame reserved for Bracket 5\n- Decks to be lethal, consistent, and fast, designed to take people down as fast as possible\n- Game Changers that are likely to be fast mana, snowballing resource engines, free disruption, and tutors\n- Win conditions to vary but be efficient and instantaneous\n- Gameplay to be explosive and powerful, featuring huge threats and efficient disruption to match\n\nGenerally, you should expect to be able to play at least four turns before you win or lose.",
+      "turns": 4,
+      "limits_wording": "NO DECK RESTRICTIONS",
+      "deck_building_2025_02": "Deck Building: There are no restrictions (other than the banned list).",
+      "game_changers_max": null,
+      "mass_land_denial": true,
+      "extra_turns": "any",
+      "two_card_combos": "any"
+    },
+    "5": {
+      "name": "cEDH",
+      "wording": "Players expect:\n\n- Decks that are meticulously designed to battle in the cEDH metagame, with the ability to win quickly or generate overwhelming resources; often built using existing cEDH knowledge, tools, and/or decklists\n- Win conditions to be optimized for efficiency and consistency\n- Gameplay to be intricate and advanced, with razor-thin margins for error; players prioritize victory over all else\n\nThese games could end on any turn.",
+      "turns": null,
+      "limits_wording": "NO DECK RESTRICTIONS",
+      "deck_building_2025_02": "Deck Building: There are no restrictions (other than the banned list).",
+      "game_changers_max": null,
+      "mass_land_denial": true,
+      "extra_turns": "any",
+      "two_card_combos": "any"
+    }
+  },
+  "definitions": {
+    "mass_land_denial": [
+      {
+        "text": "For a little bit of additional definition around \"mass land denial,\" this is a category of card that most Commander players find frustrating. So, to emphasize it up front, you should not expect to see these cards anywhere in Brackets 1–3.",
+        "source": "https://magic.wizards.com/en/news/announcements/introducing-commander-brackets-beta",
+        "date": "2025-02-11"
+      },
+      {
+        "text": "These cards regularly destroy, exile, and bounce other lands, keep lands tapped, or change what mana is produced by four or more lands per player without replacing them. Examples in this category are Armageddon, Ruination, Sunder, Winter Orb, and Blood Moon. Basically, any cards and common game plans that mess with several of people's lands or the mana they produce should not be in your deck if you're seeking to play in Brackets 1–3.",
+        "source": "https://magic.wizards.com/en/news/announcements/introducing-commander-brackets-beta",
+        "date": "2025-02-11"
+      },
+      {
+        "text": "For example, it's possible a game could end up with mass land denial if one player makes all lands into creatures and then another sweeps the board. That happens. There are a lot of cards in Magic! But if someone builds their deck to do that intentionally, that's the no-no. So, if you accidentally find an easy two-card combo in your deck, hopefully that's a good laugh for everyone and you now know to take it out for next time.",
+        "source": "https://magic.wizards.com/en/news/announcements/introducing-commander-brackets-beta",
+        "date": "2025-02-11"
+      },
+      {
+        "text": "Vorinclex, Voice of Hunger: This is an extension of the mana-denial restriction. It doesn't fully fit our description given and is a little nicer than other mass land denial cards, but we still wanted to keep this card clear from the lower brackets.",
+        "source": "https://magic.wizards.com/en/news/announcements/introducing-commander-brackets-beta",
+        "date": "2025-02-11"
+      },
+      {
+        "text": "How many brackets should there be? Should the Exhibition bracket exist? Is the Upgraded bracket too broad? What is the exact list of mass land destruction?",
+        "source": "https://magic.wizards.com/en/news/announcements/commander-brackets-beta-update-april-22-2025",
+        "date": "2025-04-22"
+      },
+      {
+        "text": "Brackets 1, 2 and 3: NO Mass Land Denial",
+        "source": "https://bsky.app/profile/wachelreeks.com/post/3m3ptspaivs27",
+        "date": "2025-10-21 (an image, transcribed by eye)"
+      }
+    ],
+    "extra_turns": [
+      {
+        "text": "Deck Building: No cards from the Game Changers list. No intentional two-card infinite combos or mass land denial. Extra-turn cards should only appear in low quantities and are not intended to be chained in succession or looped. Tutors should be sparse.",
+        "source": "https://magic.wizards.com/en/news/announcements/introducing-commander-brackets-beta",
+        "date": "2025-02-11"
+      },
+      {
+        "text": "Bracket 2: Core. The power level of the average modern-day preconstructed deck sits here. No Game Changers, two-card combos, or mass land denial. You shouldn't expect to be chaining extra turns together. Tutors should be sparse.",
+        "source": "https://magic.wizards.com/en/news/announcements/introducing-commander-brackets-beta",
+        "date": "2025-02-11"
+      },
+      {
+        "text": "A single extra-turn spell can be fun and splashy. However, extra-turn spells take a ton of time away from other players and their ability to play the game and tend to be unfun when repeated. In multiples, they begin to function like a combo deck, where your \"combo\" is taking four turns in a row and getting so far ahead that nobody can catch up.",
+        "source": "https://magic.wizards.com/en/news/announcements/introducing-commander-brackets-beta",
+        "date": "2025-02-11"
+      },
+      {
+        "text": "A single extra-turn spell, sure. But your Edric deck about chaining all of them together? Keep that for the higher brackets, please.",
+        "source": "https://magic.wizards.com/en/news/announcements/introducing-commander-brackets-beta",
+        "date": "2025-02-11"
+      },
+      {
+        "text": "There's something to be said for intent, which is why we call out no intentional combos and the intent to chain together extra-turn spells. I've built decks before with unintentional combos in them, and if you steal a way to copy spells and cast an extra-turn spell, you can go for it. There's a big difference between deck-building intent and what happens in the game.",
+        "source": "https://magic.wizards.com/en/news/announcements/introducing-commander-brackets-beta",
+        "date": "2025-02-11"
+      },
+      {
+        "text": "Bracket 1: NO Extra Turns* (*Exceptions can be made for highly thematic cards). Brackets 2 and 3: NO Chaining Extra Turns",
+        "source": "https://bsky.app/profile/wachelreeks.com/post/3m3ptspaivs27",
+        "date": "2025-10-21 (an image, transcribed by eye)"
+      }
+    ],
+    "two_card_combos": [
+      {
+        "text": "These decks should generally not have any two-card infinite combos that can happen cheaply and in about the first six or so turns of the game, but it's possible the long game could end with one being deployed, even out of nowhere.",
+        "source": "https://magic.wizards.com/en/news/announcements/introducing-commander-brackets-beta",
+        "date": "2025-02-11"
+      },
+      {
+        "text": "Deck Building: Up to three cards from the Game Changers list. No intentional early-game two-card infinite combos. Extra-turn cards should only appear in low quantities and are not intended to be chained in succession or looped. No mass land denial.",
+        "source": "https://magic.wizards.com/en/news/announcements/introducing-commander-brackets-beta",
+        "date": "2025-02-11"
+      },
+      {
+        "text": "Our hope is this also makes things a lot clearer in terms of big game-ending cards and combos, explaining where they should show up. For example, instead of wondering what \"no early-game combos\" means, saying \"you don't expect to win or lose before turn six\" gives you a pretty clear indicator of what kind of combos could be allowed: not ones that tend to happen in the first six turns. That doesn't mean you should just wait and hold your two-card infinite until later either. If a combo could frequently come up, it's not the best fit for that bracket.",
+        "source": "https://magic.wizards.com/en/news/announcements/commander-brackets-beta-update-october-21-2025",
+        "date": "2025-10-21"
+      },
+      {
+        "text": "The second is a little harder line, and that's how many turns you can generally expect to play before you can win or lose. That's not to say the game always ends for you on those turns, but that if the game ended then, you would be satisfied with that experience. We heard from a lot of people that length of game is an important factor for them. So, for example, when Bracket 3 says \"you should expect to be able to play at least six turns before you win or lose,\" that means that someone's seventh turn is when you would be satisfied if the game ended.",
+        "source": "https://magic.wizards.com/en/news/announcements/commander-brackets-beta-update-october-21-2025",
+        "date": "2025-10-21"
+      },
+      {
+        "text": "So, after much discussion, the avenue we'd like to take is to remove the tutor restrictions from Commander Brackets entirely and rely on Game Changers to catch the most efficient tutors. If you want to play tons of inefficient tutors, it may not make for the most replayable deck, but we don't need a safeguard for that. One of the biggest risks with tutors is enabling combos, but with no game-ending combos at the lower brackets and turn restrictions listed in each bracket's intent, it helps curb those issues.",
+        "source": "https://magic.wizards.com/en/news/announcements/commander-brackets-beta-update-october-21-2025",
+        "date": "2025-10-21"
+      },
+      {
+        "text": "There's something to be said for intent, which is why we call out no intentional combos and the intent to chain together extra-turn spells. I've built decks before with unintentional combos in them, and if you steal a way to copy spells and cast an extra-turn spell, you can go for it. There's a big difference between deck-building intent and what happens in the game.",
+        "source": "https://magic.wizards.com/en/news/announcements/introducing-commander-brackets-beta",
+        "date": "2025-02-11"
+      },
+      {
+        "text": "Brackets 1 and 2: NO 2-Card Combos (Game-enders, lockouts or infinites). Bracket 3: NO 2-Card Combos (before turn 6) (Game-enders, lockouts or infinites)",
+        "source": "https://bsky.app/profile/wachelreeks.com/post/3m3ptspaivs27",
+        "date": "2025-10-21 (an image, transcribed by eye)"
+      }
+    ],
+    "game_changers": [
+      {
+        "text": "Game Changers are cards that can dramatically warp Commander games, allowing players to run away with resources, shift games in ways that many players dislike, block people from play, efficiently search for their strongest cards, or have commanders that tend to take away from more casual games. These cards are a clear signal indicating a different kind of play and that others might prefer not to play against them.\n\nBracket 1 and 2 decks exclude Game Changers. Bracket 3 allows for up to three Game Changers. Brackets 4 and 5 allow for unlimited Game Changers.",
+        "source": "https://magic.wizards.com/en/formats/commander#gamechangers",
+        "date": "page entry last updated 2026-04-24; read 2026-10-11"
+      },
+      {
+        "text": "Game Changers should generally be cards that easily and dramatically warp Commander games, allowing players to run away with resources, shift games in ways that many players find unpleasant, block people from playing, efficiently search for any of their strongest cards without downside, or have commanders that are highly unfun in casual games.",
+        "source": "https://magic.wizards.com/en/news/announcements/commander-brackets-beta-update-october-21-2025",
+        "date": "2025-10-21"
+      },
+      {
+        "text": "At Upgraded (Bracket 3), it means it counts toward one of your three Game Changers. At the Optimized and cEDH brackets, go wild!",
+        "source": "https://magic.wizards.com/en/news/announcements/introducing-commander-brackets-beta",
+        "date": "2025-02-11"
+      }
+    ],
+    "intent": [
+      {
+        "text": "Intent is the most important part of the bracket system.",
+        "source": "https://magic.wizards.com/en/news/announcements/commander-brackets-beta-update-april-22-2025",
+        "date": "2025-04-22"
+      },
+      {
+        "text": "The brackets are meant as a tool to guide pregame conversations—not an ultimate arbiter of who can play against whom. There can still be plenty of good games with Bracket 2 decks playing against Bracket 3 decks, and Bracket 3 decks against Bracket 4 decks, for example. When you identify these differences in your pregame conversations, you can always talk about your expectations for the game and see if the decks would be a good fit to play.",
+        "source": "https://magic.wizards.com/en/news/announcements/commander-brackets-beta-update-february-9-2026",
+        "date": "2026-02-09"
+      }
+    ]
+  },
+  "conflicts": [
+    "Core (Bracket 2): the Feb 11, 2025 article ties it to 'the average current preconstructed deck'. The Oct 21, 2025 article ends that ('Core (Bracket 2) Update: No Longer Tied to Precons'). Oct 21, 2025 wins.",
+    "Tutors: the Feb 11, 2025 article says 'Tutors should be sparse' in Brackets 1 and 2. The Oct 21, 2025 article removes the tutor limits ('remove the tutor restrictions from Commander Brackets entirely'). Oct 21, 2025 wins; this tool does not check tutors.",
+    "Two-card combos in Bracket 3: the Feb 11, 2025 article says 'No intentional early-game two-card infinite combos' (about the first six or so turns). The Oct 21, 2025 article replaces 'early-game' with a turn count: 'you should expect to be able to play at least six turns before you win or lose'. Oct 21, 2025 wins; both mean the same cutoff, turn six.",
+    "Game length: the Feb 11, 2025 article says a Core game 'generally goes nine or more turns'. The Oct 21, 2025 article says at least nine turns for Exhibition, eight for Core, six for Upgraded, four for Optimized. Oct 21, 2025 wins.",
+    "Bracket wording: the Oct 21, 2025 graphic reads 'mechanically focused' for Core decks; the Oct 21, 2025 article text and the live format page (entries updated 2025-11-05) read 'unoptimized and straightforward'. The live format page wins.",
+    "Game Changers list: 40 cards on Feb 11, 2025; 18 added and 2 removed on Apr 22, 2025 (plus 5 unbans); 10 removed on Oct 21, 2025; Farewell and Biorhythm added on Feb 9, 2026 (53 cards today, matching Scryfall's game_changer flag). Feb 9, 2026 wins. That article changes nothing else: 'We won't be making any bracket-level changes until we've seen at least one MagicCon this year'."
+  ],
+  "mass_land_denial_cards": [
+    "Armageddon",
+    "Ruination",
+    "Sunder",
+    "Winter Orb",
+    "Blood Moon",
+    "Ravages of War",
+    "Jokulhaups",
+    "Obliterate",
+    "Devastation",
+    "Catastrophe",
+    "Decree of Annihilation",
+    "Boom // Bust",
+    "Impending Disaster",
+    "Worldfire",
+    "Apocalypse",
+    "Wildfire",
+    "Destructive Force",
+    "Tectonic Break",
+    "Burning of Xinye",
+    "Cataclysm",
+    "Global Ruin",
+    "Realm Razer",
+    "Static Orb",
+    "Back to Basics",
+    "Hokori, Dust Drinker",
+    "Stasis",
+    "Magus of the Moon"
+  ],
+  "mass_land_denial_basis": {
+    "Armageddon": "named by Wizards as an example of mass land denial (Feb 11, 2025: 'Examples in this category are Armageddon, Ruination, Sunder, Winter Orb, and Blood Moon')",
+    "Ruination": "named by Wizards as an example of mass land denial (Feb 11, 2025: 'Examples in this category are Armageddon, Ruination, Sunder, Winter Orb, and Blood Moon')",
+    "Sunder": "named by Wizards as an example of mass land denial (Feb 11, 2025: 'Examples in this category are Armageddon, Ruination, Sunder, Winter Orb, and Blood Moon')",
+    "Winter Orb": "named by Wizards as an example of mass land denial (Feb 11, 2025: 'Examples in this category are Armageddon, Ruination, Sunder, Winter Orb, and Blood Moon')",
+    "Blood Moon": "named by Wizards as an example of mass land denial (Feb 11, 2025: 'Examples in this category are Armageddon, Ruination, Sunder, Winter Orb, and Blood Moon')",
+    "Ravages of War": "fits Wizards' wording: it destroys (or exiles) every land",
+    "Jokulhaups": "fits Wizards' wording: it destroys (or exiles) every land",
+    "Obliterate": "fits Wizards' wording: it destroys (or exiles) every land",
+    "Devastation": "fits Wizards' wording: it destroys (or exiles) every land",
+    "Catastrophe": "fits Wizards' wording: it destroys (or exiles) every land (or every creature)",
+    "Decree of Annihilation": "fits Wizards' wording: it exiles every land",
+    "Boom // Bust": "fits Wizards' wording: it destroys (or exiles) every land (the Bust half)",
+    "Impending Disaster": "fits Wizards' wording: it destroys (or exiles) every land once seven or more lands are in play",
+    "Worldfire": "fits Wizards' wording: it exiles every permanent, lands included",
+    "Apocalypse": "fits Wizards' wording: it exiles every permanent, lands included",
+    "Wildfire": "fits Wizards' closing sentence ('any cards and common game plans that mess with several of people's lands'): each player sacrifices most of their lands (four lands, the figure in Wizards' 'four or more lands per player')",
+    "Destructive Force": "fits Wizards' closing sentence ('any cards and common game plans that mess with several of people's lands'): each player sacrifices most of their lands (five lands)",
+    "Tectonic Break": "fits Wizards' closing sentence ('any cards and common game plans that mess with several of people's lands'): each player sacrifices most of their lands (X lands)",
+    "Burning of Xinye": "fits Wizards' closing sentence ('any cards and common game plans that mess with several of people's lands'): each player sacrifices most of their lands (four lands)",
+    "Cataclysm": "fits Wizards' closing sentence ('any cards and common game plans that mess with several of people's lands'): each player sacrifices most of their lands (keeps one land each)",
+    "Global Ruin": "fits Wizards' closing sentence ('any cards and common game plans that mess with several of people's lands'): each player sacrifices most of their lands (keeps one land of each basic type)",
+    "Realm Razer": "fits Wizards' wording: it exiles every land while it is in play",
+    "Static Orb": "fits Wizards' wording 'keep lands tapped': lands stop untapping (players untap at most two permanents)",
+    "Back to Basics": "fits Wizards' wording 'keep lands tapped': lands stop untapping (nonbasic lands do not untap)",
+    "Hokori, Dust Drinker": "fits Wizards' wording 'keep lands tapped': lands stop untapping (lands untap only one per upkeep)",
+    "Stasis": "fits Wizards' wording 'keep lands tapped': lands stop untapping (nobody untaps anything)",
+    "Magus of the Moon": "fits Wizards' wording 'change what mana is produced': Blood Moon on a creature"
+  },
+  "mass_land_denial_patterns": [
+    "\\b(?:destroy|exile) all (?:(?:artifacts?|creatures?|enchantments?|planeswalkers?|nonbasic|basic|and|or),? ?)*lands?\\b(?! you control)(?! target player controls)",
+    "\\breturn all lands to their owners['’] hands",
+    "\\beach player (?:sacrifices|destroys) (?:x|four|five|six|seven|eight|\\d+) lands\\b",
+    "\\bdestroys? (?:four|five|six|seven|eight|x) lands (?:you|they) control\\b",
+    "(?:^|[.;:] )(?:nonbasic )?lands don['’]t untap during their controllers['’] untap steps",
+    "\\bplayers can['’]t untap more than (?:one|two) (?:lands?|permanents?) during their untap steps",
+    "\\bnonbasic lands are (?:plains|islands|swamps|mountains|forests)\\b",
+    "(?<!non-)(?<!non)\\blands?\\b[^.]*\\bthen sacrifices the rest\\b"
+  ],
+  "mass_land_denial_exceptions": [
+    "From the Ashes"
+  ],
+  "mass_land_denial_exception_notes": {
+    "From the Ashes": "replaces each destroyed land with a basic land, so it fails Wizards' 'without replacing them'"
+  },
+  "extra_turn_patterns": [
+    "\\btakes? (?:an|two|three|four|five|\\d+|x) extra turns?\\b",
+    "\\bextra turns? after this one\\b"
+  ],
+  "extra_turn_cards": [
+    "Time Warp",
+    "Temporal Manipulation",
+    "Capture of Jingzhou",
+    "Walk the Aeons",
+    "Temporal Mastery",
+    "Expropriate",
+    "Nexus of Fate",
+    "Time Stretch",
+    "Beacon of Tomorrows",
+    "Savor the Moment",
+    "Karn's Temporal Sundering",
+    "Alrund's Epiphany",
+    "Part the Waterveil",
+    "Temporal Trespass",
+    "Final Fortune",
+    "Medomai the Ageless",
+    "Lighthouse Chronologist",
+    "Wanderwine Prophets",
+    "Time Sieve",
+    "Magistrate's Scepter",
+    "Teferi, Master of Time",
+    "Sage of Hours",
+    "Ugin's Nexus"
+  ],
+  "pattern_notes": {
+    "\\b(?:destroy|exile) all (?:(?:artifacts?|creatures?|enchantments?|planeswalkers?|nonbasic|basic|and|or),? ?)*lands?\\b(?! you control)(?! target player controls)": "'Destroy all lands', 'Destroy all artifacts, creatures, and lands', 'Exile all lands' (not 'except for lands', not 'lands you control')",
+    "\\breturn all lands to their owners['’] hands": "Sunder",
+    "\\beach player (?:sacrifices|destroys) (?:x|four|five|six|seven|eight|\\d+) lands\\b": "'Each player sacrifices four lands' and similar (four is Wizards' figure)",
+    "\\bdestroys? (?:four|five|six|seven|eight|x) lands (?:you|they) control\\b": "Burning of Xinye",
+    "(?:^|[.;:] )(?:nonbasic )?lands don['’]t untap during their controllers['’] untap steps": "lands stop untapping for everyone (not 'lands your opponents control')",
+    "\\bplayers can['’]t untap more than (?:one|two) (?:lands?|permanents?) during their untap steps": "Winter Orb, Static Orb (not an emblem that only binds opponents)",
+    "\\bnonbasic lands are (?:plains|islands|swamps|mountains|forests)\\b": "Blood Moon and its relatives",
+    "(?<!non-)(?<!non)\\blands?\\b[^.]*\\bthen sacrifices the rest\\b": "'chooses ... a land ..., then sacrifices the rest' (not the nonland versions)",
+    "\\btakes? (?:an|two|three|four|five|\\d+|x) extra turns?\\b": "'Take an extra turn after this one', 'takes two extra turns' (not 'skips', not 'can't take extra turns')",
+    "\\bextra turns? after this one\\b": "safety net for other verbs"
+  }
+}

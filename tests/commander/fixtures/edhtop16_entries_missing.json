@@ -1,0 +1,4 @@
+{
+  "errors": [{"message": "Query returned no rows", "path": ["commander"]}],
+  "data": {"commander": null}
+}
