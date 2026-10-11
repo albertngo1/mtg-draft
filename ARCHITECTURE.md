@@ -2,7 +2,9 @@
 
 > This is the complete reference: every command, flag, data path, and internal module, plus how the
 > pieces fit together. For a quick overview and getting started, see the [README](./README.md). For
-> the AI coaching layer's operating manual, see [AGENTS.md](./AGENTS.md).
+> the AI coaching layer's operating manual, see [AGENTS.md](./AGENTS.md). The repo also ships a separate
+> **Commander deck builder** (`mtg-commander`); it has its own section,
+> [Commander deck builder](#commander-deck-builder), and shares no code with the draft coach.
 
 A command-line **MTG Arena draft coach**. It reads the pack you're currently looking at out of
 Arena's `Player.log`, ranks every card by [17Lands](https://www.17lands.com/) win-rate data, and
@@ -191,8 +193,11 @@ flags**. It only fills blanks — anything you set in the environment still wins
 ```
 mtg-draft/
 ├─ mtg-draft.sh / mtg-draft.bat   # launchers (run from the repo root)
+├─ mtg-commander.sh / .bat        # launchers for the Commander deck builder
 ├─ src/
 │  ├─ mtg-draft.py                # thin entry shim → mtgdraft.cli.main()
+│  ├─ mtg-commander.py            # thin entry shim → mtgcommander.cli.main()
+│  ├─ mtgcommander/               # the Commander deck builder (module map: "Commander deck builder" below)
 │  ├─ replay.py                   # render a captured draft into a coached markdown replay
 │  └─ mtgdraft/                   # the package (one concern per module)
 │     ├─ config.py                #   paths, defaults, colour names, log-path detection
@@ -210,8 +215,12 @@ mtg-draft/
 │  └─ numot/                      #   NumotTheNummy VOD-distilled <SET>.md notes (+ manifest.json)
 ├─ card-reference/                # visual card-reference builder + ai_takes_<SET>.json + <SET>-card-reference.md
 │  └─ briefs/<SET>.md            #   REQUIRED per-set format brief (build fails without it)
+├─ commander/                     # committed reference data for the Commander builder: brackets.json,
+│                                 #   role_targets.json, playstyles.json (what each holds: commander/README.md)
+├─ tests/commander/               # the Commander builder's unit tests (standard-library unittest, no network)
 └─ data/                          # generated, gitignored
    ├─ cache/                      # 17Lands + Scryfall caches, + cards_<SET>.ndjson exports
+   │  └─ commander/<source>/      #   the Commander builder's downloads, one folder per source
    ├─ drafts/                     # per-draft bundles <set>_<date>_<fp>/{draft.json,raw.log,replay.md} + current.json
    └─ logs/                       # raw Player.log capture stream
 ```
@@ -510,16 +519,604 @@ captions), `fingerprint.py <slug>` (incremental manifest), and the distill outpu
 [`src/ingest/DISTILL.md`](./src/ingest/DISTILL.md). Adding a new YouTuber is a channels.json entry +
 a worklist — no code changes.
 
+## Commander deck builder
+
+`mtg-commander` upgrades, builds and checks **Commander** decks. Commander (also called **EDH**, for Elder Dragon
+Highlander) is a 100-card format with one copy of each card (basic lands excepted), led by a **commander** and
+usually played by three or four people. It is a separate tool from the draft coach: it never reads Arena's log,
+shares no code with `src/mtgdraft/`, and no existing module changed for it. Like the rest of the repo it is
+standard library only, but it needs **Python 3.9+** (the draft coach runs on 3.8+).
+
+Run it from the repo root. macOS and Linux also have `./mtg-commander.sh`; Windows has `mtg-commander.bat`:
+
+```bash
+# Ranked cuts and adds for a precon: at most $75 on cards you do not own, leaning toward tokens
+python3 src/mtg-commander.py upgrade --precon "Squirreled Away" --budget 75 --theme tokens
+
+# Legality, bracket rules, role counts and mana curve for a list in a file
+python3 src/mtg-commander.py check mydeck.txt --bracket 3
+
+# A full 100-card list around a commander
+python3 src/mtg-commander.py build "Hazel of the Rootbloom" --bracket 3 --budget 150 --theme squirrels
+```
+
+The first run downloads Scryfall's card file and builds a local index of about 35,000 cards (24 MB). That takes a
+minute or two, once; the index is rebuilt after 7 days. Everything else it downloads is cached too (see
+[Data sources, caching and offline use](#data-sources-caching-and-offline-use)).
+
+### Terms used here
+
+| term | meaning |
+|---|---|
+| **Bracket** | Wizards of the Coast's 1–5 power scale: 1 Exhibition, 2 Core, 3 Upgraded, 4 Optimized, 5 cEDH. **cEDH** is competitive Commander, meaning tournament play. The default is Bracket 3. |
+| **Game Changer** | a card on Wizards' list of cards that push a deck up the scale (53 on 2026-10-11, flagged on each card in Scryfall's data). Bracket 3 allows up to three; Brackets 1 and 2 allow none. |
+| **Precon** | a preconstructed deck sold ready to play. Precon lists come from MTGJSON. |
+| **Inclusion** | the share of a commander's decks that play a card. **Synergy** is EDHREC's inclusion with this commander minus the inclusion across all decks of the same colors. |
+| **Role** | a job a deck needs in numbers: ramp (extra mana), card draw, removal, board wipes, counterspells, protection, recursion, tutors, finishers. |
+| **Fantasy** | the experience the player wants from the deck: themes (squirrels, tokens), a playstyle (go-wide, control), how much to favor them, and cards to keep or avoid. |
+| **Salt** | EDHREC's player-voted score, 0 to 4, for how frustrating a card is to play against. |
+| **Builder choice**, **tournament result** | the two kinds of evidence. Every number the tool prints is one of them (or a labeled fallback), with the number of decks behind it. |
+
+### What the numbers are, and are not
+
+No public source records which casual Commander decks win, so there is no casual win rate to rank by. At
+Brackets 1–4 the best signal available is what experienced builders chose at that bracket, and that is what the
+tool uses: a card's base score is its inclusion rate among decks of that bracket (EDHREC, with Archidekt as a
+second source), pulled toward the all-bracket rate while the bracket has few decks. That is a choice, not a win
+rate. Every line says which it is and how many decks it rests on, and every report below Bracket 5 ends with
+*"At Bracket N these numbers show what deck builders chose, not how often decks won."* Real per-card win rates
+exist publicly only for tournament (cEDH) play, through EDHTop16. They set the score at Bracket 5 and enter as a
+small, shrunk correction for mana, card draw and interaction at Brackets 3 and 4.
+
+The shrinking matters for the reason it matters in the draft coach: a card's win rate belongs to the decks that
+played it. In EDHTop16's Chatterfang decks for the year to 2026-10-11, the lists that ran Skullclamp reached the
+top cut 14% of the time (165 entries) and the lists that did not reached it 38% of the time (119 entries). That
+gap says the two groups are different kinds of deck, not that Skullclamp is bad. So the tournament term is
+shrunk by sample size, capped, weighted by bracket (0 at Brackets 1 and 2) and applied below Bracket 5 only to
+roles whose value does not depend on the rest of the deck.
+
+Each card's evidence has a kind: `builder` (inclusion among decks at the bracket), `tournament` (Bracket 5 play
+rate), `popularity` (Scryfall's overall EDHREC rank, used only when no deck-builder data is available) or `none`
+(on no list). Example output, from cached data of 2026-10-11 (the numbers move as the data and weights are updated):
+
+```
+Squirreled Away → Bracket 3, budget $75 (spent $65.44); themes: tokens; playstyle: aristocrats
+ 1  CUT Forest  →  ADD Thornvault Forager   +1.31  $2.88
+    in 66% of 1,125 Bracket 3 Hazel decks (all brackets 59%, synergy +57%); +10% in sacrifice decks,
+    +3% in tokens decks; fills: ramp, tutor
+...
+Sources: EDHREC 2026-10-11, EDHTop16 2026-10-11, Scryfall 2026-10-11, MTGJSON 2026-10-11.
+At Bracket 3 these numbers show what deck builders chose, not how often decks won.
+```
+
+The number after the swap (`+1.31`) is its gain: the change in the deck's value, in the same units as a card score (a
+card every builder plays scores about 1; see [How a deck is valued](#how-a-deck-is-valued-and-how-swaps-are-chosen)).
+
+### Commander commands and flags
+
+```
+mtg-commander <command> [--json] [--refresh] [--offline] [--sources LIST] ...
+
+themes   [--commander NAME] [--partner NAME]
+suggest  [--theme T] [--playstyle P] [--fantasy TEXT] [--keep-fun | --no-keep-fun] [--bracket N]
+         [--colors WUBRG] [--budget USD] [--owned FILE] [--owned-precon NAME] [--limit N]
+build    COMMANDER [--partner NAME] [--bracket N] [--budget USD] [--theme T] [--playstyle P]
+         [--fantasy TEXT] [--fantasy-weight W] [--keep-fun | --no-keep-fun] [--include CARD]
+         [--exclude CARD] [--owned FILE] [--owned-precon NAME] [--allow-combos] [--out FILE] [-v]
+upgrade  [DECKFILE] [--precon NAME] [--commander NAME] [--bracket N] [--budget USD] [--max-swaps N]
+         [--theme T] [--playstyle P] [--fantasy TEXT] [--fantasy-weight W] [--keep-fun | --no-keep-fun]
+         [--include CARD] [--exclude CARD] [--owned FILE] [--owned-precon NAME] [--allow-combos]
+         [--out FILE] [-v]
+check    [DECKFILE] [--precon NAME] [--commander NAME] [--bracket N]
+warm     COMMANDER [--partner NAME] [--bracket N] [--theme T]
+validate --bracket N [--commanders NAME [NAME ...]] [--limit N] [--sweep] [--calibrate]
+```
+
+| command | what it does |
+|---|---|
+| `themes` | prints the 12 playstyles and a menu of themes: the commander's own EDHREC themes with deck counts when you name one, otherwise 41 common themes |
+| `suggest` | ranks commanders for the themes and playstyle you name (give at least one of `--theme`, `--playstyle`, `--fantasy`). Candidates come from EDHREC's theme pages, so it needs EDHREC |
+| `build` | builds a 100-card list around a commander, with the evidence for each card, the role counts, the bracket check and the *fantasy cost* (below) |
+| `upgrade` | ranked cut/add swaps for a deck from a file, standard input (`-`) or a precon, within a budget and a bracket |
+| `check` | legality (100 cards, colors, duplicates, banned cards), the bracket rules, role counts against the bracket's range, and the mana curve |
+| `warm` | downloads what the other commands need for one commander, so they can run with `--offline` |
+| `validate` | measures how closely builds match real decks (see [Validation](#validation)) |
+
+The four flags every command takes, then the rest (help text as `--help` prints it):
+
+| flag | commands | meaning |
+|---|---|---|
+| `--json` | all | print the result as JSON (`"schema": 1`), not a report |
+| `--refresh` | all | download again instead of using cached data |
+| `--offline` | all | never connect; use cached data only (see `warm`) |
+| `--sources LIST` | all | card-evidence sources to use, comma-separated (choices `edhrec`, `archidekt`, `edhtop16`) |
+| `DECKFILE` | upgrade, check | a decklist file; `-` reads standard input |
+| `--precon NAME` | upgrade, check | use a preconstructed deck by name instead of a file |
+| `--commander NAME` | upgrade, check | the commander, when the list does not mark it (repeat for a partner) |
+| `COMMANDER` | build, warm | the commander |
+| `--partner NAME` | build, warm, themes | a second commander (Partner or Background); `themes` also needs `--commander` |
+| `--commander NAME` | themes | list this commander's own themes |
+| `--bracket N` | suggest, build, upgrade, check, warm; required by validate | power level 1-5 (default 3): 1 Exhibition, 2 Core, 3 Upgraded, 4 Optimized, 5 cEDH |
+| `--budget USD` | suggest, build, upgrade | build and upgrade: most to spend on cards you do not own; suggest: most to spend on the deck's core cards |
+| `--max-swaps N` | upgrade | most swaps to suggest (default 15) |
+| `--theme T` | suggest, build, upgrade, warm | a theme to build around, e.g. tokens (repeat the flag or separate with commas); for `warm`, a theme to download |
+| `--playstyle P` | suggest, build, upgrade | how the deck plays, e.g. go-wide (see `themes`) |
+| `--fantasy TEXT` | suggest, build, upgrade | the deck you imagine, in your own words (Claude turns it into themes; needs a token) |
+| `--fantasy-weight W` | build, upgrade | 0 = pure power, 1 = theme above all (default 0.5) |
+| `--keep-fun`, `--no-keep-fun` | suggest, build, upgrade | penalize cards that are frustrating to play against (default on at Brackets 1-3) |
+| `--include CARD` | build, upgrade | a card the deck must keep (repeatable) |
+| `--exclude CARD` | build, upgrade | a card the deck must not play (repeatable) |
+| `--owned FILE` | suggest, build, upgrade | a decklist of cards you own; they cost $0 (repeatable) |
+| `--owned-precon NAME` | suggest, build, upgrade | a precon you own, e.g. "Squirreled Away" (repeatable) |
+| `--allow-combos` | build, upgrade | allow two-card combos the bracket would block |
+| `--out FILE` | build, upgrade | write the deck list here (Moxfield and Archidekt import it) |
+| `-v`, `--verbose` | build, upgrade | show the evidence for every card (for `upgrade`, for each cut as well) |
+| `--colors WUBRG` | suggest | only commanders inside these colors |
+| `--limit N` | suggest, validate | suggest: commanders to show (default 10); validate: real decks held out per commander (default 20) |
+| `--commanders NAME [NAME ...]` | validate | commanders to test (default: the four most played in tournaments at Bracket 5, else six popular ones) |
+| `--sweep` | validate | Bracket 5 only: also try a grid of tournament weights (`W_BRACKET[5]`, `K_RESID`) |
+| `--calibrate` | validate | also re-measure the role targets and rewrite `commander/role_targets.json` |
+
+| environment variable | meaning |
+|---|---|
+| `MTG_BRACKET` | the bracket used when `--bracket` is not given (otherwise 3) |
+| `MTG_COMMANDER_SOURCES` | comma-separated card-evidence sources, the same choices as `--sources` |
+| `MTG_OFFLINE=1` | the same as `--offline` on every run |
+| `CLAUDE_CODE_OAUTH_TOKEN` | the Claude token `--fantasy` needs; a gitignored `claude-token.txt` at the repo root works too, the same file the replay uses |
+
+**Output.** Reports stay within 100 columns, so a phone terminal does not wrap a table mid-word. `--json` prints
+only the result on stdout, `{"schema": 1, ...}`; `warnings` (a list of strings) and `sources` (each source with
+`fetched`, `cache` and `age_days`) are on every command. Progress, notes and errors go to stderr. `--out FILE`
+writes a `Commander` section and a `Deck` section, which Moxfield and Archidekt both import.
+
+**Exit codes.** `0` success. `1` a mistake you can fix (unknown card or precon, bad flags), with close matches
+printed ("did you mean ..."). `2` data the command cannot do without is unavailable (offline with nothing
+cached, or the site is down). `130` stopped with Ctrl-C.
+
+**Deck files.** `upgrade` and `check` read what players paste: `1 Sol Ring`, `1x Sol Ring` or `Sol Ring`; set and
+collector suffixes (`(CMM) 400`); foil marks (`*F*`); Archidekt category tags (`[Ramp]`, `[Commander{top}]`);
+`Commander`, `Deck`, `Sideboard` and `Maybeboard` headers; MTGO's `SB:` lines. The commander is the card under a
+`Commander` header, marked `*CMDR*`, or named with `--commander`. Maybeboard, considering and token cards are
+ignored.
+
+### Module map
+
+| file | what it does |
+|---|---|
+| `src/mtg-commander.py` | thin entry script, same shape as `src/mtg-draft.py`; calls `mtgcommander.cli.main()` |
+| `mtg-commander.sh`, `mtg-commander.bat` | launchers that run it from the repo root |
+| `src/mtgcommander/` | the package; the files below are in it unless a path is given |
+| `cli.py` | argparse commands: turns arguments into calls and results into output; owns the exit codes |
+| `config.py` | paths, how long each source's cache stays fresh, default bracket, default sources, the User-Agent |
+| `net.py` | the one HTTP client: per-host pacing, retries with back-off, the file cache, `--offline` and `--refresh` |
+| `carddb.py` | Scryfall's bulk card file boiled down to one record per card; forgiving name matching; cheapest prices |
+| `decklist.py` | reads pasted lists, matches names to real cards, loads precons from MTGJSON, writes lists |
+| `providers/` | one module per data source, registered in `providers/__init__.py` (`SIGNAL_PROVIDERS`) |
+| `providers/edhrec.py` | what builders chose, per commander, bracket and theme; themes, salt, average land count |
+| `providers/archidekt.py` | bracket-tagged decklists: the second builder source |
+| `providers/edhtop16.py` | cEDH tournament entries with decklists and results: the tournament source |
+| `providers/spellbook.py` | Commander Spellbook combos (in a list, and one card away) with their bracket tags |
+| `providers/scryfall_tags.py` | Scryfall's community function tags as sets of cards |
+| `roles.py` | what each card does (ramp, draw, ...) from those tags; the per-bracket targets |
+| `brackets.py` | Wizards' bracket rules as data, the four checks, and the legality check |
+| `fantasy.py` | the fantasy spec: the theme and playstyle menu, and the optional `claude -p` step for free text |
+| `score.py` | card scores: gathers the evidence once, then plain arithmetic |
+| `build.py` | the deck value, and `upgrade`, `build` and `suggest` on top of it |
+| `calibrate.py` | measures role targets from real decks and writes `commander/role_targets.json` |
+| `validate.py` | `validate`: held-out checks of builds against real decks |
+| `render.py` | the text reports and the JSON |
+| `commander/` (repo root) | committed reference data (`brackets.json`, `role_targets.json`, `playstyles.json`); see [`commander/README.md`](./commander/README.md) |
+| `tests/commander/` (repo root) | unit tests with small hand-made fixtures; no network |
+
+A provider answers one call, `signals(commanders, bracket=None, theme=None)`, and returns records that carry a
+sample size, a source and a fetch time. Adding another source later (a log of your own games, say) is one new
+module plus one name in `SIGNAL_PROVIDERS`; `score.gather()` does not change.
+
+### The `upgrade` call chain
+
+```
+$ ./mtg-commander.sh upgrade --precon "Squirreled Away" --budget 75 --theme tokens
+ └─ src/mtg-commander.py                      entry script
+     └─ cli.main() → run()                    argparse subcommands; net.configure(refresh, offline)
+         ├─ carddb.load()                     Scryfall oracle_cards bulk file → compact index (7 days)
+         ├─ decklist.precon(name)             MTGJSON DeckList.json → deck file (30 days)   [or decklist.load(path)]
+         ├─ decklist.resolve(parsed, db)      canonical names; close matches for unknown ones
+         ├─ fantasy.spec_from_args(args)      menu words (+ one `claude -p` call for --fantasy text)
+         ├─ build.prepare(...)                gather, tag and score once
+         │    ├─ score.gather(...)            asks every enabled provider:
+         │    │    ├─ providers.edhrec        all-bracket page, bracket page, theme pages, commander_meta, salt list
+         │    │    ├─ providers.archidekt     only when EDHREC has no page, or the bracket is thin
+         │    │    ├─ providers.edhtop16      tournament entries, only when the bracket's weight is above 0
+         │    │    └─ decklist.precons_for_commander   Brackets 2–3: the commander's newest precon, for the discount
+         │    ├─ roles.tag(...)               providers.scryfall_tags (oracle_tags bulk) + text fallback for new cards
+         │    ├─ score.card_scores(...)       base + resid + theme + salt
+         │    └─ roles.targets(...)           role_targets.json + playstyle deltas + EDHREC's average land count
+         ├─ build.upgrade(ctx, deck, db, ...)
+         │    ├─ providers.spellbook.find_combos   combos in the deck, and combos one card away
+         │    ├─ brackets.check / blocked_adds     Game Changers, mass land denial, extra turns, two-card combos
+         │    ├─ forced swaps first, then the best swap one at a time, under budget and bracket
+         │    └─ combo check of the finished list; a swap that completes a banned combo is undone
+         └─ render.text(result), or render.as_json(result) with --json
+```
+
+### How a card is scored
+
+For commander C, bracket B and fantasy F, `score.py` gives each card a score that is the sum of four signed parts:
+
+```
+score(card) = base + resid + theme + salt
+
+base  = (decks_at + K_BASE · p_all) / (of_at + K_BASE)                     what builders chose at this bracket
+resid = W_BRACKET[B] · clamp(RESID_SCALE · gap · n / (n + K_RESID), ±RESID_CAP)   tournament win-rate gap
+theme = clamp(fantasy_weight · THEME_SCALE · weighted_mean_pull, ±THEME_CAP)     how much the themes favor it
+salt  = −SALT_GAMMA · (salt − floor) / (SALT_MAX − floor)                  only when keep-fun is on
+```
+
+- `decks_at` / `of_at`: decks at bracket B that play the card, over decks that could (EDHREC's `num_decks` and
+  `potential_decks`). `p_all` is the same ratio over all brackets. Adding `K_BASE` pretend decks at the all-bracket
+  rate keeps a bracket with a handful of decks from swinging a score. A card missing from a page that exists was
+  played in fewer decks than the page's listing line (about 5%), so it is scored at that line (or at its
+  all-bracket rate, if that is lower), not at zero.
+- `gap`: game win rate with the card minus without it, from EDHTop16 entries (wins ÷ games). `n` is the entries on
+  the thinner side, so a staple in 98% of decks, with a handful of decks without it, cannot produce a confident gap.
+  Below Bracket 5 the term applies only to roles in `roles.CARRYOVER` (ramp, draw, removal, wipe, counter,
+  protection, tutor). A finisher or a recursion spell is worth what its deck makes of it.
+- `pull` per theme: `(decks_t + K_THEME · p_ref) / (of_t + K_THEME) − p_ref`, from the best page that exists: this
+  commander's decks with the theme at this bracket (if it has at least `THIN` decks), else at any bracket, else the
+  theme across all commanders (its synergy × `GLOBAL_SYNERGY_FACTOR`), else a flat `MATCHER_PULL` when the card's
+  subtype, type or text fits the theme (`theme_matchers` in `playstyles.json`). A theme you name counts fully; a theme
+  the playstyle leans toward counts `PLAYSTYLE_THEME_WEIGHT`.
+- `salt`: EDHREC's list of its 100 saltiest cards; `floor` is the lowest salt on that list, so a card off the list
+  costs nothing.
+
+Four special cases:
+
+- **Thin bracket.** Under `THIN` (50) decks at the bracket, the tool pools the neighboring brackets and, if that
+  source is on, Archidekt decks, and warns with the counts: "Thin data: only N Bracket B ... decks on EDHREC (under
+  50); widened with ...".
+- **Precon discount (Brackets 2–3).** Many lists for a precon's commander stay close to the box, so a stock card's
+  inclusion partly measures inertia. The tool estimates the share `s` of near-stock lists from the 10th percentile
+  of the precon's nonland cards' base scores (`PRECON_PERCENTILE`, capped at `PRECON_S_MAX`) and rescales each
+  precon card to `max(0, (base − s) / (1 − s))`. These cards are labeled `precon-adjusted`.
+- **Bracket 5.** With at least `TOURN_MIN` (30) tournament entries, `base` is the play rate among those decks,
+  shrunk toward the cEDH builders' rate the same way: `(entries_with_card + K_BASE · p_at) / (entries + K_BASE)`.
+- **No deck-builder data at all** (both builder sources off, failed or without a page for the commander). A card
+  scores by Scryfall's overall EDHREC rank, `POP_WEIGHT · (1 − ln(rank) / ln(POP_MAX_RANK))`, over the best
+  `POP_POOL` cards inside the colors, and the report warns that the result is good-stuff staples, not what this
+  commander's players run.
+
+| constant | value | what it does |
+|---|---|---|
+| `K_BASE` | 200 | pretend decks at the all-bracket rate mixed into a bracket's inclusion rate (and into the Bracket 5 play rate) |
+| `K_THEME` | 50 | the same, for a theme page measured against the rate it is compared with |
+| `K_RESID` | 50 | shrinks the win-rate gap by `n / (n + 50)`: with 50 entries on the thinner side, half the gap counts |
+| `RESID_SCALE` | 4.0 | win-rate gaps (±5 points) are small next to inclusion gaps, so the gap is scaled up before it is added |
+| `RESID_CAP` | 0.2 | the scaled gap never moves a score by more than this, before the bracket weight |
+| `W_BRACKET` | 1: 0.0, 2: 0.0, 3: 0.2, 4: 0.5, 5: 1.0 | how much of the tournament term counts at each bracket. Only Bracket 5 can be fitted to results; Brackets 3 and 4 are judgment calls |
+| `THEME_SCALE` | 2.5 | a theme pull is a few points of inclusion; scaled up it can matter beside the base score. Judgment until validation fits it |
+| `THEME_CAP` | 0.5 | the theme part never moves a score by more than this. Judgment until validation fits it |
+| `SALT_GAMMA` | 0.15 | the largest salt penalty, for a salt-4 card |
+| `SALT_MAX` | 4.0 | EDHREC's salt runs 0 to 4 |
+| `THIN` | 50 | a bracket with fewer decks than this borrows from its neighbors |
+| `TOURN_MIN` | 30 | tournament entries needed before play rates replace the builder rate at Bracket 5 |
+| `PRECON_PERCENTILE`, `PRECON_S_MAX` | 0.10, 0.6 | how the near-stock share `s` is read off a precon, and its ceiling |
+| `PLAYSTYLE_THEME_WEIGHT` | 0.5 | a playstyle's themes count half as much as a theme you named |
+| `GLOBAL_SYNERGY_FACTOR`, `MATCHER_PULL` | 0.5, 0.1 | weaker theme evidence: the all-commanders theme page, and a card-text match |
+| `POP_WEIGHT`, `POP_MAX_RANK`, `POP_POOL` | 0.3, 4000, 700 | the popularity fallback: the top card scores 0.3, ranks past 4,000 score 0, 700 candidates |
+
+Only the Bracket 5 weights can be fitted to results: `validate --bracket 5 --sweep` tries a grid of `W_BRACKET[5]`
+and `K_RESID` and shows the overlap for each. The rest are judgment calls, and the code comments say which.
+
+### How a deck is valued and how swaps are chosen
+
+All three commands ask the same question, "what is this deck worth?", and differ in what they may change. In
+`build.py`:
+
+```
+value(deck) = Σ score(card) over nonbasic cards
+            + Σ over roles R_role(mass_role)                  the role bonus
+            + L(lands)                                        the land bonus
+            − TOPEND_PENALTY · max(0, topend − max_topend)    too many cards of mana value 6+
+```
+
+Each role has a minimum, a target and a maximum for the bracket (`commander/role_targets.json`). The *i*-th card of a
+role is worth `1.5 · ROLE_BETA` up to the minimum, `ROLE_BETA` up to the target, then fades linearly to 0 at the
+maximum. So a second board wipe is worth less than the first, and a card that fills a short role beats an equally
+popular one that does not. Lands are worth `LAND_BETA` each up to the land target, then fade the same way. A card
+tagged for *m* roles counts `1 / √m` toward each (its role mass), so a card tagged for three jobs is not three full
+cards. A swap's gain is `value(deck − cut + add) − value(deck)`, worked out from role mass rather than by
+re-scoring the deck, because the search asks for it tens of thousands of times.
+
+| constant | value | what it does |
+|---|---|---|
+| `ROLE_BETA` | 0.20 | value of a card that fills a role up to its target (1.5× below the minimum), in score units |
+| `LAND_BETA` | 1.0 | value of each land up to the land target; high on purpose, so a land is not traded for a spell lightly |
+| `TOPEND_PENALTY` | 0.10 | per nonland card of mana value 6+ above the bracket's limit |
+| `MIN_GAIN` | 0.02 | a swap must beat this to be printed |
+| `MAX_CANDIDATES`, `MAX_LAND_CANDIDATES` | 250, 80 | adds considered, best first (`build` also considers 80 nonbasic lands) |
+| `BUILD_ITERATIONS` | 300 | cap on `build`'s swap search |
+| `NONBASIC_MIN` | 0.10 | a nonbasic land needs at least this score to take a slot from a basic |
+| `COMBO_ROUNDS` | 3 | how often a banned combo found in the finished list is repaired |
+| `LAND_BUDGET_SHARE` | 0.10 | the share of a `build` budget held back for nonbasic lands |
+
+Both searches are local, not optimal: a swap that needs two cards to change at once is invisible to them.
+
+- **`upgrade`** makes forced swaps first: anything that breaks the format (banned or not legal, outside the
+  commander's colors, extra copies, a card you `--exclude`d) or the bracket (too many Game Changers, extra-turn cards or
+  mass land denial; the weaker half of a banned combo). Each is replaced by the best legal add that fits the budget (a
+  basic land if none does). Then it repeats the best affordable swap above `MIN_GAIN`, up to `--max-swaps`. It never
+  cuts the commander or an `--include` card. The deck's own cards and anything you own cost $0; other adds are priced
+  at Scryfall's cheapest printing. With a budget, the swaps are run again with a growing penalty per dollar and the
+  run that ends with the most valuable deck is kept, so one pricey card does not eat the whole budget. When a budget
+  allows no swap, the report lists the cheapest useful adds.
+- **`build`** fills the nonland slots greedily by marginal value (your `--include` cards first), swaps until nothing
+  improves, adds nonbasic lands that score at least `NONBASIC_MIN`, then splits basics by the colored mana symbols
+  in the deck. It checks the finished list for banned combos and repairs it, up to `COMBO_ROUNDS` times.
+- **Fantasy cost.** When you ask for a theme, `build` builds the deck a second time with the fantasy weight at 0 (pure
+  power), values both under power-only scores, and reports the gap in points and as a percent, the strongest cards the
+  theme left out, and the cards it pulled in.
+- **`suggest`** starts from the 30 commanders (`SUGGEST_CANDIDATES`) with the most decks in your themes on EDHREC's
+  theme pages, then ranks them by their share of decks with your themes (counts shrunk by `SHARE_SHRINK`, 100 decks),
+  plus `PLAYSTYLE_WEIGHT` (0.5) × the share with the playstyle's themes, plus `BRACKET_DECKS_WEIGHT` (0.03) per digit
+  of decks at the bracket, minus `SALT_WEIGHT` (0.05) per salt point above 1 when keep-fun is on. A commander with
+  fewer than `MIN_THEME_DECKS` (20) decks in your themes is skipped. The top `--limit` then get the slower extras:
+  the price of their core cards (those in at least `CORE_INCLUSION`, 40%, of its decks; dropped if over `--budget`),
+  `OWNED_WEIGHT` (0.15) × the share of their top 60 nonland cards you own, and at Bracket 4 and up a tournament bonus
+  of `TOURNAMENT_WEIGHT` (0.2) × (top-cut rate − `TOURNAMENT_BASELINE`, 0.2), counted from `TOURNAMENT_MIN` (30)
+  entries and shown without a "too few to judge" note from `TOURNAMENT_CONFIDENT` (100).
+
+### Roles, targets and calibration
+
+Roles come from Scryfall's function tags (the community labels behind searches like `otag:ramp`), read from its
+`oracle_tags` bulk file and expanded to child tags. `roles.py` lists the tag set for each of nine roles: `ramp`,
+`draw`, `removal`, `wipe`, `counter`, `protection`, `recursion`, `tutor`, `finisher`. Lands get no role except
+`ramp` (a land that makes extra mana: Scryfall tags it `ramp`, or it taps for two or more). A text-pattern fallback
+runs only for cards released in the last 180 days that no volunteer has tagged yet, or for every card if the tag file
+cannot be loaded. The tag sets were chosen by running candidates over 60 recent precons and lists of well-known cards
+for each role: 148 of 153 well-known cards found (October 2026, recorded in `roles.py`). `top-end` counts nonland
+cards of mana value 6 or more.
+
+`commander/role_targets.json` holds `[min, target, max]` for each role and bracket, and the most `top-end` cards.
+`roles.targets()` starts there and then:
+
+- shifts each role by the playstyle's whole-number change from `commander/playstyles.json` (`control` adds 2 removal,
+  2 counterspells and 1 wipe; `big-mana` adds 3 ramp and 1 land). These are judgment calls, not fitted;
+- moves the land target to the rounded mean of the bracket's target and EDHREC's average land count for this
+  commander, kept between the bracket's minimum and maximum;
+- drops the counterspell minimum and target to 0 for a commander without blue.
+
+To re-measure the targets from real decks (it needs the network the first time; everything it reads is cached):
+
+```bash
+cd src
+python3 -m mtgcommander.calibrate                     # prints the proposed numbers; nothing is replaced
+python3 -m mtgcommander.calibrate --write             # replaces commander/role_targets.json
+python3 -m mtgcommander.calibrate --sources edhtop16,archidekt   # measure Brackets 3 and 4 from Archidekt too
+```
+
+Percentiles over each bracket's decks give the numbers: minimum = 25th, target = median, maximum = 90th (lands:
+10th, median, 90th; the `top-end` cap: 75th; counterspells are counted only over decks whose commander has blue).
+What each bracket rests on is limited by what the sources' terms allow:
+
+| bracket | how its numbers are made |
+|---|---|
+| 2 | the newest 60 MTGJSON precons, as a Bracket 2 proxy. Wizards no longer ties Core to precons, so these are typical out-of-the-box decks, not a sample of Bracket 2 decks |
+| 5 | EDHTop16 top-cut decklists of the most played tournament commanders (the site invites use of its public application programming interface, or API) |
+| 3, 4 | Archidekt decks tagged with that bracket, only when `archidekt` is among the sources; otherwise interpolated between 2 and 5 (a quarter and half of the way) and labeled *interpolated (judgment)* |
+| 1 | Bracket 2 with one more land and no tutors, labeled *judgment* |
+
+`validate --calibrate` runs the same calibration after the validation and rewrites the file, so the validation
+numbers describe the targets as they were committed. It does not touch the score weights above.
+
+### Bracket rules
+
+`commander/brackets.json` stores Wizards' rules as data, with the source URLs and the date each was read, so a rule
+change is a data edit. The tool checks the four limits a program can count; everything else is intent, which
+Wizards says matters most.
+
+| bracket | Game Changers | mass land denial | extra turns | two-card combos |
+|---|---|---|---|---|
+| 1 Exhibition | none | not allowed | none | none |
+| 2 Core | none | not allowed | not chained | none |
+| 3 Upgraded | up to 3 | not allowed | not chained | none before turn 6 |
+| 4 Optimized | any | allowed | any | any |
+| 5 cEDH | any | allowed | any | any |
+
+Game Changers come from Scryfall's `game_changer` flag on each card; the commander counts toward the limit.
+Where Wizards' wording needs a decision from a program, the tool makes one and says so in its messages:
+
+- **Chaining extra turns (Brackets 2 and 3).** Wizards says extra-turn cards "are not intended to be chained in
+  succession or looped". The tool reads that as at most one extra-turn card, so a second one counts as chaining. That
+  reading is its own judgment, not a Wizards rule, and its messages say so. (23 named cards plus two text patterns.)
+- **Two-card combos.** Commander Spellbook tags every combo with the kind of deck it belongs in. The tool maps the tags
+  to the lowest bracket they fit: `R` Ruthless 4, `S` Spicy 4, `P` Powerful 3, `O` Oddball 3, `C` Core 2,
+  `E` Exhibition 1, `B` Not Legal 5. At Bracket 3 ("before turn 6") the tool cannot tell early from late, so it
+  blocks every two-card combo Spellbook rates above Bracket 3. At Brackets 1 and 2 it blocks every two-card infinite
+  combo whatever its tag (Spellbook's tags do not cover that rule), and any other two-card combo rated above the
+  bracket. A longer combo is never over a limit, because Wizards' limits name two-card combos; it is noted instead.
+  `--allow-combos` lifts the check.
+- **Blocked adds.** `upgrade` and `build` also use the combos that one more card would complete: they never add the
+  missing half of a combo the bracket does not allow, and name it under "Blocked".
+- **Mass land denial.** Wizards publishes no complete list, so the tool uses 27 named cards plus 8 text patterns
+  (38 Commander-legal cards flagged on 2026-10-11, with `From the Ashes` excepted because it replaces the lands it
+  destroys). A card found only by its text is labeled as such, with a note to check with your pod.
+- **The estimated bracket.** `check` reports the lowest bracket whose countable limits the list meets. It is a floor:
+  how a deck plays decides the real bracket.
+- **Not checked:** tutors (Wizards removed the limits in October 2025) and anything about how the deck plays.
+
+The bracket wording, the dates and the places where Wizards' articles disagree (and which one wins) are in
+[`commander/README.md`](./commander/README.md).
+
+### Data sources, caching and offline use
+
+| source | gives | kind | cache lifetime (TTL) | host |
+|---|---|---|---|---|
+| EDHREC | per commander, bracket and theme: decks that play each card, synergy; theme lists; the salt list; average land count | builder choice | 7 days | `json.edhrec.com` |
+| Archidekt | decklists tagged with a bracket | builder choice | 7 days for a search, 30 for a deck | `archidekt.com` |
+| EDHTop16 | cEDH tournament entries: decklists with wins, losses, draws, standing | tournament result | 1 day | `edhtop16.com` |
+| Commander Spellbook | combos in a list and combos one card away, each with a bracket tag | rules check | 7 days | `backend.commanderspellbook.com` |
+| Scryfall | card data, function tags, cheapest printing | rules, roles, prices | card index 7 days, tags 30, prices 7 | `api.scryfall.com`, `data.scryfall.io` |
+| MTGJSON | precon decklists | input | 30 days (the list of precons: 7) | `mtgjson.com` |
+
+TTL, short for time to live, is how long a cached download counts as fresh. The values live in `config.py`.
+
+**Cache.** Every download is a JSON file under `data/cache/commander/<source>/` (gitignored, like the 17Lands
+cache), written atomically. A page that does not exist (HTTP 404, or EDHREC's 403) is cached too, so it is not
+asked for again until its TTL passes. Reports mark each source with its fetch date and `(stale)` when an expired
+copy was served; `--json` carries `fetched`, `cache` (`fresh`, `network` or `stale`) and `age_days`.
+
+**Pacing and retries.** `net.py` waits between requests to one host: 1 second for EDHREC, Archidekt, EDHTop16 and
+Commander Spellbook, 0.5 seconds for Scryfall's API and MTGJSON, none for Scryfall's bulk-file host. It retries 429
+and 5xx answers and network errors up to four times, waiting 1, 2, 4 and 8 seconds (or the server's `Retry-After`, up
+to 60). When the network fails and an old copy exists, it serves the copy and says how old it is. Requests carry the
+User-Agent `mtg-draft-commander/0.1 (+https://github.com/albertngo1/mtg-draft)`.
+
+**`warm COMMANDER`** downloads ahead of time what the other commands will ask for: the card index; EDHREC's
+all-bracket and bracket pages, the pages for each `--theme`, the salt list, and neighboring brackets when the bracket
+is thin; Archidekt decks when they are used; EDHTop16 results at Bracket 3 and up; the commander's precons from
+MTGJSON; the function tags; and the cheapest prices of about 500 likely cards. It does not fetch Commander
+Spellbook combos: those answers are cached per exact card list, so an `--offline` run can check combos only for lists
+it has checked online before (the list you give it, and the list after the swaps). For any other list it prints
+"Combos were not checked", and the combo limit is not verified.
+
+**`--offline`** never connects. It uses whatever is cached, even expired, and says so. A source with nothing
+cached is skipped with a warning that names it; if the card index (or a precon list) is missing, the command stops
+with exit code 2. **`--refresh`** downloads again instead of using the cache (and rebuilds the card index, a
+25 MB download); if the download fails it still falls back to the old copy.
+
+**`--sources`.** Three sources feed the scores: `edhrec`, `archidekt` and `edhtop16`. Choose them for one run with
+`--sources edhrec,edhtop16`, or for every run with the `MTG_COMMANDER_SOURCES` environment variable (a
+comma-separated list). Scryfall, MTGJSON and Commander Spellbook are not part of this list; they are always used.
+EDHREC is the main builder source, Archidekt stands in when EDHREC has no page or a thin bracket, and EDHTop16
+supplies the tournament term (Brackets 3 and up). With neither deck-builder source (`edhrec`, `archidekt`) on, scores
+fall back to Scryfall's overall popularity rank, `suggest` cannot run (it needs EDHREC's theme pages), and `themes`
+shows the common themes. The terms of two of these sources restrict scripted access, so which of them are on by
+default is a separate decision; see [Terms of use](#terms-of-use).
+
+### Edge cases
+
+| case | what happens |
+|---|---|
+| Unknown card name | `build` and `upgrade` stop before scoring with close matches ("did you mean ..."); `check` lists it as a problem and checks the rest. Unknown names inside a precon list are skipped with a warning |
+| Illegal list (wrong colors, duplicates, banned cards, not 100 cards) | `check` reports every problem and still checks the rest. `upgrade` cuts illegal cards first and says why |
+| Little data (under 50 decks at the bracket) | pools the neighboring brackets and, if on, Archidekt decks; prints "Thin data" with the counts |
+| A source is down or `--offline` | uses the cache and says how old it is; with no cache, skips that signal and names it in the warnings; stops (exit 2) only if the card index or a precon list is missing |
+| Rate limited (HTTP 429) | waits and retries, then stops asking that source with a message pointing at `warm` |
+| Budget too small | lists the cheapest useful adds; swaps from cards you own still appear, because they cost $0 |
+| Deck above the target bracket | the forced cuts come first, marked as forced |
+| Two commanders | `--partner NAME` (`build`, `warm`, `themes`) or `--commander` twice (`upgrade`, `check`). Colors combine; EDHREC's page for the pair is used; pairings checked are Partner, Partner with, Friends forever, Choose a Background with a Background, and a Doctor with a Doctor's companion |
+| Cards allowed in any number (Relentless Rats, Hare Apparent) | exempt from the one-copy rule, as are basic lands |
+| `--fantasy` without a Claude token | says why (a note on stderr, or in `warnings` with `--json`), reads no words from the text, and points to `themes`; `--theme` and `--playstyle` still work |
+| Claude names a word not on the menu | dropped with a warning; Claude may choose at most 3 themes and one playstyle, and never a card |
+| `stax` below Bracket 4 | falls back to `value` with a warning |
+
+### Terms of use
+
+What each source's own terms say about scripted access. This tool's requests are automated, so read these before you
+use a source. Quotes are copied from the pages named, read on 2026-10-11.
+
+- **EDHREC** ([terms](https://edhrec.com/terms), effective August 6, 2024) licenses access "solely for your own
+  personal, noncommercial use", and its acceptable-use list says you agree not to "use software or automated agents
+  or scripts to ... generate automated searches, requests, or queries to the Site". The pages this tool reads
+  (`json.edhrec.com`) are the files EDHREC's own site loads, not a documented API.
+- **Archidekt** ([terms](https://archidekt.com/terms), effective September 7, 2018) has the same two clauses, word
+  for word.
+- **EDHTop16** ([terms](https://edhtop16.com/terms), updated August 2, 2026): "We provide an API for developers and
+  data enthusiasts." It also bars "excessive automated requests" and says its statistics "may not be reproduced or
+  redistributed without permission", so the cache stays local and out of git. This tool uses only that API, one
+  request a second, cached for a day. Its terms say "Applications using our API must not imply endorsement by
+  EDHTop16": **this tool is not endorsed by EDHTop16.**
+- **Commander Spellbook** ([guidelines for API consumers](https://spacecowmedia.github.io/commander-spellbook-backend/api.html))
+  asks for "a few HTTP calls per user interaction", says "80 requests per minute should be a safe rate", asks
+  users to name their service in the User-Agent (this tool sends `mtg-draft-commander/0.1`) and says "Please credit us
+  and link back to commanderspellbook.com where applicable". The credit is under Data sources & credits below. Its
+  API host's `robots.txt` says `Disallow: /`.
+- **Scryfall** ([API documentation](https://scryfall.com/docs/api)): "All HTTP requests to api.scryfall.com must
+  include a User-Agent header and an Accept header" (this tool sends both), and the search endpoints are limited to
+  2 requests a second (it waits 500 ms between requests to that host). It encourages caching "at least for 24
+  hours" (the card index is kept 7 days) and says "You may not simply repackage, republish, or proxy Scryfall data",
+  so the cache stays local and out of git.
+- **MTGJSON** ([license](https://mtgjson.com/license/)) is MIT, which grants permission "to deal in the Software
+  without restriction". Its `robots.txt` disallows `/api/v5/*.json`, the pattern of the documented download files
+  (`DeckList.json`, `decks/<name>.json`) this tool reads, once each, and caches for 30 days.
+
+Which sources a run uses is one setting: `--sources` for a run, `MTG_COMMANDER_SOURCES` for every run (a
+comma-separated list of `edhrec`, `archidekt`, `edhtop16`). With neither deck-builder source (EDHREC, Archidekt)
+among them, the scores fall back to Scryfall's overall popularity rank: good-stuff staples for the colors, not what
+this commander's players run.
+
+**Default: all three are on.** Below Bracket 5, EDHREC and Archidekt are the only evidence of what this
+commander's players run, so the builder reads them unless told not to, although their terms bar scripted requests.
+Requests to them go out one a second with the tool's User-Agent (`mtg-draft-commander/0.1`), and their answers are
+cached (EDHREC pages and Archidekt searches for 7 days, Archidekt decks for 30), so repeating a run inside those
+windows sends them nothing. To leave them out, set `MTG_COMMANDER_SOURCES=edhtop16` or pass `--sources edhtop16`.
+
+### Validation
+
+`validate --bracket N` asks whether the builder builds what experienced players build, and whether it keeps to the
+rules. It is `sealed_algo.py --validate` for Commander: hold a real list out, build without it, and count how many of
+the list's non-basic cards the build also plays. That number alone says little (most of a cEDH list is staples anyone
+would guess), so every overlap sits beside a baseline that needs no model, the same number of most-played cards. The
+baseline is hard to beat on overlap, since it is what most builders start from; the build gives a little of it up for
+the budget, the bracket's limits and the role targets. The measured results are in AGENTS.md ("Commander deck
+building"): 81% against 82% at Bracket 5, 49% against 51% at Bracket 3, every build within the bracket's limits.
+
+- **Bracket 5** (needs `edhtop16`). For each commander, take its newest 150 EDHTop16 entries and hold out its top-cut
+  decks one at a time, up to `--limit`. The build is handed the tournament results of every other entry, and reads
+  EDHREC's cEDH page when EDHREC is a source. The baseline is the same number of cards most played by the other
+  entries. Pilots reuse their lists, and EDHREC's cEDH page may hold the held-out list, so read the gap to the
+  baseline, not the absolute number. With no `--commanders`, it uses the four most played in tournaments (at least 150
+  entries in the year). `--sweep` repeats the builds over a grid of `W_BRACKET[5]` (0, 0.5, 1, 2) and `K_RESID` (25,
+  50, 100), on the newest 8 held-out decks per commander; weight 0 is "EDHREC alone".
+- **Brackets 1–4** (the overlap needs `archidekt`). One build per commander (default: six popular ones) from EDHREC,
+  compared with up to `--limit` recent Archidekt lists tagged with that bracket. The builds never read Archidekt, so
+  they are not marked on their own homework, but EDHREC cannot drop one held-out list (it is one of thousands), so
+  these overlaps are somewhat optimistic, and the baseline (the same number of cards the sources list most often at
+  the bracket) shares that optimism. The build's role counts are also checked against the middle half (25th to 75th
+  percentile) of those lists. With `archidekt` off, only the rule check runs, and the report says so.
+- **Any bracket:** the share of builds that follow the bracket's rules, with Commander Spellbook's combos.
+- **Bracket 3:** an upgrade check. The newest 10 precons are upgraded within $50, and each should end nearer the
+  bracket's role targets without overspending.
+
+Overlap with real lists shows the tool builds like real players at that bracket. It does not show that its decks win,
+and at Brackets 1–4 no public data could.
+
+### Tests
+
+```bash
+python3 -m unittest discover -s tests -t . -v      # from the repo root
+```
+
+The tests are standard-library `unittest`, replay small hand-made fixtures in each source's shape
+(`tests/commander/fixtures/`, never downloaded pages), touch no network, and run in a couple of seconds.
+
 ## Data sources & credits
 
 - **[Scryfall](https://scryfall.com/)** — card names, mana costs, oracle text (queried at runtime;
-  not redistributed). Please respect their [API guidelines](https://scryfall.com/docs/api).
+  not redistributed). Please respect their [API guidelines](https://scryfall.com/docs/api). The Commander
+  builder also reads Scryfall's bulk card file, function tags, prices and Game Changer flags.
 - **[17Lands](https://www.17lands.com/)** — draft win-rate statistics (queried at runtime).
+- **Commander deck builder** (all queried at runtime, cached locally, not redistributed; their terms are quoted
+  under [Terms of use](#terms-of-use)):
+  - **[EDHREC](https://edhrec.com/)** — what Commander players build, per commander, bracket and theme, plus salt.
+  - **[Archidekt](https://archidekt.com/)** — decklists tagged with a bracket.
+  - **[EDHTop16](https://edhtop16.com/)** — cEDH tournament results through its public API. Its tournament data comes
+    from TopDeck.gg. This tool is not endorsed by EDHTop16.
+  - **[Commander Spellbook](https://commanderspellbook.com/)** — the combo database behind the combo checks. Credit
+    and link back, as its API guidelines ask.
+  - **[MTGJSON](https://mtgjson.com/)** — preconstructed deck lists.
+  - **[Wizards of the Coast's Commander format page](https://magic.wizards.com/en/formats/commander)** — the bracket
+    definitions and the Game Changers list. `commander/brackets.json` quotes their wording with its source and date.
 - Magic: The Gathering is © Wizards of the Coast. This is an unofficial fan tool, not affiliated
-  with or endorsed by Wizards of the Coast.
+  with or endorsed by Wizards of the Coast, or by any of the sites it reads.
 
 ## Requirements
 
-- Python 3 (standard library only — no pip installs).
-- Outbound HTTPS to `api.scryfall.com` and `www.17lands.com`.
-- MTGA "Detailed Logs (Plugin Support)" enabled.
+- Python 3 (standard library only — no pip installs). The draft coach runs on 3.8+; the Commander builder needs 3.9+.
+- Outbound HTTPS to `api.scryfall.com` and `www.17lands.com` (the draft coach).
+- Outbound HTTPS for the Commander builder: `api.scryfall.com`, `data.scryfall.io` (Scryfall's bulk files),
+  `json.edhrec.com`, `archidekt.com`, `edhtop16.com`, `backend.commanderspellbook.com` and `mtgjson.com`. After
+  `warm`, `--offline` runs need none of them.
+- MTGA "Detailed Logs (Plugin Support)" enabled (the draft coach).
+- Optional, for `--fantasy`: the `claude` command-line tool on your `PATH` and a Claude token (see
+  [Using it as an agent / coach](#using-it-as-an-agent--coach)).

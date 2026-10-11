@@ -94,12 +94,48 @@ pick. It's a second opinion layered on top — the solo tool works fine without 
 Either way, the 17Lands data is the source of truth and the AI is decorrelated expert color, never
 the other way around.
 
+## Commander deck builder
+
+Play Commander (also called EDH) instead of drafting? `mtg-commander` is a second tool in the same repo. It upgrades
+a deck you have, builds a full 100-card deck around a commander, and suggests commanders for the themes and playstyle
+you want, each within a **budget** and one of Wizards' power **brackets** (1 Exhibition, 2 Core, 3 Upgraded, 4
+Optimized, 5 cEDH, which is competitive tournament play; Bracket 3 unless you say otherwise). It also checks a
+list's legality and bracket rules, and it will not recommend a card that breaks them.
+
+```bash
+# Upgrade a precon: ranked cuts and adds, at most $75 on cards you don't own, leaning toward tokens
+python3 src/mtg-commander.py upgrade --precon "Squirreled Away" --budget 75 --theme tokens
+
+# Check a decklist file: legality, bracket rules, role counts, mana curve
+python3 src/mtg-commander.py check mydeck.txt --bracket 3
+
+# Build from a commander
+python3 src/mtg-commander.py build "Hazel of the Rootbloom" --bracket 3 --budget 150 --theme squirrels
+```
+
+Same launchers as the draft coach: `./mtg-commander.sh` on macOS/Linux, `mtg-commander.bat` on Windows. It needs
+Python 3.9+ and nothing to `pip install`. The first run downloads Scryfall's card file (a minute or two, once);
+run `warm "<commander>"` ahead of time and `--offline` works after that.
+
+**What the numbers mean.** At Brackets 1–4 the numbers are what experienced deck builders choose at that bracket,
+not win rates; real per-card win rates exist publicly only for tournament (cEDH) play. So every line says which
+kind of number it is and how many decks it comes from, and `build` shows the *fantasy cost*: what the theme you
+picked gives up in strength.
+
+The data comes from public sites (EDHREC, Archidekt, EDHTop16, Commander Spellbook, Scryfall, MTGJSON). The terms
+of some of them restrict scripted access; ARCHITECTURE.md quotes them and says how to choose which sources are used.
+Details: **[ARCHITECTURE.md → Commander deck builder](./ARCHITECTURE.md#commander-deck-builder)** (every command and
+flag, how cards are scored, caching, bracket rules, terms of use) and **[`commander/README.md`](./commander/README.md)**
+(the three data files). With Claude Code, `/mtg-commander` (in [`.claude/skills/`](./.claude/skills/mtg-commander/))
+coaches you through it.
+
 ## Learn more
 
 - **[ARCHITECTURE.md](./ARCHITECTURE.md)** — the full reference: every command and flag, how the
-  log-reading and caching work, the draft-history reconstruction, repo layout, and more.
+  log-reading and caching work, the draft-history reconstruction, repo layout, the Commander deck
+  builder, and more.
 - **[AGENTS.md](./AGENTS.md)** — the operating manual for the AI coaching layer: universal limited
-  theory plus how to drive this tool pick-by-pick.
+  theory plus how to drive this tool pick-by-pick, and how to coach Commander deck building.
 - **[card-reference/](./card-reference/)** — a visual grid of every card in a set: image, 17Lands
   ratings, a reviewer letter grade where one exists, notes from the expert guides, and a per-card AI
   take. **Thirteen sets, 3,935 cards** — BLB, DFT, DSK, ECL, FIN, FRA, HOB, LCI, MH3, MKM, MSH, OTJ, SOS. Each set also
@@ -171,9 +207,14 @@ the other way around.
   **Lords of Limited**, **NumotTheNummy**, **Limited Resources**, **Limited Level-Ups** and
   **Rough Drafts**. Those files are summaries written for personal draft prep, not transcripts; go
   watch the originals.
+- For the Commander deck builder (all queried at runtime, not redistributed; terms quoted in
+  [ARCHITECTURE.md](./ARCHITECTURE.md#terms-of-use)): **[EDHREC](https://edhrec.com/)** and
+  **[Archidekt](https://archidekt.com/)** (what builders play), **[EDHTop16](https://edhtop16.com/)** (cEDH
+  tournament results; this tool is not endorsed by EDHTop16), **[Commander Spellbook](https://commanderspellbook.com/)**
+  (combos), **[MTGJSON](https://mtgjson.com/)** (precon lists), and Scryfall again for card data and prices.
 
 Magic: The Gathering is © Wizards of the Coast. This is an unofficial fan tool, not affiliated with
-or endorsed by Wizards of the Coast.
+or endorsed by Wizards of the Coast, or by any of the sites it reads.
 
 ## License
 
