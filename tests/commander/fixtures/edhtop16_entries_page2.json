@@ -1,0 +1,21 @@
+{
+  "data": {
+    "commander": {
+      "entries": {
+        "pageInfo": {"hasNextPage": false, "endCursor": "7"},
+        "edges": [
+          {"node": {"id": "E1", "wins": 3, "losses": 1, "draws": 0, "standing": 1,
+                    "maindeck": [{"name": "Sol Ring"}, {"name": "Skullclamp"}, {"name": "Forest"}, {"name": "Swamp"},
+                                 {"name": "Pitiless Plunderer"}],
+                    "tournament": {"TID": "big-open", "name": "Big Open", "size": 64, "topCut": 16,
+                                   "tournamentDate": "2026-10-10T19:00:00.000Z"}}},
+          {"node": {"id": "E6", "wins": 2, "losses": 1, "draws": 1, "standing": 4,
+                    "maindeck": [{"name": "Sol Ring"}, {"name": "Skullclamp"}, {"name": "Mana Crypt"},
+                                 {"name": "Forest"}],
+                    "tournament": {"TID": "the-cut", "name": "The Cut", "size": 24, "topCut": 4,
+                                   "tournamentDate": "2026-09-14T17:00:00.000Z"}}}
+        ]
+      }
+    }
+  }
+}

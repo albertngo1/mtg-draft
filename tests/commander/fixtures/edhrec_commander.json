@@ -1,0 +1,53 @@
+{
+  "creature": 28, "instant": 8, "sorcery": 9, "artifact": 9, "enchantment": 7, "battle": 0, "planeswalker": 1,
+  "land": 37, "basic": 18, "nonbasic": 19,
+  "similar": ["Chatterfang, Squirrel General", "Camellia, the Seedmiser"],
+  "bracket_counts": {"3": 1000, "2": 2000, "4": 300, "5": 10, "1": 20},
+  "budget_counts": {"budget": 100, "middle": 800, "expensive": 100},
+  "tag_counts": [
+    {"count": 400, "slug": "tokens", "value": "Tokens"},
+    {"count": 90, "slug": "plus-1-plus-1-counters", "value": "+1/+1 Counters"}
+  ],
+  "header": "Hazel of the Rootbloom (Commander)",
+  "panels": {
+    "taglinks": [
+      {"count": 400, "slug": "tokens", "value": "Tokens"},
+      {"count": 90, "slug": "plus-1-plus-1-counters", "value": "+1/+1 Counters"}
+    ],
+    "mana_curve": {"1": 8, "2": 16, "3": 18},
+    "combocounts": [
+      {"value": "Camellia, the Seedmiser + Gilded Goose", "alt": "x", "href": "/combos/golgari/1-2"},
+      {"value": "Chatterfang, Squirrel General + Pitiless Plunderer", "alt": "y", "href": "/combos/golgari/3-4"}
+    ]
+  },
+  "container": {
+    "breadcrumb": [{"/commanders": "Commanders"}],
+    "title": "Hazel of the Rootbloom (Commander)",
+    "json_dict": {
+      "card": {
+        "num_decks": 1000, "rank": 186, "salt": 0.31, "color_identity": ["G", "B"],
+        "name": "Hazel of the Rootbloom", "sanitized": "hazel-of-the-rootbloom", "is_commander": true
+      },
+      "cardlists": [
+        {"header": "New Cards", "tag": "newcards", "cardviews": [
+          {"name": "Gardenize", "num_decks": 20, "potential_decks": 400, "synergy": -0.01, "lift": 0.7}
+        ]},
+        {"header": "Top Cards", "tag": "topcards", "cardviews": [
+          {"name": "Skullclamp", "num_decks": 900, "potential_decks": 1000, "synergy": 0.5, "lift": 2.5},
+          {"name": "Chatterfang, Squirrel General", "num_decks": 950, "potential_decks": 1000, "synergy": 0.8}
+        ]},
+        {"header": "Instants", "tag": "instants", "cardviews": [
+          {"name": "Revitalizing Repast", "num_decks": 120, "potential_decks": 1000, "synergy": -0.09,
+           "cards": [{"name": "Revitalizing Repast", "url": "x"}, {"name": "Old-Growth Grove", "url": "x"}]},
+          {"name": "Heroic Intervention", "num_decks": 60, "potential_decks": 1000, "synergy": null},
+          {"name": "Listed Without A Pool", "num_decks": 5, "potential_decks": 0, "synergy": 0.0}
+        ]},
+        {"header": "Lands", "tag": "lands", "cardviews": [
+          {"name": "Forest", "num_decks": 990, "potential_decks": 1000, "synergy": 0.01},
+          {"name": "Revitalizing Repast", "num_decks": 120, "potential_decks": 1000, "synergy": -0.09,
+           "cards": [{"name": "Revitalizing Repast", "url": "x"}, {"name": "Old-Growth Grove", "url": "x"}]}
+        ]}
+      ]
+    }
+  }
+}

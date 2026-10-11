@@ -1,0 +1,633 @@
+"""Tests for roles.py and providers/scryfall_tags.py: tag trees expanded the way Scryfall's `otag:` search does,
+the cache and fallback behaviour of the tag loader, role assembly, the rules-text fallback, role counts and the
+bracket targets. Nothing here touches the network; caches live in a temporary directory."""
+import datetime, gzip, json, os, shutil, tempfile, unittest, urllib.parse
+from unittest import mock
+from mtgcommander import carddb, net, roles
+from mtgcommander.providers import scryfall_tags
+
+FIXTURES = os.path.join(os.path.dirname(os.path.abspath(__file__)), "fixtures")
+TODAY = datetime.date(2026, 10, 11)
+
+
+def jsonl(name):
+    with open(os.path.join(FIXTURES, name), encoding="utf-8") as f:
+        return [json.loads(line) for line in f]
+
+
+def sample_db():
+    cards = {}
+    for obj in jsonl("carddb_bulk_sample.jsonl"):
+        rec = carddb.card_record(obj)
+        if rec and rec["name"] not in cards:
+            cards[rec["name"]] = rec
+    return carddb.CardDB(cards)
+
+
+def fixture_tagsets(slugs):
+    """What scryfall_tags.load would return for the sample tag tree."""
+    tags, names = scryfall_tags.index_tags(jsonl("scryfall_tags_sample.jsonl"))
+    return scryfall_tags.expand(tags, names, slugs)
+
+
+def rec(text, type_line="Sorcery", **extra):
+    """A card record made from rules text alone."""
+    obj = {"object": "card", "oracle_id": "x", "name": "Test Card", "layout": "normal", "type_line": type_line,
+           "oracle_text": text, "cmc": 3.0, "color_identity": [], "keywords": [],
+           "legalities": {"commander": "legal"}}
+    obj.update(extra)
+    return carddb.card_record(obj)
+
+
+FROZEN_TARGETS = os.path.join(os.path.dirname(os.path.abspath(__file__)), "fixtures",
+                              "calibrate_previous.json")
+
+
+class TempCache(unittest.TestCase):
+    def setUp(self):
+        self.tmp = tempfile.mkdtemp()
+        self.addCleanup(shutil.rmtree, self.tmp, True)
+        patcher = mock.patch.object(net, "CACHE", self.tmp)
+        patcher.start()
+        self.addCleanup(patcher.stop)
+
+
+# ----------------------------------------------------------------------------- scryfall_tags: the tree
+class TagTreeTests(unittest.TestCase):
+    def setUp(self):
+        self.tags, self.names = scryfall_tags.index_tags(jsonl("scryfall_tags_sample.jsonl"))
+        self.ids = {o["name"]: o["oracle_id"] for o in jsonl("carddb_bulk_sample.jsonl")}
+
+    def expand(self, *slugs):
+        return scryfall_tags.expand(self.tags, self.names, slugs)
+
+    def test_a_parent_includes_its_descendants_like_otag_search(self):
+        ramp = self.expand("ramp")["ramp"]
+        # Ancient Tomb is tagged `ramp` itself, Sol Ring `mana-rock`, Arcane Signet `utility-mana-rock` (a
+        # grandchild), Cultivate `land-ramp`
+        self.assertEqual(ramp, {self.ids[n] for n in ("Ancient Tomb", "Sol Ring", "Mind Stone", "Arcane Signet",
+                                                      "Cultivate", "Rampant Growth")})
+        rocks = self.expand("mana-rock")["mana-rock"]
+        self.assertEqual(rocks, {self.ids[n] for n in ("Sol Ring", "Mind Stone", "Arcane Signet")})
+
+    def test_a_leaf_holds_only_its_own_cards(self):
+        self.assertEqual(self.expand("cantrip")["cantrip"], {self.ids["Brainstorm"]})
+
+    def test_aliases_find_the_tag_and_slugs_win_over_aliases(self):
+        self.assertEqual(self.expand("wipe")["wipe"], self.expand("sweeper")["sweeper"])
+        tags, names = scryfall_tags.index_tags([
+            {"id": "a", "slug": "first", "aliases": ["second"], "taggings": [{"oracle_id": "A"}], "child_ids": []},
+            {"id": "b", "slug": "second", "aliases": [], "taggings": [{"oracle_id": "B"}], "child_ids": []}])
+        self.assertEqual(scryfall_tags.expand(tags, names, ["second"]), {"second": {"B"}})
+
+    def test_an_unknown_slug_is_an_empty_set_not_an_error(self):
+        self.assertEqual(self.expand("no-such-tag"), {"no-such-tag": set()})
+
+    def test_a_cycle_in_the_tree_does_not_loop_forever(self):
+        tags, names = scryfall_tags.index_tags([
+            {"id": "a", "slug": "a", "taggings": [{"oracle_id": "A"}], "child_ids": ["b"]},
+            {"id": "b", "slug": "b", "taggings": [{"oracle_id": "B"}], "child_ids": ["a"]}])
+        self.assertEqual(scryfall_tags.expand(tags, names, ["a"]), {"a": {"A", "B"}})
+
+    def test_a_child_listed_but_missing_from_the_file_is_skipped(self):
+        tags, names = scryfall_tags.index_tags([
+            {"id": "a", "slug": "a", "taggings": [{"oracle_id": "A"}], "child_ids": ["gone"]}])
+        self.assertEqual(scryfall_tags.expand(tags, names, ["a"]), {"a": {"A"}})
+
+
+# ----------------------------------------------------------------------------- scryfall_tags: loading and cache
+class TagLoadTests(TempCache):
+    def setUp(self):
+        super().setUp()
+        self.downloads, self.searches = [], []
+        self.bulk_ok = True
+        self.listing = {"data": [{"type": "oracle_tags",
+                                  "jsonl_download_uri": "https://data.scryfall.io/oracle-tags/t.jsonl.gz"}]}
+        for patcher in (mock.patch.object(carddb, "bulk_entry", self.fake_bulk_entry),
+                        mock.patch.object(net, "download", self.fake_download),
+                        mock.patch.object(net, "request", self.fake_request)):
+            patcher.start()
+            self.addCleanup(patcher.stop)
+
+    def fake_bulk_entry(self, kind, **kw):
+        self.assertEqual(kind, "oracle_tags")
+        if not self.bulk_ok:
+            raise net.FetchError("scryfall", carddb.BULK_LIST, "network error")
+        return self.listing["data"][0]["jsonl_download_uri"], self.listing["data"][0]
+
+    def fake_download(self, url, path, *, source):
+        self.downloads.append(url)
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+        with open(os.path.join(FIXTURES, "scryfall_tags_sample.jsonl"), "rb") as src, gzip.open(path, "wb") as out:
+            out.write(src.read())
+
+    def fake_request(self, url, **kw):
+        """`otag:<slug>` search pages: the sample tag tree, 2 cards per page."""
+        self.searches.append(url)
+        query = urllib.parse.parse_qs(urllib.parse.urlsplit(url).query)
+        page_no = int(query.get("page", ["1"])[0])
+        slug = query["q"][0][len("otag:"):]
+        tags, names = scryfall_tags.index_tags(jsonl("scryfall_tags_sample.jsonl"))
+        ids = sorted(scryfall_tags.expand(tags, names, [slug])[slug])
+        if not ids:
+            raise net.NotFound("scryfall_tags", url, "no such page")
+        chunk = ids[(page_no - 1) * 2: page_no * 2]
+        more = page_no * 2 < len(ids)
+        body = {"object": "list", "has_more": more, "data": [{"oracle_id": i} for i in chunk]}
+        if more:
+            body["next_page"] = url.split("&page=")[0] + f"&page={page_no + 1}"
+        return json.dumps(body).encode()
+
+    def cache_doc(self):
+        with open(net.cache_file("scryfall", "tags")) as f:
+            return json.load(f)
+
+    def age_cache(self, days):
+        doc = self.cache_doc()
+        doc["ts"] -= days * 24 * 3600
+        net.atomic_json(net.cache_file("scryfall", "tags"), doc)
+
+    def test_builds_from_the_bulk_file_and_keeps_only_requested_tags(self):
+        out = scryfall_tags.load(["ramp", "cantrip", "wipe"])
+        expected = fixture_tagsets(["ramp", "cantrip", "wipe"])
+        self.assertEqual(out, expected)
+        self.assertEqual(sorted(self.cache_doc()["tags"]), ["cantrip", "ramp", "wipe"])
+        self.assertEqual(self.cache_doc()["method"], "bulk")
+        self.assertEqual((scryfall_tags.INFO["cache"], scryfall_tags.INFO["method"]), ("network", "bulk"))
+        folder = os.path.dirname(net.cache_file("scryfall", "tags"))
+        self.assertEqual(os.listdir(folder), ["tags.json"])           # the raw download is gone
+        self.assertEqual(self.searches, [])
+
+    def test_result_values_are_sets_of_oracle_ids(self):
+        out = scryfall_tags.load(["cantrip"])
+        self.assertIsInstance(out["cantrip"], set)
+        self.assertEqual(len(out["cantrip"]), 1)
+
+    def test_a_single_slug_string_is_one_tag_not_a_list_of_letters(self):
+        self.assertEqual(list(scryfall_tags.load("cantrip")), ["cantrip"])
+
+    def test_served_from_cache_while_fresh_and_complete(self):
+        scryfall_tags.load(["ramp", "cantrip"])
+        out = scryfall_tags.load(["cantrip"])                   # a subset of what is cached
+        self.assertEqual((len(self.downloads), scryfall_tags.INFO["cache"]), (1, "fresh"))
+        self.assertEqual(out, fixture_tagsets(["cantrip"]))
+
+    def test_asking_for_a_new_tag_rebuilds_and_keeps_the_old_ones(self):
+        scryfall_tags.load(["ramp"])
+        scryfall_tags.load(["cantrip"])
+        self.assertEqual(len(self.downloads), 2)
+        self.assertEqual(sorted(self.cache_doc()["tags"]), ["cantrip", "ramp"])
+        scryfall_tags.load(["ramp"])
+        self.assertEqual(len(self.downloads), 2)
+
+    def test_an_unknown_slug_is_cached_as_empty_so_it_does_not_rebuild_every_run(self):
+        self.assertEqual(scryfall_tags.load(["no-such-tag"]), {"no-such-tag": set()})
+        scryfall_tags.load(["no-such-tag"])
+        self.assertEqual(len(self.downloads), 1)
+
+    def test_older_than_thirty_days_rebuilds(self):
+        scryfall_tags.load(["ramp"])
+        self.age_cache(29)
+        scryfall_tags.load(["ramp"])
+        self.assertEqual(len(self.downloads), 1)
+        self.age_cache(2)
+        scryfall_tags.load(["ramp"])
+        self.assertEqual(len(self.downloads), 2)
+
+    def test_refresh_rebuilds(self):
+        scryfall_tags.load(["ramp"])
+        scryfall_tags.load(["ramp"], refresh=True)
+        self.assertEqual(len(self.downloads), 2)
+
+    def test_failed_rebuild_serves_the_stale_cache(self):
+        scryfall_tags.load(["ramp"])
+        self.age_cache(40)
+        self.bulk_ok = False
+        with mock.patch.object(net, "request", side_effect=net.FetchError("scryfall_tags", "u", "network error")):
+            out = scryfall_tags.load(["ramp"])
+        self.assertEqual((out, scryfall_tags.INFO["cache"]), (fixture_tagsets(["ramp"]), "stale"))
+
+    def test_offline_serves_any_cache_and_never_downloads(self):
+        scryfall_tags.load(["ramp"])
+        self.age_cache(90)
+        out = scryfall_tags.load(["ramp"], offline=True)
+        self.assertEqual((out, scryfall_tags.INFO["cache"], len(self.downloads)),
+                         (fixture_tagsets(["ramp"]), "stale", 1))
+
+    def test_offline_without_the_tags_says_how_to_fix_it(self):
+        with self.assertRaisesRegex(net.FetchError, "offline.*warm"):
+            scryfall_tags.load(["ramp"], offline=True)
+        scryfall_tags.load(["ramp"])
+        with self.assertRaisesRegex(net.FetchError, "offline"):
+            scryfall_tags.load(["cantrip"], offline=True)          # cached, but not this tag
+        self.assertEqual(len(self.downloads), 1)
+
+    def test_falls_back_to_otag_searches_when_the_bulk_file_is_unavailable(self):
+        self.bulk_ok = False
+        out = scryfall_tags.load(["ramp", "sweeper"])
+        self.assertEqual(out, fixture_tagsets(["ramp", "sweeper"]))
+        self.assertEqual(self.cache_doc()["method"], "search")
+        self.assertTrue(all("otag%3A" in u for u in self.searches))
+        self.assertGreater(len(self.searches), 2)                  # ramp has 6 cards: three pages of two
+
+    def test_a_damaged_download_also_falls_back_to_searches(self):
+        def bad(url, path, *, source):
+            os.makedirs(os.path.dirname(path), exist_ok=True)
+            with open(path, "wb") as f:
+                f.write(b"\x1f\x8bgarbage")
+        with mock.patch.object(net, "download", bad):
+            out = scryfall_tags.load(["cantrip"])
+        self.assertEqual((out, self.cache_doc()["method"]), (fixture_tagsets(["cantrip"]), "search"))
+        self.assertEqual(os.listdir(os.path.dirname(net.cache_file("scryfall", "tags"))), ["tags.json"])
+
+    def test_a_tag_nobody_uses_is_empty_in_search_mode(self):
+        self.bulk_ok = False
+        self.assertEqual(scryfall_tags.load(["no-such-tag"]), {"no-such-tag": set()})
+
+    def test_both_sources_failing_is_an_error_without_a_cache(self):
+        self.bulk_ok = False
+        with mock.patch.object(net, "request", side_effect=net.FetchError("scryfall_tags", "u", "network error")):
+            with self.assertRaises(net.FetchError):
+                scryfall_tags.load(["ramp"])
+
+
+# ----------------------------------------------------------------------------- roles: tag sets → roles
+class RoleDefinitionTests(unittest.TestCase):
+    def test_every_role_has_tags_and_no_role_is_missing(self):
+        self.assertEqual(set(roles.ROLE_TAGS), set(roles.ROLES))
+        self.assertEqual(set(roles.LABELS), set(roles.ROLES))
+        self.assertTrue(roles.CARRYOVER <= set(roles.ROLES))
+        for role, slugs in roles.ROLE_TAGS.items():
+            self.assertTrue(slugs, role)
+
+    def test_subtractions_refer_to_real_includes(self):
+        for (role, slug), minus in roles.TAG_MINUS.items():
+            self.assertIn(slug, roles.ROLE_TAGS[role])
+            self.assertTrue(minus)
+
+    def test_all_slugs_covers_includes_subtractions_and_land_tags(self):
+        slugs = roles.all_slugs()
+        self.assertEqual(slugs, sorted(set(slugs)))
+        for needed in ("mana-rock", "cantrip", "sweeper", "tutor-land", "reanimate-self", "ramp", "overrun"):
+            self.assertIn(needed, slugs)
+
+    def test_role_sets_apply_the_subtractions_to_the_right_include_only(self):
+        tagsets = {"pure-draw": {"a", "b", "c"}, "cantrip": {"b"}, "mana-rock": {"c"}, "draw-engine": {"b", "d"},
+                   "removal": {"r", "w"}, "sweeper": {"w"}, "ramp": {"land1", "x"}}
+        ids, land_ramp = roles.role_sets(tagsets)
+        self.assertEqual(ids["draw"], {"a", "b", "d"})       # b is a cantrip but also an engine; c is a rock
+        self.assertEqual(ids["removal"], {"r"})
+        self.assertEqual(ids["wipe"], {"w"})
+        self.assertEqual(land_ramp, {"land1", "x"})
+        self.assertEqual(ids["counter"], set())              # a tag that was not loaded is just empty
+
+    def test_sample_tree_assembles_into_the_expected_roles(self):
+        ids, land_ramp = roles.role_sets(fixture_tagsets(roles.all_slugs()))
+        by_name = {o["name"]: o["oracle_id"] for o in jsonl("carddb_bulk_sample.jsonl")}
+
+        def roles_of(name):
+            return {r for r, members in ids.items() if by_name[name] in members}
+        self.assertEqual(roles_of("Sol Ring"), {"ramp"})
+        self.assertEqual(roles_of("Arcane Signet"), {"ramp"})
+        self.assertEqual(roles_of("Mind Stone"), {"ramp"})                 # a rock that can draw is still a rock
+        self.assertEqual(roles_of("Brainstorm"), set())                    # a cantrip is not card advantage
+        self.assertEqual(roles_of("Rhystic Study"), {"draw"})
+        self.assertEqual(roles_of("Skullclamp"), {"draw"})
+        self.assertEqual(roles_of("Rampant Growth"), {"ramp"})             # fetching a basic is ramp, not a tutor
+        self.assertEqual(roles_of("Demonic Tutor"), {"tutor"})
+        self.assertEqual(roles_of("Wrath of God"), {"wipe"})               # not also removal
+        self.assertEqual(roles_of("Swords to Plowshares"), {"removal"})
+        self.assertEqual(roles_of("Reanimate"), {"recursion"})
+        self.assertEqual(roles_of("Relentless Rats"), set())               # reanimates itself only
+        self.assertEqual(roles_of("Exsanguinate"), {"finisher"})
+        self.assertIn(by_name["Ancient Tomb"], land_ramp)
+
+
+class TagTests(unittest.TestCase):
+    """roles.tag with the sample tag tree standing in for scryfall_tags.load."""
+    def setUp(self):
+        roles.reset()
+        del roles.WARNINGS[:]
+        self.addCleanup(roles.reset)
+        self.addCleanup(roles.WARNINGS.clear)
+        self.db = sample_db()
+        self.loads = []
+        for patcher in (mock.patch.object(scryfall_tags, "load", self.fake_load),
+                        mock.patch.object(roles, "_today", return_value=TODAY)):
+            patcher.start()
+            self.addCleanup(patcher.stop)
+
+    def fake_load(self, tags, **kw):
+        self.loads.append((list(tags), kw))
+        return fixture_tagsets(tags)
+
+    def tag(self, *names):
+        return roles.tag(list(names), self.db)
+
+    def test_roles_by_card(self):
+        cases = {
+            "Sol Ring": {"ramp"}, "Cultivate": {"ramp"}, "Mind Stone": {"ramp"}, "Brainstorm": set(),
+            "Rhystic Study": {"draw"}, "Swords to Plowshares": {"removal"}, "Fire // Ice": {"removal"},
+            "Wrath of God": {"wipe"}, "Counterspell": {"counter"}, "Demonic Tutor": {"tutor"},
+            "Rampant Growth": {"ramp"}, "Eternal Witness": {"recursion"}, "Heroic Intervention": {"protection"},
+            "Craterhoof Behemoth": {"finisher"}, "Exsanguinate": {"finisher"}, "Forest": set(),
+        }
+        out = self.tag(*cases)
+        for name, expected in cases.items():
+            self.assertEqual(out[name], expected, name)
+
+    def test_lands_get_no_role_except_ramp_for_lands_that_make_extra_mana(self):
+        out = self.tag("Ancient Tomb", "Command Tower", "Terramorphic Expanse", "Forest")
+        self.assertEqual(out, {"Ancient Tomb": {"ramp"}, "Command Tower": set(),
+                               "Terramorphic Expanse": set(), "Forest": set()})
+
+    def test_a_modal_dfc_with_a_land_back_is_tagged_as_its_front_spell(self):
+        name = "Witch Enchanter // Witch-Blessed Meadow"
+        self.assertEqual(self.tag(name), {name: set()})
+
+    def test_only_new_cards_without_role_tags_use_the_text_fallback(self):
+        out = self.tag("Fresh Assassin", "Old Assassin")
+        self.assertEqual(out["Fresh Assassin"], {"removal"})     # released a month ago, not tagged yet
+        self.assertEqual(out["Old Assassin"], set())             # same text, but old: Scryfall's taggers left it out
+
+    def test_the_fallback_does_not_override_tags(self):
+        db = self.db
+        tagged = db.cards["Counterspell"]["oracle_id"]
+        fresh = dict(db.cards["Fresh Assassin"], oracle_id=tagged)       # a new card that does have a tag
+        self.assertEqual(roles.roles_of(fresh, roles.role_sets(fixture_tagsets(roles.all_slugs()))), {"counter"})
+
+    def test_unknown_names_get_an_empty_set_and_every_name_is_present_once(self):
+        out = self.tag("Sol Ring", "Nope", "Sol Ring", "sol ring")
+        self.assertEqual(set(out), {"Sol Ring", "Nope", "sol ring"})
+        self.assertEqual((out["Nope"], out["sol ring"]), (set(), {"ramp"}))
+
+    def test_tags_are_loaded_once_per_process_with_the_modes_passed_through(self):
+        roles.tag(["Sol Ring"], self.db, refresh=True, offline=False)
+        roles.tag(["Cultivate"], self.db)
+        self.assertEqual(len(self.loads), 1)
+        self.assertEqual(self.loads[0][0], roles.all_slugs())
+        self.assertEqual(self.loads[0][1], {"refresh": True, "offline": False})
+
+    def test_without_tag_data_every_card_falls_back_to_text_and_a_warning_is_left(self):
+        with mock.patch.object(scryfall_tags, "load", side_effect=net.FetchError("scryfall_tags", "u", "offline")):
+            out = self.tag("Old Assassin", "Hazel of the Rootbloom", "Ancient Tomb", "Command Tower", "Sol Ring")
+            self.tag("Sol Ring")
+        self.assertEqual(out["Old Assassin"], {"removal"})
+        self.assertEqual(out["Hazel of the Rootbloom"], {"ramp"})
+        self.assertEqual(out["Ancient Tomb"], {"ramp"})
+        self.assertEqual(out["Command Tower"], set())
+        self.assertEqual(len(roles.WARNINGS), 1)                   # reported once, not retried per call
+        self.assertIn("function tags unavailable", roles.WARNINGS[0])
+
+
+class TextFallbackTests(unittest.TestCase):
+    def roles(self, text, type_line="Sorcery"):
+        return roles.text_roles(rec(text, type_line))
+
+    def test_each_role_fires_on_typical_text(self):
+        cases = [
+            ("{T}: Add {G}.", "Creature — Elf", "ramp"),
+            ("Search your library for a basic land card, put it onto the battlefield tapped.", "Sorcery", "ramp"),
+            ("Search your library for up to two basic land cards, put them onto the battlefield tapped.",
+             "Sorcery", "ramp"),
+            ("You may play an additional land on each of your turns.", "Enchantment", "ramp"),
+            ("Draw two cards.", "Sorcery", "draw"),
+            ("When this creature enters, draw a card.", "Creature — Merfolk", "draw"),
+            ("Destroy target creature.", "Instant", "removal"),
+            ("Exile target nonland permanent.", "Instant", "removal"),
+            ("Test Card deals 3 damage to any target.", "Instant", "removal"),
+            ("Target creature gets -3/-3 until end of turn.", "Instant", "removal"),
+            ("Destroy all creatures.", "Sorcery", "wipe"),
+            ("Test Card deals 3 damage to each creature.", "Sorcery", "wipe"),
+            ("All creatures get -2/-2 until end of turn.", "Sorcery", "wipe"),
+            ("Counter target spell.", "Instant", "counter"),
+            ("Counter target noncreature spell unless its controller pays {2}.", "Instant", "counter"),
+            ("Counter target activated or triggered ability.", "Instant", "counter"),
+            ("Permanents you control gain hexproof and indestructible until end of turn.", "Instant", "protection"),
+            ("Target creature gains protection from the color of your choice until end of turn.",
+             "Instant", "protection"),
+            ("Target creature you control phases out.", "Instant", "protection"),
+            ("Return target creature card from your graveyard to your hand.", "Sorcery", "recursion"),
+            ("Put target creature card from a graveyard onto the battlefield under your control.",
+             "Sorcery", "recursion"),
+            ("Search your library for a card, put it into your hand, then shuffle.", "Sorcery", "tutor"),
+            ("Search your library for an artifact card, reveal it, put it into your hand.", "Sorcery", "tutor"),
+            ("Creatures you control get +3/+3 and gain trample until end of turn.", "Sorcery", "finisher"),
+            ("Each opponent loses 2 life.", "Sorcery", "finisher"),
+            ("After this main phase, there is an additional combat phase.", "Sorcery", "finisher"),
+            ("You win the game.", "Enchantment", "finisher"),
+        ]
+        for text, type_line, role in cases:
+            self.assertIn(role, self.roles(text, type_line), text)
+
+    def test_texts_that_look_similar_but_are_not_the_role(self):
+        cases = [
+            ("Search your library for a basic land card, reveal it, put it into your hand.", "tutor"),   # ramp
+            ("Search your library for up to two Forest cards.", "tutor"),
+            ("Destroy all creatures.", "removal"),                  # a wipe is not spot removal
+            ("Put a +1/+1 counter on target creature.", "counter"),
+            ("Creatures you control get +1/+1.", "finisher"),       # an anthem is not a finisher
+            ("Search your library for a creature card, reveal it, put it into your hand.", "ramp"),
+            ("Target creature gets +2/+2 until end of turn.", "removal"),
+            ("Exile target card from a graveyard.", "recursion"),
+            ("Flying", "draw"),
+        ]
+        for text, role in cases:
+            self.assertNotIn(role, self.roles(text), text)
+
+    def test_a_card_can_fill_several_roles(self):
+        self.assertEqual(self.roles("Destroy target creature. Draw a card."), {"removal", "draw"})
+
+    def test_a_land_only_ever_ramps_and_only_for_extra_mana(self):
+        self.assertEqual(roles.text_roles(rec("{T}: Add {C}{C}. Test Card deals 2 damage to you.", "Land")), {"ramp"})
+        self.assertEqual(roles.text_roles(rec("{T}: Add {B} for each Swamp you control.", "Land")), {"ramp"})
+        self.assertEqual(roles.text_roles(rec("{T}: Add one mana of any color.", "Land")), set())
+        self.assertEqual(roles.text_roles(rec("{T}: Add {G}. Draw a card.", "Land")), set())
+
+    def test_bounce_lands_and_sacrifice_lands_ramp_but_filter_lands_only_convert(self):
+        def land(text):
+            return roles.text_roles(rec(text, "Land"))
+        bounce = "When Test Card enters, return a land you control to its owner's hand. {T}: Add {B}{G}."
+        self.assertEqual(land(bounce), {"ramp"})
+        self.assertEqual(land("{T}, Sacrifice Test Card: Add {C}{C}."), {"ramp"})
+        self.assertEqual(land("{T}, Pay 1 life: Add {B}{G}."), {"ramp"})
+        # filter lands only convert mana (Viridescent Bog, Mystic Gate)
+        self.assertEqual(land("{T}: Add {C}. {1}, {T}: Add {B}{G}."), set())
+        self.assertEqual(land("{T}: Add {C}. {W/U}, {T}: Add {W}{W}, {W}{U}, or {U}{U}."), set())
+
+    def test_a_modal_dfcs_land_face_is_not_called_ramp(self):
+        mdfc = next(carddb.card_record(o) for o in jsonl("carddb_bulk_sample.jsonl")
+                    if o["name"].startswith("Witch Enchanter"))
+        self.assertEqual(roles.text_roles(mdfc), {"removal"})       # "{T}: Add {W}" is on the land back
+
+    def test_matching_ignores_case(self):
+        self.assertIn("counter", self.roles("COUNTER TARGET SPELL."))
+
+
+# ----------------------------------------------------------------------------- roles: counts and targets
+class CountsTests(unittest.TestCase):
+    def setUp(self):
+        self.db = sample_db()
+        self.role_map = {"Sol Ring": {"ramp"}, "Ancient Tomb": {"ramp"}, "Craterhoof Behemoth": {"finisher"},
+                         "Witch Enchanter // Witch-Blessed Meadow": {"removal"},
+                         "Hazel of the Rootbloom": {"ramp", "draw"},
+                         "Teferi, Temporal Archmage": set()}
+
+    def test_counts(self):
+        names = (["Sol Ring", "Ancient Tomb", "Command Tower", "Forest", "Forest", "Forest", "Hazel of the Rootbloom",
+                  "Witch Enchanter // Witch-Blessed Meadow", "Craterhoof Behemoth", "Teferi, Temporal Archmage"])
+        c = roles.counts(names, self.role_map, self.db)
+        self.assertEqual(c["land"], 5)                  # Ancient Tomb, Command Tower, three Forests; not the MDFC
+        self.assertEqual(c["mdfc_land"], 1)
+        self.assertEqual((c["ramp"], c["draw"], c["removal"], c["finisher"]), (3, 1, 1, 1))   # Hazel: both roles
+        self.assertEqual(c["topend"], 2)                # Craterhoof (8) and Teferi (6); lands never count
+        for role in roles.ROLES + ("land", "mdfc_land", "topend"):
+            self.assertIn(role, c)
+        self.assertEqual(c["wipe"] + c["counter"] + c["tutor"], 0)
+
+    def test_count_name_pairs_work_like_repeated_names(self):
+        pairs = roles.counts([(9, "Forest"), (1, "Sol Ring")], self.role_map, self.db)
+        names = roles.counts(["Forest"] * 9 + ["Sol Ring"], self.role_map, self.db)
+        self.assertEqual(pairs, names)
+        self.assertEqual((pairs["land"], pairs["ramp"]), (9, 1))
+
+    def test_another_spelling_of_a_name_is_counted_and_unknown_names_are_skipped(self):
+        c = roles.counts(["sol ring", "Not A Card"], self.role_map, self.db)
+        self.assertEqual((c["ramp"], c["land"]), (1, 0))
+
+    def test_empty(self):
+        self.assertEqual(set(roles.counts([], {}, self.db).values()), {0})
+
+
+class TargetsTests(unittest.TestCase):
+    """targets() logic, run against a frozen copy of the hand-set starting values (fixtures/
+    calibrate_previous.json), so re-calibrating commander/role_targets.json never moves these numbers."""
+
+    def setUp(self):
+        self.tmp = tempfile.mkdtemp()
+        self.addCleanup(shutil.rmtree, self.tmp, True)
+        self.path = os.path.join(self.tmp, "playstyles.json")
+        for attr, value in (("PLAYSTYLES_PATH", self.path), ("TARGETS_PATH", FROZEN_TARGETS)):
+            patcher = mock.patch.object(roles, attr, value)
+            patcher.start()
+            self.addCleanup(patcher.stop)
+
+    def playstyles(self, **styles):
+        with open(self.path, "w") as f:
+            json.dump({"playstyles": {k: {"label": k, "targets": v, "min_bracket": 1} for k, v in styles.items()}}, f)
+
+    def test_shape_and_a_bracket_3_example(self):
+        t = roles.targets(3)
+        self.assertEqual(set(t), set(roles.ROLES) | {"land", "topend"})
+        self.assertEqual(t["ramp"], {"min": 9, "target": 11, "max": 14})
+        self.assertEqual(t["land"], {"min": 34, "target": 36, "max": 38})
+        self.assertEqual(t["topend"], {"max": 7})
+        for role in roles.ROLES:
+            self.assertEqual(set(t[role]), {"min", "target", "max"})
+
+    def test_brackets_differ_in_the_expected_direction(self):
+        self.assertGreater(roles.targets(5)["counter"]["target"], roles.targets(1)["counter"]["target"])
+        self.assertGreater(roles.targets(5)["tutor"]["target"], roles.targets(2)["tutor"]["target"])
+        self.assertLess(roles.targets(5)["land"]["target"], roles.targets(1)["land"]["target"])
+        self.assertLess(roles.targets(5)["topend"]["max"], roles.targets(1)["topend"]["max"])
+
+    def test_a_bracket_outside_one_to_five_is_clamped(self):
+        self.assertEqual(roles.targets(0), roles.targets(1))
+        self.assertEqual(roles.targets(9), roles.targets(5))
+
+    def test_playstyle_deltas_shift_min_target_and_max(self):
+        self.playstyles(control={"removal": 2, "counter": 2, "wipe": 1}, graveyard={"recursion": 2})
+        base, ctl = roles.targets(3), roles.targets(3, "control")
+        self.assertEqual(ctl["removal"], {"min": 8, "target": 10, "max": 14})      # base 6/8/12
+        self.assertEqual(ctl["counter"], {"min": 2, "target": 3, "max": 8})        # base 0/1/6
+        self.assertEqual(ctl["wipe"], {"min": 2, "target": 4, "max": 6})           # base 1/3/5
+        for role in ("ramp", "draw", "land", "topend"):
+            self.assertEqual(ctl[role], base[role], role)
+
+    def test_negative_deltas_stop_at_zero_and_can_move_land_and_topend(self):
+        self.playstyles(odd={"draw": -20, "land": 1, "topend": -3, "nonsense": 4, "ramp": "lots"})
+        t, base = roles.targets(3, "odd"), roles.targets(3)
+        self.assertEqual(t["draw"], {"min": 0, "target": 0, "max": 0})
+        self.assertEqual(t["land"], {"min": 35, "target": 37, "max": 39})
+        self.assertEqual(t["topend"], {"max": 4})
+        self.assertEqual(t["ramp"], base["ramp"])                   # a delta that is not a number is ignored
+        self.assertNotIn("nonsense", t)
+
+    def test_unknown_playstyle_missing_or_damaged_file_change_nothing(self):
+        base = roles.targets(3)
+        self.assertEqual(roles.targets(3, "value"), base)              # no file at all
+        self.playstyles(control={"removal": 2})
+        self.assertEqual(roles.targets(3, "no-such-style"), base)
+        self.assertEqual(roles.targets(3, None), base)
+        with open(self.path, "w") as f:
+            f.write("{not json")
+        self.assertEqual(roles.targets(3, "control"), base)
+        with open(self.path, "w") as f:
+            json.dump(["wrong", "shape"], f)
+        self.assertEqual(roles.targets(3, "control"), base)
+
+    def test_average_lands_pull_the_land_target_toward_the_commanders_norm(self):
+        cases = [(38, 37), (31.4, 34), (36, 36), (37, 37), (20, 34), (50, 38)]   # (EDHREC average, resulting target)
+        for avg, expected in cases:
+            self.assertEqual(roles.targets(3, avg_lands=avg)["land"]["target"], expected, avg)
+        t = roles.targets(3, avg_lands=38)
+        self.assertEqual((t["land"]["min"], t["land"]["max"]), (34, 38))   # the range itself does not move
+
+    def test_average_lands_apply_after_the_playstyle(self):
+        self.playstyles(ramp_heavy={"land": 2})                      # bracket 3 land 34/36/38 → 36/38/40
+        self.assertEqual(roles.targets(3, "ramp_heavy", avg_lands=36)["land"], {"min": 36, "target": 37, "max": 40})
+        self.assertEqual(roles.targets(3, "ramp_heavy", avg_lands=44)["land"]["target"], 40)    # mean 41, capped
+
+    def test_without_blue_counterspells_are_not_needed(self):
+        for ci in ("BG", "", "WRG"):
+            c = roles.targets(5, ci=ci)["counter"]
+            self.assertEqual((c["min"], c["target"], c["max"]), (0, 0, 12), ci)
+        for ci in ("U", "UB", "WUBRG"):
+            self.assertEqual(roles.targets(5, ci=ci)["counter"], {"min": 2, "target": 6, "max": 12}, ci)
+        self.assertEqual(roles.targets(5)["counter"], {"min": 2, "target": 6, "max": 12})     # colors unknown
+
+    def test_everything_together(self):
+        self.playstyles(control={"counter": 2})
+        t = roles.targets(4, "control", avg_lands=36, ci="BR")
+        # the delta raised max to 10; no blue zeroed min and target
+        self.assertEqual(t["counter"], {"min": 0, "target": 0, "max": 10})
+        self.assertEqual(t["land"]["target"], 35)
+
+
+class TargetsFileTests(unittest.TestCase):
+    """commander/role_targets.json is data that ships with the package and is regenerated by calibrate.py: check
+    its shape, its stamps and the orderings any calibration must keep, not particular numbers."""
+    @classmethod
+    def setUpClass(cls):
+        with open(roles.TARGETS_PATH) as f:
+            cls.data = json.load(f)
+
+    def test_stamped_with_source_and_date(self):
+        self.assertTrue(self.data["source"].strip())
+        self.assertRegex(self.data["as_of"], r"^\d{4}-\d\d-\d\d$")
+
+    def test_every_bracket_has_every_role_in_order(self):
+        self.assertEqual(sorted(self.data["brackets"]), ["1", "2", "3", "4", "5"])
+        for b, row in self.data["brackets"].items():
+            self.assertEqual(set(row), set(roles.ROLES) | {"land", "topend"}, b)
+            for role, v in row.items():
+                if role == "topend":
+                    self.assertIsInstance(v, int)
+                else:
+                    self.assertEqual(len(v), 3, (b, role))
+                    self.assertLessEqual(v[0], v[1], (b, role))
+                    self.assertLessEqual(v[1], v[2], (b, role))
+
+    def test_faster_brackets_run_fewer_lands_more_tutors_and_a_lower_top_end(self):
+        b = [self.data["brackets"][str(i)] for i in range(1, 6)]
+        lands = [row["land"][1] for row in b]
+        tutors = [row["tutor"][1] for row in b]
+        topend = [row["topend"] for row in b]
+        self.assertEqual(lands, sorted(lands, reverse=True))
+        self.assertEqual(tutors, sorted(tutors))
+        self.assertEqual(topend, sorted(topend, reverse=True))
+        self.assertLess(b[4]["land"][1], b[1]["land"][1])           # cEDH runs clearly fewer lands than a precon
+
+
+if __name__ == "__main__":
+    unittest.main()

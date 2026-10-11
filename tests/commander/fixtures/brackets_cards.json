@@ -1,0 +1,296 @@
+{
+ "Rhystic Study": {
+  "name": "Rhystic Study",
+  "front": "Rhystic Study",
+  "text": "Whenever an opponent casts a spell, you may draw a card unless that player pays {1}.",
+  "gc": true,
+  "legal": "legal"
+ },
+ "Cyclonic Rift": {
+  "name": "Cyclonic Rift",
+  "front": "Cyclonic Rift",
+  "text": "Return target nonland permanent you don't control to its owner's hand. Overload {6}{U} (You may cast this spell for its overload cost. If you do, change \"target\" in its text to \"each.\")",
+  "gc": true,
+  "legal": "legal"
+ },
+ "Smothering Tithe": {
+  "name": "Smothering Tithe",
+  "front": "Smothering Tithe",
+  "text": "Whenever an opponent draws a card, that player may pay {2}. If the player doesn't, you create a Treasure token. (It's an artifact with \"{T}, Sacrifice this token: Add one mana of any color.\")",
+  "gc": true,
+  "legal": "legal"
+ },
+ "Demonic Tutor": {
+  "name": "Demonic Tutor",
+  "front": "Demonic Tutor",
+  "text": "Search your library for a card, put that card into your hand, then shuffle.",
+  "gc": true,
+  "legal": "legal"
+ },
+ "Tergrid, God of Fright // Tergrid's Lantern": {
+  "name": "Tergrid, God of Fright // Tergrid's Lantern",
+  "front": "Tergrid, God of Fright",
+  "text": "Menace Whenever an opponent sacrifices a nontoken permanent or discards a permanent card, you may put that card from a graveyard onto the battlefield under your control. // {T}: Target player loses 3 life unless they sacrifice a nonland permanent of their choice or discard a card. {3}{B}: Untap Tergrid's Lantern.",
+  "gc": true,
+  "legal": "legal"
+ },
+ "Sol Ring": {
+  "name": "Sol Ring",
+  "front": "Sol Ring",
+  "text": "{T}: Add {C}{C}.",
+  "gc": false,
+  "legal": "legal"
+ },
+ "Forest": {
+  "name": "Forest",
+  "front": "Forest",
+  "text": "({T}: Add {G}.)",
+  "gc": false,
+  "legal": "legal"
+ },
+ "Skullclamp": {
+  "name": "Skullclamp",
+  "front": "Skullclamp",
+  "text": "Equipped creature gets +1/-1. Whenever equipped creature dies, draw two cards. Equip {1}",
+  "gc": false,
+  "legal": "legal"
+ },
+ "Hazel of the Rootbloom": {
+  "name": "Hazel of the Rootbloom",
+  "front": "Hazel of the Rootbloom",
+  "text": "{T}, Pay 2 life, Tap X untapped tokens you control: Add X mana in any combination of colors. At the beginning of your end step, create a token that's a copy of target token you control. If that token is a Squirrel, instead create two tokens that are copies of it.",
+  "gc": false,
+  "legal": "legal"
+ },
+ "Chatterfang, Squirrel General": {
+  "name": "Chatterfang, Squirrel General",
+  "front": "Chatterfang, Squirrel General",
+  "text": "Forestwalk (This creature can't be blocked as long as defending player controls a Forest.) If one or more tokens would be created under your control, those tokens plus that many 1/1 green Squirrel creature tokens are created instead. {B}, Sacrifice X Squirrels: Target creature gets +X/-X until end of turn.",
+  "gc": false,
+  "legal": "legal"
+ },
+ "Pitiless Plunderer": {
+  "name": "Pitiless Plunderer",
+  "front": "Pitiless Plunderer",
+  "text": "Whenever another creature you control dies, create a Treasure token. (It's an artifact with \"{T}, Sacrifice this token: Add one mana of any color.\")",
+  "gc": false,
+  "legal": "legal"
+ },
+ "Armageddon": {
+  "name": "Armageddon",
+  "front": "Armageddon",
+  "text": "Destroy all lands.",
+  "gc": false,
+  "legal": "legal"
+ },
+ "Winter Orb": {
+  "name": "Winter Orb",
+  "front": "Winter Orb",
+  "text": "As long as this artifact is untapped, players can't untap more than one land during their untap steps.",
+  "gc": false,
+  "legal": "legal"
+ },
+ "Blood Moon": {
+  "name": "Blood Moon",
+  "front": "Blood Moon",
+  "text": "Nonbasic lands are Mountains.",
+  "gc": false,
+  "legal": "legal"
+ },
+ "Sunder": {
+  "name": "Sunder",
+  "front": "Sunder",
+  "text": "Return all lands to their owners' hands.",
+  "gc": false,
+  "legal": "legal"
+ },
+ "Boom // Bust": {
+  "name": "Boom // Bust",
+  "front": "Boom",
+  "text": "Destroy target land you control and target land you don't control. // Destroy all lands.",
+  "gc": false,
+  "legal": "legal"
+ },
+ "Desolation Angel": {
+  "name": "Desolation Angel",
+  "front": "Desolation Angel",
+  "text": "Kicker {W}{W} (You may pay an additional {W}{W} as you cast this spell.) Flying When this creature enters, destroy all lands you control. If it was kicked, destroy all lands instead.",
+  "gc": false,
+  "legal": "legal"
+ },
+ "Myojin of Infinite Rage": {
+  "name": "Myojin of Infinite Rage",
+  "front": "Myojin of Infinite Rage",
+  "text": "Myojin of Infinite Rage enters with a divinity counter on it if you cast it from your hand. Myojin of Infinite Rage has indestructible as long as it has a divinity counter on it. Remove a divinity counter from Myojin of Infinite Rage: Destroy all lands.",
+  "gc": false,
+  "legal": "legal"
+ },
+ "Rising Waters": {
+  "name": "Rising Waters",
+  "front": "Rising Waters",
+  "text": "Lands don't untap during their controllers' untap steps. At the beginning of each player's upkeep, that player untaps a land they control.",
+  "gc": false,
+  "legal": "legal"
+ },
+ "Devastating Dreams": {
+  "name": "Devastating Dreams",
+  "front": "Devastating Dreams",
+  "text": "As an additional cost to cast this spell, discard X cards at random. Each player sacrifices X lands of their choice. Devastating Dreams deals X damage to each creature.",
+  "gc": false,
+  "legal": "legal"
+ },
+ "Fall of the Thran": {
+  "name": "Fall of the Thran",
+  "front": "Fall of the Thran",
+  "text": "(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.) I — Destroy all lands. II, III — Each player returns two land cards from their graveyard to the battlefield.",
+  "gc": false,
+  "legal": "legal"
+ },
+ "Planetary Annihilation": {
+  "name": "Planetary Annihilation",
+  "front": "Planetary Annihilation",
+  "text": "Each player chooses six lands they control, then sacrifices the rest. Planetary Annihilation deals 6 damage to each creature.",
+  "gc": false,
+  "legal": "legal"
+ },
+ "Zhao, the Moon Slayer": {
+  "name": "Zhao, the Moon Slayer",
+  "front": "Zhao, the Moon Slayer",
+  "text": "Menace Nonbasic lands enter tapped. {7}: Put a conqueror counter on Zhao. As long as Zhao has a conqueror counter on him, nonbasic lands are Mountains. (They lose all other land types and abilities and have \"{T}: Add {R}.\")",
+  "gc": false,
+  "legal": "legal"
+ },
+ "Bend or Break": {
+  "name": "Bend or Break",
+  "front": "Bend or Break",
+  "text": "Each player separates all nontoken lands they control into two piles. For each player, one of their piles is chosen by one of their opponents of their choice. Destroy all lands in the chosen piles. Tap all lands in the other piles.",
+  "gc": false,
+  "legal": "legal"
+ },
+ "Wasteland": {
+  "name": "Wasteland",
+  "front": "Wasteland",
+  "text": "{T}: Add {C}. {T}, Sacrifice this land: Destroy target nonbasic land.",
+  "gc": false,
+  "legal": "legal"
+ },
+ "Stone Rain": {
+  "name": "Stone Rain",
+  "front": "Stone Rain",
+  "text": "Destroy target land.",
+  "gc": false,
+  "legal": "legal"
+ },
+ "Strip Mine": {
+  "name": "Strip Mine",
+  "front": "Strip Mine",
+  "text": "{T}: Add {C}. {T}, Sacrifice this land: Destroy target land.",
+  "gc": false,
+  "legal": "legal"
+ },
+ "Elspeth Tirel": {
+  "name": "Elspeth Tirel",
+  "front": "Elspeth Tirel",
+  "text": "+2: You gain 1 life for each creature you control. −2: Create three 1/1 white Soldier creature tokens. −5: Destroy all other permanents except for lands and tokens.",
+  "gc": false,
+  "legal": "legal"
+ },
+ "Scourglass": {
+  "name": "Scourglass",
+  "front": "Scourglass",
+  "text": "{T}, Sacrifice this artifact: Destroy all permanents except for artifacts and lands. Activate only during your upkeep.",
+  "gc": false,
+  "legal": "legal"
+ },
+ "Ajani Vengeant": {
+  "name": "Ajani Vengeant",
+  "front": "Ajani Vengeant",
+  "text": "+1: Target permanent doesn't untap during its controller's next untap step. −2: Ajani deals 3 damage to any target and you gain 3 life. −7: Destroy all lands target player controls.",
+  "gc": false,
+  "legal": "legal"
+ },
+ "Dovin Baan": {
+  "name": "Dovin Baan",
+  "front": "Dovin Baan",
+  "text": "+1: Until your next turn, up to one target creature gets -3/-0 and its activated abilities can't be activated. −1: You gain 2 life and draw a card. −7: You get an emblem with \"Your opponents can't untap more than two permanents during their untap steps.\"",
+  "gc": false,
+  "legal": "legal"
+ },
+ "Vorinclex, Voice of Hunger": {
+  "name": "Vorinclex, Voice of Hunger",
+  "front": "Vorinclex, Voice of Hunger",
+  "text": "Trample Whenever you tap a land for mana, add one mana of any type that land produced. Whenever an opponent taps a land for mana, that land doesn't untap during its controller's next untap step.",
+  "gc": false,
+  "legal": "legal"
+ },
+ "From the Ashes": {
+  "name": "From the Ashes",
+  "front": "From the Ashes",
+  "text": "Destroy all nonbasic lands. For each land destroyed this way, its controller may search their library for a basic land card and put it onto the battlefield. Then each player who searched their library this way shuffles.",
+  "gc": false,
+  "legal": "legal"
+ },
+ "Cataclysmic Gearhulk": {
+  "name": "Cataclysmic Gearhulk",
+  "front": "Cataclysmic Gearhulk",
+  "text": "Vigilance When this creature enters, each player chooses an artifact, a creature, an enchantment, and a planeswalker from among the nonland permanents they control, then sacrifices the rest.",
+  "gc": false,
+  "legal": "legal"
+ },
+ "Time Warp": {
+  "name": "Time Warp",
+  "front": "Time Warp",
+  "text": "Target player takes an extra turn after this one.",
+  "gc": false,
+  "legal": "legal"
+ },
+ "Nexus of Fate": {
+  "name": "Nexus of Fate",
+  "front": "Nexus of Fate",
+  "text": "Take an extra turn after this one. If Nexus of Fate would be put into a graveyard from anywhere, reveal Nexus of Fate and shuffle it into its owner's library instead.",
+  "gc": false,
+  "legal": "legal"
+ },
+ "Medomai the Ageless": {
+  "name": "Medomai the Ageless",
+  "front": "Medomai the Ageless",
+  "text": "Flying Whenever Medomai deals combat damage to a player, take an extra turn after this one. Medomai can't attack during extra turns.",
+  "gc": false,
+  "legal": "legal"
+ },
+ "Seedtime": {
+  "name": "Seedtime",
+  "front": "Seedtime",
+  "text": "Cast this spell only during your turn. Take an extra turn after this one if an opponent cast a blue spell this turn.",
+  "gc": false,
+  "legal": "legal"
+ },
+ "Emrakul, the Promised End": {
+  "name": "Emrakul, the Promised End",
+  "front": "Emrakul, the Promised End",
+  "text": "This spell costs {1} less to cast for each card type among cards in your graveyard. When you cast this spell, you gain control of target opponent during that player's next turn. After that turn, that player takes an extra turn. Flying, trample, protection from instants",
+  "gc": false,
+  "legal": "legal"
+ },
+ "Stranglehold": {
+  "name": "Stranglehold",
+  "front": "Stranglehold",
+  "text": "Your opponents can't search libraries. If an opponent would begin an extra turn, that player skips that turn instead.",
+  "gc": false,
+  "legal": "legal"
+ },
+ "Gerrard's Hourglass Pendant": {
+  "name": "Gerrard's Hourglass Pendant",
+  "front": "Gerrard's Hourglass Pendant",
+  "text": "Flash If a player would begin an extra turn, that player skips that turn instead. {4}, {T}, Exile Gerrard's Hourglass Pendant: Return to the battlefield tapped all artifact, creature, enchantment, and land cards in your graveyard that were put there from the battlefield this turn.",
+  "gc": false,
+  "legal": "legal"
+ },
+ "Trouble in Pairs": {
+  "name": "Trouble in Pairs",
+  "front": "Trouble in Pairs",
+  "text": "If an opponent would begin an extra turn, that player skips that turn instead. Whenever an opponent attacks you with two or more creatures, draws their second card each turn, or casts their second spell each turn, you draw a card.",
+  "gc": false,
+  "legal": "legal"
+ }
+}
