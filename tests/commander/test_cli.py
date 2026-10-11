@@ -193,13 +193,15 @@ class ParseTests(unittest.TestCase):
 
     def test_upgrade_from_a_file_or_a_precon(self):
         a = self.parse("upgrade", "deck.txt", "--commander", "A", "--commander", "B", "--max-swaps", "7",
-                       "--budget", "75.5", "--owned", "mine.txt")
+                       "--budget", "75.5", "--price-points", "25, $50.50,75", "--owned", "mine.txt")
         self.assertEqual((a.deckfile, a.precon, a.commander), ("deck.txt", None, ["A", "B"]))
-        self.assertEqual((a.max_swaps, a.budget), (7, 75.5))
+        self.assertEqual((a.max_swaps, a.budget, a.price_points), (7, 75.5, [25.0, 50.5, 75.0]))
         a = self.parse("upgrade", "--precon", "Squirreled Away", "--theme", "tokens", "--playstyle", "aristocrats")
         self.assertEqual((a.deckfile, a.precon), (None, "Squirreled Away"))
         self.assertEqual((a.theme, a.playstyle), (["tokens"], "aristocrats"))
-        self.assertEqual((a.max_swaps, a.bracket, a.budget, a.keep_fun, a.out), (15, None, None, None, None))
+        # no swap limit and no named price points unless asked for: the engine picks the steps
+        self.assertEqual((a.max_swaps, a.price_points, a.bracket, a.budget, a.keep_fun, a.out),
+                         (None, None, None, None, None, None))
 
     def test_upgrade_reads_standard_input_with_a_dash(self):
         self.assertEqual(self.parse("upgrade", "-").deckfile, "-")
@@ -250,7 +252,10 @@ class UsageErrorTests(CliCase):
                      ["build", "C", "--nonsense"], ["validate"], ["suggest", "--colors", "xyz"],
                      ["build", "C", "--budget", "-5"], ["build", "C", "--budget", "lots"],
                      ["build", "C", "--budget", "nan"], ["build", "C", "--sources", "bing"],
-                     ["upgrade", "-", "--max-swaps", "0"], ["suggest", "--limit", "x"]):
+                     ["upgrade", "-", "--max-swaps", "0"], ["suggest", "--limit", "x"],
+                     ["upgrade", "-", "--budget", "50", "--price-points", "25,lots"],
+                     ["upgrade", "-", "--budget", "50", "--price-points", "25,-5"],
+                     ["upgrade", "-", "--budget", "50", "--price-points", ","]):
             with self.subTest(argv=argv):
                 result = self.run_cli(*argv)
                 self.assertEqual(result.code, 1, result.err)
@@ -266,7 +271,8 @@ class UsageErrorTests(CliCase):
     def test_a_subcommand_help_lists_its_flags(self):
         result = self.run_cli("upgrade", "--help")
         self.assertEqual(result.code, 0)
-        for flag in ("--precon", "--budget", "--max-swaps", "--owned-precon", "--allow-combos", "--out", "--json"):
+        for flag in ("--precon", "--budget", "--max-swaps", "--price-points", "--owned-precon", "--allow-combos",
+                     "--out", "--json"):
             self.assertIn(flag, result.out)
 
     def test_main_exits_with_the_runs_code(self):
@@ -614,14 +620,16 @@ class UpgradeTests(CliCase):
         self.assertEqual(sum(n for n, _ in c.deck["cards"]), 99)
         self.assertEqual(c.deck["name"], "Test Precon")
         self.assertIs(c.db, self.db)
-        self.assertEqual((c.up_kw["budget"], c.up_kw["max_swaps"], c.up_kw["allow_combos"]), (None, 15, False))
+        self.assertEqual((c.up_kw["budget"], c.up_kw["max_swaps"], c.up_kw["price_points"], c.up_kw["allow_combos"]),
+                         (None, None, None, False))
         self.assertIs(c.up_kw["combos_fn"], self.combos_call)
 
     def test_every_flag_reaches_the_engine(self):
         owned = os.path.join(self.tmp(), "owned.txt")
         with open(owned, "w") as f:
             f.write("1 Sol Ring\n1 Mana Crypt\n1 Brainstorm\n")
-        result = self.upgrade("--bracket", "4", "--budget", "75", "--max-swaps", "9", "--theme", "tokens",
+        result = self.upgrade("--bracket", "4", "--budget", "75", "--max-swaps", "9", "--price-points", "25,50",
+                              "--theme", "tokens",
                               "--theme", "aristocrats,squirrels", "--playstyle", "aristocrats", "--fantasy-weight", "0.8",
                               "--include", "sol ring", "--exclude", "Mana Crypt", "--no-keep-fun", "--allow-combos",
                               "--owned", owned, "--owned-precon", "Test Precon", "--sources", "edhrec,edhtop16")
@@ -635,7 +643,16 @@ class UpgradeTests(CliCase):
         self.assertEqual(c.prep_kw["sources"], ("edhrec", "edhtop16"))
         self.assertIn("Brainstorm", c.prep_kw["owned"])                           # a card outside the colors too
         self.assertTrue({"Sol Ring", "Mana Crypt", "Skullclamp", "Chatterfang, Squirrel General"} <= c.prep_kw["owned"])
-        self.assertEqual((c.up_kw["budget"], c.up_kw["max_swaps"], c.up_kw["allow_combos"]), (75.0, 9, True))
+        self.assertEqual((c.up_kw["budget"], c.up_kw["max_swaps"], c.up_kw["price_points"], c.up_kw["allow_combos"]),
+                         (75.0, 9, [25.0, 50.0], True))
+
+    def test_price_points_without_a_budget_are_a_usage_error_before_anything_is_loaded(self):
+        result = self.upgrade("--price-points", "25,50")
+        self.assertEqual(result.code, 1)
+        self.assertIn("--price-points needs --budget", result.err)
+        self.assertEqual(result.out, "")
+        self.load.assert_not_called()                       # not even the card index was read
+        self.assertNotIn("upgrade", self.engine.calls)
 
     def test_the_deck_block_is_filled_in_for_a_precon(self):
         result = self.run_json("upgrade", "--precon", "Test Precon")

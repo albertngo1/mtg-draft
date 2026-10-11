@@ -4,7 +4,7 @@ arithmetic, `prepare`, `upgrade`, `build` and `suggest`.
 Everything runs on a synthetic world of cards with known scores, roles and prices (World below), so each
 assertion is a worked example rather than a snapshot of real data. Combos and prices come in through the
 `combos_fn` and `prices` arguments; providers and net are closed, so nothing here can reach the network."""
-import math, random, time, unittest
+import collections, math, random, time, unittest
 from unittest import mock
 from mtgcommander import build, carddb, net, roles, score
 from mtgcommander.providers import edhrec, edhtop16
@@ -927,12 +927,76 @@ class UpgradeTests(Isolated):
         self.assertEqual(res["roles_after"]["land"], 2)
         self.assertAlmostEqual(res["swaps"][0]["gain"], 0.3 + 1.0 - 0.1)
 
+    # --- basic lands: the two ways a long upgrade used to ruin the mana
+    CULTIVATE = ("Search your library for up to two basic land cards, reveal those cards, put one onto the "
+                 "battlefield tapped and the other into your hand, then shuffle.")
+    EVOLVING_WILDS = ("{T}, Sacrifice Evolving Wilds: Search your library for a basic land card, put it onto the "
+                      "battlefield tapped, then shuffle.")
+
+    def test_upgrade_keeps_basics_for_the_decks_land_searchers(self):
+        # Evolving Wilds (one basic) and Cultivate (two) can take three basic lands out of the library. A basic
+        # scores 0, so each of the eight two-color lands beats one; with nothing to stop it every basic went and
+        # both searchers found nothing.
+        w = World()
+        w.add("Cultivate", 0.80, None, types="Sorcery", cmc=3, cost="{2}{G}", text=self.CULTIVATE)
+        w.add("Evolving Wilds", 0.70, None, types="Land", text=self.EVOLVING_WILDS)
+        duals = [f"Dual {i}" for i in range(1, 9)]
+        for name in duals:
+            w.add(name, 0.60, None, types="Land", produced=["B", "G"], ci="BG")
+        deck = ["Cultivate", "Evolving Wilds"] + ["Forest"] * 4 + ["Swamp"] * 4
+        nine_lands = zero_targets(land={"min": 9, "target": 9, "max": 9})     # a land for a land changes nothing
+        res, _, _ = run_upgrade(w, deck, duals, targets=nine_lands)
+        kept = {name: n for n, name in res["deck_after"]["cards"]}
+        self.assertEqual(kept.get("Forest", 0) + kept.get("Swamp", 0), 3,
+                         "Evolving Wilds and Cultivate can take 3 basics, so 3 must stay in the deck")
+
+    def test_upgrade_cuts_the_basic_of_the_color_the_deck_needs_least(self):
+        # A green deck: six {G}{G} creatures and two {B} ones (12 green symbols to 2 black), with 14 Forest listed
+        # before 14 Swamp. Six colorless utility lands take six basic slots. Equal gains used to go to whichever
+        # basic came first in the list, so all six Forests went and the green deck was left with 8 green sources
+        # against 14 black.
+        w = World()
+        spells = [f"Green Beast {i}" for i in range(1, 7)] + [f"Black Imp {i}" for i in range(1, 3)]
+        for name in spells:
+            w.add(name, 0.50, None, types="Creature", cmc=2, cost="{G}{G}" if "Green" in name else "{B}")
+        utility = [f"Utility Land {i}" for i in range(1, 7)]
+        for name in utility:
+            w.add(name, 0.50, None, types="Land", produced=["C"])
+        deck = spells + ["Forest"] * 14 + ["Swamp"] * 14
+        twenty_eight_lands = zero_targets(land={"min": 28, "target": 28, "max": 28})
+        res, _, _ = run_upgrade(w, deck, utility, targets=twenty_eight_lands)
+        kept = {name: n for n, name in res["deck_after"]["cards"]}
+        self.assertEqual((kept["Forest"], kept["Swamp"]), (14, 8),
+                         "the black basics are the ones to cut: black has the most lands per colored symbol")
+
+    def test_upgrade_keeps_basics_of_every_color_for_its_searchers(self):
+        # The same green deck with Cultivate and Evolving Wilds, which can take 3 basics. Black has the most lands
+        # per symbol, so the Swamps go first; with only a total to keep, all four went and the searchers could
+        # fetch nothing but Forests. The 3 basics kept are split the way `build` splits basics (one per color,
+        # the rest by colored symbols: 13 green to 2 black), so one Swamp stays.
+        w = World()
+        w.add("Cultivate", 0.80, None, types="Sorcery", cmc=3, cost="{2}{G}", text=self.CULTIVATE)
+        w.add("Evolving Wilds", 0.70, None, types="Land", text=self.EVOLVING_WILDS)
+        spells = [f"Green Beast {i}" for i in range(1, 7)] + [f"Black Imp {i}" for i in range(1, 3)]
+        for name in spells:
+            w.add(name, 0.50, None, types="Creature", cmc=2, cost="{G}{G}" if "Green" in name else "{B}")
+        duals = [f"Dual {i}" for i in range(1, 9)]
+        for name in duals:
+            w.add(name, 0.60, None, types="Land", produced=["B", "G"], ci="BG")
+        deck = ["Cultivate", "Evolving Wilds"] + spells + ["Forest"] * 4 + ["Swamp"] * 4
+        nine_lands = zero_targets(land={"min": 9, "target": 9, "max": 9})
+        res, _, _ = run_upgrade(w, deck, duals, targets=nine_lands)
+        kept = {name: n for n, name in res["deck_after"]["cards"]}
+        self.assertEqual((kept.get("Forest", 0), kept.get("Swamp", 0)), (2, 1),
+                         "3 basics stay for the searchers, and black keeps one of them")
+
     # --- result shape
     def test_swap_records_carry_the_evidence_and_the_fills(self):
         res, ctx, _ = run_upgrade(self.world(), self.DECK, ["Staple"], max_swaps=1)
         swap = res["swaps"][0]
         self.assertEqual(set(swap), {"rank", "cut", "add", "gain", "price", "owned", "forced", "reason", "fills",
-                                     "evidence_add", "evidence_cut", "kind_add"})
+                                     "evidence_add", "evidence_cut", "kind_add", "price_point"})
+        self.assertIsNone(swap["price_point"])                    # no budget, so no price points to belong to
         self.assertEqual(swap["evidence_add"], ctx["scores"]["Staple"]["evidence"])
         self.assertEqual(swap["evidence_cut"], ctx["scores"]["Dud A"]["evidence"])
         self.assertEqual(swap["kind_add"], "builder")
@@ -940,10 +1004,10 @@ class UpgradeTests(Isolated):
 
     def test_the_result_has_every_documented_key(self):
         res, _, _ = run_upgrade(self.world(), self.DECK, ["Staple"], max_swaps=1)
-        self.assertEqual(set(res), {"command", "deck", "bracket", "budget", "spent", "spec", "swaps", "blocked",
-                                    "cheap_adds", "roles_before", "roles_after", "targets", "value_before",
-                                    "value_after", "bracket_before", "bracket_after", "deck_after", "warnings",
-                                    "sources"})
+        self.assertEqual(set(res), {"command", "deck", "bracket", "budget", "spent", "spec", "swaps",
+                                    "price_points", "blocked", "cheap_adds", "roles_before", "roles_after",
+                                    "targets", "value_before", "value_after", "bracket_before", "bracket_after",
+                                    "deck_after", "warnings", "sources"})
         self.assertEqual(set(res["deck"]), {"name", "commanders", "count", "ci"})
         self.assertEqual(res["deck_after"]["commanders"], [CMDR])
         self.assertEqual(res["bracket"], 3)
@@ -996,6 +1060,394 @@ class UpgradeSpeedTests(Isolated):
         self.assertEqual(sum(k for k, _ in deck["cards"]) + 1, 100)
         self.assertGreaterEqual(len(res["swaps"]), 10)
         self.assertLess(elapsed, 3.0, f"upgrade took {elapsed:.1f}s")
+
+    def test_no_swap_limit_and_four_price_points_is_still_fast(self):
+        # The default for a $200 budget: the price-aware sweep runs at $25, $50, $100 and $200, each as long as
+        # swaps keep beating MIN_GAIN. About 60 swaps here, a bit over half a second.
+        w = standard_world()
+        for i in range(1, 181):
+            w.add(f"Extra {i:03d}", round(0.55 - 0.002 * i, 4), ("ramp", "draw", "removal", None)[i % 4],
+                  price=1.0 + i % 7, types="Creature", cmc=3, cost="{2}{G}")
+        db = w.db()
+        deck = {"commanders": [CMDR], "cards": [(1, f"Beast {i:02d}") for i in range(1, 63)]
+                + [(1, f"Dual {i:02d}") for i in range(1, 6)] + [(16, "Forest"), (16, "Swamp")]}
+        started = time.time()
+        res = build.upgrade(make_ctx(w, db), deck, db, budget=200.0, prices=w.prices())
+        elapsed = time.time() - started
+        self.assertEqual([p["budget"] for p in res["price_points"]], [25.0, 50.0, 100.0, 200.0])
+        self.assertGreater(len(res["swaps"]), 15)                      # more than the old default cap allowed
+        self.assertLess(elapsed, 3.0, f"upgrade took {elapsed:.1f}s")
+
+
+# ----------------------------------------------------------------------------- price points
+class PricePointTests(Isolated):
+    """A budget is climbed in steps, the price points. Each step may spend up to its amount, counting what the
+    steps before it spent, and builds on the list they left: the first swaps are what a small wallet would buy,
+    and each bigger one only adds to them."""
+
+    def test_a_budget_halves_down_to_at_most_four_round_price_points(self):
+        cases = [
+            (200, [25, 50, 100, 200]),     # halves 100, 50, 25; a fourth half (12.5) would be a fifth point
+            (1000, [125, 250, 500, 1000]),
+            (75, [20, 40, 75]),            # 37.5 rounds half-up to 40, 18.75 to 20; the next half, 9.4, is under $10
+            (50, [15, 25, 50]),            # 25, then 12.5 rounds half-up (not to an even 10) to 15; 6.25 is too small
+            (30, [15, 30]),                # 15; the next half, 7.5, is under $10
+            (15, [15]),                    # half of it, 7.5, is under $10: the budget stands alone
+            (5, [5]),
+            (0, [0]),
+            (75.5, [20, 40, 75.5]),        # only the halves are rounded; the budget keeps its cents
+        ]
+        for budget, expected in cases:
+            with self.subTest(budget=budget):
+                self.assertEqual(build.default_price_points(budget), expected)
+
+    def test_named_price_points_are_sorted_once_each_and_end_at_the_budget(self):
+        ladder = build._price_ladder
+        self.assertEqual(ladder(100, [50, 25, 50]), [25, 50, 100])
+        self.assertEqual(ladder(100, [150, 100, 40]), [40, 100])      # at or over the budget: dropped
+        self.assertEqual(ladder(100, [0, -5, 40]), [40, 100])         # only amounts above $0 count
+        self.assertEqual(ladder(100, []), [100])
+        self.assertEqual(ladder(100, None), build.default_price_points(100))
+        self.assertEqual((ladder(None, [25, 50]), ladder(None, None)), ([], []))     # no budget, no steps
+
+    # Eight duds to replace and six cards to buy, each with a score and a price:
+    #   Cheap A 0.50 $2   Cheap B 0.45 $3   Mid A 0.70 $8   Mid B 0.65 $9   Dear A 0.90 $18   Dear B 0.85 $20
+    DUDS = [f"Dud {i}" for i in range(1, 9)]
+    BUYS = ["Cheap A", "Cheap B", "Mid A", "Mid B", "Dear A", "Dear B"]
+
+    def world(self):
+        w = mini(**{name: 0.0 for name in self.DUDS})
+        for name, value, price in (("Cheap A", 0.50, 2.0), ("Cheap B", 0.45, 3.0), ("Mid A", 0.70, 8.0),
+                                   ("Mid B", 0.65, 9.0), ("Dear A", 0.90, 18.0), ("Dear B", 0.85, 20.0)):
+            w.add(name, value, None, price=price)
+        return w
+
+    def upgrade(self, **kw):
+        return run_upgrade(self.world(), self.DUDS, self.BUYS, **kw)
+
+    def by_hand(self, res, ctx, db, point):
+        """What a price point should say, rebuilt without the engine's helper: apply the kept swaps found up to
+        that point, in order, to the starting list and value it."""
+        kept = [s for s in res["swaps"] if s["price_point"] is None or s["price_point"] <= point]
+        names = list(self.DUDS)
+        for s in kept:
+            names.remove(s["cut"])
+            names.append(s["add"])
+        return {"spent": round(sum(s["price"] or 0.0 for s in kept), 2),
+                "value": build.deck_value(names, ctx, db)["total"], "swaps": len(kept)}
+
+    def test_each_step_buys_within_its_price_point_and_builds_on_the_one_before(self):
+        res, ctx, db = self.upgrade(budget=40.0, price_points=[10, 25])
+        steps = {}
+        for s in res["swaps"]:
+            steps.setdefault(s["price_point"], []).append(s["add"])
+        # $10 buys Mid A and Cheap A; $25 adds Mid B and Cheap B with the $15 on top; $40 adds Dear A with $18
+        self.assertEqual({p: sorted(adds) for p, adds in steps.items()},
+                         {10.0: ["Cheap A", "Mid A"], 25.0: ["Cheap B", "Mid B"], 40.0: ["Dear A"]})
+        self.assertEqual([p["budget"] for p in res["price_points"]], [10.0, 25.0, 40.0])
+        self.assertEqual([p["spent"] for p in res["price_points"]], [10.0, 22.0, 40.0])
+        self.assertEqual([p["swaps"] for p in res["price_points"]], [2, 4, 5])
+        for p in res["price_points"]:
+            self.assertLessEqual(p["spent"], p["budget"])           # no forced swaps here, so nothing goes over
+        values = [p["value"] for p in res["price_points"]]
+        self.assertEqual(values, sorted(values))                    # more money never leaves the deck worth less
+        self.assertGreater(values[0], res["value_before"])
+
+    def test_the_summaries_equal_a_replay_of_the_kept_swaps_and_the_last_one_is_the_whole_result(self):
+        res, ctx, db = self.upgrade(budget=40.0, price_points=[10, 25])
+        for line in res["price_points"]:
+            with self.subTest(point=line["budget"]):
+                want = self.by_hand(res, ctx, db, line["budget"])
+                self.assertEqual((line["spent"], line["swaps"]), (want["spent"], want["swaps"]))
+                self.assertAlmostEqual(line["value"], want["value"])
+        last = res["price_points"][-1]
+        self.assertEqual((last["budget"], last["spent"], last["swaps"]), (40.0, res["spent"], len(res["swaps"])))
+        self.assertAlmostEqual(last["value"], res["value_after"])
+
+    def test_swaps_are_tagged_with_their_step_in_order_and_a_later_step_never_cuts_an_earlier_buy(self):
+        res, _, _ = self.upgrade(budget=40.0, price_points=[10, 25])
+        tags = [s["price_point"] for s in res["swaps"]]
+        self.assertEqual(tags, sorted(tags))
+        self.assertTrue(set(tags) <= {10.0, 25.0, 40.0})
+        bought = set()
+        for s in res["swaps"]:
+            self.assertNotIn(s["cut"], bought)
+            bought.add(s["add"])
+
+    def test_the_default_steps_are_used_when_none_are_named(self):
+        res, _, _ = self.upgrade(budget=40.0)
+        self.assertEqual([p["budget"] for p in res["price_points"]], build.default_price_points(40.0))
+        self.assertEqual([p["budget"] for p in res["price_points"]], [10.0, 20.0, 40.0])
+
+    def test_named_steps_at_or_over_the_budget_are_dropped_and_the_budget_closes_the_list(self):
+        res, _, _ = self.upgrade(budget=40.0, price_points=[60, 25, 40, 25])
+        self.assertEqual([p["budget"] for p in res["price_points"]], [25.0, 40.0])
+
+    def test_one_price_point_is_the_plain_budget_run(self):
+        # $10 is too small to halve, so the budget stands alone: a single step, which is the run `upgrade` made
+        # before steps existed. Naming that one point, or points that leave only the budget, changes nothing.
+        w = mini(**{"Dud A": 0.0, "Dud B": 0.0, "Dud C": 0.0, "Pricey": 0.9, "Cheap A": 0.5, "Cheap B": 0.5,
+                    "Cheap C": 0.5})
+        w.price_of.update({"Pricey": 10.0, "Cheap A": 2.0, "Cheap B": 2.0, "Cheap C": 2.0})
+        deck, buys = ["Dud A", "Dud B", "Dud C"], ["Pricey", "Cheap A", "Cheap B", "Cheap C"]
+        plain, _, _ = run_upgrade(w, deck, buys, budget=10.0)
+        self.assertEqual({s["add"] for s in plain["swaps"]}, {"Cheap A", "Cheap B", "Cheap C"})   # price-aware
+        self.assertEqual([p["budget"] for p in plain["price_points"]], [10.0])
+        self.assertEqual({s["price_point"] for s in plain["swaps"]}, {10.0})
+
+        def shape(res):
+            swaps = [(s["cut"], s["add"], s["gain"], s["price"]) for s in res["swaps"]]
+            return swaps, res["spent"], res["value_after"]
+
+        for points in ([10], [], [10, 50], [0, 10]):
+            with self.subTest(price_points=points):
+                same, _, _ = run_upgrade(w, deck, buys, budget=10.0, price_points=points)
+                self.assertEqual(shape(same), shape(plain))
+                self.assertEqual(same["price_points"], plain["price_points"])
+
+    def test_without_a_budget_there_are_no_steps(self):
+        res, _, _ = self.upgrade(price_points=[10, 25])             # named points mean nothing with no budget
+        self.assertEqual(res["price_points"], [])
+        self.assertTrue(res["swaps"])
+        self.assertEqual({s["price_point"] for s in res["swaps"]}, {None})
+
+    def test_the_swap_limit_counts_across_the_steps(self):
+        res, _, _ = self.upgrade(budget=40.0, price_points=[10, 25], max_swaps=3)
+        # two swaps at $10, then one at $25; the third step has nothing left to do
+        self.assertEqual([s["price_point"] for s in res["swaps"]], [10.0, 10.0, 25.0])
+        self.assertEqual([p["swaps"] for p in res["price_points"]], [2, 3, 3])
+        self.assertEqual(res["price_points"][1]["spent"], res["price_points"][2]["spent"])
+
+    def test_forced_swaps_belong_to_no_step_and_may_spend_past_a_small_first_point(self):
+        # Bracket 2 allows no Game Changers, so GC 1 must go, and the best legal replacement is the $30 Gem. That is
+        # forced, so it may use the budget ($40) whatever the first price point ($10) says. Inside that first step
+        # nothing more can be paid for, but the owned Gem still costs nothing, so it is taken; the $2 Okay waits
+        # for the second step.
+        w = mini(**{"Dud 1": 0.0, "Dud 2": 0.0, "Gem": 0.9, "Okay": 0.6, "Owned Gem": 0.55})
+        w.add("GC 1", 0.5, None, gc=True)
+        w.price_of.update({"Gem": 30.0, "Okay": 2.0, "Owned Gem": 25.0})
+        res, _, _ = run_upgrade(w, ["GC 1", "Dud 1", "Dud 2"], ["Gem", "Okay", "Owned Gem"], bracket=2,
+                                budget=40.0, price_points=[10], owned=["Owned Gem"])
+        self.assertEqual([(s["add"], s["forced"], s["price_point"]) for s in res["swaps"]],
+                         [("Gem", True, None), ("Owned Gem", False, 10.0), ("Okay", False, 40.0)])
+        self.assertEqual([(p["budget"], p["spent"], p["swaps"]) for p in res["price_points"]],
+                         [(10.0, 30.0, 2), (40.0, 32.0, 3)])          # the first line is over $10: the forced Gem
+
+    def test_a_combo_repair_that_undoes_a_swap_leaves_the_steps_true_to_the_kept_swaps(self):
+        # Combo A and Combo B are harmless one at a time and both fit inside the first step, so the repair undoes
+        # the later one (B) after the search. The step lines must describe the swaps that were kept.
+        pair = {"id": "9-9", "cards": ["Combo A", "Combo B"], "missing": [], "produces": ["Infinite mana"],
+                "bracket_tag": "R", "min_bracket": 4, "two_card": True, "infinite": True, "url": ""}
+        combos = lambda commanders, cards: {"included": [pair] if {"Combo A", "Combo B"} <= set(cards) else [],
+                                            "almost": []}
+        w = mini(**{name: 0.0 for name in self.DUDS[:5]})
+        for name, value, price in (("Combo A", 0.97, 3.0), ("Combo B", 0.96, 3.0), ("Staple", 0.90, 1.0),
+                                   ("Okay", 0.50, 2.0)):
+            w.add(name, value, None, price=price)
+        res, ctx, db = run_upgrade(w, self.DUDS[:5], ["Combo A", "Combo B", "Staple", "Okay"], budget=20.0,
+                                   price_points=[8], combos_fn=combos)
+        adds = [(s["add"], s["price_point"]) for s in res["swaps"]]
+        self.assertEqual(adds, [("Combo A", 8.0), ("Staple", 8.0), ("Okay", 20.0)])     # B was undone
+        self.assertTrue(any(x.startswith("Undid ") and "Combo B" in x for x in res["warnings"]), res["warnings"])
+        self.assertEqual([(p["budget"], p["spent"], p["swaps"]) for p in res["price_points"]],
+                         [(8.0, 4.0, 2), (20.0, 6.0, 3)])
+        for line in res["price_points"]:
+            names = list(self.DUDS[:5])
+            for s in [s for s in res["swaps"] if s["price_point"] <= line["budget"]]:
+                names.remove(s["cut"])
+                names.append(s["add"])
+            self.assertAlmostEqual(line["value"], build.deck_value(names, ctx, db)["total"])
+        self.assertAlmostEqual(res["price_points"][-1]["value"], res["value_after"])
+
+    def test_each_price_point_line_has_the_four_documented_keys(self):
+        res, _, _ = self.upgrade(budget=40.0)
+        self.assertEqual(set(res["price_points"][0]), {"budget", "spent", "value", "swaps"})
+
+
+# ----------------------------------------------------------------------------- basic lands
+class BasicLandRuleTests(Isolated):
+    """The rules that keep a long upgrade from ruining the mana: basics are kept for the cards that search for
+    them, a nonbasic land must earn a basic's slot, and the right basic is the one that goes."""
+    CULTIVATE = UpgradeTests.CULTIVATE
+    EVOLVING_WILDS = UpgradeTests.EVOLVING_WILDS
+
+    def world(self):
+        w = World()
+        w.add("Cultivate", 0.50, None, types="Sorcery", cmc=3, cost="{2}{G}", text=self.CULTIVATE)   # takes 2
+        w.add("Evolving Wilds", 0.50, None, types="Land", text=self.EVOLVING_WILDS)                    # takes 1
+        w.add("Weak Spell", 0.05, None, types="Creature", cmc=2, cost="{1}{B}")      # a creature almost nobody plays
+        w.add("Green Beast", 0.50, None, types="Creature", cmc=3, cost="{1}{G}{G}")  # two green symbols
+        w.add("Black Imp", 0.50, None, types="Creature", cmc=2, cost="{1}{B}")       # one black symbol
+        w.add("Dual Land", 0.60, None, types="Land", produced=["B", "G"], ci="BG")   # a dual builders play
+        w.add("Barely Scored Land", 0.05, None, types="Land", produced=["B", "G"], ci="BG")   # under NONBASIC_MIN
+        w.add("Utility Land", 0.00, None, types="Land", produced=["C"])              # a colorless land nobody plays
+        return w
+
+    def plan(self, w, cards, ci="BG"):
+        db = w.db()
+        plan = build.Plan(build.Model(make_ctx(w, db), db), db, ci, 3, prices={}, owned=set())
+        for name in cards:
+            plan.add(name)
+        return plan
+
+    def ok(self, plan, cut, add):
+        f = plan.m.facts
+        return plan.basics_ok(f(cut), f(add))
+
+    # --- what a card needs
+    def test_the_facts_carry_how_many_basic_lands_a_card_searches_for(self):
+        w = self.world()
+        model = build.Model(make_ctx(w, w.db()), w.db())
+        self.assertEqual([model.facts(n).fetch for n in ("Cultivate", "Evolving Wilds", "Dual Land", "Forest")],
+                         [2, 1, 0, 0])
+        self.assertEqual(model.facts("Not A Card").fetch, 0)
+
+    def test_the_plan_totals_the_basics_the_searches_and_the_symbols_of_its_cards(self):
+        w = self.world()
+        plan = self.plan(w, ["Cultivate", "Evolving Wilds", "Forest", "Forest", "Swamp", "Green Beast", "Black Imp"])
+        self.assertEqual((plan.basics, plan.basic_demand), (3, 3))
+        # Cultivate {G}, Green Beast {G}{G} and Black Imp {B}
+        self.assertEqual((plan.pips["G"], plan.pips["B"]), (3, 1))
+        self.assertEqual(plan.sources["G"], 2)
+
+    def test_the_totals_follow_every_add_remove_swap_and_clone(self):
+        w = self.world()
+        db = w.db()
+
+        def from_scratch(plan):
+            basics = sum("Basic" in db.get(n)["types"] for n in plan.names())
+            demand = sum(roles.basic_land_searches(db.get(n)) for n in plan.names())
+            pips = collections.Counter()
+            for n in plan.names():
+                if not db.get(n)["land"]:
+                    for color, v in build._pips(db.get(n), "BG").items():
+                        pips[color] += v
+            return basics, demand, +pips          # unary plus drops colors whose count fell to zero
+
+        def kept(plan):
+            return plan.basics, plan.basic_demand, +plan.pips
+
+        plan = self.plan(w, ["Cultivate", "Evolving Wilds", "Forest", "Forest", "Swamp", "Green Beast", "Black Imp"])
+        self.assertEqual(kept(plan), from_scratch(plan))
+        plan.remove("Forest")
+        plan.swap("Cultivate", "Dual Land")
+        self.assertEqual(kept(plan), from_scratch(plan))
+        other = plan.clone()
+        other.add("Swamp")
+        other.swap("Black Imp", "Evolving Wilds")
+        other.remove("Green Beast")
+        self.assertEqual(kept(other), from_scratch(other))
+        self.assertEqual(kept(plan), from_scratch(plan))              # the original did not move
+        self.assertIsNot(other.pips, plan.pips)
+
+    def test_a_filler_basic_goes_to_the_color_with_the_fewest_lands_per_colored_symbol(self):
+        w = self.world()
+        green_heavy = self.plan(w, ["Green Beast"] + ["Forest"] * 3 + ["Swamp"] * 3)
+        self.assertEqual(green_heavy.filler(), "Forest")               # 3 lands for 2 green symbols, 3 for 0 black
+        black_heavy = self.plan(w, ["Black Imp"] + ["Forest"] * 3 + ["Swamp"] * 3)
+        self.assertEqual(black_heavy.filler(), "Swamp")
+        even = self.plan(w, ["Forest", "Swamp"])
+        self.assertEqual(even.filler(), "Swamp")                       # a tie goes to the first color letter: B
+        self.assertEqual(self.plan(w, [], ci="").filler(), "Wastes")
+
+    # --- the floor
+    def test_a_basic_may_go_while_the_searchers_still_have_targets(self):
+        w = self.world()
+        # Cultivate (2) and Evolving Wilds (1) can take 3 basics
+        four = self.plan(w, ["Cultivate", "Evolving Wilds"] + ["Forest"] * 2 + ["Swamp"] * 2)
+        self.assertEqual(four.basic_demand, 3)
+        self.assertTrue(self.ok(four, "Swamp", "Dual Land"))           # 3 basics left for 3 to take
+        # ...but not a Forest: the 3 kept basics split one per color and the rest by colored symbols, and the
+        # deck's only symbol is Cultivate's {G}, so green keeps 2 of them
+        self.assertFalse(self.ok(four, "Forest", "Dual Land"))
+        three = self.plan(w, ["Cultivate", "Evolving Wilds"] + ["Forest"] * 2 + ["Swamp"])
+        self.assertFalse(self.ok(three, "Forest", "Dual Land"))        # 2 left would leave one search with no target
+
+    def test_a_deck_keeps_at_least_as_many_basics_as_it_has_colors_even_with_no_searchers(self):
+        w = self.world()
+        self.assertFalse(self.ok(self.plan(w, ["Forest", "Swamp"]), "Forest", "Dual Land"))
+        self.assertTrue(self.ok(self.plan(w, ["Forest", "Swamp", "Swamp"]), "Swamp", "Dual Land"))
+        self.assertFalse(self.ok(self.plan(w, ["Forest", "Swamp", "Swamp"]), "Forest", "Dual Land"))  # the last one
+        mono = self.plan(w, ["Forest"], ci="G")
+        self.assertFalse(self.ok(mono, "Forest", "Dual Land"))
+        self.assertTrue(self.ok(self.plan(w, ["Forest", "Forest"], ci="G"), "Forest", "Dual Land"))
+
+    def test_a_colorless_deck_needs_no_basics_unless_its_searchers_do(self):
+        w = self.world()
+        w.add("Wastes Fetch", 0.5, None, types="Sorcery", cmc=2, text=self.CULTIVATE)
+        self.assertTrue(self.ok(self.plan(w, ["Wastes"], ci=""), "Wastes", "Dual Land"))
+        self.assertFalse(self.ok(self.plan(w, ["Wastes", "Wastes", "Wastes Fetch"], ci=""), "Wastes", "Dual Land"))
+
+    def test_the_floor_counts_the_searches_of_the_card_being_added(self):
+        w = self.world()
+        plan = self.plan(w, ["Cultivate"] + ["Forest"] * 2 + ["Swamp"])      # 3 basics, 2 to take
+        self.assertTrue(self.ok(plan, "Forest", "Dual Land"))                # 2 left for 2
+        self.assertFalse(self.ok(plan, "Forest", "Evolving Wilds"))          # Wilds takes a third: 2 left for 3
+        plan.add("Swamp")
+        self.assertTrue(self.ok(plan, "Swamp", "Evolving Wilds"))            # 3 left for 3, green keeps its 2
+        self.assertFalse(self.ok(plan, "Forest", "Evolving Wilds"))          # 3 left, but only 1 of them green
+
+    def test_adding_a_searcher_by_cutting_something_else_stays_legal_even_when_the_deck_is_short(self):
+        w = self.world()
+        short = self.plan(w, ["Weak Spell", "Cultivate", "Forest", "Swamp"])      # 2 basics, 2 to take
+        self.assertTrue(self.ok(short, "Weak Spell", "Evolving Wilds"))           # a spell goes: 3 searches, 2 basics
+        self.assertTrue(self.ok(short, "Cultivate", "Evolving Wilds"))            # so does another nonbasic
+        self.assertFalse(self.ok(short, "Forest", "Evolving Wilds"))              # but a basic may not
+
+    def test_a_spell_may_take_a_basics_slot_whatever_it_scores_but_a_land_must_score_the_minimum(self):
+        w = self.world()
+        plan = self.plan(w, ["Forest", "Forest", "Swamp", "Swamp"])
+        self.assertTrue(self.ok(plan, "Forest", "Weak Spell"))
+        self.assertFalse(self.ok(plan, "Forest", "Barely Scored Land"))            # 0.05 is under NONBASIC_MIN
+        self.assertFalse(self.ok(plan, "Forest", "Utility Land"))                  # and 0.00 is not enough either
+        self.assertTrue(self.ok(plan, "Forest", "Dual Land"))
+        w.add("Just Enough Land", build.NONBASIC_MIN, None, types="Land", produced=["B", "G"], ci="BG")
+        self.assertTrue(self.ok(self.plan(w, ["Forest", "Forest", "Swamp", "Swamp"]), "Forest", "Just Enough Land"))
+
+    def test_a_swap_that_cuts_no_basic_passes_whatever_the_floor_and_the_land_score_say(self):
+        w = self.world()
+        bare = self.plan(w, ["Weak Spell", "Utility Land"])                         # not one basic
+        self.assertTrue(self.ok(bare, "Weak Spell", "Barely Scored Land"))
+        self.assertTrue(self.ok(bare, "Utility Land", "Evolving Wilds"))
+
+    # --- which basic goes
+    def test_ties_between_cuts_go_to_nonbasic_cards_first_then_to_the_color_with_the_most_lands_per_symbol(self):
+        w = self.world()
+        # Green Beast and Utility Land first (in the order they came), then the basics. Green has 3 lands for its
+        # 2 symbols, black 2 lands for none, so black has the most lands per symbol and Swamp heads the basics.
+        plan = self.plan(w, ["Green Beast", "Forest", "Forest", "Forest", "Swamp", "Swamp", "Utility Land"])
+        order = [group[0][0].name for group in plan._groups(list(plan.cards))]
+        self.assertEqual(order, ["Green Beast", "Utility Land", "Swamp", "Forest"])
+        plan = self.plan(w, ["Black Imp", "Black Imp", "Forest", "Forest", "Swamp", "Swamp", "Swamp"])
+        order = [group[0][0].name for group in plan._groups(list(plan.cards))]
+        self.assertEqual(order, ["Black Imp", "Forest", "Swamp"])               # now black is the short color
+
+    def test_a_basic_that_makes_none_of_the_decks_colors_goes_before_the_colored_ones(self):
+        w = self.world()
+        plan = self.plan(w, ["Green Beast", "Forest", "Forest", "Swamp", "Wastes"])
+        order = [group[0][0].name for group in plan._groups(list(plan.cards))]
+        self.assertEqual(order[-3:], ["Wastes", "Swamp", "Forest"])
+
+    def test_an_unscored_nonbasic_land_is_cut_before_a_basic_of_the_same_worth(self):
+        # Utility Land scores 0, like a basic, so cutting either costs the same; the utility land is listed last
+        w = self.world()
+        res, _, _ = run_upgrade(w, ["Forest"] * 4 + ["Swamp"] * 4 + ["Utility Land"], ["Dual Land"],
+                                targets=zero_targets(land={"min": 9, "target": 9, "max": 9}), max_swaps=1)
+        self.assertEqual((res["swaps"][0]["cut"], res["swaps"][0]["add"]), ("Utility Land", "Dual Land"))
+
+    def test_a_land_that_scores_under_the_minimum_does_not_take_a_basics_slot_in_an_upgrade(self):
+        w = self.world()
+        res, _, _ = run_upgrade(w, ["Forest"] * 4 + ["Swamp"] * 4, ["Barely Scored Land", "Dual Land"],
+                                targets=zero_targets(land={"min": 8, "target": 8, "max": 8}))
+        self.assertEqual([s["add"] for s in res["swaps"]], ["Dual Land"])   # 0.05 would have beaten a basic's 0
+
+    def test_a_searcher_may_replace_a_spell_in_a_deck_with_only_two_basics(self):
+        w = self.world()
+        res, _, _ = run_upgrade(w, ["Weak Spell", "Forest", "Swamp"], ["Cultivate"], max_swaps=3,
+                                targets=zero_targets(land={"min": 2, "target": 2, "max": 2}))
+        self.assertEqual([(s["cut"], s["add"]) for s in res["swaps"]], [("Weak Spell", "Cultivate")])
+        kept = {name: n for n, name in res["deck_after"]["cards"]}
+        self.assertEqual((kept["Forest"], kept["Swamp"]), (1, 1))        # the swap cut a spell, so no basic went
 
 
 # ----------------------------------------------------------------------------- build
@@ -1073,6 +1525,44 @@ class BuildTests(Isolated):
         res = build.build(make_ctx(w, db), db, prices=w.prices())
         self.assertGreater(res["basics"]["Forest"], res["basics"]["Swamp"])
         self.assertGreaterEqual(res["basics"]["Swamp"], 1)
+
+    def test_build_keeps_room_for_the_basics_its_land_searchers_take(self):
+        # Ten Cultivates take 20 basic lands out of the library. The world's 17 nonbasic lands would leave only 18
+        # basics of the 35 lands, so the nonbasic lands stop at 35 - 20 = 15, the best 15 by score.
+        w = standard_world()
+        for i in range(1, 11):
+            w.add(f"Fetch Spell {i:02d}", 0.95, None, types="Sorcery", cmc=3, cost="{2}{G}",
+                  text=UpgradeTests.CULTIVATE)
+        db = w.db()
+        res = build.build(make_ctx(w, db), db, prices=w.prices())
+        names = self.all_names(res)
+        self.assertEqual(sum(1 for n in names if n.startswith("Fetch Spell")), 10)
+        self.assertEqual(sum(roles.basic_land_searches(db.get(n)) for n in names), 20)
+        lands = [c for c in res["cards"] if c["section"] == "Lands"]
+        self.assertEqual(len(lands), 15)
+        self.assertEqual(sum(res["basics"].values()), 20)
+        self.assertEqual(res["roles"]["land"], 35)
+        self.assertEqual({c["name"] for c in lands}, {f"Dual {i:02d}" for i in range(1, 11)}
+                         | {"Dual 11", "Dual 12", "Utility 01", "Utility 02", "Utility 03"})
+
+    def test_a_searching_land_that_no_longer_fits_is_skipped_for_a_plainer_one(self):
+        # Ten Cultivates need 20 basics. Each Evolving Wilds-style land then takes a land slot AND one more basic, so
+        # after seven of them (7 lands, 27 basics) one slot of the 35 is open. An eighth would need 28 basics for its
+        # slot and cannot have it; Dual 01 searches for nothing, so it takes the last slot.
+        w = standard_world()
+        for i in range(1, 11):
+            w.add(f"Fetch Spell {i:02d}", 0.95, None, types="Sorcery", cmc=3, cost="{2}{G}",
+                  text=UpgradeTests.CULTIVATE)
+        for i in range(1, 9):
+            w.add(f"Fetch Land {i}", round(0.99 - 0.01 * i, 2), None, types="Land", text=UpgradeTests.EVOLVING_WILDS)
+        db = w.db()
+        res = build.build(make_ctx(w, db), db, prices=w.prices())
+        lands = {c["name"] for c in res["cards"] if c["section"] == "Lands"}
+        self.assertEqual({n for n in lands if n.startswith("Fetch Land")}, {f"Fetch Land {i}" for i in range(1, 8)})
+        self.assertIn("Dual 01", lands)
+        self.assertEqual(len(lands), 8)
+        self.assertEqual(sum(res["basics"].values()), 27)           # 20 for the Cultivates and 7 for the Wilds
+        self.assertEqual(res["roles"]["land"], 35)
 
     def test_a_colorless_commander_gets_wastes(self):
         w = standard_world()

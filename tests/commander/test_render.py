@@ -262,6 +262,98 @@ class UpgradeTests(unittest.TestCase, WidthMixin):
         self.result["swaps"][0]["rank"] = 7
         self.assertIn(" 7  CUT Swarmyard Massacre", render.text(self.result))
 
+    # --- price points: the budget climbed in steps
+    def stepped(self):
+        """The fixture's four swaps split over two price points: the first two found at $25, the other two at $75.
+        The first two cost $1.20 and nothing (the second is owned); the deck was worth 18.2 to start."""
+        for i, swap in enumerate(self.result["swaps"]):
+            swap["price_point"] = 25.0 if i < 2 else 75.0
+        self.result["price_points"] = [{"budget": 25.0, "spent": 1.2, "value": 18.9, "swaps": 2},
+                                       {"budget": 75.0, "spent": 42.1, "value": 21.7, "swaps": 4}]
+        return render.text(self.result).splitlines()
+
+    def test_two_price_points_get_a_short_block_of_one_line_each_before_the_swaps(self):
+        lines = self.stepped()
+        self.assertEqual(lines[2:8], [
+            "",
+            "Price points (each includes the ones above it):",
+            "  $25   spend  $1.20   value 18.9 (+0.7)   2 swaps",      # the change is from the 18.2 it started at
+            "  $75   spend $42.10   value 21.7 (+3.5)   4 swaps",
+            "",
+            "Up to $25:"])
+        self.assertTrue(lines[8].startswith(" 1  CUT Haywire Mite"))
+
+    def test_the_swap_list_has_a_divider_where_the_price_point_changes(self):
+        lines = self.stepped()
+        at = lines.index("Up to $75:")
+        self.assertEqual(lines[at - 1], "")                                  # set apart from the swap above it
+        self.assertTrue(lines[at + 1].startswith(" 3  CUT Moonstone Eulogist"))
+        # and none between swaps 1 and 2, which share a price point
+        self.assertEqual([l for l in lines if l.startswith("Up to ")], ["Up to $25:", "Up to $75:"])
+
+    def test_the_columns_line_up_whatever_the_amounts(self):
+        self.stepped()
+        self.result["price_points"] = [
+            {"budget": 50.0, "spent": 48.2, "value": 91.0, "swaps": 9},
+            {"budget": 1250.5, "spent": 1249.99, "value": 104.9, "swaps": 120}]
+        self.result["value_before"] = 79.8
+        lines = render.text(self.result).splitlines()
+        rows = lines[lines.index("Price points (each includes the ones above it):") + 1:][:2]
+        self.assertEqual(rows, ["  $50         spend    $48.20   value  91.0 (+11.2)     9 swaps",
+                                "  $1,250.50   spend $1,249.99   value 104.9 (+25.1)   120 swaps"])
+        self.assertEqual(len(rows[0]), len(rows[1]))
+        self.assertFits("\n".join(lines))
+
+    def test_forced_swaps_come_first_and_belong_to_no_price_point(self):
+        self.stepped()
+        self.result["swaps"][0].update(forced=True, owned=False, price_point=None,
+                                       reason="Bracket 3 allows up to 3 Game Changers.")
+        lines = render.text(self.result).splitlines()
+        first = next(i for i, l in enumerate(lines) if l.startswith(" 1  CUT"))
+        # straight from the block to the forced swap: there is no step above it
+        self.assertEqual(lines[first - 2:first], ["  $75   spend $42.10   value 21.7 (+3.5)   4 swaps", ""])
+        second = next(i for i, l in enumerate(lines) if l.startswith(" 2  CUT"))
+        self.assertEqual(lines[second - 2:second], ["", "Up to $25:"])      # the first swap that has a step gets one
+
+    def test_a_price_point_nothing_was_found_at_keeps_its_line_but_has_no_divider(self):
+        self.stepped()
+        self.result["price_points"].insert(1, {"budget": 50.0, "spent": 1.2, "value": 18.9, "swaps": 2})
+        lines = render.text(self.result).splitlines()
+        self.assertIn("  $50   spend  $1.20   value 18.9 (+0.7)   2 swaps", lines)
+        self.assertEqual([l for l in lines if l.startswith("Up to ")], ["Up to $25:", "Up to $75:"])
+
+    def test_one_price_point_or_none_changes_nothing(self):
+        plain = render.text(self.result)
+        self.assertNotIn("Price points", plain)
+        self.assertNotIn("Up to ", plain)
+        self.result["price_points"] = []
+        self.assertEqual(render.text(self.result), plain)
+        for swap in self.result["swaps"]:                          # a lone point is just the budget
+            swap["price_point"] = 75.0
+        self.result["price_points"] = [{"budget": 75.0, "spent": 42.1, "value": 21.7, "swaps": 4}]
+        self.assertEqual(render.text(self.result), plain)
+
+    def test_a_price_point_line_with_fields_missing_still_prints(self):
+        self.result["price_points"] = [{"budget": 25.0}, {"budget": 75.0}]
+        text = render.text(self.result)
+        self.assertIn("  $25   spend $?   value ?   0 swaps", text)
+        self.assertFits(text)
+
+    def test_a_line_without_a_value_keeps_the_columns_of_the_others(self):
+        self.stepped()
+        del self.result["price_points"][1]["value"]
+        lines = render.text(self.result).splitlines()
+        rows = lines[lines.index("Price points (each includes the ones above it):") + 1:][:2]
+        self.assertEqual(rows, ["  $25   spend  $1.20   value 18.9 (+0.7)   2 swaps",
+                                "  $75   spend $42.10   value    ?          4 swaps"])
+        self.assertEqual(len(rows[0]), len(rows[1]))
+
+    def test_json_carries_the_price_points_and_the_step_of_each_swap(self):
+        self.stepped()
+        body = json.loads(render.as_json(self.result))
+        self.assertEqual(body["price_points"], self.result["price_points"])
+        self.assertEqual([s["price_point"] for s in body["swaps"]], [25.0, 25.0, 75.0, 75.0])
+
 
 class BuildTests(unittest.TestCase, WidthMixin):
     def setUp(self):

@@ -14,7 +14,11 @@ as expected for decks built to be played out of the box; recalibrate both togeth
 Rules-text patterns are a fallback for cards Scryfall's volunteers have not tagged yet. Almost every older
 card carries some tag, and a pattern fires on ~10% of cards the volunteers deliberately left out of a role,
 so the fallback runs only for cards released in the last NEW_CARD_DAYS days that have no role tag (or for
-every card when the tag data could not be loaded at all)."""
+every card when the tag data could not be loaded at all).
+
+A card can also need something from the deck rather than fill a job in it: Cultivate and Evolving Wilds take
+basic lands out of the library, and find nothing if the deck has none left. `basic_land_searches` counts how
+many, so `upgrade` and `build` can keep enough basics in the list."""
 import datetime, json, os, re
 from . import config, net
 from .providers import scryfall_tags
@@ -103,6 +107,13 @@ TEXT_PATTERNS = {role: re.compile("|".join(f"(?:{p})" for p in pats)) for role, 
 # be the whole cost (plus sacrificing or paying life): a filter land's "{1}, {T}: Add {B}{G}" only converts.
 _BIG_LAND = re.compile(r"(?:^|[.)] )\{t\}(?:, (?:sacrifice [^:.]*|pay \d+ life))?: add "
                        r"(?:(?:\{[wubrgc]\}){2,}|[^.]* for each)")
+# One search of your own library, up to the word "card(s)": group 1 is "up to two basic land" in "search your
+# library for up to two basic land cards". Only "your library" matches, so Path to Exile's "its controller may
+# search their library" is left out. The first words of that phrase ("up to two", "a", "X") say how many.
+_LIBRARY_SEARCH = re.compile(r"search your library for ([^.:;]*?)\bcards?\b")
+_BASIC = re.compile(r"\bbasic\b")
+_HOW_MANY_FIRST = re.compile(r"(?:up to )?(a|an|one|two|three|x|that many)\b")
+_HOW_MANY = {"a": 1, "an": 1, "one": 1, "two": 2, "three": 3, "x": 2, "that many": 2}
 
 TARGETS_PATH = os.path.join(config.COMMITTED, "role_targets.json")
 PLAYSTYLES_PATH = os.path.join(config.COMMITTED, "playstyles.json")
@@ -177,6 +188,27 @@ def roles_of(rec, sets):
     if not roles and _is_new(rec):
         roles = text_roles(rec)
     return roles
+
+
+def basic_land_searches(rec):
+    """How many basic lands one copy of a card can take out of your library: every "search your library for
+    ... basic ... card(s)" in its rules text, added up. Cultivate is 2, Evolving Wilds 1, Land Tax 3. "A", "an"
+    and "one" mean 1, "two" and "three" mean 2 and 3 (also after "up to"), and "X" or "that many" is taken as 2;
+    any other wording of a basic-land search still counts 1.
+
+    Only a search for a basic land counts, and only in your own library. Three kinds of search are 0:
+    - another player's search ("its controller may search their library", Path to Exile, Assassin's Trophy);
+    - a search for any land or any card ("a land card", "a card": Expedition Map, Demonic Tutor);
+    - a search for a land type without the word "basic" ("a Forest card", "a Swamp or Forest card"). That can
+      fetch a dual land that carries the type (Overgrown Tomb is a Swamp Forest), so it needs no basic to be
+      left. Counting it would force extra basics into a deck full of fetch lands, such as a cEDH list."""
+    total = 0
+    for found in _LIBRARY_SEARCH.finditer(rec["text"].lower()):
+        target = found.group(1)
+        if _BASIC.search(target):
+            how_many = _HOW_MANY_FIRST.match(target)
+            total += _HOW_MANY[how_many.group(1)] if how_many else 1
+    return total
 
 
 def tag(names, db, *, refresh=None, offline=None):

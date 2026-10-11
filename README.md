@@ -103,7 +103,8 @@ Optimized, 5 cEDH, which is competitive tournament play; Bracket 3 unless you sa
 list's legality and bracket rules, and it will not recommend a card that breaks them.
 
 ```bash
-# Upgrade a precon: ranked cuts and adds, at most $75 on cards you don't own, leaning toward tokens
+# Upgrade a precon: ranked cuts and adds, at most $75 on cards you don't own (with what $20 and $40 buy on the
+# way up), leaning toward tokens
 python3 src/mtg-commander.py upgrade --precon "Squirreled Away" --budget 75 --theme tokens
 
 # Check a decklist file: legality, bracket rules, role counts, mana curve

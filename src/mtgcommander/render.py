@@ -455,13 +455,43 @@ def _bracket_move(result):
     return lines
 
 
+def _price_point_lines(points, start):
+    """The price-point block, one line per point with its columns lined up:
+        $50    spend $48.20   value 91.0 (+11.2)   19 swaps
+    Everything counts from the start of the upgrade, so each line includes the ones above it. `start` is the
+    deck's value before any swap; without it the change in value is left out."""
+    rows = []
+    for p in points:
+        value = p.get("value")
+        change = "" if value is None or start is None else f"{value - start:+.1f}"
+        rows.append((_budget(p["budget"]) if p.get("budget") is not None else "?", _money(p.get("spent")),
+                     "?" if value is None else f"{value:.1f}", change, _plural(p.get("swaps") or 0, "swap")))
+    w = [max(len(row[i]) for row in rows) for i in range(5)]
+    lines = ["Price points (each includes the ones above it):"]
+    for budget, spent, value, change, swaps in rows:
+        if change:
+            moved = f" ({change:>{w[3]}})"
+        else:
+            moved = " " * (w[3] + 3 if w[3] else 0)       # keep the columns when only some lines have a change
+        lines.append(f"  {budget:<{w[0]}}   spend {spent:>{w[1]}}   value {value:>{w[2]}}{moved}   {swaps:>{w[4]}}")
+    return lines
+
+
 def upgrade_report(result, verbose=False):
     deck = result.get("deck") or {}
     lines = _head(deck.get("name") or "Deck", result) + [_deck_line(deck)]
-    swaps = result.get("swaps") or []
+    swaps, points = result.get("swaps") or [], result.get("price_points") or []
+    stepped = len(points) >= 2                  # one point is just the budget: nothing to step through
+    if stepped:
+        lines += [""] + _price_point_lines(points, _value(result.get("value_before")))
     if swaps:
         lines.append("")
+        printed = None                          # the price point of the swap printed last (None: forced or none)
         for i, swap in enumerate(swaps, 1):
+            point = swap.get("price_point")
+            if stepped and point is not None and point != printed:
+                lines += ([""] if i > 1 else []) + [f"Up to {_budget(point)}:"]
+            printed = point
             lines += _swap_lines(swap.get("rank") or i, swap, verbose)
     else:
         lines += ["", f"No swaps: nothing available improves this deck within the budget and the Bracket "

@@ -32,12 +32,16 @@ All commands are run from the repo root. On Windows use `python` and `mtg-comman
    python3 src/mtg-commander.py build "<commander>" --bracket 3 --budget 150 --theme <theme>
    python3 src/mtg-commander.py suggest --theme <theme> --playstyle <style> --colors BG
    ```
+   With a budget, `upgrade` also prints price points: what the swaps up to $25, $50, ... buy on the way to the budget
+   (`--price-points 25,50,100` picks the amounts). It stops only when nothing helps or the money is gone, unless you
+   cap it with `--max-swaps N`.
    `themes [--commander NAME]` prints the menu of playstyles and themes to choose words from. Add `--owned FILE` or
    `--owned-precon NAME` for cards the player owns (they cost $0), `--include` / `--exclude` for cards to keep or avoid,
    and `--json` when you need to read a result exactly.
 
 4. **explain** — lead with the top swaps (or the deck's shape), each with its evidence line in plain words: what kind of
-   number it is, how many decks it comes from, and what role it fills. Then the roles before and after, the money spent,
+   number it is, how many decks it comes from, and what role it fills. With a budget, start from the price-point lines
+   so the player sees what each amount buys. Then the roles before and after, the money spent,
    the bracket check, anything under **Blocked**, and every warning that weakens the advice. Keep it short unless the
    player asks for the full list.
 

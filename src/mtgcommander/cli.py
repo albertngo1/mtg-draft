@@ -44,6 +44,14 @@ def _money(text):
     return value
 
 
+def _price_points(text):
+    """'25,50,100' -> [25.0, 50.0, 100.0]: the dollar amounts an upgrade is stepped through."""
+    amounts = [_money(part) for part in text.split(",") if part.strip()]
+    if not amounts:
+        raise argparse.ArgumentTypeError(f"not a list of dollar amounts: {text!r}")
+    return amounts
+
+
 def _count(text):
     try:
         value = int(text)
@@ -150,7 +158,11 @@ def build_parser():
     _deck_source(p)
     _bracket_flag(p)
     p.add_argument("--budget", type=_money, metavar="USD", help="most to spend on cards you do not own")
-    p.add_argument("--max-swaps", type=_count, default=15, metavar="N", help="most swaps to suggest (default 15)")
+    p.add_argument("--max-swaps", type=_count, default=None, metavar="N",
+                   help="most swaps to suggest (default: no limit)")
+    p.add_argument("--price-points", type=_price_points, metavar="LIST",
+                   help="dollar amounts, comma-separated, to show what the swaps buy on the way up to --budget "
+                        "(e.g. 25,50,100; default: the budget, half of it, a quarter, ...)")
     _fantasy_flags(p)
     _owned_flags(p)
     p.add_argument("--allow-combos", action="store_true", help="allow two-card combos the bracket would block")
@@ -517,7 +529,10 @@ def cmd_build(session):
 
 
 def cmd_upgrade(session):
-    a, db = session.args, session.db()
+    a = session.args
+    if a.price_points is not None and a.budget is None:
+        raise UserError("--price-points needs --budget: the price points are steps up to it")
+    db = session.db()
     name, _, deck = _load_deck(session, db)
     commanders = _need_commander(deck)
     _upgradeable(session, deck, bool(a.precon))
@@ -527,7 +542,8 @@ def cmd_upgrade(session):
     ctx = engine.prepare(commanders, spec["bracket"], spec, db, deck_cards=names, owned=_owned(session, db),
                          sources=session.enabled)
     result = engine.upgrade(ctx, dict(deck, name=name), db, budget=a.budget, max_swaps=a.max_swaps,
-                            combos_fn=spellbook.find_combos, allow_combos=a.allow_combos)
+                            price_points=a.price_points, combos_fn=spellbook.find_combos,
+                            allow_combos=a.allow_combos)
     result["command"] = "upgrade"
     result["deck"] = _deck_info(name, deck, db)
     result.setdefault("spec", spec)

@@ -464,6 +464,100 @@ class TextFallbackTests(unittest.TestCase):
         self.assertIn("counter", self.roles("COUNTER TARGET SPELL."))
 
 
+class BasicLandSearchTests(unittest.TestCase):
+    """How many basic lands a card can take from your library, read from real rules text. A deck needs that many
+    basics left or the card finds nothing. Only a search of your own library for a *basic* land counts."""
+    TWO_BASICS = ("Search your library for up to two basic land cards, reveal those cards, put one onto the "
+                  "battlefield tapped and the other into your hand, then shuffle.")
+    FETCH_FOR_A_BASIC = "Search your library for a basic land card, put it onto the battlefield tapped, then shuffle."
+
+    def searches(self, text, type_line="Sorcery"):
+        return roles.basic_land_searches(rec(text, type_line))
+
+    def test_a_card_that_fetches_basic_lands_counts_how_many_it_can_take(self):
+        cases = [
+            ("Cultivate", "Sorcery", self.TWO_BASICS, 2),
+            ("Kodama's Reach", "Sorcery — Arcane", self.TWO_BASICS, 2),
+            ("Evolving Wilds", "Land", "{T}, Sacrifice Test Card: " + self.FETCH_FOR_A_BASIC, 1),
+            ("Terramorphic Expanse", "Land", "{T}, Sacrifice Test Card: " + self.FETCH_FOR_A_BASIC, 1),
+            ("Sakura-Tribe Elder", "Creature — Snake Shaman", "Sacrifice Test Card: Search your library for a "
+             "basic land card, put that card onto the battlefield tapped, then shuffle.", 1),
+            ("Myriad Landscape", "Land", "Test Card enters tapped. {T}: Add {C}. {2}, {T}, Sacrifice Test Card: "
+             "Search your library for up to two basic land cards that share a land type, put them onto the "
+             "battlefield tapped, then shuffle.", 2),
+            ("Blighted Woodland", "Land", "{T}: Add {C}. {3}{G}, {T}, Sacrifice Test Card: Search your library for "
+             "up to two basic land cards, put them onto the battlefield tapped, then shuffle.", 2),
+            ("Land Tax", "Enchantment", "At the beginning of your upkeep, if an opponent controls more lands than "
+             "you, you may search your library for up to three basic land cards, reveal them, put them into your "
+             "hand, then shuffle.", 3),
+            ("Boundless Realms", "Sorcery", "Search your library for up to X basic land cards, where X is the "
+             "number of lands you control. Put those cards onto the battlefield tapped, then shuffle.", 2),
+        ]
+        for name, type_line, text, expected in cases:
+            with self.subTest(card=name):
+                self.assertEqual(self.searches(text, type_line), expected)
+
+    def test_a_search_for_a_land_type_without_the_word_basic_counts_nothing(self):
+        # These can fetch a dual land that carries the type (Overgrown Tomb is a Swamp Forest), so they need no
+        # basic left in the deck; counting them would force extra basics into a deck full of fetch lands.
+        cases = [
+            ("Nature's Lore", "Sorcery", "Search your library for a Forest card, put that card onto the "
+             "battlefield, then shuffle."),
+            ("Farseek", "Sorcery", "Search your library for a Plains, Island, Swamp, or Mountain card, put it "
+             "onto the battlefield tapped, then shuffle."),
+            ("Verdant Catacombs", "Land", "{T}, Pay 1 life, Sacrifice Test Card: Search your library for a Swamp "
+             "or Forest card, put it onto the battlefield, then shuffle."),
+            ("Binding the Old Gods", "Enchantment — Saga", "I — Destroy target nonland permanent an opponent "
+             "controls. II — Search your library for a Forest card, put it onto the battlefield tapped, then "
+             "shuffle. III — Creatures you control gain deathtouch until end of turn."),
+            ("Skyshroud Claim", "Sorcery", "Search your library for up to two Forest cards, put them onto the "
+             "battlefield, then shuffle."),
+        ]
+        for name, type_line, text in cases:
+            with self.subTest(card=name):
+                self.assertEqual(self.searches(text, type_line), 0)
+
+    def test_a_search_of_another_players_library_or_for_any_land_or_card_counts_nothing(self):
+        cases = [
+            ("Path to Exile", "Instant", "Exile target creature. Its controller may search their library for a "
+             "basic land card, put that card onto the battlefield tapped, then shuffle."),
+            ("Assassin's Trophy", "Instant", "Destroy target permanent an opponent controls. Its controller may "
+             "search their library for a basic land card, put it onto the battlefield, then shuffle."),
+            ("Ghost Quarter", "Land", "{T}: Add {C}. {T}, Sacrifice Test Card: Destroy target land. Its "
+             "controller may search their library for a basic land card, put it onto the battlefield tapped, "
+             "then shuffle."),
+            ("Expedition Map", "Artifact", "{2}, {T}, Sacrifice Test Card: Search your library for a land card, "
+             "reveal it, put it into your hand, then shuffle."),
+            ("Demonic Tutor", "Sorcery", "Search your library for a card, put that card into your hand, then "
+             "shuffle."),
+        ]
+        for name, type_line, text in cases:
+            with self.subTest(card=name):
+                self.assertEqual(self.searches(text, type_line), 0)
+
+    def test_every_search_in_the_text_is_added_up(self):
+        # A made-up card with two searches: one basic land when it enters, up to two when it dies.
+        text = ("When Test Card enters, search your library for a basic land card, put it onto the battlefield "
+                "tapped, then shuffle. When Test Card dies, search your library for up to two basic land cards, "
+                "reveal them, put them into your hand, then shuffle.")
+        self.assertEqual(self.searches(text, "Creature — Elemental"), 3)
+
+    def test_how_many_is_read_from_the_count_word(self):
+        for how_many, expected in (("a", 1), ("an", 1), ("one", 1), ("two", 2), ("up to two", 2), ("three", 3),
+                                   ("up to three", 3), ("X", 2), ("up to X", 2), ("that many", 2)):
+            with self.subTest(how_many=how_many):
+                text = f"Search your library for {how_many} basic land cards, put them into your hand."
+                self.assertEqual(self.searches(text), expected)
+
+    def test_a_basic_land_search_in_words_the_count_list_lacks_still_counts_one(self):
+        self.assertEqual(self.searches("Search your library for up to four basic land cards, then shuffle."), 1)
+
+    def test_a_card_with_no_search_or_a_plain_land_counts_nothing(self):
+        self.assertEqual(self.searches("Draw two cards.", "Sorcery"), 0)
+        self.assertEqual(self.searches("{T}: Add {C}.", "Land"), 0)
+        self.assertEqual(self.searches("", "Basic Land — Forest"), 0)
+
+
 # ----------------------------------------------------------------------------- roles: counts and targets
 class CountsTests(unittest.TestCase):
     def setUp(self):
