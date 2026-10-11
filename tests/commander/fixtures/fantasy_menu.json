@@ -1,0 +1,14 @@
+{
+  "playstyles": [
+    {"slug": "combat", "label": "Combat", "description": "Win by attacking with efficient creatures.", "themes": ["aggro"], "min_bracket": 1},
+    {"slug": "control", "label": "Control", "description": "Win late by answering what opponents do.", "themes": ["control"], "min_bracket": 1},
+    {"slug": "stax", "label": "Stax", "description": "Win by restricting what opponents can do.", "themes": ["stax"], "min_bracket": 4},
+    {"slug": "value", "label": "Value", "description": "Play a well-rounded deck.", "themes": [], "min_bracket": 1}
+  ],
+  "themes": [
+    {"slug": "tokens", "label": "Tokens", "count": 1457},
+    {"slug": "squirrels", "label": "Squirrels", "count": 900},
+    {"slug": "aristocrats", "label": "Aristocrats", "count": 700},
+    {"slug": "plus-1-plus-1-counters", "label": "+1/+1 Counters", "count": 650}
+  ]
+}

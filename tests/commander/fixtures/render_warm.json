@@ -1,0 +1,15 @@
+{
+ "command": "warm",
+ "commanders": ["Hazel of the Rootbloom"],
+ "bracket": 3,
+ "themes": ["tokens"],
+ "fetched": [
+  {"source": "scryfall", "what": "card index (35,012 cards)", "cache": "fresh", "fetched": "2026-10-09T04:00:00Z"},
+  {"source": "edhrec", "what": "all-bracket page (12,321 decks)", "cache": "network", "fetched": "2026-10-11T09:12:44Z"},
+  {"source": "edhrec", "what": "Bracket 3 page (2,310 decks)", "cache": "network", "fetched": "2026-10-11T09:12:46Z"},
+  {"source": "edhrec", "what": "tokens page for this commander (1,457 decks)", "cache": "stale", "fetched": "2026-10-01T09:00:00Z"},
+  {"source": "edhtop16", "what": "tournament entries (40 with decklists)", "cache": "network", "fetched": "2026-10-11T09:13:30Z"}
+ ],
+ "warnings": ["edhrec: no page for the Bracket 3 tokens combination; skipped."],
+ "sources": {"edhrec": {"fetched": "2026-10-11T09:12:44Z", "cache": "network", "age_days": 0.0}}
+}

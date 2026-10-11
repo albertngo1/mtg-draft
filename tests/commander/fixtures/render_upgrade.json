@@ -1,0 +1,61 @@
+{
+ "command": "upgrade",
+ "deck": {"name": "Squirreled Away", "commanders": ["Hazel of the Rootbloom"], "count": 100, "ci": "BG"},
+ "bracket": 3,
+ "budget": 75.0,
+ "spent": 42.1,
+ "spec": {"themes": ["tokens"], "playstyle": "aristocrats", "include": [], "exclude": [], "weight": 0.5,
+          "keep_fun": true, "bracket": 3, "text": null},
+ "swaps": [
+  {"rank": 1, "cut": "Haywire Mite", "add": "Ashnod's Altar", "gain": 0.42, "price": 1.2, "owned": false,
+   "forced": false, "reason": "", "fills": ["ramp"],
+   "evidence_add": "in 38% of 2,310 Bracket 3 Hazel decks (all brackets 35%, synergy +14%); tokens decks +9%",
+   "evidence_cut": "in 3% of 2,310 Bracket 3 Hazel decks", "kind_add": "builder"},
+  {"rank": 2, "cut": "Poison-Tip Archer", "add": "Blood Artist", "gain": 0.31, "price": 2.4, "owned": true,
+   "forced": false, "reason": "", "fills": ["finisher", "draw"],
+   "evidence_add": "in 31% of 2,310 Bracket 3 Hazel decks (synergy +22%)",
+   "evidence_cut": "in 5% of 2,310 Bracket 3 Hazel decks", "kind_add": "builder"},
+  {"rank": 3, "cut": "Moonstone Eulogist", "add": "Demonic Tutor", "gain": 0.27, "price": 38.5, "owned": false,
+   "forced": false, "reason": "", "fills": ["tutor"],
+   "evidence_add": "in 24% of 2,310 Bracket 3 Hazel decks; 41% of 284 tournament decks",
+   "evidence_cut": "no deck data", "kind_add": "builder"},
+  {"rank": 4, "cut": "Swarmyard Massacre", "add": "Village Rites", "gain": 0.12, "price": 0.15, "owned": false,
+   "forced": false, "reason": "", "fills": ["draw"], "evidence_add": "in 19% of 2,310 Bracket 3 Hazel decks",
+   "evidence_cut": "in 6% of 2,310 Bracket 3 Hazel decks", "kind_add": "builder"}
+ ],
+ "blocked": [
+  {"card": "Pitiless Plunderer", "reason": "completes a two-card infinite combo with Chatterfang, Squirrel General (infinite mana; Commander Spellbook rates it for Bracket 4 or higher, and Bracket 3 allows two-card combos only late in the game)"},
+  {"card": "Ruination", "reason": "mass land denial, which Bracket 3 does not allow"}
+ ],
+ "cheap_adds": [
+  {"card": "Mind Stone", "gain": 0.09, "price": 0.3},
+  {"card": "Village Rites", "gain": 0.12, "price": 0.15}
+ ],
+ "roles_before": {"land": 36, "mdfc_land": 0, "ramp": 9, "draw": 8, "removal": 7, "wipe": 3, "counter": 0,
+                  "protection": 2, "recursion": 3, "tutor": 0, "finisher": 3, "topend": 5},
+ "roles_after": {"land": 36, "mdfc_land": 0, "ramp": 11, "draw": 10, "removal": 5, "wipe": 3, "counter": 0,
+                 "protection": 2, "recursion": 3, "tutor": 1, "finisher": 4, "topend": 5},
+ "targets": {"land": {"min": 34, "target": 36, "max": 38}, "ramp": {"min": 9, "target": 11, "max": 14},
+             "draw": {"min": 8, "target": 10, "max": 14}, "removal": {"min": 6, "target": 8, "max": 12},
+             "wipe": {"min": 1, "target": 3, "max": 5}, "counter": {"min": 0, "target": 0, "max": 6},
+             "protection": {"min": 1, "target": 3, "max": 6}, "recursion": {"min": 1, "target": 3, "max": 6},
+             "tutor": {"min": 0, "target": 2, "max": 4}, "finisher": {"min": 2, "target": 3, "max": 6},
+             "topend": {"max": 7}},
+ "value_before": 18.2,
+ "value_after": 21.7,
+ "bracket_before": {"bracket": 3, "ok": true, "violations": [], "game_changers": [], "gc_max": 3,
+                    "mass_land_denial": [], "extra_turns": [], "two_card_combos": [], "estimated": 2, "notes": []},
+ "bracket_after": {"bracket": 3, "ok": true, "violations": [], "game_changers": ["Demonic Tutor"], "gc_max": 3,
+                   "mass_land_denial": [], "extra_turns": [], "two_card_combos": [], "estimated": 3, "notes": []},
+ "deck_after": {"commanders": ["Hazel of the Rootbloom"],
+                "cards": [[1, "Arcane Signet"], [1, "Ashnod's Altar"], [1, "Blood Artist"], [1, "Demonic Tutor"],
+                          [1, "Village Rites"], [17, "Forest"], [17, "Swamp"]]},
+ "warnings": ["edhtop16: only 40 tournament entries for Hazel of the Rootbloom, so its correction stays small at Bracket 3."],
+ "sources": {
+  "edhrec": {"fetched": "2026-10-11T09:12:44Z", "cache": "network", "age_days": 0.0},
+  "edhtop16": {"fetched": "2026-10-10T18:00:02Z", "cache": "fresh", "age_days": 0.6},
+  "spellbook": {"fetched": "2026-10-11T09:13:10Z", "cache": "network", "age_days": 0.0},
+  "scryfall": {"fetched": "2026-10-09T04:00:00Z", "cache": "fresh", "age_days": 2.2},
+  "mtgjson": {"fetched": "2026-10-01T12:00:00Z", "cache": "fresh", "age_days": 10.0}
+ }
+}

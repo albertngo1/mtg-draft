@@ -1,0 +1,19 @@
+{
+ "command": "themes",
+ "commander": "Hazel of the Rootbloom",
+ "commanders": ["Hazel of the Rootbloom"],
+ "playstyles": [
+  {"slug": "combat", "label": "Combat", "description": "Win by attacking with efficient creatures, combat tricks and a way to finish.", "themes": ["aggro"], "min_bracket": 1},
+  {"slug": "go-wide", "label": "Go-wide", "description": "Win with many small creatures and tokens, pumped all at once.", "themes": ["tokens"], "min_bracket": 1},
+  {"slug": "stax", "label": "Stax", "description": "Win by restricting what opponents can do with lock pieces you can play around.", "themes": ["stax"], "min_bracket": 4},
+  {"slug": "value", "label": "Value", "description": "Play a well-rounded deck that wins through card quality and steady advantage.", "themes": [], "min_bracket": 1}
+ ],
+ "themes": [
+  {"slug": "tokens", "label": "Tokens", "count": 1457},
+  {"slug": "aristocrats", "label": "Aristocrats", "count": 1140},
+  {"slug": "plus-1-plus-1-counters", "label": "+1/+1 Counters", "count": 310},
+  {"slug": "squirrels", "label": "Squirrels", "count": null}
+ ],
+ "warnings": [],
+ "sources": {"edhrec": {"fetched": "2026-10-11T09:12:44Z", "cache": "network", "age_days": 0.0}}
+}
