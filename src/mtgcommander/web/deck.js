@@ -365,8 +365,9 @@ function suggestionsTab(app, deck) {
   return wrap;
 }
 
-/** A price point is money still to spend on top of what the version has spent: "Up to $14.57 more". */
-const upTo = (point) => `Up to ${ui.dollars(point.budget)} more`;
+/** A price point is money still to spend on top of what the version has spent: "Up to $14.57 more". Once the budget is
+ *  used up the search has $0, so its one point holds only swaps with cards the player already owns, and says so. */
+const upTo = (point) => (point.budget > 0 ? `Up to ${ui.dollars(point.budget)} more` : "With cards you own");
 
 /** Why no swap is offered: none beats the list within what is left, or, with the budget used up, the money is the limit. */
 function nothingToSuggestText(result) {
