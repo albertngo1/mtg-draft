@@ -1,4 +1,4 @@
-"""Command line for mtg-commander: eight commands, one set of shared steps.
+"""Command line for mtg-commander: nine commands, one set of shared steps.
 
 Why it is thin: scoring and deck search live in score.py and build.py, formatting lives in render.py, and the
 data lives behind carddb, decklist and the providers. This module only turns arguments into calls and results
@@ -10,9 +10,10 @@ Exit codes: 0 success; 1 a mistake the user can fix (unknown card or precon, bad
 printed; 2 data this run cannot do without is unavailable (offline with nothing cached, or the site is down).
 argparse itself exits 2 on a bad flag, so `_Parser` turns that into 1.
 
-`--json` prints render.as_json(result) and nothing else on stdout; progress, notes and errors go to stderr."""
-import argparse, datetime, importlib, math, os, sys
-from . import brackets, carddb, config, decklist, fantasy, net, providers, render, roles
+`--json` prints render.as_json(result) and nothing else on stdout; progress, notes and errors go to stderr.
+`serve` is the one command that does not end with a report: it runs the deck pages' server until Ctrl-C."""
+import argparse, datetime, importlib, math, os, sys, time
+from . import brackets, carddb, config, decklist, decks, fantasy, net, providers, render, roles
 from .providers import archidekt, edhrec, edhtop16, scryfall_tags, spellbook
 
 OK, USER_ERROR, UNAVAILABLE = 0, 1, 2
@@ -59,6 +60,16 @@ def _count(text):
         raise argparse.ArgumentTypeError(f"not a whole number: {text!r}")
     if value < 1:
         raise argparse.ArgumentTypeError(f"must be 1 or more, not {value}")
+    return value
+
+
+def _port(text):
+    try:
+        value = int(text)
+    except ValueError:
+        raise argparse.ArgumentTypeError(f"not a port number: {text!r}")
+    if not 0 <= value <= 65535:
+        raise argparse.ArgumentTypeError(f"a port is a number from 0 to 65535, not {value}")
     return value
 
 
@@ -175,10 +186,22 @@ def build_parser():
 
     p = command("stats", "show every metric of a deck: power, interaction, mana, playstyle, win plan and money")
     _deck_source(p)
+    p.add_argument("--version", metavar="PLAYER/ID",
+                   help="a saved version (see `serve`) instead of a file or precon: its bracket, themes, playstyle and "
+                        "owned precons come from the version, and each number is shown beside its base deck's")
     _bracket_flag(p)
     _fantasy_flags(p, cards=False)
     _owned_flags(p)
     p.add_argument("-v", "--verbose", action="store_true", help="show how each number was worked out")
+
+    p = command("serve", "run the local server for the deck pages (saved decks, with every metric after each change)")
+    p.add_argument("--host", default=config.SERVE_HOST, metavar="ADDRESS",
+                   help=f"the address to listen on (default {config.SERVE_HOST}: this computer only); use this "
+                        "computer's Tailscale address to reach it from a phone")
+    p.add_argument("--port", type=_port, default=config.SERVE_PORT, metavar="N",
+                   help=f"the port to listen on (default {config.SERVE_PORT})")
+    p.add_argument("--decks", metavar="DIR",
+                   help="the folder of saved decks (default: commander/decks in the repo, or MTG_COMMANDER_DECKS)")
 
     p = command("warm", "download everything for a commander ahead of time (for --offline)")
     p.add_argument("commander", metavar="COMMANDER")
@@ -615,12 +638,51 @@ def cmd_check(session):
                              "curve": _curve(cards, db)})
 
 
+STATS_VERSION_CLASHES = ("deckfile", "precon", "commander", "bracket", "theme", "playstyle", "fantasy",
+                         "fantasy_weight", "keep_fun", "owned", "owned_precon")
+
+
+def _stats_of_version(session, db):
+    """`stats --version PLAYER/ID`: the metrics of a saved version, worked out by the same code the deck pages use
+    (serve.App), so the numbers agree with the pages. The version holds its own bracket, themes, playstyle and owned
+    precons, so none of those flags may be given beside it."""
+    a = session.args
+    clash = ["a DECKFILE" if name == "deckfile" else "--" + name.replace("_", "-")
+             for name in STATS_VERSION_CLASHES if getattr(a, name, None) is not None]
+    if clash:
+        raise UserError("--version takes the deck and its settings from the saved version, so it cannot be combined "
+                        f"with {', '.join(clash)}")
+    player, slash, version_id = a.version.partition("/")
+    if not (player and slash and version_id):
+        raise UserError(f"--version takes PLAYER/ID, for example andy/squirrels-go-wide, not {a.version!r}")
+    serve = _engine("serve", "stats")
+    app = serve.App(db, config.DECKS, offline=net.MODE["offline"], sources=session.enabled, web=None,
+                    switches=serve.Switches())
+    session.progress(f"working out the metrics of {a.version}")
+    try:
+        result = app.stats_result(player, version_id)
+    except decks.DeckError as e:
+        raise UserError(e.message)
+    except ValueError as e:                              # a deck file that cannot be read says which
+        raise UserError(str(e))
+    return _finish(session, result)
+
+
 def cmd_stats(session):
     """Every metric of one deck (metrics.py). It reads the same inputs `upgrade` does (the evidence for the
     commander, the roles, the targets) plus the attribute tags, and asks `spellbook.combos_for`, which answers from
     the local combo index and falls back to the API. Cards you own (--owned, --owned-precon) cost $0; the deck's
-    own cards do not, so the cost to buy is what the whole list would cost you."""
+    own cards do not, so the cost to buy is what the whole list would cost you. Cards are priced at their cheapest
+    printing, as `upgrade` prices them (carddb.deck_prices), so the cost to buy of the list an upgrade made is what
+    the upgrade spent.
+
+    With --version it shows a saved version instead (see _stats_of_version)."""
     a, db = session.args, session.db()
+    if bool(a.deckfile) + bool(a.precon) + bool(a.version) != 1:
+        raise UserError("give a DECKFILE (use - for standard input), --precon NAME or --version PLAYER/ID, one of the "
+                        "three")
+    if a.version:
+        return _stats_of_version(session, db)
     name, _, deck = _load_deck(session, db)
     commanders = _need_commander(deck)
     _upgradeable(session, deck, bool(a.precon))
@@ -632,6 +694,8 @@ def cmd_stats(session):
     attrs = roles.attributes(names, db)
     if scryfall_tags.INFO:
         session.add_source("scryfall_tags", scryfall_tags.INFO.get("fetched"), scryfall_tags.INFO.get("cache"))
+    session.progress("looking up the cheapest prices")
+    prices = carddb.deck_prices(names + commanders, db)
     combos = None
     try:
         copies = [card for n, card in deck["cards"] for _ in range(n)]
@@ -643,9 +707,69 @@ def cmd_stats(session):
         session.warn(f"Combos were not checked: {e.source} is unavailable ({e.reason}).")
     result = _engine("metrics", "stats").compute(ctx, db, deck["cards"], commanders=commanders,
                                                  attrs=attrs if roles.attributes_loaded() else None,
-                                                 combos=combos, owned=owned)
+                                                 combos=combos, owned=owned, prices=prices)
     result.update(command="stats", deck=_deck_info(name, deck, db), bracket=spec["bracket"], spec=spec)
     return _finish(session, result, ctx)
+
+
+# ----------------------------------------------------------------------------- serve
+def _serve_banner(host, port, root):
+    """What `serve` prints once it is listening: where to open it, how to reach it from a phone, and that there is no
+    login."""
+    everywhere = host in ("0.0.0.0", "::", "")
+    lines = ["mtg-commander deck server is running.", ""]
+    if host in ("127.0.0.1", "localhost", "::1"):
+        lines += [f"  Open it on this computer:  http://{host}:{port}/", f"  Saved decks are in:        {root}", "",
+                  "To reach it from your phone over Tailscale, either:",
+                  f"  - leave it running and run Tailscale's own `tailscale serve --bg --https=8443 {port}`, then open",
+                  "    https://<this computer's name>.<your tailnet>.ts.net:8443/ on the phone (`tailscale serve status`",
+                  "    prints it; `tailscale serve --https=8443 off` stops it). Port 8443 leaves alone any site this",
+                  "    computer already serves at its plain Tailscale address; or",
+                  "  - stop it and start it again with --host set to this computer's Tailscale address",
+                  "    (`tailscale ip -4` prints it), for example `serve --host 100.101.102.103`, then open",
+                  f"    http://100.101.102.103:{port}/ on the phone."]
+    elif everywhere:
+        lines += [f"  Listening on port {port} of every network this computer is on.",
+                  f"  From another device, open http://<this computer's address>:{port}/",
+                  f"  Saved decks are in:  {root}", "", "  Use this only on a network you trust."]
+    else:
+        lines += [f"  Listening on {host}:{port}. On your phone, open http://{host}:{port}/",
+                  f"  Saved decks are in:  {root}"]
+    lines += ["", "There is no login: anyone who can reach this address can change your decks. On Tailscale",
+              "that means only your own devices. Run one server at a time, since the deck files are not locked",
+              "between programs.", "Press Ctrl-C to stop."]
+    return "\n".join(lines)
+
+
+def _log_line(line):
+    print(f"{time.strftime('%H:%M:%S')} {line}", file=sys.stderr, flush=True)
+
+
+def cmd_serve(session):
+    """Run the deck pages' server (serve.py) until Ctrl-C. `--refresh` means "download a deck's data again when the deck
+    is first opened", not "on every tap", so it is handed to the server and switched off here. There is no result to
+    print: the address and the warning about having no login are printed once, when the server is listening."""
+    a = session.args
+    db = session.db()
+    serve = _engine("serve", "serve")
+    refresh, net.MODE["refresh"] = net.MODE["refresh"], False
+    try:
+        app = serve.App(db, a.decks or config.DECKS, offline=net.MODE["offline"], refresh=refresh,
+                        sources=session.enabled, log=_log_line)
+        server = serve.make_server(app, a.host, a.port)
+    except ValueError as e:                              # a test switch with a value that is not a number
+        raise UserError(str(e))
+    except OSError as e:
+        raise UserError(f"cannot listen on {a.host}:{a.port}: {e.strerror or e}")
+    _emit(_serve_banner(a.host, server.server_address[1], app.root))
+    try:
+        server.serve_forever()
+    except KeyboardInterrupt:
+        pass
+    finally:
+        server.server_close()
+        app.close(timeout=1.0)                           # a download under way is abandoned, not waited for
+    print("stopped.", file=sys.stderr)
 
 
 def cmd_validate(session):
@@ -803,7 +927,7 @@ def cmd_warm(session):
 
 
 COMMANDS = {"themes": cmd_themes, "suggest": cmd_suggest, "build": cmd_build, "upgrade": cmd_upgrade,
-            "check": cmd_check, "stats": cmd_stats, "warm": cmd_warm, "validate": cmd_validate}
+            "check": cmd_check, "stats": cmd_stats, "serve": cmd_serve, "warm": cmd_warm, "validate": cmd_validate}
 
 
 # ----------------------------------------------------------------------------- entry points
@@ -820,7 +944,8 @@ def run(argv=None):
     net.configure(refresh=args.refresh or None, offline=args.offline or None)
     try:
         result = COMMANDS[args.command](Session(args))
-        _emit(render.as_json(result) if args.json else render.text(result, verbose=getattr(args, "verbose", False)))
+        if result is not None:                            # `serve` prints as it runs and has no report
+            _emit(render.as_json(result) if args.json else render.text(result, verbose=getattr(args, "verbose", False)))
         return OK
     except UserError as e:
         print(f"error: {e}", file=sys.stderr)

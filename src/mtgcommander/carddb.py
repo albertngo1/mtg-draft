@@ -14,7 +14,8 @@ their own) and to its Scryfall page, so the deck pages can show a card without a
 
 Prices: the index holds the default printing's price. `cheapest_prices` asks Scryfall for the cheapest
 printing of the few cards a recommendation needs (`prefer:usd-low`, checked against the minimum over all
-printings)."""
+printings). `deck_prices` is the one way to price a deck's cards: `upgrade` charges these prices, and `stats` and
+the deck pages show them, so the cost to buy a deck agrees with what the upgrade that made it spent."""
 import difflib, gzip, json, os, re, time, unicodedata, urllib.parse
 from . import net
 from .config import TTL
@@ -430,3 +431,23 @@ def cheapest_prices(names, *, refresh=None, offline=None):
         price = (entries.get(n) or [None])[0]
         out[n] = price if price is not None else (db.get(n) or {}).get("price")
     return out
+
+
+def deck_prices(names, db, *, refresh=None, offline=None):
+    """{canonical name: dollars, or None when nothing prices it} for the nonbasic cards among `names`, each at its
+    cheapest printing (see `cheapest_prices`). Basic lands are left out: they are free, and a lookup would only
+    spend a request on them. A name the card index does not know is left out too.
+
+    It never raises: a price is an extra, so when Scryfall cannot be asked (no network, a search that failed, or
+    `offline` with nothing cached) a card keeps the card index's own price, and the reason is added to WARNINGS for
+    the caller to show. `refresh` and `offline` are as in `cheapest_prices`."""
+    records = (db.get(n) for n in names)
+    wanted = list(dict.fromkeys(rec["name"] for rec in records if rec is not None and "Basic" not in rec["types"]))
+    if not wanted:
+        return {}
+    try:
+        found = cheapest_prices(wanted, refresh=refresh, offline=offline)
+    except (net.FetchError, OSError) as e:      # OSError: the price cache could not be written
+        WARNINGS.append(f"cheapest prices: {e}")
+        found = {}
+    return {name: found.get(name) if found.get(name) is not None else db.get(name)["price"] for name in wanted}

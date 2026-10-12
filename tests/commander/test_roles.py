@@ -372,7 +372,8 @@ class TagTests(unittest.TestCase):
         self.db = sample_db()
         self.loads = []
         for patcher in (mock.patch.object(scryfall_tags, "load", self.fake_load),
-                        mock.patch.object(roles, "_today", return_value=TODAY)):
+                        mock.patch.object(roles, "_today", return_value=TODAY),
+                        mock.patch.dict(net.MODE, {"offline": False})):
             patcher.start()
             self.addCleanup(patcher.stop)
 
@@ -427,6 +428,42 @@ class TagTests(unittest.TestCase):
         self.assertEqual(self.loads[0][0], roles.all_slugs())
         self.assertEqual(self.loads[0][1], {"refresh": True, "offline": False})
 
+    def offline_then_online(self, call):
+        """Run `call(offline)` offline while the tag data is missing, then online while it is there; the tag loads
+        it saw are in self.loads."""
+        real = self.fake_load
+
+        def load(tags, **kw):
+            if kw.get("offline"):
+                raise net.FetchError("scryfall_tags", "u", "offline (--offline) and no tag cache")
+            return real(tags, **kw)
+        with mock.patch.object(scryfall_tags, "load", load):
+            first = call(True)
+            second = call(False)
+        return first, second
+
+    def test_a_load_that_failed_offline_is_not_remembered_so_the_same_call_online_still_works(self):
+        # the deck server tries offline to list decks before it opens one online: the second call reads the tags
+        self.offline_then_online(lambda offline: roles.tag(["Sol Ring"], self.db, offline=offline))
+        self.assertEqual([kw["offline"] for _, kw in self.loads], [False])             # the online call went to the data
+        self.assertIsNotNone(roles._MEMO["sets"])                                      # and now the sets are kept
+        self.assertEqual(len(roles.WARNINGS), 1)                                       # only the offline try warned
+
+    def test_a_load_that_failed_with_the_run_wide_mode_offline_is_not_remembered_either(self):
+        # offline=None means "the run-wide mode"; here that is --offline, so the next call tries again
+        with mock.patch.dict(net.MODE, {"offline": True}), mock.patch.object(
+                scryfall_tags, "load", side_effect=net.FetchError("scryfall_tags", "u", "no tag cache")) as load:
+            roles.tag(["Sol Ring"], self.db)
+            roles.tag(["Sol Ring"], self.db)
+        self.assertEqual(load.call_count, 2)
+
+    def test_a_load_that_failed_online_is_remembered_and_not_asked_again(self):
+        # the existing rule for a real outage: one warning, no retry on every call
+        with mock.patch.object(scryfall_tags, "load", side_effect=net.FetchError("scryfall_tags", "u", "HTTP 503")) as load:
+            roles.tag(["Sol Ring"], self.db, offline=False)
+            roles.tag(["Sol Ring"], self.db, offline=False)
+        self.assertEqual(load.call_count, 1)
+
     def test_without_tag_data_every_card_falls_back_to_text_and_a_warning_is_left(self):
         with mock.patch.object(scryfall_tags, "load", side_effect=net.FetchError("scryfall_tags", "u", "offline")):
             out = self.tag("Old Assassin", "Hazel of the Rootbloom", "Ancient Tomb", "Command Tower", "Sol Ring")
@@ -476,9 +513,10 @@ class AttributeTests(unittest.TestCase):
         self.addCleanup(roles.WARNINGS.clear)
         self.db = sample_db()
         self.loads = []
-        patcher = mock.patch.object(scryfall_tags, "load", self.fake_load)
-        patcher.start()
-        self.addCleanup(patcher.stop)
+        for patcher in (mock.patch.object(scryfall_tags, "load", self.fake_load),
+                        mock.patch.dict(net.MODE, {"offline": False})):
+            patcher.start()
+            self.addCleanup(patcher.stop)
 
     def fake_load(self, tags, **kw):
         self.loads.append((list(tags), kw))
@@ -524,6 +562,21 @@ class AttributeTests(unittest.TestCase):
         self.assertEqual(len(roles.WARNINGS), 1)                    # reported once, not retried per call
         self.assertIn("function tags for card attributes unavailable", roles.WARNINGS[0])
         self.assertFalse(roles.attributes_loaded())
+
+    def test_attributes_that_failed_to_load_offline_load_when_the_same_call_is_made_online(self):
+        # the deck list tries offline first; opening the deck online must still be able to read the tags
+        real = self.fake_load
+
+        def load(tags, **kw):
+            if kw.get("offline"):
+                raise net.FetchError("scryfall_tags", "u", "offline (--offline) and no tag cache")
+            return real(tags, **kw)
+        with mock.patch.object(scryfall_tags, "load", load):
+            first = roles.attributes(["Sol Ring"], self.db, offline=True)
+            self.assertFalse(roles.attributes_loaded())
+            second = roles.attributes(["Sol Ring"], self.db, offline=False)
+        self.assertEqual((first["Sol Ring"], second["Sol Ring"]), (frozenset(), {"mana-rock"}))
+        self.assertTrue(roles.attributes_loaded())
 
     def test_attributes_are_loaded_once_a_call_has_read_them(self):
         self.assertFalse(roles.attributes_loaded())                 # before the first call

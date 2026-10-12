@@ -31,6 +31,9 @@ All commands are run from the repo root. On Windows use `python` and `mtg-comman
    ```bash
    python3 src/mtg-commander.py stats --precon "<precon name>" --bracket 3 --theme <theme> --playstyle <style>
    ```
+   **serve** — when the player wants decks saved between sessions or on their phone, `python3 src/mtg-commander.py serve`
+   runs the local web server for the deck pages (decks are files in `commander/decks/`; `stats --version PLAYER/ID`
+   prints a saved version's numbers). It has no login, so say so, and run only one server at a time.
 
 3. **upgrade / build / suggest** — pick the one the player asked for:
    ```bash

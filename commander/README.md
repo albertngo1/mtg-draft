@@ -155,8 +155,9 @@ a precon or a pasted list, written once and never changed. `<player>/<version-id
 base deck, with a log of every card they added, cut or swapped. The `MTG_COMMANDER_DECKS` environment variable names a
 different folder.
 
-**Made by.** `src/mtgcommander/decks.py`, not by hand. It checks each change against the deck rules and writes each file
-in one step, so a file is never half written. The files are committed, so players share decks through git, and each
+**Made by.** `src/mtgcommander/decks.py`, not by hand; `mtg-commander serve` calls it on a player's behalf (ARCHITECTURE.md,
+"The deck server"). It checks each change against the deck rules and writes each file in one step, so a file is never
+half written. The files are committed, so players share decks through git, and each
 player's versions sit in that player's own folder, so two players do not edit the same file.
 
 **What is not in it.** Scores, prices and the other numbers the data sites supply. They are looked up each time, so none

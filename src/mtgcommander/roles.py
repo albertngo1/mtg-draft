@@ -177,6 +177,12 @@ def reset():
     _MEMO.clear()
 
 
+def _failure_is_remembered(offline):
+    """Whether a failed load of the tag data is kept for the rest of the process. One made offline is not: the same
+    call online may succeed, and the deck server tries offline (to list decks) before it opens a deck online."""
+    return not (net.MODE["offline"] if offline is None else offline)
+
+
 def _load_sets(refresh, offline):
     """Role sets from the tag data, loaded once per process; None when the tag data is unavailable."""
     if "sets" not in _MEMO:
@@ -185,6 +191,8 @@ def _load_sets(refresh, offline):
         except net.FetchError as e:
             WARNINGS.append(f"roles: Scryfall function tags unavailable, so roles come from rules-text "
                             f"patterns only ({e})")
+            if not _failure_is_remembered(offline):
+                return None
             _MEMO["sets"] = None
     return _MEMO["sets"]
 
@@ -271,6 +279,8 @@ def _load_attribute_sets(refresh, offline):
         except net.FetchError as e:
             WARNINGS.append(f"roles: Scryfall function tags for card attributes unavailable, so the removal, "
                             f"mana, land and playstyle counts that need them are not shown ({e})")
+            if not _failure_is_remembered(offline):
+                return None
             _MEMO["attributes"] = None
         else:
             held = collections.defaultdict(list)
