@@ -17,7 +17,9 @@ they know comes from the answers below, so each formula exists once, in Python. 
     POST  /api/decks/PLAYER/ID/changes        {"revision", "op": add | cut | swap | group | undo, ...}; answers like the
                                               GET plus "result": {"changed", "message"}
     PATCH /api/decks/PLAYER/ID                {"revision", "name"?, "settings"?}; answers like the GET
-    POST  /api/decks/PLAYER/ID/suggest        {"budget"?, "price_points"?}: what `upgrade` would change in the list now
+    POST  /api/decks/PLAYER/ID/suggest        {"budget"?, "price_points"?}: what `upgrade` would change in the list now,
+                                              with what is left of the version's budget (see "Suggestions and the
+                                              budget")
     GET   /api/bases, POST /api/bases         list the base decks; make one from {"name"?, "precon", "player"} or
                                               {"name", "list", "commander"?, "player"}; 201
     GET   /api/precons?q=TEXT                 the precon names that match, at most 20
@@ -43,6 +45,19 @@ Errors are {"schema": 1, "error": {"code", "message", "details"}}. The status is
 its line number, or each setting that is wrong). The rest: 403 forbidden, 405, 411, 413 too_large, 415
 unsupported_media_type, and 500: server_error carries the exception's own text, and data_unavailable means a data
 source is down with nothing cached. A deck file that cannot be read at all is a 500 naming the file.
+
+Suggestions and the budget. A version's budget (the settings', or the `budget` in the request) is the total it may
+spend, and `upgrade` counts every card already in the list as free, so the route does not hand it the budget as it is.
+It measures the list the way the deck answer does and takes the `price` of the metrics headline, the number the deck
+screen shows as SPENT (the cost of the cards in the list the player does not own), and gives `upgrade` what is left:
+the budget minus that, to the cent, never below 0 (a version that is over its budget is still searched, with $0, since
+a swap with a card the player owns costs nothing). The answer is `upgrade`'s result plus `revision`, `cards` and the
+money: `budget` (the total), `spent` (before these swaps: the version's, not the `spent` of `upgrade`'s own result,
+which is what the swaps cost, and with a budget is the last price point's `spent`), `left` (what the swaps may spend)
+and `over` (how far past its budget the version is; 0 until it is), so the page subtracts nothing. Price points are new
+spending: a `price_points` list is read as `upgrade` reads it for a budget of `left`, which drops the amounts at or
+above it. With no budget (`"budget": null`) there is no `left` or `over`. When the headline has no price to give,
+nothing is taken off: the whole budget is searched, `spent` and `over` are null, and a warning says so.
 
 A card object (everywhere a card appears): name, front, image, image_back, scryfall_uri, type, cost, cmc, ci (color
 identity letters), price (cheapest printing; null when nothing prices it), owned. In a deck's list it also has count,
@@ -237,6 +252,18 @@ def _dollars(value, what):
     if value is not None and not (_number(value) and value >= 0):
         raise decks.Invalid(f"The {what} must be an amount of dollars, zero or more.")
     return value
+
+
+def budget_left_and_over(budget, spent):
+    """(left, over) of a version's `budget` once the `spent` money is taken off it, in dollars to the cent. `left` is
+    what a search may still spend (0 when the budget is used up) and `over` is how far past its budget the version
+    already is (0 until it is). With no budget there is neither (None, None). When `spent` could not be worked out
+    (None) nothing is taken off, so `left` is the whole budget and `over` is None: no number is made up."""
+    if budget is None:
+        return None, None
+    if spent is None:
+        return budget, None
+    return round(max(0.0, budget - spent), 2), round(max(0.0, spent - budget), 2)
 
 
 # ----------------------------------------------------------------------------- small helpers
@@ -847,10 +874,13 @@ class DeckSession:
 
     def snapshot(self, doc):
         """What a suggestion needs, taken under the lock so the (slow) search can run without it: (the context, the list
-        as {"name", "commanders", "cards"}, the commanders' colors)."""
-        current, _, _ = self.ws.look(doc)
+        as {"name", "commanders", "cards"}, the commanders' colors, what the list has cost so far). The cost is the deck
+        screen's SPENT stat, the `price` of the metrics headline (the cards the player does not own, each at its price),
+        measured here on the list the search will work on; None when the metrics could not give it."""
+        current, combos, _ = self.ws.look(doc)
         deck = {"name": doc["name"], "commanders": current["commanders"], "cards": [tuple(e) for e in current["cards"]]}
-        return self.ws.ctx, deck, self.ws.ctx["ci"]
+        spent = self.ws.measure(current, doc, combos)["headline"]["price"]
+        return self.ws.ctx, deck, self.ws.ctx["ci"], spent if _number(spent) else None
 
     def listing(self, doc):
         """(headline, net cost of the changes) for the deck list: from the open deck if it is ready, else from a
@@ -1166,6 +1196,12 @@ class App:
         return self._answer(player, version_id)
 
     def route_deck_suggest(self, args, query, body):
+        """`upgrade` on the list as it is now. A version's budget (the settings', or the request's `budget`) is the
+        total it may spend, and `upgrade` treats every card already in the list as free, so the search is given only
+        what is left: the budget minus what the list has cost so far (`DeckSession.snapshot`, the deck screen's SPENT
+        stat), or $0 once that is used up. The answer says where the money stands: `spent` (before these swaps),
+        `left` (what the swaps may spend) and `over` (how far past the budget the version is). `price_points` are
+        amounts of new spending, so `upgrade`'s own ladder drops the ones at or above `left`."""
         player, version_id = args
         session = self._open(player, version_id)
         with session.lock:
@@ -1178,12 +1214,17 @@ class App:
                 raise decks.Invalid('"price_points" must be a list of dollar amounts above zero.')
             if points is not None and budget is None:
                 raise decks.Invalid("Price points are steps up to a budget, so give a budget as well.")
-            ctx, deck, colors = session.snapshot(doc)
+            ctx, deck, colors, spent = session.snapshot(doc)
             ws = session.ws
-        result = self.upgrade(ctx, deck, self.db, budget=budget, price_points=points,
+        left, over = budget_left_and_over(budget, spent)
+        notes = []
+        if budget is not None and spent is None:
+            notes.append("What this version has already spent could not be worked out (no card prices were found), so "
+                         "these swaps may use the whole budget and take the version over it.")
+        result = self.upgrade(ctx, deck, self.db, budget=left, price_points=points,
                               combos_fn=lambda commanders, names: self.combos(commanders, names, identity=colors))
-        result = dict(result, revision=doc["revision"], budget=budget)
-        result["warnings"] = unique(list(result.get("warnings") or []) + drain(carddb.WARNINGS, roles.WARNINGS))
+        result = dict(result, revision=doc["revision"], budget=budget, spent=spent, left=left, over=over)
+        result["warnings"] = unique(notes + list(result.get("warnings") or []) + drain(carddb.WARNINGS, roles.WARNINGS))
         mentioned = [x[k] for x in result.get("swaps") or [] for k in ("cut", "add")]
         mentioned += [x["card"] for x in (result.get("blocked") or []) + (result.get("cheap_adds") or [])]
         with session.lock:
