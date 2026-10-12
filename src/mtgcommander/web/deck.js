@@ -373,7 +373,7 @@ const upTo = (point) => (point.budget > 0 ? `Up to ${ui.dollars(point.budget)} m
 function nothingToSuggestText(result) {
   if (result.left !== 0) return `No swap beats the current list within ${ui.dollars(result.left)} more.`;
   const sofar = ui.isNumber(result.spent) ? ` (${ui.money(result.spent)} so far)` : "";
-  return `This version has spent its ${ui.dollars(result.budget)} budget${sofar}, so only swaps with cards you own are suggested, and none of those beats the current list. Raise the budget, or cut cards you bought to free money.`;
+  return `This version has spent its ${ui.dollars(result.budget)} budget${sofar}. With nothing left to spend, a suggestion can only bring in a card from a precon you own that the deck is not using, and none of those beats the current list. Raise the budget, or cut cards you bought to free money.`;
 }
 
 /** "Suggestions keep your changes: the 32 cards you added stay, and the 32 you cut are not offered again. Undo a change to

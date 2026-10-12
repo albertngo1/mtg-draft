@@ -156,8 +156,8 @@ apply one at a time or a whole price point at once; each point shows its change 
 note when it has brought the deck's answers to some kind of threat down from where they started to what a typical deck
 at the bracket holds. A version's budget is the most it may spend in all, so the tab says what the version has spent
 (the Spent number above the tabs) and what is left of the budget, and a price point is money still to spend ("Up to
-$14.57 more"). A version that has used up its budget is offered only swaps with cards you own, which cost nothing;
-cutting a card you bought frees its price. Suggestions never undo a change you made: the cards you added stay, and the
+$14.57 more"). A version that has used up its budget is offered only swaps that bring in a card from a precon you own, which
+cost nothing; cutting a card you bought frees its price. Suggestions never undo a change you made: the cards you added stay, and the
 base-deck cards you cut are not offered again (Undo, on the Changes tab, is how you reconsider one), so applying a price
 point does not make the next suggestions take it back.
 Every change is saved the moment you make it and every number is redrawn
