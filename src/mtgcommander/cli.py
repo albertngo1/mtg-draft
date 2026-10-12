@@ -1,4 +1,4 @@
-"""Command line for mtg-commander: seven commands, one set of shared steps.
+"""Command line for mtg-commander: eight commands, one set of shared steps.
 
 Why it is thin: scoring and deck search live in score.py and build.py, formatting lives in render.py, and the
 data lives behind carddb, decklist and the providers. This module only turns arguments into calls and results
@@ -172,6 +172,13 @@ def build_parser():
     p = command("check", "check a deck's legality, bracket, roles and mana curve")
     _deck_source(p)
     _bracket_flag(p)
+
+    p = command("stats", "show every metric of a deck: power, interaction, mana, playstyle, win plan and money")
+    _deck_source(p)
+    _bracket_flag(p)
+    _fantasy_flags(p, cards=False)
+    _owned_flags(p)
+    p.add_argument("-v", "--verbose", action="store_true", help="show how each number was worked out")
 
     p = command("warm", "download everything for a commander ahead of time (for --offline)")
     p.add_argument("commander", metavar="COMMANDER")
@@ -608,6 +615,39 @@ def cmd_check(session):
                              "curve": _curve(cards, db)})
 
 
+def cmd_stats(session):
+    """Every metric of one deck (metrics.py). It reads the same inputs `upgrade` does (the evidence for the
+    commander, the roles, the targets) plus the attribute tags, and asks `spellbook.combos_for`, which answers from
+    the local combo index and falls back to the API. Cards you own (--owned, --owned-precon) cost $0; the deck's
+    own cards do not, so the cost to buy is what the whole list would cost you."""
+    a, db = session.args, session.db()
+    name, _, deck = _load_deck(session, db)
+    commanders = _need_commander(deck)
+    _upgradeable(session, deck, bool(a.precon))
+    spec = _spec(session, db, commanders)
+    names = [card for _, card in deck["cards"]]
+    owned = _owned(session, db)
+    ctx = _engine("build", "stats").prepare(commanders, spec["bracket"], spec, db, deck_cards=names, owned=owned,
+                                            sources=session.enabled)
+    attrs = roles.attributes(names, db)
+    if scryfall_tags.INFO:
+        session.add_source("scryfall_tags", scryfall_tags.INFO.get("fetched"), scryfall_tags.INFO.get("cache"))
+    combos = None
+    try:
+        copies = [card for n, card in deck["cards"] for _ in range(n)]
+        combos = spellbook.combos_for(commanders, copies, identity=ctx["ci"])
+        session.add_source("spellbook", combos.get("fetched"), combos.get("cache"))
+        if combos.get("note"):
+            session.warn(combos["note"])
+    except net.FetchError as e:
+        session.warn(f"Combos were not checked: {e.source} is unavailable ({e.reason}).")
+    result = _engine("metrics", "stats").compute(ctx, db, deck["cards"], commanders=commanders,
+                                                 attrs=attrs if roles.attributes_loaded() else None,
+                                                 combos=combos, owned=owned)
+    result.update(command="stats", deck=_deck_info(name, deck, db), bracket=spec["bracket"], spec=spec)
+    return _finish(session, result, ctx)
+
+
 def cmd_validate(session):
     a = session.args
     engine = _engine("validate", "validate")
@@ -763,7 +803,7 @@ def cmd_warm(session):
 
 
 COMMANDS = {"themes": cmd_themes, "suggest": cmd_suggest, "build": cmd_build, "upgrade": cmd_upgrade,
-            "check": cmd_check, "warm": cmd_warm, "validate": cmd_validate}
+            "check": cmd_check, "stats": cmd_stats, "warm": cmd_warm, "validate": cmd_validate}
 
 
 # ----------------------------------------------------------------------------- entry points

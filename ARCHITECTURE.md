@@ -538,6 +538,9 @@ python3 src/mtg-commander.py check mydeck.txt --bracket 3
 
 # A full 100-card list around a commander
 python3 src/mtg-commander.py build "Hazel of the Rootbloom" --bracket 3 --budget 150 --theme squirrels
+
+# Every number about a list: power, interaction, mana, playstyle, win plan, money
+python3 src/mtg-commander.py stats --precon "Squirreled Away" --bracket 3 --theme tokens --playstyle aristocrats
 ```
 
 The first run downloads Scryfall's card file and builds a local index of about 35,000 cards (31 MB). That takes a
@@ -553,6 +556,7 @@ minute or two, once; the index is rebuilt after 7 days. Everything else it downl
 | **Precon** | a preconstructed deck sold ready to play. Precon lists come from MTGJSON. |
 | **Price point** | a dollar amount `upgrade` stops at on the way up to your budget (for $200: $25, $50, $100 and $200). The report shows what the swaps found up to each amount come to. |
 | **Inclusion** | the share of a commander's decks that play a card. **Synergy** is EDHREC's inclusion with this commander minus the inclusion across all decks of the same colors. |
+| **Removal power** | the sum, over a deck's removal cards, of how quick, how far-reaching, how lasting and how cheap each is (see [Deck metrics and `stats`](#deck-metrics-and-stats)). The tool's own measure, with weights that are judgment calls |
 | **Role** | a job a deck needs in numbers: ramp (extra mana), card draw, removal, board wipes, counterspells, protection, recursion, tutors, finishers. |
 | **Fantasy** | the experience the player wants from the deck: themes (squirrels, tokens), a playstyle (go-wide, control), how much to favor them, and cards to keep or avoid. |
 | **Salt** | EDHREC's player-voted score, 0 to 4, for how frustrating a card is to play against. |
@@ -620,6 +624,9 @@ upgrade  [DECKFILE] [--precon NAME] [--commander NAME] [--bracket N] [--budget U
          [--keep-fun | --no-keep-fun] [--include CARD] [--exclude CARD] [--owned FILE]
          [--owned-precon NAME] [--allow-combos] [--out FILE] [-v]
 check    [DECKFILE] [--precon NAME] [--commander NAME] [--bracket N]
+stats    [DECKFILE] [--precon NAME] [--commander NAME] [--bracket N] [--theme T] [--playstyle P]
+         [--fantasy TEXT] [--fantasy-weight W] [--keep-fun | --no-keep-fun] [--owned FILE]
+         [--owned-precon NAME] [-v]
 warm     COMMANDER [--partner NAME] [--bracket N] [--theme T]
 validate --bracket N [--commanders NAME [NAME ...]] [--limit N] [--sweep] [--calibrate]
 ```
@@ -631,6 +638,7 @@ validate --bracket N [--commanders NAME [NAME ...]] [--limit N] [--sweep] [--cal
 | `build` | builds a 100-card list around a commander, with the evidence for each card, the role counts, the bracket check and the *fantasy cost* (below) |
 | `upgrade` | ranked cut/add swaps for a deck from a file, standard input (`-`) or a precon, within a budget and a bracket |
 | `check` | legality (100 cards, colors, duplicates, banned cards), the bracket rules, role counts against the bracket's range, and the mana curve |
+| `stats` | every number about a list: score and bracket, interaction (answers to each kind of threat, removal power), mana (lands, ramp, draw, curve, colors, tapped and colorless lands), playstyle, win plan, salt, price and what you own. Groups and formulas: [Deck metrics and `stats`](#deck-metrics-and-stats) |
 | `warm` | downloads what the other commands need for one commander, so they can run with `--offline` |
 | `validate` | measures how closely builds match real decks (see [Validation](#validation)) |
 
@@ -642,28 +650,28 @@ The four flags every command takes, then the rest (help text as `--help` prints 
 | `--refresh` | all | download again instead of using cached data |
 | `--offline` | all | never connect; use cached data only (see `warm`) |
 | `--sources LIST` | all | card-evidence sources to use, comma-separated (choices `edhrec`, `archidekt`, `edhtop16`) |
-| `DECKFILE` | upgrade, check | a decklist file; `-` reads standard input |
-| `--precon NAME` | upgrade, check | use a preconstructed deck by name instead of a file |
-| `--commander NAME` | upgrade, check | the commander, when the list does not mark it (repeat for a partner) |
+| `DECKFILE` | upgrade, check, stats | a decklist file; `-` reads standard input |
+| `--precon NAME` | upgrade, check, stats | use a preconstructed deck by name instead of a file |
+| `--commander NAME` | upgrade, check, stats | the commander, when the list does not mark it (repeat for a partner) |
 | `COMMANDER` | build, warm | the commander |
 | `--partner NAME` | build, warm, themes | a second commander (Partner or Background); `themes` also needs `--commander` |
 | `--commander NAME` | themes | list this commander's own themes |
-| `--bracket N` | suggest, build, upgrade, check, warm; required by validate | power level 1-5 (default 3): 1 Exhibition, 2 Core, 3 Upgraded, 4 Optimized, 5 cEDH |
+| `--bracket N` | suggest, build, upgrade, check, stats, warm; required by validate | power level 1-5 (default 3): 1 Exhibition, 2 Core, 3 Upgraded, 4 Optimized, 5 cEDH |
 | `--budget USD` | suggest, build, upgrade | build and upgrade: most to spend on cards you do not own; suggest: most to spend on the deck's core cards |
 | `--max-swaps N` | upgrade | most swaps to suggest (default: no limit) |
 | `--price-points LIST` | upgrade | dollar amounts, comma-separated, to show what the swaps buy on the way up to `--budget`, e.g. `25,50,100`; needs `--budget`. Default: the budget, half of it, a quarter, and so on (at most four, none under $10) |
-| `--theme T` | suggest, build, upgrade, warm | a theme to build around, e.g. tokens (repeat the flag or separate with commas); for `warm`, a theme to download |
-| `--playstyle P` | suggest, build, upgrade | how the deck plays, e.g. go-wide (see `themes`) |
-| `--fantasy TEXT` | suggest, build, upgrade | the deck you imagine, in your own words (Claude turns it into themes; needs a token) |
-| `--fantasy-weight W` | build, upgrade | 0 = pure power, 1 = theme above all (default 0.5) |
-| `--keep-fun`, `--no-keep-fun` | suggest, build, upgrade | penalize cards that are frustrating to play against (default on at Brackets 1-3) |
+| `--theme T` | suggest, build, upgrade, stats, warm | a theme to build around, e.g. tokens (repeat the flag or separate with commas); for `warm`, a theme to download |
+| `--playstyle P` | suggest, build, upgrade, stats | how the deck plays, e.g. go-wide (see `themes`) |
+| `--fantasy TEXT` | suggest, build, upgrade, stats | the deck you imagine, in your own words (Claude turns it into themes; needs a token) |
+| `--fantasy-weight W` | build, upgrade, stats | 0 = pure power, 1 = theme above all (default 0.5) |
+| `--keep-fun`, `--no-keep-fun` | suggest, build, upgrade, stats | penalize cards that are frustrating to play against (default on at Brackets 1-3) |
 | `--include CARD` | build, upgrade | a card the deck must keep (repeatable) |
 | `--exclude CARD` | build, upgrade | a card the deck must not play (repeatable) |
-| `--owned FILE` | suggest, build, upgrade | a decklist of cards you own; they cost $0 (repeatable) |
-| `--owned-precon NAME` | suggest, build, upgrade | a precon you own, e.g. "Squirreled Away" (repeatable) |
+| `--owned FILE` | suggest, build, upgrade, stats | a decklist of cards you own; they cost $0 (repeatable) |
+| `--owned-precon NAME` | suggest, build, upgrade, stats | a precon you own, e.g. "Squirreled Away" (repeatable) |
 | `--allow-combos` | build, upgrade | allow two-card combos the bracket would block |
 | `--out FILE` | build, upgrade | write the deck list here (Moxfield and Archidekt import it) |
-| `-v`, `--verbose` | build, upgrade | show the evidence for every card (for `upgrade`, for each cut as well) |
+| `-v`, `--verbose` | build, upgrade, stats | show the evidence for every card (for `upgrade`, for each cut as well; for `stats`, how each number was worked out and its cards) |
 | `--colors WUBRG` | suggest | only commanders inside these colors |
 | `--limit N` | suggest, validate | suggest: commanders to show (default 10); validate: real decks held out per commander (default 20) |
 | `--commanders NAME [NAME ...]` | validate | commanders to test (default: the four most played in tournaments at Bracket 5, else six popular ones) |
@@ -702,7 +710,7 @@ ignored.
 | `src/mtgcommander/` | the package; the files below are in it unless a path is given |
 | `cli.py` | argparse commands: turns arguments into calls and results into output; owns the exit codes |
 | `config.py` | paths, how long each source's cache stays fresh, default bracket, default sources, the User-Agent |
-| `net.py` | the one HTTP client: per-host pacing, retries with back-off, the file cache, `--offline` and `--refresh` |
+| `net.py` | the one HTTP client: per-host pacing, retries with back-off, the file cache, `--offline` and `--refresh`; `download` streams a large file to disk (unzipped on the way, unless told not to) |
 | `carddb.py` | Scryfall's bulk card file boiled down to one record per card (with links to its pictures); forgiving name matching; cheapest prices |
 | `decklist.py` | reads pasted lists, matches names to real cards, loads precons from MTGJSON, writes lists |
 | `decks.py` | saved decks: base decks and each player's versions as JSON files, with an append-only change log, replay, undo and revisions (see [Deck files](#deck-files)) |
@@ -710,17 +718,18 @@ ignored.
 | `providers/edhrec.py` | what builders chose, per commander, bracket and theme; themes, salt, average land count |
 | `providers/archidekt.py` | bracket-tagged decklists: the second builder source |
 | `providers/edhtop16.py` | cEDH tournament entries with decklists and results: the tournament source |
-| `providers/spellbook.py` | Commander Spellbook combos (in a list, and one card away) with their bracket tags |
+| `providers/spellbook.py` | Commander Spellbook combos (in a list, and one card away) with their bracket tags: its web service, and a local index of its daily file (`combos_for` tries the index first) |
 | `providers/scryfall_tags.py` | Scryfall's community function tags as sets of cards |
-| `roles.py` | what each card does (ramp, draw, ...) from those tags; the per-bracket targets |
+| `roles.py` | what each card does (ramp, draw, ...) from those tags; finer facts about a card (`attributes`); the per-bracket targets |
 | `brackets.py` | Wizards' bracket rules as data, the four checks, and the legality check |
 | `fantasy.py` | the fantasy spec: the theme and playstyle menu, and the optional `claude -p` step for free text |
 | `score.py` | card scores: gathers the evidence once, then plain arithmetic |
 | `build.py` | the deck value, and `upgrade`, `build` and `suggest` on top of it |
-| `calibrate.py` | measures role targets from real decks and writes `commander/role_targets.json` |
+| `metrics.py` | every metric of one deck in one item shape, the registry of metric groups, and removal power |
+| `calibrate.py` | measures role targets, and removal and wipe power, from real decks and writes `commander/role_targets.json` and `commander/metric_targets.json` |
 | `validate.py` | `validate`: held-out checks of builds against real decks |
 | `render.py` | the text reports and the JSON |
-| `commander/` (repo root) | committed reference data (`brackets.json`, `role_targets.json`, `playstyles.json`); see [`commander/README.md`](./commander/README.md) |
+| `commander/` (repo root) | committed reference data (`brackets.json`, `role_targets.json`, `metric_targets.json`, `playstyles.json`); see [`commander/README.md`](./commander/README.md) |
 | `tests/commander/` (repo root) | unit tests with small hand-made fixtures; no network |
 
 A provider answers one call, `signals(commanders, bracket=None, theme=None)`, and returns records that carry a
@@ -951,8 +960,148 @@ What each bracket rests on is limited by what the sources' terms allow:
 | 3, 4 | Archidekt decks tagged with that bracket, only when `archidekt` is among the sources; otherwise interpolated between 2 and 5 (a quarter and half of the way) and labeled *interpolated (judgment)* |
 | 1 | Bracket 2 with one more land and no tutors, labeled *judgment* |
 
-`validate --calibrate` runs the same calibration after the validation and rewrites the file, so the validation
-numbers describe the targets as they were committed. It does not touch the score weights above.
+`validate --calibrate` runs the same calibration after the validation and rewrites the files (the role targets and
+`metric_targets.json`), so the validation numbers describe the targets as they were committed. It does not touch the
+score weights above.
+
+### Deck metrics and `stats`
+
+`stats` prints every number the tool can work out about one list. `metrics.py` works them all out, in one call, so the
+command and the deck pages planned for version 2 show the same numbers.
+
+```
+$ ./mtg-commander.sh stats --precon "Squirreled Away" --bracket 3 --theme tokens --playstyle aristocrats
+ └─ cli.cmd_stats
+     ├─ carddb.load, decklist.precon, fantasy.spec_from_args       as for upgrade
+     ├─ build.prepare(...)                      the evidence, role tags, card scores and targets, once
+     ├─ roles.attributes(names, db)             the attribute tags (a request of their own: the roles never wait on it)
+     ├─ spellbook.combos_for(commanders, cards, identity=colors)    the local combo index, the API as the fallback
+     ├─ metrics.compute(ctx, db, cards, ...)    build.deck_value, roles.counts and brackets.check once, then each
+     │                                          group of metrics.GROUPS reads those facts
+     └─ render.stats_report(result), or render.as_json(result) with --json
+```
+
+Every number is an **item**, in one shape:
+
+```json
+{"id": "removal_power", "label": "Removal power", "value": 5.95, "unit": null,
+ "target": {"min": 3.4, "target": 4.2, "max": 6.8}, "status": "inside",
+ "why": ["Tear Asunder 1.00 = instant 1.0 × any permanent 1.0 × exile 1.0 × MV 2 1.0", "..."],
+ "cards": ["Tear Asunder", "..."], "base": 7.61}
+```
+
+| field | meaning |
+|---|---|
+| `value` | the number; `null` when it cannot be had (the tags, combos or card data it needs are missing). `why` then says what is missing, and nothing is guessed |
+| `unit` | `"%"`, `"$"` or `null` |
+| `target` | the bracket's usual range: `min`, `target`, `max`. Any part is `null` when the range has no such end ("at least 1", "at most 8"). `null` for a number with no range |
+| `status` | `"short"` (below `min`), `"inside"` or `"over"` (above `max`); `null` without a value or a range |
+| `why` | how the number was worked out, one line for each fact |
+| `cards` | the cards behind the number |
+| `base` | the same item's value in the base deck; present only when `compute` was given one, so a page can show *before → after* |
+
+The items sit in groups, a registry in `metrics.GROUPS` of `(id, label, applies, compute)`. A page draws any group from
+the item shape, so a new metric is one more item in one function and no page changes. `metrics.compute(ctx, db, cards,
+commanders=..., attrs=..., combos=..., owned=..., prices=..., base=..., changes=...)` returns `{"schema": 1, "headline":
+{score, bracket, lands, removal_power, price}, "groups": [{id, label, items}]}`. It is plain arithmetic on what
+`build.prepare` gathered, about 4 to 6 milliseconds for a 100-card list, so a page can run it after every tap. The
+headline `price` is the cost to buy: what the cards you do not own would cost.
+
+| group | what is in it |
+|---|---|
+| `power` | deck score (and its card-power and theme parts, from `build.deck_value`); the chosen bracket, inside or over its limits, and the lowest bracket those limits allow (a floor); Game Changers used and allowed; combos in the list and one card away; tutors |
+| `interaction` | removal power and wipe power; answers to creatures (removal that hits creatures, and board wipes), artifacts, enchantments, planeswalkers, lands, graveyards and spells (a count of 0 is marked short); counterspells; protection; the share of those removal, wipe, counterspell and protection cards that are instants or have flash |
+| `mana` | lands, ramp and card draw against the role targets; ramp split into rocks, creatures that make mana and land ramp; draw split into engines and one-shot draw; the curve (an item for each mana value, 0 to 7 or more) and the average mana value; for each of the commander's colors, the lands that make it against the colored mana symbols of the nonland cards; basic lands against what the land searchers can take; lands that always and that sometimes enter tapped; lands that make only colorless mana; cards costing 6 or more against the limit |
+| `playstyle` | theme fit (the share of nonland cards whose score has a theme part above `score.SHOW_PULL`); one item for each of the 12 playstyles; the creature count; synergy with the commander (the mean EDHREC synergy of the nonland cards that have one) |
+| `win` | finishers (the role count) and by kind (overrun, drain, extra combat, alternate win, theft); combos in the list that win; creatures that are hard to block and their total power |
+| `table` | salt (the total over the list and the three saltiest cards); the bracket's limits (Game Changers, extra-turn cards, mass land denial, two-card combos); total price, cost to buy and the share of cards you own |
+| `changes` | only with a base deck: the cards added and cut, with who, when and why from the change log, and the net cost |
+
+**Removal power.** A removal card is worth `speed × reach × permanence × cost`, times 1.5 if it removes again and again.
+A board wipe is worth the same, times 1.5 if it spares your own side (Scryfall's `sweeper-one-sided`). The weights are
+judgment calls, and each card's `why` line shows its arithmetic:
+`Assassin's Trophy 0.90 = instant 1.0 × any permanent 1.0 × destroy 0.9 × MV 2 1.0`.
+
+| factor | weights |
+|---|---|
+| speed | instant or flash 1.0; an ability that works again and again 1.0 (it can be used at any time, but a planeswalker's loyalty ability works only on your turn, so it is 0.75); anything else 0.75 |
+| reach | any permanent or any nonland permanent 1.0; creatures and planeswalkers 0.8; creatures only 0.7; one kind of permanent (artifacts, enchantments, lands) 0.6; removal with a condition (a toughness limit, "nonblack", damage) 0.6, whatever it could otherwise hit |
+| permanence | exile 1.0; destroy 0.9; damage or -X/-X 0.8; bounce 0.5; a card with several takes the best |
+| cost | mana value 2 or less 1.0; 3, 0.9; 4, 0.8; 5 or more 0.65 |
+
+All of these read Scryfall function tags, so the tags a card carries decide its weights (`roles.ATTRIBUTE_TAGS` lists
+them, and `roles.attributes()` loads them as a separate request from the role tags: if they cannot be had, the roles
+still work and only the items that need them go without a value).
+
+**The bands for removal and wipe power** are in `commander/metric_targets.json`, measured the way the role targets are:
+`calibrate.py` weighs the removal cards and the board wipes of the same decks (the 60 newest precons for Bracket 2, 248
+EDHTop16 top-cut decks for Bracket 5), takes the 25th percentile, median and 90th percentile, and interpolates
+Brackets 3 and 4 and copies Bracket 2 to Bracket 1 (both judgment, labeled in the file). The files `--write` replaces
+are both `role_targets.json` and `metric_targets.json`; `--out` writes only the role proposal and prints the power
+numbers. Measured on 2026-10-11:
+
+| bracket | removal power (min / target / max) | wipe power |
+|---|---|---|
+| 1, 2 | 3.7 / 4.6 / 7.6 | 0.9 / 1.1 / 2.3 |
+| 3 | 3.4 / 4.2 / 6.8 | 0.7 / 0.8 / 1.9 |
+| 4 | 3.0 / 3.8 / 6.0 | 0.5 / 0.6 / 1.6 |
+| 5 | 2.3 / 3.0 / 4.3 | 0.0 / 0.0 / 0.8 |
+
+**The playstyle profile.** Each of the 12 playstyles in `commander/playstyles.json` gets an item: the share of the
+deck's nonland cards that signal it (a free sacrifice outlet counts 1.5, any other signal 1). A card counts once, at the
+best weight among the signals it matches. The table is `PLAYSTYLE_SIGNALS` at the top of `metrics.py`, and every line is
+a judgment about which cards say "this deck plays that way":
+
+| playstyle | counts | signals |
+|---|---|---|
+| `combat` | cards that are hard to block, extra combat phases and mass pumps | tags `evasion`, `extra-combat-phase`, `overrun` |
+| `voltron` | Equipment and Aura support | tags `synergy-equipment`, `synergy-aura` |
+| `go-wide` | cards that keep making tokens | tag `repeatable-token-generator` |
+| `aristocrats` | sacrifice outlets (a free one counts 1.5) and death triggers | tags `sacrifice-outlet`, `free-sacrifice-outlet`, `death-trigger` |
+| `spellslinger` | instants and sorceries | the card types |
+| `control` | removal, board wipes and counterspells | the roles `removal`, `wipe`, `counter` |
+| `combo` | tutors and cards that win on their own | the role `tutor`, tag `alternate-win-condition` |
+| `big-mana` | ramp and cards that cost 6 or more | the role `ramp`, mana value 6 or more |
+| `graveyard` | cards that fill the graveyard, count it or bring cards back | tags `graveyard-fuel`, `cards-in-graveyard-matter`, the role `recursion` |
+| `politics` | group hug, voting and monarch cards | tags `group-hug`, `voting`, `monarch-matters` |
+| `stax` | cards that tax or lock down what opponents can do | tags `tax`, `lockdown`, `hatebear` |
+| `value` | card draw that keeps paying | tags `draw-engine`, `repeatable-impulsive-draw` |
+
+**Combos from a local index.** Commander Spellbook's developer guide says to use its web service, its
+application programming interface (API), for "a few HTTP calls per user interaction" and to read bulk data from the
+file it publishes: `https://json.commanderspellbook.com/variants.json.gz`,
+rebuilt daily (29 MB gzipped, 687 MB unzipped, 114,450 variants on 2026-10-11). `providers/spellbook.py` downloads it
+once, reads it one variant at a time (`json` cannot stream, so the reader decodes a variant, forgets it and reads on;
+memory stays near 100 MB), and saves a compact index of 9.7 MB (`data/cache/commander/spellbook/variants.json`, kept 7
+days): the combo's id, its cards, templates and results, its bracket tag and colors. Building it takes a few seconds,
+loading and indexing it about a quarter of a second, and finding a deck's combos then about 3 milliseconds.
+
+- **Included** means the deck holds every card the combo uses (all the copies it needs), the commanders counted among
+  the cards; **almost** means exactly one card is missing and the combo's colors fit inside the commanders' colors. A
+  combo that needs a certain card to be the commander is offered only to a deck led by it.
+- **Left out of the index:** combos with a card that is banned in Commander (1,525), combos with a card not yet
+  released (1,547) and any variant that is not marked OK. None of them can be built.
+- **Combos that need a template** (a class of card such as "Persist Creature"; 6,367 of them) are kept in the index but
+  never offered. Whether a deck holds a card of that class is a Scryfall search the API runs for each deck, and it counts
+  an unmet template as a missing piece. Without that search the local index would have to guess, so it leaves these out:
+  it can miss a template combo the API would list, and it never lists one the API would not. On 7 real lists (two
+  Squirreled Away lists, four other precons, a cEDH list) its combos were all in the API's answer, and the only ones
+  the API had and the index lacked were template combos and combos with a banned card.
+- **`combos_for`** tries the index and falls back to the API when the index cannot be had (the download failed, or
+  `--offline` with nothing saved); the answer says which one gave it and why. `stats` calls it; `check`, `build` and
+  `upgrade` still ask the API. `--offline` runs `stats` from the saved index, so `stats` can check combos for a list it
+  has never seen, which the API's per-list answers cannot.
+
+**What `stats` leaves out or does differently.**
+
+- *Creature power.* The card index records power as Scryfall writes it, so a power that varies (`*`, `1+*`) is left
+  out of the total for hard-to-block creatures, and the `why` line names those creatures.
+- *Prices.* `stats` uses the card index's price (the default printing); `upgrade` prices Scryfall's cheapest printing,
+  so its spending can be lower. A price you pass in (`prices=`) replaces the index's.
+- *Owned cards.* `--owned` and `--owned-precon` make cards cost $0. The cards of the list itself do not, unlike in
+  `upgrade`, so the cost to buy is what the whole list would cost you.
+- *`warm`* does not fetch the attribute tags or the combo file; the first online `stats` run saves both (tags for 30
+  days, the combo index for 7).
 
 ### Bracket rules
 
@@ -1000,8 +1149,8 @@ The bracket wording, the dates and the places where Wizards' articles disagree (
 | EDHREC | per commander, bracket and theme: decks that play each card, synergy; theme lists; the salt list; average land count | builder choice | 7 days | `json.edhrec.com` |
 | Archidekt | decklists tagged with a bracket | builder choice | 7 days for a search, 30 for a deck | `archidekt.com` |
 | EDHTop16 | cEDH tournament entries: decklists with wins, losses, draws, standing | tournament result | 1 day | `edhtop16.com` |
-| Commander Spellbook | combos in a list and combos one card away, each with a bracket tag | rules check | 7 days | `backend.commanderspellbook.com` |
-| Scryfall | card data, function tags, cheapest printing | rules, roles, prices | card index 7 days, tags 30, prices 7 | `api.scryfall.com`, `data.scryfall.io` |
+| Commander Spellbook | combos in a list and combos one card away, each with a bracket tag: from the API for `check`, `build` and `upgrade` (per list), and from the daily combo file, boiled down to a local index, for `stats` | rules check | API answers 7 days; the combo index 7 days | `backend.commanderspellbook.com`, `json.commanderspellbook.com` |
+| Scryfall | card data, function tags (the role tags and the attribute tags, saved in one file), cheapest printing | rules, roles, prices | card index 7 days, tags 30, prices 7 | `api.scryfall.com`, `data.scryfall.io` |
 | MTGJSON | precon decklists | input | 30 days (the list of precons: 7) | `mtgjson.com` |
 
 TTL, short for time to live, is how long a cached download counts as fresh. The values live in `config.py`.
@@ -1020,10 +1169,12 @@ User-Agent `mtg-draft-commander/0.1 (+https://github.com/albertngo1/mtg-draft)`.
 **`warm COMMANDER`** downloads ahead of time what the other commands will ask for: the card index; EDHREC's
 all-bracket and bracket pages, the pages for each `--theme`, the salt list, and neighboring brackets when the bracket
 is thin; Archidekt decks when they are used; EDHTop16 results at Bracket 3 and up; the commander's precons from
-MTGJSON; the function tags; and the cheapest prices of about 500 likely cards. It does not fetch Commander
-Spellbook combos: those answers are cached per exact card list, so an `--offline` run can check combos only for lists
-it has checked online before (the list you give it, and the list after the swaps). For any other list it prints
-"Combos were not checked", and the combo limit is not verified.
+MTGJSON; the function tags (the role tags); and the cheapest prices of about 500 likely cards. It does not fetch
+Commander Spellbook combos: those answers are cached per exact card list, so an `--offline` `check`, `build` or
+`upgrade` can check combos only for lists it has checked online before (the list you give it, and the list after the
+swaps). For any other list it prints "Combos were not checked", and the combo limit is not verified. `stats` is the
+exception once it has run online one time: it saves the combo index and the attribute tags, and then works for any list
+with `--offline`.
 
 **`--offline`** never connects. It uses whatever is cached, even expired, and says so. A source with nothing
 cached is skipped with a warning that names it; if the card index (or a precon list) is missing, the command stops
@@ -1107,7 +1258,7 @@ card or change. The keys come in a fixed order, listed at the top of `decks.py`.
 
 | case | what happens |
 |---|---|
-| Unknown card name | `build` and `upgrade` stop before scoring with close matches ("did you mean ..."); `check` lists it as a problem and checks the rest. Unknown names inside a precon list are skipped with a warning |
+| Unknown card name | `build`, `upgrade` and `stats` stop before scoring with close matches ("did you mean ..."); `check` lists it as a problem and checks the rest. Unknown names inside a precon list are skipped with a warning |
 | Illegal list (wrong colors, duplicates, banned cards, not 100 cards) | `check` reports every problem and still checks the rest. `upgrade` cuts illegal cards first and says why |
 | Little data (under 50 decks at the bracket) | pools the neighboring brackets and, if on, Archidekt decks; prints "Thin data" with the counts |
 | A source is down or `--offline` | uses the cache and says how old it is; with no cache, skips that signal and names it in the warnings; stops (exit 2) only if the card index or a precon list is missing |
@@ -1119,6 +1270,8 @@ card or change. The keys come in a fixed order, listed at the top of `decks.py`.
 | `--fantasy` without a Claude token | says why (a note on stderr, or in `warnings` with `--json`), reads no words from the text, and points to `themes`; `--theme` and `--playstyle` still work |
 | Claude names a word not on the menu | dropped with a warning; Claude may choose at most 3 themes and one playstyle, and never a card |
 | `stax` below Bracket 4 | falls back to `value` with a warning |
+| `stats` without the attribute tags (offline, nothing saved) | the items that need them (removal and wipe power, answers, ramp and draw kinds, tapped lands, finishers by kind, most playstyles) have no value and say why; the role counts, the curve, colors, price and the rest still print |
+| `stats` cannot get the combo file | falls back to the API with a warning; if that fails too, the combo items have no value and the combo limit is not verified |
 
 ### Terms of use
 
@@ -1140,7 +1293,9 @@ use a source. Quotes are copied from the pages named, read on 2026-10-11.
   asks for "a few HTTP calls per user interaction", says "80 requests per minute should be a safe rate", asks
   users to name their service in the User-Agent (this tool sends `mtg-draft-commander/0.1`) and says "Please credit us
   and link back to commanderspellbook.com where applicable". The credit is under Data sources & credits below. Its
-  API host's `robots.txt` says `Disallow: /`.
+  API host's `robots.txt` says `Disallow: /`. The same guide says "Do not use the HTTP API to export the whole
+  dataset" and publishes the whole dataset as one daily file ("Gzipped. Prefer this one.", "Fetch it on a schedule of
+  your own and read it locally"). `stats` reads that file, once every 7 days, and keeps only a compact index of it.
 - **Scryfall** ([API documentation](https://scryfall.com/docs/api)): "All HTTP requests to api.scryfall.com must
   include a User-Agent header and an Accept header" (this tool sends both), and the search endpoints are limited to
   2 requests a second (it waits 500 ms between requests to that host). It encourages caching "at least for 24
@@ -1212,8 +1367,9 @@ The tests are standard-library `unittest`, replay small hand-made fixtures in ea
   - **[Archidekt](https://archidekt.com/)** — decklists tagged with a bracket.
   - **[EDHTop16](https://edhtop16.com/)** — cEDH tournament results through its public API. Its tournament data comes
     from TopDeck.gg. This tool is not endorsed by EDHTop16.
-  - **[Commander Spellbook](https://commanderspellbook.com/)** — the combo database behind the combo checks. Credit
-    and link back, as its API guidelines ask.
+  - **[Commander Spellbook](https://commanderspellbook.com/)** — the combo database behind the combo checks (its API,
+    and its daily combo file for `stats`). Credit and link back, as its API guidelines ask; every combo `stats`
+    prints carries its page address.
   - **[MTGJSON](https://mtgjson.com/)** — preconstructed deck lists.
   - **[Wizards of the Coast's Commander format page](https://magic.wizards.com/en/formats/commander)** — the bracket
     definitions and the Game Changers list. `commander/brackets.json` quotes their wording with its source and date.
@@ -1225,8 +1381,8 @@ The tests are standard-library `unittest`, replay small hand-made fixtures in ea
 - Python 3 (standard library only — no pip installs). The draft coach runs on 3.8+; the Commander builder needs 3.9+.
 - Outbound HTTPS to `api.scryfall.com` and `www.17lands.com` (the draft coach).
 - Outbound HTTPS for the Commander builder: `api.scryfall.com`, `data.scryfall.io` (Scryfall's bulk files),
-  `json.edhrec.com`, `archidekt.com`, `edhtop16.com`, `backend.commanderspellbook.com` and `mtgjson.com`. After
-  `warm`, `--offline` runs need none of them.
+  `json.edhrec.com`, `archidekt.com`, `edhtop16.com`, `backend.commanderspellbook.com`, `json.commanderspellbook.com`
+  (the daily combo file, for `stats`) and `mtgjson.com`. After `warm`, `--offline` runs need none of them.
 - MTGA "Detailed Logs (Plugin Support)" enabled (the draft coach).
 - Optional, for `--fantasy`: the `claude` command-line tool on your `PATH` and a Claude token (see
   [Using it as an agent / coach](#using-it-as-an-agent--coach)).

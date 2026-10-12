@@ -186,9 +186,11 @@ def fetch_json(url, *, source, key=None, ttl=None, data=None, headers=None, refr
     return payload, _info(url, now, "network")
 
 
-def download(url, path, *, source):
+def download(url, path, *, source, decode=True):
     """Stream a large file (Scryfall's bulk card data) to `path`, gunzipping on the fly, so a 150 MB
-    file never sits in memory. Retried once. Returns `path`."""
+    file never sits in memory. Retried once. Returns `path`. With `decode=False` the bytes are saved as the
+    server sent them: Commander Spellbook's daily file is a 29 MB gzip that the server labels
+    `Content-Encoding: gzip`, so decoding it here would write 700 MB to disk for a reader that can unzip."""
     host = urllib.parse.urlsplit(url).hostname or ""
     tmp = f"{path}.{os.getpid()}.tmp"
     os.makedirs(os.path.dirname(path), exist_ok=True)
@@ -197,7 +199,8 @@ def download(url, path, *, source):
         try:
             req = urllib.request.Request(url, headers={**UA, "Accept-Encoding": "gzip"})
             with urllib.request.urlopen(req, timeout=TIMEOUT) as r, open(tmp, "wb") as out:
-                src = gzip.GzipFile(fileobj=r) if r.headers.get("Content-Encoding") == "gzip" else r
+                gzipped = decode and r.headers.get("Content-Encoding") == "gzip"
+                src = gzip.GzipFile(fileobj=r) if gzipped else r
                 for chunk in iter(lambda: src.read(1 << 20), b""):
                     out.write(chunk)
             os.replace(tmp, path)

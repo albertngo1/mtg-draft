@@ -583,12 +583,14 @@ Windows use `python` and `mtg-commander.bat`; on macOS/Linux `./mtg-commander.sh
 | "build me a deck around X" | `build X` |
 | "what commander fits a squirrel army?" | `themes`, then `suggest` |
 | "is this deck Bracket 3?", "is this card allowed?" | `check` |
+| "how good is this deck at X?", "show me the numbers", "how much removal does it have?" | `stats` |
 | "I will be offline" | `warm` now; `--offline` later |
 
 ```bash
 python3 src/mtg-commander.py warm "Hazel of the Rootbloom" --bracket 3 --theme tokens   # once per commander
 python3 src/mtg-commander.py themes --commander "Hazel of the Rootbloom"                # the menu of words
 python3 src/mtg-commander.py check --precon "Squirreled Away"                           # where the deck stands now
+python3 src/mtg-commander.py stats --precon "Squirreled Away" --bracket 3 --theme tokens --playstyle aristocrats   # every number
 python3 src/mtg-commander.py upgrade --precon "Squirreled Away" --budget 75 --theme tokens --playstyle aristocrats
 python3 src/mtg-commander.py build "Hazel of the Rootbloom" --bracket 3 --budget 150 --theme squirrels
 python3 src/mtg-commander.py suggest --theme tokens --playstyle go-wide --colors BG
@@ -609,6 +611,35 @@ first run of most commands also builds the card index (a minute or two, once). A
 4. **The fantasy**, below.
 5. **Keep and avoid.** `--include CARD` keeps a card; `--exclude CARD` rules one out (both repeatable). Add
    `--allow-combos` only if the table is happy with two-card combos.
+
+### Read a deck's numbers with `stats`
+
+`stats` takes the deck flags of `check` and the bracket, theme, playstyle and owned-card flags of `upgrade`, and prints
+every number the tool has about the list in six groups: power, interaction, mana, playstyle, win plan, and table and
+money. (The code has a seventh, changes from a base deck, for callers that pass a base deck; the command does not.)
+Quote a number from its line, and say what it measures:
+
+- A number with a usual range for the bracket shows it (`want 34-36`, `max 8`, `at least 1`) and marks it `SHORT` or
+  `OVER` when it falls outside. The ranges for lands, ramp, draw and the other roles are measured from real decks, like
+  the role targets (ARCHITECTURE.md, "Roles, targets and calibration"); say which bracket's range you mean.
+- **Removal power** and **wipe power** are the tool's own measures: each removal card is worth how quick, how far-reaching,
+  how lasting and how cheap it is, and `-v` shows the arithmetic for every card. The weights are judgment calls, so say
+  "the tool scores it" and never present removal power as a rule of the game. Compare a deck with its own earlier version,
+  or with the bracket's range, not with another site's numbers.
+- **Answers to each threat** count the cards that can deal with creatures, artifacts, enchantments, planeswalkers, lands,
+  graveyards and spells. A 0 is marked `SHORT`: nothing in the deck answers that kind of threat. Relay it as a gap, not
+  as a failure.
+- **Bracket** is the bracket you chose, inside or over its limits. **Lowest bracket its limits allow** is a floor,
+  as in `check`: Brackets 1 and 2 share the same limits, so most precons read 1 there. **Playstyle** percentages
+  say how much of the deck signals each
+  playstyle, so the highest one is what the deck is already doing, which is not always the playstyle the player asked for.
+- A line with `-` instead of a number says why under it (no combo data, no tag data, the card index does not record a
+  creature's power). Say that the number is missing; never estimate it.
+- **Price** is the card index's price for the default printing. `upgrade` prices the cheapest printing, so its spending
+  can be lower; do not mix the two in one sentence. Cards the player owns (`--owned`, `--owned-precon`) cost $0 to buy;
+  unlike in `upgrade`, the list's own cards do not.
+- The first online run downloads Commander Spellbook's daily combo file (29 MB) and the card attribute tags once; after
+  that `stats --offline` works for any list.
 
 ### Pass the fantasy as menu words
 
@@ -685,7 +716,9 @@ The tool says when its evidence is weak. Relay these before the recommendations 
   counts from 30).
 - A source marked `(stale)`, or a warning that data is N days old: the site failed, or `--offline` used an old copy.
 - "Combos were not checked": the Commander Spellbook lookup failed (or, with `--offline`, that exact list was never
-  looked up). Say the combo limit was not verified.
+  looked up). Say the combo limit was not verified. (`stats` is the exception: once it has saved Spellbook's daily combo
+  file it checks any list offline. That file leaves out combos that need a class of card such as a persist creature, so
+  it can miss one the website would show.)
 - No deck-builder data at all ("EDHREC rank ... via Scryfall"): the list is generic good-stuff for the colors. Say so.
   The fix is to include a deck-builder source in `--sources`, or to get online and run `warm`.
 
@@ -704,6 +737,7 @@ cannot do without is unavailable (offline with nothing cached): run `warm` while
 | `upgrade` | `swaps[]` (`rank`, `cut`, `add`, `gain`, `price`, `owned`, `forced`, `reason`, `fills`, `evidence_add`, `kind_add`, `evidence_cut`, `price_point`: the step that found it, null for a forced swap), `price_points[]` (`budget`, `spent`, `value`, `swaps`: totals up to that step; empty without a budget), `blocked[]` (`card`, `reason`, `gain`), `cheap_adds[]`, `spent`, `roles_before`, `roles_after`, `targets`, `value_before`, `value_after`, `bracket_before`, `bracket_after`, `deck_after` |
 | `build` | `cards[]` (`name`, `section`, `roles`, `score`, `price`, `owned`, `evidence`, `kind`), `basics`, `count`, `spent`, `roles`, `targets`, `value`, `fantasy_cost`, `bracket_check`, `blocked` |
 | `suggest` | `commanders[]` (`rank`, `name`, `ci`, `score`, `theme_share`, `playstyle_share`, `bracket_decks`, `salt`, `tournament`, `core_cost`, `owned_share`, `evidence[]`) |
+| `stats` | `headline` (`score`, `bracket` (the chosen one), `bracket_ok` (whether the deck keeps its limits), `lands`, `removal_power`, `price`), `groups[]` (`id`, `label`, `items[]`). Each item has `id`, `label`, `value` (null when it cannot be had), `unit` (`%`, `$` or null), `target` (`min`, `target`, `max`, any of them null), `status` (`short`, `inside`, `over` or null), `why[]`, `cards[]`; read `why` for how a number was made or why it is missing |
 | `themes`, `warm` | `playstyles[]` and `themes[]` (`slug`, `label`, `count`); `fetched[]` (`source`, `what`, `cache`, `fetched`) |
 | `validate` | `method`, `commanders[]` (`name`, `decks`, `overlap`, `baseline`), `overall` (`overlap`, `baseline`, `n`), `roles_in_iqr`, `bracket_ok_rate`, `sweep`, `calibration`, `upgrade_check` |
 

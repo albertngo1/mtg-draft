@@ -48,7 +48,7 @@ class FakeEngine:
 
     def __init__(self):
         self.calls = {}
-        self.ctx = {"warnings": ["ctx: thin data warning"],
+        self.ctx = {"warnings": ["ctx: thin data warning"], "ci": "BG",
                     "sources": {"edhrec": {"fetched": "2026-10-11T09:12:44Z", "cache": "network", "age_days": 0.0}}}
 
     def prepare(self, *args, **kw):
@@ -68,6 +68,18 @@ class FakeEngine:
         return fixture("render_suggest.json")
 
 
+class FakeMetrics:
+    """Stands in for metrics.py: records its arguments and answers with the groups of the render fixture."""
+
+    def __init__(self):
+        self.calls = []
+
+    def compute(self, ctx, db, cards, **kw):
+        self.calls.append(((ctx, db, cards), kw))
+        shown = fixture("render_stats.json")
+        return {"schema": 1, "headline": shown["headline"], "groups": shown["groups"]}
+
+
 class CliCase(unittest.TestCase):
     """cli.run with every door closed: no network, no real card index, no claude, no cache writes."""
 
@@ -75,13 +87,19 @@ class CliCase(unittest.TestCase):
         self.db = sample_db()
         self.engine = FakeEngine()
         self.validate = SimpleNamespace(run=mock.Mock(return_value={"bracket": 3, "method": "stub", "commanders": []}))
+        self.metrics = FakeMetrics()
         self.combos = {"included": [], "almost": [], "fetched": NOW, "cache": "network"}
         self.load = mock.patch.object(carddb, "load", return_value=self.db).start()
-        mock.patch.object(cli, "_engine", side_effect=lambda name, command: {"build": self.engine,
-                                                                          "validate": self.validate}[name]).start()
+        mock.patch.object(cli, "_engine", side_effect=lambda name, command: {
+            "build": self.engine, "validate": self.validate, "metrics": self.metrics}[name]).start()
         self.combos_call = mock.patch.object(spellbook, "find_combos", return_value=self.combos).start()
+        self.combos_for = mock.patch.object(spellbook, "combos_for", return_value=dict(self.combos, via="index")).start()
         self.tag = mock.patch.object(roles, "tag", side_effect=lambda names, db, **kw: {
             n: set(TEST_ROLES.get(n, ())) for n in names}).start()
+        self.attributes = mock.patch.object(roles, "attributes", side_effect=lambda names, db, **kw: {
+            n: frozenset({"mana-rock"} if n == "Sol Ring" else ()) for n in names}).start()
+        self.tags_loaded = True
+        mock.patch.object(roles, "attributes_loaded", side_effect=lambda: self.tags_loaded).start()
         mock.patch.object(scryfall_tags, "INFO", {}).start()
         self.meta = mock.patch.object(edhrec, "commander_meta", return_value=None).start()
         mock.patch.object(decklist, "precon", side_effect=self.precon).start()
@@ -210,6 +228,23 @@ class ParseTests(unittest.TestCase):
         a = self.parse("check", "--precon", "Squirreled Away", "--bracket", "3")
         self.assertEqual((a.command, a.precon, a.bracket), ("check", "Squirreled Away", 3))
 
+    def test_stats_takes_the_deck_and_the_flags_check_and_upgrade_take(self):
+        a = self.parse("stats", "deck.txt", "--commander", "A", "--bracket", "4", "--theme", "tokens",
+                       "--playstyle", "aristocrats", "--owned", "mine.txt", "--owned-precon", "Squirreled Away",
+                       "--fantasy-weight", "0.8", "--no-keep-fun", "-v", "--json")
+        self.assertEqual((a.command, a.deckfile, a.precon, a.commander, a.bracket), ("stats", "deck.txt", None, ["A"], 4))
+        self.assertEqual((a.theme, a.playstyle, a.owned, a.owned_precon), (["tokens"], "aristocrats", ["mine.txt"],
+                                                                         ["Squirreled Away"]))
+        self.assertEqual((a.fantasy_weight, a.keep_fun, a.verbose, a.json), (0.8, False, True, True))
+        a = self.parse("stats", "--precon", "Squirreled Away")
+        self.assertEqual((a.deckfile, a.precon, a.verbose, a.bracket), (None, "Squirreled Away", False, None))
+
+    def test_stats_does_not_take_the_flags_that_only_building_needs(self):
+        for flag in ("--budget", "--include", "--exclude", "--allow-combos", "--out", "--max-swaps"):
+            with self.subTest(flag=flag):
+                with contextlib.redirect_stderr(io.StringIO()), self.assertRaises(SystemExit):
+                    cli.build_parser().parse_args(["stats", "-", flag, "x"])
+
     def test_warm(self):
         a = self.parse("warm", "Hazel of the Rootbloom", "--partner", "P", "--bracket", "5", "--theme", "tokens",
                        "--theme", "squirrels")
@@ -226,7 +261,7 @@ class ParseTests(unittest.TestCase):
 
     def test_the_four_global_flags_work_after_any_command(self):
         for argv in (["themes"], ["suggest", "--theme", "t"], ["build", "C"], ["upgrade", "-"], ["check", "-"],
-                     ["warm", "C"], ["validate", "--bracket", "3"]):
+                     ["stats", "-"], ["warm", "C"], ["validate", "--bracket", "3"]):
             with self.subTest(command=argv[0]):
                 a = cli.build_parser().parse_args(argv + ["--json", "--refresh", "--offline", "--sources", "edhrec"])
                 self.assertEqual((a.json, a.refresh, a.offline, a.sources), (True, True, True, ("edhrec",)))
@@ -265,7 +300,7 @@ class UsageErrorTests(CliCase):
     def test_help_exits_zero_and_lists_the_commands(self):
         result = self.run_cli("--help")
         self.assertEqual(result.code, 0)
-        for command in ("themes", "suggest", "build", "upgrade", "check", "warm", "validate"):
+        for command in ("themes", "suggest", "build", "upgrade", "check", "stats", "warm", "validate"):
             self.assertIn(command, result.out)
 
     def test_a_subcommand_help_lists_its_flags(self):
@@ -534,6 +569,151 @@ class CheckTests(CliCase):
     def test_the_function_tag_data_is_a_source_when_it_was_read(self):
         scryfall_tags.INFO.update(fetched="2026-10-09T04:00:00Z", cache="fresh")
         self.assertEqual(self.run_json("check", "--precon", "Test Precon")["sources"]["scryfall_tags"]["cache"], "fresh")
+
+
+# ----------------------------------------------------------------------------- stats
+class StatsTests(CliCase):
+    def stats(self, *argv):
+        return self.run_json("stats", "--precon", "Test Precon", *argv)
+
+    def test_a_precon_through_the_metrics_engine(self):
+        result = self.stats()
+        self.assertEqual((result["schema"], result["command"], result["bracket"]), (1, "stats", 3))
+        self.assertEqual(result["deck"], {"name": "Test Precon", "commanders": ["Hazel of the Rootbloom"], "count": 100,
+                                          "ci": "BG"})
+        shown = fixture("render_stats.json")
+        self.assertEqual((result["headline"], result["groups"]), (shown["headline"], shown["groups"]))
+        self.assertEqual(result["spec"]["bracket"], 3)
+        self.assertEqual(result["spec"]["playstyle"], "value")
+
+    def test_the_engine_is_asked_for_the_same_context_upgrade_uses(self):
+        self.stats("--bracket", "4", "--theme", "tokens", "--playstyle", "aristocrats")
+        args, kw = self.engine.calls["prepare"]
+        commanders, bracket, spec, db = args
+        self.assertEqual((commanders, bracket), (["Hazel of the Rootbloom"], 4))
+        self.assertEqual((spec["themes"], spec["playstyle"]), (["tokens"], "aristocrats"))
+        names = [n for _, n in decklist.parse(deck_text())["cards"]]
+        self.assertEqual(sorted(kw["deck_cards"]), sorted(set(names)))
+        self.assertEqual(kw["sources"], config.SOURCES)
+        self.assertEqual(kw["owned"], set())
+
+    def test_the_metrics_get_the_deck_the_tags_the_combos_and_what_is_owned(self):
+        self.stats("--owned-precon", "Test Precon")
+        (ctx, db, cards), kw = self.metrics.calls[0]
+        self.assertIs(ctx, self.engine.ctx)
+        self.assertEqual(sum(n for n, _ in cards), 99)                       # the 99 cards, as (count, name) pairs
+        self.assertEqual(kw["commanders"], ["Hazel of the Rootbloom"])
+        self.assertEqual(kw["attrs"]["Sol Ring"], frozenset({"mana-rock"}))
+        self.assertEqual(kw["combos"]["via"], "index")
+        self.assertIn("Sol Ring", kw["owned"])
+        self.assertNotIn("prices", kw)                                       # the card index's own prices
+
+    def test_the_attribute_tags_are_loaded_for_the_decks_cards(self):
+        self.stats()
+        names = self.attributes.call_args[0][0]
+        self.assertEqual(sorted(set(names)), sorted(set(n for _, n in decklist.parse(deck_text())["cards"])))
+
+    def test_without_the_attribute_tags_the_metrics_get_none_and_the_warning_the_load_left_comes_through(self):
+        self.tags_loaded = False
+        roles.WARNINGS.append("roles: Scryfall function tags for card attributes unavailable, so the removal, "
+                              "mana, land and playstyle counts that need them are not shown (offline)")
+        result = self.stats()
+        self.assertIsNone(self.metrics.calls[0][1]["attrs"])
+        self.assertTrue(any("attributes unavailable" in w for w in result["warnings"]))
+
+    def test_the_combo_helper_is_asked_about_the_whole_list_with_the_commanders_colors(self):
+        self.stats()
+        commanders, names = self.combos_for.call_args[0]
+        self.assertEqual(commanders, ["Hazel of the Rootbloom"])
+        self.assertEqual((len(names), names.count("Forest"), names.count("Sol Ring")), (99, 40, 1))
+        self.assertEqual(self.combos_for.call_args[1], {"identity": "BG"})
+        self.combos_call.assert_not_called()                                 # the API is the helper's fallback
+
+    def test_the_spellbook_source_is_dated_by_the_answer(self):
+        self.combos_for.return_value = dict(self.combos, via="index", fetched="2026-10-10T23:00:00Z", cache="fresh")
+        sources = self.stats()["sources"]
+        self.assertEqual((sources["spellbook"]["fetched"], sources["spellbook"]["cache"]),
+                         ("2026-10-10T23:00:00Z", "fresh"))
+
+    def test_the_helpers_fallback_note_is_a_warning(self):
+        self.combos_for.return_value = dict(self.combos, via="api", note="The combo file was not available (HTTP 503), "
+                                                                       "so Commander Spellbook's API answered.")
+        self.assertIn("The combo file was not available (HTTP 503), so Commander Spellbook's API answered.",
+                      self.stats()["warnings"])
+
+    def test_combos_that_cannot_be_had_are_a_warning_and_the_metrics_go_on_without_them(self):
+        self.combos_for.side_effect = net.FetchError("spellbook", "https://example.test", "HTTP 503")
+        result = self.stats()
+        self.assertIsNone(self.metrics.calls[0][1]["combos"])
+        self.assertIn("Combos were not checked: spellbook is unavailable (HTTP 503).", result["warnings"])
+        self.assertNotIn("spellbook", result["sources"])
+
+    def test_the_context_warnings_and_sources_join_the_result(self):
+        result = self.stats()
+        self.assertIn("ctx: thin data warning", result["warnings"])
+        self.assertEqual(result["sources"]["edhrec"]["cache"], "network")
+        self.assertEqual(set(result["sources"]) - {"edhrec"}, {"scryfall", "mtgjson", "spellbook"})
+
+    def test_the_function_tag_data_is_a_source_when_it_was_read(self):
+        scryfall_tags.INFO.update(fetched="2026-10-09T04:00:00Z", cache="fresh")
+        self.assertEqual(self.stats()["sources"]["scryfall_tags"]["cache"], "fresh")
+
+    def test_a_deck_file_with_an_unknown_card_stops_the_run_as_upgrade_does_and_a_precon_only_warns(self):
+        result = self.run_cli("stats", deck_path("cli_deck_typo.txt"))
+        self.assertEqual(result.code, 1)
+        self.assertIn("Sol Rign", result.err)
+        self.assertEqual(self.metrics.calls, [])
+
+    def test_a_deck_with_no_commander_is_exit_one_with_the_way_to_fix_it(self):
+        text = "".join(line for line in deck_text().splitlines(True) if "Hazel" not in line and line != "Commander\n")
+        result = self.run_cli("stats", "-", stdin=text)
+        self.assertEqual(result.code, 1)
+        self.assertIn("no commander found", result.err)
+
+    def test_a_deck_file_and_the_commander_flag(self):
+        text = "".join(line for line in deck_text().splitlines(True) if "Hazel" not in line and line != "Commander\n")
+        result = self.run_json("stats", "-", "--commander", "Hazel of the Rootbloom", stdin=text)
+        self.assertEqual(result["deck"]["commanders"], ["Hazel of the Rootbloom"])
+        self.assertEqual(result["deck"]["name"], "standard input")
+
+    def test_a_precon_and_a_file_together_are_exit_one(self):
+        self.assertEqual(self.run_cli("stats", deck_path("cli_deck.txt"), "--precon", "Test Precon").code, 1)
+        self.assertEqual(self.run_cli("stats").code, 1)
+
+    def test_an_unknown_precon_is_exit_one_with_close_names(self):
+        result = self.run_cli("stats", "--precon", "Test Precom")
+        self.assertEqual(result.code, 1)
+        self.assertIn("Test Precon", result.err)
+
+    def test_data_the_engine_cannot_do_without_is_exit_two(self):
+        self.engine.prepare = mock.Mock(side_effect=net.FetchError("edhrec", "u", "offline and not cached"))
+        result = self.run_cli("stats", "--precon", "Test Precon")
+        self.assertEqual(result.code, 2)
+        self.assertEqual(self.metrics.calls, [])
+        self.assertIn("warm COMMANDER", result.err)
+
+    def test_the_text_report_goes_to_stdout_and_json_is_alone_on_stdout(self):
+        text = self.run_cli("stats", "--precon", "Test Precon")
+        self.assertEqual(text.code, 0)
+        self.assertIn("Test Precon → Bracket 3, no budget", text.out)
+        self.assertIn("Score 93.77, Bracket 3 within its limits, 36 lands, removal power 5.95, cost to buy $185.43", text.out)
+        self.assertNotIn("cards:", text.out)
+        self.assertEqual(text.err, "")
+        as_json = self.run_cli("stats", "--precon", "Test Precon", "--json")
+        self.assertEqual(json.loads(as_json.out)["command"], "stats")
+        self.assertEqual(as_json.err, "")
+
+    def test_the_verbose_flag_reaches_the_report(self):
+        text = self.run_cli("stats", "--precon", "Test Precon", "-v").out
+        self.assertIn("cards: Tear Asunder, Assassin's Trophy", " ".join(text.split()))
+
+    def test_the_run_wide_modes_are_in_force_while_the_combos_are_asked_for_and_restored_after(self):
+        before, seen = dict(net.MODE), []
+        self.combos_for.side_effect = lambda *a, **k: seen.append((net.MODE["offline"], net.MODE["refresh"])) or \
+            dict(self.combos, via="index")
+        self.run_json("stats", "--precon", "Test Precon", "--offline", "--refresh")
+        self.assertEqual(seen, [(True, True)])
+        self.assertEqual(net.MODE, before)
 
 
 # ----------------------------------------------------------------------------- themes

@@ -1,0 +1,1434 @@
+{
+ "timestamp": "2026-10-11T23:11:42.250594+00:00",
+ "version": "7.1.9",
+ "variants": [
+  {
+   "id": "3000-4871",
+   "status": "OK",
+   "uses": [
+    {
+     "card": {
+      "id": 6624,
+      "name": "Chatterfang, Squirrel General",
+      "oracleId": "00000000-0000-4000-8000-003455301060",
+      "spoiler": false,
+      "faces": 1,
+      "typeLine": "Creature",
+      "imageUriFrontPng": "https://cards.scryfall.io/png/front/x.png",
+      "imageUriFrontLarge": "https://cards.scryfall.io/large/front/x.jpg",
+      "imageUriFrontNormal": "https://cards.scryfall.io/normal/front/x.jpg",
+      "imageUriFrontSmall": "https://cards.scryfall.io/small/front/x.jpg",
+      "imageUriFrontArtCrop": "https://cards.scryfall.io/art_crop/front/x.jpg",
+      "layoutRotationFront": null,
+      "imageUriBackPng": null,
+      "imageUriBackLarge": null,
+      "imageUriBackNormal": null,
+      "imageUriBackSmall": null,
+      "imageUriBackArtCrop": null
+     },
+     "zoneLocations": [
+      "B"
+     ],
+     "battlefieldCardState": "",
+     "exileCardState": "",
+     "libraryCardState": "",
+     "graveyardCardState": "",
+     "mustBeCommander": false,
+     "quantity": 1,
+     "usedFace": null
+    },
+    {
+     "card": {
+      "id": 6901,
+      "name": "Pitiless Plunderer",
+      "oracleId": "00000000-0000-4000-8000-004173729487",
+      "spoiler": false,
+      "faces": 1,
+      "typeLine": "Creature",
+      "imageUriFrontPng": "https://cards.scryfall.io/png/front/x.png",
+      "imageUriFrontLarge": "https://cards.scryfall.io/large/front/x.jpg",
+      "imageUriFrontNormal": "https://cards.scryfall.io/normal/front/x.jpg",
+      "imageUriFrontSmall": "https://cards.scryfall.io/small/front/x.jpg",
+      "imageUriFrontArtCrop": "https://cards.scryfall.io/art_crop/front/x.jpg",
+      "layoutRotationFront": null,
+      "imageUriBackPng": null,
+      "imageUriBackLarge": null,
+      "imageUriBackNormal": null,
+      "imageUriBackSmall": null,
+      "imageUriBackArtCrop": null
+     },
+     "zoneLocations": [
+      "B"
+     ],
+     "battlefieldCardState": "",
+     "exileCardState": "",
+     "libraryCardState": "",
+     "graveyardCardState": "",
+     "mustBeCommander": false,
+     "quantity": 1,
+     "usedFace": null
+    }
+   ],
+   "requires": [],
+   "produces": [
+    {
+     "feature": {
+      "id": 100,
+      "name": "Infinite Treasure tokens",
+      "uncountable": true,
+      "status": "H"
+     },
+     "quantity": 1
+    },
+    {
+     "feature": {
+      "id": 101,
+      "name": "Infinite colored mana",
+      "uncountable": true,
+      "status": "H"
+     },
+     "quantity": 1
+    }
+   ],
+   "of": [
+    {
+     "id": 1
+    }
+   ],
+   "includes": [
+    {
+     "id": 2
+    }
+   ],
+   "identity": "BG",
+   "manaNeeded": "",
+   "manaValueNeeded": 0,
+   "easyPrerequisites": "",
+   "notablePrerequisites": "",
+   "description": "Step one.\nRepeat",
+   "notes": "",
+   "popularity": 0,
+   "salt": null,
+   "saltVoteCount": 0,
+   "spoiler": false,
+   "bracketTag": "S",
+   "legalities": {
+    "commander": true,
+    "legacy": true
+   },
+   "prices": {
+    "tcgplayer": "1.00"
+   },
+   "variantCount": 1
+  },
+  {
+   "id": "1385-3000-5670",
+   "status": "OK",
+   "uses": [
+    {
+     "card": {
+      "id": 5012,
+      "name": "Zulaport Cutthroat",
+      "oracleId": "00000000-0000-4000-8000-002508024185",
+      "spoiler": false,
+      "faces": 1,
+      "typeLine": "Creature",
+      "imageUriFrontPng": "https://cards.scryfall.io/png/front/x.png",
+      "imageUriFrontLarge": "https://cards.scryfall.io/large/front/x.jpg",
+      "imageUriFrontNormal": "https://cards.scryfall.io/normal/front/x.jpg",
+      "imageUriFrontSmall": "https://cards.scryfall.io/small/front/x.jpg",
+      "imageUriFrontArtCrop": "https://cards.scryfall.io/art_crop/front/x.jpg",
+      "layoutRotationFront": null,
+      "imageUriBackPng": null,
+      "imageUriBackLarge": null,
+      "imageUriBackNormal": null,
+      "imageUriBackSmall": null,
+      "imageUriBackArtCrop": null
+     },
+     "zoneLocations": [
+      "B"
+     ],
+     "battlefieldCardState": "",
+     "exileCardState": "",
+     "libraryCardState": "",
+     "graveyardCardState": "",
+     "mustBeCommander": false,
+     "quantity": 1,
+     "usedFace": null
+    },
+    {
+     "card": {
+      "id": 6624,
+      "name": "Chatterfang, Squirrel General",
+      "oracleId": "00000000-0000-4000-8000-003455301060",
+      "spoiler": false,
+      "faces": 1,
+      "typeLine": "Creature",
+      "imageUriFrontPng": "https://cards.scryfall.io/png/front/x.png",
+      "imageUriFrontLarge": "https://cards.scryfall.io/large/front/x.jpg",
+      "imageUriFrontNormal": "https://cards.scryfall.io/normal/front/x.jpg",
+      "imageUriFrontSmall": "https://cards.scryfall.io/small/front/x.jpg",
+      "imageUriFrontArtCrop": "https://cards.scryfall.io/art_crop/front/x.jpg",
+      "layoutRotationFront": null,
+      "imageUriBackPng": null,
+      "imageUriBackLarge": null,
+      "imageUriBackNormal": null,
+      "imageUriBackSmall": null,
+      "imageUriBackArtCrop": null
+     },
+     "zoneLocations": [
+      "B"
+     ],
+     "battlefieldCardState": "",
+     "exileCardState": "",
+     "libraryCardState": "",
+     "graveyardCardState": "",
+     "mustBeCommander": false,
+     "quantity": 1,
+     "usedFace": null
+    },
+    {
+     "card": {
+      "id": 6756,
+      "name": "Warren Soultrader",
+      "oracleId": "00000000-0000-4000-8000-003313525371",
+      "spoiler": false,
+      "faces": 1,
+      "typeLine": "Creature",
+      "imageUriFrontPng": "https://cards.scryfall.io/png/front/x.png",
+      "imageUriFrontLarge": "https://cards.scryfall.io/large/front/x.jpg",
+      "imageUriFrontNormal": "https://cards.scryfall.io/normal/front/x.jpg",
+      "imageUriFrontSmall": "https://cards.scryfall.io/small/front/x.jpg",
+      "imageUriFrontArtCrop": "https://cards.scryfall.io/art_crop/front/x.jpg",
+      "layoutRotationFront": null,
+      "imageUriBackPng": null,
+      "imageUriBackLarge": null,
+      "imageUriBackNormal": null,
+      "imageUriBackSmall": null,
+      "imageUriBackArtCrop": null
+     },
+     "zoneLocations": [
+      "B"
+     ],
+     "battlefieldCardState": "",
+     "exileCardState": "",
+     "libraryCardState": "",
+     "graveyardCardState": "",
+     "mustBeCommander": false,
+     "quantity": 1,
+     "usedFace": null
+    }
+   ],
+   "requires": [],
+   "produces": [
+    {
+     "feature": {
+      "id": 100,
+      "name": "Infinite artifact ETB",
+      "uncountable": true,
+      "status": "H"
+     },
+     "quantity": 1
+    },
+    {
+     "feature": {
+      "id": 101,
+      "name": "Infinite artifact LTB",
+      "uncountable": true,
+      "status": "H"
+     },
+     "quantity": 1
+    }
+   ],
+   "of": [
+    {
+     "id": 1
+    }
+   ],
+   "includes": [
+    {
+     "id": 2
+    }
+   ],
+   "identity": "BG",
+   "manaNeeded": "",
+   "manaValueNeeded": 0,
+   "easyPrerequisites": "",
+   "notablePrerequisites": "",
+   "description": "Step one.\nRepeat",
+   "notes": "",
+   "popularity": 0,
+   "salt": null,
+   "saltVoteCount": 0,
+   "spoiler": false,
+   "bracketTag": "E",
+   "legalities": {
+    "commander": true,
+    "legacy": true
+   },
+   "prices": {
+    "tcgplayer": "1.00"
+   },
+   "variantCount": 1
+  },
+  {
+   "id": "997-6982--5",
+   "status": "OK",
+   "uses": [
+    {
+     "card": {
+      "id": 625,
+      "name": "Woe Strider",
+      "oracleId": "00000000-0000-4000-8000-001535237086",
+      "spoiler": false,
+      "faces": 1,
+      "typeLine": "Creature",
+      "imageUriFrontPng": "https://cards.scryfall.io/png/front/x.png",
+      "imageUriFrontLarge": "https://cards.scryfall.io/large/front/x.jpg",
+      "imageUriFrontNormal": "https://cards.scryfall.io/normal/front/x.jpg",
+      "imageUriFrontSmall": "https://cards.scryfall.io/small/front/x.jpg",
+      "imageUriFrontArtCrop": "https://cards.scryfall.io/art_crop/front/x.jpg",
+      "layoutRotationFront": null,
+      "imageUriBackPng": null,
+      "imageUriBackLarge": null,
+      "imageUriBackNormal": null,
+      "imageUriBackSmall": null,
+      "imageUriBackArtCrop": null
+     },
+     "zoneLocations": [
+      "B"
+     ],
+     "battlefieldCardState": "",
+     "exileCardState": "",
+     "libraryCardState": "",
+     "graveyardCardState": "",
+     "mustBeCommander": false,
+     "quantity": 1,
+     "usedFace": null
+    },
+    {
+     "card": {
+      "id": 9293,
+      "name": "Stalwart Successor",
+      "oracleId": "00000000-0000-4000-8000-002989330331",
+      "spoiler": false,
+      "faces": 1,
+      "typeLine": "Creature",
+      "imageUriFrontPng": "https://cards.scryfall.io/png/front/x.png",
+      "imageUriFrontLarge": "https://cards.scryfall.io/large/front/x.jpg",
+      "imageUriFrontNormal": "https://cards.scryfall.io/normal/front/x.jpg",
+      "imageUriFrontSmall": "https://cards.scryfall.io/small/front/x.jpg",
+      "imageUriFrontArtCrop": "https://cards.scryfall.io/art_crop/front/x.jpg",
+      "layoutRotationFront": null,
+      "imageUriBackPng": null,
+      "imageUriBackLarge": null,
+      "imageUriBackNormal": null,
+      "imageUriBackSmall": null,
+      "imageUriBackArtCrop": null
+     },
+     "zoneLocations": [
+      "B"
+     ],
+     "battlefieldCardState": "",
+     "exileCardState": "",
+     "libraryCardState": "",
+     "graveyardCardState": "",
+     "mustBeCommander": false,
+     "quantity": 1,
+     "usedFace": null
+    }
+   ],
+   "requires": [
+    {
+     "template": {
+      "id": 5,
+      "name": "Persist Creature",
+      "scryfallQuery": "o:persist",
+      "scryfallApi": "https://api.scryfall.com/cards/search?q=o%3Apersist"
+     },
+     "zoneLocations": [
+      "B"
+     ],
+     "battlefieldCardState": "",
+     "exileCardState": "",
+     "libraryCardState": "",
+     "graveyardCardState": "",
+     "mustBeCommander": false,
+     "quantity": 1
+    }
+   ],
+   "produces": [
+    {
+     "feature": {
+      "id": 100,
+      "name": "Infinite creature ETB",
+      "uncountable": true,
+      "status": "H"
+     },
+     "quantity": 1
+    }
+   ],
+   "of": [
+    {
+     "id": 1
+    }
+   ],
+   "includes": [
+    {
+     "id": 2
+    }
+   ],
+   "identity": "BG",
+   "manaNeeded": "",
+   "manaValueNeeded": 0,
+   "easyPrerequisites": "",
+   "notablePrerequisites": "",
+   "description": "Step one.\nRepeat",
+   "notes": "",
+   "popularity": 0,
+   "salt": null,
+   "saltVoteCount": 0,
+   "spoiler": false,
+   "bracketTag": "E",
+   "legalities": {
+    "commander": true,
+    "legacy": true
+   },
+   "prices": {
+    "tcgplayer": "1.00"
+   },
+   "variantCount": 1
+  },
+  {
+   "id": "1368-4808-4856",
+   "status": "OK",
+   "uses": [
+    {
+     "card": {
+      "id": 3677,
+      "name": "Brain Freeze",
+      "oracleId": "00000000-0000-4000-8000-000889554713",
+      "spoiler": false,
+      "faces": 1,
+      "typeLine": "Creature",
+      "imageUriFrontPng": "https://cards.scryfall.io/png/front/x.png",
+      "imageUriFrontLarge": "https://cards.scryfall.io/large/front/x.jpg",
+      "imageUriFrontNormal": "https://cards.scryfall.io/normal/front/x.jpg",
+      "imageUriFrontSmall": "https://cards.scryfall.io/small/front/x.jpg",
+      "imageUriFrontArtCrop": "https://cards.scryfall.io/art_crop/front/x.jpg",
+      "layoutRotationFront": null,
+      "imageUriBackPng": null,
+      "imageUriBackLarge": null,
+      "imageUriBackNormal": null,
+      "imageUriBackSmall": null,
+      "imageUriBackArtCrop": null
+     },
+     "zoneLocations": [
+      "B"
+     ],
+     "battlefieldCardState": "",
+     "exileCardState": "",
+     "libraryCardState": "",
+     "graveyardCardState": "",
+     "mustBeCommander": false,
+     "quantity": 1,
+     "usedFace": null
+    },
+    {
+     "card": {
+      "id": 1903,
+      "name": "Black Lotus",
+      "oracleId": "00000000-0000-4000-8000-002212750606",
+      "spoiler": false,
+      "faces": 1,
+      "typeLine": "Creature",
+      "imageUriFrontPng": "https://cards.scryfall.io/png/front/x.png",
+      "imageUriFrontLarge": "https://cards.scryfall.io/large/front/x.jpg",
+      "imageUriFrontNormal": "https://cards.scryfall.io/normal/front/x.jpg",
+      "imageUriFrontSmall": "https://cards.scryfall.io/small/front/x.jpg",
+      "imageUriFrontArtCrop": "https://cards.scryfall.io/art_crop/front/x.jpg",
+      "layoutRotationFront": null,
+      "imageUriBackPng": null,
+      "imageUriBackLarge": null,
+      "imageUriBackNormal": null,
+      "imageUriBackSmall": null,
+      "imageUriBackArtCrop": null
+     },
+     "zoneLocations": [
+      "B"
+     ],
+     "battlefieldCardState": "",
+     "exileCardState": "",
+     "libraryCardState": "",
+     "graveyardCardState": "",
+     "mustBeCommander": false,
+     "quantity": 1,
+     "usedFace": null
+    },
+    {
+     "card": {
+      "id": 9619,
+      "name": "Underworld Breach",
+      "oracleId": "00000000-0000-4000-8000-003185461042",
+      "spoiler": false,
+      "faces": 1,
+      "typeLine": "Creature",
+      "imageUriFrontPng": "https://cards.scryfall.io/png/front/x.png",
+      "imageUriFrontLarge": "https://cards.scryfall.io/large/front/x.jpg",
+      "imageUriFrontNormal": "https://cards.scryfall.io/normal/front/x.jpg",
+      "imageUriFrontSmall": "https://cards.scryfall.io/small/front/x.jpg",
+      "imageUriFrontArtCrop": "https://cards.scryfall.io/art_crop/front/x.jpg",
+      "layoutRotationFront": null,
+      "imageUriBackPng": null,
+      "imageUriBackLarge": null,
+      "imageUriBackNormal": null,
+      "imageUriBackSmall": null,
+      "imageUriBackArtCrop": null
+     },
+     "zoneLocations": [
+      "B"
+     ],
+     "battlefieldCardState": "",
+     "exileCardState": "",
+     "libraryCardState": "",
+     "graveyardCardState": "",
+     "mustBeCommander": false,
+     "quantity": 1,
+     "usedFace": null
+    }
+   ],
+   "requires": [],
+   "produces": [
+    {
+     "feature": {
+      "id": 100,
+      "name": "Win the game",
+      "uncountable": true,
+      "status": "H"
+     },
+     "quantity": 1
+    }
+   ],
+   "of": [
+    {
+     "id": 1
+    }
+   ],
+   "includes": [
+    {
+     "id": 2
+    }
+   ],
+   "identity": "UR",
+   "manaNeeded": "",
+   "manaValueNeeded": 0,
+   "easyPrerequisites": "",
+   "notablePrerequisites": "",
+   "description": "Step one.\nRepeat",
+   "notes": "",
+   "popularity": 0,
+   "salt": null,
+   "saltVoteCount": 0,
+   "spoiler": false,
+   "bracketTag": "B",
+   "legalities": {
+    "commander": false,
+    "legacy": true
+   },
+   "prices": {
+    "tcgplayer": "1.00"
+   },
+   "variantCount": 1
+  },
+  {
+   "id": "8000-8001",
+   "status": "OK",
+   "uses": [
+    {
+     "card": {
+      "id": 9310,
+      "name": "Hazel of the Rootbloom",
+      "oracleId": "00000000-0000-4000-8000-002812028080",
+      "spoiler": false,
+      "faces": 1,
+      "typeLine": "Creature",
+      "imageUriFrontPng": "https://cards.scryfall.io/png/front/x.png",
+      "imageUriFrontLarge": "https://cards.scryfall.io/large/front/x.jpg",
+      "imageUriFrontNormal": "https://cards.scryfall.io/normal/front/x.jpg",
+      "imageUriFrontSmall": "https://cards.scryfall.io/small/front/x.jpg",
+      "imageUriFrontArtCrop": "https://cards.scryfall.io/art_crop/front/x.jpg",
+      "layoutRotationFront": null,
+      "imageUriBackPng": null,
+      "imageUriBackLarge": null,
+      "imageUriBackNormal": null,
+      "imageUriBackSmall": null,
+      "imageUriBackArtCrop": null
+     },
+     "zoneLocations": [
+      "B"
+     ],
+     "battlefieldCardState": "",
+     "exileCardState": "",
+     "libraryCardState": "",
+     "graveyardCardState": "",
+     "mustBeCommander": false,
+     "quantity": 1,
+     "usedFace": null
+    },
+    {
+     "card": {
+      "id": 7487,
+      "name": "Future Card",
+      "oracleId": "00000000-0000-4000-8000-002039003567",
+      "spoiler": true,
+      "faces": 1,
+      "typeLine": "Creature",
+      "imageUriFrontPng": "https://cards.scryfall.io/png/front/x.png",
+      "imageUriFrontLarge": "https://cards.scryfall.io/large/front/x.jpg",
+      "imageUriFrontNormal": "https://cards.scryfall.io/normal/front/x.jpg",
+      "imageUriFrontSmall": "https://cards.scryfall.io/small/front/x.jpg",
+      "imageUriFrontArtCrop": "https://cards.scryfall.io/art_crop/front/x.jpg",
+      "layoutRotationFront": null,
+      "imageUriBackPng": null,
+      "imageUriBackLarge": null,
+      "imageUriBackNormal": null,
+      "imageUriBackSmall": null,
+      "imageUriBackArtCrop": null
+     },
+     "zoneLocations": [
+      "B"
+     ],
+     "battlefieldCardState": "",
+     "exileCardState": "",
+     "libraryCardState": "",
+     "graveyardCardState": "",
+     "mustBeCommander": false,
+     "quantity": 1,
+     "usedFace": null
+    }
+   ],
+   "requires": [],
+   "produces": [
+    {
+     "feature": {
+      "id": 100,
+      "name": "Infinite damage",
+      "uncountable": true,
+      "status": "H"
+     },
+     "quantity": 1
+    }
+   ],
+   "of": [
+    {
+     "id": 1
+    }
+   ],
+   "includes": [
+    {
+     "id": 2
+    }
+   ],
+   "identity": "BG",
+   "manaNeeded": "",
+   "manaValueNeeded": 0,
+   "easyPrerequisites": "",
+   "notablePrerequisites": "",
+   "description": "Step one.\nRepeat",
+   "notes": "",
+   "popularity": 0,
+   "salt": null,
+   "saltVoteCount": 0,
+   "spoiler": true,
+   "bracketTag": "P",
+   "legalities": {
+    "commander": true,
+    "legacy": true
+   },
+   "prices": {
+    "tcgplayer": "1.00"
+   },
+   "variantCount": 1
+  },
+  {
+   "id": "9000-9001",
+   "status": "OK",
+   "uses": [
+    {
+     "card": {
+      "id": 6624,
+      "name": "Chatterfang, Squirrel General",
+      "oracleId": "00000000-0000-4000-8000-003455301060",
+      "spoiler": false,
+      "faces": 1,
+      "typeLine": "Creature",
+      "imageUriFrontPng": "https://cards.scryfall.io/png/front/x.png",
+      "imageUriFrontLarge": "https://cards.scryfall.io/large/front/x.jpg",
+      "imageUriFrontNormal": "https://cards.scryfall.io/normal/front/x.jpg",
+      "imageUriFrontSmall": "https://cards.scryfall.io/small/front/x.jpg",
+      "imageUriFrontArtCrop": "https://cards.scryfall.io/art_crop/front/x.jpg",
+      "layoutRotationFront": null,
+      "imageUriBackPng": null,
+      "imageUriBackLarge": null,
+      "imageUriBackNormal": null,
+      "imageUriBackSmall": null,
+      "imageUriBackArtCrop": null
+     },
+     "zoneLocations": [
+      "B"
+     ],
+     "battlefieldCardState": "",
+     "exileCardState": "",
+     "libraryCardState": "",
+     "graveyardCardState": "",
+     "mustBeCommander": false,
+     "quantity": 1,
+     "usedFace": null
+    },
+    {
+     "card": {
+      "id": 7395,
+      "name": "Dockside Extortionist",
+      "oracleId": "00000000-0000-4000-8000-000452992092",
+      "spoiler": false,
+      "faces": 1,
+      "typeLine": "Creature",
+      "imageUriFrontPng": "https://cards.scryfall.io/png/front/x.png",
+      "imageUriFrontLarge": "https://cards.scryfall.io/large/front/x.jpg",
+      "imageUriFrontNormal": "https://cards.scryfall.io/normal/front/x.jpg",
+      "imageUriFrontSmall": "https://cards.scryfall.io/small/front/x.jpg",
+      "imageUriFrontArtCrop": "https://cards.scryfall.io/art_crop/front/x.jpg",
+      "layoutRotationFront": null,
+      "imageUriBackPng": null,
+      "imageUriBackLarge": null,
+      "imageUriBackNormal": null,
+      "imageUriBackSmall": null,
+      "imageUriBackArtCrop": null
+     },
+     "zoneLocations": [
+      "B"
+     ],
+     "battlefieldCardState": "",
+     "exileCardState": "",
+     "libraryCardState": "",
+     "graveyardCardState": "",
+     "mustBeCommander": false,
+     "quantity": 1,
+     "usedFace": null
+    }
+   ],
+   "requires": [],
+   "produces": [
+    {
+     "feature": {
+      "id": 100,
+      "name": "Infinite colored mana",
+      "uncountable": true,
+      "status": "H"
+     },
+     "quantity": 1
+    }
+   ],
+   "of": [
+    {
+     "id": 1
+    }
+   ],
+   "includes": [
+    {
+     "id": 2
+    }
+   ],
+   "identity": "BGR",
+   "manaNeeded": "",
+   "manaValueNeeded": 0,
+   "easyPrerequisites": "",
+   "notablePrerequisites": "",
+   "description": "Step one.\nRepeat",
+   "notes": "",
+   "popularity": 0,
+   "salt": null,
+   "saltVoteCount": 0,
+   "spoiler": false,
+   "bracketTag": "P",
+   "legalities": {
+    "commander": true,
+    "legacy": true
+   },
+   "prices": {
+    "tcgplayer": "1.00"
+   },
+   "variantCount": 1
+  },
+  {
+   "id": "9100-9101",
+   "status": "OK",
+   "uses": [
+    {
+     "card": {
+      "id": 9310,
+      "name": "Hazel of the Rootbloom",
+      "oracleId": "00000000-0000-4000-8000-002812028080",
+      "spoiler": false,
+      "faces": 1,
+      "typeLine": "Creature",
+      "imageUriFrontPng": "https://cards.scryfall.io/png/front/x.png",
+      "imageUriFrontLarge": "https://cards.scryfall.io/large/front/x.jpg",
+      "imageUriFrontNormal": "https://cards.scryfall.io/normal/front/x.jpg",
+      "imageUriFrontSmall": "https://cards.scryfall.io/small/front/x.jpg",
+      "imageUriFrontArtCrop": "https://cards.scryfall.io/art_crop/front/x.jpg",
+      "layoutRotationFront": null,
+      "imageUriBackPng": null,
+      "imageUriBackLarge": null,
+      "imageUriBackNormal": null,
+      "imageUriBackSmall": null,
+      "imageUriBackArtCrop": null
+     },
+     "zoneLocations": [
+      "B"
+     ],
+     "battlefieldCardState": "",
+     "exileCardState": "",
+     "libraryCardState": "",
+     "graveyardCardState": "",
+     "mustBeCommander": true,
+     "quantity": 1,
+     "usedFace": null
+    },
+    {
+     "card": {
+      "id": 7764,
+      "name": "Skullclamp",
+      "oracleId": "00000000-0000-4000-8000-003727604967",
+      "spoiler": false,
+      "faces": 1,
+      "typeLine": "Creature",
+      "imageUriFrontPng": "https://cards.scryfall.io/png/front/x.png",
+      "imageUriFrontLarge": "https://cards.scryfall.io/large/front/x.jpg",
+      "imageUriFrontNormal": "https://cards.scryfall.io/normal/front/x.jpg",
+      "imageUriFrontSmall": "https://cards.scryfall.io/small/front/x.jpg",
+      "imageUriFrontArtCrop": "https://cards.scryfall.io/art_crop/front/x.jpg",
+      "layoutRotationFront": null,
+      "imageUriBackPng": null,
+      "imageUriBackLarge": null,
+      "imageUriBackNormal": null,
+      "imageUriBackSmall": null,
+      "imageUriBackArtCrop": null
+     },
+     "zoneLocations": [
+      "B"
+     ],
+     "battlefieldCardState": "",
+     "exileCardState": "",
+     "libraryCardState": "",
+     "graveyardCardState": "",
+     "mustBeCommander": false,
+     "quantity": 1,
+     "usedFace": null
+    }
+   ],
+   "requires": [],
+   "produces": [
+    {
+     "feature": {
+      "id": 100,
+      "name": "Infinite card draw",
+      "uncountable": true,
+      "status": "H"
+     },
+     "quantity": 1
+    }
+   ],
+   "of": [
+    {
+     "id": 1
+    }
+   ],
+   "includes": [
+    {
+     "id": 2
+    }
+   ],
+   "identity": "BG",
+   "manaNeeded": "",
+   "manaValueNeeded": 0,
+   "easyPrerequisites": "",
+   "notablePrerequisites": "",
+   "description": "Step one.\nRepeat",
+   "notes": "",
+   "popularity": 0,
+   "salt": null,
+   "saltVoteCount": 0,
+   "spoiler": false,
+   "bracketTag": "C",
+   "legalities": {
+    "commander": true,
+    "legacy": true
+   },
+   "prices": {
+    "tcgplayer": "1.00"
+   },
+   "variantCount": 1
+  },
+  {
+   "id": "9200-9201",
+   "status": "OK",
+   "uses": [
+    {
+     "card": {
+      "id": 1941,
+      "name": "Relentless Rats",
+      "oracleId": "00000000-0000-4000-8000-000972024729",
+      "spoiler": false,
+      "faces": 1,
+      "typeLine": "Creature",
+      "imageUriFrontPng": "https://cards.scryfall.io/png/front/x.png",
+      "imageUriFrontLarge": "https://cards.scryfall.io/large/front/x.jpg",
+      "imageUriFrontNormal": "https://cards.scryfall.io/normal/front/x.jpg",
+      "imageUriFrontSmall": "https://cards.scryfall.io/small/front/x.jpg",
+      "imageUriFrontArtCrop": "https://cards.scryfall.io/art_crop/front/x.jpg",
+      "layoutRotationFront": null,
+      "imageUriBackPng": null,
+      "imageUriBackLarge": null,
+      "imageUriBackNormal": null,
+      "imageUriBackSmall": null,
+      "imageUriBackArtCrop": null
+     },
+     "zoneLocations": [
+      "B"
+     ],
+     "battlefieldCardState": "",
+     "exileCardState": "",
+     "libraryCardState": "",
+     "graveyardCardState": "",
+     "mustBeCommander": false,
+     "quantity": 2,
+     "usedFace": null
+    },
+    {
+     "card": {
+      "id": 3735,
+      "name": "Sol Ring",
+      "oracleId": "00000000-0000-4000-8000-001932030513",
+      "spoiler": false,
+      "faces": 1,
+      "typeLine": "Creature",
+      "imageUriFrontPng": "https://cards.scryfall.io/png/front/x.png",
+      "imageUriFrontLarge": "https://cards.scryfall.io/large/front/x.jpg",
+      "imageUriFrontNormal": "https://cards.scryfall.io/normal/front/x.jpg",
+      "imageUriFrontSmall": "https://cards.scryfall.io/small/front/x.jpg",
+      "imageUriFrontArtCrop": "https://cards.scryfall.io/art_crop/front/x.jpg",
+      "layoutRotationFront": null,
+      "imageUriBackPng": null,
+      "imageUriBackLarge": null,
+      "imageUriBackNormal": null,
+      "imageUriBackSmall": null,
+      "imageUriBackArtCrop": null
+     },
+     "zoneLocations": [
+      "B"
+     ],
+     "battlefieldCardState": "",
+     "exileCardState": "",
+     "libraryCardState": "",
+     "graveyardCardState": "",
+     "mustBeCommander": false,
+     "quantity": 1,
+     "usedFace": null
+    }
+   ],
+   "requires": [],
+   "produces": [
+    {
+     "feature": {
+      "id": 100,
+      "name": "Infinite creature tokens",
+      "uncountable": true,
+      "status": "H"
+     },
+     "quantity": 1
+    }
+   ],
+   "of": [
+    {
+     "id": 1
+    }
+   ],
+   "includes": [
+    {
+     "id": 2
+    }
+   ],
+   "identity": "B",
+   "manaNeeded": "",
+   "manaValueNeeded": 0,
+   "easyPrerequisites": "",
+   "notablePrerequisites": "",
+   "description": "Step one.\nRepeat",
+   "notes": "",
+   "popularity": 0,
+   "salt": null,
+   "saltVoteCount": 0,
+   "spoiler": false,
+   "bracketTag": "O",
+   "legalities": {
+    "commander": true,
+    "legacy": true
+   },
+   "prices": {
+    "tcgplayer": "1.00"
+   },
+   "variantCount": 1
+  },
+  {
+   "id": "9300--88",
+   "status": "OK",
+   "uses": [
+    {
+     "card": {
+      "id": 9102,
+      "name": "Emeritus of Abundance // Regrowth",
+      "oracleId": "00000000-0000-4000-8000-002253803700",
+      "spoiler": false,
+      "faces": 1,
+      "typeLine": "Creature",
+      "imageUriFrontPng": "https://cards.scryfall.io/png/front/x.png",
+      "imageUriFrontLarge": "https://cards.scryfall.io/large/front/x.jpg",
+      "imageUriFrontNormal": "https://cards.scryfall.io/normal/front/x.jpg",
+      "imageUriFrontSmall": "https://cards.scryfall.io/small/front/x.jpg",
+      "imageUriFrontArtCrop": "https://cards.scryfall.io/art_crop/front/x.jpg",
+      "layoutRotationFront": null,
+      "imageUriBackPng": null,
+      "imageUriBackLarge": null,
+      "imageUriBackNormal": null,
+      "imageUriBackSmall": null,
+      "imageUriBackArtCrop": null
+     },
+     "zoneLocations": [
+      "B"
+     ],
+     "battlefieldCardState": "",
+     "exileCardState": "",
+     "libraryCardState": "",
+     "graveyardCardState": "",
+     "mustBeCommander": false,
+     "quantity": 1,
+     "usedFace": null
+    }
+   ],
+   "requires": [],
+   "produces": [
+    {
+     "feature": {
+      "id": 100,
+      "name": "Infinite turns",
+      "uncountable": true,
+      "status": "H"
+     },
+     "quantity": 1
+    }
+   ],
+   "of": [
+    {
+     "id": 1
+    }
+   ],
+   "includes": [
+    {
+     "id": 2
+    }
+   ],
+   "identity": "G",
+   "manaNeeded": "",
+   "manaValueNeeded": 0,
+   "easyPrerequisites": "",
+   "notablePrerequisites": "",
+   "description": "Step one.\nRepeat",
+   "notes": "",
+   "popularity": 0,
+   "salt": null,
+   "saltVoteCount": 0,
+   "spoiler": false,
+   "bracketTag": "R",
+   "legalities": {
+    "commander": true,
+    "legacy": true
+   },
+   "prices": {
+    "tcgplayer": "1.00"
+   },
+   "variantCount": 1
+  },
+  {
+   "id": "9400-9401-9402",
+   "status": "OK",
+   "uses": [
+    {
+     "card": {
+      "id": 6624,
+      "name": "Chatterfang, Squirrel General",
+      "oracleId": "00000000-0000-4000-8000-003455301060",
+      "spoiler": false,
+      "faces": 1,
+      "typeLine": "Creature",
+      "imageUriFrontPng": "https://cards.scryfall.io/png/front/x.png",
+      "imageUriFrontLarge": "https://cards.scryfall.io/large/front/x.jpg",
+      "imageUriFrontNormal": "https://cards.scryfall.io/normal/front/x.jpg",
+      "imageUriFrontSmall": "https://cards.scryfall.io/small/front/x.jpg",
+      "imageUriFrontArtCrop": "https://cards.scryfall.io/art_crop/front/x.jpg",
+      "layoutRotationFront": null,
+      "imageUriBackPng": null,
+      "imageUriBackLarge": null,
+      "imageUriBackNormal": null,
+      "imageUriBackSmall": null,
+      "imageUriBackArtCrop": null
+     },
+     "zoneLocations": [
+      "B"
+     ],
+     "battlefieldCardState": "",
+     "exileCardState": "",
+     "libraryCardState": "",
+     "graveyardCardState": "",
+     "mustBeCommander": false,
+     "quantity": 1,
+     "usedFace": null
+    },
+    {
+     "card": {
+      "id": 6269,
+      "name": "Mirkwood Bats",
+      "oracleId": "00000000-0000-4000-8000-002271419105",
+      "spoiler": false,
+      "faces": 1,
+      "typeLine": "Creature",
+      "imageUriFrontPng": "https://cards.scryfall.io/png/front/x.png",
+      "imageUriFrontLarge": "https://cards.scryfall.io/large/front/x.jpg",
+      "imageUriFrontNormal": "https://cards.scryfall.io/normal/front/x.jpg",
+      "imageUriFrontSmall": "https://cards.scryfall.io/small/front/x.jpg",
+      "imageUriFrontArtCrop": "https://cards.scryfall.io/art_crop/front/x.jpg",
+      "layoutRotationFront": null,
+      "imageUriBackPng": null,
+      "imageUriBackLarge": null,
+      "imageUriBackNormal": null,
+      "imageUriBackSmall": null,
+      "imageUriBackArtCrop": null
+     },
+     "zoneLocations": [
+      "B"
+     ],
+     "battlefieldCardState": "",
+     "exileCardState": "",
+     "libraryCardState": "",
+     "graveyardCardState": "",
+     "mustBeCommander": false,
+     "quantity": 1,
+     "usedFace": null
+    },
+    {
+     "card": {
+      "id": 5302,
+      "name": "Plague of Vermin",
+      "oracleId": "00000000-0000-4000-8000-003718673398",
+      "spoiler": false,
+      "faces": 1,
+      "typeLine": "Creature",
+      "imageUriFrontPng": "https://cards.scryfall.io/png/front/x.png",
+      "imageUriFrontLarge": "https://cards.scryfall.io/large/front/x.jpg",
+      "imageUriFrontNormal": "https://cards.scryfall.io/normal/front/x.jpg",
+      "imageUriFrontSmall": "https://cards.scryfall.io/small/front/x.jpg",
+      "imageUriFrontArtCrop": "https://cards.scryfall.io/art_crop/front/x.jpg",
+      "layoutRotationFront": null,
+      "imageUriBackPng": null,
+      "imageUriBackLarge": null,
+      "imageUriBackNormal": null,
+      "imageUriBackSmall": null,
+      "imageUriBackArtCrop": null
+     },
+     "zoneLocations": [
+      "B"
+     ],
+     "battlefieldCardState": "",
+     "exileCardState": "",
+     "libraryCardState": "",
+     "graveyardCardState": "",
+     "mustBeCommander": false,
+     "quantity": 1,
+     "usedFace": null
+    }
+   ],
+   "requires": [],
+   "produces": [
+    {
+     "feature": {
+      "id": 100,
+      "name": "Each opponent loses the game",
+      "uncountable": true,
+      "status": "H"
+     },
+     "quantity": 1
+    }
+   ],
+   "of": [
+    {
+     "id": 1
+    }
+   ],
+   "includes": [
+    {
+     "id": 2
+    }
+   ],
+   "identity": "BG",
+   "manaNeeded": "",
+   "manaValueNeeded": 0,
+   "easyPrerequisites": "",
+   "notablePrerequisites": "",
+   "description": "Step one.\nRepeat",
+   "notes": "",
+   "popularity": 0,
+   "salt": null,
+   "saltVoteCount": 0,
+   "spoiler": false,
+   "bracketTag": "O",
+   "legalities": {
+    "commander": true,
+    "legacy": true
+   },
+   "prices": {
+    "tcgplayer": "1.00"
+   },
+   "variantCount": 1
+  },
+  {
+   "id": "9500-9501",
+   "status": "OK",
+   "uses": [
+    {
+     "card": {
+      "id": 8336,
+      "name": "Lim-Dûl's Vault",
+      "oracleId": "00000000-0000-4000-8000-002298288485",
+      "spoiler": false,
+      "faces": 1,
+      "typeLine": "Creature",
+      "imageUriFrontPng": "https://cards.scryfall.io/png/front/x.png",
+      "imageUriFrontLarge": "https://cards.scryfall.io/large/front/x.jpg",
+      "imageUriFrontNormal": "https://cards.scryfall.io/normal/front/x.jpg",
+      "imageUriFrontSmall": "https://cards.scryfall.io/small/front/x.jpg",
+      "imageUriFrontArtCrop": "https://cards.scryfall.io/art_crop/front/x.jpg",
+      "layoutRotationFront": null,
+      "imageUriBackPng": null,
+      "imageUriBackLarge": null,
+      "imageUriBackNormal": null,
+      "imageUriBackSmall": null,
+      "imageUriBackArtCrop": null
+     },
+     "zoneLocations": [
+      "B"
+     ],
+     "battlefieldCardState": "",
+     "exileCardState": "",
+     "libraryCardState": "",
+     "graveyardCardState": "",
+     "mustBeCommander": false,
+     "quantity": 1,
+     "usedFace": null
+    },
+    {
+     "card": {
+      "id": 3735,
+      "name": "Sol Ring",
+      "oracleId": "00000000-0000-4000-8000-001932030513",
+      "spoiler": false,
+      "faces": 1,
+      "typeLine": "Creature",
+      "imageUriFrontPng": "https://cards.scryfall.io/png/front/x.png",
+      "imageUriFrontLarge": "https://cards.scryfall.io/large/front/x.jpg",
+      "imageUriFrontNormal": "https://cards.scryfall.io/normal/front/x.jpg",
+      "imageUriFrontSmall": "https://cards.scryfall.io/small/front/x.jpg",
+      "imageUriFrontArtCrop": "https://cards.scryfall.io/art_crop/front/x.jpg",
+      "layoutRotationFront": null,
+      "imageUriBackPng": null,
+      "imageUriBackLarge": null,
+      "imageUriBackNormal": null,
+      "imageUriBackSmall": null,
+      "imageUriBackArtCrop": null
+     },
+     "zoneLocations": [
+      "B"
+     ],
+     "battlefieldCardState": "",
+     "exileCardState": "",
+     "libraryCardState": "",
+     "graveyardCardState": "",
+     "mustBeCommander": false,
+     "quantity": 1,
+     "usedFace": null
+    }
+   ],
+   "requires": [],
+   "produces": [
+    {
+     "feature": {
+      "id": 100,
+      "name": "Infinite mana",
+      "uncountable": true,
+      "status": "H"
+     },
+     "quantity": 1
+    }
+   ],
+   "of": [
+    {
+     "id": 1
+    }
+   ],
+   "includes": [
+    {
+     "id": 2
+    }
+   ],
+   "identity": "UB",
+   "manaNeeded": "",
+   "manaValueNeeded": 0,
+   "easyPrerequisites": "",
+   "notablePrerequisites": "",
+   "description": "Step one.\nRepeat",
+   "notes": "",
+   "popularity": 0,
+   "salt": null,
+   "saltVoteCount": 0,
+   "spoiler": false,
+   "bracketTag": "E",
+   "legalities": {
+    "commander": true,
+    "legacy": true
+   },
+   "prices": {
+    "tcgplayer": "1.00"
+   },
+   "variantCount": 1
+  },
+  {
+   "id": "9600-9601",
+   "status": "NEEDS_REVIEW",
+   "uses": [
+    {
+     "card": {
+      "id": 6624,
+      "name": "Chatterfang, Squirrel General",
+      "oracleId": "00000000-0000-4000-8000-003455301060",
+      "spoiler": false,
+      "faces": 1,
+      "typeLine": "Creature",
+      "imageUriFrontPng": "https://cards.scryfall.io/png/front/x.png",
+      "imageUriFrontLarge": "https://cards.scryfall.io/large/front/x.jpg",
+      "imageUriFrontNormal": "https://cards.scryfall.io/normal/front/x.jpg",
+      "imageUriFrontSmall": "https://cards.scryfall.io/small/front/x.jpg",
+      "imageUriFrontArtCrop": "https://cards.scryfall.io/art_crop/front/x.jpg",
+      "layoutRotationFront": null,
+      "imageUriBackPng": null,
+      "imageUriBackLarge": null,
+      "imageUriBackNormal": null,
+      "imageUriBackSmall": null,
+      "imageUriBackArtCrop": null
+     },
+     "zoneLocations": [
+      "B"
+     ],
+     "battlefieldCardState": "",
+     "exileCardState": "",
+     "libraryCardState": "",
+     "graveyardCardState": "",
+     "mustBeCommander": false,
+     "quantity": 1,
+     "usedFace": null
+    },
+    {
+     "card": {
+      "id": 7764,
+      "name": "Skullclamp",
+      "oracleId": "00000000-0000-4000-8000-003727604967",
+      "spoiler": false,
+      "faces": 1,
+      "typeLine": "Creature",
+      "imageUriFrontPng": "https://cards.scryfall.io/png/front/x.png",
+      "imageUriFrontLarge": "https://cards.scryfall.io/large/front/x.jpg",
+      "imageUriFrontNormal": "https://cards.scryfall.io/normal/front/x.jpg",
+      "imageUriFrontSmall": "https://cards.scryfall.io/small/front/x.jpg",
+      "imageUriFrontArtCrop": "https://cards.scryfall.io/art_crop/front/x.jpg",
+      "layoutRotationFront": null,
+      "imageUriBackPng": null,
+      "imageUriBackLarge": null,
+      "imageUriBackNormal": null,
+      "imageUriBackSmall": null,
+      "imageUriBackArtCrop": null
+     },
+     "zoneLocations": [
+      "B"
+     ],
+     "battlefieldCardState": "",
+     "exileCardState": "",
+     "libraryCardState": "",
+     "graveyardCardState": "",
+     "mustBeCommander": false,
+     "quantity": 1,
+     "usedFace": null
+    }
+   ],
+   "requires": [],
+   "produces": [
+    {
+     "feature": {
+      "id": 100,
+      "name": "Infinite damage",
+      "uncountable": true,
+      "status": "H"
+     },
+     "quantity": 1
+    }
+   ],
+   "of": [
+    {
+     "id": 1
+    }
+   ],
+   "includes": [
+    {
+     "id": 2
+    }
+   ],
+   "identity": "BG",
+   "manaNeeded": "",
+   "manaValueNeeded": 0,
+   "easyPrerequisites": "",
+   "notablePrerequisites": "",
+   "description": "Step one.\nRepeat",
+   "notes": "",
+   "popularity": 0,
+   "salt": null,
+   "saltVoteCount": 0,
+   "spoiler": false,
+   "bracketTag": "E",
+   "legalities": {
+    "commander": true,
+    "legacy": true
+   },
+   "prices": {
+    "tcgplayer": "1.00"
+   },
+   "variantCount": 1
+  }
+ ],
+ "aliases": [
+  {
+   "id": "3000-4000",
+   "variant": "3000-4871"
+  },
+  {
+   "id": "1-2",
+   "variant": null
+  }
+ ]
+}

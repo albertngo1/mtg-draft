@@ -251,6 +251,65 @@ class TagLoadTests(TempCache):
                 scryfall_tags.load(["ramp"])
 
 
+class OldTagCacheTests(TempCache):
+    """A tag cache saved before the attribute slugs existed must keep the roles working offline: the roles and the
+    attributes are two separate loads, and only the second one fails. Uses the real scryfall_tags.load over a
+    temporary cache; the downloads are the sample tag tree."""
+
+    def setUp(self):
+        super().setUp()
+        roles.reset()
+        del roles.WARNINGS[:]
+        self.addCleanup(roles.reset)
+        self.addCleanup(roles.WARNINGS.clear)
+        self.db = sample_db()
+        self.downloads = []
+
+        def fake_download(url, path, *, source):
+            self.downloads.append(url)
+            os.makedirs(os.path.dirname(path), exist_ok=True)
+            with open(os.path.join(FIXTURES, "scryfall_tags_sample.jsonl"), "rb") as src, \
+                    gzip.open(path, "wb") as out:
+                out.write(src.read())
+        listing = ("https://data.scryfall.io/oracle-tags/t.jsonl.gz", {"type": "oracle_tags"})
+        for patcher in (mock.patch.object(carddb, "bulk_entry", return_value=listing),
+                        mock.patch.object(net, "download", fake_download),
+                        mock.patch.object(roles, "_today", return_value=TODAY)):
+            patcher.start()
+            self.addCleanup(patcher.stop)
+
+    def save_role_tags_only(self):
+        """Run once while online with just the role slugs, as a cache from before attributes existed would hold."""
+        roles.tag(["Sol Ring"], self.db)
+        roles.reset()
+        self.assertEqual(len(self.downloads), 1)
+
+    def test_roles_still_work_offline_when_only_the_attribute_tags_are_missing(self):
+        self.save_role_tags_only()
+        found = roles.tag(["Sol Ring", "Swords to Plowshares"], self.db, offline=True)
+        attrs = roles.attributes(["Swords to Plowshares"], self.db, offline=True)
+        self.assertEqual(found, {"Sol Ring": {"ramp"}, "Swords to Plowshares": {"removal"}})
+        self.assertEqual(attrs, {"Swords to Plowshares": frozenset()})
+        self.assertEqual(len(self.downloads), 1)                      # offline never downloads
+        self.assertEqual(len(roles.WARNINGS), 1)
+        self.assertIn("attributes unavailable", roles.WARNINGS[0])
+        self.assertIn("offline", roles.WARNINGS[0])                   # the reason from scryfall_tags comes along
+        self.assertFalse(roles.attributes_loaded())
+
+    def test_asking_for_attributes_online_saves_them_beside_the_role_tags(self):
+        self.save_role_tags_only()
+        attrs = roles.attributes(["Swords to Plowshares"], self.db)
+        self.assertEqual(attrs["Swords to Plowshares"], {"removal-creature", "removal-exile", "spot-removal"})
+        self.assertEqual(len(self.downloads), 2)                      # one more download for the new slugs
+        roles.reset()
+        found = roles.tag(["Sol Ring"], self.db, offline=True)        # the role tags were kept in the same file
+        attrs = roles.attributes(["Swords to Plowshares"], self.db, offline=True)
+        self.assertEqual((found, len(self.downloads)), ({"Sol Ring": {"ramp"}}, 2))
+        self.assertIn("removal-exile", attrs["Swords to Plowshares"])
+        self.assertTrue(roles.attributes_loaded())
+        self.assertEqual(roles.WARNINGS, [])
+
+
 # ----------------------------------------------------------------------------- roles: tag sets → roles
 class RoleDefinitionTests(unittest.TestCase):
     def test_every_role_has_tags_and_no_role_is_missing(self):
@@ -378,6 +437,106 @@ class TagTests(unittest.TestCase):
         self.assertEqual(out["Command Tower"], set())
         self.assertEqual(len(roles.WARNINGS), 1)                   # reported once, not retried per call
         self.assertIn("function tags unavailable", roles.WARNINGS[0])
+
+
+class AttributeDefinitionTests(unittest.TestCase):
+    """The attribute slugs, checked against the sample tag tree the way the role slugs are: each one must be a tag
+    in it, so a misspelled slug (which would load as an empty set and quietly count nothing) is caught here."""
+
+    def test_every_attribute_slug_is_a_tag_of_the_sample_tree(self):
+        _, names = scryfall_tags.index_tags(jsonl("scryfall_tags_sample.jsonl"))
+        self.assertEqual([slug for slug in roles.ATTRIBUTE_TAGS if slug not in names], [])
+
+    def test_there_is_no_repeated_slug_and_every_role_free_fact_the_metrics_read_is_listed(self):
+        self.assertEqual(len(roles.ATTRIBUTE_TAGS), len(set(roles.ATTRIBUTE_TAGS)))
+        for needed in ("removal-permanent", "removal-nonland", "removal-burn", "removal-toughness", "doom-blade",
+                       "sweeper", "counterspell", "mana-rock", "mana-dork", "land-ramp", "extra-land", "draw-engine",
+                       "repeatable-impulsive-draw", "pure-draw", "burst-draw", "impulsive-draw", "overrun",
+                       "extra-combat-phase", "alternate-win-condition", "burn-player-each", "drain-life",
+                       "opponent-loses-life", "theft-mass", "tapland", "conditional-tapland", "evasion"):
+            self.assertIn(needed, roles.ATTRIBUTE_TAGS)
+
+    def test_a_slug_stands_for_its_subtree_as_otag_search_does(self):
+        # in Scryfall's tree removal-permanent is a child of removal-creature: a card tagged with the child is
+        # also tagged with the parent
+        sets = fixture_tagsets(["removal-creature", "removal-permanent"])
+        ids = {o["name"]: o["oracle_id"] for o in jsonl("carddb_bulk_sample.jsonl")}
+        self.assertIn(ids["Old Assassin"], sets["removal-creature"])
+        self.assertIn(ids["Old Assassin"], sets["removal-permanent"])
+        self.assertNotIn(ids["Swords to Plowshares"], sets["removal-permanent"])
+
+
+class AttributeTests(unittest.TestCase):
+    """roles.attributes with the sample tag tree standing in for scryfall_tags.load."""
+
+    def setUp(self):
+        roles.reset()
+        del roles.WARNINGS[:]
+        self.addCleanup(roles.reset)
+        self.addCleanup(roles.WARNINGS.clear)
+        self.db = sample_db()
+        self.loads = []
+        patcher = mock.patch.object(scryfall_tags, "load", self.fake_load)
+        patcher.start()
+        self.addCleanup(patcher.stop)
+
+    def fake_load(self, tags, **kw):
+        self.loads.append((list(tags), kw))
+        return fixture_tagsets(tags)
+
+    def test_each_card_gets_the_attribute_slugs_it_carries(self):
+        out = roles.attributes(["Swords to Plowshares", "Wrath of God", "Heroic Intervention", "Sol Ring"], self.db)
+        self.assertEqual(out["Swords to Plowshares"], {"removal-creature", "removal-exile", "spot-removal"})
+        self.assertEqual(out["Wrath of God"], {"removal-creature", "removal-destroy", "sweeper"})
+        self.assertEqual(out["Heroic Intervention"], {"protects-creature", "gives-indestructible", "gives-hexproof"})
+        self.assertEqual(out["Sol Ring"], {"mana-rock"})          # a role's slug is an attribute slug too
+        self.assertEqual(roles.attributes(["Eternal Witness"], self.db)["Eternal Witness"], frozenset())
+        self.assertTrue(all(isinstance(v, frozenset) for v in out.values()))
+
+    def test_a_slug_that_is_both_a_role_tag_and_an_attribute_tag_is_reported(self):
+        out = roles.attributes(["Counterspell", "Wrath of God"], self.db)
+        self.assertEqual(out["Counterspell"], {"counterspell"})
+        self.assertIn("sweeper", out["Wrath of God"])
+
+    def test_a_card_in_a_child_tag_also_carries_the_parent(self):
+        out = roles.attributes(["Old Assassin"], self.db)
+        self.assertEqual(out["Old Assassin"], {"removal-creature", "removal-permanent", "removal-destroy"})
+
+    def test_every_distinct_name_is_present_once_and_an_unknown_name_has_no_attributes(self):
+        out = roles.attributes(["Swords to Plowshares", "Nope", "Swords to Plowshares", "swords to plowshares"],
+                               self.db)
+        self.assertEqual(set(out), {"Swords to Plowshares", "Nope", "swords to plowshares"})
+        self.assertEqual(out["Nope"], frozenset())
+        self.assertEqual(out["swords to plowshares"], out["Swords to Plowshares"])    # another spelling still finds it
+
+    def test_the_attribute_tags_are_one_load_of_their_own_with_the_modes_passed_through(self):
+        roles.tag(["Sol Ring"], self.db)
+        roles.attributes(["Sol Ring"], self.db, refresh=True, offline=False)
+        roles.attributes(["Wrath of God"], self.db)
+        self.assertEqual([slugs for slugs, _ in self.loads], [roles.all_slugs(), list(roles.ATTRIBUTE_TAGS)])
+        self.assertEqual(self.loads[1][1], {"refresh": True, "offline": False})
+
+    def test_unavailable_tags_leave_empty_sets_one_warning_and_no_retry(self):
+        with mock.patch.object(scryfall_tags, "load", side_effect=net.FetchError("scryfall_tags", "u", "offline")):
+            out = roles.attributes(["Swords to Plowshares", "Wrath of God"], self.db)
+            roles.attributes(["Swords to Plowshares"], self.db)
+        self.assertEqual(out, {"Swords to Plowshares": frozenset(), "Wrath of God": frozenset()})
+        self.assertEqual(len(roles.WARNINGS), 1)                    # reported once, not retried per call
+        self.assertIn("function tags for card attributes unavailable", roles.WARNINGS[0])
+        self.assertFalse(roles.attributes_loaded())
+
+    def test_attributes_are_loaded_once_a_call_has_read_them(self):
+        self.assertFalse(roles.attributes_loaded())                 # before the first call
+        roles.attributes(["Sol Ring"], self.db)
+        self.assertTrue(roles.attributes_loaded())
+        roles.reset()
+        self.assertFalse(roles.attributes_loaded())
+
+    def test_the_attribute_load_does_not_touch_the_role_warnings(self):
+        with mock.patch.object(scryfall_tags, "load", side_effect=net.FetchError("scryfall_tags", "u", "offline")):
+            roles.attributes(["Sol Ring"], self.db)
+        self.assertEqual(len(roles.WARNINGS), 1)
+        self.assertNotIn("roles come from rules-text", roles.WARNINGS[0])    # the roles' own warning is another one
 
 
 class TextFallbackTests(unittest.TestCase):
@@ -556,6 +715,50 @@ class BasicLandSearchTests(unittest.TestCase):
         self.assertEqual(self.searches("Draw two cards.", "Sorcery"), 0)
         self.assertEqual(self.searches("{T}: Add {C}.", "Land"), 0)
         self.assertEqual(self.searches("", "Basic Land — Forest"), 0)
+
+
+class LandSearchTests(unittest.TestCase):
+    """Whether a card finds you a land (of any kind, by type or as a basic): what separates a fetch land from a
+    land that only makes colorless mana."""
+
+    def finds_land(self, text, type_line="Land"):
+        return roles.searches_library_for_land(rec(text, type_line))
+
+    def test_cards_that_search_your_own_library_for_a_land_do(self):
+        cases = [
+            ("Verdant Catacombs", "{T}, Pay 1 life, Sacrifice Test Card: Search your library for a Swamp or "
+             "Forest card, put it onto the battlefield, then shuffle."),
+            ("Evolving Wilds", "{T}, Sacrifice Test Card: Search your library for a basic land card, put it onto "
+             "the battlefield tapped, then shuffle."),
+            ("Myriad Landscape", "Test Card enters tapped. {T}: Add {C}. {2}, {T}, Sacrifice Test Card: Search your "
+             "library for up to two basic land cards that share a land type, put them onto the battlefield tapped, "
+             "then shuffle."),
+            ("Flooded Strand", "{T}, Pay 1 life, Sacrifice Test Card: Search your library for a Plains or Island "
+             "card, put it onto the battlefield, then shuffle."),
+            ("Fabled Passage", "{T}, Sacrifice Test Card: Search your library for a basic land card, put it onto "
+             "the battlefield tapped, then shuffle. Then if you control four or more lands, untap that land."),
+        ]
+        for name, text in cases:
+            with self.subTest(card=name):
+                self.assertTrue(self.finds_land(text))
+
+    def test_a_search_for_something_else_or_in_another_library_does_not(self):
+        cases = [
+            ("Urza's Saga", "{T}: Add {C}. {2}, {T}: Create a Construct token. {2}, {T}, Sacrifice Test Card: Search "
+             "your library for an artifact card with mana cost {0} or {1}, put it onto the battlefield, then "
+             "shuffle."),
+            ("Ghost Quarter", "{T}: Add {C}. {T}, Sacrifice Test Card: Destroy target land. Its controller may "
+             "search their library for a basic land card, put it onto the battlefield tapped, then shuffle."),
+            ("Ancient Tomb", "{T}: Add {C}{C}. Test Card deals 2 damage to you."),
+            ("Reliquary Tower", "You have no maximum hand size. {T}: Add {C}."),
+        ]
+        for name, text in cases:
+            with self.subTest(card=name):
+                self.assertFalse(self.finds_land(text))
+
+    def test_a_spell_that_fetches_a_land_counts_too(self):
+        self.assertTrue(self.finds_land("Search your library for a Forest card, put it onto the battlefield, then "
+                                        "shuffle.", "Sorcery"))
 
 
 # ----------------------------------------------------------------------------- roles: counts and targets
