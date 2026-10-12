@@ -25,6 +25,12 @@ All commands are run from the repo root. On Windows use `python` and `mtg-comman
    ```bash
    python3 src/mtg-commander.py check --precon "<precon name>"      # or: check mydeck.txt --bracket 3
    ```
+   **stats** — every number about the list (score, interaction, mana, playstyle, win plan, price), each beside the
+   bracket's usual range and marked `SHORT` or `OVER`. Use it when the player asks how a deck is built or what it lacks;
+   `-v` shows how each number was made:
+   ```bash
+   python3 src/mtg-commander.py stats --precon "<precon name>" --bracket 3 --theme <theme> --playstyle <style>
+   ```
 
 3. **upgrade / build / suggest** — pick the one the player asked for:
    ```bash

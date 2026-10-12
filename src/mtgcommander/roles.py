@@ -18,8 +18,12 @@ every card when the tag data could not be loaded at all).
 
 A card can also need something from the deck rather than fill a job in it: Cultivate and Evolving Wilds take
 basic lands out of the library, and find nothing if the deck has none left. `basic_land_searches` counts how
-many, so `upgrade` and `build` can keep enough basics in the list."""
-import datetime, json, os, re
+many, so `upgrade` and `build` can keep enough basics in the list.
+
+Finer facts about a card (how far its removal reaches, whether a land enters tapped, whether it can end the game)
+come from a second set of tags, ATTRIBUTE_TAGS, through `attributes`. It is its own `scryfall_tags.load` call:
+if those tags cannot be had, the roles above still work and only the metrics that need them go without."""
+import collections, datetime, json, os, re
 from . import config, net
 from .providers import scryfall_tags
 
@@ -56,6 +60,33 @@ TAG_MINUS = {
 # Lands get no role except ramp. Scryfall tags the lands that make extra mana (Ancient Tomb, Cabal Coffers,
 # Gaea's Cradle) with the bare `ramp` tag, which for spells and creatures is too broad (it includes treasure).
 LAND_RAMP_TAGS = ["ramp"]
+
+# Scryfall function-tag slugs for facts about a card that are not one of the nine roles: how removal reaches and
+# removes, which answers a deck holds, what kind of ramp and draw, which lands enter tapped, how a deck can win,
+# and the signals each playstyle is read from. A slug stands for its whole subtree, as in ROLE_TAGS. metrics.py
+# reads them; they load in their own scryfall_tags call (see `attributes`), so an old tag cache that lacks them
+# never takes the roles down with it.
+ATTRIBUTE_TAGS = (
+    # what a removal spell can hit (its reach) and how it removes (its permanence): metrics.removal_quality
+    "removal-permanent", "removal-nonland", "removal-creature", "removal-artifact", "removal-enchantment",
+    "removal-planeswalker", "removal-land", "removal-burn", "removal-toughness", "doom-blade", "removal-exile",
+    "removal-destroy", "removal-bounce", "repeatable-removal", "spot-removal", "multi-removal", "sweeper",
+    "sweeper-one-sided",
+    # other answers and protection
+    "counterspell", "hate-graveyard", "protects-creature", "gives-indestructible", "gives-hexproof",
+    # ramp and draw by kind
+    "mana-rock", "mana-dork", "land-ramp", "extra-land", "draw-engine", "repeatable-impulsive-draw", "pure-draw",
+    "burst-draw", "impulsive-draw",
+    # lands that enter tapped, always or only sometimes
+    "tapland", "conditional-tapland",
+    # how a deck ends the game, and creatures that are hard to block
+    "overrun", "extra-combat-phase", "alternate-win-condition", "burn-player-each", "drain-life",
+    "opponent-loses-life", "theft-mass", "evasion",
+    # the signals of each playstyle (metrics.PLAYSTYLE_SIGNALS)
+    "repeatable-token-generator", "sacrifice-outlet", "free-sacrifice-outlet", "death-trigger", "graveyard-fuel",
+    "cards-in-graveyard-matter", "synergy-equipment", "synergy-aura", "group-hug", "voting", "monarch-matters",
+    "tax", "lockdown", "hatebear",
+)
 
 NEW_CARD_DAYS = 180
 WARNINGS = []              # non-fatal problems (tag data unavailable); callers print and clear them
@@ -112,6 +143,7 @@ _BIG_LAND = re.compile(r"(?:^|[.)] )\{t\}(?:, (?:sacrifice [^:.]*|pay \d+ life))
 # search their library" is left out. The first words of that phrase ("up to two", "a", "X") say how many.
 _LIBRARY_SEARCH = re.compile(r"search your library for ([^.:;]*?)\bcards?\b")
 _BASIC = re.compile(r"\bbasic\b")
+_LAND_WORD = re.compile(r"\b(?:land|plains|island|swamp|mountain|forest)s?\b")   # a land, or one of the land types
 _HOW_MANY_FIRST = re.compile(r"(?:up to )?(a|an|one|two|three|x|that many)\b")
 _HOW_MANY = {"a": 1, "an": 1, "one": 1, "two": 2, "three": 3, "x": 2, "that many": 2}
 
@@ -211,6 +243,14 @@ def basic_land_searches(rec):
     return total
 
 
+def searches_library_for_land(rec):
+    """Whether the card searches your own library for a land: a fetch land ("a Swamp or Forest card"),
+    Evolving Wilds ("a basic land card"), Myriad Landscape. Unlike `basic_land_searches` it counts a search by
+    land type and counts no number of lands: it answers whether the card finds colored lands for you. A search
+    for something else (Urza's Saga looks for an artifact) and another player's search do not count."""
+    return any(_LAND_WORD.search(found.group(1)) for found in _LIBRARY_SEARCH.finditer(rec["text"].lower()))
+
+
 def tag(names, db, *, refresh=None, offline=None):
     """{name: set of roles} for each distinct name (empty set for a name the card index does not know)."""
     sets = _load_sets(refresh, offline)
@@ -220,6 +260,45 @@ def tag(names, db, *, refresh=None, offline=None):
             rec = db.get(name)
             out[name] = roles_of(rec, sets) if rec else set()
     return out
+
+
+def _load_attribute_sets(refresh, offline):
+    """{oracle id: frozenset of ATTRIBUTE_TAGS slugs}, loaded once per process; None when the tag data is
+    unavailable. Inverted from the per-slug sets once, so each card is a single lookup afterwards."""
+    if "attributes" not in _MEMO:
+        try:
+            by_slug = scryfall_tags.load(ATTRIBUTE_TAGS, refresh=refresh, offline=offline)
+        except net.FetchError as e:
+            WARNINGS.append(f"roles: Scryfall function tags for card attributes unavailable, so the removal, "
+                            f"mana, land and playstyle counts that need them are not shown ({e})")
+            _MEMO["attributes"] = None
+        else:
+            held = collections.defaultdict(list)
+            for slug, ids in by_slug.items():
+                for oid in ids:
+                    held[oid].append(slug)
+            _MEMO["attributes"] = {oid: frozenset(slugs) for oid, slugs in held.items()}
+    return _MEMO["attributes"]
+
+
+def attributes(names, db, *, refresh=None, offline=None):
+    """{name: frozenset of ATTRIBUTE_TAGS slugs the card carries} for each distinct name (an empty set for a name
+    the card index does not know). This is a separate scryfall_tags call from the one the roles use, so a tag
+    cache from before these slugs existed still serves the roles offline. When the tag data cannot be had, every
+    set is empty and a line is added to WARNINGS; `attributes_loaded` tells that apart from cards that simply
+    carry none of the tags."""
+    held = _load_attribute_sets(refresh, offline) or {}
+    out = {}
+    for name in names:
+        if name not in out:
+            rec = db.get(name)
+            out[name] = held.get(rec["oracle_id"], frozenset()) if rec else frozenset()
+    return out
+
+
+def attributes_loaded():
+    """True once `attributes` has read the tag data, False after a failed read or before the first call."""
+    return _MEMO.get("attributes") is not None
 
 
 def counts(names, role_map, db):

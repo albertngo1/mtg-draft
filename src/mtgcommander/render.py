@@ -745,6 +745,9 @@ def _calibration_lines(report):
     lines += [f"    {change}" for change in changes[:MAX_CHANGES]]
     if len(changes) > MAX_CHANGES:
         lines.append(f"    and {len(changes) - MAX_CHANGES} more")
+    metric = report.get("metrics") or {}
+    if metric.get("written"):
+        lines.append(f"  Also wrote {metric['written']} (removal and wipe power).")
     return lines
 
 
@@ -804,9 +807,71 @@ def validate_report(result, verbose=False):
     return _done(lines + _warnings(result) + _footer(result, evidence=False))
 
 
+# ---------------------------------------------------------------- stats
+STATUS_TEXT = {"short": "SHORT", "inside": "ok", "over": "OVER"}
+MAX_LABEL = 44              # widest item label the stats columns make room for
+
+
+def _stat_number(value, unit):
+    """A metric value as text: whole numbers as they are, decimals to two places without trailing zeros, money as
+    $12.34 and shares as 41%."""
+    if value is None:
+        return "-"
+    if unit == "$":
+        return _money(value)
+    text = f"{value:,}" if isinstance(value, int) else f"{value:.2f}".rstrip("0").rstrip(".")
+    return text + ("%" if unit == "%" else "")
+
+
+def _stat_band(band):
+    """'want 34-36', 'max 8' or 'at least 1' for an item's target band; '' when it has none."""
+    low, high = (band or {}).get("min"), (band or {}).get("max")
+    if low is not None and high is not None:
+        return f"want {low:g}-{high:g}"
+    if high is not None:
+        return f"max {high:g}"
+    return f"at least {low:g}" if low is not None else ""
+
+
+def _stat_lines(item, width, verbose):
+    """One item: its label, value, band, status and base value in columns; an item with no value says why on the
+    lines below, and with -v every item lists its cards and how its number was made."""
+    unit, value = item.get("unit"), item.get("value")
+    before = f"(was {_stat_number(item['base'], unit)})" if "base" in item else ""
+    columns = f"{_stat_number(value, unit):>9}  {_stat_band(item.get('target')):<14}" \
+              f"{STATUS_TEXT.get(item.get('status'), ''):<6}  {before}"
+    lines = [f"  {item.get('label') or item.get('id') or '?':<{width}}{columns}".rstrip()]
+    if value is None or verbose:
+        cards = item.get("cards") or []
+        if verbose and cards:
+            lines += _wrap("cards: " + ", ".join(cards), indent=6, hang=2)
+        for why in item.get("why") or []:
+            lines += _wrap("- " + why, indent=6, hang=2)
+    return lines
+
+
+def stats_report(result, verbose=False):
+    deck = result.get("deck") or {}
+    lines = _head(deck.get("name") or "Deck", result) + [_deck_line(deck)]
+    top = result.get("headline") or {}
+    number = lambda key, unit=None: _stat_number(top.get(key), unit)
+    limits = "within its limits" if top.get("bracket_ok") else "over its limits"
+    lines += [""] + _wrap(f"Score {number('score')}, Bracket {number('bracket')} {limits}, {number('lands')} lands, "
+                          f"removal power {number('removal_power')}, cost to buy {number('price', '$')}", hang=4)
+    groups = result.get("groups") or []
+    width = min(MAX_LABEL, max([30] + [len(i.get("label") or "") + 2 for g in groups for i in g.get("items") or []]))
+    for group in groups:
+        lines += ["", group.get("label") or group.get("id") or "?"]
+        for item in group.get("items") or []:
+            lines += _stat_lines(item, width, verbose)
+    if any("base" in i for g in groups for i in g.get("items") or []):
+        lines += ["", "(was N) is the value in the base deck."]
+    return _done(lines + _warnings(result) + _footer(result))
+
+
 # ---------------------------------------------------------------- dispatch
 REPORTS = {"check": check_report, "upgrade": upgrade_report, "build": build_report, "suggest": suggest_report,
-           "themes": themes_report, "warm": warm_report, "validate": validate_report}
+           "themes": themes_report, "warm": warm_report, "validate": validate_report, "stats": stats_report}
 
 
 def text(result, verbose=None):

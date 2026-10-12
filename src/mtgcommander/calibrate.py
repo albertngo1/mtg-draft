@@ -17,13 +17,19 @@ What each bracket rests on, by what the sources' terms allow:
 - Bracket 1: nothing is sampled for it, so it is Bracket 2 with one more land and no tutors, labelled
   "judgment".
 
+The same decks also measure two numbers of metrics.py, removal power and wipe power (the weighted sums of
+the removal cards and the board wipes), and `--write` stores them beside the role targets in
+commander/metric_targets.json: same samples, same percentiles (rounded to a tenth), same interpolation for
+Brackets 3 and 4, and Bracket 1 equal to Bracket 2 (no sample, so the only judgment is that a theme-first
+deck wants the same interaction as a precon).
+
 Run:  cd src && python3 -m mtgcommander.calibrate --out role_targets.proposed.json
-(`--write` replaces the committed file; `--sources edhtop16,archidekt` measures Brackets 3 and 4 from
+(`--write` replaces both committed files; `--sources edhtop16,archidekt` measures Brackets 3 and 4 from
 Archidekt instead of interpolating them.)"""
 import argparse, datetime, json, math, os, re, sys
 from collections import Counter
 from fractions import Fraction
-from . import carddb, config, decklist, net, roles
+from . import carddb, config, decklist, metrics, net, roles
 from .providers import archidekt, edhtop16
 
 BRACKETS = (1, 2, 3, 4, 5)
@@ -34,6 +40,7 @@ SPREAD = (25, 50, 90)    # percentiles that become min, target, max
 LAND_SPREAD = (10, 50, 90)   # lands: the low end is the one that matters, a deck short of lands stumbles
 TOPEND_PERCENTILE = 75   # the cap on nonland cards of mana value 6 or more
 ROW_ORDER = ("land",) + roles.ROLES + ("topend",)
+POWER_ORDER = ("removal_power", "wipe_power")   # the metrics.py numbers measured alongside, in the file's order
 
 # Popular commanders across the five colors, used only when Archidekt is among the sources. Each has plenty
 # of Archidekt decks at Brackets 3 and 4; the exact Scryfall names are what Archidekt's commanderName takes.
@@ -45,6 +52,9 @@ ARCHIDEKT_COMMANDERS = (
 
 FORMAT = ("per bracket, each role is [min, target, max] cards counted over the 99 cards (98 with two "
           "commanders); topend is the most nonland cards with mana value 6 or more")
+METRIC_FORMAT = ("per bracket, each metric is [min, target, max] summed over the 99 cards (98 with two "
+                 "commanders): removal_power and wipe_power as metrics.py weighs the cards, in the same units "
+                 "stats prints")
 # "Doom Prevails Collector's Edition" is "Doom Prevails" again, with fancier printings
 _TWIN = re.compile(r"\s*collector.s edition", re.I)
 
@@ -138,6 +148,56 @@ def build_table(decks):
     return {b: table[b] for b in BRACKETS}, measured
 
 
+# ----------------------------------------------------------------------------- the metric numbers
+def exact(value):
+    """A deck's weighted sum as an exact fraction of thousandths, so a percentile that lands on a half is not
+    tipped by float error (the sum is rounded to thousandths first: far below the tenths the file keeps)."""
+    return Fraction(round(value, 3)).limit_denominator(1000)
+
+
+def round_tenth(x):
+    """A Fraction rounded half up to one decimal: 7.55 becomes 7.6, as round_half_up does for whole numbers."""
+    return round_half_up(x * 10) / 10
+
+
+def summarize_metrics(rows):
+    """One bracket's metric numbers from its decks: {"removal_power": [min, target, max], "wipe_power": [...]},
+    the percentiles `summarize` uses (SPREAD), rounded to a tenth. A row whose power could not be measured
+    ("power" is None) is left out."""
+    out = {}
+    for name in POWER_ORDER:
+        pool = [exact(r["power"][name]) for r in rows if r.get("power")]
+        out[name] = [round_tenth(percentile(pool, p)) for p in SPREAD] if pool else [0.0, 0.0, 0.0]
+    return out
+
+
+def interpolate_metrics(low, high, step, of=3):
+    """The metric numbers of a bracket `step`/`of` of the way from `low` to `high`, as `interpolate` does for
+    the role numbers, rounded to a tenth. It works from the rounded numbers so anyone can check it from the
+    file."""
+    def mix(a, b):
+        return round_tenth(Fraction(str(a)) * (of - step) / of + Fraction(str(b)) * step / of)
+    return {name: [mix(a, b) for a, b in zip(v, high[name])] for name, v in low.items()}
+
+
+def build_metric_table(decks):
+    """({bracket: numbers}, {bracket: measured?}) for the metrics from {bracket: [rows]}, exactly as `build_table`
+    does for the roles: Brackets 2 and 5 need MIN_DECKS decks with a measured power, 3 and 4 are measured when
+    enough decks came in and are otherwise interpolated, and Bracket 1 is Bracket 2's numbers."""
+    usable = {b: [r for r in rows if r.get("power")] for b, rows in decks.items()}
+    for bracket, source in ((2, "MTGJSON precons"), (5, "EDHTop16 top-cut decks")):
+        n = len(usable.get(bracket, ()))
+        if n < MIN_DECKS:
+            raise NotEnoughData(f"Bracket {bracket} needs at least {MIN_DECKS} decks from {source}, got {n}")
+    table = {b: summarize_metrics(rows) for b, rows in usable.items() if len(rows) >= MIN_DECKS}
+    measured = {b: b in table for b in BRACKETS}
+    for b in (3, 4):
+        if not measured[b]:
+            table[b] = interpolate_metrics(table[2], table[5], *BLEND[b])
+    table[1] = {name: list(v) for name, v in table[2].items()}
+    return {b: table[b] for b in BRACKETS}, measured
+
+
 # ----------------------------------------------------------------------------- counting one deck
 def split_pair(name):
     """EDHTop16 names a partner pair 'A / B' and a double-faced commander 'A // B': 'Thrasios, Triton Hero /
@@ -157,6 +217,12 @@ def _is_land(name, db):
     return bool(rec and rec["land"])
 
 
+def without_commanders(commanders, cards, db):
+    """[(count, name)] of `cards` without the commanders (a source may list the commander among the cards)."""
+    own = {db.resolve(c) or c for c in commanders}
+    return [(n, name) for n, name in cards if (db.resolve(name) or name) not in own]
+
+
 def deck_counts(commanders, cards, db, role_map):
     """(counts, unknown names) for a deck's 99 cards (98 with two commanders). `cards` is [(count, name)] and
     `counts` is roles.counts output. A commander that also sits among the cards is taken out of them.
@@ -165,8 +231,7 @@ def deck_counts(commanders, cards, db, role_map):
     shorter than the deck holds its missing copies as basics: lands = (100 - commanders) - nonland cards. A
     name the card index does not know counts as a nonland card, so a gap in the index can never turn into a
     phantom land."""
-    own = {db.resolve(c) or c for c in commanders}
-    cards = [(n, name) for n, name in cards if (db.resolve(name) or name) not in own]
+    cards = without_commanders(commanders, cards, db)
     counts = roles.counts(cards, role_map, db)
     full = DECK_SIZE - len(commanders)
     if sum(n for n, _ in cards) < full:
@@ -195,8 +260,8 @@ def _today():
 
 # ----------------------------------------------------------------------------- reading decks from the sources
 class Sampler:
-    """Reads decks from a source and turns each into a row {"counts", "blue"}. Collects what the report must
-    mention along the way: warnings, card names the card index lacks, and where the samples came from."""
+    """Reads decks from a source and turns each into a row {"counts", "blue", "power"}. Collects what the report
+    must mention along the way: warnings, card names the card index lacks, and where the samples came from."""
 
     def __init__(self, db, refresh, offline, say):
         self.db, self.refresh, self.offline, self.say = db, refresh, offline, say
@@ -209,7 +274,19 @@ class Sampler:
         counts, unknown = deck_counts(commanders, cards, self.db, role_map)
         self.unknown.update(unknown)
         self.unknown.update(c for c in commanders if self.db.get(c) is None)
-        return {"counts": counts, "blue": "U" in identity(commanders, self.db)}
+        return {"counts": counts, "blue": "U" in identity(commanders, self.db),
+                "power": self.power(commanders, cards, role_map)}
+
+    def power(self, commanders, cards, role_map):
+        """{"removal_power", "wipe_power"} of one deck as metrics.py measures them, or None when the Scryfall
+        function tags for card attributes are unavailable (the role numbers do not need them)."""
+        names = [name for _, name in without_commanders(commanders, cards, self.db)]
+        attrs = roles.attributes(names, self.db, refresh=self.refresh, offline=self.offline)
+        if not roles.attributes_loaded():
+            return None
+        raters = {"removal_power": metrics.rate_removal, "wipe_power": metrics.rate_wipes}
+        return {name: sum(value for _, value, _ in rate(names, role_map, attrs, self.db))
+                for name, rate in raters.items()}
 
     def from_precons(self, wanted):
         """Rows for the newest `wanted` precons. One that fails is skipped and the next older one takes its
@@ -297,11 +374,10 @@ def changes(previous, brackets):
             if (previous.get(b) or {}).get(role) != new]
 
 
-def describe(samples, measured, sampler, per_commander):
-    """(labels, method): one label per bracket saying how its numbers came about, and the method as one
-    text."""
-    labels = {1: "judgment: Bracket 2 values with land target +1 and tutor target 0",
-              2: f"measured: {samples[2]} recent precons (precons as a Bracket 2 proxy)",
+def _source_notes(samples, measured, sampler, per_commander):
+    """(labels for Brackets 2 to 5, the sentences that say what the samples were), shared by the role targets and
+    the metric targets, which rest on the same decks."""
+    labels = {2: f"measured: {samples[2]} recent precons (precons as a Bracket 2 proxy)",
               5: f"measured: {samples[5]} EDHTop16 top-cut decks"}
     for b in (3, 4):
         labels[b] = (f"measured: {samples[b]} Archidekt decks tagged Bracket {b}" if measured[b]
@@ -319,6 +395,19 @@ def describe(samples, measured, sampler, per_commander):
     span = sampler.precon_span
     released = f" released {span[0]} to {span[1]}" if span else ""
     read = ", ".join(f"{name} ({n})" for name, n in sampler.tournament)
+    sentences = [f"Bracket 2 = {samples[2]} MTGJSON Commander precons{released}, precons as a Bracket 2 proxy "
+                 f"(Wizards no longer ties Core to precons).",
+                 f"Bracket 5 = {samples[5]} EDHTop16 top-cut decks from the newest {per_commander} entries of each "
+                 f"of: {read}.",
+                 middle]
+    return labels, sentences
+
+
+def describe(samples, measured, sampler, per_commander):
+    """(labels, method): one label per bracket saying how its numbers came about, and the method as one
+    text."""
+    notes, sources = _source_notes(samples, measured, sampler, per_commander)
+    labels = {1: "judgment: Bracket 2 values with land target +1 and tutor target 0", **notes}
     method = " ".join([
         "Per deck, the 99 cards (98 with two commanders, commanders left out) are counted by role with "
         "roles.counts; a list that names each basic land once gets its lands recounted as 100 minus "
@@ -326,13 +415,23 @@ def describe(samples, measured, sampler, per_commander):
         "Across a bracket's decks, min = 25th percentile, target = median, max = 90th percentile (lands: "
         "10th, median, 90th; topend, the cap on nonland cards of mana value 6 or more: 75th percentile); "
         "percentiles interpolate linearly between ranked decks and round half up; counterspells use only "
-        "decks whose commander has blue.",
-        f"Bracket 2 = {samples[2]} MTGJSON Commander precons{released}, precons as a Bracket 2 proxy "
-        f"(Wizards no longer ties Core to precons).",
-        f"Bracket 5 = {samples[5]} EDHTop16 top-cut decks from the newest {per_commander} entries of each "
-        f"of: {read}.",
-        middle,
+        "decks whose commander has blue."] + sources + [
         "Bracket 1 = Bracket 2 with land target +1 and tutor target 0 (judgment)."])
+    return labels, method
+
+
+def describe_metrics(samples, measured, sampler, per_commander):
+    """(labels, method) for the metric numbers, as `describe` makes them for the roles (the decks are the same)."""
+    notes, sources = _source_notes(samples, measured, sampler, per_commander)
+    labels = {1: "judgment: the same as Bracket 2", **notes}
+    method = " ".join([
+        "Per deck, removal power and wipe power are the sums metrics.rate_removal and metrics.rate_wipes give over "
+        "the 99 cards (98 with two commanders, commanders left out): a removal card is worth speed x reach x "
+        "permanence x cost, times 1.5 if it removes again and again, and a board wipe the same, times 1.5 if it "
+        "spares your own side. The weights are judgment calls.",
+        "Across a bracket's decks, min = 25th percentile, target = median, max = 90th percentile; percentiles "
+        "interpolate linearly between ranked decks and round half up to one decimal."] + sources + [
+        "Bracket 1 = Bracket 2 (judgment)."])
     return labels, method
 
 
@@ -362,16 +461,38 @@ def dumps(data):
     return "{\n" + ",\n".join(lines) + "\n}\n"
 
 
-def write_file(report, path=None):
-    """Write the report as role_targets.json (to roles.TARGETS_PATH unless `path` is given). Atomic, like
-    net.atomic_json, so a crash never leaves half a file for roles.targets to trip on. Returns the path."""
-    path = path or roles.TARGETS_PATH
+def metric_file_data(report):
+    """What goes in commander/metric_targets.json: the same notes as the role targets (see `file_data`), for the
+    numbers in report["metrics"]."""
+    m = report["metrics"]
+    return {"source": "measured by src/mtgcommander/calibrate.py from the decks the role targets rest on; each "
+                      "bracket's label says whether it was measured, interpolated or set by judgment",
+            "as_of": report["as_of"], "format": METRIC_FORMAT, "method": m["method"],
+            "samples": {str(b): n for b, n in m["samples"].items()},
+            "measured": {str(b): v for b, v in m["measured"].items()},
+            "labels": {str(b): text for b, text in m["labels"].items()},
+            "brackets": {str(b): row for b, row in m["brackets"].items()}}
+
+
+def _write_text(path, text):
+    """Write a file atomically, like net.atomic_json: a crash never leaves half a file for a reader to trip on."""
     os.makedirs(os.path.dirname(os.path.abspath(path)), exist_ok=True)
     tmp = f"{path}.{os.getpid()}.tmp"
     with open(tmp, "w") as f:
-        f.write(dumps(file_data(report)))
+        f.write(text)
     os.replace(tmp, path)
     return path
+
+
+def write_file(report, path=None):
+    """Write the report as role_targets.json (to roles.TARGETS_PATH unless `path` is given). Atomic, like
+    net.atomic_json, so a crash never leaves half a file for roles.targets to trip on. Returns the path."""
+    return _write_text(path or roles.TARGETS_PATH, dumps(file_data(report)))
+
+
+def write_metric_file(report, path=None):
+    """Write report["metrics"] as metric_targets.json (to metrics.TARGETS_PATH unless `path` is given)."""
+    return _write_text(path or metrics.TARGETS_PATH, dumps(metric_file_data(report)))
 
 
 def _source_names(sources):
@@ -393,26 +514,55 @@ def _check_tag_data(db, refresh, offline):
         raise NotEnoughData("; ".join(problems))
 
 
+def _check_attribute_data(db, refresh, offline):
+    """Load the attribute tags (roles.ATTRIBUTE_TAGS) now. True when they loaded. When they did not, the line the
+    load left in roles.WARNINGS is taken back and False comes back: the role targets can still be measured
+    without them, the metric targets cannot."""
+    mark = len(roles.WARNINGS)
+    roles.attributes([], db, refresh=refresh, offline=offline)
+    del roles.WARNINGS[mark:]
+    return roles.attributes_loaded()
+
+
+def _metric_report(decks, sampler, per_commander, metrics_path):
+    """report["metrics"]: the removal and wipe power numbers in the shape of the role numbers, or None when no deck
+    could be measured (the attribute tags were unavailable)."""
+    if not any(r.get("power") for rows in decks.values() for r in rows):
+        return None
+    brackets, measured = build_metric_table(decks)
+    samples = {b: len([r for r in decks.get(b, ()) if r.get("power")]) if measured[b] else 0 for b in BRACKETS}
+    labels, method = describe_metrics(samples, measured, sampler, per_commander)
+    previous = read_previous(metrics_path)
+    return {"brackets": brackets, "samples": samples, "measured": measured, "labels": labels, "method": method,
+            "previous": previous, "changes": changes(previous, brackets), "written": None}
+
+
 def run(*, sources=None, precons=60, tournament_commanders=6, entries_per_commander=150,
-        archidekt_commanders=None, decks_per_bracket=10, write=False, path=None, refresh=None, offline=None,
-        progress=None):
+        archidekt_commanders=None, decks_per_bracket=10, write=False, path=None, metrics_path=None, refresh=None,
+        offline=None, progress=None):
     """Sample decks, count roles, and work out the targets. Returns the report:
     {"as_of", "brackets": {b: {role: [min, target, max], ..., "topend": n}}, "samples": {b: decks},
     "samples_blue": {b: decks with blue (the counterspell sample)}, "measured": {b: bool},
     "labels": {b: how it came about}, "method", "previous": the file's numbers before,
-    "changes": [str], "warnings": [str], "written": path | None}.
+    "changes": [str], "warnings": [str], "written": path | None,
+    "metrics": the same keys (without samples_blue and warnings) for removal_power and wipe_power, or None when the
+    attribute tags are unavailable}.
 
     `sources` is the set of evidence sources a run may use (default config.SOURCES): "edhtop16" for
     Bracket 5 and "archidekt" for Brackets 3 and 4, which are interpolated without it. `precons` is how many
     recent precons stand in for Bracket 2. `tournament_commanders` and `entries_per_commander` size the
     Bracket 5 sample; `decks_per_bracket` is how many Archidekt decks are read per commander at each of
     Brackets 3 and 4. `write=True` replaces the file at `path` (default roles.TARGETS_PATH, also where
-    `previous` is read from). `progress`, if given, is called with a line of text as each source is read.
-    Raises NotEnoughData when Bracket 2 or 5 has too few decks to measure."""
+    `previous` is read from) and the metric numbers' file at `metrics_path` (default metrics.TARGETS_PATH, or
+    beside `path` when only `path` is given). `progress`, if given, is called with a line of text as each source
+    is read. Raises NotEnoughData when Bracket 2 or 5 has too few decks to measure."""
     chosen = _source_names(sources)
+    metrics_path = metrics_path or (metrics.TARGETS_PATH if path is None else
+                                    os.path.join(os.path.dirname(os.path.abspath(path)), "metric_targets.json"))
     path = path or roles.TARGETS_PATH
     db = carddb.load(refresh=refresh, offline=offline)
     _check_tag_data(db, refresh, offline)
+    _check_attribute_data(db, refresh, offline)
     sampler = Sampler(db, refresh, offline, progress or (lambda line: None))
     decks = {2: sampler.from_precons(precons)}
     if "edhtop16" in chosen:
@@ -440,11 +590,17 @@ def run(*, sources=None, precons=60, tournament_commanders=6, entries_per_comman
                         f"({len(sampler.unknown)}): {top}")
     labels, method = describe(samples, measured, sampler, entries_per_commander)
     previous = read_previous(path)
+    metric = _metric_report(decks, sampler, entries_per_commander, metrics_path)
+    if metric is None:
+        warnings.append("Removal and wipe power were not measured: the Scryfall function tags for card "
+                        "attributes are unavailable, so commander/metric_targets.json is unchanged.")
     report = {"as_of": _today().isoformat(), "brackets": brackets, "samples": samples, "samples_blue": blue,
               "measured": measured, "labels": labels, "method": method, "previous": previous,
-              "changes": changes(previous, brackets), "warnings": warnings, "written": None}
+              "changes": changes(previous, brackets), "warnings": warnings, "written": None, "metrics": metric}
     if write:
         report["written"] = write_file(report, path)
+        if metric is not None:
+            metric["written"] = write_metric_file(report, metrics_path)
     return report
 
 
@@ -457,18 +613,28 @@ def format_report(report):
         old = report["previous"].get(b) or {}
         out += [f"  {role:<11}{_fmt(old.get(role)):>11}  ->  {_fmt(report['brackets'][b][role])}"
                 for role in ROW_ORDER]
+    metric = report.get("metrics")
+    if metric:
+        out += ["", "Removal and wipe power, measured from the same decks (min/target/max; old -> new)"]
+        for b in sorted(metric["brackets"]):
+            old = metric["previous"].get(b) or {}
+            out += ["", f"Bracket {b}  {metric['labels'][b]}"]
+            out += [f"  {name:<14}{_fmt(old.get(name)):>14}  ->  {_fmt(metric['brackets'][b][name])}"
+                    for name in POWER_ORDER]
     if report["warnings"]:
         out += ["", "Warnings:"] + [f"  {w}" for w in report["warnings"]]
     if report.get("written"):
         out += ["", f"Wrote {report['written']}"]
+    if metric and metric.get("written"):
+        out += [f"Wrote {metric['written']}"]
     return "\n".join(out)
 
 
 def main(argv=None):
     ap = argparse.ArgumentParser(
         prog="python3 -m mtgcommander.calibrate",
-        description="Measure role targets from real decks and propose commander/role_targets.json "
-                    "(nothing is replaced unless --write is given).")
+        description="Measure role targets, and removal and wipe power, from real decks and propose "
+                    "commander/role_targets.json (nothing is replaced unless --write is given).")
     ap.add_argument("--precons", type=int, default=60, help="recent precons that stand in for Bracket 2")
     ap.add_argument("--tournament-commanders", type=int, default=6, help="most played tournament commanders")
     ap.add_argument("--entries", type=int, default=150, help="newest entries read per tournament commander")
@@ -476,8 +642,10 @@ def main(argv=None):
                     help="Archidekt decks per commander and bracket")
     ap.add_argument("--sources", help="comma-separated evidence sources (default: MTG_COMMANDER_SOURCES); "
                     "'archidekt' measures Brackets 3 and 4 instead of interpolating them")
-    ap.add_argument("--out", help="write the proposed file here and leave the committed one alone")
-    ap.add_argument("--write", action="store_true", help="replace commander/role_targets.json")
+    ap.add_argument("--out", help="write the proposed role targets here and leave the committed files alone "
+                    "(the proposed power numbers are only printed)")
+    ap.add_argument("--write", action="store_true",
+                    help="replace commander/role_targets.json and commander/metric_targets.json")
     ap.add_argument("--json", action="store_true", help="print the report as JSON")
     ap.add_argument("--refresh", action="store_true", help="re-download instead of using cached files")
     ap.add_argument("--offline", action="store_true", help="never connect; use cached files only")

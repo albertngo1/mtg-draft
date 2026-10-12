@@ -112,11 +112,24 @@ python3 src/mtg-commander.py check mydeck.txt --bracket 3
 
 # Build from a commander
 python3 src/mtg-commander.py build "Hazel of the Rootbloom" --bracket 3 --budget 150 --theme squirrels
+
+# Every number about a deck in one report (see "Looking at a deck with stats" below)
+python3 src/mtg-commander.py stats --precon "Squirreled Away" --bracket 3 --theme tokens --playstyle aristocrats
 ```
 
 Same launchers as the draft coach: `./mtg-commander.sh` on macOS/Linux, `mtg-commander.bat` on Windows. It needs
 Python 3.9+ and nothing to `pip install`. The first run downloads Scryfall's card file (a minute or two, once);
 run `warm "<commander>"` ahead of time and `--offline` works after that.
+
+**Looking at a deck with `stats`.** `stats` takes the same deck, bracket, theme, playstyle and owned-card flags as
+`check` and `upgrade` and prints every number it can work out about a list, in six groups: power (its score and the
+lowest bracket it fits), interaction (how many cards answer each kind of threat, and a *removal power* that weighs how
+fast, how far and how surely each removal card works), mana (lands, ramp, card draw, the curve, the colors), playstyle
+(how much of each playstyle the deck is), win plan (finishers and the combos that win) and table and money (salt, the
+bracket's limits, price, what you own). A number with a usual range for the bracket sits beside it and says if it is
+short of the range or over it. Add `-v` to see how each number was made, or `--json` for the same numbers as data. The
+first run also saves Commander Spellbook's daily combo file (29 MB, kept for 7 days), so later runs find a list's combos
+without asking the website.
 
 **What the numbers mean.** At Brackets 1–4 the numbers are what experienced deck builders choose at that bracket,
 not win rates; real per-card win rates exist publicly only for tournament (cEDH) play. So every line says which

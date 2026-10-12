@@ -32,7 +32,8 @@ TTL = {                          # how long a cached download counts as fresh, p
     "archidekt_search": 7 * DAY, # which decks exist for a commander and bracket
     "archidekt": 30 * DAY,       # one decklist
     "edhtop16": 1 * DAY,         # tournaments finish every day
-    "spellbook": 7 * DAY,
+    "spellbook": 7 * DAY,        # one answer of the find-my-combos API
+    "spellbook_variants": 7 * DAY,   # the daily combo file, boiled down to a local index
     "mtgjson": 30 * DAY,         # a printed precon's list never changes
 }
 

@@ -7,7 +7,7 @@ import json, os, unittest
 from mtgcommander import render
 
 FIXTURES = os.path.join(os.path.dirname(os.path.abspath(__file__)), "fixtures")
-COMMANDS = ("check", "upgrade", "build", "suggest", "themes", "warm", "validate")
+COMMANDS = ("check", "upgrade", "build", "suggest", "themes", "warm", "validate", "stats")
 
 
 def fixture(command):
@@ -736,6 +736,15 @@ class ThemesWarmValidateTests(unittest.TestCase, WidthMixin):
         self.assertIn("Calibration (nothing written):", text)
         self.assertIn("  0 role numbers changed.", text)
 
+    def test_a_calibration_that_also_wrote_the_power_numbers_names_that_file(self):
+        result = fixture("validate")
+        result["calibration"] = {"written": "/repo/commander/role_targets.json", "labels": {"2": "measured"},
+                                 "changes": [], "metrics": {"written": "/repo/commander/metric_targets.json"}}
+        text = render.text(result)
+        self.assertIn("  Also wrote /repo/commander/metric_targets.json (removal and wipe power).", text)
+        result["calibration"]["metrics"] = None
+        self.assertNotIn("Also wrote", render.text(result))
+
     def test_with_no_real_deck_compared_the_overall_line_says_so_instead_of_printing_question_marks(self):
         result = fixture("validate")
         result["commanders"] = [{"name": "Heliod, Sun-Crowned", "decks": 0, "overlap": None, "baseline": None}]
@@ -744,6 +753,113 @@ class ThemesWarmValidateTests(unittest.TestCase, WidthMixin):
         self.assertIn("Overall: no real deck was compared (see the warnings).", text)
         self.assertEqual(" ".join(line_with(text, "  Heliod").split()), "Heliod, Sun-Crowned 0 ? ?")
         self.assertNotIn("against a baseline", text)
+
+
+class StatsTests(unittest.TestCase, WidthMixin):
+    def setUp(self):
+        self.result = fixture("stats")
+        self.text = render.text(self.result)
+        self.flat_lines = [" ".join(line.split()) for line in self.text.splitlines()]
+
+    def line(self, start):
+        """The text of the first line that starts with `start` (spaces squeezed), so columns do not matter."""
+        return next(l for l in self.flat_lines if l.startswith(start))
+
+    def test_the_header_names_the_deck_the_bracket_and_the_fantasy(self):
+        lines = self.text.splitlines()
+        self.assertEqual(lines[0], "Squirreled Away → Bracket 3, no budget; themes: tokens; playstyle: aristocrats")
+        self.assertEqual(lines[1], "Hazel of the Rootbloom (BG), 100 cards")
+
+    def test_the_headline_has_the_five_numbers(self):
+        self.assertIn("Score 93.77, Bracket 3 within its limits, 36 lands, removal power 5.95, cost to buy $185.43",
+                      self.flat_lines)
+
+    def test_every_group_has_a_heading_in_order(self):
+        headings = [l for l in self.text.splitlines() if l and not l.startswith(" ")]
+        order = [h for h in headings if h in ("Power", "Interaction", "Mana and consistency", "Playstyle", "Win plan",
+                                              "Table and money", "Changes from the base deck")]
+        self.assertEqual(order, ["Power", "Interaction", "Mana and consistency", "Playstyle", "Win plan",
+                                 "Table and money", "Changes from the base deck"])
+
+    def test_an_item_is_a_label_its_value_its_band_its_status_and_the_base_value(self):
+        self.assertEqual(self.line("Removal power"), "Removal power 5.95 want 3.4-6.8 ok (was 7.61)")
+        self.assertEqual(self.line("Lands "), "Lands 36 want 34-36 ok (was 38)")
+        self.assertEqual(self.line("Tutors"), "Tutors 2 want 2-4 ok (was 0)")
+
+    def test_a_number_outside_its_band_is_marked_short_or_over(self):
+        self.assertEqual(self.line("Wipe power"), "Wipe power 0.61 want 0.7-1.9 SHORT (was 0.61)")
+        self.assertEqual(self.line("Cards costing 6 or more"), "Cards costing 6 or more 9 max 8 OVER (was 5)")
+        self.assertEqual(self.line("Finishers"), "Finishers 7 want 1-6 OVER (was 6)")
+        self.assertEqual(self.line("Answers to spells"), "Answers to spells 0 at least 1 SHORT (was 0)")
+
+    def test_a_band_with_one_end_reads_as_a_limit(self):
+        self.assertEqual(self.line("Game Changers"), "Game Changers 0 max 3 ok (was 0)")
+        self.assertEqual(self.line("Answers to creatures"), "Answers to creatures 10 at least 1 ok (was 14)")
+
+    def test_shares_and_money_carry_their_units(self):
+        self.assertEqual(self.line("Interaction at instant speed"), "Interaction at instant speed 43.8% (was 25%)")
+        self.assertEqual(self.line("Cost to buy"), "Cost to buy $185.43 (was $0.00)")
+        self.assertEqual(self.line("Cards you own"), "Cards you own 67.7% (was 100%)")
+
+    def test_decimals_are_shown_to_two_places_without_trailing_zeros(self):
+        self.assertEqual(self.line("Deck score"), "Deck score 93.77 (was 79.82)")
+        self.assertEqual(self.line("Average mana value"), "Average mana value 2.84 (was 3.31)")
+        self.assertEqual(self.line("Salt"), "Salt 0 (was 0)")
+
+    def test_an_item_with_no_value_shows_a_dash_and_says_why_even_without_the_verbose_flag(self):
+        lines = self.text.splitlines()
+        i = next(n for n, l in enumerate(lines) if l.strip().startswith("Synergy with the commander"))
+        self.assertEqual(" ".join(lines[i].split()), "Synergy with the commander -")
+        self.assertTrue(lines[i + 1].startswith("      - No card has an EDHREC synergy score"))
+
+    def test_the_card_index_not_recording_power_is_said_in_the_report(self):
+        self.assertIn("The card index does not record creature power yet.", " ".join(self.text.split()))
+
+    def test_without_the_verbose_flag_the_arithmetic_and_the_cards_stay_out(self):
+        self.assertNotIn("Tear Asunder", self.text)
+        self.assertNotIn("cards:", self.text)
+
+    def test_the_verbose_flag_adds_each_items_cards_and_how_its_number_was_made(self):
+        text = render.text(self.result, verbose=True)
+        flat = " ".join(text.split())
+        self.assertIn("cards: Tear Asunder, Assassin's Trophy", flat)
+        self.assertIn("- Tear Asunder 1.00 = instant 1.0 × any permanent 1.0 × exile 1.0 × MV 2 1.0", flat)
+        self.assertGreater(len(text.splitlines()), len(self.text.splitlines()))
+        self.assertFits(text)
+
+    def test_a_footnote_explains_the_was_column_only_when_there_is_one(self):
+        self.assertIn("(was N) is the value in the base deck.", self.text)
+        for group in self.result["groups"]:
+            for item in group["items"]:
+                item.pop("base", None)
+        self.assertNotIn("(was N)", render.text(self.result))
+
+    def test_the_footer_names_the_sources_and_the_kind_of_number(self):
+        flat = " ".join(self.text.split())
+        self.assertIn("Commander Spellbook 2026-10-11", flat)
+        self.assertIn("Scryfall function tags 2026-10-09", flat)
+        self.assertIn("At Bracket 3 these numbers show what deck builders chose, not how often decks won.", flat)
+
+    def test_warnings_come_after_the_groups(self):
+        lines = self.text.splitlines()
+        self.assertGreater(lines.index("Warnings:"), lines.index("Changes from the base deck"))
+        self.assertIn("  - Combos were checked against Commander Spellbook's daily file.", lines)
+
+    def test_a_very_long_label_still_fits_the_page_width(self):
+        self.result["groups"][0]["items"][0]["label"] = "A very long label " * 6
+        self.assertFits(render.text(self.result))
+
+    def test_the_json_keeps_the_schema_first_and_every_item_whole(self):
+        body = json.loads(render.as_json(self.result))
+        self.assertEqual(list(body)[:2], ["schema", "command"])
+        self.assertEqual(body["schema"], 1)
+        self.assertEqual(body["groups"], self.result["groups"])
+        self.assertEqual(body["headline"], self.result["headline"])
+
+    def test_a_result_without_groups_prints_only_its_header(self):
+        text = render.text({"command": "stats", "deck": {"name": "Empty", "commanders": [], "count": 0}})
+        self.assertTrue(text.startswith("Empty → Bracket ?, no budget"))
+        self.assertFits(text)
 
 
 if __name__ == "__main__":
