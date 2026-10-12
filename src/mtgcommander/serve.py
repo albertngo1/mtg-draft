@@ -18,8 +18,8 @@ they know comes from the answers below, so each formula exists once, in Python. 
                                               GET plus "result": {"changed", "message"}
     PATCH /api/decks/PLAYER/ID                {"revision", "name"?, "settings"?}; answers like the GET
     POST  /api/decks/PLAYER/ID/suggest        {"budget"?, "price_points"?}: what `upgrade` would change in the list now,
-                                              with what is left of the version's budget (see "Suggestions and the
-                                              budget")
+                                              with what is left of the version's budget and without undoing the
+                                              player's changes (see the two paragraphs on suggestions below)
     GET   /api/bases, POST /api/bases         list the base decks; make one from {"name"?, "precon", "player"} or
                                               {"name", "list", "commander"?, "player"}; 201
     GET   /api/precons?q=TEXT                 the precon names that match, at most 20
@@ -59,6 +59,15 @@ spending: a `price_points` list is read as `upgrade` reads it for a budget of `l
 above it. With no budget (`"budget": null`) there is no `left` or `over`. When the headline has no price to give,
 nothing is taken off: the whole budget is searched, `spent` and `over` are null, and a warning says so.
 
+Suggestions keep the player's changes. A search never undoes a change the player made: it may not cut a card the
+player added (a card in the list that the base deck does not have) and it does not offer a card the player cut (a
+base deck card no longer in the list); nonbasic cards only, since copies of a basic land are interchangeable. Both sets
+are worked out from the list and the base deck, never from the change log, so an undo needs no handling. `upgrade` gets
+them on a copy of the context: the added cards as `keep`, which holds back the optional swaps only (a card that breaks a
+rule is still swapped out, marked required, which an `include` would not allow), and the cut ones added to `exclude`,
+beside the player's own `include` and `exclude`. The answer's `changes_kept` is {"added", "cut"}, how many cards of
+each. The Changes tab's Undo is how a player reconsiders one.
+
 A card object (everywhere a card appears): name, front, image, image_back, scryfall_uri, type, cost, cmc, ci (color
 identity letters), price (cheapest printing; null when nothing prices it), owned. In a deck's list it also has count,
 section, new (added since the base deck), score, roles and gc (Game Changer). A deck answer has: version (its fields
@@ -89,8 +98,8 @@ Test switches (environment variables, all off by default) make the server slow, 
 Everything the server depends on is a parameter of `App` with the real thing as its default (`prepare`, `combos`,
 `attributes`, `prices`, `upgrade`, `precon`, `precon_names`, `uncommitted`), so the tests run it on fakes and a small
 card index with no network."""
-import datetime, heapq, http.server, ipaddress, json, math, os, socket, socketserver, subprocess, threading, time
-import traceback, urllib.parse
+import collections, datetime, heapq, http.server, ipaddress, json, math, os, socket, socketserver, subprocess
+import threading, time, traceback, urllib.parse
 from . import brackets, build, carddb, config, decklist, decks, fantasy, metrics, net, roles, score
 from .providers import scryfall_tags, spellbook
 
@@ -549,6 +558,20 @@ class Workspace:
             out["spellbook"] = dated(*self.combo_info)
         return out
 
+    def player_changes(self, current):
+        """(added, cut) as sets of names: the nonbasic cards the list holds that the base deck does not, and the base
+        deck's nonbasic cards the list no longer holds. They are worked out from the two lists and never from the
+        change log, so an undo needs no handling (it puts the list back, and these with it), and a card added and then
+        cut again, or cut and then added back, is in neither. Basic lands are left out: copies of them are
+        interchangeable, so no copy is a decision, and keeping a basic by name would lock every copy."""
+        db = self.app.db
+
+        def nonbasic(entries):
+            recs = (db.get(name) for _, name in entries)
+            return {rec["name"] for rec in recs if rec is not None and "Basic" not in rec["types"]}
+        held, base = nonbasic(current["cards"]), nonbasic(self.baseline["cards"])
+        return held - base, base - held
+
     # --- cards as the pages draw them
     def price_of(self, rec):
         if "Basic" in rec["types"]:
@@ -766,6 +789,12 @@ class Workspace:
         return out
 
 
+# What a suggestion needs from an open deck (`DeckSession.snapshot`): the context to search with, the list, the
+# commanders' colors, what the list has cost so far (None when that cannot be worked out), and the names of the cards
+# the player added and of the base deck's cards the player cut.
+Snapshot = collections.namedtuple("Snapshot", "ctx deck colors spent added cut")
+
+
 # ----------------------------------------------------------------------------- one open deck
 class DeckSession:
     """An open version: its workspace, the lock that serializes work on it, and the background preparation.
@@ -873,14 +902,20 @@ class DeckSession:
         return out
 
     def snapshot(self, doc):
-        """What a suggestion needs, taken under the lock so the (slow) search can run without it: (the context, the list
-        as {"name", "commanders", "cards"}, the commanders' colors, what the list has cost so far). The cost is the deck
-        screen's SPENT stat, the `price` of the metrics headline (the cards the player does not own, each at its price),
-        measured here on the list the search will work on; None when the metrics could not give it."""
+        """What a suggestion needs, taken under the lock so the (slow) search can run without it: a `Snapshot`. `deck`
+        is the list as {"name", "commanders", "cards"}. `spent` is what the list has cost so far, the deck screen's
+        SPENT stat: the `price` of the metrics headline (the cards the player does not own, each at its price),
+        measured here on the list the search will work on, None when the metrics could not give it. `ctx` is a copy of
+        the workspace's context for the search to read, with the player's changes in it: the cards the player added
+        are its `keep` (the optional swaps may not cut them) and the base deck's cards the player cut are added to its
+        `exclude` (never offered again), beside the player's own `include` and `exclude`. The workspace's own context
+        is not touched."""
         current, combos, _ = self.ws.look(doc)
         deck = {"name": doc["name"], "commanders": current["commanders"], "cards": [tuple(e) for e in current["cards"]]}
         spent = self.ws.measure(current, doc, combos)["headline"]["price"]
-        return self.ws.ctx, deck, self.ws.ctx["ci"], spent if _number(spent) else None
+        added, cut = self.ws.player_changes(current)
+        ctx = dict(self.ws.ctx, keep=added, exclude=set(self.ws.ctx["exclude"]) | cut)
+        return Snapshot(ctx, deck, self.ws.ctx["ci"], spent if _number(spent) else None, added, cut)
 
     def listing(self, doc):
         """(headline, net cost of the changes) for the deck list: from the open deck if it is ready, else from a
@@ -1201,7 +1236,9 @@ class App:
         what is left: the budget minus what the list has cost so far (`DeckSession.snapshot`, the deck screen's SPENT
         stat), or $0 once that is used up. The answer says where the money stands: `spent` (before these swaps),
         `left` (what the swaps may spend) and `over` (how far past the budget the version is). `price_points` are
-        amounts of new spending, so `upgrade`'s own ladder drops the ones at or above `left`."""
+        amounts of new spending, so `upgrade`'s own ladder drops the ones at or above `left`. The search never undoes
+        a change the player made: it may not cut a card the player added and does not offer a base deck card the
+        player cut (see `DeckSession.snapshot`), and the answer's `changes_kept` counts both."""
         player, version_id = args
         session = self._open(player, version_id)
         with session.lock:
@@ -1214,16 +1251,17 @@ class App:
                 raise decks.Invalid('"price_points" must be a list of dollar amounts above zero.')
             if points is not None and budget is None:
                 raise decks.Invalid("Price points are steps up to a budget, so give a budget as well.")
-            ctx, deck, colors, spent = session.snapshot(doc)
+            snap = session.snapshot(doc)
             ws = session.ws
-        left, over = budget_left_and_over(budget, spent)
+        left, over = budget_left_and_over(budget, snap.spent)
         notes = []
-        if budget is not None and spent is None:
+        if budget is not None and snap.spent is None:
             notes.append("What this version has already spent could not be worked out (no card prices were found), so "
                          "these swaps may use the whole budget and take the version over it.")
-        result = self.upgrade(ctx, deck, self.db, budget=left, price_points=points,
-                              combos_fn=lambda commanders, names: self.combos(commanders, names, identity=colors))
-        result = dict(result, revision=doc["revision"], budget=budget, spent=spent, left=left, over=over)
+        result = self.upgrade(snap.ctx, snap.deck, self.db, budget=left, price_points=points,
+                              combos_fn=lambda commanders, names: self.combos(commanders, names, identity=snap.colors))
+        result = dict(result, revision=doc["revision"], budget=budget, spent=snap.spent, left=left, over=over,
+                      changes_kept={"added": len(snap.added), "cut": len(snap.cut)})
         result["warnings"] = unique(notes + list(result.get("warnings") or []) + drain(carddb.WARNINGS, roles.WARNINGS))
         mentioned = [x[k] for x in result.get("swaps") or [] for k in ("cut", "add")]
         mentioned += [x["card"] for x in (result.get("blocked") or []) + (result.get("cheap_adds") or [])]

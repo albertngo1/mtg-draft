@@ -376,10 +376,22 @@ function nothingToSuggestText(result) {
   return `This version has spent its ${ui.dollars(result.budget)} budget${sofar}, so only swaps with cards you own are suggested, and none of those beats the current list. Raise the budget, or cut cards you bought to free money.`;
 }
 
+/** "Suggestions keep your changes: the 32 cards you added stay, and the 32 you cut are not offered again. Undo a change to
+ *  reconsider it." The counts are the server's (`changes_kept`); there is no line while the player has made no change. */
+function keepsLine({ added = 0, cut = 0 } = {}) {
+  const cards = (n) => `${n} ${n === 1 ? "card" : "cards"}`;
+  const parts = [];
+  if (added) parts.push(`the ${cards(added)} you added ${added === 1 ? "stays" : "stay"}`);
+  if (cut) parts.push(`the ${added ? cut : cards(cut)} you cut ${cut === 1 ? "is" : "are"} not offered again`);
+  return parts.length ? h("p", { class: "muted small", text: `Suggestions keep your changes: ${parts.join(", and ")}. Undo a change to reconsider it.` }) : null;
+}
+
 function suggestionResult(app, deck, result) {
   const out = [];
   const locked = result.revision !== deck.data.version.revision || app.saving;   // never apply swaps worked out before a change
   const swaps = result.swaps;
+  const keeps = keepsLine(result.changes_kept);
+  if (keeps) out.push(keeps);
   if (!swaps.length) {
     out.push(ui.emptyState({ title: "Nothing to suggest", text: nothingToSuggestText(result) }));
     if (result.cheap_adds.length) {

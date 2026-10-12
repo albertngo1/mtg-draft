@@ -558,12 +558,13 @@ def mini(**scores):
     return w
 
 
-def run_upgrade(w, deck_names, candidate_names=None, *, targets=None, owned=(), include=(), exclude=(),
+def run_upgrade(w, deck_names, candidate_names=None, *, targets=None, owned=(), include=(), exclude=(), keep=(),
                 prices=None, bracket=3, **kw):
     db = w.db()
     names = list(deck_names) + list(candidate_names or [])
+    more = {"keep": set(keep)} if keep else {}                 # the key is optional: prepare never sets it
     ctx = make_ctx(w, db, names=names, bracket=bracket, targets=targets or zero_targets(), owned=set(owned),
-                   include=list(include), exclude=set(exclude))
+                   include=list(include), exclude=set(exclude), **more)
     deck = deck_of(*deck_names)
     kw.setdefault("prices", prices if prices is not None else w.prices())
     return build.upgrade(ctx, deck, db, **kw), ctx, db
@@ -685,6 +686,32 @@ class UpgradeTests(Isolated):
     def test_exclude_cards_are_never_added(self):
         res, _, _ = run_upgrade(self.world(), self.DECK, ["Staple", "Okay"], exclude=["Staple"], max_swaps=1)
         self.assertEqual(res["swaps"][0]["add"], "Okay")
+
+    # --- keep: cards the caller wants to stay through the optional swaps (the deck pages keep what the player added)
+    def test_kept_cards_are_never_cut_by_an_optional_swap(self):
+        # Dud A (0.05) would go first; kept, it stays and Dud B and Dud C go. A kept card is in the deck, so there is
+        # nothing to say about an include that is missing from it
+        res, _, _ = run_upgrade(self.world(), self.DECK, ["Staple", "Okay"], keep=["Dud A"], max_swaps=2)
+        self.assertEqual([s["cut"] for s in res["swaps"]], ["Dud B", "Dud C"])
+        self.assertEqual([w for w in res["warnings"] if "include" in w], [])
+
+    def test_a_kept_card_that_breaks_a_bracket_limit_is_still_cut_by_the_forced_swap(self):
+        # unlike an include (the player's own list, which no repair touches), keep holds back only the optional swaps:
+        # the two weakest of five Game Changers go as they would without it, with nothing said about a repair that
+        # could not be made
+        w = self.gc_world()
+        deck = ["Filler"] + [f"GC {i}" for i in range(1, 6)]
+        res, _, _ = run_upgrade(w, deck, ["Staple", "Okay", "Decent", "Fine"], keep=["GC 5", "GC 4"], max_swaps=0)
+        self.assertEqual([s["cut"] for s in res["swaps"] if s["forced"]], ["GC 5", "GC 4"])
+        self.assertTrue(res["bracket_after"]["ok"])
+        self.assertEqual([w for w in res["warnings"] if "Could not fix" in w], [])
+
+    def test_a_kept_card_that_is_banned_now_is_still_cut_first(self):
+        w = self.world()
+        w.add("Banned Spell", 0.99, None, legal="banned")
+        res, _, _ = run_upgrade(w, self.DECK + ["Banned Spell"], ["Staple"], keep=["Banned Spell"], max_swaps=0)
+        self.assertEqual([(s["cut"], s["forced"]) for s in res["swaps"]], [("Banned Spell", True)])
+        self.assertIn("not legal in Commander", res["swaps"][0]["reason"])
 
     def test_cards_outside_the_colors_or_banned_are_never_added(self):
         w = self.world()
