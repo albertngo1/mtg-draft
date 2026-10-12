@@ -654,7 +654,7 @@ The four flags every command takes, then the rest (help text as `--help` prints 
 | flag | commands | meaning |
 |---|---|---|
 | `--json` | all | print the result as JSON (`"schema": 1`), not a report |
-| `--refresh` | all | download again instead of using cached data (for `serve`: when a deck is first opened, not on every tap) |
+| `--refresh` | all | download again instead of using cached data (for `serve`: the card index as it starts, and a deck's data when the deck is first opened, not on every tap) |
 | `--offline` | all | never connect; use cached data only (see `warm`) |
 | `--sources LIST` | all | card-evidence sources to use, comma-separated (choices `edhrec`, `archidekt`, `edhtop16`) |
 | `DECKFILE` | upgrade, check, stats | a decklist file; `-` reads standard input |
@@ -1378,7 +1378,7 @@ checks for the pages use them.
 | `MTG_FAIL_HOSTS=HOST,...` | `net.request` and `net.download` fail at once for these hosts, as if the site were down. With `--refresh` the cache is not simply served, so the page shows its stale-data banner |
 
 **Running it.** One server per repo: deck files are written whole and replaced atomically, but nothing locks them
-between programs. `--refresh` downloads a deck's data again when the deck is first opened (and only then). `--offline`
+between programs. `--refresh` downloads the card index again as the server starts, and a deck's data again when the deck is first opened (and only then). `--offline`
 never connects. The tests (`tests/commander/test_serve.py`) start a real server on a free port with fakes for the engine's
 network, git and the card index's data, and cover every route, each error, the safety checks and the switches.
 

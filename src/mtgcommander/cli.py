@@ -746,8 +746,9 @@ def _log_line(line):
 
 
 def cmd_serve(session):
-    """Run the deck pages' server (serve.py) until Ctrl-C. `--refresh` means "download a deck's data again when the deck
-    is first opened", not "on every tap", so it is handed to the server and switched off here. There is no result to
+    """Run the deck pages' server (serve.py) until Ctrl-C. `--refresh` downloads the card index again as the server
+    starts, and a deck's data again when the deck is first opened, not on every tap: it is handed to the server and
+    switched off here once the index is loaded. There is no result to
     print: the address and the warning about having no login are printed once, when the server is listening."""
     a = session.args
     db = session.db()
