@@ -727,6 +727,7 @@ ignored.
 | `decklist.py` | reads pasted lists, matches names to real cards, loads precons from MTGJSON, writes lists |
 | `decks.py` | saved decks: base decks and each player's versions as JSON files, with an append-only change log, replay, undo and revisions (see [Deck files](#deck-files)) |
 | `serve.py` | the local web server for the deck pages: the application programming interface (API) over `decks.py` and `metrics.py`, one session for each open deck, the safety checks and the test switches (see [The deck server](#the-deck-server)) |
+| `web/` | the deck pages: `index.html`, `styles.css` and eight JavaScript modules, plain files the server hands out (see [The deck pages](#the-deck-pages)) |
 | `providers/` | one module per data source, registered in `providers/__init__.py` (`SIGNAL_PROVIDERS`) |
 | `providers/edhrec.py` | what builders chose, per commander, bracket and theme; themes, salt, average land count |
 | `providers/archidekt.py` | bracket-tagged decklists: the second builder source |
@@ -980,7 +981,7 @@ score weights above.
 ### Deck metrics and `stats`
 
 `stats` prints every number the tool can work out about one list. `metrics.py` works them all out, in one call, so the
-command and the deck pages planned for version 2 show the same numbers.
+command and the deck pages show the same numbers.
 
 ```
 $ ./mtg-commander.sh stats --precon "Squirreled Away" --bracket 3 --theme tokens --playstyle aristocrats
@@ -1274,8 +1275,8 @@ card or change. The keys come in a fixed order, listed at the top of `decks.py`.
 
 ### The deck server
 
-`serve.py` is the local web server behind the deck pages (the pages come in a later change and will live in
-`src/mtgcommander/web/`). It keeps no deck of its own: the files are `decks.py`'s. Its job is to take a request, call
+`serve.py` is the local web server behind the deck pages (the pages are plain files in `src/mtgcommander/web/`, which the
+server also hands out; see [The deck pages](#the-deck-pages)). It keeps no deck of its own: the files are `decks.py`'s. Its job is to take a request, call
 `decks.py` and `metrics.py`, and answer with the whole deck and every metric worked out again, so a page redraws from one
 answer and no formula exists twice. These answers are the server's application programming interface (API). It uses only
 the standard library: `http.server`, one thread for each request.
@@ -1297,16 +1298,16 @@ $ ./mtg-commander.sh serve
 | `GET /api/status` | when each data source was read; the server's settings (host, port, offline, decks folder); the deck files git does not have yet (`git status --porcelain`, read only, 2 seconds at most, with a note saying why when git cannot tell) |
 | `GET /api/players` | the players: the folders under the decks folder |
 | `GET /api/menu` | the playstyles and common themes a version's settings choose from |
-| `GET /api/decks?player=NAME` | that player's versions, newest first: id, name, base deck, commanders and picture, revision, cards swapped, what the changes cost, and the headline numbers (from the open deck, else from a preparation tried offline, else `null`) |
+| `GET /api/decks?player=NAME` | that player's versions, newest first: id, name, base deck, its settings (bracket, budget, themes, playstyle), commanders and picture, revision, cards swapped, what the changes cost, and the headline numbers (from the open deck, else from a preparation tried offline, else `null`) |
 | `POST /api/decks` | `{"player", "name", "base", "settings"?}` makes a version; 201 |
 | `GET /api/decks/PLAYER/ID` | the version: `version` (with its change log, each change marked `undone` or not), `base`, `spec` (the settings as the engine reads them), `commanders`, `cards`, `card_count`, `diff`, `cut_cards`, `metrics` (every item beside the base deck's value), `warnings` and `sources`; or 202 |
 | `POST /api/decks/PLAYER/ID/changes` | `{"revision", "op": ...}` as in [Deck files](#deck-files), with `"source"`; answers like the GET plus `"result": {"changed", "message"}` |
 | `PATCH /api/decks/PLAYER/ID` | `{"revision", "name"?, "settings"?}`; answers like the GET |
 | `POST /api/decks/PLAYER/ID/suggest` | `{"budget"?, "price_points"?}`: `upgrade` on the list as it is now, with the settings' budget unless one is given. The result of `upgrade`, plus `revision` and `cards` (a card object for each card it names). It keeps nothing: ask again after every change |
-| `GET /api/bases`, `POST /api/bases` | the base decks; make one from `{"name"?, "precon", "player"}` or `{"name", "list", "commander"?, "player"}`; 201 |
+| `GET /api/bases`, `POST /api/bases` | the base decks, each with its commanders, their picture and colors (`ci`, as WUBRG letters) and card count; make one from `{"name"?, "precon", "player"}` or `{"name", "list", "commander"?, "player"}`; 201 |
 | `GET /api/precons?q=TEXT` | precon names that hold every word, at most 20 |
 | `GET /api/cards?q=TEXT&deck=PLAYER/ID` | cards to add, at most 30. With no text, the best-scored cards not in the deck. With text, the Commander-legal cards whose name holds every word: the exact name first, then the commander's colors, then by score (a card with none, by EDHREC rank). Each is a card object plus `score`, `evidence`, `gain` (the deck's value change if it were added as one more card) and `flag`: `null`, or `{"kind": "illegal" \| "colors" \| "in_deck" \| "bracket", "reason"}` for a card that cannot be added |
-| `GET /api/cards/NAME?deck=PLAYER/ID` | the card's sheet: facts and rules text, copies in the deck, roles, attribute tags, score with its evidence and parts, salt, Game Changer, the combos it is in and would complete, the removal breakdown, `if_cut` (the deck score change and only the metric items that move) and `replacements` (the five best cards to put in its place, by the deck's value after the swap) |
+| `GET /api/cards/NAME?deck=PLAYER/ID` | the card's sheet: facts and rules text, copies in the deck, roles, attribute tags, `answers` (the kinds of threat it answers, by the tags the deck's "answers to ..." numbers count), score with its evidence and parts, salt, Game Changer, the combos it is in and would complete, the removal breakdown, `if_cut` (the deck score change and only the metric items that move) and `replacements` (the five best cards to put in its place, by the deck's value after the swap) |
 
 A **card object** has `name`, `front`, `image`, `image_back`, `scryfall_uri`, `type`, `cost`, `cmc`, `ci` (color identity
 letters), `price` (cheapest printing; `null` when nothing prices it) and `owned` (in the base deck or a precon the
@@ -1380,6 +1381,67 @@ checks for the pages use them.
 between programs. `--refresh` downloads a deck's data again when the deck is first opened (and only then). `--offline`
 never connects. The tests (`tests/commander/test_serve.py`) start a real server on a free port with fakes for the engine's
 network, git and the card index's data, and cover every route, each error, the safety checks and the switches.
+
+### The deck pages
+
+The pages are plain files in `src/mtgcommander/web/`, handed out by the server. There is no build step and there are no
+packages: each file is a JavaScript module (`<script type="module" src="app.js">`) that a browser loads straight from the
+server. Nothing is fetched from another site except each card's picture, whose Scryfall link is part of the server's
+answer (the page's `Content-Security-Policy` allows pictures from any https address and everything else only from the
+server itself).
+
+| file | job |
+|---|---|
+| `index.html` | the shell: the stylesheet, the script, a `<main>`, and the layers for sheets and messages |
+| `styles.css` | Albert's color palette (the `:root` block, copied from `card-reference/site/site.css` and kept equal by a test) and the components. Phone first: one column, the numbers pinned above the tabs, touch targets of at least 44 px. From 1024 px wide the card grid has the metrics beside it |
+| `api.js` | the one `call(method, path, body)`, with a 10 second limit and one error type whose `kind` is `unreachable`, `timeout`, `conflict`, `invalid`, `not_found` or `server`. A 202 (the deck is still being prepared) is an answer, not an error; `callReady` asks again every second until it gets the deck |
+| `app.js` | the address (hash) router, the state, the queue that saves one change at a time for each deck, and the redraw from the state |
+| `ui.js` | the pieces every screen shares, one copy each: card tile, chip, stat, toast, banner, sheet and button (and the few helpers they need) |
+| `decks.js` | Decks, New version and New base deck |
+| `deck.js` | the Deck screen: the header, the numbers, and the Cards, Metrics, Changes and Suggestions tabs |
+| `card.js` | the card sheet: picture (with a flip for a two-faced card), rules text, why it is in the deck, removal power, what cutting it would change, replacements, Cut and Swap |
+| `add.js` | the Add a card sheet: search, then "what does it replace?" |
+| `metrics.js` | draws any metric group from the one item shape (label, value with unit, band, status, before and after, and `why` behind a tap) |
+
+**Addresses.** They follow the `#`, so a reload keeps the place, and names are encoded with `encodeURIComponent` (card
+names hold spaces, commas, apostrophes and `//`): `#/` (Decks), `#/new` and `#/new?base=ID`, `#/new-base`,
+`#/d/PLAYER/ID` (the Cards tab) and the same with `/metrics`, `/changes` or `/suggestions`, `#/d/PLAYER/ID/card/NAME`
+(a card's sheet) and `#/d/PLAYER/ID/add` (`?cut=NAME` to swap a card, `?card=NAME` to add one). A sheet is an address of its
+own, so Back closes it. The only thing kept on the device is the chosen player, in `localStorage`, and every read and write
+is guarded: the pages work without it.
+
+**The rule: the pages never work out a number.** Every number on screen came in the server's answer, so each formula
+exists once, in Python, where the tests are. The pages sort, fold and format: how many tiles are in a section or behind a
+filter chip, how long a bar is next to the longest in its picture, which way an arrow points, a price as dollars. They
+subtract nothing: the arrow beside a number only says whether it is above or below the base deck's value, which is
+printed beside it. A metric the pages have never heard of is drawn as a row, so a new metric needs no page code.
+
+**One change at a time for each deck.** A tap puts a request in `app.js`'s queue and dims its card; the numbers fade, and
+nothing moves until the answer comes. Then everything is redrawn from the answer. If a request fails, the ones behind it are
+not sent, and the message offers to send them all again.
+
+| state | what the page does |
+|---|---|
+| success | redraws from the answer, and a toast names the change with an Undo (`{"op": "undo", "of": n}`) |
+| `result.changed` is false | shows the server's message and changes nothing |
+| 409 | reloads the deck, says "This deck changed on another device, so it was reloaded", and offers the change again |
+| 422 (and 400) | shows the reason and puts the card back |
+| unreachable, or no answer in 10 seconds | a banner naming `mtg-commander serve` (and Tailscale, when the page was opened from another device) with Retry. After a timeout Retry first reads the deck: if its revision has moved on, the change was saved after all and is not sent twice |
+| 500 | the server's own text |
+| 202 | the first open of a commander: shows the server's message and how many web requests it has made, and asks every second until the deck is ready |
+| not 100 cards | a banner ("101 cards. Cut one to get back to 100.") |
+| `bracket_ok` is false | a banner naming the cards, from the `bracket` item's `why`, with Undo |
+| a source did not answer | a banner naming it and the date of the data the numbers use |
+
+Suggestions are asked for again after every change, and a price point from before a change is never applied: its Apply
+buttons are off until the new answer arrives.
+
+**Checking them.** `tests/commander/test_web.py` checks what Python can: the palette matches Albert's, every file the page
+names and every `import` exists and exports what is imported, nothing is loaded from another site, no server text is put
+into markup (`innerHTML` is never used), and the real folder is served with the right types. When Node is installed it
+also syntax checks each module. What the pages do is checked in a browser against the real server, at 390 and 1280 px, with
+the test switches (`MTG_SERVE_DELAY` for a timeout, `MTG_SERVE_CONFLICT` for a 409, `MTG_FAIL_HOSTS` with `--refresh` for
+stale data, and a stopped server for unreachable).
 
 ### Edge cases
 

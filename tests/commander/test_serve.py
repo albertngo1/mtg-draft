@@ -512,6 +512,13 @@ class OpenDeckTests(ServerCase):
         self.assertIsNone(removal["value"])
         self.assertIn("function tags", removal["why"][0])
 
+    def test_a_card_sheet_answers_no_threats_when_the_tag_data_is_missing(self):
+        # without the function tags nothing is known about what a card answers: the list is empty, not a guess
+        self.fakes.tags_available = False
+        self.open_deck()
+        reply = self.get("/api/cards/Go%20for%20the%20Throat?deck=andy/go-wide")
+        self.assertEqual((reply.status, reply["answers"]), (200, []))
+
     def test_the_first_open_asks_the_engine_for_the_base_and_current_cards_and_the_owned_ones(self):
         # prepare is given the settings as a spec, the commander, every card of the list and the base deck as owned
         self.open_deck()
@@ -1076,7 +1083,7 @@ class SheetTests(SearchCase):
         reply = self.sheet("Go for the Throat")
         self.assertEqual(reply.status, 200)
         self.assertEqual(sorted(reply.body), sorted(["schema", "card", "copies", "commander", "flag", "roles",
-                                                     "attributes", "gc", "score", "salt", "combos", "removal",
+                                                     "attributes", "answers", "gc", "score", "salt", "combos", "removal",
                                                      "if_cut", "replacements", "revision", "warnings"]))
         card = reply["card"]
         self.assertEqual((card["name"], card["type"], card["cost"], card["price"], card["owned"]),
@@ -1087,6 +1094,13 @@ class SheetTests(SearchCase):
         self.assertEqual((reply["score"]["kind"], reply["score"]["evidence"]),
                          ("builder", "in 60% of 1,125 Bracket 3 Hazel decks"))
         self.assertEqual(sorted(reply["score"]["parts"]), ["base", "resid", "salt", "theme"])
+
+    def test_a_sheet_names_the_kinds_of_threat_the_card_answers(self):
+        # Go for the Throat is tagged removal-creature, so it answers creatures; Sol Ring and Maelstrom Pulse (tagged
+        # removal-permanent, which is not one of the seven kinds) answer none
+        self.assertEqual(self.sheet("Go for the Throat")["answers"], ["creatures"])
+        self.assertEqual(self.sheet("Sol Ring")["answers"], [])
+        self.assertEqual(self.sheet("Maelstrom Pulse")["answers"], [])
 
     def test_a_removal_cards_breakdown_shows_its_four_weights(self):
         # an instant (1.0) that destroys (0.9) creatures only (0.7) for MV 2 (1.0) = 0.63
@@ -1237,8 +1251,9 @@ class ListTests(ServerCase):
         listing = self.get("/api/decks?player=andy")
         self.assertEqual(listing.status, 200)
         entry = listing["versions"][0]
-        self.assertEqual(sorted(entry), sorted(["id", "name", "base", "updated", "revision", "base_name", "commanders",
-                                                "commander_image", "swaps", "spent", "headline"]))
+        self.assertEqual(sorted(entry), sorted(["id", "name", "base", "updated", "revision", "settings", "base_name",
+                                                "commanders", "commander_image", "swaps", "spent", "headline"]))
+        self.assertEqual(entry["settings"], SETTINGS)                  # the pages show the bracket, themes and playstyle
         self.assertEqual((entry["id"], entry["base_name"], entry["commanders"], entry["swaps"], entry["spent"]),
                          ("go-wide", "Squirreled Away", [CMDR], 0, 0.0))
         self.assertEqual(entry["commander_image"], "https://img.test/hazel-of-the-rootbloom.jpg")
@@ -1375,6 +1390,16 @@ class BaseTests(ServerCase):
         self.assertEqual(listing.status, 200)
         self.assertEqual([(b["id"], b["card_count"], b["commander_image"]) for b in listing["bases"]],
                          [("squirreled-away", 18, "https://img.test/hazel-of-the-rootbloom.jpg")])
+
+    def test_a_base_deck_says_its_colors_in_the_order_white_blue_black_red_green(self):
+        # Hazel is black and green; a base deck led by two partners has both of their colors, and a card the index
+        # does not know adds none (the base deck list shows these letters beside the commander's name)
+        self.assertEqual(self.get("/api/bases")["bases"][0]["ci"], "BG")
+        made = decks.new_base(self.root, name="Two", commanders=[CMDR, "Swords to Plowshares"], cards=[(1, "Sol Ring")],
+                              source={"type": "paste"}, created_by="andy", db=self.db)
+        entry = next(b for b in self.get("/api/bases")["bases"] if b["id"] == made["id"])
+        self.assertEqual(entry["ci"], "WBG")
+        self.assertEqual(entry["commanders"], [CMDR, "Swords to Plowshares"])
 
     def test_the_precon_search_matches_words_and_returns_at_most_twenty(self):
         # "squir" finds one; "test precon" matches thirty names, twenty are returned
