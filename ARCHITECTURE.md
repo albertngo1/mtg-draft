@@ -540,7 +540,7 @@ python3 src/mtg-commander.py check mydeck.txt --bracket 3
 python3 src/mtg-commander.py build "Hazel of the Rootbloom" --bracket 3 --budget 150 --theme squirrels
 ```
 
-The first run downloads Scryfall's card file and builds a local index of about 35,000 cards (24 MB). That takes a
+The first run downloads Scryfall's card file and builds a local index of about 35,000 cards (31 MB). That takes a
 minute or two, once; the index is rebuilt after 7 days. Everything else it downloads is cached too (see
 [Data sources, caching and offline use](#data-sources-caching-and-offline-use)).
 
@@ -675,6 +675,7 @@ The four flags every command takes, then the rest (help text as `--help` prints 
 | `MTG_BRACKET` | the bracket used when `--bracket` is not given (otherwise 3) |
 | `MTG_COMMANDER_SOURCES` | comma-separated card-evidence sources, the same choices as `--sources` |
 | `MTG_OFFLINE=1` | the same as `--offline` on every run |
+| `MTG_COMMANDER_DECKS` | the folder of saved decks (otherwise `commander/decks/` in the repo; see [Deck files](#deck-files)) |
 | `CLAUDE_CODE_OAUTH_TOKEN` | the Claude token `--fantasy` needs; a gitignored `claude-token.txt` at the repo root works too, the same file the replay uses |
 
 **Output.** Reports stay within 100 columns, so a phone terminal does not wrap a table mid-word. `--json` prints
@@ -686,7 +687,7 @@ writes a `Commander` section and a `Deck` section, which Moxfield and Archidekt 
 printed ("did you mean ..."). `2` data the command cannot do without is unavailable (offline with nothing
 cached, or the site is down). `130` stopped with Ctrl-C.
 
-**Deck files.** `upgrade` and `check` read what players paste: `1 Sol Ring`, `1x Sol Ring` or `Sol Ring`; set and
+**Pasted lists.** `upgrade` and `check` read what players paste: `1 Sol Ring`, `1x Sol Ring` or `Sol Ring`; set and
 collector suffixes (`(CMM) 400`); foil marks (`*F*`); Archidekt category tags (`[Ramp]`, `[Commander{top}]`);
 `Commander`, `Deck`, `Sideboard` and `Maybeboard` headers; MTGO's `SB:` lines. The commander is the card under a
 `Commander` header, marked `*CMDR*`, or named with `--commander`. Maybeboard, considering and token cards are
@@ -702,8 +703,9 @@ ignored.
 | `cli.py` | argparse commands: turns arguments into calls and results into output; owns the exit codes |
 | `config.py` | paths, how long each source's cache stays fresh, default bracket, default sources, the User-Agent |
 | `net.py` | the one HTTP client: per-host pacing, retries with back-off, the file cache, `--offline` and `--refresh` |
-| `carddb.py` | Scryfall's bulk card file boiled down to one record per card; forgiving name matching; cheapest prices |
+| `carddb.py` | Scryfall's bulk card file boiled down to one record per card (with links to its pictures); forgiving name matching; cheapest prices |
 | `decklist.py` | reads pasted lists, matches names to real cards, loads precons from MTGJSON, writes lists |
+| `decks.py` | saved decks: base decks and each player's versions as JSON files, with an append-only change log, replay, undo and revisions (see [Deck files](#deck-files)) |
 | `providers/` | one module per data source, registered in `providers/__init__.py` (`SIGNAL_PROVIDERS`) |
 | `providers/edhrec.py` | what builders chose, per commander, bracket and theme; themes, salt, average land count |
 | `providers/archidekt.py` | bracket-tagged decklists: the second builder source |
@@ -1036,6 +1038,70 @@ supplies the tournament term (Brackets 3 and up). With neither deck-builder sour
 fall back to Scryfall's overall popularity rank, `suggest` cannot run (it needs EDHREC's theme pages), and `themes`
 shows the common themes. The terms of two of these sources restrict scripted access, so which of them are on by
 default is a separate decision; see [Terms of use](#terms-of-use).
+
+### Deck files
+
+`decks.py` keeps decks between runs. A **base deck** is where a deck starts, a precon or a pasted list. It is written
+once and never changes. A **version** is one player's copy of a base deck plus every change that player made to it:
+cards added, cut or swapped, and the undoing of any of those. Each is one small JSON file in the repo, so players share
+decks through git, and `decks.py` is the only code that reads or writes them.
+
+```
+commander/decks/                  (the MTG_COMMANDER_DECKS environment variable names another folder)
+  bases/<base-id>.json            one base deck
+  <player>/<version-id>.json      one version, in its player's own folder
+```
+
+A player is a folder name, and an id is a file name. Both use lowercase letters, digits and hyphens, so `Squirrels go
+wide` becomes `squirrels-go-wide`; `bases` cannot be a player because it is the folder of base decks. Each player
+has a folder of their own, so two players never edit the same file.
+
+**The change log is the truth.** A version stores its changes, not its card list. The list is the base deck's cards
+with the changes replayed in order, so the log and the list cannot disagree, and "cards added" and "cards cut" are
+only the difference between that list and the base deck's. The log is **append-only**: an undo deletes nothing, it adds
+an entry that points at an older change, and a group of swaps (a whole price point from `upgrade`, say) is one entry,
+so one undo reverses all of it. Two things follow. Nothing about how a deck reached its present state is ever lost,
+and a git diff of a deck file reads as the new changes at its end, plus the new revision and update time.
+
+```json
+{"n": 1, "at": "2026-10-11T20:05:00Z", "op": "swap", "cut": "Swamp", "cut_id": "...", "add": "Cultivate",
+ "add_id": "...", "source": "suggested"}
+```
+
+`n` is the change's number, `op` is `add`, `cut`, `swap`, `group` or `undo`, and `source` says whether the player
+chose it (`manual`) or the tool suggested it (`suggested`). A file holds card names and changes, never a score, a price
+or anything else a data source supplied; those are looked up again each time. Each name sits beside the card's Scryfall
+`oracle_id`, the id that every printing of a card shares and that survives a rename (a base deck keeps a map of them
+under `ids`), so a card Scryfall later renames still replays. The list is read by looking up each name, then its id,
+and a change that cannot apply (a file edited by hand or merged badly) is skipped with a warning, so a damaged file
+still opens. A file git left merge-conflict markers in cannot be read at all; opening it names the file, and a listing
+skips it and names it in `decks.WARNINGS`.
+
+**Rules for a change.** A change is checked in this order, and the first rule that applies decides:
+
+| step | rule | answer |
+|---|---|---|
+| 1 | the `revision` the caller sends is the file's current one | otherwise `Conflict` (409), carrying the current revision; nothing else is checked |
+| 2 | the card is known (the message offers up to three close names), legal in Commander, inside the commanders' colors; a card to cut is in the list; a swap's new card is not already in the list (basic lands and cards that allow any number excepted) | otherwise `Invalid` (422), with a message a player can read |
+| 3 | nothing to do: adding a one-copy card the list already has, adding the commander, swapping a card for itself, undoing a change that is already undone | `changed: false`; nothing is written and the revision stays |
+| 4 | a group: its items are checked in order against the list as the earlier items left it | one broken rule rejects the whole group and names the item |
+| 5 | an undo: the change exists, is not itself an undo, and the list replayed without it is still valid | otherwise `Invalid`, naming the later change that depends on it ("change 9 cut Mind Stone") |
+
+Malformed input (an unknown `op`, a missing field, a bad id) is a `DeckError` (400) and a missing player, base deck,
+version or precon is a `NotFound` (404). Each error class carries the HTTP `status` a web server would answer with.
+Nothing limits a deck's size; a list of 101 cards is for the caller to point out, not an error here.
+
+**Revisions, locks and the one-server assumption.** `revision` counts a version's saved writes: the first change makes
+it 1. Every change is made on a revision, so a phone and a desktop tab (or two players) cannot overwrite each other;
+changing the name or settings with `update` counts too. A lock for each file, inside the process, covers the whole read,
+check and write, so two requests at once cannot both pass the revision check. There is no lock between processes: the
+usual tool, `fcntl`, does not exist on Windows, which the `.bat` launchers support. **One server process per repo is
+assumed.** Every write goes to a temporary file in the same folder and is then renamed over the old file, so a reader
+never sees half a file, and a write that fails leaves the old file as it was.
+
+**On disk.** A file is JSON indented by one space, with non-ASCII characters written as they are, a newline at the
+end, and each card of a base deck and each change of a version on a single line, so a git diff shows one line per
+card or change. The keys come in a fixed order, listed at the top of `decks.py`.
 
 ### Edge cases
 

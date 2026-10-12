@@ -2,12 +2,15 @@
 
 Mirrors mtgdraft/config.py: everything downloaded lives under the gitignored data/ folder, so no
 third-party data is committed. The small reference files the builder reads (bracket rules, role
-targets, the playstyle menu) are committed under commander/ and stamp their own source and date."""
+targets, the playstyle menu) are committed under commander/ and stamp their own source and date.
+The saved decks (decks.py) are committed too, under commander/decks/: they hold card names and the
+changes players made, never a downloaded score or price."""
 import os
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # repo root (this file is src/mtgcommander/)
 CACHE = os.path.join(ROOT, "data", "cache", "commander")  # one subfolder per source; gitignored
 COMMITTED = os.path.join(ROOT, "commander")               # brackets.json, role_targets.json, playstyles.json
+DECKS = os.environ.get("MTG_COMMANDER_DECKS") or os.path.join(COMMITTED, "decks")  # saved decks; created on first save
 os.makedirs(CACHE, exist_ok=True)
 
 DEFAULT_BRACKET = int(os.environ.get("MTG_BRACKET", "3"))  # no bracket given → Bracket 3 (Upgraded)

@@ -1,6 +1,6 @@
-"""Tests for carddb.py: card records built from Scryfall-shaped objects, name matching, bulk-file reading, the
-index lifecycle (build, reuse, stale, offline) and the cheapest-price batching. Nothing here touches the
-network; the cache folder is a temporary directory."""
+"""Tests for carddb.py: card records built from Scryfall-shaped objects (including the picture links), name and
+Scryfall-id matching, bulk-file reading, the index lifecycle (build, reuse, stale, offline) and the cheapest-price
+batching. Nothing here touches the network; the cache folder is a temporary directory."""
 import copy, gzip, json, os, shutil, tempfile, unittest
 from unittest import mock
 from mtgcommander import carddb, net
@@ -79,7 +79,7 @@ class RecordTests(unittest.TestCase):
         self.assertEqual(keys, {"name", "front", "oracle_id", "ci", "mana_cost", "cmc", "type_line", "types",
                                 "subtypes", "text", "keywords", "legal", "gc", "price", "rank", "produced_mana",
                                 "land", "mdfc_land", "commander_ok", "partner", "any_number", "layout",
-                                "released"})
+                                "released", "image", "image_back", "scryfall_uri"})
         for rec in self.db.values():
             self.assertEqual(set(rec), keys, rec["name"])
 
@@ -183,6 +183,76 @@ class RecordTests(unittest.TestCase):
         self.assertEqual(carddb.card_record(obj)["oracle_id"], oid)
 
 
+class PictureLinkTests(unittest.TestCase):
+    """`image`, `image_back` and `scryfall_uri`, read from objects shaped like Scryfall's (fixtures/carddb_images.json),
+    one for each way Scryfall lays out a card's pictures: on the card (normal, split, adventure), on each face
+    (transform, modal two-faced), or nowhere."""
+    @classmethod
+    def setUpClass(cls):
+        cls.objs = {o["name"]: o for o in fixture("carddb_images.json")}
+
+    def rec(self, name):
+        return carddb.card_record(self.objs[name])
+
+    def test_a_normal_card_has_a_front_picture_and_no_back(self):    # one picture, on the card itself
+        r = self.rec("Hazel of the Rootbloom")
+        self.assertEqual(r["image"], "https://cards.scryfall.io/normal/front/0/1/"
+                                     "01000000-0000-4000-8000-000000000001.jpg?1700000000")
+        self.assertEqual(r["image_back"], "")
+        self.assertEqual(r["scryfall_uri"], "https://scryfall.com/card/blc/2/hazel-of-the-rootbloom?utm_source=api")
+
+    def test_a_transform_card_has_a_picture_for_each_face(self):     # Delver of Secrets // Insectile Aberration
+        r = self.rec("Delver of Secrets // Insectile Aberration")
+        self.assertEqual(r["image"], "https://cards.scryfall.io/normal/front/0/2/"
+                                     "02000000-0000-4000-8000-000000000002.jpg?1700000000")
+        self.assertEqual(r["image_back"], "https://cards.scryfall.io/normal/back/0/2/"
+                                          "02000000-0000-4000-8000-000000000002.jpg?1700000000")
+        self.assertEqual(r["scryfall_uri"],
+                         "https://scryfall.com/card/inr/60/delver-of-secrets-insectile-aberration?utm_source=api")
+
+    def test_a_modal_two_faced_card_has_a_picture_for_each_face(self):    # Valki, God of Lies // Tibalt
+        r = self.rec("Valki, God of Lies // Tibalt, Cosmic Impostor")
+        self.assertTrue(r["image"].startswith("https://cards.scryfall.io/normal/front/0/3/"), r["image"])
+        self.assertTrue(r["image_back"].startswith("https://cards.scryfall.io/normal/back/0/3/"), r["image_back"])
+        self.assertEqual(r["layout"], "modal_dfc")
+
+    def test_a_split_card_has_one_picture_of_both_halves(self):      # Fire // Ice: the halves have no pictures
+        r = self.rec("Fire // Ice")
+        self.assertEqual(r["image"], "https://cards.scryfall.io/normal/front/0/4/"
+                                     "04000000-0000-4000-8000-000000000004.jpg?1700000000")
+        self.assertEqual(r["image_back"], "")
+        self.assertNotIn("image_uris", self.objs["Fire // Ice"]["card_faces"][0])
+
+    def test_an_adventure_card_has_one_picture_of_both_halves(self):    # Bonecrusher Giant // Stomp
+        r = self.rec("Bonecrusher Giant // Stomp")
+        self.assertTrue(r["image"].startswith("https://cards.scryfall.io/normal/front/0/5/"), r["image"])
+        self.assertEqual(r["image_back"], "")
+
+    def test_a_card_with_no_pictures_has_empty_links_not_missing_keys(self):
+        # Scryfall sent neither image_uris nor scryfall_uri for this one
+        r = self.rec("Card Without Pictures")
+        self.assertEqual((r["image"], r["image_back"], r["scryfall_uri"]), ("", "", ""))
+
+    def test_only_the_normal_size_counts(self):         # not small, large, png, art_crop or border_crop
+        obj = copy.deepcopy(self.objs["Hazel of the Rootbloom"])
+        self.assertIn("/normal/", carddb.card_record(obj)["image"])
+        del obj["image_uris"]["normal"]
+        self.assertEqual(carddb.card_record(obj)["image"], "")
+
+    def test_a_picture_on_the_card_wins_over_one_on_its_front_face(self):    # not a shape Scryfall sends today
+        obj = copy.deepcopy(self.objs["Fire // Ice"])
+        for face, side in zip(obj["card_faces"], ("front", "back")):
+            face["image_uris"] = {"normal": f"https://cards.scryfall.io/normal/{side}/x.jpg"}
+        r = carddb.card_record(obj)
+        self.assertEqual(r["image"], obj["image_uris"]["normal"])
+        self.assertEqual(r["image_back"], "https://cards.scryfall.io/normal/back/x.jpg")
+
+    def test_every_object_gives_all_three_keys(self):
+        # all six cards of the fixture
+        for name in self.objs:
+            self.assertTrue({"image", "image_back", "scryfall_uri"} <= set(self.rec(name)), name)
+
+
 class LookupTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -231,6 +301,37 @@ class LookupTests(unittest.TestCase):
     def test_size_and_iteration(self):
         self.assertEqual(len(self.db), len(self.db.cards))
         self.assertEqual(len(list(self.db.values())), len(self.db))
+
+    def test_a_card_is_found_by_its_scryfall_id(self):
+        # Sol Ring by its id, and Fire // Ice by the id of the record the name 'Fire/Ice' finds
+        sol_ring = self.db.get("Sol Ring")
+        self.assertEqual(sol_ring["oracle_id"], "00000000-0000-4000-8000-000000000001")
+        self.assertIs(self.db.by_oracle("00000000-0000-4000-8000-000000000001"), sol_ring)
+        self.assertEqual(self.db.by_oracle(self.db.get("Fire/Ice")["oracle_id"])["name"], "Fire // Ice")
+
+    def test_an_id_the_index_does_not_hold_gives_none(self):
+        # an id nobody has, an empty one, and None
+        self.assertIsNone(self.db.by_oracle("ffffffff-ffff-4fff-8fff-ffffffffffff"))
+        self.assertIsNone(self.db.by_oracle(""))
+        self.assertIsNone(self.db.by_oracle(None))
+
+    def test_a_card_renamed_upstream_is_found_by_id_but_not_by_its_old_name(self):
+        # Sol Ring is now 'Sol Ring Reforged': the old name is gone, the id still finds the card
+        cards = {name: rec for name, rec in sample_db().cards.items() if name != "Sol Ring"}
+        old = sample_db().get("Sol Ring")
+        cards["Sol Ring Reforged"] = dict(old, name="Sol Ring Reforged", front="Sol Ring Reforged")
+        db = carddb.CardDB(cards)
+        self.assertIsNone(db.get("Sol Ring"))
+        self.assertEqual(db.by_oracle(old["oracle_id"])["name"], "Sol Ring Reforged")
+
+    def test_the_id_map_is_built_once_and_skips_records_without_an_id(self):
+        # two records, only one with an oracle_id
+        db = carddb.CardDB({"A": {"name": "A", "oracle_id": "id-a"}, "B": {"name": "B"}})
+        self.assertIsNone(db._by_oracle)                 # nothing is built until it is asked for
+        self.assertEqual(db.by_oracle("id-a")["name"], "A")
+        first = db._by_oracle
+        self.assertIsNone(db.by_oracle("id-b"))
+        self.assertIs(db._by_oracle, first)              # the same map answers the second question
 
 
 class BulkFileTests(unittest.TestCase):
@@ -379,6 +480,22 @@ class IndexLifecycleTests(TempCache):
         carddb._MEMO.clear()
         self.assertEqual(carddb.load().cache, "network")
 
+    def test_an_index_from_before_the_picture_links_is_rebuilt(self):
+        # schema 1 had no image keys; bumping to 2 makes every existing index download once more
+        self.assertEqual(carddb.SCHEMA, 2)
+        carddb.load()
+        with open(self.index_file()) as f:
+            idx = json.load(f)
+        idx["schema"] = 1
+        for rec in idx["cards"].values():
+            for key in ("image", "image_back", "scryfall_uri"):
+                del rec[key]
+        net.atomic_json(self.index_file(), idx)
+        carddb._MEMO.clear()
+        db = carddb.load()
+        self.assertEqual((db.cache, len(self.downloads)), ("network", 2))
+        self.assertEqual(db.get("Sol Ring")["image"], "")        # the sample objects have no pictures to keep
+
     def test_a_damaged_download_is_a_fetch_error_and_leaves_no_files(self):
         def bad_download(url, path, *, source):
             os.makedirs(os.path.dirname(path), exist_ok=True)
@@ -398,6 +515,31 @@ class IndexLifecycleTests(TempCache):
     def test_bulk_entry_reports_a_missing_type(self):
         with self.assertRaisesRegex(net.FetchError, "no art_tags file"):
             carddb.bulk_entry("art_tags")
+
+
+class PictureLinksInTheIndexTests(TempCache):
+    """The links reach the index file and come back through load(), for the layouts that matter."""
+    def test_links_survive_build_save_and_load(self):
+        # the pictures fixture stands in for the bulk file; a second load reads the saved index, as a new process would
+        listing = fixture("carddb_bulk_list.json")
+
+        def fake_download(url, path, *, source):
+            os.makedirs(os.path.dirname(path), exist_ok=True)
+            with gzip.open(path, "wt", encoding="utf-8") as out:
+                out.write("".join(json.dumps(o) + "\n" for o in fixture("carddb_images.json")))
+            return path
+        info = {"url": carddb.BULK_LIST, "fetched": "2026-10-11T12:00:00Z", "cache": "network", "age_days": 0}
+        with mock.patch.object(net, "fetch_json", return_value=(listing, info)), \
+                mock.patch.object(net, "download", fake_download):
+            built = carddb.load()
+        carddb._MEMO.clear()                                    # a new process reads the file
+        db = carddb.load(offline=True)
+        for name in ("Hazel of the Rootbloom", "Delver of Secrets // Insectile Aberration", "Fire // Ice"):
+            for key in ("image", "image_back", "scryfall_uri"):
+                self.assertEqual(db.get(name)[key], built.get(name)[key], (name, key))
+        self.assertIn("/back/", db.get("Delver of Secrets")["image_back"])
+        self.assertEqual(db.get("Fire")["image_back"], "")
+        self.assertEqual(db.by_oracle("ffffffff-0000-4000-8000-000000000004")["name"], "Fire // Ice")
 
 
 class PriceQueryTests(unittest.TestCase):
