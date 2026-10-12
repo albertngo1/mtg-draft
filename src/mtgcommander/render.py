@@ -747,7 +747,7 @@ def _calibration_lines(report):
         lines.append(f"    and {len(changes) - MAX_CHANGES} more")
     metric = report.get("metrics") or {}
     if metric.get("written"):
-        lines.append(f"  Also wrote {metric['written']} (removal and wipe power).")
+        lines.append(f"  Also wrote {metric['written']} (removal and wipe power, and answer counts).")
     return lines
 
 

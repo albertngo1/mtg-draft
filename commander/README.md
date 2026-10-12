@@ -9,7 +9,7 @@ For how the tool uses them, see [ARCHITECTURE.md → Commander deck builder](../
 |---|---|---|---|
 | [`brackets.json`](./brackets.json) | Wizards of the Coast's Commander Brackets: the wording, the checkable limits, and the lists of cards the checks look for | copied by hand from Wizards' pages, with source and date | Wizards' words are copied; the limits table was transcribed from an image; how a program reads "chained" or "before turn 6" is judgment |
 | [`role_targets.json`](./role_targets.json) | how many lands, ramp, card draw, removal and so on a deck at each bracket holds, as `[min, target, max]` | `src/mtgcommander/calibrate.py` | Brackets 2 and 5 are measured from real decks; Brackets 3 and 4 are interpolated; Bracket 1 is judgment |
-| [`metric_targets.json`](./metric_targets.json) | the usual range of two numbers `stats` prints, removal power and wipe power, at each bracket, as `[min, target, max]` | `src/mtgcommander/calibrate.py`, from the same decks as the role targets | the same as the role targets: Brackets 2 and 5 are measured, 3 and 4 interpolated, 1 is Bracket 2's; the weights behind the numbers are judgment |
+| [`metric_targets.json`](./metric_targets.json) | the usual range of the numbers `stats` prints that no role count stands in for, at each bracket, as `[min, target, max]`: removal power, wipe power, and how many cards answer each kind of threat (creatures, artifacts, enchantments, planeswalkers, lands, graveyards, spells) | `src/mtgcommander/calibrate.py`, from the same decks as the role targets | the same as the role targets: Brackets 2 and 5 are measured, 3 and 4 interpolated, 1 is Bracket 2's; the weights behind the power numbers are judgment |
 | [`playstyles.json`](./playstyles.json) | the menu of playstyles and themes you can ask for | by hand | the role changes per playstyle are judgment; the theme names are checked against EDHREC's list |
 
 A fourth thing lives in this folder, and it is not reference data: `decks/` holds the decks players have saved (see
@@ -114,22 +114,31 @@ grid of them.)
 
 ## `metric_targets.json`
 
-**What it holds.** For each bracket, `[min, target, max]` for `removal_power` and `wipe_power`, the two numbers of
-`stats` that no role count can stand in for. A removal card is worth `speed × reach × permanence × cost`, times 1.5 if it
-removes again and again, and a board wipe the same, times 1.5 if it spares your own side; the weights are in
-`src/mtgcommander/metrics.py` and ARCHITECTURE.md ("Deck metrics and `stats`"). The file records how it was made in the same
-keys as `role_targets.json`: `source`, `as_of`, `format`, `method`, `samples`, `measured` and `labels`.
+**What it holds.** For each bracket, `[min, target, max]` for `removal_power` and `wipe_power`, two numbers of `stats`
+that no role count can stand in for, and for the seven `answers_*` counts: how many of a deck's cards can deal with
+creatures, artifacts, enchantments, planeswalkers, lands, graveyards and spells. A removal card is worth
+`speed × reach × permanence × cost`, times 1.5 if it removes again and again, and a board wipe the same, times 1.5 if it
+spares your own side; the weights are in `src/mtgcommander/metrics.py` and ARCHITECTURE.md ("Deck metrics and `stats`").
+Which Scryfall function tags make a card an answer to which kind of threat is the table `roles.THREATS`; the Metrics tab
+counts with it and marks a count `short` when it is under the bracket's `min`, the 25th percentile. The file records how
+it was made in the same keys as `role_targets.json`: `source`, `as_of`, `format`, `method`, `samples`, `samples_blue`,
+`measured` and `labels`.
 
 **Measured or judgment.** Made by the same run that makes the role targets, from the same decks, with the same
-percentiles (25th, median, 90th, rounded half up to one decimal): Bracket 2 from the 60 newest precons (a proxy), Bracket 5
-from 248 EDHTop16 top-cut decks, Brackets 3 and 4 interpolated a quarter and half of the way from 2 to 5 unless Archidekt
-decks were sampled, and Bracket 1 equal to Bracket 2 (judgment: nothing is sampled for it). The weights that turn a card
-into a number are judgment calls, so a range is "what real decks add up to under these weights", not a fact about the game.
+percentiles (25th, median, 90th; the power sums round half up to one decimal, the answer counts, which are whole cards,
+to whole numbers): Bracket 2 from the 60 newest precons (a proxy), Bracket 5 from 248 EDHTop16 top-cut decks, Brackets 3
+and 4 interpolated a quarter and half of the way from 2 to 5 unless Archidekt decks were sampled, and Bracket 1 equal to
+Bracket 2 (judgment: nothing is sampled for it). Answers to spells are measured over the decks whose commander has blue
+(`samples_blue`), as counterspells are, and the reader drops that band's minimum and target to 0 for a commander without
+blue. The weights that turn a card into a power number are judgment calls, so a range is "what real decks add up to
+under these weights", not a fact about the game. An answer count has no weights: it is a count of cards.
 
 **Regenerate it.** `python3 -m mtgcommander.calibrate --write` from the `src` folder replaces this file together with
-`role_targets.json` (`--out FILE` writes only the role proposal and prints the power numbers). It needs the Scryfall
-function tags for card attributes, which `stats` or `calibrate` downloads the first time; without them the role targets
-are still measured and this file is left alone.
+`role_targets.json` (`--out FILE` writes only the role proposal and prints the power and answer numbers). It needs the
+Scryfall function tags for card attributes, which `stats` or `calibrate` downloads the first time; without them the role
+targets are still measured and this file is left alone. With everything cached, `--offline --sources edhtop16` measures the
+committed numbers again (the default sources also name Archidekt, which would measure Brackets 3 and 4 instead of
+interpolating them).
 
 ## `playstyles.json`
 

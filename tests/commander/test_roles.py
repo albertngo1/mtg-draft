@@ -1,6 +1,7 @@
 """Tests for roles.py and providers/scryfall_tags.py: tag trees expanded the way Scryfall's `otag:` search does,
-the cache and fallback behaviour of the tag loader, role assembly, the rules-text fallback, role counts and the
-bracket targets. Nothing here touches the network; caches live in a temporary directory."""
+the cache and fallback behaviour of the tag loader, role assembly, the rules-text fallback, role counts, the
+bracket targets, and the kinds of threat a card answers with the bands for how many a deck holds. Nothing here
+touches the network; caches live in a temporary directory."""
 import datetime, gzip, json, os, shutil, tempfile, unittest, urllib.parse
 from unittest import mock
 from mtgcommander import carddb, net, roles
@@ -977,6 +978,181 @@ class TargetsFileTests(unittest.TestCase):
         self.assertEqual(tutors, sorted(tutors))
         self.assertEqual(topend, sorted(topend, reverse=True))
         self.assertLess(b[4]["land"][1], b[1]["land"][1])           # cEDH runs clearly fewer lands than a precon
+
+
+# ----------------------------------------------------------------------------- roles: the kinds of threat
+class ThreatTests(unittest.TestCase):
+    """THREATS is the one table of what answers what: metrics.py counts with it, calibrate.py measures with it and
+    `upgrade` keeps it."""
+
+    def test_every_tag_a_threat_counts_is_one_of_the_attribute_tags_that_load(self):
+        # a slug missing from ATTRIBUTE_TAGS would never be loaded, so its threat would count nothing, quietly
+        for id_, label, slugs in roles.THREATS:
+            for slug in slugs:
+                self.assertIn(slug, roles.ATTRIBUTE_TAGS, (id_, slug))
+
+    def test_ids_labels_and_nouns_line_up(self):
+        self.assertEqual(roles.THREAT_IDS, tuple(id_ for id_, _, _ in roles.THREATS))
+        self.assertEqual(len(set(roles.THREAT_IDS)), 7)
+        for id_, label, _ in roles.THREATS:
+            self.assertTrue(id_.startswith("answers_") and label.startswith("Answers to "), (id_, label))
+            self.assertEqual(roles.THREAT_NOUNS[id_], id_[len("answers_"):])      # "answers_lands" -> "lands"
+        self.assertEqual(roles.THREAT_NOUNS["answers_planeswalkers"], "planeswalkers")
+        self.assertEqual(roles.BLUE_THREATS, ("answers_spells",))
+
+    def test_a_card_answers_each_threat_one_of_its_tags_belongs_to(self):
+        # Maelstrom Pulse destroys a nonland permanent: it answers three kinds; a board wipe answers creatures
+        pulse = {"removal-artifact", "removal-enchantment", "removal-planeswalker", "spot-removal"}
+        self.assertEqual(roles.threats_answered(pulse),
+                         frozenset({"answers_artifacts", "answers_enchantments", "answers_planeswalkers"}))
+        self.assertEqual(roles.threats_answered(["sweeper"]), frozenset({"answers_creatures"}))
+        self.assertEqual(roles.threats_answered(["counterspell"]), frozenset({"answers_spells"}))
+        self.assertEqual(roles.threats_answered(["hate-graveyard", "removal-land"]),
+                         frozenset({"answers_graveyards", "answers_lands"}))
+
+    def test_a_card_with_no_such_tag_answers_nothing_and_two_tags_of_one_threat_count_it_once(self):
+        self.assertEqual(roles.threats_answered([]), frozenset())
+        self.assertEqual(roles.threats_answered(["mana-rock", "protects-creature", "removal-exile"]), frozenset())
+        self.assertEqual(roles.threats_answered(["removal-creature", "sweeper"]), frozenset({"answers_creatures"}))
+        self.assertIsInstance(roles.threats_answered(["sweeper"]), frozenset)
+
+    def test_answer_counts_count_each_distinct_card_once_for_every_threat_it_answers(self):
+        attrs = {"Pulse": frozenset({"removal-artifact", "removal-enchantment", "removal-planeswalker"}),
+                 "Wrath": frozenset({"sweeper"}), "Bear": frozenset(), "Mystic": frozenset({"counterspell"})}
+        got = roles.answer_counts(["Pulse", "Wrath", "Wrath", "Bear", "Not In The Tags", "Mystic"], attrs)
+        self.assertEqual(got, {"answers_creatures": 1, "answers_artifacts": 1, "answers_enchantments": 1,
+                               "answers_planeswalkers": 1, "answers_lands": 0, "answers_graveyards": 0,
+                               "answers_spells": 1})
+        self.assertEqual(list(got), list(roles.THREAT_IDS))                  # always all seven, in the table's order
+
+    def test_a_deck_with_no_names_has_seven_zeros(self):
+        self.assertEqual(roles.answer_counts([], {}), dict.fromkeys(roles.THREAT_IDS, 0))
+
+
+class MetricTargetsTests(unittest.TestCase):
+    """The one reader of commander/metric_targets.json, on files written to a temporary folder."""
+
+    def setUp(self):
+        self.tmp = tempfile.mkdtemp()
+        self.addCleanup(shutil.rmtree, self.tmp, True)
+        self.path = os.path.join(self.tmp, "metric_targets.json")
+        patcher = mock.patch.object(roles, "METRIC_TARGETS_PATH", self.path)
+        patcher.start()
+        self.addCleanup(patcher.stop)
+
+    def write(self, **per_bracket):
+        with open(self.path, "w") as f:
+            json.dump({"brackets": per_bracket}, f)
+
+    ROW = {"removal_power": [3.4, 4.2, 6.8], "answers_creatures": [7, 10, 14], "answers_enchantments": [3, 4, 7],
+           "answers_spells": [2, 3, 5]}
+
+    def test_a_bracket_reads_as_min_target_max_for_every_list_in_its_row(self):
+        self.write(**{"3": self.ROW})
+        got = roles.metric_targets(3)
+        self.assertEqual(sorted(got), sorted(self.ROW))
+        self.assertEqual(got["removal_power"], {"min": 3.4, "target": 4.2, "max": 6.8})
+        self.assertEqual(got["answers_creatures"], {"min": 7, "target": 10, "max": 14})
+
+    def test_the_bracket_number_is_clamped_to_1_through_5(self):
+        self.write(**{"1": {"answers_lands": [0, 1, 2]}, "5": {"answers_lands": [0, 2, 3]}})
+        self.assertEqual(roles.metric_targets(0)["answers_lands"]["target"], 1)
+        self.assertEqual(roles.metric_targets(9)["answers_lands"]["target"], 2)
+        self.assertEqual(roles.metric_targets(3), {})                          # a bracket the file lacks has no row
+
+    def test_a_missing_or_damaged_file_means_no_targets_not_a_crash(self):
+        self.assertEqual(roles.metric_targets(3), {})                          # nothing written yet
+        for text in ("{not json", "[1]", '{"brackets": []}', '{"brackets": {"3": 5}}', ""):
+            with open(self.path, "w") as f:
+                f.write(text)
+            self.assertEqual(roles.metric_targets(3), {}, text)
+            self.assertEqual(roles.answer_bands(3, "BG"), {}, text)
+
+    def test_a_row_that_is_not_a_list_of_three_is_left_out_and_the_rest_is_kept(self):
+        self.write(**{"3": {"answers_lands": [0, 1], "answers_graveyards": "many", "answers_spells": [2, 3, 5]}})
+        self.assertEqual(roles.metric_targets(3), {"answers_spells": {"min": 2, "target": 3, "max": 5}})
+
+    def test_the_answer_bands_are_the_threat_rows_and_nothing_else(self):
+        self.write(**{"3": self.ROW})
+        bands = roles.answer_bands(3)
+        self.assertEqual(sorted(bands), ["answers_creatures", "answers_enchantments", "answers_spells"])
+        self.assertEqual(bands["answers_enchantments"], {"min": 3, "target": 4, "max": 7})
+        self.assertNotIn("removal_power", bands)                              # a power sum is not a count of cards
+
+    def test_a_threat_the_file_has_no_row_for_is_left_out_so_callers_can_fall_back(self):
+        self.write(**{"3": {"answers_creatures": [7, 10, 14]}})
+        self.assertEqual(sorted(roles.answer_bands(3, "BG")), ["answers_creatures"])
+
+    def test_without_blue_a_deck_is_not_expected_to_answer_spells_but_the_top_of_the_range_stays(self):
+        # the rule roles.targets applies to counterspells: the minimum and target drop to 0 without blue
+        self.write(**{"3": self.ROW})
+        self.assertEqual(roles.answer_bands(3, "BG")["answers_spells"], {"min": 0, "target": 0, "max": 5})
+        self.assertEqual(roles.answer_bands(3, "")["answers_spells"], {"min": 0, "target": 0, "max": 5})   # colorless
+        self.assertEqual(roles.answer_bands(3, ["B", "G"])["answers_spells"], {"min": 0, "target": 0, "max": 5})
+
+    def test_with_blue_or_with_no_colors_given_the_measured_band_stands(self):
+        self.write(**{"3": self.ROW})
+        for ci in ("U", "UB", "WUBRG", ["U", "R"], None):
+            self.assertEqual(roles.answer_bands(3, ci)["answers_spells"], {"min": 2, "target": 3, "max": 5}, ci)
+        self.assertEqual(roles.answer_bands(3)["answers_spells"], {"min": 2, "target": 3, "max": 5})
+
+    def test_no_blue_changes_nothing_but_spells(self):
+        self.write(**{"3": self.ROW})
+        with_blue, without = roles.answer_bands(3, "UB"), roles.answer_bands(3, "BG")
+        for id_ in ("answers_creatures", "answers_enchantments"):
+            self.assertEqual(with_blue[id_], without[id_], id_)
+
+    def test_the_file_is_read_each_time_so_a_new_calibration_is_seen_without_a_restart(self):
+        self.write(**{"3": {"answers_lands": [0, 1, 2]}})
+        self.assertEqual(roles.answer_bands(3)["answers_lands"]["target"], 1)
+        self.write(**{"3": {"answers_lands": [1, 2, 3]}})
+        self.assertEqual(roles.answer_bands(3)["answers_lands"]["target"], 2)
+
+
+class MetricTargetsFileTests(unittest.TestCase):
+    """commander/metric_targets.json is data that ships with the package and is regenerated by calibrate.py: check its
+    shape, its stamps and the orderings any calibration must keep, not particular numbers."""
+    POWER = ("removal_power", "wipe_power")
+
+    @classmethod
+    def setUpClass(cls):
+        with open(roles.METRIC_TARGETS_PATH) as f:
+            cls.data = json.load(f)
+
+    def test_stamped_with_source_date_and_what_the_numbers_rest_on(self):
+        self.assertTrue(self.data["source"].strip())
+        self.assertRegex(self.data["as_of"], r"^\d{4}-\d\d-\d\d$")
+        self.assertEqual(sorted(self.data["brackets"]), ["1", "2", "3", "4", "5"])
+        for key in ("samples", "samples_blue", "measured", "labels"):
+            self.assertEqual(sorted(self.data[key]), ["1", "2", "3", "4", "5"], key)
+        self.assertLessEqual(self.data["samples_blue"]["2"], self.data["samples"]["2"])
+        self.assertIn("answers_", self.data["format"])
+        self.assertIn("answers_", self.data["method"])
+
+    def test_every_bracket_has_the_two_power_sums_and_one_count_for_each_threat_in_order(self):
+        for b, row in self.data["brackets"].items():
+            self.assertEqual(list(row), list(self.POWER) + list(roles.THREAT_IDS), b)
+            for name, v in row.items():
+                self.assertEqual(len(v), 3, (b, name))
+                self.assertLessEqual(v[0], v[1], (b, name))
+                self.assertLessEqual(v[1], v[2], (b, name))
+
+    def test_the_answers_are_whole_cards_and_the_power_sums_are_not_required_to_be(self):
+        for b, row in self.data["brackets"].items():
+            for id_ in roles.THREAT_IDS:
+                self.assertTrue(all(isinstance(x, int) and x >= 0 for x in row[id_]), (b, id_, row[id_]))
+
+    def test_bracket_1_is_bracket_2_because_nothing_is_sampled_for_it(self):
+        self.assertEqual(self.data["brackets"]["1"], self.data["brackets"]["2"])
+
+    def test_the_shipped_bands_are_what_answer_bands_returns_for_a_colorless_blue_free_deck(self):
+        for b in range(1, 6):
+            bands = roles.answer_bands(b, "BG")
+            self.assertEqual(sorted(bands), sorted(roles.THREAT_IDS), b)
+            row = self.data["brackets"][str(b)]
+            self.assertEqual([bands["answers_creatures"][k] for k in ("min", "target", "max")], row["answers_creatures"])
+            self.assertEqual((bands["answers_spells"]["min"], bands["answers_spells"]["target"]), (0, 0))
+            self.assertEqual(bands["answers_spells"]["max"], row["answers_spells"][2])
 
 
 if __name__ == "__main__":

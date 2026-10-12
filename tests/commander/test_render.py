@@ -741,7 +741,7 @@ class ThemesWarmValidateTests(unittest.TestCase, WidthMixin):
         result["calibration"] = {"written": "/repo/commander/role_targets.json", "labels": {"2": "measured"},
                                  "changes": [], "metrics": {"written": "/repo/commander/metric_targets.json"}}
         text = render.text(result)
-        self.assertIn("  Also wrote /repo/commander/metric_targets.json (removal and wipe power).", text)
+        self.assertIn("  Also wrote /repo/commander/metric_targets.json (removal and wipe power, and answer counts).", text)
         result["calibration"]["metrics"] = None
         self.assertNotIn("Also wrote", render.text(result))
 

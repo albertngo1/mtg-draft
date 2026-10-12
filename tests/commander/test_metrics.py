@@ -110,7 +110,7 @@ class MetricsCase(unittest.TestCase):
         self.tmp = tempfile.mkdtemp()
         self.addCleanup(shutil.rmtree, self.tmp, True)
         self.targets_path = os.path.join(self.tmp, "metric_targets.json")
-        mock.patch.object(metrics, "TARGETS_PATH", self.targets_path).start()      # no file: those two have no band
+        mock.patch.object(roles, "METRIC_TARGETS_PATH", self.targets_path).start()      # no file: no power band, answers need 1
         self.addCleanup(mock.patch.stopall)
 
     def write_targets(self, **per_bracket):
@@ -567,6 +567,124 @@ class InteractionGroupTests(MetricsCase):
             self.assertIn("function tags", got[key]["why"][0])
         self.assertEqual(got["counterspells"]["value"], 1)
         self.assertEqual(got["instant_share"]["value"], 55.6)
+
+
+# ----------------------------------------------------------------------------- group: interaction, answer bands
+class AnswerBandTests(MetricsCase):
+    """Each "answers to ..." item takes its band from commander/metric_targets.json (what real decks at the bracket
+    hold), so a count is short when it is fewer than their 25th percentile, like every other count; a threat the file
+    has no row for needs one answer, as before."""
+    # Bracket 3 as a calibration might have measured it: creatures 7/10/14, enchantments 3/4/7, spells 2/3/5
+    BRACKET_3 = {"answers_creatures": [7, 10, 14], "answers_artifacts": [3, 4, 6], "answers_enchantments": [3, 4, 7],
+                 "answers_planeswalkers": [2, 3, 8], "answers_lands": [0, 1, 2], "answers_graveyards": [0, 1, 3],
+                 "answers_spells": [2, 3, 5]}
+
+    def setUp(self):
+        super().setUp()
+        w = self.world
+        w.add("Pulse", "Instant", 3, "{2}{B}{G}", attrs=["removal-artifact", "removal-enchantment",
+                                                          "removal-planeswalker"])
+        for i in range(1, 10):
+            w.add(f"Disenchant {i}", "Instant", 1, "{G}", attrs=["removal-enchantment"])
+        w.add("Wrath Mock", "Sorcery", 4, "{2}{B}{B}", roles=["wipe"], attrs=["sweeper"])
+        w.add("Counter Magic", "Instant", 2, "{1}{U}", roles=["counter"], attrs=["counterspell"])
+        w.add("Counter Two", "Instant", 3, "{2}{U}", roles=["counter"], attrs=["counterspell"])
+        w.add("Bear", "Creature", 2, "{1}{G}")
+        self.write_targets(**{"3": self.BRACKET_3})
+
+    def test_each_item_takes_the_measured_band_for_the_chosen_bracket(self):
+        got = self.items(deck("Pulse", "Bear"))
+        for id_, (low, mid, high) in self.BRACKET_3.items():
+            band = got[id_]["target"]
+            expected = {"min": low, "target": mid, "max": high}
+            if id_ == "answers_spells":
+                expected["min"] = expected["target"] = 0            # the commander has no blue: see the next test
+            self.assertEqual(band, expected, id_)
+        self.write_targets(**{"5": {"answers_enchantments": [4, 4, 6]}})
+        five = self.items(deck("Pulse"), ctx=self.world.ctx(bracket=5))
+        self.assertEqual(five["answers_enchantments"]["target"], {"min": 4, "target": 4, "max": 6})
+
+    def test_short_is_fewer_than_the_25th_percentile_not_only_none(self):
+        # Bracket 3 enchantments run 3/4/7: one is no longer enough, three is the least that is not short
+        one = self.items(deck("Bear"))["answers_enchantments"]
+        self.assertEqual((one["value"], one["status"]), (0, "short"))
+        for count, status in ((1, "short"), (2, "short"), (3, "inside"), (4, "inside"), (7, "inside"), (8, "over")):
+            names = ["Disenchant %d" % i for i in range(1, count + 1)]
+            got = self.items(deck(*names, "Bear"))["answers_enchantments"]
+            self.assertEqual((got["value"], got["status"]), (count, status), count)
+
+    def test_a_card_that_answers_three_kinds_counts_for_each_of_them(self):
+        got = self.items(deck("Pulse", "Disenchant 1", "Disenchant 2"))
+        self.assertEqual(got["answers_enchantments"]["value"], 3)             # Pulse and two Disenchants
+        self.assertEqual((got["answers_artifacts"]["value"], got["answers_planeswalkers"]["value"]), (1, 1))
+        self.assertEqual(got["answers_enchantments"]["status"], "inside")     # 3 is the 25th percentile
+        self.assertEqual(got["answers_planeswalkers"]["status"], "short")     # 1 against a minimum of 2
+
+    def test_without_blue_in_the_colors_no_counterspell_is_not_short(self):
+        # the counterspell rule: a deck without blue is not expected to hold any, whatever real blue decks hold
+        black_green = self.items(deck("Bear"))["answers_spells"]
+        self.assertEqual((black_green["value"], black_green["status"]), (0, "inside"))
+        self.assertEqual(black_green["target"], {"min": 0, "target": 0, "max": 5})
+        blue = self.items(deck("Bear"), ctx=self.world.ctx(ci="UB"))["answers_spells"]
+        self.assertEqual((blue["value"], blue["status"], blue["target"]), (0, "short", {"min": 2, "target": 3, "max": 5}))
+        enough = self.items(deck("Counter Magic", "Counter Two"), ctx=self.world.ctx(ci="UB"))["answers_spells"]
+        self.assertEqual((enough["value"], enough["status"]), (2, "inside"))
+
+    def test_a_threat_the_file_has_no_row_for_still_needs_one_answer(self):
+        self.write_targets(**{"3": {"answers_creatures": [7, 10, 14]}})
+        got = self.items(deck("Pulse", "Bear"))
+        self.assertEqual(got["answers_creatures"]["target"], {"min": 7, "target": 10, "max": 14})
+        self.assertEqual(got["answers_artifacts"]["target"], {"min": 1, "target": None, "max": None})
+        self.assertEqual((got["answers_artifacts"]["value"], got["answers_artifacts"]["status"]), (1, "inside"))
+        self.assertEqual((got["answers_lands"]["value"], got["answers_lands"]["status"]), (0, "short"))
+        self.assertEqual(got["answers_lands"]["why"], ["Nothing in the deck can."])     # no band, no extra line
+
+    def test_a_bracket_the_file_lacks_falls_back_for_every_threat(self):
+        got = self.items(deck("Pulse"), ctx=self.world.ctx(bracket=2))
+        for id_ in roles.THREAT_IDS:
+            self.assertEqual(got[id_]["target"], {"min": 1, "target": None, "max": None}, id_)
+
+    def test_a_measured_band_says_where_it_comes_from_and_what_short_means(self):
+        got = self.items(deck("Pulse", "Disenchant 1"))
+        self.assertEqual(got["answers_enchantments"]["why"], [
+            "2 cards can deal with it",
+            "Decks at Bracket 3 usually hold 3 to 7 (typically 4); fewer than 3 is short."])
+        self.assertEqual(got["answers_lands"]["why"], [
+            "Nothing in the deck can.", "Decks at Bracket 3 usually hold 0 to 2 (typically 1); no minimum applies."])
+        # a deck without blue is told why counterspells are not asked of it, not what blue decks hold
+        self.assertEqual(got["answers_spells"]["why"], ["Nothing in the deck can.",
+                                                         "The commander's colors have no blue, so none is expected."])
+
+    def test_the_cards_listed_for_a_count_are_the_cards_the_count_is_made_of(self):
+        got = self.items(deck("Pulse", "Disenchant 1", "Wrath Mock", "Bear"))
+        self.assertEqual(got["answers_enchantments"]["cards"], ["Pulse", "Disenchant 1"])
+        self.assertEqual(got["answers_creatures"]["cards"], ["Wrath Mock"])
+
+    def test_the_counts_are_the_ones_calibrate_measures_for_a_deck(self):
+        # calibrate counts with roles.answer_counts over the same names; the item values must be exactly those
+        names = ["Pulse", "Disenchant 1", "Disenchant 2", "Wrath Mock", "Counter Magic", "Bear"]
+        counted = roles.answer_counts(names, self.world.attrs())
+        got = self.items(deck(*names))
+        for id_ in roles.THREAT_IDS:
+            self.assertEqual(got[id_]["value"], counted[id_], id_)
+        self.assertEqual(sum(counted.values()), 7)       # Pulse 3 + two Disenchants 2 + Wrath Mock 1 + Counter Magic 1
+
+    def test_a_card_listed_twice_counts_once_as_it_does_in_calibrate(self):
+        names = ["Pulse", "Pulse", "Bear"]
+        self.assertEqual(self.items(deck(("Pulse", 2), "Bear"))["answers_artifacts"]["value"],
+                         roles.answer_counts(names, self.world.attrs())["answers_artifacts"])
+        self.assertEqual(self.items(deck(("Pulse", 2), "Bear"))["answers_artifacts"]["value"], 1)
+
+
+class ThreatTableTests(unittest.TestCase):
+    def test_the_threat_table_lives_in_roles_and_metrics_keeps_the_name_for_serve_and_the_tests(self):
+        self.assertIs(metrics.THREATS, roles.THREATS)
+
+    def test_metrics_targets_is_the_roles_reader_so_the_file_is_read_in_one_place(self):
+        with mock.patch.object(roles, "metric_targets", return_value={"x": {"min": 1}}) as reader:
+            self.assertEqual(metrics.targets(4), {"x": {"min": 1}})
+        reader.assert_called_once_with(4)
+        self.assertFalse(hasattr(metrics, "TARGETS_PATH"))      # the path moved with the reader: a stale patch fails
 
 
 # ----------------------------------------------------------------------------- group: mana and consistency
