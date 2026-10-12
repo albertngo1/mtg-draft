@@ -5,11 +5,13 @@ Why one shape: the pages must draw any metric without code of their own, so ever
     {"id": "removal_power", "label": "Removal power", "value": 6.1, "unit": None,
      "target": {"min": 5.0, "target": 8.0, "max": 12.0} | None, "status": "short" | "inside" | "over" | None,
      "why": ["Assassin's Trophy 0.90 = instant 1.0 × any permanent 1.0 × destroy 0.9 × MV 2 1.0", ...],
-     "cards": ["Assassin's Trophy", ...], "base": 7.8}          # "base" only when a base deck was given
+     "cards": ["Assassin's Trophy", ...], "base": 7.8, "change": -1.7}      # "base" and "change" only with a base deck
 
 `value` is None when the number cannot be had (no tag data, no combo data); `why` then says what is missing, and
 the number is never guessed. `unit` is "%", "$" or None. `target` is the bracket's band for the number; any of
-its three parts is None when the band has no such end. `status` says where `value` sits in the band.
+its three parts is None when the band has no such end. `status` says where `value` sits in the band. `base` is the
+value in the base deck, and `change` is how far the value moved from it (value − base, rounded to 2 decimals, 0 when
+equal): the pages show it and never subtract.
 
 The items sit in groups, a registry of (id, label, applies, compute) in GROUPS, so a new metric is one more item in
 one function and the pages need no change:
@@ -861,15 +863,25 @@ def _item_value(groups, id_):
     return next((item["value"] for g in groups for item in g["items"] if item["id"] == id_), None)
 
 
+def _is_number(x):
+    """True for an int or a float. Python counts a bool as an int; here it is not a number."""
+    return isinstance(x, (int, float)) and not isinstance(x, bool)
+
+
 def _attach_base(groups, base):
-    """Give every item the value it had in the base deck's own result (the page shows before → after). The changes
-    group has no 'before'. An item the base lacks, or could not compute, gets no `base`."""
+    """Give every item the value it had in the base deck's own result (the page shows before → after), and, when both
+    are numbers, `change`: how far the value moved, value − base rounded to 2 decimals (0 when equal). The pages
+    never subtract, so they draw "36 −2 from 38" from `change` and `base`. The changes group has no 'before'. An item
+    the base lacks, or could not compute, gets no `base`, and an item with no value gets no `change`."""
     before = {item["id"]: item["value"] for g in base["groups"] for item in g["items"]}
     for group in groups:
         if group["id"] != "changes":
             for item in group["items"]:
                 if before.get(item["id"]) is not None:
                     item["base"] = before[item["id"]]
+                    if _is_number(item["value"]) and _is_number(item["base"]):
+                        # "or 0" makes a move of -0.004 a plain 0 instead of -0.0
+                        item["change"] = round(item["value"] - item["base"], 2) or 0
 
 
 def compute(ctx, db, cards, *, commanders, attrs=None, combos=None, owned=(), prices=None, base=None, changes=None,

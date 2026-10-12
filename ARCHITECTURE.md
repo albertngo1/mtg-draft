@@ -1041,7 +1041,7 @@ Every number is an **item**, in one shape:
 {"id": "removal_power", "label": "Removal power", "value": 5.95, "unit": null,
  "target": {"min": 3.4, "target": 4.2, "max": 6.8}, "status": "inside",
  "why": ["Tear Asunder 1.00 = instant 1.0 × any permanent 1.0 × exile 1.0 × MV 2 1.0", "..."],
- "cards": ["Tear Asunder", "..."], "base": 7.61}
+ "cards": ["Tear Asunder", "..."], "base": 7.61, "change": -1.66}
 ```
 
 | field | meaning |
@@ -1053,6 +1053,7 @@ Every number is an **item**, in one shape:
 | `why` | how the number was worked out, one line for each fact |
 | `cards` | the cards behind the number |
 | `base` | the same item's value in the base deck; present only when `compute` was given one, so a page can show *before → after* |
+| `change` | how far `value` moved from `base`: `value` − `base`, rounded to 2 decimals, 0 when equal. Present only when both are numbers (an item with no value has none), so a page can show *−1.66 from 7.61* without subtracting |
 
 The items sit in groups, a registry in `metrics.GROUPS` of `(id, label, applies, compute)`. A page draws any group from
 the item shape, so a new metric is one more item in one function and no page changes. `metrics.compute(ctx, db, cards,
@@ -1365,7 +1366,7 @@ $ ./mtg-commander.sh serve
 | `GET /api/menu` | the playstyles and common themes a version's settings choose from |
 | `GET /api/decks?player=NAME` | that player's versions, newest first: id, name, base deck, its settings (bracket, budget, themes, playstyle), commanders and picture, revision, cards swapped, what the changes cost, and the headline numbers (from the open deck, else from a preparation tried offline, else `null`) |
 | `POST /api/decks` | `{"player", "name", "base", "settings"?}` makes a version; 201 |
-| `GET /api/decks/PLAYER/ID` | the version: `version` (with its change log, each change marked `undone` or not), `base`, `spec` (the settings as the engine reads them), `commanders`, `cards`, `card_count`, `diff`, `cut_cards`, `metrics` (every item beside the base deck's value), `warnings` and `sources`; or 202 |
+| `GET /api/decks/PLAYER/ID` | the version: `version` (with its change log, each change marked `undone` or not), `base`, `spec` (the settings as the engine reads them), `commanders`, `cards`, `card_count`, `diff`, `cut_cards`, `metrics` (every item beside the base deck's value and how far it moved), `warnings` and `sources`; or 202 |
 | `POST /api/decks/PLAYER/ID/changes` | `{"revision", "op": ...}` as in [Deck files](#deck-files), with `"source"`; answers like the GET plus `"result": {"changed", "message"}` |
 | `PATCH /api/decks/PLAYER/ID` | `{"revision", "name"?, "settings"?}`; answers like the GET |
 | `POST /api/decks/PLAYER/ID/suggest` | `{"budget"?, "price_points"?}`: `upgrade` on the list as it is now, with the settings' budget unless one is given. The result of `upgrade`, plus `revision` and `cards` (a card object for each card it names). It keeps nothing: ask again after every change |

@@ -389,7 +389,7 @@ class OpenDeckTests(ServerCase):
         self.assertEqual((headline["bracket"], headline["price"], headline["bracket_ok"]), (3, 0.0, True))
         self.assertEqual(headline["score"], self.deck_value(reply))
         score = self.item(reply, "score")
-        self.assertEqual(score["base"], score["value"])
+        self.assertEqual((score["base"], score["change"]), (score["value"], 0))
 
     def test_a_first_open_that_takes_time_answers_202_with_progress_and_then_200(self):
         # the preparation is held: 202 at once, the request count and message move, then the deck is ready
@@ -608,6 +608,10 @@ class ChangeTests(ServerCase):
         self.assertEqual(reply["metrics"]["headline"]["price"], 0.3)
         self.assertEqual(reply["metrics"]["headline"]["score"], self.deck_value(reply))
         self.assertGreater(reply["metrics"]["headline"]["score"], self.before["metrics"]["headline"]["score"])
+        # every item says how far it moved from the base deck, so a page never subtracts: the price rose by Mind Stone's 0.30
+        price, score = self.item(reply, "price_to_buy"), self.item(reply, "score")
+        self.assertEqual((price["base"], price["value"], price["change"]), (0.0, 0.3, 0.3))
+        self.assertEqual(score["change"], round(score["value"] - score["base"], 2))
         self.assertEqual(self.stored()["revision"], 1)
         self.assertEqual(self.stored()["changes"][0]["add"], "Mind Stone")
 

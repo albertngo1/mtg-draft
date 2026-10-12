@@ -12,7 +12,8 @@ they know comes from the answers below, so each formula exists once, in Python. 
     GET   /api/decks?player=NAME              that player's versions, newest first, each with its headline numbers
     POST  /api/decks                          {"player", "name", "base", "settings"?} makes a version; 201
     GET   /api/decks/PLAYER/ID                a version: its cards, change log, difference from its base deck and every
-                                              metric (each beside the base deck's value); or 202 while it is prepared
+                                              metric (each beside the base deck's value and how far it moved); or 202
+                                              while it is prepared
     POST  /api/decks/PLAYER/ID/changes        {"revision", "op": add | cut | swap | group | undo, ...}; answers like the
                                               GET plus "result": {"changed", "message"}
     PATCH /api/decks/PLAYER/ID                {"revision", "name"?, "settings"?}; answers like the GET

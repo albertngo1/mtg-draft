@@ -1340,6 +1340,72 @@ class BaseValueTests(MetricsCase):
         self.compute(deck("Bear"), base=self.before, changes=[])
         self.assertEqual(self.before, copy_before)
 
+    # ---- change: how far an item moved from its base. The server works it out so that no page has to subtract.
+    def test_change_is_the_value_minus_the_base_in_the_units_of_the_item(self):
+        got = items_of(self.after)
+        # a count: three cards of mana value 2 (Trophy, Sorcery Kill, Bear) became two
+        self.assertEqual((got["curve_2"]["base"], got["curve_2"]["value"], got["curve_2"]["change"]), (3, 2, -1))
+        # dollars: the commander 5.00 and three cards at 1.00 each became the commander and two: 8.00 -> 7.00
+        self.assertEqual((got["price_total"]["base"], got["price_total"]["value"], got["price_total"]["change"]),
+                         (8.0, 7.0, -1.0))
+        # a percent that fell: Trophy and Sorcery Kill were 2 of the 3 nonland cards, and Trophy alone is 1 of 2
+        self.assertEqual((got["style_spellslinger"]["base"], got["style_spellslinger"]["value"],
+                          got["style_spellslinger"]["change"]), (66.7, 50.0, -16.7))
+        # a percent that rose: of the two removal cards one was an instant (50%), and the one left is (100%)
+        self.assertEqual((got["instant_share"]["base"], got["instant_share"]["value"], got["instant_share"]["change"]),
+                         (50.0, 100.0, 50.0))
+
+    def test_change_is_rounded_to_two_decimals(self):
+        got = items_of(self.after)["style_spellslinger"]
+        # 50.0 - 66.7 is -16.700000000000003 in floating point; the item says -16.7
+        self.assertNotEqual(got["value"] - got["base"], -16.7)
+        self.assertEqual(got["change"], -16.7)
+        # removal power: Trophy 0.90 now, Trophy 0.90 + Sorcery Kill 0.675 = 1.575 -> 1.58 before; 0.90 - 1.58 = -0.68
+        self.assertEqual(items_of(self.after)["removal_power"]["change"], -0.68)
+
+    def test_change_is_0_when_the_value_did_not_move(self):
+        got = items_of(self.after)
+        self.assertEqual((got["creatures"]["base"], got["creatures"]["value"], got["creatures"]["change"]), (1, 1, 0))
+        self.assertEqual((got["avg_mana_value"]["base"], got["avg_mana_value"]["value"],
+                          got["avg_mana_value"]["change"]), (2.0, 2.0, 0))
+
+    def test_a_move_too_small_to_show_is_0_and_not_minus_0(self):
+        # 1.001 - 1.005 = -0.004, which rounds to -0.0 in floating point and is written as -0.0 in JSON; it must be 0
+        groups = [{"id": "power", "items": [{"id": "x", "value": 1.001}]}]
+        metrics._attach_base(groups, {"groups": [{"id": "power", "items": [{"id": "x", "value": 1.005}]}]})
+        self.assertEqual(json.dumps(groups[0]["items"][0]["change"]), "0")
+
+    def test_a_result_with_no_base_has_no_change_keys(self):
+        self.assertFalse([i for i in items_of(self.before).values() if "change" in i])
+
+    def test_an_item_the_base_could_not_compute_has_no_base_and_no_change(self):
+        no_tags = self.compute(deck("Trophy", "Sorcery Kill", "Bear"), attrs=False)
+        got = items_of(self.compute(deck("Trophy", "Bear"), base=no_tags, changes=[]))
+        self.assertNotIn("change", got["removal_power"])
+        self.assertEqual(got["lands"]["change"], 0)              # the same result carries a change where it has a base
+
+    def test_an_item_with_no_value_now_keeps_its_base_but_has_no_change(self):
+        # the tags could not be loaded this time: removal power has no value, and the base deck's 1.58 is still beside it
+        got = items_of(self.compute(deck("Trophy", "Bear"), attrs=False, base=self.before, changes=[]))["removal_power"]
+        self.assertEqual((got["value"], got["base"]), (None, 1.58))
+        self.assertNotIn("change", got)
+
+    def test_a_bool_is_not_a_number_so_an_item_holding_one_gets_no_change(self):
+        # Python counts True as 1; here a flag is not a quantity, on either side of the subtraction
+        def item(id_, value):
+            return {"id": id_, "value": value}
+        groups = [{"id": "power", "items": [item("flag", True), item("was_flag", 3), item("count", 3)]}]
+        base = {"groups": [{"id": "power", "items": [item("flag", False), item("was_flag", True), item("count", 1)]}]}
+        metrics._attach_base(groups, base)
+        got = {entry["id"]: entry for entry in groups[0]["items"]}
+        self.assertEqual((got["flag"]["base"], "change" in got["flag"]), (False, False))
+        self.assertEqual((got["was_flag"]["base"], "change" in got["was_flag"]), (True, False))
+        self.assertEqual(got["count"]["change"], 2)                       # a real number beside them still gets one
+
+    def test_the_changes_group_has_no_base_and_no_change(self):
+        group = next(g for g in self.compute(deck("Bear"), base=self.before, changes=LOG)["groups"] if g["id"] == "changes")
+        self.assertFalse([i["id"] for i in group["items"] if "base" in i or "change" in i])
+
 
 # ----------------------------------------------------------------------------- the whole result
 class ResultShapeTests(MetricsCase):
@@ -1382,8 +1448,12 @@ class ResultShapeTests(MetricsCase):
                 self.assertEqual(sorted(group), ["id", "items", "label"])
                 for item in group["items"]:
                     with self.subTest(scenario=name, item=item["id"]):
-                        base = ["base"] if "base" in item else []
-                        self.assertEqual(sorted(item), sorted(ITEM_KEYS + base))
+                        # "base" comes with a base deck, and "change" with it when the value is a number too
+                        moved = "base" in item and item["value"] is not None
+                        extra = (["base"] if "base" in item else []) + (["change"] if moved else [])
+                        self.assertEqual(sorted(item), sorted(ITEM_KEYS + extra))
+                        if moved:
+                            self.assertEqual(item["change"], round(item["value"] - item["base"], 2))
                         self.assertIsInstance(item["id"], str)
                         self.assertIsInstance(item["label"], str)
                         self.assertTrue(item["value"] is None or isinstance(item["value"], (int, float)))
