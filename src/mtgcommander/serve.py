@@ -22,8 +22,9 @@ they know comes from the answers below, so each formula exists once, in Python. 
     GET   /api/precons?q=TEXT                 the precon names that match, at most 20
     GET   /api/cards?q=TEXT&deck=PLAYER/ID    cards to add: the best-scored ones not in the deck (no text), or the ones
                                               whose name matches, at most 30
-    GET   /api/cards/NAME?deck=PLAYER/ID      one card's sheet: its facts, its numbers for this deck, what cutting it
-                                              would change and the best cards to put in its place
+    GET   /api/cards/NAME?deck=PLAYER/ID      one card's sheet: its facts, its numbers for this deck, the kinds of
+                                              threat it answers, what cutting it would change and the best cards to put
+                                              in its place
 
 A deck's numbers need the engine's data (card scores, tags, combos, prices). The first time a deck is opened, and
 whenever its bracket, themes, playstyle, keep-fun choice or owned precons change, that data is prepared on a background
@@ -641,7 +642,8 @@ class Workspace:
                             power=rec["power"], toughness=rec["toughness"], layout=rec["layout"], legal=rec["legal"],
                             rank=rec["rank"]),
                "copies": held, "commander": leads, "flag": flag, "roles": self.roles_of(name),
-               "attributes": sorted((self.attrs or {}).get(name) or ()), "gc": bool(rec["gc"]), "score": None,
+               "attributes": sorted((self.attrs or {}).get(name) or ()), "answers": self._answers_of(name),
+               "gc": bool(rec["gc"]), "score": None,
                "salt": ((ctx.get("evidence") or {}).get("salt") or {}).get(name),
                "combos": self._combos_with(name, combos), "removal": self._removal_of(name, rec),
                "if_cut": None, "replacements": []}
@@ -653,6 +655,13 @@ class Workspace:
             out["if_cut"] = self._if_cut(current, doc, combos, name)
             out["replacements"] = self._replacements(current, combos, rec)
         return out
+
+    def _answers_of(self, name):
+        """The kinds of threat the card can answer ("creatures", "artifacts" ...), by the tags metrics.THREATS counts
+        for the deck's "answers to ..." numbers, so a card's sheet and the deck's numbers always agree. Empty when the
+        tags are unavailable."""
+        held = (self.attrs or {}).get(name) or frozenset()
+        return [label.split(" to ", 1)[1] for _, label, slugs in metrics.THREATS if held & set(slugs)]
 
     @staticmethod
     def _combos_with(name, combos):
@@ -1040,7 +1049,7 @@ class App:
     def _listing_entry(self, player, doc):
         """One line of the deck list. A version whose base deck is gone or damaged is listed with an `error`."""
         entry = {"id": doc["id"], "name": doc["name"], "base": doc["base"], "updated": doc.get("updated"),
-                 "revision": doc["revision"]}
+                 "revision": doc["revision"], "settings": dict(doc["settings"])}
         try:
             base = decks.base(self.root, doc["base"])
             current = decks.current(base, doc, self.db)
@@ -1079,8 +1088,9 @@ class App:
                      "warnings": unique(drain(decks.WARNINGS))}
 
     def _base_entry(self, base):
-        lead = self.db.get(base["commanders"][0]) if base["commanders"] else None
-        return dict(base_view(base), commander_image=lead["image"] if lead else "",
+        leads = [self.db.get(name) for name in base["commanders"]]
+        colors = "".join(c for c in "WUBRG" if any(rec is not None and c in rec["ci"] for rec in leads))
+        return dict(base_view(base), commander_image=leads[0]["image"] if leads and leads[0] else "", ci=colors,
                     card_count=sum(n for n, _ in base["cards"]) + len(base["commanders"]))
 
     def route_precons(self, args, query, body):

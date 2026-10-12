@@ -584,7 +584,7 @@ Windows use `python` and `mtg-commander.bat`; on macOS/Linux `./mtg-commander.sh
 | "what commander fits a squirrel army?" | `themes`, then `suggest` |
 | "is this deck Bracket 3?", "is this card allowed?" | `check` |
 | "how good is this deck at X?", "show me the numbers", "how much removal does it have?" | `stats` |
-| "save my deck", "show my decks on my phone", "change my deck from the couch" | `serve`, a local web server for the deck pages (saved decks are files in `commander/decks/`; `stats --version PLAYER/ID` prints a saved version). It has no login: tell the player, and run one server at a time |
+| "save my deck", "show my decks on my phone", "change my deck from the couch" | `serve`, a local web server that also hands out the deck pages (`src/mtgcommander/web/`): open the address it prints to see a saved version as cards, change it and watch every number move (saved decks are files in `commander/decks/`; `stats --version PLAYER/ID` prints a saved version). It has no login: tell the player, and run one server at a time |
 | "I will be offline" | `warm` now; `--offline` later |
 
 ```bash

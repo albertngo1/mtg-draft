@@ -134,9 +134,23 @@ without asking the website.
 **Saved decks, and the local server `serve`.** `serve` starts a small web server on your own computer. It keeps **base
 decks** (a precon or a pasted list, saved once and never changed) and each player's **versions** of them as small files
 in `commander/decks/`, and it answers every request to read a deck or change it (add, cut, swap, undo, or apply the
-upgrade's suggestions) with all of `stats`' numbers worked out again. The deck pages that draw a version as cards come in
-a later change; what they will call is the server's application programming interface (API), under `/api/`. Meanwhile
-`stats --version andy/squirrels-go-wide` prints a saved version's numbers in the terminal, each beside its base deck's.
+upgrade's suggestions) with all of `stats`' numbers worked out again. It also hands out the **deck pages**: open the
+address it prints in a browser to see a saved deck as cards, change it, and watch its numbers move. The pages call the
+server's application programming interface (API), under `/api/`. `stats --version andy/squirrels-go-wide` prints the same
+numbers in the terminal, each beside its base deck's.
+
+*What the deck pages do.* **Decks** lists your versions and the base decks. **New version** starts your own copy of a base
+deck with a bracket, a budget, themes and a playstyle, and **New base deck** takes a precon from the list or a deck list
+you paste in (lines it cannot read are shown with their line numbers, so you can fix or drop them). A version opens on its
+cards, with four tabs. **Cards** shows every card as its picture: tap one to read it with the tool's numbers for it, then
+cut it or swap it, or use **Add** to search for a card and say what it replaces. **Metrics** shows every number, each with
+how it was worked out behind a tap. **Changes** lists what was added and cut against the base deck, with an Undo for each
+change. **Suggestions** lists `upgrade`'s swaps by price point, which you apply one at a time or a whole price point at
+once. Every change is saved the moment you make it and every number is redrawn from the server's answer, so the pages
+never work a number out themselves. The first time a commander is opened its data is downloaded, which takes several
+seconds, and the page says what it is fetching. On a phone the page is one column with the numbers pinned above the cards;
+on a desktop screen the metrics sit beside the cards. The only thing loaded from another site is each card's picture
+(Scryfall's link, sent by the server); nothing needs installing to run the pages.
 
 ```bash
 python3 src/mtg-commander.py serve                          # http://127.0.0.1:8341/, on this computer only

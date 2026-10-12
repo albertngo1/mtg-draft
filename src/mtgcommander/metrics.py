@@ -1,4 +1,4 @@
-"""Deck metrics: every number the `stats` command (and, later, the deck pages) shows about one deck, in one shape.
+"""Deck metrics: every number the `stats` command and the deck pages show about one deck, in one shape.
 
 Why one shape: the pages must draw any metric without code of their own, so every number is an *item*
 

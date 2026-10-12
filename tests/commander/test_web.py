@@ -1,0 +1,228 @@
+"""Tests for the deck pages (src/mtgcommander/web/): plain files, so these tests read the files and ask the real server
+for them.
+
+There is no JavaScript test runner in this repo (no build step, no packages), so the checks here are the ones that can
+be made from Python: Albert's color palette has not drifted, every file the pages name exists, the modules fit together
+(every name one imports, the other exports), nothing is fetched from another site, no server text can reach the page as
+markup, and the real folder is what `serve` hands out. When Node is installed the modules are also syntax checked.
+What the pages do is checked in a browser, against the real server (the frontend-verify gate in the design)."""
+import os, re, shutil, subprocess, tempfile, threading, unittest, urllib.error, urllib.request
+from unittest import mock
+from mtgcommander import carddb, net, serve
+from mtgcommander.providers import scryfall_tags
+
+REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+WEB = os.path.join(REPO, "src", "mtgcommander", "web")
+SITE_CSS = os.path.join(REPO, "card-reference", "site", "site.css")
+MODULES = ("api.js", "app.js", "ui.js", "decks.js", "deck.js", "card.js", "add.js", "metrics.js")
+PAGE_FILES = ("index.html", "styles.css") + MODULES
+OPENER = urllib.request.build_opener(urllib.request.ProxyHandler({}))      # a proxy in the environment must not see us
+SVG_NAMESPACE = "http://www.w3.org/2000/svg"        # a name that identifies SVG, not an address anything is loaded from
+
+
+def read(name):
+    with open(os.path.join(WEB, name) if not os.path.isabs(name) else name, encoding="utf-8") as f:
+        return f.read()
+
+
+def without_comments(source):
+    """JavaScript with its comments removed (a // inside a string is cut too, which these checks do not mind)."""
+    source = re.sub(r"/\*.*?\*/", "", source, flags=re.S)
+    return re.sub(r"(?m)(^|[^:\"'`\\])//[^\n]*", r"\1", source)
+
+
+def root_rules(path):
+    """The :root rules of a stylesheet as a list of {token: value}, comments left out and spacing made even."""
+    text = re.sub(r"/\*.*?\*/", "", read(path), flags=re.S)
+    return [{name: " ".join(value.split()) for name, value in re.findall(r"([\w-]+)\s*:\s*([^;]+);", block)}
+            for block in re.findall(r":root\s*\{([^}]*)\}", text)]
+
+
+# ----------------------------------------------------------------------------- the files and how they fit together
+class FilesTests(unittest.TestCase):
+    def test_the_pages_are_the_files_the_design_names(self):
+        # index.html, the stylesheet and the eight modules: nothing missing, nothing else in the folder
+        self.assertEqual(sorted(os.listdir(WEB)), sorted(PAGE_FILES))
+
+    def test_the_root_tokens_equal_alberts_so_the_palette_cannot_drift(self):
+        # card-reference/site/site.css is the source; styles.css copies its :root block and adds no tokens of its own
+        theirs, ours = root_rules(SITE_CSS), root_rules(os.path.join(WEB, "styles.css"))
+        self.assertEqual(len(theirs), 1)
+        self.assertIn("--gold", theirs[0])
+        self.assertEqual(len(ours), 1, "styles.css must hold exactly one :root rule")
+        self.assertEqual(ours[0], theirs[0])
+
+    def test_every_file_index_html_names_exists_and_the_page_starts_the_app_as_a_module(self):
+        # the stylesheet and the script are relative paths inside the folder; a data: address (the icon) is not a file
+        html = read("index.html")
+        names = re.findall(r'(?:src|href)="([^"]+)"', html)
+        self.assertIn("styles.css", names)
+        self.assertIn('<script type="module" src="app.js"></script>', html)
+        for name in names:
+            if name.startswith("data:"):
+                continue
+            with self.subTest(name=name):
+                self.assertFalse(re.match(r"([a-z]+:)?//", name) or name.startswith("/"),
+                                 f"{name} is not a relative path")
+                self.assertTrue(os.path.isfile(os.path.join(WEB, name)),
+                                f"index.html names {name}, which does not exist")
+        self.assertIn('<main id="main"', html)
+        self.assertIn('id="sheet-layer"', html)
+
+    def test_every_relative_import_exists_and_none_comes_from_a_package(self):
+        # no npm packages and no build step: each import is "./file.js" in the same folder
+        for name in MODULES:
+            source = without_comments(read(name))
+            specifiers = re.findall(r"""(?:from|import)\s*\(?\s*["']([^"']+)["']""", source)
+            for specifier in specifiers:
+                with self.subTest(module=name, specifier=specifier):
+                    self.assertTrue(specifier.startswith("./"), f"{name} imports {specifier}, which is not a file here")
+                    self.assertTrue(os.path.isfile(os.path.join(WEB, specifier)), f"{name} imports {specifier}")
+
+    def test_every_name_a_module_imports_is_one_the_other_module_exports(self):
+        # node --check cannot see this: a misspelled import is only a failure when the page runs
+        exports = {}
+        for name in MODULES:
+            source = without_comments(read(name))
+            found = set(re.findall(r"export\s+(?:async\s+)?(?:function\*?|const|let|class)\s+(\w+)", source))
+            for group in re.findall(r"export\s*\{([^}]*)\}", source):
+                found |= {part.split(" as ")[-1].strip() for part in group.split(",") if part.strip()}
+            exports[name] = found
+        for name in MODULES:
+            source = without_comments(read(name))
+            for names, target in re.findall(r"import\s*\{([^}]*)\}\s*from\s*[\"']\./([\w.]+)[\"']", source):
+                for wanted in (part.split(" as ")[0].strip() for part in names.split(",") if part.strip()):
+                    with self.subTest(module=name, wanted=wanted, target=target):
+                        self.assertIn(wanted, exports[target], f"{name} imports {wanted} from {target}")
+            for alias, target in re.findall(r"import\s*\*\s*as\s+(\w+)\s+from\s*[\"']\./([\w.]+)[\"']", source):
+                for member in sorted(set(re.findall(r"(?<![\w./])%s\.(\w+)" % alias, source))):
+                    with self.subTest(module=name, alias=alias, member=member, target=target):
+                        self.assertIn(member, exports[target],
+                                      f"{name} uses {alias}.{member}, which {target} does not export")
+
+    def test_no_page_file_loads_anything_from_another_site(self):
+        # Scryfall's picture links come from the server's data; none is written in a file. No CDN, no font service.
+        for name in PAGE_FILES:
+            text = read(name).replace(SVG_NAMESPACE, "")
+            with self.subTest(file=name):
+                self.assertEqual(re.findall(r"https?://[^\s\"'`)>]*", text), [], f"{name} names an address")
+                self.assertEqual(re.findall(r"(?:src|href)\s*=\s*[\"']//|url\(\s*[\"']?//|@import", text), [],
+                                 f"{name} loads something from another site")
+                self.assertNotRegex(text, r"(?i)scryfall\.(?:io|com)|googleapis|cloudflare|jsdelivr|unpkg|cdnjs")
+
+    def test_every_request_goes_through_api_js(self):
+        # one call() with the timeout and the error kinds: nothing else may talk to the server
+        for name in MODULES:
+            source = without_comments(read(name))
+            with self.subTest(file=name):
+                uses = [word for word in ("fetch(", "XMLHttpRequest", "WebSocket", "EventSource", "sendBeacon")
+                        if word in source]
+                self.assertEqual(uses, [] if name != "api.js" else ["fetch("])
+
+    def test_server_text_cannot_reach_the_page_as_markup(self):
+        # elements are built with textContent: a card or a deck called "<img onerror=...>" is shown as text
+        for name in MODULES:
+            source = without_comments(read(name))
+            with self.subTest(file=name):
+                self.assertNotRegex(
+                    source, r"innerHTML|outerHTML|insertAdjacentHTML|document\.write|\beval\(|new Function\(")
+
+    def test_the_stylesheet_uses_only_the_tokens_it_has(self):
+        # every var(--x) names a token in :root (the page would silently lose that color or size otherwise)
+        tokens = set(root_rules(os.path.join(WEB, "styles.css"))[0])
+        css = re.sub(r"/\*.*?\*/", "", read("styles.css"), flags=re.S)
+        used = set(re.findall(r"var\((--[\w-]+)", css))
+        self.assertEqual(sorted(used - tokens), [])
+
+
+@unittest.skipUnless(shutil.which("node"), "Node is not installed, so the modules are not syntax checked")
+class SyntaxTests(unittest.TestCase):
+    def test_every_module_parses_as_a_module(self):
+        # `node --check` runs nothing; each module is read from standard input so that Node treats it as a module
+        for name in MODULES:
+            with self.subTest(module=name), open(os.path.join(WEB, name), "rb") as f:
+                done = subprocess.run(["node", "--input-type=module", "--check"], stdin=f, capture_output=True,
+                                      text=True, timeout=60)
+            if "bad option" in done.stderr:
+                self.skipTest("this Node cannot check a module read from standard input")
+            self.assertEqual(done.returncode, 0, f"{name}: {done.stderr}")
+
+
+# ----------------------------------------------------------------------------- the real folder, served
+class ServedPagesTests(unittest.TestCase):
+    """The real src/mtgcommander/web/ folder, served by the real server (serve.make_server) over a real socket. The
+    engine's collaborators are stand-ins that fail if called, as in test_serve.py: asking for a page file touches none
+    of them."""
+
+    def setUp(self):
+        for door in ("fetch_json", "request", "download"):          # a test that reaches the network is a bug
+            mock.patch.object(net, door, side_effect=AssertionError(f"net.{door} must not run in a test")).start()
+        mock.patch.object(scryfall_tags, "INFO", {}).start()
+        self.addCleanup(mock.patch.stopall)
+
+        def never(*args, **kw):
+            raise AssertionError("a page file or the status answer must not reach the engine")
+        self.root = tempfile.mkdtemp()
+        self.addCleanup(shutil.rmtree, self.root, True)
+        self.app = serve.App(carddb.CardDB({}), self.root, web=serve.WEB_DIR, switches=serve.Switches(), wait=0.0,
+                             prepare=never, combos=never, attributes=never, prices=never, upgrade=never, precon=never,
+                             precon_names=never, uncommitted=lambda root: ([], None))
+        self.server = serve.make_server(self.app, "127.0.0.1", 0, daemon=False)
+        self.port = self.server.server_address[1]
+        self.thread = threading.Thread(target=self.server.serve_forever, kwargs={"poll_interval": 0.01})
+        self.thread.start()
+        self.addCleanup(self.stop)
+
+    def stop(self):
+        self.server.shutdown()
+        self.server.server_close()                                  # joins the request threads (daemon=False)
+        self.thread.join()
+        self.app.close()
+
+    def get(self, path):
+        request = urllib.request.Request(f"http://127.0.0.1:{self.port}{path}")
+        try:
+            with OPENER.open(request, timeout=20) as response:
+                return response.status, response.headers, response.read()
+        except urllib.error.HTTPError as e:
+            try:
+                return e.code, e.headers, e.read()
+            finally:
+                e.close()
+
+    def test_the_root_answers_with_index_html(self):
+        # / is the shell: the same bytes as the file, as HTML
+        status, headers, body = self.get("/")
+        self.assertEqual((status, headers["Content-Type"]), (200, "text/html; charset=utf-8"))
+        with open(os.path.join(WEB, "index.html"), "rb") as f:
+            self.assertEqual(body, f.read())
+        self.assertEqual(self.get("/index.html")[0], 200)
+
+    def test_app_js_is_served_as_javascript_so_a_browser_will_run_it_as_a_module(self):
+        # a module script served as text/plain is refused by the browser
+        status, headers, body = self.get("/app.js")
+        self.assertEqual((status, headers["Content-Type"]), (200, "text/javascript; charset=utf-8"))
+        self.assertIn(b"import ", body)
+
+    def test_every_page_file_is_served_with_its_own_type(self):
+        # the stylesheet as CSS, every module as JavaScript, each exactly as it is on disk
+        for name in PAGE_FILES:
+            with self.subTest(file=name):
+                status, headers, body = self.get("/" + name)
+                self.assertEqual(status, 200)
+                types = {".css": "text/css; charset=utf-8", ".js": "text/javascript; charset=utf-8",
+                         ".html": "text/html; charset=utf-8"}
+                self.assertEqual(headers["Content-Type"], types[os.path.splitext(name)[1]])
+                with open(os.path.join(WEB, name), "rb") as f:
+                    self.assertEqual(body, f.read())
+
+    def test_the_status_answer_says_the_pages_are_there_and_a_hash_route_is_not_a_file(self):
+        # the pages route by the address after the #, so the server never sees it; a path that is not a file is 404
+        status, _, body = self.get("/api/status")
+        self.assertEqual(status, 200)
+        self.assertIn(b'"pages": true', body)
+        self.assertEqual(self.get("/d/andy/squirrels")[0], 404)
+
+
+if __name__ == "__main__":
+    unittest.main()
