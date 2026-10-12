@@ -30,8 +30,6 @@ def load_scry():
             return json.load(f)
     except Exception:
         return {}
-def save_scry(d):
-    _atomic_json(SCRY_CACHE, d)
 def merge_scry(updates):
     """Reload-and-merge: re-read the on-disk cache immediately before writing and overlay only
     the freshly-fetched `updates` (id -> rec) on top, then write atomically. Avoids the lost-update
