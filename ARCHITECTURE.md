@@ -541,6 +541,10 @@ python3 src/mtg-commander.py build "Hazel of the Rootbloom" --bracket 3 --budget
 
 # Every number about a list: power, interaction, mana, playstyle, win plan, money
 python3 src/mtg-commander.py stats --precon "Squirreled Away" --bracket 3 --theme tokens --playstyle aristocrats
+
+# The local server for the deck pages, and the numbers of a version it has saved (see "The deck server" below)
+python3 src/mtg-commander.py serve
+python3 src/mtg-commander.py stats --version andy/squirrels-go-wide
 ```
 
 The first run downloads Scryfall's card file and builds a local index of about 35,000 cards (31 MB). That takes a
@@ -554,6 +558,7 @@ minute or two, once; the index is rebuilt after 7 days. Everything else it downl
 | **Bracket** | Wizards of the Coast's 1–5 power scale: 1 Exhibition, 2 Core, 3 Upgraded, 4 Optimized, 5 cEDH. **cEDH** is competitive Commander, meaning tournament play. The default is Bracket 3. |
 | **Game Changer** | a card on Wizards' list of cards that push a deck up the scale (53 on 2026-10-11, flagged on each card in Scryfall's data). Bracket 3 allows up to three; Brackets 1 and 2 allow none. |
 | **Precon** | a preconstructed deck sold ready to play. Precon lists come from MTGJSON. |
+| **Base deck**, **version** | a base deck is where a saved deck starts (a precon or a pasted list) and never changes; a version is one player's copy of a base deck with every change they made. Both are files ([Deck files](#deck-files)); `serve` reads and changes them. |
 | **Price point** | a dollar amount `upgrade` stops at on the way up to your budget (for $200: $25, $50, $100 and $200). The report shows what the swaps found up to each amount come to. |
 | **Inclusion** | the share of a commander's decks that play a card. **Synergy** is EDHREC's inclusion with this commander minus the inclusion across all decks of the same colors. |
 | **Removal power** | the sum, over a deck's removal cards, of how quick, how far-reaching, how lasting and how cheap each is (see [Deck metrics and `stats`](#deck-metrics-and-stats)). The tool's own measure, with weights that are judgment calls |
@@ -624,9 +629,10 @@ upgrade  [DECKFILE] [--precon NAME] [--commander NAME] [--bracket N] [--budget U
          [--keep-fun | --no-keep-fun] [--include CARD] [--exclude CARD] [--owned FILE]
          [--owned-precon NAME] [--allow-combos] [--out FILE] [-v]
 check    [DECKFILE] [--precon NAME] [--commander NAME] [--bracket N]
-stats    [DECKFILE] [--precon NAME] [--commander NAME] [--bracket N] [--theme T] [--playstyle P]
-         [--fantasy TEXT] [--fantasy-weight W] [--keep-fun | --no-keep-fun] [--owned FILE]
+stats    [DECKFILE] [--precon NAME] [--version PLAYER/ID] [--commander NAME] [--bracket N] [--theme T]
+         [--playstyle P] [--fantasy TEXT] [--fantasy-weight W] [--keep-fun | --no-keep-fun] [--owned FILE]
          [--owned-precon NAME] [-v]
+serve    [--host ADDRESS] [--port N] [--decks DIR]
 warm     COMMANDER [--partner NAME] [--bracket N] [--theme T]
 validate --bracket N [--commanders NAME [NAME ...]] [--limit N] [--sweep] [--calibrate]
 ```
@@ -638,7 +644,8 @@ validate --bracket N [--commanders NAME [NAME ...]] [--limit N] [--sweep] [--cal
 | `build` | builds a 100-card list around a commander, with the evidence for each card, the role counts, the bracket check and the *fantasy cost* (below) |
 | `upgrade` | ranked cut/add swaps for a deck from a file, standard input (`-`) or a precon, within a budget and a bracket |
 | `check` | legality (100 cards, colors, duplicates, banned cards), the bracket rules, role counts against the bracket's range, and the mana curve |
-| `stats` | every number about a list: score and bracket, interaction (answers to each kind of threat, removal power), mana (lands, ramp, draw, curve, colors, tapped and colorless lands), playstyle, win plan, salt, price and what you own. Groups and formulas: [Deck metrics and `stats`](#deck-metrics-and-stats) |
+| `stats` | every number about a list: score and bracket, interaction (answers to each kind of threat, removal power), mana (lands, ramp, draw, curve, colors, tapped and colorless lands), playstyle, win plan, salt, price and what you own. Groups and formulas: [Deck metrics and `stats`](#deck-metrics-and-stats). With `--version PLAYER/ID` it shows a saved version, each number beside its base deck's |
+| `serve` | runs the local web server for the deck pages until Ctrl-C: saved decks, with every metric worked out again after each change. Prints its address, how to reach it from a phone, and that there is no login. See [The deck server](#the-deck-server) |
 | `warm` | downloads what the other commands need for one commander, so they can run with `--offline` |
 | `validate` | measures how closely builds match real decks (see [Validation](#validation)) |
 
@@ -647,11 +654,15 @@ The four flags every command takes, then the rest (help text as `--help` prints 
 | flag | commands | meaning |
 |---|---|---|
 | `--json` | all | print the result as JSON (`"schema": 1`), not a report |
-| `--refresh` | all | download again instead of using cached data |
+| `--refresh` | all | download again instead of using cached data (for `serve`: when a deck is first opened, not on every tap) |
 | `--offline` | all | never connect; use cached data only (see `warm`) |
 | `--sources LIST` | all | card-evidence sources to use, comma-separated (choices `edhrec`, `archidekt`, `edhtop16`) |
 | `DECKFILE` | upgrade, check, stats | a decklist file; `-` reads standard input |
 | `--precon NAME` | upgrade, check, stats | use a preconstructed deck by name instead of a file |
+| `--version PLAYER/ID` | stats | a saved version instead of a file or precon, e.g. `andy/squirrels-go-wide`. Its bracket, themes, playstyle and owned precons come from the version, so the flags that set those cannot be given beside it |
+| `--host ADDRESS` | serve | the address to listen on (default `127.0.0.1`, this computer only); a Tailscale address makes it reachable from a phone |
+| `--port N` | serve | the port to listen on (default 8341; 0 picks a free one) |
+| `--decks DIR` | serve | the folder of saved decks (default `commander/decks/`, or `MTG_COMMANDER_DECKS`) |
 | `--commander NAME` | upgrade, check, stats | the commander, when the list does not mark it (repeat for a partner) |
 | `COMMANDER` | build, warm | the commander |
 | `--partner NAME` | build, warm, themes | a second commander (Partner or Background); `themes` also needs `--commander` |
@@ -685,6 +696,7 @@ The four flags every command takes, then the rest (help text as `--help` prints 
 | `MTG_OFFLINE=1` | the same as `--offline` on every run |
 | `MTG_COMMANDER_DECKS` | the folder of saved decks (otherwise `commander/decks/` in the repo; see [Deck files](#deck-files)) |
 | `CLAUDE_CODE_OAUTH_TOKEN` | the Claude token `--fantasy` needs; a gitignored `claude-token.txt` at the repo root works too, the same file the replay uses |
+| `MTG_SERVE_DELAY`, `MTG_SERVE_CONFLICT`, `MTG_FAIL_HOSTS` | test switches for `serve`, all off by default (see [The deck server](#the-deck-server)) |
 
 **Output.** Reports stay within 100 columns, so a phone terminal does not wrap a table mid-word. `--json` prints
 only the result on stdout, `{"schema": 1, ...}`; `warnings` (a list of strings) and `sources` (each source with
@@ -710,10 +722,11 @@ ignored.
 | `src/mtgcommander/` | the package; the files below are in it unless a path is given |
 | `cli.py` | argparse commands: turns arguments into calls and results into output; owns the exit codes |
 | `config.py` | paths, how long each source's cache stays fresh, default bracket, default sources, the User-Agent |
-| `net.py` | the one HTTP client: per-host pacing, retries with back-off, the file cache, `--offline` and `--refresh`; `download` streams a large file to disk (unzipped on the way, unless told not to) |
-| `carddb.py` | Scryfall's bulk card file boiled down to one record per card (with links to its pictures); forgiving name matching; cheapest prices |
+| `net.py` | the one HTTP client: per-host pacing, retries with back-off, the file cache, `--offline` and `--refresh`; `download` streams a large file to disk (unzipped on the way, unless told not to); a count of the requests made (the deck server's progress) and the `MTG_FAIL_HOSTS` test switch |
+| `carddb.py` | Scryfall's bulk card file boiled down to one record per card (with links to its pictures); forgiving name matching; cheapest prices, and `deck_prices`, the one way a deck's cards are priced |
 | `decklist.py` | reads pasted lists, matches names to real cards, loads precons from MTGJSON, writes lists |
 | `decks.py` | saved decks: base decks and each player's versions as JSON files, with an append-only change log, replay, undo and revisions (see [Deck files](#deck-files)) |
+| `serve.py` | the local web server for the deck pages: the application programming interface (API) over `decks.py` and `metrics.py`, one session for each open deck, the safety checks and the test switches (see [The deck server](#the-deck-server)) |
 | `providers/` | one module per data source, registered in `providers/__init__.py` (`SIGNAL_PROVIDERS`) |
 | `providers/edhrec.py` | what builders chose, per commander, bracket and theme; themes, salt, average land count |
 | `providers/archidekt.py` | bracket-tagged decklists: the second builder source |
@@ -976,6 +989,7 @@ $ ./mtg-commander.sh stats --precon "Squirreled Away" --bracket 3 --theme tokens
      ├─ build.prepare(...)                      the evidence, role tags, card scores and targets, once
      ├─ roles.attributes(names, db)             the attribute tags (a request of their own: the roles never wait on it)
      ├─ spellbook.combos_for(commanders, cards, identity=colors)    the local combo index, the API as the fallback
+     ├─ carddb.deck_prices(names, db)           each card at its cheapest printing, as upgrade prices it
      ├─ metrics.compute(ctx, db, cards, ...)    build.deck_value, roles.counts and brackets.check once, then each
      │                                          group of metrics.GROUPS reads those facts
      └─ render.stats_report(result), or render.as_json(result) with --json
@@ -1015,7 +1029,7 @@ headline `price` is the cost to buy: what the cards you do not own would cost.
 | `playstyle` | theme fit (the share of nonland cards whose score has a theme part above `score.SHOW_PULL`); one item for each of the 12 playstyles; the creature count; synergy with the commander (the mean EDHREC synergy of the nonland cards that have one) |
 | `win` | finishers (the role count) and by kind (overrun, drain, extra combat, alternate win, theft); combos in the list that win; creatures that are hard to block and their total power |
 | `table` | salt (the total over the list and the three saltiest cards); the bracket's limits (Game Changers, extra-turn cards, mass land denial, two-card combos); total price, cost to buy and the share of cards you own |
-| `changes` | only with a base deck: the cards added and cut, with who, when and why from the change log, and the net cost |
+| `changes` | only with a base deck (`stats --version`, and the deck pages): the cards added and cut, with who, when and why from the change log, and the net cost |
 
 **Removal power.** A removal card is worth `speed × reach × permanence × cost`, times 1.5 if it removes again and again.
 A board wipe is worth the same, times 1.5 if it spares your own side (Scryfall's `sweeper-one-sided`). The weights are
@@ -1096,8 +1110,12 @@ loading and indexing it about a quarter of a second, and finding a deck's combos
 
 - *Creature power.* The card index records power as Scryfall writes it, so a power that varies (`*`, `1+*`) is left
   out of the total for hard-to-block creatures, and the `why` line names those creatures.
-- *Prices.* `stats` uses the card index's price (the default printing); `upgrade` prices Scryfall's cheapest printing,
-  so its spending can be lower. A price you pass in (`prices=`) replaces the index's.
+- *Prices.* `stats`, `upgrade` and the deck server all price a card at Scryfall's cheapest printing (`carddb.deck_prices`),
+  so the cost to buy of the list an upgrade made is what the upgrade spent. Squirreled Away upgraded with `--budget 200
+  --theme tokens --playstyle aristocrats` (owning three other precons) spends $185.43, and `stats` of the resulting
+  list, with the same owned precons, shows a cost to buy of $185.43; the card index's default-printing prices showed
+  $201.95. When Scryfall cannot be asked (offline, or a failed search) a card keeps the card index's price and a warning
+  says why. A price you pass in (`prices=`) replaces both.
 - *Owned cards.* `--owned` and `--owned-precon` make cards cost $0. The cards of the list itself do not, unlike in
   `upgrade`, so the cost to buy is what the whole list would cost you.
 - *`warm`* does not fetch the attribute tags or the combo file; the first online `stats` run saves both (tags for 30
@@ -1254,6 +1272,115 @@ never sees half a file, and a write that fails leaves the old file as it was.
 end, and each card of a base deck and each change of a version on a single line, so a git diff shows one line per
 card or change. The keys come in a fixed order, listed at the top of `decks.py`.
 
+### The deck server
+
+`serve.py` is the local web server behind the deck pages (the pages come in a later change and will live in
+`src/mtgcommander/web/`). It keeps no deck of its own: the files are `decks.py`'s. Its job is to take a request, call
+`decks.py` and `metrics.py`, and answer with the whole deck and every metric worked out again, so a page redraws from one
+answer and no formula exists twice. These answers are the server's application programming interface (API). It uses only
+the standard library: `http.server`, one thread for each request.
+
+```
+$ ./mtg-commander.sh serve
+ └─ cli.cmd_serve                       loads the card index, makes App and the server, prints the address
+     └─ Handler._serve                  one request: the Host and Origin checks; for a write, the type and size of the body
+         └─ App.dispatch → route_*      the decks.py calls: version, apply, update, new_version, new_base ...
+             └─ DeckSession             one for each open version: a lock, and the Workspace its numbers come from
+                 └─ Workspace.look      score any new card; tag and price it; ask for the list's combos
+                     └─ metrics.compute the base deck's metrics are `base=`, the change log is `changes=`
+```
+
+**Addresses.** Every answer is JSON with `"schema": 1`.
+
+| address | does |
+|---|---|
+| `GET /api/status` | when each data source was read; the server's settings (host, port, offline, decks folder); the deck files git does not have yet (`git status --porcelain`, read only, 2 seconds at most, with a note saying why when git cannot tell) |
+| `GET /api/players` | the players: the folders under the decks folder |
+| `GET /api/menu` | the playstyles and common themes a version's settings choose from |
+| `GET /api/decks?player=NAME` | that player's versions, newest first: id, name, base deck, commanders and picture, revision, cards swapped, what the changes cost, and the headline numbers (from the open deck, else from a preparation tried offline, else `null`) |
+| `POST /api/decks` | `{"player", "name", "base", "settings"?}` makes a version; 201 |
+| `GET /api/decks/PLAYER/ID` | the version: `version` (with its change log, each change marked `undone` or not), `base`, `spec` (the settings as the engine reads them), `commanders`, `cards`, `card_count`, `diff`, `cut_cards`, `metrics` (every item beside the base deck's value), `warnings` and `sources`; or 202 |
+| `POST /api/decks/PLAYER/ID/changes` | `{"revision", "op": ...}` as in [Deck files](#deck-files), with `"source"`; answers like the GET plus `"result": {"changed", "message"}` |
+| `PATCH /api/decks/PLAYER/ID` | `{"revision", "name"?, "settings"?}`; answers like the GET |
+| `POST /api/decks/PLAYER/ID/suggest` | `{"budget"?, "price_points"?}`: `upgrade` on the list as it is now, with the settings' budget unless one is given. The result of `upgrade`, plus `revision` and `cards` (a card object for each card it names). It keeps nothing: ask again after every change |
+| `GET /api/bases`, `POST /api/bases` | the base decks; make one from `{"name"?, "precon", "player"}` or `{"name", "list", "commander"?, "player"}`; 201 |
+| `GET /api/precons?q=TEXT` | precon names that hold every word, at most 20 |
+| `GET /api/cards?q=TEXT&deck=PLAYER/ID` | cards to add, at most 30. With no text, the best-scored cards not in the deck. With text, the Commander-legal cards whose name holds every word: the exact name first, then the commander's colors, then by score (a card with none, by EDHREC rank). Each is a card object plus `score`, `evidence`, `gain` (the deck's value change if it were added as one more card) and `flag`: `null`, or `{"kind": "illegal" \| "colors" \| "in_deck" \| "bracket", "reason"}` for a card that cannot be added |
+| `GET /api/cards/NAME?deck=PLAYER/ID` | the card's sheet: facts and rules text, copies in the deck, roles, attribute tags, score with its evidence and parts, salt, Game Changer, the combos it is in and would complete, the removal breakdown, `if_cut` (the deck score change and only the metric items that move) and `replacements` (the five best cards to put in its place, by the deck's value after the swap) |
+
+A **card object** has `name`, `front`, `image`, `image_back`, `scryfall_uri`, `type`, `cost`, `cmc`, `ci` (color identity
+letters), `price` (cheapest printing; `null` when nothing prices it) and `owned` (in the base deck or a precon the
+player owns, or a basic land). In a deck's list it also has `count`, `section` (Creatures, Lands ...), `new` (added since
+the base deck), `score`, `roles` and `gc` (Game Changer).
+
+**Preparing a deck, and the 202 answer.** A deck's numbers need the engine's data: the commander's EDHREC pages, role
+tags, scores, combos and prices. The first time a deck is opened, and whenever its bracket, themes, playstyle,
+keep-fun choice or owned precons change, the server prepares that data on a background thread, one deck at a time
+(the sites are asked politely, and the request count then belongs to one deck). Until it is ready the deck answers
+`202 {"status": "preparing", "progress": {"requests", "message"}, "revision"}`, where `requests` is the number of web
+requests made since that deck's preparation began, and the message says what it is doing ("Fetching EDHREC data for
+Hazel (first time only)"). The page asks again until it gets 200. A deck that is ready within 0.3 seconds is simply
+sent: with a warm cache a first open takes under a second. A route that needs a ready deck (a change, a search, a card
+sheet, suggestions) does nothing and answers 202 the same way when it finds none, so a page opens the deck first.
+`PATCH` is the exception: it saves the new name or settings first, so its 202 means "saved, the numbers are on their
+way". A preparation that fails answers 500 once, with the error text, and the next request tries again. The deck list
+never waits on the network: for a deck nobody has opened it tries a preparation offline, and shows no headline numbers
+when the cache does not have what that needs.
+
+**What a change does.** The route holds the deck's lock, then calls `decks.apply`, so the revision check, the card
+rules and the write are one step: of two devices that send the same revision, one succeeds and the other gets 409 with
+the revision to reload at. The answer is built from the file as `decks.current` replays it. A card the engine has not
+scored (one no EDHREC list mentions) is scored by preparing again with it included, offline (about 0.13 seconds), so
+a tap never waits on a download; the card's price is looked up at its cheapest printing. If that scoring fails the
+change is still saved and a warning says the card is unscored. A deck file changed outside the server (`git pull`) is
+read afresh on every request, so there is nothing to restart.
+
+**Errors.** `{"schema": 1, "error": {"code", "message", "details"}}`; the status comes from the `decks.py` error classes.
+
+| status | `code` | when | `details` |
+|---|---|---|---|
+| 400 | `bad_request` | a bad id, a missing field, an unknown op, a body that is not a JSON object | `null` |
+| 403 | `forbidden` | the Host or Origin check failed | `null` |
+| 404 | `not_found` | no such player, deck, base deck, precon or card | `{"suggestions": [close names]}` |
+| 405, 411, 413, 415 | `method_not_allowed`, `length_required`, `too_large`, `unsupported_media_type` | the method, the body's length (none, chunked, over 1 MB) or its type (not `application/json`) | `null` |
+| 409 | `conflict` | a stale revision, or an id already taken | `{"revision": the deck's revision now}` (`null` for an id) |
+| 422 | `invalid` | a deck rule, a setting that is wrong, a pasted list with lines that cannot be read | the problems, e.g. `[{"line": 3, "text": ..., "suggestions": [...]}]` |
+| 500 | `server_error` | anything else: the exception's own text, or the file that cannot be read | `{"type": the exception's class}` |
+| 500 | `data_unavailable` | a data source is down and nothing is cached | `{"source": ...}` |
+
+**Safety.** There is no login, so the server checks where a request comes from instead.
+
+- A write (`POST`, `PATCH`) must send `Content-Type: application/json`. A browser then asks permission before sending
+  it from another site, and the server never gives it (an `OPTIONS` request is refused, with no permission headers).
+- A request with an `Origin` header must have the same host and port as its `Host` header: the page that was loaded from
+  this server. A page from another site is refused (403).
+- The `Host` header must name this server, which stops a rebinding attack (a page on another site whose domain name has
+  been pointed at your computer, so the browser treats the server as part of that site). It accepts the address the
+  server listens on; `localhost` and `127.0.0.1` when that is this computer; any IP address when it listens on every
+  interface (`--host 0.0.0.0`), since rebinding needs a domain name; and names ending in `.ts.net`, Tailscale's own,
+  which is what `tailscale serve` passes on.
+- Ids are checked by `decks.py` before they reach a file path. A page file's path cannot leave `src/mtgcommander/web/`
+  (no `..`, backslash or drive letter, and a symbolic link out of the folder is not followed). A request body is at
+  most 1 MB.
+- Every answer carries `X-Content-Type-Options: nosniff` and `X-Frame-Options: DENY`.
+
+None of this is a password: anyone who can reach the address can change every deck. Listen on this computer only, or on a
+Tailscale address, unless the network is trusted.
+
+**Test switches** (environment variables, off by default) let a test make the server slow, refuse or fail. The browser
+checks for the pages use them.
+
+| variable | does |
+|---|---|
+| `MTG_SERVE_DELAY=SECONDS` | waits that long after doing the work of each API request, then answers: a change that took longer than the page's patience has still been saved |
+| `MTG_SERVE_CONFLICT=N` | the next N change requests answer 409 with the deck's real revision and change nothing |
+| `MTG_FAIL_HOSTS=HOST,...` | `net.request` and `net.download` fail at once for these hosts, as if the site were down. With `--refresh` the cache is not simply served, so the page shows its stale-data banner |
+
+**Running it.** One server per repo: deck files are written whole and replaced atomically, but nothing locks them
+between programs. `--refresh` downloads a deck's data again when the deck is first opened (and only then). `--offline`
+never connects. The tests (`tests/commander/test_serve.py`) start a real server on a free port with fakes for the engine's
+network, git and the card index's data, and cover every route, each error, the safety checks and the switches.
+
 ### Edge cases
 
 | case | what happens |
@@ -1272,6 +1399,8 @@ card or change. The keys come in a fixed order, listed at the top of `decks.py`.
 | `stax` below Bracket 4 | falls back to `value` with a warning |
 | `stats` without the attribute tags (offline, nothing saved) | the items that need them (removal and wipe power, answers, ramp and draw kinds, tapped lands, finishers by kind, most playstyles) have no value and say why; the role counts, the curve, colors, price and the rest still print |
 | `stats` cannot get the combo file | falls back to the API with a warning; if that fails too, the combo items have no value and the combo limit is not verified |
+| A deck is changed on two devices at once | one change is saved; the other gets 409 with the current revision, and the page reloads ([The deck server](#the-deck-server)) |
+| A data source fails while a deck is open | the deck uses the cached copy and its `sources` entry says `stale`; a source with nothing cached is a warning, or a 500 `data_unavailable` if the deck cannot be prepared at all |
 
 ### Terms of use
 
@@ -1353,7 +1482,8 @@ python3 -m unittest discover -s tests -t . -v      # from the repo root
 ```
 
 The tests are standard-library `unittest`, replay small hand-made fixtures in each source's shape
-(`tests/commander/fixtures/`, never downloaded pages), touch no network, and run in a couple of seconds.
+(`tests/commander/fixtures/`, never downloaded pages), touch no network, and run in a few seconds. The deck server's
+tests start a real server on a free port and stop it, with its threads, when each test ends.
 
 ## Data sources & credits
 

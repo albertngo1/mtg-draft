@@ -670,5 +670,85 @@ class CheapestPricesTests(TempCache):
         self.assertEqual((len(calls), out), (2, {"Sol Ring": 0.99, "Skullclamp": 19.13}))
 
 
+class DeckPricesTests(TempCache):
+    """deck_prices: the one way a deck's cards are priced, shared by `upgrade`, `stats` and the deck pages."""
+
+    def setUp(self):
+        super().setUp()
+        self.db = sample_db()
+        self.requests = []
+        self.page = fixture("carddb_search_prices.json")
+        for patcher in (mock.patch.object(carddb, "load", return_value=self.db),
+                        mock.patch.object(net, "request", self.fake_request)):
+            patcher.start()
+            self.addCleanup(patcher.stop)
+
+    def fake_request(self, url, **kw):
+        self.requests.append(url)
+        if isinstance(self.page, Exception):
+            raise self.page
+        return json.dumps(self.page).encode()
+
+    def test_a_card_costs_its_cheapest_printing_not_the_default_printings_price(self):
+        # Sol Ring: the index says 1.16, the cheapest printing is 0.99 (the price upgrade charges)
+        out = carddb.deck_prices(["Sol Ring", "Skullclamp"], self.db)
+        self.assertEqual(out, {"Sol Ring": 0.99, "Skullclamp": 19.13})
+        self.assertEqual(out, carddb.cheapest_prices(["Sol Ring", "Skullclamp"]))
+        self.assertEqual(len(self.requests), 1)
+
+    def test_basic_lands_and_names_the_index_does_not_know_are_left_out_and_never_looked_up(self):
+        # a deck is mostly basics; only the other cards are priced
+        out = carddb.deck_prices(["Forest", "Swamp", "Sol Ring", "Nope", "Forest"], self.db)
+        self.assertEqual(out, {"Sol Ring": 0.99})
+        self.assertNotIn("Forest", self.requests[0])
+
+    def test_a_deck_of_basic_lands_asks_nobody(self):
+        self.assertEqual(carddb.deck_prices(["Forest", "Swamp"], self.db), {})
+        self.assertEqual(carddb.deck_prices([], self.db), {})
+        self.assertEqual(self.requests, [])
+
+    def test_spellings_are_made_canonical_and_repeats_dropped(self):
+        out = carddb.deck_prices(["sol ring", "Sol Ring", "Fire/Ice"], self.db)
+        self.assertEqual(sorted(out), ["Fire // Ice", "Sol Ring"])
+
+    def test_a_failed_search_falls_back_to_the_index_price_with_a_warning_and_does_not_raise(self):
+        # Scryfall answers 429: the commander's deck still gets prices, from the index
+        self.page = net.FetchError("scryfall", "u", "rate limited (429)")
+        out = carddb.deck_prices(["Sol Ring", "Mana Crypt"], self.db)
+        self.assertEqual(out, {"Sol Ring": 1.16, "Mana Crypt": 150.0})
+        self.assertTrue(any("429" in w for w in carddb.WARNINGS))
+
+    def test_a_price_search_that_raises_for_a_reason_cheapest_prices_does_not_catch_still_does_not_raise(self):
+        # the card index file is gone, or the price cache cannot be written
+        for error in (net.FetchError("scryfall", "u", "offline (--offline) and no card index"),
+                      PermissionError(13, "Permission denied")):
+            with self.subTest(error=type(error).__name__):
+                del carddb.WARNINGS[:]
+                with mock.patch.object(carddb, "cheapest_prices", side_effect=error):
+                    out = carddb.deck_prices(["Sol Ring"], self.db)
+                self.assertEqual(out, {"Sol Ring": 1.16})
+                self.assertEqual(len(carddb.WARNINGS), 1)
+                self.assertIn("cheapest prices:", carddb.WARNINGS[0])
+
+    def test_offline_asks_nobody_and_uses_what_is_saved_then_the_index(self):
+        carddb.deck_prices(["Sol Ring"], self.db)
+        out = carddb.deck_prices(["Sol Ring", "Arcane Signet"], self.db, offline=True)
+        self.assertEqual(out, {"Sol Ring": 0.99, "Arcane Signet": 0.38})
+        self.assertEqual(len(self.requests), 1)
+
+    def test_a_card_nothing_prices_has_none_not_a_missing_key(self):
+        # a card with no price in the index and none from Scryfall
+        self.db.cards["Sol Ring"] = dict(self.db.cards["Sol Ring"], price=None)
+        self.page = net.NotFound("scryfall", "u", "no such page")
+        self.assertEqual(carddb.deck_prices(["Sol Ring"], self.db), {"Sol Ring": None})
+
+    def test_a_decks_cost_to_buy_is_the_sum_of_these_prices_so_stats_agrees_with_upgrade(self):
+        # the point of the helper: price a list with it and the total is what upgrade charges for the same cards
+        names = ["Sol Ring", "Skullclamp"]
+        prices = carddb.deck_prices(names, self.db)
+        self.assertAlmostEqual(sum(prices.values()), 0.99 + 19.13)
+        self.assertNotAlmostEqual(sum(prices.values()), 1.16 + 19.13)      # the index's prices would give $20.29
+
+
 if __name__ == "__main__":
     unittest.main()

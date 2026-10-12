@@ -16,6 +16,10 @@ os.makedirs(CACHE, exist_ok=True)
 DEFAULT_BRACKET = int(os.environ.get("MTG_BRACKET", "3"))  # no bracket given → Bracket 3 (Upgraded)
 DEFAULT_FANTASY_WEIGHT = 0.5                                # 0 = pure power, 1 = theme above all
 
+# `serve` (the deck pages' server) listens on this computer only unless --host says otherwise
+SERVE_HOST = "127.0.0.1"
+SERVE_PORT = 8341                                           # the card-reference site already uses 8340
+
 # Card-evidence sources a run may query (providers/ SIGNAL_PROVIDERS). All three are on by default: below
 # Bracket 5, EDHREC and Archidekt are the only evidence of what a commander's players run, though their terms
 # bar scripted requests (ARCHITECTURE.md, "Terms of use"). MTG_COMMANDER_SOURCES or the --sources flag picks

@@ -131,6 +131,34 @@ short of the range or over it. Add `-v` to see how each number was made, or `--j
 first run also saves Commander Spellbook's daily combo file (29 MB, kept for 7 days), so later runs find a list's combos
 without asking the website.
 
+**Saved decks, and the local server `serve`.** `serve` starts a small web server on your own computer. It keeps **base
+decks** (a precon or a pasted list, saved once and never changed) and each player's **versions** of them as small files
+in `commander/decks/`, and it answers every request to read a deck or change it (add, cut, swap, undo, or apply the
+upgrade's suggestions) with all of `stats`' numbers worked out again. The deck pages that draw a version as cards come in
+a later change; what they will call is the server's application programming interface (API), under `/api/`. Meanwhile
+`stats --version andy/squirrels-go-wide` prints a saved version's numbers in the terminal, each beside its base deck's.
+
+```bash
+python3 src/mtg-commander.py serve                          # http://127.0.0.1:8341/, on this computer only
+python3 src/mtg-commander.py serve --host 100.101.102.103   # also reachable from a phone over Tailscale (below)
+```
+
+*On your phone.* By default only this computer can reach the server. [Tailscale](https://tailscale.com) is a private
+network between your own devices. With it, either start the server with `--host` set to this computer's Tailscale
+address (`tailscale ip -4` prints it) and open `http://<that address>:8341/` on the phone, or leave `--host` alone, run
+Tailscale's own `tailscale serve --bg 8341`, and open the https address it prints. On home Wi-Fi `--host 0.0.0.0` works
+too, but it listens on every network the computer is on, so use it only on a network you trust.
+
+*There is no login.* Anyone who can reach the server's address can change every deck; on Tailscale that means only your
+own devices. The server does check that a request comes from its own pages, so a web page from another site cannot use it
+through your browser, but that is not a password.
+
+*Run one server per repo.* A deck file is written whole, to a temporary file that then replaces the old one, so a file is
+never half saved. Nothing locks the files between programs, though, so two servers (or a server and an editor) can
+overwrite each other's changes. Share decks the usual way, with git: the server never commits or pushes, and its
+`/api/status` answer lists the deck files git does not have yet. `--decks DIR` (or the `MTG_COMMANDER_DECKS` environment
+variable) picks another folder for the files.
+
 **What the numbers mean.** At Brackets 1–4 the numbers are what experienced deck builders choose at that bracket,
 not win rates; real per-card win rates exist publicly only for tournament (cEDH) play. So every line says which
 kind of number it is and how many decks it comes from, and `build` shows the *fantasy cost*: what the theme you
@@ -139,7 +167,7 @@ picked gives up in strength.
 The data comes from public sites (EDHREC, Archidekt, EDHTop16, Commander Spellbook, Scryfall, MTGJSON). The terms
 of some of them restrict scripted access; ARCHITECTURE.md quotes them and says how to choose which sources are used.
 Details: **[ARCHITECTURE.md → Commander deck builder](./ARCHITECTURE.md#commander-deck-builder)** (every command and
-flag, how cards are scored, caching, bracket rules, terms of use) and **[`commander/README.md`](./commander/README.md)**
+flag, how cards are scored, caching, bracket rules, the deck server, terms of use) and **[`commander/README.md`](./commander/README.md)**
 (the three data files). With Claude Code, `/mtg-commander` (in [`.claude/skills/`](./.claude/skills/mtg-commander/))
 coaches you through it.
 

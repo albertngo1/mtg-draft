@@ -1346,5 +1346,38 @@ class ResultShapeTests(MetricsCase):
         self.assertLess(time.perf_counter() - start, 5.0)
 
 
+class PriceAgreementTests(MetricsCase):
+    """`stats` and `upgrade` price a card the same way. The card index holds the default printing's price; `upgrade`
+    charges the cheapest printing, and so do carddb.deck_prices, `stats` and the deck pages, which makes the cost to buy of
+    a list an upgrade made equal to what the upgrade spent."""
+
+    def setUp(self):
+        super().setUp()
+        w = self.world
+        for name, score in (("Old A", 0.1), ("Old B", 0.1), ("Old C", 0.2)):
+            w.add(name, "Creature", 2, score=score, price=0.5)
+        w.add("New X", "Creature", 2, score=0.9, price=10.0)       # the default printing costs 10.00, the cheapest 6.00
+        w.add("New Y", "Creature", 2, score=0.8, price=4.0)        # 4.00 and 3.00
+        self.cheapest = {"New X": 6.0, "New Y": 3.0, "Old A": 0.5, "Old B": 0.5, "Old C": 0.5}
+        self.before = ["Old A", "Old B", "Old C"]
+
+    def test_the_cost_to_buy_of_the_list_an_upgrade_made_is_what_the_upgrade_spent(self):
+        # a $20 upgrade buys New X ($6.00) and New Y ($3.00): $9.00; stats of the new list, owning the old one, says $9.00
+        db, ctx = self.world.db(), self.world.ctx(targets=valueless_roles())
+        result = build.upgrade(ctx, {"commanders": [CMDR], "cards": [(1, n) for n in self.before]}, db, budget=20,
+                               prices=self.cheapest)
+        self.assertEqual(sorted(x["add"] for x in result["swaps"]), ["New X", "New Y"])
+        self.assertEqual(result["spent"], 9.0)
+        names = [name for _, name in result["deck_after"]["cards"]]
+        with mock.patch.object(carddb, "cheapest_prices", return_value=self.cheapest):
+            prices = carddb.deck_prices(names + [CMDR], db)
+        priced = metrics.compute(ctx, db, result["deck_after"]["cards"], commanders=[CMDR], owned=self.before + [CMDR],
+                                 prices=prices, attrs=None, combos=None)
+        self.assertEqual(priced["headline"]["price"], 9.0)
+        indexed = metrics.compute(ctx, db, result["deck_after"]["cards"], commanders=[CMDR], owned=self.before + [CMDR],
+                                  attrs=None, combos=None)
+        self.assertEqual(indexed["headline"]["price"], 14.0)       # the index's prices: $10.00 + $4.00, not what was spent
+
+
 if __name__ == "__main__":
     unittest.main()

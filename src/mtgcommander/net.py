@@ -11,7 +11,7 @@ has banned this repo's author before). Every request goes through here, which:
 
 Caches live under data/cache/commander/<source>/ (gitignored), like the repo's 17Lands cache.
 `configure()` sets the run-wide --refresh / --offline mode; every fetch can still override it."""
-import datetime, gzip, hashlib, json, os, re, time, urllib.error, urllib.parse, urllib.request
+import datetime, gzip, hashlib, json, os, re, threading, time, urllib.error, urllib.parse, urllib.request
 from .config import CACHE, DAY, TTL, UA
 
 PACE = {                                 # minimum seconds between two requests to one host
@@ -30,6 +30,7 @@ RETRY_CODES = (429, 500, 502, 503, 504)
 MISSING_CODES = {"json.edhrec.com": (403, 404)}  # EDHREC's file host answers 403 for a page that does not exist
 
 MODE = {"refresh": False, "offline": os.environ.get("MTG_OFFLINE") == "1"}
+STATS = {"requests": 0}                  # calls to `request` so far in this process: the deck server's progress count
 _last = {}                               # host -> time.monotonic() of the last request
 
 
@@ -59,9 +60,10 @@ def iso(ts):
 
 
 def atomic_json(path, obj):
-    """Write JSON atomically; the pid-suffixed temp file keeps two concurrent runs from interleaving."""
+    """Write JSON atomically; the temp file is named for the process and the thread, so two concurrent runs, or two
+    requests of the deck server, never write the same temporary file."""
     os.makedirs(os.path.dirname(path), exist_ok=True)
-    tmp = f"{path}.{os.getpid()}.tmp"
+    tmp = f"{path}.{os.getpid()}.{threading.get_ident()}.tmp"
     with open(tmp, "w") as f:
         json.dump(obj, f)
     os.replace(tmp, path)
@@ -89,6 +91,18 @@ def _pace(host):
     _last[host] = time.monotonic()
 
 
+def failing_hosts():
+    """The hosts named in MTG_FAIL_HOSTS (comma-separated; a test switch, off by default). `request` and `download`
+    fail at once for these hosts, as if the site were down, so a test can show how a page looks when a source is
+    unavailable (run with --refresh so the cache is not simply served)."""
+    return {h.strip().lower() for h in os.environ.get("MTG_FAIL_HOSTS", "").split(",") if h.strip()}
+
+
+def _refuse_failing_host(host, url, source):
+    if host.lower() in failing_hosts():
+        raise FetchError(source, url, f"{host} is switched off by MTG_FAIL_HOSTS (a test switch)")
+
+
 def _retry_after(err):
     try:
         return min(float(err.headers.get("Retry-After")), 60.0)
@@ -100,12 +114,14 @@ def request(url, *, data=None, headers=None, source="web", timeout=TIMEOUT):
     """GET, or POST when `data` is given (a dict or list is sent as JSON). Paced and retried.
     Returns the body as bytes, gunzipped when the server compressed it. Raises NotFound on 404 and
     FetchError once retries run out."""
+    STATS["requests"] += 1
     hdrs = {**UA, "Accept-Encoding": "gzip", **(headers or {})}
     body = None
     if data is not None:
         body = data if isinstance(data, bytes) else json.dumps(data).encode()
         hdrs.setdefault("Content-Type", "application/json")
     host = urllib.parse.urlsplit(url).hostname or ""
+    _refuse_failing_host(host, url, source)
     for attempt in range(RETRIES + 1):
         _pace(host)
         try:
@@ -192,7 +208,8 @@ def download(url, path, *, source, decode=True):
     server sent them: Commander Spellbook's daily file is a 29 MB gzip that the server labels
     `Content-Encoding: gzip`, so decoding it here would write 700 MB to disk for a reader that can unzip."""
     host = urllib.parse.urlsplit(url).hostname or ""
-    tmp = f"{path}.{os.getpid()}.tmp"
+    _refuse_failing_host(host, url, source)
+    tmp = f"{path}.{os.getpid()}.{threading.get_ident()}.tmp"
     os.makedirs(os.path.dirname(path), exist_ok=True)
     for attempt in range(2):
         _pace(host)

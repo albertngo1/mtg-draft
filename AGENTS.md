@@ -584,6 +584,7 @@ Windows use `python` and `mtg-commander.bat`; on macOS/Linux `./mtg-commander.sh
 | "what commander fits a squirrel army?" | `themes`, then `suggest` |
 | "is this deck Bracket 3?", "is this card allowed?" | `check` |
 | "how good is this deck at X?", "show me the numbers", "how much removal does it have?" | `stats` |
+| "save my deck", "show my decks on my phone", "change my deck from the couch" | `serve`, a local web server for the deck pages (saved decks are files in `commander/decks/`; `stats --version PLAYER/ID` prints a saved version). It has no login: tell the player, and run one server at a time |
 | "I will be offline" | `warm` now; `--offline` later |
 
 ```bash
@@ -616,7 +617,8 @@ first run of most commands also builds the card index (a minute or two, once). A
 
 `stats` takes the deck flags of `check` and the bracket, theme, playstyle and owned-card flags of `upgrade`, and prints
 every number the tool has about the list in six groups: power, interaction, mana, playstyle, win plan, and table and
-money. (The code has a seventh, changes from a base deck, for callers that pass a base deck; the command does not.)
+money. (There is a seventh, changes from a base deck, and each number then shows the base deck's value beside it; only
+`stats --version PLAYER/ID` has a base deck to compare with, so only that form prints them.)
 Quote a number from its line, and say what it measures:
 
 - A number with a usual range for the bracket shows it (`want 34-36`, `max 8`, `at least 1`) and marks it `SHORT` or
@@ -635,9 +637,10 @@ Quote a number from its line, and say what it measures:
   playstyle, so the highest one is what the deck is already doing, which is not always the playstyle the player asked for.
 - A line with `-` instead of a number says why under it (no combo data, no tag data, the card index does not record a
   creature's power). Say that the number is missing; never estimate it.
-- **Price** is the card index's price for the default printing. `upgrade` prices the cheapest printing, so its spending
-  can be lower; do not mix the two in one sentence. Cards the player owns (`--owned`, `--owned-precon`) cost $0 to buy;
-  unlike in `upgrade`, the list's own cards do not.
+- **Price** is the cheapest printing of each card, the same price `upgrade` charges, so the cost to buy of the list an
+  upgrade made is what the upgrade spent. If Scryfall could not be asked, the card index's price stands in and a warning
+  says so. Cards the player owns (`--owned`, `--owned-precon`) cost $0 to buy; unlike in `upgrade`, the list's own cards
+  do not.
 - The first online run downloads Commander Spellbook's daily combo file (29 MB) and the card attribute tags once; after
   that `stats --offline` works for any list.
 

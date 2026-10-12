@@ -8,7 +8,7 @@ result reached it. Deck lists are in fixtures/cli_*.txt; the card index is the s
 import contextlib, datetime, io, json, os, sys, tempfile, unittest
 from types import SimpleNamespace
 from unittest import mock
-from mtgcommander import carddb, cli, config, decklist, fantasy, net, roles
+from mtgcommander import carddb, cli, config, decklist, decks, fantasy, net, roles
 from mtgcommander.providers import archidekt, edhrec, edhtop16, scryfall_tags, spellbook
 
 FIXTURES = os.path.join(os.path.dirname(os.path.abspath(__file__)), "fixtures")
@@ -80,6 +80,57 @@ class FakeMetrics:
         return {"schema": 1, "headline": shown["headline"], "groups": shown["groups"]}
 
 
+class FakeServe:
+    """Stands in for serve.py: records how `serve` and `stats --version` make the app and the server, and answers with
+    canned results. `interrupt` is how the server stops (Ctrl-C); `bind_error` makes the port unavailable."""
+
+    class Switches:
+        pass
+
+    def __init__(self):
+        self.apps, self.servers, self.interrupt, self.bind_error, self.app_error = [], [], True, None, None
+        self.stats = None                    # the exception stats_result raises, if any
+
+    def App(self, db, root, **kw):
+        if self.app_error:
+            raise self.app_error
+        app = SimpleNamespace(db=db, root=os.path.abspath(root), kw=kw, closed=False, asked=[])
+
+        def stats_result(player, version_id):
+            app.asked.append((player, version_id))
+            if self.stats:
+                raise self.stats
+            shown = fixture("render_stats.json")
+            return {"command": "stats", "deck": {"name": "Go wide", "commanders": ["Hazel of the Rootbloom"], "count": 100,
+                                                 "ci": "BG"}, "bracket": 3, "spec": {"themes": ["tokens"], "playstyle": "value"},
+                    "budget": 200, "spent": 185.43, "headline": shown["headline"], "groups": shown["groups"],
+                    "warnings": ["serve warning"], "sources": {"edhrec": {"fetched": NOW, "cache": "fresh", "age_days": 0.1}}}
+
+        def close(timeout=None):
+            app.closed, app.waited = True, timeout
+        app.stats_result, app.close = stats_result, close
+        self.apps.append(app)
+        return app
+
+    def make_server(self, app, host, port):
+        if self.bind_error:
+            raise self.bind_error
+        server = SimpleNamespace(app=app, host=host, requested=port, server_address=(host, port or 52000), served=False,
+                                 closed=False, modes=[])
+
+        def serve_forever():
+            server.served = True
+            server.modes.append(dict(net.MODE))            # what the run-wide mode is while the server runs
+            if self.interrupt:
+                raise KeyboardInterrupt
+
+        def server_close():
+            server.closed = True
+        server.serve_forever, server.server_close = serve_forever, server_close
+        self.servers.append(server)
+        return server
+
+
 class CliCase(unittest.TestCase):
     """cli.run with every door closed: no network, no real card index, no claude, no cache writes."""
 
@@ -88,10 +139,13 @@ class CliCase(unittest.TestCase):
         self.engine = FakeEngine()
         self.validate = SimpleNamespace(run=mock.Mock(return_value={"bracket": 3, "method": "stub", "commanders": []}))
         self.metrics = FakeMetrics()
+        self.serve = FakeServe()
         self.combos = {"included": [], "almost": [], "fetched": NOW, "cache": "network"}
         self.load = mock.patch.object(carddb, "load", return_value=self.db).start()
         mock.patch.object(cli, "_engine", side_effect=lambda name, command: {
-            "build": self.engine, "validate": self.validate, "metrics": self.metrics}[name]).start()
+            "build": self.engine, "validate": self.validate, "metrics": self.metrics, "serve": self.serve}[name]).start()
+        self.prices = mock.patch.object(carddb, "deck_prices", side_effect=lambda names, db, **kw: {
+            db.get(n)["name"]: 2.0 for n in names if db.get(n) is not None and "Basic" not in db.get(n)["types"]}).start()
         self.combos_call = mock.patch.object(spellbook, "find_combos", return_value=self.combos).start()
         self.combos_for = mock.patch.object(spellbook, "combos_for", return_value=dict(self.combos, via="index")).start()
         self.tag = mock.patch.object(roles, "tag", side_effect=lambda names, db, **kw: {
@@ -239,6 +293,25 @@ class ParseTests(unittest.TestCase):
         a = self.parse("stats", "--precon", "Squirreled Away")
         self.assertEqual((a.deckfile, a.precon, a.verbose, a.bracket), (None, "Squirreled Away", False, None))
 
+    def test_stats_takes_a_saved_version_instead_of_a_file_or_precon(self):
+        a = self.parse("stats", "--version", "andy/squirrels-go-wide")
+        self.assertEqual((a.version, a.deckfile, a.precon), ("andy/squirrels-go-wide", None, None))
+        self.assertIsNone(self.parse("stats", "--precon", "Squirreled Away").version)
+
+    def test_serve_listens_on_this_computer_only_unless_told_otherwise(self):
+        a = self.parse("serve")
+        self.assertEqual((a.command, a.host, a.port, a.decks), ("serve", "127.0.0.1", 8341, None))
+        a = self.parse("serve", "--host", "100.101.102.103", "--port", "9000", "--decks", "mydecks", "--offline",
+                       "--refresh")
+        self.assertEqual((a.host, a.port, a.decks, a.offline, a.refresh), ("100.101.102.103", 9000, "mydecks", True, True))
+        self.assertEqual(self.parse("serve", "--port", "0").port, 0)
+
+    def test_serve_refuses_a_port_that_is_not_one(self):
+        for port in ("x", "-1", "65536", "80.5"):
+            with self.subTest(port=port):
+                with contextlib.redirect_stderr(io.StringIO()), self.assertRaises(SystemExit):
+                    cli.build_parser().parse_args(["serve", "--port", port])
+
     def test_stats_does_not_take_the_flags_that_only_building_needs(self):
         for flag in ("--budget", "--include", "--exclude", "--allow-combos", "--out", "--max-swaps"):
             with self.subTest(flag=flag):
@@ -261,7 +334,7 @@ class ParseTests(unittest.TestCase):
 
     def test_the_four_global_flags_work_after_any_command(self):
         for argv in (["themes"], ["suggest", "--theme", "t"], ["build", "C"], ["upgrade", "-"], ["check", "-"],
-                     ["stats", "-"], ["warm", "C"], ["validate", "--bracket", "3"]):
+                     ["stats", "-"], ["serve"], ["warm", "C"], ["validate", "--bracket", "3"]):
             with self.subTest(command=argv[0]):
                 a = cli.build_parser().parse_args(argv + ["--json", "--refresh", "--offline", "--sources", "edhrec"])
                 self.assertEqual((a.json, a.refresh, a.offline, a.sources), (True, True, True, ("edhrec",)))
@@ -300,7 +373,7 @@ class UsageErrorTests(CliCase):
     def test_help_exits_zero_and_lists_the_commands(self):
         result = self.run_cli("--help")
         self.assertEqual(result.code, 0)
-        for command in ("themes", "suggest", "build", "upgrade", "check", "stats", "warm", "validate"):
+        for command in ("themes", "suggest", "build", "upgrade", "check", "stats", "serve", "warm", "validate"):
             self.assertIn(command, result.out)
 
     def test_a_subcommand_help_lists_its_flags(self):
@@ -606,7 +679,22 @@ class StatsTests(CliCase):
         self.assertEqual(kw["attrs"]["Sol Ring"], frozenset({"mana-rock"}))
         self.assertEqual(kw["combos"]["via"], "index")
         self.assertIn("Sol Ring", kw["owned"])
-        self.assertNotIn("prices", kw)                                       # the card index's own prices
+        self.assertEqual(kw["prices"]["Sol Ring"], 2.0)                     # priced at the cheapest printing
+
+    def test_every_card_and_the_commander_is_priced_at_its_cheapest_printing_like_upgrade_prices_them(self):
+        # the helper `upgrade` and the deck pages use is asked for the whole list and the commander
+        self.stats()
+        names, db = self.prices.call_args[0]
+        listed = {n for _, n in decklist.parse(deck_text())["cards"]}
+        self.assertEqual((set(names), db), (listed | {"Hazel of the Rootbloom"}, self.db))
+        self.assertEqual(self.metrics.calls[0][1]["prices"]["Skullclamp"], 2.0)
+
+    def test_a_price_lookup_that_failed_is_a_warning_and_the_stats_go_on(self):
+        # the helper never raises: the index prices stand in and the reason is a warning
+        self.prices.side_effect = lambda names, db, **kw: carddb.WARNINGS.append("cheapest prices: scryfall: HTTP 503") or {}
+        result = self.stats()
+        self.assertIn("cheapest prices: scryfall: HTTP 503", result["warnings"])
+        self.assertEqual(self.metrics.calls[0][1]["prices"], {})
 
     def test_the_attribute_tags_are_loaded_for_the_decks_cards(self):
         self.stats()
@@ -678,7 +766,9 @@ class StatsTests(CliCase):
 
     def test_a_precon_and_a_file_together_are_exit_one(self):
         self.assertEqual(self.run_cli("stats", deck_path("cli_deck.txt"), "--precon", "Test Precon").code, 1)
-        self.assertEqual(self.run_cli("stats").code, 1)
+        result = self.run_cli("stats")
+        self.assertEqual(result.code, 1)
+        self.assertIn("--version PLAYER/ID, one of the three", result.err)
 
     def test_an_unknown_precon_is_exit_one_with_close_names(self):
         result = self.run_cli("stats", "--precon", "Test Precom")
@@ -714,6 +804,177 @@ class StatsTests(CliCase):
         self.run_json("stats", "--precon", "Test Precon", "--offline", "--refresh")
         self.assertEqual(seen, [(True, True)])
         self.assertEqual(net.MODE, before)
+
+
+# ----------------------------------------------------------------------------- stats --version
+class StatsVersionTests(CliCase):
+    def stats(self, *argv):
+        return self.run_cli("stats", "--version", "andy/go-wide", *argv)
+
+    def test_a_saved_version_is_worked_out_by_the_servers_code_and_printed_as_a_stats_report(self):
+        # `stats --version andy/go-wide`: the app is made on the decks folder, asked for the version, and the report
+        # shows each number beside the base deck's
+        result = self.stats()
+        self.assertEqual(result.code, 0, result.err)
+        app = self.serve.apps[0]
+        self.assertEqual((app.root, app.asked), (os.path.abspath(config.DECKS), [("andy", "go-wide")]))
+        self.assertIsNone(app.kw["web"])                                     # no pages: this is not a server
+        self.assertEqual(app.kw["offline"], False)
+        self.assertEqual(app.kw["sources"], config.SOURCES)
+        self.assertIn("Go wide → Bracket 3, budget $200 (spent $185.43); themes: tokens; playstyle: value", result.out)
+        self.assertIn("Score 93.77, Bracket 3 within its limits, 36 lands, removal power 5.95, cost to buy $185.43",
+                      result.out)
+        self.assertIn("(was ", result.out)
+        self.assertIn("serve warning", result.out)
+        self.assertEqual(self.metrics.calls, [])                             # it did not use the file path
+
+    def test_json_carries_the_same_result(self):
+        # --json: the groups with their base values, and the sources the app reported
+        result = json.loads(self.stats("--json").out)
+        self.assertEqual((result["schema"], result["command"], result["spent"]), (1, "stats", 185.43))
+        self.assertTrue(any("base" in item for g in result["groups"] for item in g["items"]))
+        self.assertEqual(result["sources"]["edhrec"]["cache"], "fresh")
+        self.assertIn("serve warning", result["warnings"])
+        self.assertIn("scryfall", result["sources"])                         # the card index is a source of every run
+
+    def test_the_decks_folder_is_the_one_the_environment_names(self):
+        # MTG_COMMANDER_DECKS decides config.DECKS, so a version in a temporary folder can be read
+        with mock.patch.object(config, "DECKS", "/tmp/somewhere/decks"):
+            self.stats()
+        self.assertEqual(self.serve.apps[0].root, "/tmp/somewhere/decks")
+
+    def test_offline_and_the_source_choice_reach_the_app(self):
+        self.stats("--offline", "--sources", "edhrec")
+        self.assertEqual((self.serve.apps[0].kw["offline"], self.serve.apps[0].kw["sources"]), (True, ("edhrec",)))
+
+    def test_the_version_holds_its_own_settings_so_flags_that_set_them_are_exit_one(self):
+        # the bracket, themes, playstyle, owned cards, a file or a precon all come from the version
+        for flags in (["--bracket", "4"], ["--theme", "tokens"], ["--playstyle", "go-wide"], ["--owned-precon", "X"],
+                      ["--owned", "mine.txt"], ["--fantasy", "squirrels"], ["--no-keep-fun"], ["--fantasy-weight", "0.8"],
+                      ["--commander", "Hazel of the Rootbloom"]):
+            with self.subTest(flags=flags):
+                result = self.stats(*flags)
+                self.assertEqual(result.code, 1)
+                self.assertIn("so it cannot be combined with", result.err)
+        for flags in (["--precon", "Test Precon"], ["deck.txt"]):          # a second deck is the "one of the three" mistake
+            with self.subTest(flags=flags):
+                result = self.stats(*flags)
+                self.assertEqual(result.code, 1)
+                self.assertIn("one of the three", result.err)
+        self.assertEqual(self.serve.apps, [])
+
+    def test_a_version_that_is_not_player_slash_id_is_exit_one(self):
+        for text in ("go-wide", "/go-wide", "andy/", ""):
+            with self.subTest(text=text):
+                result = self.run_cli("stats", "--version", text)
+                self.assertEqual(result.code, 1)
+        self.assertIn("PLAYER/ID, for example andy/squirrels-go-wide", self.run_cli("stats", "--version", "x").err)
+
+    def test_a_version_that_does_not_exist_is_exit_one_with_the_reason(self):
+        self.serve.stats = decks.NotFound('andy has no version with the id "go-wide".')
+        result = self.stats()
+        self.assertEqual((result.code, result.out), (1, ""))
+        self.assertIn('andy has no version with the id "go-wide".', result.err)
+
+    def test_a_deck_file_that_cannot_be_read_is_exit_one_naming_it(self):
+        self.serve.stats = ValueError("/decks/andy/go-wide.json could not be read: Expecting value")
+        result = self.stats()
+        self.assertEqual(result.code, 1)
+        self.assertIn("/decks/andy/go-wide.json could not be read", result.err)
+
+    def test_data_the_version_cannot_do_without_is_exit_two(self):
+        self.serve.stats = net.FetchError("edhrec", "u", "offline and not cached")
+        result = self.stats()
+        self.assertEqual(result.code, 2)
+        self.assertIn("warm COMMANDER", result.err)
+
+
+# ----------------------------------------------------------------------------- serve
+class ServeTests(CliCase):
+    def test_it_listens_where_it_was_told_prints_where_to_open_it_and_stops_cleanly_on_ctrl_c(self):
+        # the default: this computer only; the address, the phone instructions and the no-login warning on stdout
+        result = self.run_cli("serve")
+        self.assertEqual((result.code, result.err.strip()), (0, "stopped."))
+        server, app = self.serve.servers[0], self.serve.apps[0]
+        self.assertEqual((server.host, server.requested, server.served, server.closed, app.closed),
+                         ("127.0.0.1", 8341, True, True, True))
+        self.assertLessEqual(app.waited, 2)                                  # a download under way is not waited for
+        self.assertIn("http://127.0.0.1:8341/", result.out)
+        self.assertIn(f"Saved decks are in:        {os.path.abspath(config.DECKS)}", result.out)
+        self.assertIn("--host set to this computer's Tailscale address", result.out)
+        self.assertIn("`tailscale serve --bg 8341`", result.out)
+        self.assertIn("There is no login: anyone who can reach this address can change your decks.", result.out)
+        self.assertIn("Run one server at a time", result.out)
+        self.assertIn("Press Ctrl-C to stop.", result.out)
+
+    def test_a_tailscale_address_is_where_the_phone_opens_it(self):
+        # --host 100.101.102.103 --port 9000: the banner names that address, and still warns
+        result = self.run_cli("serve", "--host", "100.101.102.103", "--port", "9000")
+        self.assertEqual(result.code, 0)
+        self.assertIn("Listening on 100.101.102.103:9000. On your phone, open http://100.101.102.103:9000/", result.out)
+        self.assertNotIn("tailscale serve", result.out)
+        self.assertIn("There is no login", result.out)
+        self.assertEqual(self.serve.servers[0].requested, 9000)
+
+    def test_every_interface_is_called_what_it_is(self):
+        # 0.0.0.0 reaches every network the computer is on, which the banner says
+        result = self.run_cli("serve", "--host", "0.0.0.0", "--port", "9000")
+        self.assertIn("Listening on port 9000 of every network this computer is on.", result.out)
+        self.assertIn("http://<this computer's address>:9000/", result.out)
+        self.assertIn("Use this only on a network you trust.", result.out)
+
+    def test_port_zero_prints_the_port_it_got(self):
+        # a free port picked by the system
+        self.assertIn("http://127.0.0.1:52000/", self.run_cli("serve", "--port", "0").out)
+
+    def test_the_decks_folder_is_the_flag_or_the_environments(self):
+        self.run_cli("serve", "--decks", "elsewhere")
+        self.assertEqual(self.serve.apps[0].root, os.path.abspath("elsewhere"))
+        self.run_cli("serve")
+        self.assertEqual(self.serve.apps[1].root, os.path.abspath(config.DECKS))
+
+    def test_the_card_index_and_the_run_wide_modes_reach_the_app(self):
+        # --offline and --sources; the card index comes from the usual load
+        self.run_cli("serve", "--offline", "--sources", "edhrec")
+        app = self.serve.apps[0]
+        self.assertIs(app.db, self.db)
+        self.assertEqual((app.kw["offline"], app.kw["refresh"], app.kw["sources"]), (True, False, ("edhrec",)))
+        self.assertTrue(callable(app.kw["log"]))
+
+    def test_refresh_means_download_again_when_a_deck_is_first_opened_not_on_every_tap(self):
+        # the app is told to refresh; the run-wide mode is off while the server runs and back after
+        before = dict(net.MODE)
+        self.run_cli("serve", "--refresh")
+        app, server = self.serve.apps[0], self.serve.servers[0]
+        self.assertTrue(app.kw["refresh"])
+        self.assertEqual(server.modes[0]["refresh"], False)
+        self.assertEqual(net.MODE, before)
+
+    def test_a_port_that_is_in_use_is_exit_one_with_the_reason(self):
+        self.serve.bind_error = OSError(98, "Address already in use")
+        result = self.run_cli("serve")
+        self.assertEqual((result.code, result.out), (1, ""))
+        self.assertIn("cannot listen on 127.0.0.1:8341: Address already in use", result.err)
+
+    def test_a_test_switch_that_is_not_a_number_is_exit_one(self):
+        self.serve.app_error = ValueError("MTG_SERVE_DELAY must be a number, not 'soon'")
+        result = self.run_cli("serve")
+        self.assertEqual(result.code, 1)
+        self.assertIn("MTG_SERVE_DELAY must be a number, not 'soon'", result.err)
+
+    def test_the_server_does_not_print_a_report_and_json_changes_nothing(self):
+        # serve has no result: nothing but the banner is on stdout, --json or not
+        plain = self.run_cli("serve").out
+        with_json = self.run_cli("serve", "--json").out
+        self.assertEqual(plain, with_json)
+        self.assertNotIn("{", plain)
+
+    def test_a_server_that_runs_until_it_is_stopped_from_outside_ends_with_exit_zero(self):
+        # serve_forever returns (a shutdown from another thread)
+        self.serve.interrupt = False
+        result = self.run_cli("serve")
+        self.assertEqual(result.code, 0)
+        self.assertTrue(self.serve.servers[0].closed)
 
 
 # ----------------------------------------------------------------------------- themes
