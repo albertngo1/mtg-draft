@@ -381,7 +381,7 @@ function suggestionResult(app, deck, result) {
           }, h("span", { class: "pp__title", text: title }),
           h("span", { class: "pp__meta" }, "spend ", h("b", { text: ui.money(point.spent) }),
             ` · score ${ui.oneDecimal(result.value_before)} → ${ui.oneDecimal(point.value)}`,
-            ui.isNumber(point.change) ? ` (${ui.signed(Math.round(point.change * 10) / 10)})` : "")),
+            ui.isNumber(point.change) ? ` (${ui.signedValue(point.change, null, ui.oneDecimal)})` : "")),
           ui.button({
             label: `Apply ${point.swaps}`, kind: "gold", disabled: locked, ariaLabel: `Apply ${title}: ${point.swaps} ${point.swaps === 1 ? "swap" : "swaps"}`,
             onClick: () => app.change({ op: "group", label: title, items: swaps.slice(0, point.swaps).map((s) => ({ op: "swap", cut: s.cut, add: s.add })), source: "suggested" }),
