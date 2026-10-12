@@ -161,12 +161,23 @@ function viewFor(route) {
   }
 }
 
+/** The screen for the route, or, when drawing it throws (an answer these pages do not expect), a screen that says so. */
+function drawable(route) {
+  try {
+    return viewFor(route);
+  } catch (e) {
+    const error = new ApiError("server", `This screen could not be drawn (${e && e.message ? e.message : e}). The server's answer may not match these pages.`);
+    return { title: "Error", topbar: ui.h("div", { class: "topbar__row" }),
+      main: ui.h("div", { class: "page" }, ui.failureBanner(error, { retry: () => location.reload() })) };
+  }
+}
+
 /** Draw the screen from the state. `newScreen` means the person moved somewhere, so it starts at the top. */
 function paint(newScreen) {
   const route = state.route;
   const key = screenKey(route);
   const view = captureView();
-  const screen = viewFor(route);
+  const screen = drawable(route);
   document.getElementById("topbar").replaceChildren(screen.topbar);
   document.getElementById("main").replaceChildren(screen.main);
   document.title = screen.title ? `${screen.title} · Commander decks` : "Commander decks";
@@ -178,6 +189,7 @@ function paint(newScreen) {
 }
 
 function onRoute() {
+  closing = null;
   const route = parseRoute(location.hash);
   const before = state.route;
   state.route = route;
@@ -198,9 +210,13 @@ function onRoute() {
 
 // -------------------------------------------------------------------------------------------------------------- sheets
 
+let closing = null;             // the sheet address a close was already asked for (cleared on the next address change)
+
 function closeSheet() {
   const route = state.route;
   if (route.name !== "deck" || !route.sheet) return;
+  if (closing === location.hash) return;                                  // a double tap: going back twice would leave the deck
+  closing = location.hash;
   if (sheetCanGoBack) history.back();                                     // the address before it was the deck
   else location.replace(link.deck(route.player, route.id, state.lastTab));  // reached by a reload or a link: there is nothing to go back to
 }
@@ -270,8 +286,25 @@ async function loadDeck({ fresh = false } = {}) {
 }
 let deckToken = 0;
 
+/** Why a deck answer cannot be drawn (a part every screen reads is missing), or null. */
+function missingPart(body) {
+  if (!body || typeof body !== "object") return "everything";
+  for (const key of ["version", "base", "spec", "commanders", "cards", "diff", "metrics", "sources"]) {
+    if (body[key] === undefined || body[key] === null) return `"${key}"`;
+  }
+  if (!body.metrics.headline || !Array.isArray(body.metrics.groups)) return '"metrics"';
+  return null;
+}
+
 function acceptDeck(body) {
   if (!state.deck) return;
+  const missing = missingPart(body);
+  if (missing) {
+    state.deck.status = "error";
+    state.deck.error = new ApiError("server", `The server's answer for this deck is missing ${missing}, so it cannot be shown.`);
+    render();
+    return;
+  }
   state.deck.data = body;
   state.deck.status = "ready";
   state.deck.progress = null;
@@ -316,11 +349,15 @@ function describe(request) {
 function change(request, options = {}) {
   const deck = state.deck;
   if (!deck || deck.status !== "ready") return Promise.resolve(false);
+  const same = JSON.stringify(request);
+  const twin = state.pending.find((e) => e.deckKey === deck.key && JSON.stringify(e.request) === same);
+  if (twin) return twin.promise;                                          // a double tap: one change, not two
   ui.clearNotice();
-  const entry = { id: ++entrySeq, request, options, word: WORDS[request.op] || "Saving…", cards: cardsOf(request), status: "waiting", dropped: false };
+  const entry = { id: ++entrySeq, deckKey: deck.key, request, options, word: WORDS[request.op] || "Saving…", cards: cardsOf(request), status: "waiting", dropped: false };
   state.pending.push(entry);
   render();
   const tail = (queues.get(deck.key) || Promise.resolve()).then(() => sendChange(deck.key, entry));
+  entry.promise = tail;
   queues.set(deck.key, tail.catch(() => false));
   return tail;
 }
