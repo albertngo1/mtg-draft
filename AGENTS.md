@@ -710,14 +710,16 @@ report ends with the same warning, and so should your summary.
   up to that heading are the answer. Forced swaps come before the first heading; they are repairs, not part of any
   step, and may cost more than the first price point. For other amounts, run `upgrade` again with `--price-points`
   (for example `--price-points 30,60`); never make up the line for an amount the tool did not print.
-- A price point can carry a note, `fewer answers: enchantments 7 → 4 (typical 5)`: that step leaves the deck with fewer
-  answers to that kind of threat than it started with and than a typical deck at the bracket (the median of real decks),
-  which the value number does not show. Relay it with the price point it sits under, in plain words ("this step cuts
-  your enchantment answers from 7 to 4; a Bracket 3 deck usually has 5"), and let the player weigh it. `upgrade` never
-  takes a kind of threat below the bracket's usual minimum (or below what the list had, if that was lower), so a note can
-  still appear when the count stays above that minimum. The `Answers:` line under `Roles:` gives every kind whose count
-  changed. A kind with no note is not necessarily untouched: it may have fallen but still be at or above the typical
-  count. `answers_before` / `answers_after` in `--json` have the exact counts.
+- A price point can carry a note, `fewer answers: creatures 14 → 10 (typical 10), planeswalkers 7 → 3 (typical 3)`: by
+  that step the deck's answers to that kind of threat have come down from what it started with to what a typical deck at
+  the bracket holds (the median of real decks), or under it. The step has used up the deck's whole surplus of that kind,
+  which the value number does not show. Relay it with the price point it sits under, in plain words ("by this step your
+  planeswalker answers fall from 7 to 3, which is what a Bracket 3 deck usually has"), and let the player weigh it.
+  `upgrade` never takes a kind of threat below what a typical deck holds (or below what the list had, if that was
+  fewer), so a kind ends at the typical count at worst; that is a higher bar than the `SHORT` mark of `stats`, which is
+  the 25th percentile. The `Answers:` line under `Roles:` gives every kind whose count changed. With a budget but only
+  one price point the note sits under that line; with no budget there is no note. A kind with no note may still have
+  fallen, but it is above the typical count. `answers_before` / `answers_after` in `--json` have the exact counts.
 - `upgrade` has no limit on swaps unless `--max-swaps N` is set, so a large budget can give dozens. Lead with the
   first ones and the price-point lines, and offer the rest.
 
@@ -751,7 +753,7 @@ cannot do without is unavailable (offline with nothing cached): run `warm` while
 | command | keys to read |
 |---|---|
 | `check` | `legality` (`ok`, `problems[]` with `kind`, `cards`, `message`), `bracket`, `bracket_check` (the bracket report: `ok`, `violations[]`, `game_changers`, `gc_max`, `two_card_combos[]`, `estimated`, `notes`), `roles` (`counts`, `targets`, `status`), `curve` |
-| `upgrade` | `swaps[]` (`rank`, `cut`, `add`, `gain`, `price`, `owned`, `forced`, `reason`, `fills`, `evidence_add`, `kind_add`, `evidence_cut`, `price_point`: the step that found it, null for a forced swap), `price_points[]` (`budget`, `spent`, `value`, `swaps`: totals up to that step; `change`: `value` less `value_before`; `answers`: `{threat id: count}` at that step, null without tags; `weakens[]`: `id`, `label`, `before`, `after`, `target` for each kind of threat that step leaves under the start's count and under the bracket's typical count; empty without a budget), `blocked[]` (`card`, `reason`, `gain`), `cheap_adds[]`, `spent`, `roles_before`, `roles_after`, `answers_before`, `answers_after` (`{threat id: count}` of the cards that answer each kind of threat, null without tags), `targets`, `value_before`, `value_after`, `bracket_before`, `bracket_after`, `deck_after` |
+| `upgrade` | `swaps[]` (`rank`, `cut`, `add`, `gain`, `price`, `owned`, `forced`, `reason`, `fills`, `evidence_add`, `kind_add`, `evidence_cut`, `price_point`: the step that found it, null for a forced swap), `price_points[]` (`budget`, `spent`, `value`, `swaps`: totals up to that step; `change`: `value` less `value_before`; `answers`: `{threat id: count}` at that step, null without tags; `weakens[]`: `id`, `label`, `before`, `after`, `target` for each kind of threat that step has brought down from the start's count to the bracket's typical count or under it; empty without a budget), `blocked[]` (`card`, `reason`, `gain`), `cheap_adds[]`, `spent`, `roles_before`, `roles_after`, `answers_before`, `answers_after` (`{threat id: count}` of the cards that answer each kind of threat, null without tags), `targets`, `value_before`, `value_after`, `bracket_before`, `bracket_after`, `deck_after` |
 | `build` | `cards[]` (`name`, `section`, `roles`, `score`, `price`, `owned`, `evidence`, `kind`), `basics`, `count`, `spent`, `roles`, `targets`, `value`, `fantasy_cost`, `bracket_check`, `blocked` |
 | `suggest` | `commanders[]` (`rank`, `name`, `ci`, `score`, `theme_share`, `playstyle_share`, `bracket_decks`, `salt`, `tournament`, `core_cost`, `owned_share`, `evidence[]`) |
 | `stats` | `headline` (`score`, `bracket` (the chosen one), `bracket_ok` (whether the deck keeps its limits), `lands`, `removal_power`, `price`), `groups[]` (`id`, `label`, `items[]`). Each item has `id`, `label`, `value` (null when it cannot be had), `unit` (`%`, `$` or null), `target` (`min`, `target`, `max`, any of them null), `status` (`short`, `inside`, `over` or null), `why[]`, `cards[]`; read `why` for how a number was made or why it is missing |

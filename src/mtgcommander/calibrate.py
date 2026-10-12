@@ -27,7 +27,8 @@ theme-first deck wants the same interaction as a precon). They are
   metrics.py counts "answers to each threat". These are whole cards, so like the role targets they round half up
   to whole numbers, and, like the counterspell target, answers to spells are counted only over decks whose
   commander has blue (the reader, roles.answer_bands, drops that band's minimum to 0 for a deck without blue).
-`upgrade` uses the 25th percentile of each answer count as the fewest answers a swap may leave.
+The Metrics tab marks an answer count short when it is under the bracket's minimum (the 25th percentile); `upgrade`
+holds a higher bar: it uses the median (the target) of each answer count as the fewest answers a swap may leave.
 
 Run:  cd src && python3 -m mtgcommander.calibrate --out role_targets.proposed.json
 (`--write` replaces both committed files; `--sources edhtop16,archidekt` measures Brackets 3 and 4 from

@@ -406,9 +406,9 @@ function suggestionResult(app, deck, result) {
   return out;
 }
 
-/** The note under a price point that leaves the deck with fewer answers to some kind of threat than the list it
- *  started from and than a typical deck at the bracket: "enchantments 7 → 4 (typical 5)". The server works the numbers
- *  out; the change in score is shown to one decimal, like the two scores beside it. */
+/** The note under a price point that has brought the deck's answers to some kind of threat down from the starting
+ *  list's count to what a typical deck at the bracket holds, or under it: "enchantments 7 → 4 (typical 4)". The server
+ *  works the numbers out; the change in score is shown to one decimal, like the two scores beside it. */
 function weakensNote(point) {
   if (!point.weakens || !point.weakens.length) return null;
   const kinds = point.weakens.map((w) => `${w.label} ${w.before} → ${w.after} (typical ${w.target})`).join(", ");

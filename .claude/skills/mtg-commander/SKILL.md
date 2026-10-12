@@ -44,9 +44,9 @@ All commands are run from the repo root. On Windows use `python` and `mtg-comman
    With a budget, `upgrade` also prints price points: what the swaps up to $25, $50, ... buy on the way to the budget
    (`--price-points 25,50,100` picks the amounts). It stops only when nothing helps or the money is gone, unless you
    cap it with `--max-swaps N`. It also never takes the answers to a kind of threat (creatures, artifacts, enchantments,
-   planeswalkers, lands, graveyards, spells) below the low end of what real decks at the bracket hold (or below what the
-   deck had, if that was less), and a price point that still leaves fewer answers than the deck started with and than a
-   typical deck prints a `fewer answers:` note: pass it on with that price point.
+   planeswalkers, lands, graveyards, spells) below what a typical deck at the bracket holds (or below what the deck had,
+   if that was less), and a price point that has brought them down from the start to that typical count prints a
+   `fewer answers:` note: pass it on with that price point.
    `themes [--commander NAME]` prints the menu of playstyles and themes to choose words from. Add `--owned FILE` or
    `--owned-precon NAME` for cards the player owns (they cost $0), `--include` / `--exclude` for cards to keep or avoid,
    and `--json` when you need to read a result exactly.

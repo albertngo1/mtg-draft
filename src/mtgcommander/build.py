@@ -26,10 +26,10 @@ is invisible to them, and each result says what it left out and why.
 `upgrade` also keeps a deck's answers. The deck's value counts removal cards but not what each one can hit, so a
 long upgrade could trade away the last cards that answer enchantments or planeswalkers. Once the forced swaps are
 done, no swap leaves a kind of threat (creatures, artifacts, enchantments, planeswalkers, lands, graveyards, spells)
-with fewer answers than the bracket's 25th percentile of real decks, or than the deck had if it had fewer (see
-`Plan.keeps_answers`; the numbers come from roles.answer_bands). The result reports the answers before and after, and
-for each price point which kinds it leaves thinner than the starting list and than a typical deck. `build` keeps no
-such floor.
+with fewer answers than a typical deck at the bracket holds (the band's target, the median of real decks), or than
+the deck had if it had fewer (see `Plan.keeps_answers`; the numbers come from roles.answer_bands). The result reports
+the answers before and after, and for each price point which kinds it has brought down from the starting count to
+the typical count or under it: the point used up all of that kind's surplus. `build` keeps no such floor.
 
 Lands get rules of their own, because a basic land scores 0 and so any scored nonbasic land looks like an
 upgrade over it. A nonbasic land must score NONBASIC_MIN to take a basic's slot, no swap strips a color of its
@@ -511,12 +511,12 @@ class Plan:
         return {threat for threat, floor in self.answer_floors.items() if 0 < self.answers[threat] <= floor}
 
     def keeps_answers(self, cut, add):
-        """A swap may not strip a kind of threat of its answers: after it each threat keeps at least its floor (the
-        25th percentile of real decks at the bracket), or as many answers as it had if it had fewer. With 7 answers to
-        enchantments and a floor of 4 a deck may trade down to 4 but not to 3, and a deck that has 2 may not lose
-        either, though it may swap one for another. Swapping an answer to enchantments for an answer to planeswalkers
-        does not help the enchantments, so each kind is judged on its own. With no floors (`build`, or an `upgrade`
-        whose tags did not load) every swap passes."""
+        """A swap may not strip a kind of threat of its answers: after it each threat keeps at least its floor (what a
+        typical deck at the bracket holds: the band's target, the median of real decks), or as many answers as it had
+        if it had fewer. With 7 answers to enchantments and a floor of 4 a deck may trade down to 4 but not to 3, and
+        a deck that has 2 may not lose either, though it may swap one for another. Swapping an answer to enchantments
+        for an answer to planeswalkers does not help the enchantments, so each kind is judged on its own. With no
+        floors (`build`, or an `upgrade` whose tags did not load) every swap passes."""
         if not self.answer_floors:
             return True
         for threat in cut.answers:
@@ -576,7 +576,10 @@ class Plan:
         watch["costly"][add] = (best gain, price) for adds that only the budget stopped."""
         rem, best, best_key = self.remaining(), None, None
         groups = self._groups(cuts)
-        tight = self._tight_answers()                  # kinds of threat a swap could still thin out: usually none
+        tight = self._tight_answers()                  # kinds of threat a swap could still thin out
+        # The members of a group answer the same kinds (that is in the signature), so one test per group says whether
+        # the answers floor could refuse any of its cuts; most groups answer nothing that is down to its floor.
+        at_risk = [bool(members[0][0].answers & tight) for members in groups]
         for a in adds:
             fa = self.m.facts(a)
             need = self.price(a)
@@ -585,13 +588,13 @@ class Plan:
             win = self.m.add_value(self.counts, self.mass, fa)
             risky = bool(fa.gc or fa.extra or fa.mld)
             any_gain, rule_pass, hit = None, False, None
-            for members in groups:
+            for members, hot in zip(groups, at_risk):
                 for fc, loss, refund in members:
                     if (fc.land or fa.land) and not self.mana_ok(fc, fa):
                         break
                     if fc.basic and not self.basics_ok(fc, fa):
                         break
-                    if tight and fc.answers and not self.keeps_answers(fc, fa):
+                    if hot and not self.keeps_answers(fc, fa):
                         break
                     gain = win - loss + self.m.overlap(self.counts, self.mass, fc, fa)
                     if any_gain is None or gain > any_gain:
@@ -861,16 +864,18 @@ def _price_ladder(budget, price_points):
 
 
 def _weakened(before, now, bands):
-    """The kinds of threat a list answers with fewer cards than the list it started from AND than a typical deck:
-    [{"id", "label", "before", "after", "target"}] in roles.THREATS order, "label" being the short noun ("enchantments")
-    and "target" the bracket's typical count. `before` and `now` are roles.answer_counts output, `bands` is
-    roles.answer_bands output; a kind it has no band for is left out, since there is no typical count to compare with.
-    A kind that fell but still has at least the typical count (7 answers to enchantments down to 5, where a deck
-    usually holds 4) is not a weakness."""
+    """The kinds of threat a list answers with fewer cards than the list it started from and with no more than a
+    typical deck at the bracket holds: [{"id", "label", "before", "after", "target"}] in roles.THREATS order, "label"
+    being the short noun ("enchantments") and "target" the typical count (the band's target, the median of real decks).
+    `before` and `now` are roles.answer_counts output, `bands` is roles.answer_bands output; a kind it has no band for
+    is left out, since there is no typical count to compare with. Because the optional swaps never take a kind under
+    the typical count, an entry means the list has used up all of that kind's surplus over a typical deck (7 answers
+    to enchantments down to 4, where a deck usually holds 4); a kind that fell but is still above the typical count
+    (7 down to 5) is not listed. One a forced swap took under the typical count is listed too."""
     return [{"id": id_, "label": roles.THREAT_NOUNS[id_], "before": before[id_], "after": now[id_],
              "target": bands[id_]["target"]}
             for id_ in roles.THREAT_IDS
-            if id_ in bands and now[id_] < before[id_] and now[id_] < bands[id_]["target"]]
+            if id_ in bands and now[id_] < before[id_] and now[id_] <= bands[id_]["target"]]
 
 
 def _price_point_summaries(ladder, swaps, deck_names, ctx, db, value_before, attrs=None, bands=None):
@@ -878,8 +883,8 @@ def _price_point_summaries(ladder, swaps, deck_names, ctx, db, value_before, att
     replaying the kept swaps onto the starting list in order. "swaps" and "spent" are totals so far (forced swaps
     included, since they come first), "value" is deck_value of the list at that point, and "change" is that less
     `value_before` (to 2 decimals), so a page never subtracts. "answers" is {threat id: cards that answer it} for the
-    list at that point and "weakens" the kinds it answers less than the starting list and than a typical deck (see
-    `_weakened`); `attrs` is roles.attributes output and `bands` roles.answer_bands output, and without `attrs` (the
+    list at that point and "weakens" the kinds it has brought down from the starting count to the typical count or
+    under it (see `_weakened`); `attrs` is roles.attributes output and `bands` roles.answer_bands output, and without `attrs` (the
     tags did not load) "answers" is None and "weakens" is empty. Replaying instead of remembering what the search saw
     keeps the lines true after the combo repair has undone a swap."""
     names, spent, done, out = list(deck_names), 0.0, 0, []
@@ -929,9 +934,10 @@ def upgrade(ctx, deck, db, *, budget=None, max_swaps=None, price_points=None, co
     swap says which step found it ("price_point"; None for a forced swap), and the result's "price_points" sums up
     each step. Without a budget there are no steps.
 
-    Answers: the optional swaps may not leave a kind of threat with fewer answers than the bracket's 25th percentile
-    of real decks, or than the list had if it had fewer (`Plan.keeps_answers`). The floors are set only after the
-    forced swaps, which must happen whatever they take away, and only when the attribute tags loaded
+    Answers: the optional swaps may not leave a kind of threat with fewer answers than a typical deck at the bracket
+    holds (the band's target, the median of real decks), or than the list had if it had fewer
+    (`Plan.keeps_answers`). The floors are set only after the forced swaps, which must happen whatever they take
+    away, and only when the attribute tags loaded
     (roles.attributes_loaded); if they did not, no floor applies and a warning says that answers were not checked.
     The result carries "answers_before" and "answers_after" ({threat id: cards that answer it}, None without tags),
     and each price point carries "answers", "weakens" and "change" (see `_price_point_summaries`)."""
@@ -996,10 +1002,11 @@ def upgrade(ctx, deck, db, *, budget=None, max_swaps=None, price_points=None, co
         plan.locked.add(add)
         swaps.append(ledger.record(cut, add, gain, True, why, fills))
 
-    # --- from here on the answers are kept. The forced swaps above had to happen whatever they took away, so the
+    # --- from here on the answers are kept, down to what a typical deck holds (the band's target; the Metrics tab's
+    # "short" is the band's min, a lower bar). The forced swaps above had to happen whatever they took away, so the
     # floors wait until they are done; without the tags there is nothing to keep (and the warning has been given).
     bands = {} if attrs is None else roles.answer_bands(bracket, ci)
-    plan.answer_floors = {threat: band["min"] for threat, band in bands.items()}
+    plan.answer_floors = {threat: band["target"] for threat, band in bands.items()}
 
     # --- the best swaps, one at a time. With a budget, climb the price points: each step spends up to its amount
     # on top of what the steps before spent, and tries several prices-matter settings. `watch` is the last

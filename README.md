@@ -104,7 +104,8 @@ list's legality and bracket rules, and it will not recommend a card that breaks 
 
 ```bash
 # Upgrade a precon: ranked cuts and adds, at most $75 on cards you don't own (with what $20 and $40 buy on the
-# way up, and a note where a step leaves you with fewer answers to some kind of threat), leaning toward tokens
+# way up, and a note where a step has cut your answers to some kind of threat down to a typical deck's), leaning toward
+# tokens
 python3 src/mtg-commander.py upgrade --precon "Squirreled Away" --budget 75 --theme tokens
 
 # Check a decklist file: legality, bracket rules, role counts, mana curve
@@ -147,9 +148,10 @@ cards, with four tabs. **Cards** shows every card as its picture: tap one to rea
 cut it or swap it, or use **Add** to search for a card and say what it replaces. **Metrics** shows every number, each with
 how it was worked out behind a tap. **Changes** lists what was added and cut against the base deck, with an Undo for each
 change. **Suggestions** lists `upgrade`'s swaps by price point, which you apply one at a time or a whole price point at
-once; each point shows its change in score, and a "Weakens interaction" note when it leaves the deck with fewer answers
-to some kind of threat than it started with and than a typical deck at the bracket. Every change is saved the moment
-you make it and every number is redrawn from the server's answer, so the pages never work a number out themselves.
+once; each point shows its change in score, and a "Weakens interaction" note when it has brought the deck's answers to
+some kind of threat down from where they started to what a typical deck at the bracket holds. Every change is saved the
+moment you make it and every number is redrawn from the server's answer, so the pages never work a number out
+themselves.
 The first time a commander is opened its data is downloaded, which takes several
 seconds, and the page says what it is fetching. On a phone the page is one column with the numbers pinned above the cards;
 on a desktop screen the metrics sit beside the cards. The only thing loaded from another site is each card's picture

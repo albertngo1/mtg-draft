@@ -107,8 +107,8 @@ THREATS = (("answers_creatures", "Answers to creatures", ("removal-creature", "s
 THREAT_IDS = tuple(id_ for id_, _, _ in THREATS)
 THREAT_NOUNS = {id_: label.split(" to ", 1)[1] for id_, label, _ in THREATS}     # "answers_lands" -> "lands"
 # Threats only blue cards answer (a counterspell). A deck without blue is not expected to hold any, so the usual number
-# is measured over decks with blue, and `answer_bands` drops the minimum to 0 for colors without blue: the rule
-# `targets` applies to the counterspell role.
+# is measured over decks with blue, and `answer_bands` drops the minimum and target to 0 for colors without blue: the
+# rule `targets` applies to the counterspell role.
 BLUE_THREATS = ("answers_spells",)
 
 NEW_CARD_DAYS = 180

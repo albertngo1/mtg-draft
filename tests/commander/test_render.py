@@ -397,17 +397,17 @@ class UpgradeTests(unittest.TestCase, WidthMixin):
                                 "  $75   spend $42.10   value    ?          4 swaps"])
         self.assertEqual(len(rows[0]), len(rows[1]))
 
-    # --- price points that leave the deck with fewer answers
-    WEAK_ENCH = {"id": "answers_enchantments", "label": "enchantments", "before": 7, "after": 4, "target": 5}
-    WEAK_WALK = {"id": "answers_planeswalkers", "label": "planeswalkers", "before": 7, "after": 3, "target": 5}
+    # --- price points that bring the deck's answers down to a typical deck's count or under it
+    WEAK_ENCH = {"id": "answers_enchantments", "label": "enchantments", "before": 7, "after": 4, "target": 4}
+    WEAK_WALK = {"id": "answers_planeswalkers", "label": "planeswalkers", "before": 7, "after": 3, "target": 3}
 
     def test_a_price_point_that_leaves_fewer_answers_carries_a_note_right_under_its_line(self):
         self.stepped()
         self.result["price_points"][1]["weakens"] = [self.WEAK_ENCH, self.WEAK_WALK]
         lines = render.text(self.result).splitlines()
         at = lines.index("  $75   spend $42.10   value 21.7 (+3.5)   4 swaps")
-        self.assertEqual(lines[at + 1], "        fewer answers: enchantments 7 → 4 (typical 5), "
-                                        "planeswalkers 7 → 3 (typical 5)")
+        self.assertEqual(lines[at + 1], "        fewer answers: enchantments 7 → 4 (typical 4), "
+                                        "planeswalkers 7 → 3 (typical 3)")
         self.assertEqual(lines[at + 2], "")                              # then the swaps, as before
         # the first point has none, so nothing sits under it
         first = lines.index("  $25   spend  $1.20   value 18.9 (+0.7)   2 swaps")
@@ -434,6 +434,52 @@ class UpgradeTests(unittest.TestCase, WidthMixin):
         at = next(i for i, l in enumerate(lines) if l.startswith("        fewer answers: creatures 12 → 1"))
         self.assertTrue(lines[at + 1].startswith("            "))          # indented further than the note's first line
         self.assertIn("spells 12 → 1 (typical 6)", " ".join(l.strip() for l in lines[at:at + 3]))
+
+    def lone(self, *weakens):
+        """The fixture as an upgrade with a budget and no steps: its one price point is the budget itself, and it has
+        `weakens`."""
+        for swap in self.result["swaps"]:
+            swap["price_point"] = 75.0
+        self.result["price_points"] = [{"budget": 75.0, "spent": 42.1, "value": 21.7, "swaps": 4, "change": 3.5,
+                                        "weakens": list(weakens)}]
+        return render.text(self.result).splitlines()
+
+    def test_a_lone_price_point_shows_its_note_two_spaces_in_under_the_answers_line(self):
+        # one step prints no price-point block, so the note has no line of its own to sit under
+        lines = self.lone(self.WEAK_ENCH, self.WEAK_WALK)
+        at = lines.index("Answers: creatures 9→8  planeswalkers 3→2  spells 0→1")
+        self.assertEqual(lines[at + 1], "  fewer answers: enchantments 7 → 4 (typical 4), planeswalkers 7 → 3 (typical 3)")
+        self.assertEqual(lines[at + 2], "Still off target: removal 5 (want 6-12)")
+        self.assertNotIn("Price points", "\n".join(lines))                  # the block is still not printed
+        self.assertFits("\n".join(lines))
+
+    def test_a_lone_price_point_with_no_note_prints_no_note(self):
+        self.assertNotIn("fewer answers", "\n".join(self.lone()))
+
+    def test_a_long_lone_note_wraps_inside_phone_width(self):
+        weak = [dict(self.WEAK_ENCH, id=f"answers_{k}", label=k, before=12, after=1, target=6)
+                for k in ("creatures", "artifacts", "enchantments", "planeswalkers", "graveyards", "spells")]
+        text = "\n".join(self.lone(*weak))
+        self.assertFits(text)
+        lines = text.splitlines()
+        at = next(i for i, l in enumerate(lines) if l.startswith("  fewer answers: creatures 12 → 1"))
+        self.assertTrue(lines[at + 1].startswith("      "))                  # the continuation hangs further in
+
+    def test_without_a_budget_there_is_no_price_point_and_so_only_the_answers_line(self):
+        self.result.update(budget=None, price_points=[])
+        text = render.text(self.result)
+        self.assertIn("Answers: creatures 9→8  planeswalkers 3→2  spells 0→1", text)
+        self.assertNotIn("fewer answers", text)
+
+    def test_with_steps_each_note_sits_under_its_own_line_and_none_is_repeated_under_the_answers(self):
+        self.stepped()
+        self.result["price_points"][0]["weakens"] = [self.WEAK_ENCH]
+        self.result["price_points"][1]["weakens"] = [self.WEAK_ENCH, self.WEAK_WALK]
+        text = render.text(self.result)
+        self.assertEqual(text.count("fewer answers:"), 2)
+        lines = text.splitlines()
+        at = lines.index("Answers: creatures 9→8  planeswalkers 3→2  spells 0→1")
+        self.assertEqual(lines[at + 1], "Still off target: removal 5 (want 6-12)")
 
     def test_the_points_own_change_is_what_prints_and_the_start_is_only_a_fallback(self):
         self.stepped()
