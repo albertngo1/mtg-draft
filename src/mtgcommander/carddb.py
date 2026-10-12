@@ -6,7 +6,11 @@ so it is streamed once, reduced to ~35k records (see `card_record`) and deleted;
 
 Name matching is the other job. Decklists spell cards every way (lower case, curly apostrophes, "Aether Vial"
 for "Æther Vial", "Fire/Ice", the front face alone), so `CardDB.get` accepts any spelling that `normalize`
-maps to the same key, and `suggest` offers close matches for typos.
+maps to the same key, and `suggest` offers close matches for typos. A card keeps its Scryfall `oracle_id` when
+Scryfall renames it, so `by_oracle` finds a saved card by id when its name no longer matches.
+
+Each record also keeps the links to the card's picture (the front, and the back when the faces have pictures of
+their own) and to its Scryfall page, so the deck pages can show a card without asking Scryfall about it.
 
 Prices: the index holds the default printing's price. `cheapest_prices` asks Scryfall for the cheapest
 printing of the few cards a recommendation needs (`prefer:usd-low`, checked against the minimum over all
@@ -15,7 +19,7 @@ import difflib, gzip, json, os, re, time, unicodedata, urllib.parse
 from . import net
 from .config import TTL
 
-SCHEMA = 1
+SCHEMA = 2               # 2: records also hold the picture links, the Scryfall page link, power and toughness
 BULK_LIST = "https://api.scryfall.com/bulk-data"
 SEARCH = "https://api.scryfall.com/cards/search"
 WUBRG = "WUBRG"
@@ -104,9 +108,16 @@ def _can_lead(types, subtypes, ftext, has_pt, meld_result):
             or (legendary and bool(_OFF_BATTLEFIELD_CREATURE.search(ftext))))
 
 
+def _normal_image(obj):
+    """The link to the `normal` size picture in a card's or a face's `image_uris`, or "" when it has none."""
+    return ((obj or {}).get("image_uris") or {}).get("normal") or ""
+
+
 def card_record(d):
     """The index record for one Scryfall card object, or None for things that are not deck cards.
-    Keys are documented in the design doc; every key is always present."""
+    Keys are documented in the design doc; every key is always present. The picture keys are links, "" when
+    Scryfall has none: `image` is the front (a split or adventure card has one picture for both halves, on the
+    card itself; a transform or modal card has one per face), `image_back` the second face's own picture."""
     faces = d.get("card_faces") or []
     front = faces[0] if faces else d
     oracle_id = d.get("oracle_id") or front.get("oracle_id")   # a reversible card keeps it on its faces
@@ -148,6 +159,13 @@ def card_record(d):
         "any_number": bool(_ANY_NUMBER.search(text)),
         "layout": d.get("layout", "normal"),
         "released": d.get("released_at", ""),   # of the default printing, so only an upper bound on age
+        # a creature's printed power and toughness, as Scryfall writes them ("2", "*", "1+*"); None for a card with
+        # none (the front face's, like every other key)
+        "power": front.get("power") if faces else d.get("power"),
+        "toughness": front.get("toughness") if faces else d.get("toughness"),
+        "image": _normal_image(d) or _normal_image(front),
+        "image_back": _normal_image(faces[1]) if len(faces) > 1 else "",
+        "scryfall_uri": d.get("scryfall_uri") or "",
     }
 
 
@@ -245,6 +263,7 @@ class CardDB:
     def __init__(self, cards, fetched="", source="", cache="fresh"):
         self.cards, self.fetched, self.source, self.cache = cards, fetched, source, cache
         self._alias = None
+        self._by_oracle = None
 
     def _aliases(self):
         """normalized spelling → canonical name. Canonical spellings win over front-face aliases; a split
@@ -254,7 +273,9 @@ class CardDB:
             for n, rec in self.cards.items():
                 if rec["front"] != n:
                     alias.setdefault(normalize(rec["front"]), n)
-            self._alias, self._alias_keys = alias, list(alias)
+            # keys first: another thread sees _alias set only once _alias_keys exists (the deck server is threaded)
+            self._alias_keys = list(alias)
+            self._alias = alias
         return self._alias
 
     def get(self, name):
@@ -270,6 +291,13 @@ class CardDB:
     def resolve(self, name):
         rec = self.get(name)
         return rec["name"] if rec else None
+
+    def by_oracle(self, oracle_id):
+        """The record with this Scryfall `oracle_id`, or None. The id is the same for every printing and survives
+        a rename, which is why saved decks keep it beside each card name. The id map is built on first use."""
+        if self._by_oracle is None:
+            self._by_oracle = {rec["oracle_id"]: rec for rec in self.cards.values() if rec.get("oracle_id")}
+        return self._by_oracle.get(oracle_id)
 
     def suggest(self, name, n=3):
         alias = self._aliases()

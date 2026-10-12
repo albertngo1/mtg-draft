@@ -11,6 +11,9 @@ For how the tool uses them, see [ARCHITECTURE.md → Commander deck builder](../
 | [`role_targets.json`](./role_targets.json) | how many lands, ramp, card draw, removal and so on a deck at each bracket holds, as `[min, target, max]` | `src/mtgcommander/calibrate.py` | Brackets 2 and 5 are measured from real decks; Brackets 3 and 4 are interpolated; Bracket 1 is judgment |
 | [`playstyles.json`](./playstyles.json) | the menu of playstyles and themes you can ask for | by hand | the role changes per playstyle are judgment; the theme names are checked against EDHREC's list |
 
+A fourth thing lives in this folder, and it is not reference data: `decks/` holds the decks players have saved (see
+the last section). It does not exist until the first deck is saved.
+
 ## `brackets.json`
 
 **What it holds.**
@@ -124,3 +127,24 @@ are this tool's own menu.
 **Judgment.** The role changes per playstyle (`control` adds 2 removal, 2 counterspells and 1 board wipe; `big-mana`
 adds 3 ramp and 1 land) are judgment calls, not fitted to data. So are the theme matchers. To add a theme, spell it as
 EDHREC does (`plus-1-plus-1-counters`); the unit tests check that every theme a playstyle names is a real EDHREC theme.
+
+## `decks/`
+
+**What it holds.** The decks players have saved. `bases/<base-id>.json` is a base deck, the deck a player starts from:
+a precon or a pasted list, written once and never changed. `<player>/<version-id>.json` is one player's version of a
+base deck, with a log of every card they added, cut or swapped. The `MTG_COMMANDER_DECKS` environment variable names a
+different folder.
+
+**Made by.** `src/mtgcommander/decks.py`, not by hand. It checks each change against the deck rules and writes each file
+in one step, so a file is never half written. The files are committed, so players share decks through git, and each
+player's versions sit in that player's own folder, so two players do not edit the same file.
+
+**What is not in it.** Scores, prices and the other numbers the data sites supply. They are looked up each time, so none
+of that data reaches git (see ARCHITECTURE.md, "Terms of use"). A file holds card names, each beside Scryfall's id for the
+card, and the changes players made.
+
+**Merging.** A version's log only ever grows: an undo adds an entry, it removes none. Two people changing the same
+version on different machines still conflict, as with any file; git then leaves marker lines in it, the file cannot be
+read until the conflict is resolved, and the tool names the file when it meets one.
+
+How the files are laid out, and the rules every change must pass, are in ARCHITECTURE.md, "Deck files".
