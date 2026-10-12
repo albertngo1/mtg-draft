@@ -651,7 +651,7 @@ validate --bracket N [--commanders NAME [NAME ...]] [--limit N] [--sweep] [--cal
 | `check` | legality (100 cards, colors, duplicates, banned cards), the bracket rules, role counts against the bracket's range, and the mana curve |
 | `stats` | every number about a list: score and bracket, interaction (answers to each kind of threat, removal power), mana (lands, ramp, draw, curve, colors, tapped and colorless lands), playstyle, win plan, salt, price and what you own. Groups and formulas: [Deck metrics and `stats`](#deck-metrics-and-stats). With `--version PLAYER/ID` it shows a saved version, each number beside its base deck's |
 | `serve` | runs the local web server for the deck pages until Ctrl-C: saved decks, with every metric worked out again after each change. Prints its address, how to reach it from a phone, and that there is no login. See [The deck server](#the-deck-server) |
-| `warm` | downloads what the other commands need for one commander, so they can run with `--offline` |
+| `warm` | downloads what the other commands need for one commander, and the data that belongs to no commander (the card attribute tags and the combo index), so they can run with `--offline` |
 | `validate` | measures how closely builds match real decks (see [Validation](#validation)) |
 
 The four flags every command takes, then the rest (help text as `--help` prints it):
@@ -1185,8 +1185,10 @@ loading and indexing it about a quarter of a second, and finding a deck's combos
   says why. A price you pass in (`prices=`) replaces both.
 - *Owned cards.* `--owned` and `--owned-precon` make cards cost $0. The cards of the list itself do not, unlike in
   `upgrade`, so the cost to buy is what the whole list would cost you.
-- *`warm`* does not fetch the attribute tags or the combo file; the first online `stats` run saves both (tags for 30
-  days, the combo index for 7).
+- *The attribute tags and the combo index* are saved by `warm` ahead of time, through the same calls `stats` and
+  `serve` make (`roles.attributes`, `spellbook.local_index`), so `stats --offline` after a `warm` shows every number
+  and checks the combos of any list. Without a `warm`, the first online `stats` run saves them (tags for 30 days, the
+  combo index for 7).
 
 ### Bracket rules
 
@@ -1234,7 +1236,7 @@ The bracket wording, the dates and the places where Wizards' articles disagree (
 | EDHREC | per commander, bracket and theme: decks that play each card, synergy; theme lists; the salt list; average land count | builder choice | 7 days | `json.edhrec.com` |
 | Archidekt | decklists tagged with a bracket | builder choice | 7 days for a search, 30 for a deck | `archidekt.com` |
 | EDHTop16 | cEDH tournament entries: decklists with wins, losses, draws, standing | tournament result | 1 day | `edhtop16.com` |
-| Commander Spellbook | combos in a list and combos one card away, each with a bracket tag: from the API for `check`, `build` and `upgrade` (per list), and from the daily combo file, boiled down to a local index, for `stats` | rules check | API answers 7 days; the combo index 7 days | `backend.commanderspellbook.com`, `json.commanderspellbook.com` |
+| Commander Spellbook | combos in a list and combos one card away, each with a bracket tag: from the API for `check`, `build` and `upgrade` (per list), and from the daily combo file, boiled down to a local index, for `stats` and `serve` (which `warm` downloads ahead of time) | rules check | API answers 7 days; the combo index 7 days | `backend.commanderspellbook.com`, `json.commanderspellbook.com` |
 | Scryfall | card data, function tags (the role tags and the attribute tags, saved in one file), cheapest printing | rules, roles, prices | card index 7 days, tags 30, prices 7 | `api.scryfall.com`, `data.scryfall.io` |
 | MTGJSON | precon decklists | input | 30 days (the list of precons: 7) | `mtgjson.com` |
 
@@ -1251,15 +1253,24 @@ and 5xx answers and network errors up to four times, waiting 1, 2, 4 and 8 secon
 to 60). When the network fails and an old copy exists, it serves the copy and says how old it is. Requests carry the
 User-Agent `mtg-draft-commander/0.1 (+https://github.com/albertngo1/mtg-draft)`.
 
-**`warm COMMANDER`** downloads ahead of time what the other commands will ask for: the card index; EDHREC's
-all-bracket and bracket pages, the pages for each `--theme`, the salt list, and neighboring brackets when the bracket
-is thin; Archidekt decks when they are used; EDHTop16 results at Bracket 3 and up; the commander's precons from
-MTGJSON; the function tags (the role tags); and the cheapest prices of about 500 likely cards. It does not fetch
-Commander Spellbook combos: those answers are cached per exact card list, so an `--offline` `check`, `build` or
+**`warm COMMANDER`** downloads ahead of time what the other commands will ask for, with one row of the report (and
+of `fetched[]` with `--json`) for each download: the card index; the function tags for card attributes and Commander
+Spellbook's local combo index, which belong to no commander; EDHREC's all-bracket and bracket pages, the pages for each
+`--theme`, the salt list, and neighboring brackets when the bracket is thin; Archidekt decks when they are used;
+EDHTop16 results at Bracket 3 and up; the commander's precons from MTGJSON; the function tags (the role tags); and the
+cheapest prices of about 500 likely cards. A download that fails is a warning, and the rest carry on.
+
+The attribute tags and the combo index are loaded by the calls `stats` and `serve` make (`roles.attributes`,
+`spellbook.local_index`), so the cache `warm` fills is the one they read. Like every other step they follow `--refresh`
+and `--offline`: the tags are downloaded when the saved copy is missing, older than 30 days or lacks one of the tags,
+the combo index (a 29 MB file, boiled down to 9.7 MB) when it is missing or older than 7 days, and either again with
+`--refresh`; with `--offline` the rows report the saved copies, and a copy that is missing is a warning, not a
+download. `warm` does not fetch
+Commander Spellbook's per-list answers: those are cached per exact card list, so an `--offline` `check`, `build` or
 `upgrade` can check combos only for lists it has checked online before (the list you give it, and the list after the
-swaps). For any other list it prints "Combos were not checked", and the combo limit is not verified. `stats` is the
-exception once it has run online one time: it saves the combo index and the attribute tags, and then works for any list
-with `--offline`.
+swaps). For any other list it prints "Combos were not checked", and the combo limit is not verified. `stats` and
+`serve` are the exception once the combo index is saved, by `warm` or by an online run of theirs: they then work for
+any list with `--offline`.
 
 **`--offline`** never connects. It uses whatever is cached, even expired, and says so. A source with nothing
 cached is skipped with a warning that names it; if the card index (or a precon list) is missing, the command stops
@@ -1642,8 +1653,8 @@ tests start a real server on a free port and stop it, with its threads, when eac
   - **[EDHTop16](https://edhtop16.com/)** — cEDH tournament results through its public API. Its tournament data comes
     from TopDeck.gg. This tool is not endorsed by EDHTop16.
   - **[Commander Spellbook](https://commanderspellbook.com/)** — the combo database behind the combo checks (its API,
-    and its daily combo file for `stats`). Credit and link back, as its API guidelines ask; every combo `stats`
-    prints carries its page address.
+    and its daily combo file for `warm`, `stats` and `serve`). Credit and link back, as its API guidelines ask; every
+    combo `stats` prints carries its page address.
   - **[MTGJSON](https://mtgjson.com/)** — preconstructed deck lists.
   - **[Wizards of the Coast's Commander format page](https://magic.wizards.com/en/formats/commander)** — the bracket
     definitions and the Game Changers list. `commander/brackets.json` quotes their wording with its source and date.
@@ -1656,7 +1667,8 @@ tests start a real server on a free port and stop it, with its threads, when eac
 - Outbound HTTPS to `api.scryfall.com` and `www.17lands.com` (the draft coach).
 - Outbound HTTPS for the Commander builder: `api.scryfall.com`, `data.scryfall.io` (Scryfall's bulk files),
   `json.edhrec.com`, `archidekt.com`, `edhtop16.com`, `backend.commanderspellbook.com`, `json.commanderspellbook.com`
-  (the daily combo file, for `stats`) and `mtgjson.com`. After `warm`, `--offline` runs need none of them.
+  (the daily combo file, for `warm`, `stats` and `serve`) and `mtgjson.com`. After `warm`, `--offline` runs need none of
+  them.
 - MTGA "Detailed Logs (Plugin Support)" enabled (the draft coach).
 - Optional, for `--fantasy`: the `claude` command-line tool on your `PATH` and a Claude token (see
   [Using it as an agent / coach](#using-it-as-an-agent--coach)).

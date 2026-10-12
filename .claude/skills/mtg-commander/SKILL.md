@@ -16,7 +16,8 @@ All commands are run from the repo root. On Windows use `python` and `mtg-comman
 ## The loop (summary — AGENTS.md is authoritative)
 
 1. **warm** — once per commander, so everything after is fast and `--offline` works. The very first run also builds
-   the card index (a minute or two):
+   the card index (a minute or two) and saves the card attribute tags and Commander Spellbook's combo file (29 MB),
+   which `stats` and `serve` read for any list:
    ```bash
    python3 src/mtg-commander.py warm "<commander>" --bracket 3 --theme <theme>
    ```

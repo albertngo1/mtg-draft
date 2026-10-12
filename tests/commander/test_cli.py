@@ -5,7 +5,7 @@ tests check what cli.py itself does: which calls it makes with which arguments, 
 (deck block, warnings, sources), what it writes with --out, and how it ends (exit code, stdout, stderr). The
 report text itself is test_render.py's job; here a report is only checked for the lines that prove the right
 result reached it. Deck lists are in fixtures/cli_*.txt; the card index is the small sample from test_carddb.py."""
-import contextlib, datetime, io, json, os, sys, tempfile, unittest
+import contextlib, datetime, gzip, io, json, os, shutil, sys, tempfile, unittest
 from types import SimpleNamespace
 from unittest import mock
 from mtgcommander import carddb, cli, config, decklist, decks, fantasy, net, roles
@@ -13,6 +13,9 @@ from mtgcommander.providers import archidekt, edhrec, edhtop16, scryfall_tags, s
 
 FIXTURES = os.path.join(os.path.dirname(os.path.abspath(__file__)), "fixtures")
 REAL_ENGINE = cli._engine
+# the loaders `stats` and `serve` call, taken before CliCase replaces them with stand-ins
+REAL_ATTRIBUTES, REAL_ATTRIBUTES_LOADED = roles.attributes, roles.attributes_loaded
+REAL_COMBOS_FOR = spellbook.combos_for
 NOW = "2026-10-11T12:00:00Z"
 
 
@@ -129,6 +132,16 @@ class FakeServe:
         server.serve_forever, server.server_close = serve_forever, server_close
         self.servers.append(server)
         return server
+
+
+class FakeComboIndex:
+    """Stands in for spellbook.ComboIndex where only its size is read."""
+
+    def __init__(self, combos):
+        self.combos = combos
+
+    def __len__(self):
+        return self.combos
 
 
 class CliCase(unittest.TestCase):
@@ -1358,6 +1371,45 @@ class WarmTests(CliCase):
             {"name": "Squirreled Away", "fetched": "2026-10-10T00:00:00Z"}]).start()
         self.prices = mock.patch.object(carddb, "cheapest_prices", side_effect=lambda names, **k: {
             n: 1.0 for n in names}).start()
+        # The tag loads and the combo index answer as the real ones do on a good day. A tag load leaves a note in
+        # scryfall_tags.INFO when it has read the tags (None here: it could not); the combo index answers
+        # (index, {"fetched", "cache"}), or raises the FetchError that self.combo_index holds. The modes in force
+        # while each was asked are kept, to show that --refresh and --offline reach them.
+        self.tag_notes = {"roles": {"fetched": "2026-10-09T04:00:00Z", "cache": "fresh"},
+                          "attributes": {"fetched": "2026-10-09T04:00:00Z", "cache": "fresh"}}
+        self.combo_index = (111378, {"fetched": "2026-10-10T08:00:00Z", "cache": "fresh"})
+        self.modes = {}
+        self.tag.side_effect = self.tag_roles
+        self.attributes.side_effect = self.tag_attributes
+        self.local_index = mock.patch.object(spellbook, "local_index", side_effect=self.saved_combo_index).start()
+
+    # --- stand-in tag loads and combo index
+    def read_tags(self, kind):
+        """What scryfall_tags.load leaves in INFO when it has read the tags (and nothing when it could not)."""
+        self.modes[kind] = dict(net.MODE)
+        note = self.tag_notes[kind]
+        if note:
+            scryfall_tags.INFO.clear()
+            scryfall_tags.INFO.update(note)
+        return bool(note)
+
+    def tag_roles(self, names, db, **kw):
+        self.read_tags("roles")
+        return {n: set(TEST_ROLES.get(n, ())) for n in names}
+
+    def tag_attributes(self, names, db, **kw):
+        if not self.read_tags("attributes"):        # the line roles.attributes leaves when it cannot read the tags
+            roles.WARNINGS.append("roles: Scryfall function tags for card attributes unavailable, so the removal, "
+                                  "mana, land and playstyle counts that need them are not shown (scryfall_tags: "
+                                  "HTTP 503)")
+        return {n: frozenset() for n in names}
+
+    def saved_combo_index(self, **kw):
+        self.modes["combos"] = dict(net.MODE)
+        if isinstance(self.combo_index, Exception):
+            raise self.combo_index
+        combos, info = self.combo_index
+        return FakeComboIndex(combos), info
 
     # --- stand-in providers
     def signal(self, source, n, cards=None, kind="builder", cache="network", fetched="2026-10-11T09:12:44Z"):
@@ -1399,12 +1451,13 @@ class WarmTests(CliCase):
 
     # --- the steps
     def test_a_commander_at_a_bracket_with_a_theme(self):
-        scryfall_tags.INFO.update(fetched="2026-10-09T04:00:00Z", cache="fresh")
         result = self.run_json("warm", "hazel of the rootbloom", "--theme", "tokens")
         self.assertEqual((result["command"], result["commanders"], result["bracket"], result["themes"]),
                          ("warm", ["Hazel of the Rootbloom"], 3, ["tokens"]))
         self.assertEqual(self.rows(result), [
             ("scryfall", f"card index ({len(self.db):,} cards)"),
+            ("scryfall_tags", f"function tags for card attributes ({len(roles.ATTRIBUTE_TAGS)} tags)"),
+            ("spellbook", "combo index (111,378 combos)"),
             ("edhrec", "all-bracket page (12,334 decks)"),
             ("edhrec", "Bracket 3 page (1,125 decks)"),
             ("edhrec", "tokens decks at Bracket 3 (281 decks)"),
@@ -1415,8 +1468,8 @@ class WarmTests(CliCase):
             ("scryfall", "cheapest printings of 3 candidate cards")])
         for row in result["fetched"]:
             self.assertEqual(set(row), {"source", "what", "cache", "fetched"})
-        self.assertEqual((result["fetched"][1]["cache"], result["fetched"][1]["fetched"]),
-                         ("network", "2026-10-11T09:12:44Z"))
+        every_bracket = next(r for r in result["fetched"] if r["what"].startswith("all-bracket page"))
+        self.assertEqual((every_bracket["cache"], every_bracket["fetched"]), ("network", "2026-10-11T09:12:44Z"))
         self.assertEqual(result["warnings"], [])
 
     def test_a_thin_theme_page_is_widened_to_all_brackets_the_way_the_engine_does(self):
@@ -1468,9 +1521,12 @@ class WarmTests(CliCase):
         for target in (edhrec.signals, edhrec.salt_scores, edhtop16.signals, archidekt.signals,
                        decklist.precons_for_commander):
             target.side_effect = err
+        self.combo_index = err                                   # and the combo index, and the attribute tags
+        self.tag_notes["attributes"] = None
         result = self.run_json("warm", "Hazel of the Rootbloom")
         self.assertEqual(self.rows(result), [("scryfall", f"card index ({len(self.db):,} cards)")])
-        self.assertEqual(len(result["warnings"]), 7)      # two pages, salt, two Archidekt reads, tournaments, precons
+        # two pages, salt, two Archidekt reads, tournaments, precons, the combo index, the attribute tags
+        self.assertEqual(len(result["warnings"]), 9)
         self.assertFalse(any("has no page" in w for w in result["warnings"]))    # a failure is not a missing page
 
     def test_a_thin_bracket_borrows_from_its_neighbours_and_archidekt(self):
@@ -1530,8 +1586,9 @@ class WarmTests(CliCase):
         self.assertLessEqual(len(self.prices.call_args[0][0]), cli.MAX_CANDIDATES)
 
     def test_tags_are_listed_only_when_they_were_read(self):
+        self.tag_notes.update(roles=None, attributes=None)    # INFO stays empty: nothing says tags were loaded
         rows = {r["source"] for r in self.run_json("warm", "Hazel of the Rootbloom")["fetched"]}
-        self.assertNotIn("scryfall_tags", rows)               # INFO is empty: nothing says tags were loaded
+        self.assertNotIn("scryfall_tags", rows)
 
     def test_a_pair_warms_both_and_looks_for_precons_of_each(self):
         self.run_json("warm", "Pir, Imaginative Rascal", "--partner", "Toothy, Imaginary Friend")
@@ -1551,17 +1608,236 @@ class WarmTests(CliCase):
         stale = self.signal("edhrec", 12334, cache="stale", fetched="2026-09-20T00:00:00Z")
         with mock.patch.object(edhrec, "signals", return_value=[stale]):
             result = self.run_json("warm", "Hazel of the Rootbloom")
-        self.assertEqual(result["fetched"][1]["cache"], "stale")
+        every_bracket = next(r for r in result["fetched"] if r["what"].startswith("all-bracket page"))
+        self.assertEqual(every_bracket["cache"], "stale")
         self.assertTrue(any(w.startswith("EDHREC data is ") for w in result["warnings"]), result["warnings"])
 
     def test_an_unknown_commander_is_exit_one(self):
         self.assertEqual(self.run_cli("warm", "Hazl of the Rootbloom").code, 1)
+
+    def test_a_mistyped_commander_stops_before_the_big_downloads(self):
+        # worked example: "Hazl" is caught before the 29 MB combo file or the tag file is downloaded
+        self.assertEqual(self.run_cli("warm", "Hazl of the Rootbloom").code, 1)
+        self.local_index.assert_not_called()
+        self.attributes.assert_not_called()
 
     def test_the_text_report(self):
         result = self.run_cli("warm", "Hazel of the Rootbloom", "--theme", "tokens")
         self.assertEqual(result.code, 0)
         self.assertIn("Downloaded for Hazel of the Rootbloom at Bracket 3; themes: tokens", result.out)
         self.assertIn("all-bracket page (12,334 decks)", result.out)
+
+    # --- the two downloads that belong to no commander: the card attribute tags and the combo index
+    def shared_rows(self, result):
+        """The two rows that come right after the card index."""
+        return result["fetched"][1:3]
+
+    def test_online_with_nothing_saved_both_are_downloaded_and_follow_the_card_index(self):
+        # worked example: a first run on a new computer. Scryfall's tags and Spellbook's daily file are downloaded
+        # now, so each row says `network` and when, and --json carries the rows in the shape of every other row.
+        self.tag_notes["attributes"] = {"fetched": "2026-10-12T05:00:20Z", "cache": "network"}
+        self.combo_index = (111378, {"fetched": "2026-10-12T05:01:10Z", "cache": "network"})
+        result = self.run_json("warm", "Hazel of the Rootbloom")
+        self.assertEqual(self.shared_rows(result), [
+            {"source": "scryfall_tags", "what": f"function tags for card attributes ({len(roles.ATTRIBUTE_TAGS)} tags)",
+             "cache": "network", "fetched": "2026-10-12T05:00:20Z"},
+            {"source": "spellbook", "what": "combo index (111,378 combos)", "cache": "network",
+             "fetched": "2026-10-12T05:01:10Z"}])
+        self.assertEqual(result["warnings"], [])
+        self.assertEqual((result["sources"]["spellbook"]["cache"], result["sources"]["spellbook"]["fetched"]),
+                         ("network", "2026-10-12T05:01:10Z"))
+        self.assertIn("scryfall_tags", result["sources"])
+
+    def test_the_text_report_lists_both_in_its_table(self):
+        out = self.run_cli("warm", "Hazel of the Rootbloom").out
+        self.assertIn(f"function tags for card attributes ({len(roles.ATTRIBUTE_TAGS)} tags)", out)
+        self.assertIn("combo index (111,378 combos)", out)
+
+    def test_both_are_asked_for_the_way_stats_and_serve_ask(self):
+        # the same two calls, with no mode of their own, so the run-wide --refresh and --offline decide
+        self.run_json("warm", "Hazel of the Rootbloom")
+        self.attributes.assert_called_once_with([], self.db)
+        self.local_index.assert_called_once_with()
+
+    def test_offline_the_rows_report_the_saved_copies_and_the_flag_reaches_both(self):
+        # worked example: --offline on a plane, with the tags three weeks old (in date for 30 days) and the combo
+        # index nine days old (past its 7). Each is read as it is: the tags are fresh, the index is stale and says so.
+        self.tag_notes["attributes"] = {"fetched": "2026-09-21T04:00:00Z", "cache": "fresh"}
+        self.combo_index = (111378, {"fetched": "2026-10-03T08:00:00Z", "cache": "stale"})
+        result = self.run_json("warm", "Hazel of the Rootbloom", "--offline")
+        tags, combos = self.shared_rows(result)
+        self.assertEqual((tags["cache"], tags["fetched"]), ("fresh", "2026-09-21T04:00:00Z"))
+        self.assertEqual((combos["cache"], combos["fetched"]), ("stale", "2026-10-03T08:00:00Z"))
+        self.assertTrue(any(w.startswith("Commander Spellbook data is ") for w in result["warnings"]),
+                        result["warnings"])
+        self.assertTrue(self.modes["attributes"]["offline"] and self.modes["combos"]["offline"])
+
+    def test_refresh_reaches_both_and_a_plain_run_does_not_ask_for_it(self):
+        self.run_json("warm", "Hazel of the Rootbloom", "--refresh")
+        self.assertTrue(self.modes["attributes"]["refresh"] and self.modes["combos"]["refresh"])
+        self.run_json("warm", "Hazel of the Rootbloom")
+        self.assertFalse(self.modes["attributes"]["refresh"] or self.modes["combos"]["refresh"])
+
+    def test_both_are_downloaded_whatever_evidence_sources_are_on(self):
+        # Scryfall and Spellbook are not among --sources: they are always used
+        result = self.run_json("warm", "Hazel of the Rootbloom", "--sources", "")
+        self.assertEqual([r["source"] for r in self.shared_rows(result)], ["scryfall_tags", "spellbook"])
+
+    def test_a_combo_index_that_cannot_be_built_is_a_warning_and_the_rest_of_warm_carries_on(self):
+        # worked example: Spellbook's file host is down on a first run
+        self.combo_index = net.FetchError("spellbook", spellbook.VARIANTS_URL, "download failed: timed out")
+        result = self.run_json("warm", "Hazel of the Rootbloom", "--theme", "tokens")
+        self.assertIn("spellbook: combo index could not be downloaded (spellbook: download failed: timed out)",
+                      result["warnings"])
+        self.assertNotIn("spellbook", {r["source"] for r in result["fetched"]})
+        self.assertEqual(self.rows(result)[1][0], "scryfall_tags")                  # the step before it ran
+        self.assertEqual([r["source"] for r in result["fetched"]][2:],
+                         ["edhrec", "edhrec", "edhrec", "edhrec", "edhtop16", "mtgjson", "scryfall_tags", "scryfall"])
+
+    def test_attribute_tags_that_cannot_be_had_are_a_warning_and_the_rest_of_warm_carries_on(self):
+        # worked example: Scryfall's tag file cannot be fetched on a first run. roles.attributes does not raise: it
+        # leaves its own line among the warnings, and warm must not list tags it did not get.
+        self.tag_notes["attributes"] = None
+        result = self.run_json("warm", "Hazel of the Rootbloom", "--theme", "tokens")
+        self.assertTrue(any(w.startswith("roles: Scryfall function tags for card attributes unavailable")
+                            for w in result["warnings"]), result["warnings"])
+        what = [r["what"] for r in result["fetched"]]
+        self.assertFalse(any(w.startswith("function tags for card attributes") for w in what))
+        self.assertEqual(self.rows(result)[1], ("spellbook", "combo index (111,378 combos)"))     # the step after ran
+        self.assertIn("function tags (roles of 3 candidate cards)", what)                      # and the role tags
+        self.assertIn("cheapest printings of 3 candidate cards", what)
+
+    def test_a_failed_combo_index_does_not_hide_that_edhrec_has_no_page(self):
+        # worked example: Spellbook is down, and EDHREC has no page for this commander. The warning "EDHREC has no
+        # page" is only held back when a failed EDHREC download has already been warned about.
+        self.combo_index = net.FetchError("spellbook", "u", "HTTP 503")
+        self.decks.update(all=None, bracket=None)
+        result = self.run_json("warm", "Hazel of the Rootbloom", "--sources", "edhrec")
+        self.assertIn("spellbook: combo index could not be downloaded (spellbook: HTTP 503)", result["warnings"])
+        self.assertIn("EDHREC has no page for Hazel of the Rootbloom.", result["warnings"])
+
+    def test_role_tags_that_cannot_be_read_do_not_borrow_the_date_of_the_attribute_tags(self):
+        # worked example: the attribute tags were read a moment ago and left their date in scryfall_tags.INFO; the
+        # role tags then cannot be read. Their row must not be written from the date the attribute tags left.
+        self.tag_notes["roles"] = None
+        result = self.run_json("warm", "Hazel of the Rootbloom")
+        what = [r["what"] for r in result["fetched"]]
+        self.assertIn(f"function tags for card attributes ({len(roles.ATTRIBUTE_TAGS)} tags)", what)
+        self.assertFalse(any(w.startswith("function tags (roles of") for w in what), what)
+
+
+# ----------------------------------------------------------------------------- warm and the cache folder
+class WarmCacheTests(CliCase):
+    """`warm` with the real attribute-tag load and the real combo index, working on a temporary cache folder. Only the
+    two downloads are replaced, by the small tag tree and daily combo file in fixtures/. What the stand-ins in
+    WarmTests cannot show is shown here: the files `warm` saves are the ones a later run, `stats` among them, finds."""
+
+    TAGS_URL = "https://data.scryfall.io/oracle-tags/t.jsonl.gz"
+
+    def setUp(self):
+        super().setUp()
+        self.cache = tempfile.mkdtemp()
+        self.addCleanup(shutil.rmtree, self.cache, True)
+        self.downloads = []
+        for patcher in (mock.patch.object(net, "CACHE", self.cache),
+                        mock.patch.object(net, "download", self.download),
+                        mock.patch.object(carddb, "bulk_entry", lambda kind, **kw: (self.TAGS_URL, {})),
+                        mock.patch.object(roles, "attributes", REAL_ATTRIBUTES),
+                        mock.patch.object(roles, "attributes_loaded", REAL_ATTRIBUTES_LOADED),
+                        mock.patch.object(spellbook, "combos_for", REAL_COMBOS_FOR),
+                        mock.patch.object(decklist, "precons_for_commander", return_value=[])):
+            patcher.start()
+        self.new_run()
+        self.addCleanup(self.new_run)
+
+    def new_run(self):
+        """What a later command-line run starts with: nothing loaded yet, only the saved files."""
+        roles.reset()
+        spellbook.reset()
+        scryfall_tags.INFO.clear()
+
+    def download(self, url, path, *, source, decode=True):
+        self.downloads.append(url)
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+        if url == spellbook.VARIANTS_URL:
+            shutil.copyfile(os.path.join(FIXTURES, "spellbook_variants.json"), path)
+        else:
+            with open(os.path.join(FIXTURES, "scryfall_tags_sample.jsonl"), "rb") as src, gzip.open(path, "wb") as out:
+                out.write(src.read())
+
+    def warm(self, *flags):
+        """`warm` for Hazel with every evidence source off, so that only the card index, the two downloads that belong
+        to no commander and the precons remain."""
+        return self.run_json("warm", "Hazel of the Rootbloom", "--sources", "", *flags)
+
+    def age_saved(self, source, key, days):
+        """Make the saved file of a source `days` older, in both clocks it keeps."""
+        path = net.cache_file(source, key)
+        doc = net.read_json(path)
+        doc["ts"] -= days * config.DAY
+        doc["fetched"] = net.iso(doc["ts"])
+        net.atomic_json(path, doc)
+
+    def test_a_first_online_run_saves_both_and_a_later_offline_run_finds_them_without_downloading(self):
+        # worked example: warm on the train station's wifi, then --offline on the train
+        first = self.warm()
+        self.assertEqual([(r["source"], r["cache"]) for r in first["fetched"][1:3]],
+                         [("scryfall_tags", "network"), ("spellbook", "network")])
+        self.assertEqual(len(self.downloads), 2)                  # Scryfall's tag file and Spellbook's daily file, once
+        self.new_run()
+        again = self.warm("--offline")
+        self.assertEqual(len(self.downloads), 2)                  # nothing more
+        self.assertEqual([(r["source"], r["what"], r["cache"], r["fetched"]) for r in again["fetched"][1:3]],
+                         [(r["source"], r["what"], "fresh", r["fetched"]) for r in first["fetched"][1:3]])
+        self.assertEqual(again["warnings"], [])
+
+    def test_what_stats_asks_for_offline_is_what_warm_saved(self):
+        # the calls `stats` makes (roles.attributes, spellbook.combos_for), offline, in a run of their own
+        self.warm()
+        self.new_run()
+        attrs = roles.attributes(["Sol Ring"], self.db, offline=True)
+        self.assertTrue(roles.attributes_loaded())
+        self.assertEqual(attrs, {"Sol Ring": frozenset({"mana-rock"})})    # Sol Ring's tag, read from the saved file
+        found = spellbook.combos_for(["Hazel of the Rootbloom"], ["Skullclamp"], identity="BG", offline=True)
+        self.assertEqual((found["via"], [c["id"] for c in found["included"]]), ("index", ["9100-9101"]))
+        self.assertEqual(len(self.downloads), 2)
+
+    def test_online_with_both_saved_and_in_date_nothing_is_downloaded_again(self):
+        self.warm()
+        self.new_run()
+        again = self.warm()
+        self.assertEqual(len(self.downloads), 2)
+        self.assertEqual([r["cache"] for r in again["fetched"][1:3]], ["fresh", "fresh"])
+
+    def test_refresh_downloads_both_again(self):
+        self.warm()
+        self.new_run()
+        again = self.warm("--refresh")
+        self.assertEqual(len(self.downloads), 4)
+        self.assertEqual([r["cache"] for r in again["fetched"][1:3]], ["network", "network"])
+
+    def test_offline_with_nothing_saved_both_are_warnings_and_nothing_is_downloaded(self):
+        # worked example: --offline on a computer that has never run warm; the card index and the precons are
+        # still listed, and the run is not an error
+        result = self.warm("--offline")
+        self.assertEqual(self.downloads, [])
+        self.assertEqual([r["source"] for r in result["fetched"]], ["scryfall", "mtgjson"])
+        warnings = " | ".join(result["warnings"])
+        self.assertIn("spellbook: combo index could not be downloaded (spellbook: offline (--offline) and no saved "
+                      "combo file", warnings)
+        self.assertIn("roles: Scryfall function tags for card attributes unavailable", warnings)
+
+    def test_offline_with_copies_past_their_lifetime_the_rows_say_stale_and_the_age(self):
+        # worked example: the tags kept 30 days, now 31 days old; the combo index kept 7 days, now 9
+        self.warm()
+        self.age_saved("scryfall", "tags", 31)
+        self.age_saved("spellbook", "variants", 9)
+        self.new_run()
+        result = self.warm("--offline")
+        self.assertEqual(len(self.downloads), 2)                  # the first run's; --offline added none
+        self.assertEqual([r["cache"] for r in result["fetched"][1:3]], ["stale", "stale"])
+        self.assertIn("Commander Spellbook data is 9.0 days old (offline or the site failed)", result["warnings"])
+        self.assertIn("Scryfall function tags data is 31.0 days old (offline or the site failed)", result["warnings"])
 
 
 # ----------------------------------------------------------------------------- validate

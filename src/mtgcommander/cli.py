@@ -862,11 +862,43 @@ class _Downloads:
                          lambda: archidekt.signals(commanders, None, limit=limit))
 
 
+def _warm_tags(dl, label, what, load):
+    """One load of Scryfall's function tags, as a row once the tags are in hand. `roles.tag` and `roles.attributes`
+    do not raise when the tags cannot be had: each leaves a line in roles.WARNINGS (printed with the other warnings)
+    and carries on. So a load that worked is one that leaves a note in scryfall_tags.INFO, which describes the last
+    load; it is cleared first, so that a load which failed is not described by an earlier one."""
+    scryfall_tags.INFO.clear()
+    ok, _ = dl.attempt(label, load)
+    if ok and scryfall_tags.INFO:
+        dl.record("scryfall_tags", what, scryfall_tags.INFO.get("cache"), scryfall_tags.INFO.get("fetched"))
+
+
+def _warm_attribute_tags(dl, db):
+    """The function tags for card attributes, which `stats` and `serve` read besides the role tags. They are loaded by
+    the call `stats` makes (`roles.attributes`, a request of its own), so the cache this fills is the one they find.
+    Like every provider the load follows the run-wide --refresh and --offline: a download is made only when the
+    saved tags are missing, out of date or refreshed, and offline the row reports the saved copy."""
+    _warm_tags(dl, "scryfall_tags: card attributes",
+               f"function tags for card attributes ({len(roles.ATTRIBUTE_TAGS)} tags)",
+               lambda: roles.attributes([], db))
+
+
+def _warm_combo_index(dl):
+    """Commander Spellbook's local combo index, which `stats` and `serve` search for the combos of a list. It is built
+    by the call they make (`spellbook.local_index`, which `combos_for` reads) and follows the run-wide --refresh and
+    --offline in the same way as the attribute tags."""
+    ok, found = dl.attempt("spellbook: combo index", spellbook.local_index)
+    if ok:
+        index, info = found
+        dl.record("spellbook", f"combo index ({len(index):,} combos)", info["cache"], info["fetched"])
+
+
 def _warm_edhrec(dl, commanders, bracket, themes, thin, deck_limit, archidekt_on):
     """EDHREC's pages in the order score.gather asks for them, with the same fallbacks."""
+    failed_before = len(dl.failed)                          # a step that ran earlier may have failed
     every = dl.page("edhrec", "all-bracket page", lambda: edhrec.signals(commanders))
     here = dl.page("edhrec", f"Bracket {bracket} page", lambda: edhrec.signals(commanders, bracket))
-    if not (every or here) and not dl.failed:              # a failed download has been warned about already
+    if not (every or here) and len(dl.failed) == failed_before:     # a failed download has been warned about already
         dl.session.warn(f"EDHREC has no page for {' + '.join(commanders)}.")
     for t in themes:
         sig = dl.page("edhrec", f"{t} decks at Bracket {bracket}",
@@ -890,12 +922,17 @@ def _warm_edhrec(dl, commanders, bracket, themes, thin, deck_limit, archidekt_on
 
 
 def cmd_warm(session):
+    """Everything the other commands will ask for, in this order: the card index, the two downloads that belong to no
+    commander (the attribute tags and the combo index), the pages for this commander, its precons, and the tags and
+    prices of the cards those pages play most. A download that fails is a warning and the next step still runs."""
     a, db = session.args, session.db()
     commanders = _lead(db, [a.commander] + ([a.partner] if a.partner else []))
     bracket, themes = a.bracket or config.DEFAULT_BRACKET, _theme_slugs(a.theme)
     weights, thin, deck_limit = _score_constants()
     dl = _Downloads(session)
     dl.record("scryfall", f"card index ({len(db):,} cards)", db.cache, db.fetched)
+    _warm_attribute_tags(dl, db)
+    _warm_combo_index(dl)
     if "edhrec" in session.enabled:
         _warm_edhrec(dl, commanders, bracket, themes, thin, deck_limit, "archidekt" in session.enabled)
     elif "archidekt" in session.enabled:
@@ -916,10 +953,8 @@ def cmd_warm(session):
         dl.record("mtgjson", f"precons with this commander: {names}", "ok", oldest)
     candidates = list(dict.fromkeys(n for sig in dl.signals for n in _top_names(sig, db)))[:MAX_CANDIDATES]
     if candidates:
-        ok, _ = dl.attempt("scryfall_tags: card roles", lambda: roles.tag(candidates, db))
-        if ok and scryfall_tags.INFO:
-            dl.record("scryfall_tags", f"function tags (roles of {len(candidates):,} candidate cards)",
-                      scryfall_tags.INFO.get("cache"), scryfall_tags.INFO.get("fetched"))
+        _warm_tags(dl, "scryfall_tags: card roles", f"function tags (roles of {len(candidates):,} candidate cards)",
+                   lambda: roles.tag(candidates, db))
         ok, prices = dl.attempt("scryfall: cheapest prices", lambda: carddb.cheapest_prices(candidates))
         if ok:
             dl.record("scryfall", f"cheapest printings of {len(prices):,} candidate cards", "ok", None)

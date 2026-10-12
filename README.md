@@ -120,7 +120,10 @@ python3 src/mtg-commander.py stats --precon "Squirreled Away" --bracket 3 --them
 
 Same launchers as the draft coach: `./mtg-commander.sh` on macOS/Linux, `mtg-commander.bat` on Windows. It needs
 Python 3.9+ and nothing to `pip install`. The first run downloads Scryfall's card file (a minute or two, once);
-run `warm "<commander>"` ahead of time and `--offline` works after that.
+run `warm "<commander>"` ahead of time and `--offline` works after that. `warm` also saves the two things `stats` and
+`serve` need that belong to no commander: Scryfall's function tags for card attributes (labels such as how far a removal
+spell reaches, or whether a land enters tapped) and Commander Spellbook's daily combo file (29 MB). After that,
+`stats --offline` shows every number and checks the combos of any list.
 
 **Looking at a deck with `stats`.** `stats` takes the same deck, bracket, theme, playstyle and owned-card flags as
 `check` and `upgrade` and prints every number it can work out about a list, in six groups: power (its score and the
@@ -130,8 +133,9 @@ works), mana (lands, ramp, card draw, the curve, the colors), playstyle (how muc
 win plan (finishers and the combos that win) and table and money (salt, the
 bracket's limits, price, what you own). A number with a usual range for the bracket sits beside it and says if it is
 short of the range or over it. Add `-v` to see how each number was made, or `--json` for the same numbers as data. The
-first run also saves Commander Spellbook's daily combo file (29 MB, kept for 7 days), so later runs find a list's combos
-without asking the website.
+first run (or `warm`, ahead of time) also saves Commander Spellbook's daily combo file (29 MB, kept for 7 days) and the
+function tags for card attributes (kept for 30 days), so later runs find a list's combos without asking the website and,
+with `--offline`, still show the numbers that need the tags.
 
 **Saved decks, and the local server `serve`.** `serve` starts a small web server on your own computer. It keeps **base
 decks** (a precon or a pasted list, saved once and never changed) and each player's **versions** of them as small files
