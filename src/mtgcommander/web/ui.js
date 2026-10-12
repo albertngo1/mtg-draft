@@ -117,9 +117,19 @@ export function valueText(value, unit) {
   return NUMBER.format(value);
 }
 
+/**
+ * A change with its sign and unit: 14 -> "+14", -2 -> "−2" (the real minus sign), 4.5 with "%" -> "+4.5%", 12.5 with "$" ->
+ * "+$12.50". Its size is written the way `valueText` writes a value, or the way `format` does when the number beside it is
+ * written another way. A change of zero has no sign, and "—" stands for no number.
+ */
+export function signedValue(change, unit, format = valueText) {
+  if (!isNumber(change)) return "—";
+  return `${change > 0 ? "+" : change < 0 ? "−" : ""}${format(Math.abs(change), unit)}`;
+}
+
 /** A number with a sign, for a change: 0.74 -> "+0.74". */
 export function signed(value) {
-  return isNumber(value) ? `${value > 0 ? "+" : value < 0 ? "−" : ""}${NUMBER.format(Math.abs(value))}` : "—";
+  return signedValue(value, null);
 }
 
 export function oneDecimal(value) {
@@ -261,22 +271,28 @@ export function tag(text, { on = false } = {}) {
 
 /** One headline number with its label: stat({value: "93.8", label: "Score", mark: delta(...)}). */
 export function stat({ value, label, mark, title, tone, className } = {}) {
-  return h("div", { class: ["stat", className || ""].join(" ").trim(), title },
+  return h("div", { class: ["stat", mark ? "stat--marked" : "", className || ""].join(" ").trim(), title },
     h("span", { class: ["stat__n", tone ? `is-${tone}` : ""].join(" ").trim(), text: value }),
     h("span", { class: "stat__k" }, label, mark ? " " : null, mark));
 }
 
+/** True when a metric item moved from the base deck's value: the server sent a `change`, and it is not zero. */
+export function hasMoved(item) {
+  return isNumber(item.change) && item.change !== 0;
+}
+
 /**
- * The change from a deck's base value to its value now, as an arrow (and, with `showBase`, the base value beside it).
- * The pages never subtract: the server sends both numbers and this only says which way they differ. Null when equal.
+ * How far a metric item moved from the base deck's value: "+3.4", or with `showBase` "−2 from 38". The size is the
+ * server's own `change`; the pages never subtract. `format` writes the size when the number beside it has its own style
+ * (the stat line's one decimal). A screen reader hears "down 2 from 38" in its place. Null when the item did not move.
  */
-export function delta(value, base, unit, { showBase = true } = {}) {
-  if (!isNumber(value) || !isNumber(base) || Math.abs(value - base) < 1e-9) return null;
-  const up = value > base;
+export function delta(item, { showBase = true, format = valueText } = {}) {
+  if (!hasMoved(item)) return null;
+  const was = valueText(item.base, item.unit);
   return h("span", { class: "delta" },
-    h("span", { class: "delta__arrow", "aria-hidden": "true", text: up ? "▲" : "▼" }),
-    h("span", { class: "sr-only", text: `${up ? "up" : "down"} from ${valueText(base, unit)}` }),
-    showBase ? h("span", { class: "delta__was", "aria-hidden": "true" }, ` (${valueText(base, unit)})`) : null);
+    h("span", { "aria-hidden": "true" }, signedValue(item.change, item.unit, format),
+      showBase ? h("span", { class: "delta__was", text: ` from ${was}` }) : null),
+    h("span", { class: "sr-only", text: `${item.change > 0 ? "up" : "down"} ${format(Math.abs(item.change), item.unit)} from ${was}` }));
 }
 
 /** A small uppercase heading with a line after it ("Versions", "Creatures · 29"). */

@@ -1478,9 +1478,10 @@ is guarded: the pages work without it.
 
 **The rule: the pages never work out a number.** Every number on screen came in the server's answer, so each formula
 exists once, in Python, where the tests are. The pages sort, fold and format: how many tiles are in a section or behind a
-filter chip, how long a bar is next to the longest in its picture, which way an arrow points, a price as dollars. They
-subtract nothing: the arrow beside a number only says whether it is above or below the base deck's value, which is
-printed beside it. A metric the pages have never heard of is drawn as a row, so a new metric needs no page code.
+filter chip, how long a bar is next to the longest in its picture, a price as dollars. They subtract nothing: how far a
+number moved from the base deck's value is the item's `change`, which the server works out, and the pages print it with
+its sign (`+3.4` beside the score, `36 −2 from 38` in a row of the Metrics tab). A metric the pages have never heard of
+is drawn as a row, so a new metric needs no page code.
 
 **One change at a time for each deck.** A tap puts a request in `app.js`'s queue and dims its card; the numbers fade, and
 nothing moves until the answer comes. Then everything is redrawn from the answer. If a request fails, the ones behind it are

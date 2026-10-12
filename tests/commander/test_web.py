@@ -4,9 +4,10 @@ for them.
 There is no JavaScript test runner in this repo (no build step, no packages), so the checks here are the ones that can
 be made from Python: Albert's color palette has not drifted, every file the pages name exists, the modules fit together
 (every name one imports, the other exports), nothing is fetched from another site, no server text can reach the page as
-markup, and the real folder is what `serve` hands out. When Node is installed the modules are also syntax checked.
-What the pages do is checked in a browser, against the real server (the frontend-verify gate in the design)."""
-import os, re, shutil, subprocess, tempfile, threading, unittest, urllib.error, urllib.request
+markup, and the real folder is what `serve` hands out. When Node is installed the modules are also syntax checked, and
+the small formatting helpers of ui.js are run (they touch no page). What the pages do is checked in a browser, against
+the real server (the frontend-verify gate in the design)."""
+import json, os, pathlib, re, shutil, subprocess, tempfile, threading, unittest, urllib.error, urllib.request
 from unittest import mock
 from mtgcommander import carddb, net, serve
 from mtgcommander.providers import scryfall_tags
@@ -138,6 +139,15 @@ class FilesTests(unittest.TestCase):
         self.assertNotRegex(suggestions, r"point\.value\s*-|value_before\s*-|-\s*result\.value_before|\.after\s*<|\.before\s*-")
         self.assertNotRegex(source, r"\.weakens\s*=|\.change\s*=")          # read, never set: the server owns them
 
+    def test_how_far_a_number_moved_is_the_servers_change_so_no_arrow_is_drawn_and_nothing_subtracts(self):
+        # the server sends `change` (value - base) beside `base`; the arrows that only said which way are gone, and no
+        # file works out value - base (or base - value) for itself, in either order
+        for name in PAGE_FILES:
+            source = without_comments(read(name))
+            with self.subTest(file=name):
+                self.assertNotRegex(source, r"[▲▼]|delta__arrow")
+                self.assertNotRegex(source, r"\b(?:value|base)\b\s*-\s*[\w.]*\b(?:value|base)\b")
+
     def test_the_stylesheet_uses_only_the_tokens_it_has(self):
         # every var(--x) names a token in :root (the page would silently lose that color or size otherwise)
         tokens = set(root_rules(os.path.join(WEB, "styles.css"))[0])
@@ -157,6 +167,55 @@ class SyntaxTests(unittest.TestCase):
             if "bad option" in done.stderr:
                 self.skipTest("this Node cannot check a module read from standard input")
             self.assertEqual(done.returncode, 0, f"{name}: {done.stderr}")
+
+
+def in_node(expression):
+    """The JSON value of a JavaScript expression that may use `ui`, the exports of ui.js, worked out by Node. Only the
+    helpers that touch no page can be run this way (nothing here builds an element)."""
+    address = json.dumps(pathlib.Path(WEB, "ui.js").as_uri())
+    script = f"import * as ui from {address}; process.stdout.write(JSON.stringify({expression}));"
+    done = subprocess.run(["node", "--input-type=module", "-e", script], capture_output=True, text=True, timeout=60)
+    if re.search(r"outside a module|ERR_REQUIRE_ESM|ERR_UNKNOWN_FILE_EXTENSION|bad option", done.stderr):
+        raise unittest.SkipTest("this Node cannot load a .js file as a module without a package.json")
+    assert done.returncode == 0, done.stderr
+    return json.loads(done.stdout)
+
+
+MINUS = "\N{MINUS SIGN}"       # U+2212, the real minus sign, which is not the hyphen on the keyboard
+DASH = "\N{EM DASH}"           # what stands for a number that is not there
+
+
+@unittest.skipUnless(shutil.which("node"), "Node is not installed, so the formatting helpers of ui.js are not run")
+class FormattingTests(unittest.TestCase):
+    """The helpers in ui.js that turn numbers into text, run by Node. Each case is a worked example."""
+
+    def test_a_signed_value_has_its_sign_and_its_unit(self):
+        got = in_node('[ui.signedValue(14), ui.signedValue(-2), ui.signedValue(4.5, "%"), ui.signedValue(12.5, "$"), '
+                      'ui.signedValue(-3.4, "$"), ui.signedValue(-16.7, "%"), ui.signedValue(0.28), '
+                      'ui.signedValue(1234.5, "$")]')
+        self.assertEqual(got, ["+14", MINUS + "2", "+4.5%", "+$12.50", MINUS + "$3.40", MINUS + "16.7%", "+0.28",
+                               "+$1,234.50"])
+
+    def test_a_change_of_zero_has_no_sign_and_something_that_is_not_a_number_is_a_dash(self):
+        got = in_node('[ui.signedValue(0), ui.signedValue(0, "%"), ui.signedValue(null), ui.signedValue(undefined), '
+                      'ui.signedValue("3"), ui.signedValue(NaN)]')
+        self.assertEqual(got, ["0", "0%", DASH, DASH, DASH, DASH])
+
+    def test_the_size_of_a_change_can_be_written_in_the_style_of_the_number_beside_it(self):
+        # the stat line writes its numbers with one decimal at most: a change of 3.4 is "+3.4" there, 14.04 is "+14"
+        got = in_node('[ui.signedValue(3.4, null, ui.oneDecimal), ui.signedValue(-0.16, null, ui.oneDecimal), '
+                      'ui.signedValue(14.04, null, ui.oneDecimal), ui.signedValue(14.04)]')
+        self.assertEqual(got, ["+3.4", MINUS + "0.2", "+14", "+14.04"])
+
+    def test_signed_is_a_change_with_no_unit_as_it_always_was(self):
+        got = in_node('[ui.signed(0.74), ui.signed(-0.2), ui.signed(0), ui.signed(null), ui.signed(1.236)]')
+        self.assertEqual(got, ["+0.74", MINUS + "0.2", "0", DASH, "+1.24"])
+
+    def test_an_item_moved_when_the_server_sent_a_change_that_is_not_zero(self):
+        got = in_node('[ui.hasMoved({change: 2}), ui.hasMoved({change: -0.01}), ui.hasMoved({change: 0}), '
+                      'ui.hasMoved({}), ui.hasMoved({change: null}), ui.hasMoved({base: 3, value: 5})]')
+        # the last item has a base and a value that differ but no change: the pages do not work that out
+        self.assertEqual(got, [True, True, False, False, False, False])
 
 
 # ----------------------------------------------------------------------------- the real folder, served
