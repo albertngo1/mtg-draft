@@ -144,10 +144,13 @@ python3 src/mtg-commander.py serve --host 100.101.102.103   # also reachable fro
 ```
 
 *On your phone.* By default only this computer can reach the server. [Tailscale](https://tailscale.com) is a private
-network between your own devices. With it, either start the server with `--host` set to this computer's Tailscale
-address (`tailscale ip -4` prints it) and open `http://<that address>:8341/` on the phone, or leave `--host` alone, run
-Tailscale's own `tailscale serve --bg 8341`, and open the https address it prints. On home Wi-Fi `--host 0.0.0.0` works
-too, but it listens on every network the computer is on, so use it only on a network you trust.
+network between your own devices. With it, leave the server running, run Tailscale's own
+`tailscale serve --bg --https=8443 8341`, and open `https://<this computer's name>.<your tailnet>.ts.net:8443/` on the
+phone. `tailscale serve status` prints that address, and `tailscale serve --https=8443 off` stops it. Port 8443 leaves
+alone any site the computer already serves at its plain Tailscale address, which plain `tailscale serve --bg 8341` would
+replace. Or start the server with `--host` set to this computer's Tailscale address (`tailscale ip -4` prints it) and
+open `http://<that address>:8341/`. On home Wi-Fi `--host 0.0.0.0` works too, but it listens on every network the
+computer is on, so use it only on a network you trust.
 
 *There is no login.* Anyone who can reach the server's address can change every deck; on Tailscale that means only your
 own devices. The server does check that a request comes from its own pages, so a web page from another site cannot use it

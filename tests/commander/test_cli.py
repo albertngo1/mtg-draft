@@ -902,7 +902,8 @@ class ServeTests(CliCase):
         self.assertIn("http://127.0.0.1:8341/", result.out)
         self.assertIn(f"Saved decks are in:        {os.path.abspath(config.DECKS)}", result.out)
         self.assertIn("--host set to this computer's Tailscale address", result.out)
-        self.assertIn("`tailscale serve --bg 8341`", result.out)
+        self.assertIn("`tailscale serve --bg --https=8443 8341`", result.out)  # 8443: the plain address may be taken
+        self.assertIn("`tailscale serve --https=8443 off` stops it", result.out)
         self.assertIn("There is no login: anyone who can reach this address can change your decks.", result.out)
         self.assertIn("Run one server at a time", result.out)
         self.assertIn("Press Ctrl-C to stop.", result.out)

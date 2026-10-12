@@ -720,12 +720,14 @@ def _serve_banner(host, port, root):
     lines = ["mtg-commander deck server is running.", ""]
     if host in ("127.0.0.1", "localhost", "::1"):
         lines += [f"  Open it on this computer:  http://{host}:{port}/", f"  Saved decks are in:        {root}", "",
-                  "To reach it from your phone, either:",
+                  "To reach it from your phone over Tailscale, either:",
+                  f"  - leave it running and run Tailscale's own `tailscale serve --bg --https=8443 {port}`, then open",
+                  "    https://<this computer's name>.<your tailnet>.ts.net:8443/ on the phone (`tailscale serve status`",
+                  "    prints it; `tailscale serve --https=8443 off` stops it). Port 8443 leaves alone any site this",
+                  "    computer already serves at its plain Tailscale address; or",
                   "  - stop it and start it again with --host set to this computer's Tailscale address",
                   "    (`tailscale ip -4` prints it), for example `serve --host 100.101.102.103`, then open",
-                  f"    http://100.101.102.103:{port}/ on the phone; or",
-                  f"  - leave --host alone and run Tailscale's own `tailscale serve --bg {port}`, then open the https",
-                  "    address it prints."]
+                  f"    http://100.101.102.103:{port}/ on the phone."]
     elif everywhere:
         lines += [f"  Listening on port {port} of every network this computer is on.",
                   f"  From another device, open http://<this computer's address>:{port}/",
