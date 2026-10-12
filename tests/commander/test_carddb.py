@@ -79,7 +79,7 @@ class RecordTests(unittest.TestCase):
         self.assertEqual(keys, {"name", "front", "oracle_id", "ci", "mana_cost", "cmc", "type_line", "types",
                                 "subtypes", "text", "keywords", "legal", "gc", "price", "rank", "produced_mana",
                                 "land", "mdfc_land", "commander_ok", "partner", "any_number", "layout",
-                                "released", "image", "image_back", "scryfall_uri"})
+                                "released", "power", "toughness", "image", "image_back", "scryfall_uri"})
         for rec in self.db.values():
             self.assertEqual(set(rec), keys, rec["name"])
 
@@ -134,6 +134,20 @@ class RecordTests(unittest.TestCase):
         self.assertFalse(carddb.card_record(obj)["mdfc_land"])
         obj["layout"] = "modal_dfc"
         self.assertTrue(carddb.card_record(obj)["mdfc_land"])
+
+    def test_power_and_toughness_are_kept_as_scryfall_writes_them(self):
+        # the deck metrics add up the power of hard-to-block creatures, so the index keeps it
+        goyf = {"oracle_id": "o-goyf", "name": "Tarmogoyf", "layout": "normal", "type_line": "Creature — Lhurgoyf",
+                "power": "*", "toughness": "1+*"}
+        self.assertEqual((carddb.card_record(goyf)["power"], carddb.card_record(goyf)["toughness"]), ("*", "1+*"))
+        # a two-faced card keeps its front face's numbers, like every other key
+        delver = copy.deepcopy(next(o for o in sample_objects() if o["name"].startswith("Delver")))
+        delver["card_faces"][0].update(power="1", toughness="1")
+        delver["card_faces"][1].update(power="3", toughness="2")
+        self.assertEqual((carddb.card_record(delver)["power"], carddb.card_record(delver)["toughness"]), ("1", "1"))
+        # a card with no power has None, not a missing key
+        self.assertIsNone(self.rec("Sol Ring")["power"])
+        self.assertIsNone(self.rec("Sol Ring")["toughness"])
 
     def test_cards_that_allow_many_copies(self):
         self.assertTrue(self.rec("Relentless Rats")["any_number"])

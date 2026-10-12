@@ -19,7 +19,7 @@ import difflib, gzip, json, os, re, time, unicodedata, urllib.parse
 from . import net
 from .config import TTL
 
-SCHEMA = 2               # 2: records also hold the picture links and the Scryfall page link
+SCHEMA = 2               # 2: records also hold the picture links, the Scryfall page link, power and toughness
 BULK_LIST = "https://api.scryfall.com/bulk-data"
 SEARCH = "https://api.scryfall.com/cards/search"
 WUBRG = "WUBRG"
@@ -159,6 +159,10 @@ def card_record(d):
         "any_number": bool(_ANY_NUMBER.search(text)),
         "layout": d.get("layout", "normal"),
         "released": d.get("released_at", ""),   # of the default printing, so only an upper bound on age
+        # a creature's printed power and toughness, as Scryfall writes them ("2", "*", "1+*"); None for a card with
+        # none (the front face's, like every other key)
+        "power": front.get("power") if faces else d.get("power"),
+        "toughness": front.get("toughness") if faces else d.get("toughness"),
         "image": _normal_image(d) or _normal_image(front),
         "image_back": _normal_image(faces[1]) if len(faces) > 1 else "",
         "scryfall_uri": d.get("scryfall_uri") or "",
