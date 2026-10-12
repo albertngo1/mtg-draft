@@ -27,6 +27,7 @@ theme-first deck wants the same interaction as a precon). They are
   metrics.py counts "answers to each threat". These are whole cards, so like the role targets they round half up
   to whole numbers, and, like the counterspell target, answers to spells are counted only over decks whose
   commander has blue (the reader, roles.answer_bands, drops that band's minimum to 0 for a deck without blue).
+`upgrade` uses the 25th percentile of each answer count as the fewest answers a swap may leave.
 
 Run:  cd src && python3 -m mtgcommander.calibrate --out role_targets.proposed.json
 (`--write` replaces both committed files; `--sources edhtop16,archidekt` measures Brackets 3 and 4 from
@@ -45,7 +46,7 @@ SPREAD = (25, 50, 90)    # percentiles that become min, target, max
 LAND_SPREAD = (10, 50, 90)   # lands: the low end is the one that matters, a deck short of lands stumbles
 TOPEND_PERCENTILE = 75   # the cap on nonland cards of mana value 6 or more
 ROW_ORDER = ("land",) + roles.ROLES + ("topend",)
-POWER_ORDER = ("removal_power", "wipe_power")   # the weighted sums of metrics.py measured alongside, in the file's order
+POWER_ORDER = ("removal_power", "wipe_power")   # the weighted sums of metrics.py, measured alongside, in file order
 ANSWER_ORDER = roles.THREAT_IDS                 # and the whole-card counts of answers to each threat, after them
 METRIC_ORDER = POWER_ORDER + ANSWER_ORDER
 # How many numbers go on each line of a bracket's block in metric_targets.json: the two power sums, then the answers

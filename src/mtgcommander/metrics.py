@@ -397,18 +397,19 @@ INTERACTION_ROLES = ("removal", "wipe", "counter", "protection")
 
 
 def _answers_item(f, id_, label, slugs, band):
-    """One "answers to ..." item. `band` is the bracket's band for the threat from roles.answer_bands (what real decks at
-    the bracket hold, so "short" means fewer than their 25th percentile, as for every other count). When the file has
-    no row for it (`band` is None) one answer is enough: the count is short only at 0."""
+    """One "answers to ..." item. `band` is the bracket's band for the threat from roles.answer_bands (what real
+    decks at the bracket hold, so "short" means fewer than their 25th percentile, as for every other count). When
+    the file has no row for it (`band` is None) one answer is enough: the count is short only at 0."""
     names = f.with_tag(*slugs)
-    why = [f"{len(names)} cards can deal with it" if names else "Nothing in the deck can."]
+    count = f"{len(names)} card can" if len(names) == 1 else f"{len(names)} cards can"
+    why = [f"{count} deal with it" if names else "Nothing in the deck can."]
     if band is not None:
         why.append(_answers_band_why(f, id_, band))
     return _item(id_, label, len(names), band=band or _band(1), cards=names, why=why)
 
 
 def _answers_band_why(f, id_, band):
-    """The line that says where a measured band comes from, so a count that is short without being zero explains itself."""
+    """The line that says where a measured band comes from, so a count that is short but not zero explains itself."""
     if id_ in roles.BLUE_THREATS and "U" not in f.ctx["ci"]:
         return "The commander's colors have no blue, so none is expected."
     usual = f"Decks at Bracket {f.bracket} usually hold {band['min']} to {band['max']} (typically {band['target']})"

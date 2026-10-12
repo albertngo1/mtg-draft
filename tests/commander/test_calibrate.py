@@ -429,7 +429,8 @@ class MetricStatisticsTests(unittest.TestCase):
         two = {"removal_power": [5.4, 8.1, 12.4], "answers_lands": [1, 2, 4]}
         five = {"removal_power": [2.7, 2.7, 5.4], "answers_lands": [0, 1, 1]}
         got = calibrate.interpolate_metrics(two, five, 1, of=4)
-        self.assertEqual(got, {"removal_power": [4.7, 6.8, 10.7], "answers_lands": [1, 2, 3]})   # 0.75 up, 1.75 up, 3.25
+        # the answers: 0.75 goes up to 1, 1.75 to 2, and 3.25 down to 3
+        self.assertEqual(got, {"removal_power": [4.7, 6.8, 10.7], "answers_lands": [1, 2, 3]})
 
 
 class MetricTableTests(unittest.TestCase):
@@ -689,7 +690,7 @@ class FileTests(unittest.TestCase):
         self.assertTrue(block[1].startswith('      "removal_power": ['))
         self.assertTrue(block[1].rstrip().endswith("],") and '"wipe_power": [' in block[1])
         self.assertNotIn("answers_", block[1])                                       # a line never mixes the two kinds
-        self.assertEqual([line.count('"answers_') for line in block[2:]], [4, 3])    # then the answers, 4 and 3 to a line
+        self.assertEqual([line.count('"answers_') for line in block[2:]], [4, 3])   # then the answers, 4 and 3 a line
         self.assertTrue(block[2].lstrip().startswith('"answers_creatures": ['))
         self.assertTrue(block[3].lstrip().startswith('"answers_lands": ['))
         self.assertEqual(json.loads(text)["brackets"]["2"].keys(), set(calibrate.METRIC_ORDER))
@@ -1157,7 +1158,8 @@ class RunTests(unittest.TestCase):
     def test_the_same_decks_measure_how_many_cards_answer_each_kind_of_threat(self):
         metric = self.measure_answers()["metrics"]["brackets"]
         two, five = metric[2], metric[5]
-        self.assertEqual(two["answers_creatures"], [3, 4, 6])        # 2 to 6 sweepers: positions 1, 2 and 3.6 (5.6 goes up)
+        # 2 to 6 sweepers: positions 1, 2 and 3.6 of 0..4, and 5.6 goes up to 6
+        self.assertEqual(two["answers_creatures"], [3, 4, 6])
         # an artifact answer, or the Flex card that answers artifacts too: 2, 3, 4, 5 and 6 cards
         self.assertEqual(two["answers_artifacts"], [3, 4, 6])
         self.assertEqual(two["answers_enchantments"], [1, 1, 1])     # the Flex card is the only one every precon holds

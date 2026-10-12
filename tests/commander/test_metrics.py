@@ -110,7 +110,8 @@ class MetricsCase(unittest.TestCase):
         self.tmp = tempfile.mkdtemp()
         self.addCleanup(shutil.rmtree, self.tmp, True)
         self.targets_path = os.path.join(self.tmp, "metric_targets.json")
-        mock.patch.object(roles, "METRIC_TARGETS_PATH", self.targets_path).start()      # no file: no power band, answers need 1
+        # no file yet: removal and wipe power have no band, and an answer count is short only at 0
+        mock.patch.object(roles, "METRIC_TARGETS_PATH", self.targets_path).start()
         self.addCleanup(mock.patch.stopall)
 
     def write_targets(self, **per_bracket):
@@ -626,7 +627,8 @@ class AnswerBandTests(MetricsCase):
         self.assertEqual((black_green["value"], black_green["status"]), (0, "inside"))
         self.assertEqual(black_green["target"], {"min": 0, "target": 0, "max": 5})
         blue = self.items(deck("Bear"), ctx=self.world.ctx(ci="UB"))["answers_spells"]
-        self.assertEqual((blue["value"], blue["status"], blue["target"]), (0, "short", {"min": 2, "target": 3, "max": 5}))
+        self.assertEqual((blue["value"], blue["status"]), (0, "short"))
+        self.assertEqual(blue["target"], {"min": 2, "target": 3, "max": 5})
         enough = self.items(deck("Counter Magic", "Counter Two"), ctx=self.world.ctx(ci="UB"))["answers_spells"]
         self.assertEqual((enough["value"], enough["status"]), (2, "inside"))
 
@@ -654,6 +656,10 @@ class AnswerBandTests(MetricsCase):
         # a deck without blue is told why counterspells are not asked of it, not what blue decks hold
         self.assertEqual(got["answers_spells"]["why"], ["Nothing in the deck can.",
                                                          "The commander's colors have no blue, so none is expected."])
+
+    def test_one_answer_reads_as_one_card_not_one_cards(self):
+        got = self.items(deck("Wrath Mock", "Bear"))["answers_creatures"]
+        self.assertEqual(got["why"][0], "1 card can deal with it")
 
     def test_the_cards_listed_for_a_count_are_the_cards_the_count_is_made_of(self):
         got = self.items(deck("Pulse", "Disenchant 1", "Wrath Mock", "Bear"))
@@ -1471,6 +1477,10 @@ class PriceAgreementTests(MetricsCase):
 
     def setUp(self):
         super().setUp()
+        # `upgrade` asks for the attribute tags: tags that load and that no card carries, not this machine's cache
+        mock.patch.object(roles, "attributes",
+                          side_effect=lambda names, db, **kw: {n: frozenset() for n in names}).start()
+        mock.patch.object(roles, "attributes_loaded", return_value=True).start()
         w = self.world
         for name, score in (("Old A", 0.1), ("Old B", 0.1), ("Old C", 0.2)):
             w.add(name, "Creature", 2, score=score, price=0.5)

@@ -4,7 +4,7 @@ The fixtures are in the shapes the design lists for each command (the engine's o
 here is also a check that the report reads the documented keys. Every report must stay within 100 characters a
 line (phone width), even for long card names and long evidence. Nothing here touches the network."""
 import json, os, unittest
-from mtgcommander import render
+from mtgcommander import render, roles
 
 FIXTURES = os.path.join(os.path.dirname(os.path.abspath(__file__)), "fixtures")
 COMMANDS = ("check", "upgrade", "build", "suggest", "themes", "warm", "validate", "stats")
@@ -262,6 +262,55 @@ class UpgradeTests(unittest.TestCase, WidthMixin):
         self.result["swaps"][0]["rank"] = 7
         self.assertIn(" 7  CUT Swarmyard Massacre", render.text(self.result))
 
+    # --- answers to each kind of threat
+    def test_the_answers_line_lists_the_kinds_whose_count_changed_right_after_the_roles(self):
+        # the fixture: creatures 9 -> 8, planeswalkers 3 -> 2, spells 0 -> 1; artifacts, enchantments, lands and
+        # graveyards stay where they were
+        lines = self.text.splitlines()
+        at = lines.index("Answers: creatures 9→8  planeswalkers 3→2  spells 0→1")
+        self.assertTrue(lines[at - 1].startswith("Roles:"), lines[at - 1])                 # straight under the roles
+        # the roles' own follow-up comes after the answers
+        self.assertEqual(lines[at + 1], "Still off target: removal 5 (want 6-12)")
+
+    def test_a_kind_that_did_not_change_is_not_listed(self):
+        line = line_with(self.text, "Answers:")
+        for unchanged in ("artifacts", "enchantments", "lands", "graveyards"):
+            self.assertNotIn(unchanged, line)
+
+    def test_no_change_in_any_kind_prints_no_answers_line(self):
+        self.result["answers_after"] = dict(self.result["answers_before"])
+        self.assertNotIn("Answers:", render.text(self.result))
+
+    def test_without_tag_data_there_are_no_counts_and_no_line(self):
+        self.result["answers_before"] = self.result["answers_after"] = None
+        self.assertNotIn("Answers:", render.text(self.result))
+        del self.result["answers_before"], self.result["answers_after"]
+        self.assertNotIn("Answers:", render.text(self.result))
+        self.result["answers_before"] = {"answers_creatures": 3}                  # one side missing: nothing to compare
+        self.assertNotIn("Answers:", render.text(self.result))
+
+    def test_all_seven_kinds_changing_wrap_inside_phone_width_under_the_label(self):
+        self.result["answers_before"] = {id_: 9 for id_ in roles.THREAT_IDS}
+        self.result["answers_after"] = {id_: 12 for id_ in roles.THREAT_IDS}
+        text = render.text(self.result)
+        self.assertFits(text)
+        lines = text.splitlines()
+        at = next(i for i, l in enumerate(lines) if l.startswith("Answers:"))
+        self.assertEqual(lines[at], "Answers: creatures 9→12  artifacts 9→12  enchantments 9→12  planeswalkers 9→12  "
+                                    "lands 9→12")
+        self.assertEqual(lines[at + 1], "         graveyards 9→12  spells 9→12")
+
+    def test_the_answers_line_still_prints_when_the_roles_are_missing(self):
+        del self.result["roles_before"], self.result["roles_after"]
+        text = render.text(self.result)
+        self.assertNotIn("Roles:", text)
+        self.assertIn("Answers: creatures 9→8", text)
+
+    def test_json_carries_the_answers_before_and_after(self):
+        body = json.loads(render.as_json(self.result))
+        self.assertEqual(body["answers_before"], self.result["answers_before"])
+        self.assertEqual(body["answers_after"]["answers_spells"], 1)
+
     # --- price points: the budget climbed in steps
     def stepped(self):
         """The fixture's four swaps split over two price points: the first two found at $25, the other two at $75.
@@ -347,6 +396,63 @@ class UpgradeTests(unittest.TestCase, WidthMixin):
         self.assertEqual(rows, ["  $25   spend  $1.20   value 18.9 (+0.7)   2 swaps",
                                 "  $75   spend $42.10   value    ?          4 swaps"])
         self.assertEqual(len(rows[0]), len(rows[1]))
+
+    # --- price points that leave the deck with fewer answers
+    WEAK_ENCH = {"id": "answers_enchantments", "label": "enchantments", "before": 7, "after": 4, "target": 5}
+    WEAK_WALK = {"id": "answers_planeswalkers", "label": "planeswalkers", "before": 7, "after": 3, "target": 5}
+
+    def test_a_price_point_that_leaves_fewer_answers_carries_a_note_right_under_its_line(self):
+        self.stepped()
+        self.result["price_points"][1]["weakens"] = [self.WEAK_ENCH, self.WEAK_WALK]
+        lines = render.text(self.result).splitlines()
+        at = lines.index("  $75   spend $42.10   value 21.7 (+3.5)   4 swaps")
+        self.assertEqual(lines[at + 1], "        fewer answers: enchantments 7 → 4 (typical 5), "
+                                        "planeswalkers 7 → 3 (typical 5)")
+        self.assertEqual(lines[at + 2], "")                              # then the swaps, as before
+        # the first point has none, so nothing sits under it
+        first = lines.index("  $25   spend  $1.20   value 18.9 (+0.7)   2 swaps")
+        self.assertEqual(lines[first + 1], "  $75   spend $42.10   value 21.7 (+3.5)   4 swaps")
+
+    def test_the_note_lines_up_under_the_spend_column_whatever_the_width_of_the_amounts(self):
+        self.stepped()
+        self.result["price_points"] = [
+            {"budget": 50.0, "spent": 48.2, "value": 91.0, "swaps": 9, "weakens": [self.WEAK_ENCH]},
+            {"budget": 1250.5, "spent": 1249.99, "value": 104.9, "swaps": 120}]
+        self.result["value_before"] = 79.8
+        lines = render.text(self.result).splitlines()
+        at = next(i for i, l in enumerate(lines) if l.startswith("  $50 "))
+        self.assertEqual(lines[at].index("spend"), lines[at + 1].index("fewer answers:"))
+
+    def test_a_long_note_wraps_inside_phone_width_with_its_continuation_indented(self):
+        self.stepped()
+        weak = [dict(self.WEAK_ENCH, id=f"answers_{k}", label=k, before=12, after=1, target=6)
+                for k in ("creatures", "artifacts", "enchantments", "planeswalkers", "graveyards", "spells")]
+        self.result["price_points"][1]["weakens"] = weak
+        text = render.text(self.result)
+        self.assertFits(text)
+        lines = text.splitlines()
+        at = next(i for i, l in enumerate(lines) if l.startswith("        fewer answers: creatures 12 → 1"))
+        self.assertTrue(lines[at + 1].startswith("            "))          # indented further than the note's first line
+        self.assertIn("spells 12 → 1 (typical 6)", " ".join(l.strip() for l in lines[at:at + 3]))
+
+    def test_the_points_own_change_is_what_prints_and_the_start_is_only_a_fallback(self):
+        self.stepped()
+        self.result["price_points"][0]["change"] = 0.74
+        self.result["price_points"][1]["change"] = -1.26
+        rows = render.text(self.result).splitlines()
+        self.assertIn("  $25   spend  $1.20   value 18.9 (+0.7)   2 swaps", rows)       # 0.74 to one decimal
+        # -1.26 to one decimal, not the +3.5 the start would give
+        self.assertIn("  $75   spend $42.10   value 21.7 (-1.3)   4 swaps", rows)
+
+    def test_a_point_with_an_empty_or_missing_weakens_prints_no_note(self):
+        self.stepped()
+        self.result["price_points"][0]["weakens"] = []
+        self.assertNotIn("fewer answers", render.text(self.result))
+
+    def test_the_label_falls_back_to_the_id_when_a_hand_made_entry_has_none(self):
+        self.stepped()
+        self.result["price_points"][0]["weakens"] = [{"id": "answers_lands", "before": 2, "after": 0, "target": 1}]
+        self.assertIn("fewer answers: answers_lands 2 → 0 (typical 1)", render.text(self.result))
 
     def test_json_carries_the_price_points_and_the_step_of_each_swap(self):
         self.stepped()
@@ -741,7 +847,8 @@ class ThemesWarmValidateTests(unittest.TestCase, WidthMixin):
         result["calibration"] = {"written": "/repo/commander/role_targets.json", "labels": {"2": "measured"},
                                  "changes": [], "metrics": {"written": "/repo/commander/metric_targets.json"}}
         text = render.text(result)
-        self.assertIn("  Also wrote /repo/commander/metric_targets.json (removal and wipe power, and answer counts).", text)
+        self.assertIn("  Also wrote /repo/commander/metric_targets.json (removal and wipe power, and answer counts).",
+                      text)
         result["calibration"]["metrics"] = None
         self.assertNotIn("Also wrote", render.text(result))
 

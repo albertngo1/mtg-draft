@@ -1150,7 +1150,8 @@ class MetricTargetsFileTests(unittest.TestCase):
             bands = roles.answer_bands(b, "BG")
             self.assertEqual(sorted(bands), sorted(roles.THREAT_IDS), b)
             row = self.data["brackets"][str(b)]
-            self.assertEqual([bands["answers_creatures"][k] for k in ("min", "target", "max")], row["answers_creatures"])
+            creatures = bands["answers_creatures"]
+            self.assertEqual([creatures[k] for k in ("min", "target", "max")], row["answers_creatures"])
             self.assertEqual((bands["answers_spells"]["min"], bands["answers_spells"]["target"]), (0, 0))
             self.assertEqual(bands["answers_spells"]["max"], row["answers_spells"][2])
 

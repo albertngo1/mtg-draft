@@ -26,7 +26,8 @@ if those tags cannot be had, the roles above still work and only the metrics tha
 
 One of those facts is which kinds of threat a card can answer (a creature, an artifact, an enchantment, ...).
 THREATS says which tags count for which kind, and `answer_bands` says how many answers to each kind a deck at a
-bracket usually holds, so `metrics.py` can mark a count short and `calibrate.py` can measure it."""
+bracket usually holds, so `metrics.py` can mark a count short, `calibrate.py` can measure it and `upgrade` can keep
+it."""
 import collections, datetime, json, os, re
 from . import config, net
 from .providers import scryfall_tags
@@ -94,8 +95,8 @@ ATTRIBUTE_TAGS = (
 
 # The kinds of threat a deck should be able to answer, as (id, label, slugs): a card answers a threat when it carries
 # any of the slugs, every one of them in ATTRIBUTE_TAGS. Everything that counts answers reads this one table, so the
-# counts always agree: metrics.py shows "answers to each threat" for a deck, and calibrate.py measures how many real
-# decks hold.
+# counts always agree: metrics.py shows "answers to each threat" for a deck, calibrate.py measures how many real decks
+# hold, and `upgrade` (build.py) keeps a deck from trading the answers away.
 THREATS = (("answers_creatures", "Answers to creatures", ("removal-creature", "sweeper")),
            ("answers_artifacts", "Answers to artifacts", ("removal-artifact",)),
            ("answers_enchantments", "Answers to enchantments", ("removal-enchantment",)),

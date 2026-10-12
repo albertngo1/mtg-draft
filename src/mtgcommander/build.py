@@ -23,6 +23,14 @@ report shows what $50 buys on the way to $200. `build` fills the nonland slots g
 improves, then picks lands. Both are local searches, not optima: a swap that needs two cards to change at once
 is invisible to them, and each result says what it left out and why.
 
+`upgrade` also keeps a deck's answers. The deck's value counts removal cards but not what each one can hit, so a
+long upgrade could trade away the last cards that answer enchantments or planeswalkers. Once the forced swaps are
+done, no swap leaves a kind of threat (creatures, artifacts, enchantments, planeswalkers, lands, graveyards, spells)
+with fewer answers than the bracket's 25th percentile of real decks, or than the deck had if it had fewer (see
+`Plan.keeps_answers`; the numbers come from roles.answer_bands). The result reports the answers before and after, and
+for each price point which kinds it leaves thinner than the starting list and than a typical deck. `build` keeps no
+such floor.
+
 Lands get rules of their own, because a basic land scores 0 and so any scored nonbasic land looks like an
 upgrade over it. A nonbasic land must score NONBASIC_MIN to take a basic's slot, no swap strips a color of its
 lands (MANA_FLOOR), and the deck keeps as many basics as its land searchers can take (Cultivate, Evolving Wilds)
@@ -83,7 +91,8 @@ STATE_ROLES = roles.ROLES + ("land", "topend")
 EPS = 1e-9
 LAND_TABLE = 150
 
-Facts = collections.namedtuple("Facts", "name score theme roles w land topend gc extra mld sources basic fetch")
+# `answers` is the frozenset of threat ids (roles.THREATS) the card can answer; empty unless `upgrade` read the tags.
+Facts = collections.namedtuple("Facts", "name score theme roles w land topend gc extra mld sources basic fetch answers")
 
 
 def _dedupe(lines):
@@ -188,11 +197,13 @@ class Model:
 
     `counts` (whole cards: roles, "land", "topend") and `mass` ({role: fractional cards}) describe a deck; the
     what-if methods take both. `scores` overrides ctx["scores"] (the fantasy cost re-prices the same decks
-    under power-only scores)."""
+    under power-only scores). `answers` is {card name: frozenset of the threat ids it answers}: only `upgrade` gives
+    one, from the attribute tags, and without it no card answers anything."""
 
-    def __init__(self, ctx, db, scores=None):
+    def __init__(self, ctx, db, scores=None, answers=None):
         self.db, self.ci = db, ctx["ci"]
         self.scores = ctx["scores"] if scores is None else scores
+        self.answers = answers or {}
         self.role_map = ctx["role_map"]
         t = ctx["targets"]
         self.limits = {r: (t[r]["min"], t[r]["target"], t[r]["max"]) for r in roles.ROLES}
@@ -209,7 +220,7 @@ class Model:
         if found is None:
             rec = self.db.get(name)
             if rec is None:
-                found = Facts(name, 0.0, 0.0, (), 0.0, False, False, 0, 0, 0, frozenset(), False, 0)
+                found = Facts(name, 0.0, 0.0, (), 0.0, False, False, 0, 0, 0, frozenset(), False, 0, frozenset())
             else:
                 basic = "Basic" in rec["types"]
                 sc = None if basic else self.scores.get(rec["name"])
@@ -220,7 +231,8 @@ class Model:
                               its_roles, 1 / math.sqrt(len(its_roles)) if its_roles else 0.0, rec["land"],
                               not rec["land"] and rec["cmc"] >= 6, int(bool(rec["gc"])),
                               int(brackets.is_extra_turn(rec)), int(brackets.is_mass_land_denial(rec)),
-                              lands_for, basic, roles.basic_land_searches(rec))
+                              lands_for, basic, roles.basic_land_searches(rec),
+                              self.answers.get(rec["name"], frozenset()))
             self._facts[name] = found
         return found
 
@@ -319,8 +331,9 @@ class Plan:
 
     The search is the heart of both `upgrade` and `build`. For an add `a` and a cut `c` the gain is
     add_value(a) - cut_value(c) + overlap(c, a); cuts that are interchangeable (same roles, land-ness, rule
-    flags and, for lands, colors, basic-ness and fetching) differ only by score, so each such group is
-    represented by its weakest member. That keeps a round near 250 adds x 35 groups instead of 250 x 100."""
+    flags, the kinds of threat they answer and, for lands, colors, basic-ness and fetching) differ only by score, so
+    each such group is represented by its weakest member. That keeps a round near 250 adds x 35 groups instead of
+    250 x 100."""
 
     def __init__(self, model, db, ci, bracket, *, prices, owned, budget=None, blocked=None):
         self.m, self.db, self.ci, self.bracket = model, db, ci, bracket
@@ -336,6 +349,8 @@ class Plan:
         self.sources = collections.Counter()             # color -> lands that make it
         self.basics = 0                                  # copies of basic lands in the list
         self.basics_by_color = collections.Counter()     # color -> copies of basic lands that make it
+        self.answers = collections.Counter()             # threat id -> cards in the list that answer it, once each
+        self.answer_floors = {}                          # threat id -> fewest answers a swap may leave; empty: none
         self.basic_demand = 0                            # basics the list's land searchers can take, every copy
         self.pips = collections.Counter()                # color -> colored mana symbols of the nonland cards
         self.bought = {}                                 # name -> price paid in this run (refunded on a cut)
@@ -353,6 +368,7 @@ class Plan:
         other.rules, other.sources = dict(self.rules), collections.Counter(self.sources)
         other.basics, other.basic_demand, other.pips = self.basics, self.basic_demand, collections.Counter(self.pips)
         other.basics_by_color = collections.Counter(self.basics_by_color)
+        other.answers, other.answer_floors = collections.Counter(self.answers), dict(self.answer_floors)
         other.bought, other.spent, other.locked = dict(self.bought), self.spent, set(self.locked)
         other._rule_memo = self._rule_memo           # depends only on (card, rule state), so it can be shared
         other._split_memo = self._split_memo         # depends only on (basics, symbols), so it can be shared
@@ -380,6 +396,7 @@ class Plan:
         f = self.m.facts(name)
         if f.name not in self.cards:
             self.order.append(f.name)
+            self.answers.update(f.answers)               # a card answers a threat once, however many copies it has
         self.cards[f.name] += 1
         for r in f.roles:
             self.counts[r] += 1
@@ -408,6 +425,7 @@ class Plan:
         if self.cards[f.name] <= 0:
             del self.cards[f.name]
             self.order.remove(f.name)
+            self.answers.subtract(f.answers)
         for r in f.roles:
             self.counts[r] -= 1
             self.mass[r] -= f.w
@@ -447,7 +465,7 @@ class Plan:
     def rule_ok(self, fa, cut=None):
         """Whether adding card `fa` keeps the Game Changer, extra-turn and mass-land-denial limits, with
         `cut` (a Facts) leaving the list first."""
-        gone = cut or Facts("", 0, 0, (), 0.0, False, False, 0, 0, 0, frozenset(), False, 0)
+        gone = cut or Facts("", 0, 0, (), 0.0, False, False, 0, 0, 0, frozenset(), False, 0, frozenset())
         state = (self.rules["gc"] - gone.gc, self.rules["extra_turns"] - gone.extra,
                  self.rules["mld"] - gone.mld)
         key = (fa.name, state)
@@ -487,6 +505,26 @@ class Plan:
         return all(self.basics_by_color[c] - 1 + (add.basic and c in add.sources) >= need.get(c, 0)
                    for c in cut.sources)
 
+    def _tight_answers(self):
+        """The kinds of threat whose answers are down to their floor or under it (and not zero): the only ones a swap
+        can still thin out. Usually none, which lets `best_swap` skip `keeps_answers` for nearly every pair."""
+        return {threat for threat, floor in self.answer_floors.items() if 0 < self.answers[threat] <= floor}
+
+    def keeps_answers(self, cut, add):
+        """A swap may not strip a kind of threat of its answers: after it each threat keeps at least its floor (the
+        25th percentile of real decks at the bracket), or as many answers as it had if it had fewer. With 7 answers to
+        enchantments and a floor of 4 a deck may trade down to 4 but not to 3, and a deck that has 2 may not lose
+        either, though it may swap one for another. Swapping an answer to enchantments for an answer to planeswalkers
+        does not help the enchantments, so each kind is judged on its own. With no floors (`build`, or an `upgrade`
+        whose tags did not load) every swap passes."""
+        if not self.answer_floors:
+            return True
+        for threat in cut.answers:
+            after = self.answers[threat] - 1 + (threat in add.answers)
+            if after < min(self.answers[threat], self.answer_floors.get(threat, 0)):
+                return False
+        return True
+
     def _basic_shares(self, total):
         """{color: basics} for `total` basics split like `build` splits them: one per color, the rest in
         proportion to the colored mana symbols of the nonland cards (memoized: the search asks this for every
@@ -519,7 +557,7 @@ class Plan:
         groups = {}
         for name in cuts:
             f = self.m.facts(name)
-            sig = (f.roles, f.land, f.topend, f.gc, f.extra, f.mld, f.sources, f.basic, f.fetch)
+            sig = (f.roles, f.land, f.topend, f.gc, f.extra, f.mld, f.sources, f.basic, f.fetch, f.answers)
             groups.setdefault(sig, []).append(f)
         out = []
         for members in groups.values():
@@ -530,14 +568,15 @@ class Plan:
         return out
 
     def best_swap(self, cuts, adds, *, min_gain=MIN_GAIN, lam=0.0, watch=None):
-        """The best (gain, cut, add) among `cuts` and `adds` that is affordable, passes the bracket's limits
-        and beats `min_gain`, or None. With `lam` > 0 the best is the one with the most gain minus `lam` per
-        dollar of the add (the gain returned is still the real one). `watch`, if given, collects what almost
-        happened:
+        """The best (gain, cut, add) among `cuts` and `adds` that is affordable, passes the bracket's limits and the
+        land and answer floors (`mana_ok`, `basics_ok`, `keeps_answers`) and beats `min_gain`, or None. With `lam` > 0
+        the best is the one with the most gain minus `lam` per dollar of the add (the gain returned is still the real
+        one). `watch`, if given, collects what almost happened:
         watch["blocked"][add] = (best gain, why the rules or a combo forbid it) and
         watch["costly"][add] = (best gain, price) for adds that only the budget stopped."""
         rem, best, best_key = self.remaining(), None, None
         groups = self._groups(cuts)
+        tight = self._tight_answers()                  # kinds of threat a swap could still thin out: usually none
         for a in adds:
             fa = self.m.facts(a)
             need = self.price(a)
@@ -550,7 +589,9 @@ class Plan:
                 for fc, loss, refund in members:
                     if (fc.land or fa.land) and not self.mana_ok(fc, fa):
                         break
-                    if not self.basics_ok(fc, fa):
+                    if fc.basic and not self.basics_ok(fc, fa):
+                        break
+                    if tight and fc.answers and not self.keeps_answers(fc, fa):
                         break
                     gain = win - loss + self.m.overlap(self.counts, self.mass, fc, fa)
                     if any_gain is None or gain > any_gain:
@@ -819,21 +860,54 @@ def _price_ladder(budget, price_points):
     return sorted({float(p) for p in price_points if 0 < p < budget}) + [float(budget)]
 
 
-def _price_point_summaries(ladder, swaps, deck_names, ctx, db):
-    """What each price point came to: [{"budget", "spent", "value", "swaps"}], by replaying the kept swaps onto
-    the starting list in order. "swaps" and "spent" are totals so far (forced swaps included, since they come
-    first), "value" is deck_value of the list at that point. Replaying instead of remembering what the search
-    saw keeps the lines true after the combo repair has undone a swap."""
+def _weakened(before, now, bands):
+    """The kinds of threat a list answers with fewer cards than the list it started from AND than a typical deck:
+    [{"id", "label", "before", "after", "target"}] in roles.THREATS order, "label" being the short noun ("enchantments")
+    and "target" the bracket's typical count. `before` and `now` are roles.answer_counts output, `bands` is
+    roles.answer_bands output; a kind it has no band for is left out, since there is no typical count to compare with.
+    A kind that fell but still has at least the typical count (7 answers to enchantments down to 5, where a deck
+    usually holds 4) is not a weakness."""
+    return [{"id": id_, "label": roles.THREAT_NOUNS[id_], "before": before[id_], "after": now[id_],
+             "target": bands[id_]["target"]}
+            for id_ in roles.THREAT_IDS
+            if id_ in bands and now[id_] < before[id_] and now[id_] < bands[id_]["target"]]
+
+
+def _price_point_summaries(ladder, swaps, deck_names, ctx, db, value_before, attrs=None, bands=None):
+    """What each price point came to: [{"budget", "spent", "value", "swaps", "change", "answers", "weakens"}], by
+    replaying the kept swaps onto the starting list in order. "swaps" and "spent" are totals so far (forced swaps
+    included, since they come first), "value" is deck_value of the list at that point, and "change" is that less
+    `value_before` (to 2 decimals), so a page never subtracts. "answers" is {threat id: cards that answer it} for the
+    list at that point and "weakens" the kinds it answers less than the starting list and than a typical deck (see
+    `_weakened`); `attrs` is roles.attributes output and `bands` roles.answer_bands output, and without `attrs` (the
+    tags did not load) "answers" is None and "weakens" is empty. Replaying instead of remembering what the search saw
+    keeps the lines true after the combo repair has undone a swap."""
     names, spent, done, out = list(deck_names), 0.0, 0, []
+    start = None if attrs is None else roles.answer_counts(deck_names, attrs)
     for point in ladder:
         while done < len(swaps) and (swaps[done]["price_point"] is None or swaps[done]["price_point"] <= point):
             names.remove(swaps[done]["cut"])
             names.append(swaps[done]["add"])
             spent += swaps[done]["price"] or 0.0
             done += 1
-        out.append({"budget": point, "spent": round(spent, 2), "value": deck_value(names, ctx, db)["total"],
-                    "swaps": done})
+        value = deck_value(names, ctx, db)["total"]
+        now = None if attrs is None else roles.answer_counts(names, attrs)
+        out.append({"budget": point, "spent": round(spent, 2), "value": value, "swaps": done,
+                    "change": round(value - value_before, 2), "answers": now,
+                    "weakens": [] if now is None else _weakened(start, now, bands or {})})
     return out
+
+
+def _answer_tags(names, db, warnings):
+    """roles.attributes for `names`, or None when the tag data could not be loaded, with a line in `warnings`. An
+    upgrade cannot then tell which cards answer which kind of threat, so it keeps none of them and says so."""
+    attrs = roles.attributes(names, db)
+    if roles.attributes_loaded():
+        return attrs
+    warnings.append("Answers to each kind of threat (" + ", ".join(roles.THREAT_NOUNS.values()) + ") were not checked: "
+                    "Scryfall's function tags for card attributes are not available, so a swap may have thinned them "
+                    "out.")
+    return None
 
 
 def upgrade(ctx, deck, db, *, budget=None, max_swaps=None, price_points=None, combos_fn=None, allow_combos=False,
@@ -853,13 +927,24 @@ def upgrade(ctx, deck, db, *, budget=None, max_swaps=None, price_points=None, co
     list the step before left: money spent earlier counts toward the point, and what an earlier step bought is
     never cut. So the first swaps are what a smaller budget would do, and each later step only adds to them. A
     swap says which step found it ("price_point"; None for a forced swap), and the result's "price_points" sums up
-    each step. Without a budget there are no steps."""
+    each step. Without a budget there are no steps.
+
+    Answers: the optional swaps may not leave a kind of threat with fewer answers than the bracket's 25th percentile
+    of real decks, or than the list had if it had fewer (`Plan.keeps_answers`). The floors are set only after the
+    forced swaps, which must happen whatever they take away, and only when the attribute tags loaded
+    (roles.attributes_loaded); if they did not, no floor applies and a warning says that answers were not checked.
+    The result carries "answers_before" and "answers_after" ({threat id: cards that answer it}, None without tags),
+    and each price point carries "answers", "weakens" and "change" (see `_price_point_summaries`)."""
     warnings = list(ctx["warnings"])
     bracket, ci = ctx["bracket"], ctx["ci"]
     commanders = list(deck.get("commanders") or ctx["commanders"])
-    model = Model(ctx, db)
     deck_names = [n for k, n in deck["cards"] for _ in range(k)]
     includes, spec_exclude = set(ctx["include"]), set(ctx["exclude"])
+    taken_names = set(deck_names) | set(commanders) | spec_exclude
+    candidates = _candidates(ctx, db, taken_names)
+    attrs = _answer_tags(deck_names + candidates, db, warnings)          # None: the tags did not load
+    model = Model(ctx, db, answers=None if attrs is None else
+                  {name: roles.threats_answered(slugs) for name, slugs in attrs.items()})
 
     combos = _find_combos(combos_fn, commanders, deck_names, warnings)
     if allow_combos:
@@ -868,8 +953,7 @@ def upgrade(ctx, deck, db, *, budget=None, max_swaps=None, price_points=None, co
     blocked = {} if combos is None else brackets.blocked_adds(bracket, combos)
     report_before = brackets.check(commanders, deck_names, bracket, db, combos=combos)
 
-    taken_names = set(deck_names) | set(commanders) | spec_exclude
-    pool = _prune(_candidates(ctx, db, taken_names), model, MAX_CANDIDATES)
+    pool = _prune(candidates, model, MAX_CANDIDATES)
     owned = set(ctx["owned"]) | set(deck_names)
     price = _price_map(pool, ctx, db, prices, warnings) if budget is not None else dict(prices or {})
     plan = Plan(model, db, ci, bracket, prices=price, owned=owned, budget=budget, blocked=blocked)
@@ -911,6 +995,11 @@ def upgrade(ctx, deck, db, *, budget=None, max_swaps=None, price_points=None, co
         plan.swap(cut, add)
         plan.locked.add(add)
         swaps.append(ledger.record(cut, add, gain, True, why, fills))
+
+    # --- from here on the answers are kept. The forced swaps above had to happen whatever they took away, so the
+    # floors wait until they are done; without the tags there is nothing to keep (and the warning has been given).
+    bands = {} if attrs is None else roles.answer_bands(bracket, ci)
+    plan.answer_floors = {threat: band["min"] for threat, band in bands.items()}
 
     # --- the best swaps, one at a time. With a budget, climb the price points: each step spends up to its amount
     # on top of what the steps before spent, and tries several prices-matter settings. `watch` is the last
@@ -981,13 +1070,18 @@ def upgrade(ctx, deck, db, *, budget=None, max_swaps=None, price_points=None, co
         cheap = sorted(cheap, key=lambda r: (r["price"], -r["gain"], r["card"]))[:CHEAP_ADDS]
 
     value_after = deck_value(final_names, ctx, db)
+    answers_before = None if attrs is None else roles.answer_counts(deck_names, attrs)
+    answers_after = None if attrs is None else roles.answer_counts(final_names, attrs)
     return {"command": "upgrade",
             "deck": {"name": deck.get("name", ""), "commanders": commanders,
                      "count": len(final_names) + len(commanders), "ci": ci},
             "bracket": bracket, "budget": budget, "spent": round(spent, 2), "spec": ctx["spec"],
-            "swaps": swaps, "price_points": _price_point_summaries(ladder, swaps, deck_names, ctx, db),
+            "swaps": swaps,
+            "price_points": _price_point_summaries(ladder, swaps, deck_names, ctx, db, value_before["total"], attrs,
+                                                   bands),
             "blocked": blocked_list, "cheap_adds": cheap,
             "roles_before": counts_before, "roles_after": value_after["roles"], "targets": ctx["targets"],
+            "answers_before": answers_before, "answers_after": answers_after,
             "value_before": value_before["total"], "value_after": value_after["total"],
             "bracket_before": report_before, "bracket_after": report_after,
             "deck_after": {"commanders": commanders, "cards": [[plan.cards[n], n] for n in plan.order]},

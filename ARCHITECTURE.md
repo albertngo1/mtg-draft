@@ -611,7 +611,10 @@ card every builder plays scores about 1; see [How a deck is valued](#how-a-deck-
 With a budget the report also shows what less money would buy: each *price point* line sums up every swap found up to
 that amount (the money it spends, the deck's value and its change from the start, the number of swaps), and the swap
 list is split with a heading such as `Up to $20:` where a step begins (how the steps work is in
-[How a deck is valued and how swaps are chosen](#how-a-deck-is-valued-and-how-swaps-are-chosen)).
+[How a deck is valued and how swaps are chosen](#how-a-deck-is-valued-and-how-swaps-are-chosen)). A price point that
+leaves the deck with fewer answers to some kind of threat than it started with, and than a typical deck at the bracket,
+has a note under its line (`fewer answers: enchantments 7 → 4 (typical 5), planeswalkers 7 → 3 (typical 5)`), and an
+`Answers:` line under `Roles:` gives the kinds whose count changed (`creatures 14→10`).
 
 ### Commander commands and flags
 
@@ -770,12 +773,14 @@ $ ./mtg-commander.sh upgrade --precon "Squirreled Away" --budget 75 --theme toke
          │    ├─ score.card_scores(...)       base + resid + theme + salt
          │    └─ roles.targets(...)           role_targets.json + playstyle deltas + EDHREC's average land count
          ├─ build.upgrade(ctx, deck, db, ...)
+         │    ├─ roles.attributes(deck + candidates)  which kinds of threat each card answers (None: the tags did not load)
          │    ├─ providers.spellbook.find_combos   combos in the deck, and combos one card away
          │    ├─ brackets.check / blocked_adds     Game Changers, mass land denial, extra turns, two-card combos
-         │    ├─ forced swaps first, then the best swap one at a time, under budget and bracket;
-         │    │  with a budget, step by step up the price points
+         │    ├─ forced swaps first; then roles.answer_bands sets the answers floors; then the best swap one at a
+         │    │  time, under budget, bracket and floors; with a budget, step by step up the price points
          │    ├─ combo check of the finished list; a swap that completes a banned combo is undone
-         │    └─ the price-point lines: the kept swaps replayed on the starting list, one line per point
+         │    └─ the price-point lines: the kept swaps replayed on the starting list, one line per point, each with
+         │       its answers, the kinds it leaves thinner (`weakens`) and its change in value
          └─ render.text(result), or render.as_json(result) with --json
 ```
 
@@ -903,7 +908,34 @@ Both searches are local, not optimal: a swap that needs two cards to change at o
   check, each step is summed up from the swaps that were kept: the money spent, the deck's value, and how many swaps
   there are so far. The report prints one line per step and splits the swap list where a step begins; `--json` has
   `price_points[]`, and each swap says which step found it (`price_point`; none for a forced swap). With one step (the
-  budget alone, or no budget) the report is unchanged.
+  budget alone, or no budget) the report is unchanged. Each entry of `price_points[]` also says what the step did to
+  the deck's answers: `change` (its `value` less the result's `value_before`, to 2 decimals, so a page never
+  subtracts), `answers` (`{threat id: cards that answer it}` for the list at that step, `null` without tags) and
+  `weakens` (see below).
+- **Answers in an upgrade.** The deck's value counts removal cards but not what each one can hit, so a long upgrade
+  could trade away the last cards that answer enchantments or planeswalkers without the value noticing (Squirreled Away
+  at Bracket 3 and $200 went from 14 answers to creatures to 9, and from 7 to planeswalkers to 2). So `upgrade` reads the
+  attribute tags of the deck and of every candidate (`roles.attributes`, one request) and gives each card the set of
+  threats it answers (`roles.THREATS`: creatures, artifacts, enchantments, planeswalkers, lands, graveyards, spells).
+  Once the forced swaps are done (a banned card, one outside the colors or one over a bracket's limit must go whatever
+  it answers), no swap may leave a threat with fewer answers than the smaller of what the list has now and the bracket's
+  25th percentile for that threat (`commander/metric_targets.json`, through `roles.answer_bands`; for spells, 0 in
+  colors without blue). A list with 7 answers to enchantments and a floor of 3 may trade down to 3 but not to 2; a list
+  that starts with 2 keeps its 2, though it may swap one for another; and an answer to one threat does not pay for the
+  loss of an answer to another. The check is `Plan.keeps_answers`, used in `best_swap` next to the land and basic-land
+  rules, and the groups of interchangeable cuts also split by the threats a card answers, so a flexible answer is never
+  judged as a creature-only one. A card counts once for each threat it answers and once however many copies the list
+  holds, as `stats` counts. The combo repair (undoing a swap that completes a combo the bracket forbids) is not held to
+  the floor: a bracket rule outranks it. Without the tags (offline with no tag cache, say) no floor applies and a
+  warning says answers to each kind of threat were not checked; `build` makes a deck from nothing and keeps no floor.
+  The floor is the 25th percentile of real decks, a guard rail and not a promise to keep what the list started with:
+  the Squirreled Away example above starts with 14, 9, 7 and 7 answers to creatures, artifacts, enchantments and
+  planeswalkers against floors of 7, 3, 3 and 2, and ends at 9, 6, 5 and 2 with the same swaps the search made without a
+  floor. So the result also reports how far it went: `answers_before` and `answers_after` (`{threat id: count}`, `null`
+  without tags) and, for each price point, `weakens`: the threats whose count at that point is under the starting list's
+  count and under the bracket's typical count (the median), as `{"id", "label", "before", "after", "target"}` with
+  `label` the short noun (`"enchantments"`) and `target` the typical count. A threat that fell but still has at least
+  the typical count (7 down to 5 where a deck usually holds 4) is not listed, nor is one with no band in the file.
 - **Basic lands in an upgrade.** A basic land scores 0, so any scored nonbasic land looks like an improvement over one,
   and a long upgrade could replace every basic. Three rules prevent that.
   1. A nonbasic land needs a score of at least `NONBASIC_MIN` to take a basic's slot, the rule `build` already used.
@@ -1459,7 +1491,11 @@ not sent, and the message offers to send them all again.
 | a source did not answer | a banner naming it and the date of the data the numbers use |
 
 Suggestions are asked for again after every change, and a price point from before a change is never applied: its Apply
-buttons are off until the new answer arrives.
+buttons are off until the new answer arrives. Each price point shows its change in score beside the two scores (the
+server's `change`, to one decimal), and one that leaves the deck with fewer answers to some kind of threat than it
+started with and than a typical deck has a "Weakens interaction" note under it, one banner naming each kind with its
+count before and after and the typical count (`enchantments 7 → 4 (typical 5)`), from the server's `weakens`: the page
+subtracts and compares nothing.
 
 **Checking them.** `tests/commander/test_web.py` checks what Python can: the palette matches Albert's, every file the page
 names and every `import` exists and exports what is imported, nothing is loaded from another site, no server text is put

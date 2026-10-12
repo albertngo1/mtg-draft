@@ -120,7 +120,8 @@ creatures, artifacts, enchantments, planeswalkers, lands, graveyards and spells.
 `speed × reach × permanence × cost`, times 1.5 if it removes again and again, and a board wipe the same, times 1.5 if it
 spares your own side; the weights are in `src/mtgcommander/metrics.py` and ARCHITECTURE.md ("Deck metrics and `stats`").
 Which Scryfall function tags make a card an answer to which kind of threat is the table `roles.THREATS`; the Metrics tab
-counts with it and marks a count `short` when it is under the bracket's `min`, the 25th percentile. The file records how
+counts with it and marks a count `short` when it is under the bracket's `min`, the 25th percentile, and so does `upgrade`,
+which never trades a deck's answers below that `min` (or below what the deck had, if less). The file records how
 it was made in the same keys as `role_targets.json`: `source`, `as_of`, `format`, `method`, `samples`, `samples_blue`,
 `measured` and `labels`.
 
