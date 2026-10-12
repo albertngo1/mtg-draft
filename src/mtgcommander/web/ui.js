@@ -165,18 +165,54 @@ export function pathTail(path) {
 
 const COLOR_ORDER = "WUBRG";
 
-/** "{2}{B}{G}" -> the cost with the color letters colored. A two-faced card's "{1}{G} // {2}{W}" keeps its slashes. */
+// Scryfall draws every symbol as a picture in SYMBOL_FOLDER, named <FILE>.svg, where FILE is the symbol with its braces
+// and slashes left out ({W/U} is WU, {2/W} is 2W, {G/P} is GP) except for two: {½} is HALF and {∞} is INFINITY. These are
+// the 84 symbols of the list Scryfall publishes for its symbols (read 2026-10-12). A symbol that is not in it is not drawn
+// as a picture, so a new one shows as text until it is added here.
+const SYMBOL_FOLDER = "https://svgs.scryfall.io/card-symbols/";
+const SYMBOL_FILE = { "½": "HALF", "∞": "INFINITY" };
+const SYMBOLS = new Set([
+  "W U B R G C S L D X Y Z H HW HR T Q E P PW CHAOS A TK",                                     // mana, and what stands beside it
+  "0 ½ 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 100 1000000 ∞",                   // generic mana
+  "W/U W/B B/R B/G U/B U/R R/G R/W G/W G/U C/W C/U C/B C/R C/G 2/W 2/U 2/B 2/R 2/G",         // hybrid
+  "W/P U/P B/P R/P G/P C/P B/G/P B/R/P G/U/P G/W/P R/G/P R/W/P U/B/P U/R/P W/B/P W/U/P",     // Phyrexian: pay 2 life instead
+].join(" ").split(" "));
+
+/** The address of the picture of a symbol such as "{W/U}", or null when Scryfall's list has no such symbol. */
+export function symbolUrl(symbol) {
+  const name = (/^\{([^{}]+)\}$/.exec(symbol) || [])[1];
+  if (!SYMBOLS.has(name)) return null;
+  return `${SYMBOL_FOLDER}${SYMBOL_FILE[name] || name.replace(/\//g, "")}.svg`;
+}
+
+/** A symbol as text, the way the pages drew every symbol before the pictures: its braces, a color's letter in its color. */
+function symbolAsText(symbol) {
+  const name = symbol.slice(1, -1);
+  return h("span", { class: "mana-text" }, "{", h("span", { class: /^[WUBRG]$/.test(name) ? `mana-${name.toLowerCase()}` : null, text: name }), "}");
+}
+
+/**
+ * One symbol, "{B}", as Scryfall's picture of it: the symbol is its alt text and the picture is as tall as the text it
+ * sits in (styles.css). When the picture does not load (offline, blocked) or the symbol is not in the list, it is the text.
+ */
+export function manaSymbol(symbol) {
+  const src = symbolUrl(symbol);
+  if (!src) return symbolAsText(symbol);
+  const img = h("img", { class: "mana-sym", src, alt: symbol });
+  img.addEventListener("error", () => img.replaceWith(symbolAsText(symbol)));
+  return img;
+}
+
+/** Text with symbols in it ("{T}: Add {G}.") -> its words and a symbol for each {...}, as a list of nodes for an element. */
+export function symbolText(text) {
+  const parts = String(text || "").split(/(\{[^{}]*\})/);               // words and symbols alternate: the symbols sit at odd places
+  return parts.map((part, i) => (i % 2 ? manaSymbol(part) : part)).filter((part) => part !== "");
+}
+
+/** "{2}{B}{G}" -> the cost drawn with Scryfall's symbols. A two-faced card's "{1}{G} // {2}{W}" keeps its slashes. */
 export function manaCost(cost) {
-  const out = h("span", { class: "mana" });
   const faces = String(cost || "").split(" // ");
-  faces.forEach((face, i) => {
-    if (i) out.append(" // ");
-    for (const part of face.match(/\{[^}]*\}/g) || []) {
-      const symbol = part.slice(1, -1);
-      out.append("{", h("span", { class: /^[WUBRG]$/.test(symbol) ? `mana-${symbol.toLowerCase()}` : null, text: symbol }), "}");
-    }
-  });
-  return out;
+  return h("span", { class: "mana" }, faces.map((face, i) => [i ? " // " : null, symbolText(face)]));
 }
 
 /** "BG" or ["G", "B"] -> the letters in WUBRG order, each in its color. */

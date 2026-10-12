@@ -199,7 +199,9 @@ main:focus { outline: none; }
 }
 .tag.on { color: var(--gold); border-color: var(--gold-dim); }
 
-/* mana symbols: the letters take their color, the braces stay quiet */
+/* mana symbols: Scryfall's pictures, as tall as the text around them and sitting on its baseline. A symbol that cannot be
+   drawn is text, where the letter of a color takes its color and the braces stay quiet. */
+.mana-sym { width: 1em; height: 1em; margin: 0 .06em; vertical-align: -.15em; }
 .mana-w { color: var(--w); } .mana-u { color: var(--u); } .mana-b { color: var(--b); }
 .mana-r { color: var(--r); } .mana-g { color: var(--g); }
 
@@ -258,7 +260,7 @@ main:focus { outline: none; }
 }
 div.tile { cursor: default; }
 a.tile:hover { text-decoration: none; }
-.tile img { display: block; width: 100%; height: 100%; object-fit: cover; transition: opacity .15s; }
+.tile > img { display: block; width: 100%; height: 100%; object-fit: cover; transition: opacity .15s; }
 .badge {
   display: inline-block; flex: none;
   font: 700 10px/1 var(--mono); letter-spacing: .08em; color: var(--ink);
@@ -274,9 +276,9 @@ a.tile:hover { text-decoration: none; }
   position: absolute; inset: 0; display: none; align-items: center; justify-content: center;
   font: 600 12px var(--sans); color: var(--text); text-align: center; padding: 4px;
 }
-.tile.is-pending img, .tile.is-pending .tile__fallback { opacity: .35; }
+.tile.is-pending > img, .tile.is-pending .tile__fallback { opacity: .35; }
 .tile.is-pending .tile__status { display: flex; }
-.tile.is-cut img { opacity: .55; }
+.tile.is-cut > img { opacity: .55; }
 
 .tile__fallback {
   position: absolute; inset: 0; display: flex; flex-direction: column; gap: 6px; padding: 8px;
