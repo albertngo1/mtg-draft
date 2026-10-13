@@ -977,6 +977,14 @@ class PriceyCase(ServerCase):
         world.add("Gaea's Cradle", "Land", 0, "", "G", score=0.6, price=150.0)
         world.add("Worldly Tutor", "Instant", 1, "{G}", "G", score=0.4, price=16.67)
 
+    def setUp(self):
+        super().setUp()
+        # build.upgrade asks for the attribute tags (which kinds of threat each card answers). Left alone that reads
+        # whatever tag cache this machine has, or reaches for the network on one that has none (a fresh clone), so
+        # the tags load and no card carries any, as in test_build's Isolated: the answers floors then bind nothing.
+        mock.patch.object(roles, "attributes", side_effect=lambda names, db, **kw: {n: frozenset() for n in names}).start()
+        mock.patch.object(roles, "attributes_loaded", return_value=True).start()
+
     def real_upgrade(self, ctx, deck, db, *, budget=None, price_points=None, combos_fn=None, **kw):
         """build.upgrade itself on this world's cards and prices (nothing reaches the network), recording the call like
         the canned one does."""
