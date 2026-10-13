@@ -597,8 +597,11 @@ python3 src/mtg-commander.py build "Hazel of the Rootbloom" --bracket 3 --budget
 python3 src/mtg-commander.py suggest --theme tokens --playstyle go-wide --colors BG
 ```
 
-`warm` downloads everything for one commander once, so the later commands are fast and work with `--offline`. The
-first run of most commands also builds the card index (a minute or two, once). Ask the player for what the flags need:
+`warm` downloads everything for one commander once, so the later commands are fast and work with `--offline`. It also
+saves the two downloads that `stats` and `serve` need whichever commander it is, the card attribute tags and Commander
+Spellbook's daily combo file (29 MB), so after a `warm` even `stats --offline` shows every number and checks the combos
+of any list. The first run of most commands also builds the card index (a minute or two, once). Ask the player for
+what the flags need:
 
 1. **The deck.** A precon name (`--precon`), a decklist file (write a pasted list to a file first; `-` reads standard
    input), or a commander to build around. If the list does not mark its commander, add `--commander NAME` (twice for
@@ -644,8 +647,8 @@ Quote a number from its line, and say what it measures:
   upgrade made is what the upgrade spent. If Scryfall could not be asked, the card index's price stands in and a warning
   says so. Cards the player owns (`--owned`, `--owned-precon`) cost $0 to buy; unlike in `upgrade`, the list's own cards
   do not.
-- The first online run downloads Commander Spellbook's daily combo file (29 MB) and the card attribute tags once; after
-  that `stats --offline` works for any list.
+- `warm` (or else the first online `stats` run) downloads Commander Spellbook's daily combo file (29 MB) and the card
+  attribute tags once; after that `stats --offline` works for any list.
 
 ### Pass the fantasy as menu words
 
@@ -735,9 +738,9 @@ The tool says when its evidence is weak. Relay these before the recommendations 
   none saved), so `upgrade` did not hold back swaps that thin out answers and printed no `answers` numbers. Say the
   upgrade may have cut the last answers to something, and run `stats` or `warm` online to save the tags.
 - "Combos were not checked": the Commander Spellbook lookup failed (or, with `--offline`, that exact list was never
-  looked up). Say the combo limit was not verified. (`stats` is the exception: once it has saved Spellbook's daily combo
-  file it checks any list offline. That file leaves out combos that need a class of card such as a persist creature, so
-  it can miss one the website would show.)
+  looked up). Say the combo limit was not verified. (`stats` is the exception: once `warm` or an online `stats` has
+  saved Spellbook's daily combo file, it checks any list offline. That file leaves out combos that need a class of card
+  such as a persist creature, so it can miss one the website would show.)
 - No deck-builder data at all ("EDHREC rank ... via Scryfall"): the list is generic good-stuff for the colors. Say so.
   The fix is to include a deck-builder source in `--sources`, or to get online and run `warm`.
 

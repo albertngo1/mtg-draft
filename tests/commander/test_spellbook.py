@@ -631,7 +631,7 @@ class LocalIndexTests(IndexCase):
         self.assertEqual((info["cache"], len(self.downloads)), ("stale", 1))
 
     def test_offline_with_nothing_saved_says_how_to_fix_it(self):
-        with self.assertRaisesRegex(net.FetchError, r"offline.*no saved combo file.*stats"):
+        with self.assertRaisesRegex(net.FetchError, r"offline.*no saved combo file.*`warm` \(or `stats`\)"):
             spellbook.local_index(offline=True)
         self.assertEqual(self.downloads, [])
 

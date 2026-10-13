@@ -136,10 +136,10 @@ under these weights", not a fact about the game. An answer count has no weights:
 
 **Regenerate it.** `python3 -m mtgcommander.calibrate --write` from the `src` folder replaces this file together with
 `role_targets.json` (`--out FILE` writes only the role proposal and prints the power and answer numbers). It needs the
-Scryfall function tags for card attributes, which `stats` or `calibrate` downloads the first time; without them the role
-targets are still measured and this file is left alone. With everything cached, `--offline --sources edhtop16` measures the
-committed numbers again (the default sources also name Archidekt, which would measure Brackets 3 and 4 instead of
-interpolating them).
+Scryfall function tags for card attributes, which `warm`, `stats` or `calibrate` downloads the first time; without them
+the role targets are still measured and this file is left alone. With everything cached, `--offline --sources edhtop16`
+measures the committed numbers again (the default sources also name Archidekt, which would measure Brackets 3 and 4
+instead of interpolating them).
 
 ## `playstyles.json`
 

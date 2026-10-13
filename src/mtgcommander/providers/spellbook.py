@@ -463,8 +463,8 @@ def local_index(*, refresh=None, offline=None):
     if have and (offline or (fresh and not refresh)):
         state = "fresh" if fresh else "stale"
     elif offline:
-        raise net.FetchError(NAME, VARIANTS_URL, "offline (--offline) and no saved combo file; run `stats` once "
-                                                 "without --offline to save it")
+        raise net.FetchError(NAME, VARIANTS_URL, "offline (--offline) and no saved combo file; run `warm` (or "
+                                                 "`stats`) once without --offline to save it")
     else:
         try:
             doc, state = build_index(), "network"
