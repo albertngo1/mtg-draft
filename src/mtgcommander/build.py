@@ -940,12 +940,19 @@ def upgrade(ctx, deck, db, *, budget=None, max_swaps=None, price_points=None, co
     away, and only when the attribute tags loaded
     (roles.attributes_loaded); if they did not, no floor applies and a warning says that answers were not checked.
     The result carries "answers_before" and "answers_after" ({threat id: cards that answer it}, None without tags),
-    and each price point carries "answers", "weakens" and "change" (see `_price_point_summaries`)."""
+    and each price point carries "answers", "weakens" and "change" (see `_price_point_summaries`).
+
+    Cards to leave alone. `ctx["include"]` is the player's own list: those cards stay and no repair touches them.
+    `ctx["exclude"]` is never offered, and a card of it in the list is cut first. A caller may also set `ctx["keep"]`
+    (optional, a set of names): cards the optional swaps may not cut, though a forced swap still cuts one that breaks
+    a rule (banned, outside the colors, over a bracket limit). The deck pages use it for the cards the player added,
+    and put the base deck's cards the player cut into `exclude`, so a search never undoes a change the player made."""
     warnings = list(ctx["warnings"])
     bracket, ci = ctx["bracket"], ctx["ci"]
     commanders = list(deck.get("commanders") or ctx["commanders"])
     deck_names = [n for k, n in deck["cards"] for _ in range(k)]
     includes, spec_exclude = set(ctx["include"]), set(ctx["exclude"])
+    keeps = set(ctx.get("keep") or ())
     taken_names = set(deck_names) | set(commanders) | spec_exclude
     candidates = _candidates(ctx, db, taken_names)
     attrs = _answer_tags(deck_names + candidates, db, warnings)          # None: the tags did not load
@@ -967,7 +974,7 @@ def upgrade(ctx, deck, db, *, budget=None, max_swaps=None, price_points=None, co
         plan.count_commander(c)
     for n in deck_names:
         plan.add(n)
-    plan.locked = set(includes) | set(commanders)      # a commander listed among the cards stays too
+    plan.locked = includes | keeps | set(commanders)      # a commander listed among the cards stays too
     ledger = _Ledger(ctx, model, owned, price)
     counts_before = roles.counts(deck_names, ctx["role_map"], db)
     value_before = deck_value(deck_names, ctx, db)

@@ -559,7 +559,7 @@ minute or two, once; the index is rebuilt after 7 days. Everything else it downl
 | **Game Changer** | a card on Wizards' list of cards that push a deck up the scale (53 on 2026-10-11, flagged on each card in Scryfall's data). Bracket 3 allows up to three; Brackets 1 and 2 allow none. |
 | **Precon** | a preconstructed deck sold ready to play. Precon lists come from MTGJSON. |
 | **Base deck**, **version** | a base deck is where a saved deck starts (a precon or a pasted list) and never changes; a version is one player's copy of a base deck with every change they made. Both are files ([Deck files](#deck-files)); `serve` reads and changes them. |
-| **Price point** | a dollar amount `upgrade` stops at on the way up to your budget (for $200: $25, $50, $100 and $200). The report shows what the swaps found up to each amount come to. |
+| **Price point** | a dollar amount `upgrade` stops at on the way up to your budget (for $200: $25, $50, $100 and $200). The report shows what the swaps found up to each amount come to. In the deck pages it is money still to spend: the version's budget minus what the version has spent ([The deck server](#the-deck-server)). |
 | **Inclusion** | the share of a commander's decks that play a card. **Synergy** is EDHREC's inclusion with this commander minus the inclusion across all decks of the same colors. |
 | **Removal power** | the sum, over a deck's removal cards, of how quick, how far-reaching, how lasting and how cheap each is (see [Deck metrics and `stats`](#deck-metrics-and-stats)). The tool's own measure, with weights that are judgment calls |
 | **Role** | a job a deck needs in numbers: ramp (extra mana), card draw, removal, board wipes, counterspells, protection, recursion, tutors, finishers. |
@@ -895,7 +895,9 @@ Both searches are local, not optimal: a swap that needs two cards to change at o
   mass land denial; the weaker half of a banned combo). Each is replaced by the best legal add that fits the budget (a
   basic land if none does). Then it repeats the best affordable swap above `MIN_GAIN`. There is no limit on how many
   unless you set `--max-swaps`: it stops when nothing beats `MIN_GAIN` or the money is gone. It never cuts the
-  commander or an `--include` card. The deck's own cards and anything you own cost $0; other adds are priced at
+  commander or an `--include` card. A caller can also hand it cards to keep (`ctx["keep"]`): the optional swaps never
+  cut those, but a forced swap still does when one breaks a rule, unlike an `--include` card (the deck server uses
+  it for the cards a player added). The deck's own cards and anything you own cost $0; other adds are priced at
   Scryfall's cheapest printing. With a budget, the swaps are run again with a growing penalty per dollar and the run
   that ends with the most valuable deck is kept, so one pricey card does not eat the whole budget. When a budget
   allows no swap, the report lists the cheapest useful adds.
@@ -1380,7 +1382,7 @@ $ ./mtg-commander.sh serve
 | `GET /api/decks/PLAYER/ID` | the version: `version` (with its change log, each change marked `undone` or not), `base`, `spec` (the settings as the engine reads them), `commanders`, `cards`, `card_count`, `diff`, `cut_cards`, `metrics` (every item beside the base deck's value and how far it moved), `warnings` and `sources`; or 202 |
 | `POST /api/decks/PLAYER/ID/changes` | `{"revision", "op": ...}` as in [Deck files](#deck-files), with `"source"`; answers like the GET plus `"result": {"changed", "message"}` |
 | `PATCH /api/decks/PLAYER/ID` | `{"revision", "name"?, "settings"?}`; answers like the GET |
-| `POST /api/decks/PLAYER/ID/suggest` | `{"budget"?, "price_points"?}`: `upgrade` on the list as it is now, with the settings' budget unless one is given. The result of `upgrade`, plus `revision` and `cards` (a card object for each card it names). It keeps nothing: ask again after every change |
+| `POST /api/decks/PLAYER/ID/suggest` | `{"budget"?, "price_points"?}`: `upgrade` on the list as it is now, with what is left of the version's budget (the settings' budget unless one is given; see "Suggestions and the budget" below). The result of `upgrade`, plus `revision`, `cards` (a card object for each card it names) and the money: `budget` (the total), `spent` (before these swaps), `left` (what they may spend) and `over` (how far past the budget the version is). It also says how many of the player's changes it works around (`changes_kept`, below). It keeps nothing: ask again after every change |
 | `GET /api/bases`, `POST /api/bases` | the base decks, each with its commanders, their picture and colors (`ci`, as WUBRG letters) and card count; make one from `{"name"?, "precon", "player"}` or `{"name", "list", "commander"?, "player"}`; 201 |
 | `GET /api/precons?q=TEXT` | precon names that hold every word, at most 20 |
 | `GET /api/cards?q=TEXT&deck=PLAYER/ID` | cards to add, at most 30. With no text, the best-scored cards not in the deck. With text, the Commander-legal cards whose name holds every word: the exact name first, then the commander's colors, then by score (a card with none, by EDHREC rank). Each is a card object plus `score`, `evidence`, `gain` (the deck's value change if it were added as one more card) and `flag`: `null`, or `{"kind": "illegal" \| "colors" \| "in_deck" \| "bracket", "reason"}` for a card that cannot be added |
@@ -1412,6 +1414,41 @@ scored (one no EDHREC list mentions) is scored by preparing again with it includ
 a tap never waits on a download; the card's price is looked up at its cheapest printing. If that scoring fails the
 change is still saved and a warning says the card is unscored. A deck file changed outside the server (`git pull`) is
 read afresh on every request, so there is nothing to restart.
+
+**Suggestions and the budget.** A version's budget is the total it may spend, not what each search may spend. `upgrade` counts every card already in the list as free, so handing it the budget as it is lets each Apply open a fresh budget on top of what the last one bought (a $200 version reached $352 that way). The route instead measures the list the way the deck answer does, under the deck's lock, and takes the `price` of the metrics headline: the number the deck screen shows as SPENT, the cost of the cards in the list that the player does not own (basic lands, the base deck's cards and owned precons are free). `upgrade` is given `left`, the budget minus that, to the cent and never below 0. A `budget` in the request is the total too, not the amount left. A version that is over its budget is still searched, with $0: a swap with a card the player owns costs nothing. Cutting a card the version bought takes its price off `spent`, so the next search has that much more.
+
+| the answer says | meaning |
+|---|---|
+| `budget` | the version's total, as asked (null for `"budget": null`, which asks for no limit) |
+| `spent` | what the list has cost before these swaps. It is the version's, not the `spent` of `upgrade`'s own result (what the swaps cost; with a budget, the last price point's `spent`) |
+| `left` | what the swaps may spend: `budget` minus `spent`, never below 0 (null with no budget) |
+| `over` | how far past its budget the version is, 0 until it is (null with no budget). The pages never subtract, so they print this |
+| `price_points` | amounts of new spending. A `price_points` list in the request is read as `upgrade` reads it for a budget of `left`: amounts at or above `left` drop out, and `left` ends the list |
+
+When the headline has no price to give (no card prices could be had), nothing is taken off: the whole budget is searched, `spent` and `over` are null, and a warning says so in plain words.
+
+**Suggestions keep the player's changes.** Each search starts from the list as it is, so left alone it reconsidered
+everything the last Apply had decided: after the largest price point was applied, most of the next answer's swaps put
+back a card the Apply had cut (free, since base deck cards are owned) or cut a card it had added. The rule now is that a
+search never undoes a change the player made. A card in the list that the base deck does not have (added by hand or from
+a suggestion) stays: the optional swaps may not cut it. A base deck card that is no longer in the list (cut by hand or
+by a suggestion) is not offered again. Both come from comparing the list with the base deck, never from the change log,
+so an undo needs no handling: it puts the list back, and the two sets with it, and a change that another change took
+back leaves no trace. Basic lands are left out of both, because copies of a basic land are interchangeable and keeping
+one by name would lock every copy.
+
+The route gives `upgrade` a copy of the context (the deck's own is not touched) with the added cards as `ctx["keep"]` and
+the cut cards added to `ctx["exclude"]`, beside the player's own `include` and `exclude`. It does not use `include` for
+the added cards, because `upgrade` treats an included card as one the player asked to keep whatever happens: no forced
+swap touches it. A Game Changer that a lower bracket now forbids would stay, with the warning "Could not fix ... (the
+cards involved are your commander or cards you asked to include)", and a card that has since been banned would stay
+without a word. `keep` holds back the optional swaps only, so a repair the format or the bracket forces can still swap
+out a card the player added (marked required). The answer's `changes_kept` is `{"added", "cut"}`, the number of cards
+in each set.
+
+One consequence for a version with no money left: its search can only add cards the player owns that are not already
+decided, and the base deck's own cards, once cut, are decided, so what remains are the cards of the other precons the
+player owns (the `owned_precons` setting). A version without any is told "Nothing to suggest" once its budget is spent.
 
 **Errors.** `{"schema": 1, "error": {"code", "message", "details"}}`; the status comes from the `decks.py` error classes.
 
@@ -1528,6 +1565,15 @@ starting count to what a typical deck holds, or under it, has a "Weakens interac
 each kind with its count before and after and the typical count (`enchantments 7 → 4 (typical 4)`), from the server's
 `weakens`: the page subtracts and compares nothing.
 
+The Suggestions tab says where the budget stands, from the answer's `spent`, `left` and `over`: the line under the tabs
+reads `Budget $200 · spent $185.43 · $14.57 left`, or `Budget $200 · spent $352.10 · over by $152.10`; a price point is
+money still to spend (`Up to $14.57 more`); and when nothing is left and no swap with a card the player owns helps, the
+empty state says the budget is used up, how much has been spent, and that raising the budget or cutting cards the
+version bought frees money.
+When the player has changed the deck, one line says what the search works around, from `changes_kept`: "Suggestions
+keep your changes: the 32 cards you added stay, and the 32 you cut are not offered again. Undo a change to
+reconsider it." (a count of 0 leaves its half out, and there is no line while both are 0).
+
 **Checking them.** `tests/commander/test_web.py` checks what Python can: the palette matches Albert's, every file the page
 names and every `import` exists and exports what is imported, nothing is loaded from another site, no server text is put
 into markup (`innerHTML` is never used), and the real folder is served with the right types. When Node is installed it
@@ -1546,6 +1592,8 @@ stale data, and a stopped server for unreachable).
 | A source is down or `--offline` | uses the cache and says how old it is; with no cache, skips that signal and names it in the warnings; stops (exit 2) only if the card index or a precon list is missing |
 | Rate limited (HTTP 429) | waits and retries, then stops asking that source with a message pointing at `warm` |
 | Budget too small | lists the cheapest useful adds; swaps from cards you own still appear, because they cost $0 |
+| A card the player added breaks a rule (deck pages) | suggestions keep the player's changes except for a repair the format or the bracket forces: that card is still swapped out first, marked required |
+| A version is over its budget (deck pages) | its suggestions are searched with $0 left, so only swaps with cards the player owns can appear; the answer's `over` says by how much, and the tab says the budget is used up |
 | Deck above the target bracket | the forced cuts come first, marked as forced |
 | Two commanders | `--partner NAME` (`build`, `warm`, `themes`) or `--commander` twice (`upgrade`, `check`). Colors combine; EDHREC's page for the pair is used; pairings checked are Partner, Partner with, Friends forever, Choose a Background with a Background, and a Doctor with a Doctor's companion |
 | Cards allowed in any number (Relentless Rats, Hare Apparent) | exempt from the one-copy rule, as are basic lands |

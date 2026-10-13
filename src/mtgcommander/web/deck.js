@@ -331,6 +331,14 @@ function budgetForm(app, current) {
     error);
 }
 
+/** "spent $185.43 · $14.57 left" or "spent $352.10 · over by $152.10", from the server's numbers for the list as it is now
+ * (nothing until its answer for this revision has come). The page subtracts nothing: `over` and `left` are the server's. */
+function spentWords(revision) {
+  const result = suggest.status === "ready" ? suggest.result : null;
+  if (!result || result.revision !== revision || !ui.isNumber(result.spent)) return "";
+  return `spent ${ui.money(result.spent)} · ${result.over > 0 ? `over by ${ui.money(result.over)}` : `${ui.money(result.left)} left`}`;
+}
+
 function suggestionsTab(app, deck) {
   const data = deck.data;
   if (suggest.key !== deck.key) resetSuggestions(deck.key);
@@ -344,7 +352,7 @@ function suggestionsTab(app, deck) {
   const words = [].concat(data.spec.themes || [], data.spec.playstyle ? [data.spec.playstyle] : []);
   const owned = (settings.owned_precons || []).length;
   wrap.append(h("div", { class: "btnrow", style: { alignItems: "center" } },
-    h("span", { class: "footnote", style: { flex: "1" }, text: [`Budget ${ui.dollars(budget)}`, `Bracket ${data.spec.bracket}`, words.join(", "), owned ? `you own ${owned} other ${owned === 1 ? "deck" : "decks"}` : ""].filter(Boolean).join(" · ") }),
+    h("span", { class: "footnote", style: { flex: "1" }, text: [`Budget ${ui.dollars(budget)}`, spentWords(data.version.revision), `Bracket ${data.spec.bracket}`, words.join(", "), owned ? `you own ${owned} other ${owned === 1 ? "deck" : "decks"}` : ""].filter(Boolean).join(" · ") }),
     ui.button({ label: "Change", kind: "quiet", size: "small", onClick: () => { suggest.editing = !suggest.editing; app.render(); } })));
   if (suggest.editing) wrap.append(budgetForm(app, budget));
   if (suggest.status === "error") {
@@ -357,14 +365,35 @@ function suggestionsTab(app, deck) {
   return wrap;
 }
 
+/** A price point is money still to spend on top of what the version has spent: "Up to $14.57 more". Once the budget is
+ *  used up the search has $0, so its one point holds only swaps with cards the player already owns, and says so. */
+const upTo = (point) => (point.budget > 0 ? `Up to ${ui.dollars(point.budget)} more` : "With cards you own");
+
+/** Why no swap is offered: none beats the list within what is left, or, with the budget used up, the money is the limit. */
+function nothingToSuggestText(result) {
+  if (result.left !== 0) return `No swap beats the current list within ${ui.dollars(result.left)} more.`;
+  const sofar = ui.isNumber(result.spent) ? ` (${ui.money(result.spent)} so far)` : "";
+  return `This version has spent its ${ui.dollars(result.budget)} budget${sofar}. With nothing left to spend, a suggestion can only bring in a card from a precon you own that the deck is not using, and none of those beats the current list. Raise the budget, or cut cards you bought to free money.`;
+}
+
+/** "Suggestions keep your changes: the 32 cards you added stay, and the 32 you cut are not offered again. Undo a change to
+ *  reconsider it." The counts are the server's (`changes_kept`); there is no line while the player has made no change. */
+function keepsLine({ added = 0, cut = 0 } = {}) {
+  const cards = (n) => `${n} ${n === 1 ? "card" : "cards"}`;
+  const parts = [];
+  if (added) parts.push(`the ${cards(added)} you added ${added === 1 ? "stays" : "stay"}`);
+  if (cut) parts.push(`the ${added ? cut : cards(cut)} you cut ${cut === 1 ? "is" : "are"} not offered again`);
+  return parts.length ? h("p", { class: "muted small", text: `Suggestions keep your changes: ${parts.join(", and ")}. Undo a change to reconsider it.` }) : null;
+}
+
 function suggestionResult(app, deck, result) {
   const out = [];
   const locked = result.revision !== deck.data.version.revision || app.saving;   // never apply swaps worked out before a change
   const swaps = result.swaps;
+  const keeps = keepsLine(result.changes_kept);
+  if (keeps) out.push(keeps);
   if (!swaps.length) {
-    out.push(ui.emptyState({
-      title: "Nothing to suggest", text: `No swap beats the current list within ${ui.dollars(result.budget)}.`,
-    }));
+    out.push(ui.emptyState({ title: "Nothing to suggest", text: nothingToSuggestText(result) }));
     if (result.cheap_adds.length) {
       out.push(h("section", {}, ui.sectionLabel("The cheapest cards that would help", { tight: true }),
         result.cheap_adds.map((add) => h("p", { class: "para" }, h("b", { text: add.card }), ` costs ${ui.money(add.price)} and would add ${ui.signed(add.gain)} to the deck score, more than the budget allows.`))));
@@ -374,7 +403,7 @@ function suggestionResult(app, deck, result) {
     const chosen = Math.min(suggest.selected, points.length - 1);
     out.push(h("section", { class: "stack" }, ui.sectionLabel("Price points", { tight: true }),
       points.map((point, i) => {
-        const title = `Up to ${ui.dollars(point.budget)}`;
+        const title = upTo(point);
         const row = h("div", { class: i === points.length - 1 ? "pp pp--budget" : "pp" },
           h("button", {
             type: "button", class: "pp__pick", "aria-pressed": i === chosen, onclick: () => { suggest.selected = i; suggest.showAll = false; app.render(); },
@@ -393,7 +422,7 @@ function suggestionResult(app, deck, result) {
     const point = points[chosen];
     const list = swaps.slice(0, point.swaps);
     const shown = suggest.showAll ? list : list.slice(0, SHOWN_SWAPS);
-    out.push(h("section", {}, ui.sectionLabel(`Up to ${ui.dollars(point.budget)} · ${point.swaps} ${point.swaps === 1 ? "swap" : "swaps"}`, { tight: true }),
+    out.push(h("section", {}, ui.sectionLabel(`${upTo(point)} · ${point.swaps} ${point.swaps === 1 ? "swap" : "swaps"}`, { tight: true }),
       shown.map((swap, i) => swapRow(app, deck, result, swap, i + 1, locked)),
       list.length > SHOWN_SWAPS ? h("button", {
         type: "button", class: "more", onclick: () => { suggest.showAll = !suggest.showAll; app.render(); },

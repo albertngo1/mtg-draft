@@ -885,17 +885,18 @@ class SuggestTests(ServerCase):
         super().setUp()
         self.open_deck()
 
-    def test_suggestions_run_upgrade_on_the_current_list_with_the_versions_budget(self):
-        # budget 50 comes from the settings; the answer is the upgrade result plus the revision it was made for
+    def test_suggestions_run_upgrade_on_the_current_list_with_what_is_left_of_the_versions_budget(self):
+        # budget 50 comes from the settings and Mind Stone ($0.30) is already bought, so the swaps may spend $49.70;
+        # the answer is the upgrade result plus the revision it was made for, and still names the $50 as the budget
         self.change({"op": "add", "card": "Mind Stone"})
         reply = self.post(DECK + "/suggest")
         self.assertEqual(reply.status, 200)
         call = self.fakes.calls["upgrade"][0]
-        self.assertEqual((call["budget"], call["price_points"]), (50, None))
+        self.assertEqual((call["budget"], call["price_points"]), (49.7, None))
         self.assertIn((1, "Mind Stone"), call["deck"]["cards"])                      # the list as it is now
         self.assertEqual(call["deck"]["commanders"], [CMDR])
         self.assertEqual(self.fakes.calls["combos"][-1]["identity"], "BG")        # combos asked with the colors
-        self.assertEqual((reply["revision"], reply["budget"]), (1, 50))
+        self.assertEqual((reply["revision"], reply["budget"], reply["spent"], reply["left"]), (1, 50, 0.3, 49.7))
         self.assertEqual(reply["swaps"][0]["add"], "Mind Stone")
         self.assertEqual(reply["price_points"][0]["budget"], 25.0)
         self.assertIn("fake upgrade warning", reply["warnings"])
@@ -961,6 +962,355 @@ class SuggestTests(ServerCase):
         thread.join()
         self.assertEqual(results[0]["revision"], 0)                               # made for the list before the change
         self.assertEqual(self.stored()["revision"], 1)
+
+
+# ----------------------------------------------------------------------------- suggestions and the budget
+BIG = "/api/decks/andy/big-budget"
+
+
+class PriceyCase(ServerCase):
+    """A ServerCase whose world has a few more cards that cost real money, and a `real_upgrade` for the tests that
+    need the search's own price points or swaps instead of the canned answer of `Fakes.upgrade`."""
+
+    def extra_cards(self, world):
+        world.add("Sylvan Library", "Enchantment", 2, "{1}{G}", "G", score=0.5, price=10.43)
+        world.add("Gaea's Cradle", "Land", 0, "", "G", score=0.6, price=150.0)
+        world.add("Worldly Tutor", "Instant", 1, "{G}", "G", score=0.4, price=16.67)
+
+    def real_upgrade(self, ctx, deck, db, *, budget=None, price_points=None, combos_fn=None, **kw):
+        """build.upgrade itself on this world's cards and prices (nothing reaches the network), recording the call like
+        the canned one does."""
+        self.fakes.calls["upgrade"].append({"ctx": ctx, "budget": budget, "price_points": price_points})
+        prices = {name: self.world.price(name) for name in ctx["scores"]}
+        return build.upgrade(ctx, deck, db, budget=budget, price_points=price_points, combos_fn=combos_fn,
+                             prices=prices)
+
+
+class BudgetTests(PriceyCase):
+    """A version's budget is the most it may spend in all, so a search gets only what is left of it: the budget minus
+    what the version has spent already, which is the deck screen's SPENT stat (the cost of the cards in the list that
+    the player does not own). Before, every search got the whole budget again and treated what an earlier Apply had
+    bought as free, so applying "Up to $200" twice took a $200 version to $352.
+
+    The version "Big budget" has $200. Some cards are priced so that the sums are easy to follow:
+        Mana Crypt 150.00 + Demonic Tutor 25.00 + Sylvan Library 10.43                           = 185.43 spent
+        and Gaea's Cradle 150.00 + Worldly Tutor 16.67 on top                                    = 352.10 spent"""
+
+    def setUp(self):
+        super().setUp()
+        decks.new_version(self.root, player="andy", name="Big budget", base_id="squirreled-away",
+                          settings=dict(SETTINGS, budget=200), now="2026-10-11T20:02:00Z")
+        self.open_deck(BIG)
+
+    def buy(self, *names):
+        """Swap a basic land (one the deck still has) for each card in one group, as the Apply button does. Answers
+        with the deck."""
+        held = self.get(BIG)["cards"]
+        lands = [c["name"] for c in held if c["name"] in ("Forest", "Swamp") for _ in range(c["count"])]
+        items = [{"op": "swap", "cut": land, "add": name} for land, name in zip(lands, names)]
+        group = {"op": "group", "label": "Up to $200 more", "items": items, "source": "suggested"}
+        reply = self.change(group, path=BIG)
+        self.assertEqual(reply.status, 200)
+        return reply
+
+    def suggest(self, body=None):
+        return self.post(BIG + "/suggest", body)
+
+    def asked_budget(self):
+        """The budget the last search was given."""
+        return self.fakes.calls["upgrade"][-1]["budget"]
+
+    def test_a_version_that_has_spent_185_43_of_its_200_gets_suggestions_for_the_14_57_left(self):
+        # Mana Crypt, Demonic Tutor and Sylvan Library are bought; the SPENT stat reads $185.43
+        deck = self.buy("Mana Crypt", "Demonic Tutor", "Sylvan Library")
+        self.assertEqual(deck["metrics"]["headline"]["price"], 185.43)
+        reply = self.suggest()
+        self.assertEqual(reply.status, 200)
+        self.assertEqual(self.asked_budget(), 14.57)                         # the search may spend what is left
+        self.assertEqual((reply["budget"], reply["spent"], reply["left"], reply["over"]), (200, 185.43, 14.57, 0))
+        self.assertEqual(reply["spent"], deck["metrics"]["headline"]["price"])      # the number on the deck screen
+
+    def test_a_version_over_its_budget_gets_a_search_with_nothing_left_and_the_answer_says_by_how_much(self):
+        # five cards bought, $352.10 spent against $200: nothing is left, and the search still runs (with $0, so swaps
+        # with cards the player owns, which cost nothing, can still be found)
+        deck = self.buy("Mana Crypt", "Demonic Tutor", "Sylvan Library", "Gaea's Cradle", "Worldly Tutor")
+        self.assertEqual(deck["metrics"]["headline"]["price"], 352.1)
+        reply = self.suggest()
+        self.assertEqual(reply.status, 200)
+        self.assertEqual(len(self.fakes.calls["upgrade"]), 1)
+        self.assertEqual(self.asked_budget(), 0)
+        self.assertIsNotNone(self.asked_budget())                            # $0, which is not "no budget"
+        self.assertEqual((reply["budget"], reply["spent"], reply["left"], reply["over"]), (200, 352.1, 0, 152.1))
+
+    def test_a_version_over_its_budget_is_still_offered_swaps_with_cards_the_player_owns(self):
+        # a $10 version owns the precon "Family Matters" (Eternal Witness and Assassin's Trophy) and bought Worldly
+        # Tutor ($16.67), so it is $6.67 over. The real search with $0 left cannot buy anything, but the cards of the
+        # owned precon cost nothing and are still good swaps. (The base deck's own cards are not offered once the
+        # player has cut them, so an owned precon is where such cards come from.)
+        precon = self.app.precon
+
+        def with_family_matters(name, **kw):
+            if name == "Family Matters":
+                return dict(precon("Squirreled Away"), name="Family Matters",
+                            cards=[(1, "Eternal Witness"), (1, "Assassin's Trophy")])
+            return precon(name, **kw)
+        self.app.precon = with_family_matters
+        self.app.upgrade = self.real_upgrade
+        decks.new_version(self.root, player="andy", name="Owns a precon", base_id="squirreled-away",
+                          settings=dict(SETTINGS, budget=10, owned_precons=["Family Matters"]))
+        path = "/api/decks/andy/owns-a-precon"
+        self.open_deck(path)
+        self.change({"op": "swap", "cut": "Forest", "add": "Worldly Tutor"}, path=path)
+        reply = self.post(path + "/suggest")
+        self.assertEqual((reply["spent"], reply["left"], reply["over"]), (16.67, 0, 6.67))
+        adds = {s["add"] for s in reply["swaps"]}
+        self.assertTrue(adds & {"Eternal Witness", "Assassin's Trophy"}, sorted(adds))
+        self.assertEqual([s for s in reply["swaps"] if s["price"]], [])             # not one swap costs a cent
+
+    def test_cutting_a_card_the_version_bought_frees_its_price_for_the_next_search(self):
+        # from $185.43 spent, cut Demonic Tutor ($25.00): $160.43 is spent and $39.57 is left
+        self.buy("Mana Crypt", "Demonic Tutor", "Sylvan Library")
+        self.suggest()
+        self.assertEqual(self.asked_budget(), 14.57)
+        cut = self.change({"op": "cut", "card": "Demonic Tutor"}, path=BIG)
+        self.assertEqual(cut["metrics"]["headline"]["price"], 160.43)
+        reply = self.suggest()
+        self.assertEqual(self.asked_budget(), 39.57)
+        self.assertEqual((reply["spent"], reply["left"], reply["over"]), (160.43, 39.57, 0))
+
+    def test_cutting_the_card_that_put_a_version_over_its_budget_brings_it_back_inside(self):
+        # $352.10 spent; cut Gaea's Cradle ($150.00) and Mana Crypt ($150.00): $52.10 is spent, $147.90 is left
+        self.buy("Mana Crypt", "Demonic Tutor", "Sylvan Library", "Gaea's Cradle", "Worldly Tutor")
+        self.change({"op": "cut", "card": "Gaea's Cradle"}, path=BIG)
+        self.change({"op": "cut", "card": "Mana Crypt"}, path=BIG)
+        reply = self.suggest()
+        self.assertEqual(self.asked_budget(), 147.9)
+        self.assertEqual((reply["spent"], reply["left"], reply["over"]), (52.1, 147.9, 0))
+
+    def test_a_version_that_has_spent_nothing_gets_its_whole_budget(self):
+        # nothing bought: the base deck's cards are the player's, so $200 is left
+        reply = self.suggest()
+        self.assertEqual(self.asked_budget(), 200)
+        self.assertEqual((reply["budget"], reply["spent"], reply["left"], reply["over"]), (200, 0, 200, 0))
+
+    def test_a_version_that_has_spent_exactly_its_budget_has_nothing_left_and_is_not_over(self):
+        # $185.43 spent and a budget of exactly $185.43 (sent in the request): not a cent is left, and not a cent over
+        self.buy("Mana Crypt", "Demonic Tutor", "Sylvan Library")
+        reply = self.suggest({"budget": 185.43})
+        self.assertEqual(self.asked_budget(), 0)
+        self.assertEqual((reply["budget"], reply["spent"], reply["left"], reply["over"]), (185.43, 185.43, 0, 0))
+
+    def test_a_budget_in_the_request_is_the_versions_total_not_what_is_left(self):
+        # the page sends the settings' budget; a $300 budget in the request, with $185.43 spent, leaves $114.57
+        self.buy("Mana Crypt", "Demonic Tutor", "Sylvan Library")
+        reply = self.suggest({"budget": 300})
+        self.assertEqual(self.asked_budget(), 114.57)
+        self.assertEqual((reply["budget"], reply["spent"], reply["left"], reply["over"]), (300, 185.43, 114.57, 0))
+
+    def test_explicit_price_points_are_new_spending_so_those_at_or_above_what_is_left_drop_out(self):
+        # $14.57 is left: a $5 point stays, and the $14.57 and $25 points (at and above what is left) drop out, so
+        # the ladder is $5 then the $14.57 that is left
+        self.app.upgrade = self.real_upgrade
+        self.buy("Mana Crypt", "Demonic Tutor", "Sylvan Library")
+        for points, ladder in (([5, 14.57, 25], [5.0, 14.57]), ([100, 250], [14.57]), ([5, 10], [5.0, 10.0, 14.57])):
+            with self.subTest(price_points=points):
+                reply = self.suggest({"price_points": points})
+                self.assertEqual(reply.status, 200)
+                self.assertEqual([p["budget"] for p in reply["price_points"]], ladder)
+        # nothing is left: every point drops out and the one step is $0
+        self.buy("Gaea's Cradle", "Worldly Tutor")
+        reply = self.suggest({"price_points": [5, 25]})
+        self.assertEqual([p["budget"] for p in reply["price_points"]], [0.0])
+
+    def test_spending_that_cannot_be_priced_uses_the_whole_budget_and_says_so(self):
+        # the SPENT stat has no number (no card prices), so nothing is taken off the budget, and no number is made up
+        self.buy("Mana Crypt", "Demonic Tutor", "Sylvan Library")
+        real = serve.metrics.compute
+
+        def without_a_price(*args, **kwargs):
+            measured = real(*args, **kwargs)
+            return dict(measured, headline=dict(measured["headline"], price=None))
+        with mock.patch.object(serve.metrics, "compute", without_a_price):
+            reply = self.suggest()
+        self.assertEqual(reply.status, 200)
+        self.assertEqual(self.asked_budget(), 200)
+        self.assertEqual((reply["budget"], reply["spent"], reply["left"], reply["over"]), (200, None, 200, None))
+        self.assertIn("What this version has already spent could not be worked out (no card prices were found), so "
+                      "these swaps may use the whole budget and take the version over it.", reply["warnings"])
+
+    def test_priced_spending_adds_no_warning_about_prices(self):
+        # the warning is only for spending that cannot be worked out
+        self.buy("Mana Crypt")
+        reply = self.suggest()
+        self.assertFalse([w for w in reply["warnings"] if "could not be worked out" in w])
+
+    def test_no_budget_means_nothing_is_left_to_work_out(self):
+        # "budget": null asks for suggestions with no limit: no left, no over, and the search gets no budget
+        self.buy("Mana Crypt")
+        reply = self.suggest({"budget": None})
+        self.assertIsNone(self.asked_budget())
+        self.assertEqual((reply["budget"], reply["spent"], reply["left"], reply["over"]), (None, 150, None, None))
+
+    def test_applying_the_biggest_price_point_again_and_again_never_takes_a_version_past_its_budget(self):
+        # Andy's phone, in miniature: Apply the biggest price point, the tab asks again, Apply again, and so on. The
+        # real search runs on this world's cards; SPENT after every Apply must stay inside the $200
+        self.app.upgrade = self.real_upgrade
+        spent_after = []
+        for _ in range(4):
+            answer = self.suggest()
+            if not answer["swaps"]:
+                break
+            items = [{"op": "swap", "cut": s["cut"], "add": s["add"]}
+                     for s in answer["swaps"][:answer["price_points"][-1]["swaps"]]]
+            deck = self.change({"op": "group", "label": "Biggest", "items": items, "source": "suggested"}, path=BIG)
+            spent_after.append(deck["metrics"]["headline"]["price"])
+        self.assertTrue(spent_after, "the first search found nothing to apply")
+        self.assertTrue(all(spent <= 200 for spent in spent_after),
+                        f"SPENT after each Apply was {spent_after}, against a budget of $200")
+
+
+# ----------------------------------------------------------------------------- suggestions keep the player's changes
+class KeepChangesTests(PriceyCase):
+    """Suggestions never undo a change the player made. The cards in the list that the base deck does not have (added
+    by hand or from a suggestion) stay: the optional swaps may not cut them. The base deck's cards that are no longer
+    in the list (cut by hand or by a suggestion) are not offered again. Both come from comparing the list with the base
+    deck, never from the change log, so an undo needs no handling. `upgrade` gets them on a copy of the context: the
+    added cards as `keep` and the cut ones in `exclude`, beside the player's own `include` and `exclude`. Before, every
+    search started from the list as it was and reconsidered everything the last Apply had decided.
+
+    The version "Go wide" ($50) is on the miniature Squirreled Away: Sol Ring ... Squirrel Mob, Command Tower, four
+    Forests and four Swamps."""
+
+    SUGGESTED = {"op": "group", "label": "Up to $25 more", "source": "suggested", "items": [
+        {"op": "swap", "cut": "Ogre Slumlord", "add": "Mind Stone"},
+        {"op": "swap", "cut": "Squirrel Mob", "add": "Eternal Witness"}]}
+
+    def setUp(self):
+        super().setUp()
+        self.open_deck()
+
+    def asked(self, path=DECK):
+        """Ask for suggestions: the context the search was given, and the answer."""
+        reply = self.post(path + "/suggest")
+        self.assertEqual(reply.status, 200)
+        return self.fakes.calls["upgrade"][-1]["ctx"], reply
+
+    def version(self, name, **settings):
+        """Another version of the base deck, opened; its address."""
+        decks.new_version(self.root, player="andy", name=name, base_id="squirreled-away",
+                          settings=dict(SETTINGS, **settings))
+        path = "/api/decks/andy/" + decks.slug(name)
+        self.open_deck(path)
+        return path
+
+    def test_a_suggested_group_keeps_what_it_added_and_does_not_offer_what_it_cut_again(self):
+        # "Up to $25 more" swapped Ogre Slumlord for Mind Stone and Squirrel Mob for Eternal Witness
+        self.change(self.SUGGESTED)
+        ctx, reply = self.asked()
+        self.assertEqual(set(ctx["keep"]), {"Mind Stone", "Eternal Witness"})           # the search may not cut these
+        self.assertEqual(set(ctx["exclude"]), {"Ogre Slumlord", "Squirrel Mob"})        # nor offer these again
+        self.assertEqual(ctx["include"], [])                      # kept cards are not the player's own include list
+        self.assertEqual(reply["changes_kept"], {"added": 2, "cut": 2})
+
+    def test_undoing_the_group_clears_both(self):
+        # the same group, then undone: the list is the base deck again, so nothing is kept or kept out
+        self.change(self.SUGGESTED)
+        ctx, _ = self.asked()
+        self.assertEqual((len(ctx["keep"]), len(ctx["exclude"])), (2, 2))
+        self.change({"op": "undo", "of": 1})
+        ctx, reply = self.asked()
+        self.assertEqual((set(ctx["keep"]), set(ctx["exclude"])), (set(), set()))
+        self.assertEqual(reply["changes_kept"], {"added": 0, "cut": 0})
+
+    def test_a_manual_add_and_a_manual_cut_count_the_same_way(self):
+        # Mind Stone added by hand, Ogre Slumlord cut by hand
+        self.change({"op": "add", "card": "Mind Stone"})
+        self.change({"op": "cut", "card": "Ogre Slumlord"})
+        ctx, reply = self.asked()
+        self.assertEqual(set(ctx["keep"]), {"Mind Stone"})
+        self.assertEqual(set(ctx["exclude"]), {"Ogre Slumlord"})
+        self.assertEqual(reply["changes_kept"], {"added": 1, "cut": 1})
+
+    def test_a_card_added_and_cut_again_or_cut_and_added_back_is_neither_kept_nor_kept_out(self):
+        # the list is compared with the base deck, so a change that was taken back by another change leaves no trace
+        self.change({"op": "add", "card": "Mind Stone"})
+        self.change({"op": "cut", "card": "Mind Stone"})
+        self.change({"op": "cut", "card": "Ogre Slumlord"})
+        self.change({"op": "add", "card": "Ogre Slumlord"})
+        ctx, reply = self.asked()
+        self.assertEqual((set(ctx["keep"]), set(ctx["exclude"])), (set(), set()))
+        self.assertEqual(reply["changes_kept"], {"added": 0, "cut": 0})
+
+    def test_basic_lands_are_never_kept_or_kept_out(self):
+        # all four Forests go for four new cards and Ogre Slumlord for a fifth Swamp; copies of a basic land are
+        # interchangeable, and a kept Swamp would stop the search cutting any Swamp
+        added = ("Mind Stone", "Eternal Witness", "Squirrel Nest", "Assassin's Trophy")
+        for card in added:
+            self.change({"op": "swap", "cut": "Forest", "add": card})
+        self.change({"op": "swap", "cut": "Ogre Slumlord", "add": "Swamp"})
+        ctx, reply = self.asked()
+        self.assertEqual(set(ctx["keep"]), set(added))
+        self.assertEqual(set(ctx["exclude"]), {"Ogre Slumlord"})
+        self.assertEqual(reply["changes_kept"], {"added": 4, "cut": 1})
+
+    def test_a_version_with_no_changes_has_nothing_kept(self):
+        # the counts are in every answer
+        ctx, reply = self.asked()
+        self.assertEqual((set(ctx["keep"]), set(ctx["exclude"])), (set(), set()))
+        self.assertEqual(reply["changes_kept"], {"added": 0, "cut": 0})
+
+    def test_the_players_own_include_and_exclude_lists_still_apply(self):
+        # a version file that names its own lists (the pages cannot write them, a hand-edited file can): the search gets
+        # those lists with the changes' cards on top, and an undo takes away only the changes' cards
+        prepare = self.fakes.prepare
+
+        def with_the_players_lists(commanders, bracket, spec, db, **kw):
+            ctx = prepare(commanders, bracket, spec, db, **kw)
+            return dict(ctx, include=list(spec["include"]), exclude=set(spec["exclude"]))
+        self.app.prepare = with_the_players_lists
+        path = self.version("Own lists", include=["Sol Ring"], exclude=["Demonic Tutor"])
+        self.change({"op": "swap", "cut": "Ogre Slumlord", "add": "Mind Stone"}, path=path)
+        ctx, _ = self.asked(path)
+        self.assertEqual(ctx["include"], ["Sol Ring"])
+        self.assertEqual(set(ctx["exclude"]), {"Demonic Tutor", "Ogre Slumlord"})
+        self.assertEqual(set(ctx["keep"]), {"Mind Stone"})
+        self.change({"op": "undo", "of": 1}, path=path)
+        ctx, _ = self.asked(path)
+        self.assertEqual(ctx["include"], ["Sol Ring"])
+        self.assertEqual((set(ctx["exclude"]), set(ctx["keep"])), ({"Demonic Tutor"}, set()))
+
+    def test_the_next_answer_does_not_undo_the_round_that_was_just_applied(self):
+        # Apply the biggest price point, ask again. The new search used to reconsider what the Apply had just decided:
+        # at $200 it cut Squirrel Nest, which the Apply had added, and at $400 it also put Peregrin Took, which the
+        # Apply had cut, back. This is the real search on the miniature world's cards.
+        self.app.upgrade = self.real_upgrade
+        basics = ("Forest", "Swamp")
+        for budget in (200, 400):
+            with self.subTest(budget=budget):
+                path = self.version(f"Budget {budget}", budget=budget)
+                answer = self.post(path + "/suggest")
+                items = [{"op": "swap", "cut": s["cut"], "add": s["add"]}
+                         for s in answer["swaps"][:answer["price_points"][-1]["swaps"]]]
+                applied = self.change({"op": "group", "label": "Biggest", "items": items, "source": "suggested"},
+                                      path=path)
+                added = {c["name"] for c in applied["cards"] if c["new"]} - set(basics)
+                cut = {c["name"] for c in applied["cut_cards"]} - set(basics)
+                self.assertTrue(added and cut, "the first Apply changed nothing worth keeping")
+                again = self.post(path + "/suggest")
+                undoing = [(s["cut"], s["add"]) for s in again["swaps"] if s["cut"] in added or s["add"] in cut]
+                self.assertEqual(undoing, [])
+
+    def test_a_card_the_player_added_that_breaks_a_bracket_limit_is_still_repaired(self):
+        # Bracket 2 allows no Game Changer and Mana Crypt, added by hand, is one. Keeping the player's changes holds
+        # back the optional swaps only: the search still swaps it out (marked required), and does not say it could not
+        # fix it, which is what it says of a card the player asked to include
+        path = self.version("Looser table", bracket=2, budget=400)
+        self.app.upgrade = self.real_upgrade
+        self.change({"op": "swap", "cut": "Ogre Slumlord", "add": "Mana Crypt"}, path=path)
+        ctx, reply = self.asked(path)
+        self.assertEqual(set(ctx["keep"]), {"Mana Crypt"})
+        self.assertEqual([s["cut"] for s in reply["swaps"] if s["forced"]], ["Mana Crypt"])
+        self.assertEqual([w for w in reply["warnings"] if "Could not fix" in w], [])
 
 
 # ----------------------------------------------------------------------------- card search
