@@ -405,6 +405,17 @@ def _roles_change_line(before, after):
     return _pack("Roles: ", cells)
 
 
+def _answers_change_line(before, after):
+    """'Answers: creatures 14→9  planeswalkers 7→2': the kinds of threat the upgrade changed the number of answering
+    cards for, in the order `stats` lists them (the counts of `stats`' "answers to each threat"). Nothing when the
+    counts are missing (the tag data was unavailable) or none changed."""
+    if not before or not after:
+        return []
+    cells = [f"{roles.THREAT_NOUNS.get(id_, id_)} {before.get(id_, 0)}→{n}" for id_, n in after.items()
+             if n != before.get(id_, 0)]
+    return _pack("Answers: ", cells, hang=9) if cells else []
+
+
 def _still_off_target(counts, targets):
     """Roles outside their range after the change, so a swap list never hides a deck that is still short."""
     out = []
@@ -455,26 +466,47 @@ def _bracket_move(result):
     return lines
 
 
+def _weakens_note(weakens):
+    """'fewer answers: creatures 14 → 10 (typical 10), planeswalkers 7 → 3 (typical 3)': the kinds of threat a price
+    point has brought down from the starting list's count to what a typical deck at the bracket holds, or under it."""
+    return "fewer answers: " + ", ".join(
+        f"{w.get('label') or w.get('id')} {w.get('before')} → {w.get('after')} (typical {w.get('target')})"
+        for w in weakens)
+
+
 def _price_point_lines(points, start):
-    """The price-point block, one line per point with its columns lined up:
+    """The price-point block, one line per point with its columns lined up, and under a point that has brought the
+    deck's answers to some kind of threat down to a typical deck's count (or under it) a note saying which:
         $50    spend $48.20   value 91.0 (+11.2)   19 swaps
-    Everything counts from the start of the upgrade, so each line includes the ones above it. `start` is the
-    deck's value before any swap; without it the change in value is left out."""
+               fewer answers: enchantments 7 → 4 (typical 4), planeswalkers 7 → 3 (typical 3)
+    Everything counts from the start of the upgrade, so each line includes the ones above it. A point carries its own
+    change in value ("change"); without it (a hand-made result) the change is worked out from `start`, the deck's
+    value before any swap, and without either the change is left out."""
     rows = []
     for p in points:
-        value = p.get("value")
-        change = "" if value is None or start is None else f"{value - start:+.1f}"
+        value, change = p.get("value"), p.get("change")
+        if change is None and value is not None and start is not None:
+            change = value - start
         rows.append((_budget(p["budget"]) if p.get("budget") is not None else "?", _money(p.get("spent")),
-                     "?" if value is None else f"{value:.1f}", change, _plural(p.get("swaps") or 0, "swap")))
+                     "?" if value is None else f"{value:.1f}", "" if change is None else f"{change:+.1f}",
+                     _plural(p.get("swaps") or 0, "swap")))
     w = [max(len(row[i]) for row in rows) for i in range(5)]
     lines = ["Price points (each includes the ones above it):"]
-    for budget, spent, value, change, swaps in rows:
+    for p, (budget, spent, value, change, swaps) in zip(points, rows):
         if change:
             moved = f" ({change:>{w[3]}})"
         else:
             moved = " " * (w[3] + 3 if w[3] else 0)       # keep the columns when only some lines have a change
         lines.append(f"  {budget:<{w[0]}}   spend {spent:>{w[1]}}   value {value:>{w[2]}}{moved}   {swaps:>{w[4]}}")
+        if p.get("weakens"):
+            lines += _wrap(_weakens_note(p["weakens"]), indent=w[0] + 5, hang=4)
     return lines
+
+
+def _lone_point_note(points):
+    """The note of an upgrade's only price point (the budget alone), which has no line of its own to sit under: two
+    spaces in, under the Answers line. Nothing without a budget (no points) or for a point with no note."""
+    return [line for p in points if p.get("weakens") for line in _wrap(_weakens_note(p["weakens"]), indent=2, hang=4)]
 
 
 def upgrade_report(result, verbose=False):
@@ -503,9 +535,14 @@ def upgrade_report(result, verbose=False):
         lines += ["", "Cheapest useful adds:"]
         lines += [f"  {c.get('card')}  {_gain(c.get('gain'))}  {_money(c.get('price'))}" for c in cheap]
     before, after = result.get("roles_before"), result.get("roles_after")
+    answers = _answers_change_line(result.get("answers_before"), result.get("answers_after"))
+    if not stepped:
+        answers += _lone_point_note(points)
     if before and after:
-        lines += [""] + _roles_change_line(before, after)
+        lines += [""] + _roles_change_line(before, after) + answers
         lines += _still_off_target(after, result.get("targets") or {})
+    elif answers:
+        lines += [""] + answers
     if result.get("value_before") is not None:
         lines += _value_change(result["value_before"], result.get("value_after"))
     if result.get("bracket_before") is not None or result.get("bracket_after") is not None:
@@ -747,7 +784,7 @@ def _calibration_lines(report):
         lines.append(f"    and {len(changes) - MAX_CHANGES} more")
     metric = report.get("metrics") or {}
     if metric.get("written"):
-        lines.append(f"  Also wrote {metric['written']} (removal and wipe power).")
+        lines.append(f"  Also wrote {metric['written']} (removal and wipe power, and answer counts).")
     return lines
 
 

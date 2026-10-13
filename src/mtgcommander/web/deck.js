@@ -374,15 +374,19 @@ function suggestionResult(app, deck, result) {
     out.push(h("section", { class: "stack" }, ui.sectionLabel("Price points", { tight: true }),
       points.map((point, i) => {
         const title = `Up to ${ui.dollars(point.budget)}`;
-        return h("div", { class: i === points.length - 1 ? "pp pp--budget" : "pp" },
+        const row = h("div", { class: i === points.length - 1 ? "pp pp--budget" : "pp" },
           h("button", {
             type: "button", class: "pp__pick", "aria-pressed": i === chosen, onclick: () => { suggest.selected = i; suggest.showAll = false; app.render(); },
           }, h("span", { class: "pp__title", text: title }),
-          h("span", { class: "pp__meta" }, "spend ", h("b", { text: ui.money(point.spent) }), ` · score ${ui.oneDecimal(result.value_before)} → ${ui.oneDecimal(point.value)}`)),
+          h("span", { class: "pp__meta" }, "spend ", h("b", { text: ui.money(point.spent) }),
+            ` · score ${ui.oneDecimal(result.value_before)} → ${ui.oneDecimal(point.value)}`,
+            ui.isNumber(point.change) ? ` (${ui.signed(Math.round(point.change * 10) / 10)})` : "")),
           ui.button({
             label: `Apply ${point.swaps}`, kind: "gold", disabled: locked, ariaLabel: `Apply ${title}: ${point.swaps} ${point.swaps === 1 ? "swap" : "swaps"}`,
             onClick: () => app.change({ op: "group", label: title, items: swaps.slice(0, point.swaps).map((s) => ({ op: "swap", cut: s.cut, add: s.add })), source: "suggested" }),
           }));
+        const note = weakensNote(point);
+        return note ? h("div", { class: "stack", style: { gap: "4px" } }, row, note) : row;
       }),
       h("p", { class: "muted small", text: "Each price point includes the smaller ones before it. Tap one to see its swaps." })));
     const point = points[chosen];
@@ -400,6 +404,15 @@ function suggestionResult(app, deck, result) {
   }
   if (result.warnings.length) out.push(...result.warnings.map((text) => ui.banner({ tone: "warn", text })));
   return out;
+}
+
+/** The note under a price point that has brought the deck's answers to some kind of threat down from the starting
+ *  list's count to what a typical deck at the bracket holds, or under it: "enchantments 7 → 4 (typical 4)". The server
+ *  works the numbers out; the change in score is shown to one decimal, like the two scores beside it. */
+function weakensNote(point) {
+  if (!point.weakens || !point.weakens.length) return null;
+  const kinds = point.weakens.map((w) => `${w.label} ${w.before} → ${w.after} (typical ${w.target})`).join(", ");
+  return ui.banner({ tone: "warn", title: "Weakens interaction", children: [h("p", { text: kinds })] });
 }
 
 function swapRow(app, deck, result, swap, n, locked) {

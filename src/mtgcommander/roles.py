@@ -22,7 +22,12 @@ many, so `upgrade` and `build` can keep enough basics in the list.
 
 Finer facts about a card (how far its removal reaches, whether a land enters tapped, whether it can end the game)
 come from a second set of tags, ATTRIBUTE_TAGS, through `attributes`. It is its own `scryfall_tags.load` call:
-if those tags cannot be had, the roles above still work and only the metrics that need them go without."""
+if those tags cannot be had, the roles above still work and only the metrics that need them go without.
+
+One of those facts is which kinds of threat a card can answer (a creature, an artifact, an enchantment, ...).
+THREATS says which tags count for which kind, and `answer_bands` says how many answers to each kind a deck at a
+bracket usually holds, so `metrics.py` can mark a count short, `calibrate.py` can measure it and `upgrade` can keep
+it."""
 import collections, datetime, json, os, re
 from . import config, net
 from .providers import scryfall_tags
@@ -88,6 +93,24 @@ ATTRIBUTE_TAGS = (
     "tax", "lockdown", "hatebear",
 )
 
+# The kinds of threat a deck should be able to answer, as (id, label, slugs): a card answers a threat when it carries
+# any of the slugs, every one of them in ATTRIBUTE_TAGS. Everything that counts answers reads this one table, so the
+# counts always agree: metrics.py shows "answers to each threat" for a deck, calibrate.py measures how many real decks
+# hold, and `upgrade` (build.py) keeps a deck from trading the answers away.
+THREATS = (("answers_creatures", "Answers to creatures", ("removal-creature", "sweeper")),
+           ("answers_artifacts", "Answers to artifacts", ("removal-artifact",)),
+           ("answers_enchantments", "Answers to enchantments", ("removal-enchantment",)),
+           ("answers_planeswalkers", "Answers to planeswalkers", ("removal-planeswalker",)),
+           ("answers_lands", "Answers to lands", ("removal-land",)),
+           ("answers_graveyards", "Answers to graveyards", ("hate-graveyard",)),
+           ("answers_spells", "Answers to spells", ("counterspell",)))
+THREAT_IDS = tuple(id_ for id_, _, _ in THREATS)
+THREAT_NOUNS = {id_: label.split(" to ", 1)[1] for id_, label, _ in THREATS}     # "answers_lands" -> "lands"
+# Threats only blue cards answer (a counterspell). A deck without blue is not expected to hold any, so the usual number
+# is measured over decks with blue, and `answer_bands` drops the minimum and target to 0 for colors without blue: the
+# rule `targets` applies to the counterspell role.
+BLUE_THREATS = ("answers_spells",)
+
 NEW_CARD_DAYS = 180
 WARNINGS = []              # non-fatal problems (tag data unavailable); callers print and clear them
 _MEMO = {}
@@ -148,6 +171,7 @@ _HOW_MANY_FIRST = re.compile(r"(?:up to )?(a|an|one|two|three|x|that many)\b")
 _HOW_MANY = {"a": 1, "an": 1, "one": 1, "two": 2, "three": 3, "x": 2, "that many": 2}
 
 TARGETS_PATH = os.path.join(config.COMMITTED, "role_targets.json")
+METRIC_TARGETS_PATH = os.path.join(config.COMMITTED, "metric_targets.json")
 PLAYSTYLES_PATH = os.path.join(config.COMMITTED, "playstyles.json")
 
 
@@ -311,6 +335,23 @@ def attributes_loaded():
     return _MEMO.get("attributes") is not None
 
 
+def threats_answered(slugs):
+    """The ids of the threats one card answers (a frozenset), from the ATTRIBUTE_TAGS slugs it carries. Maelstrom
+    Pulse, tagged for artifacts, enchantments and planeswalkers, answers three; a counterspell answers one."""
+    held = set(slugs)
+    return frozenset(id_ for id_, _, tags in THREATS if held.intersection(tags))
+
+
+def answer_counts(names, attrs):
+    """{threat id: how many of the distinct cards in `names` answer it}, the number metrics.py shows as "answers to
+    each threat". `attrs` is `attributes` output; a name it lacks answers nothing."""
+    counts = dict.fromkeys(THREAT_IDS, 0)
+    for name in dict.fromkeys(names):
+        for id_ in threats_answered(attrs.get(name) or ()):
+            counts[id_] += 1
+    return counts
+
+
 def counts(names, role_map, db):
     """Counts for a list of cards: {"land": n, "mdfc_land": n, <role>: n, ..., "topend": n}.
     `names` holds one entry per copy (nine Forests are nine entries) or (count, name) pairs. A card counts
@@ -366,3 +407,30 @@ def targets(bracket, playstyle="value", *, avg_lands=None, ci=None):
     if ci is not None and "U" not in ci:
         out["counter"]["min"] = out["counter"]["target"] = 0
     return out
+
+
+def metric_targets(bracket):
+    """{metric id: {"min", "target", "max"}} for a bracket, read from commander/metric_targets.json (calibrate.py writes
+    it): removal_power, wipe_power, and one row for each threat in THREATS. {} when the file is missing or damaged, and
+    a row that is not a [min, target, max] list is left out, so the callers fall back instead of failing. This is the
+    one place that file is read (`metrics.targets` and `answer_bands` both come here)."""
+    data = net.read_json(METRIC_TARGETS_PATH)
+    rows = data.get("brackets") if isinstance(data, dict) else None
+    row = rows.get(str(min(max(int(bracket), 1), 5))) if isinstance(rows, dict) else None
+    if not isinstance(row, dict):
+        return {}
+    return {name: {"min": v[0], "target": v[1], "max": v[2]} for name, v in row.items()
+            if isinstance(v, list) and len(v) == 3}
+
+
+def answer_bands(bracket, ci=None):
+    """How many answers to each kind of threat a deck at `bracket` usually holds: {threat id: {"min", "target",
+    "max"}}, the 25th percentile, median and 90th percentile of real decks. A threat the file has no row for is left
+    out. With `ci` (the commander's colors) and no blue in it, the minimum and target of the threats only blue answers
+    (spells) drop to 0, since a deck without blue is not expected to hold any: the counterspell rule of `targets`."""
+    bands = {id_: band for id_, band in metric_targets(bracket).items() if id_ in THREAT_IDS}
+    if ci is not None and "U" not in ci:
+        for id_ in BLUE_THREATS:
+            if id_ in bands:
+                bands[id_] = dict(bands[id_], min=0, target=0)
+    return bands

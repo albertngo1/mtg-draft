@@ -31,8 +31,8 @@ Removal power is this module's own measure (the design's "Metrics" section). Eac
     speed × reach × permanence × cost, times 1.5 if it removes again and again,
 
 with the weights below. They are judgment calls, printed in each card's `why` line so the number can be checked."""
-import collections, os
-from . import brackets, build, config, fantasy, net, roles, score
+import collections
+from . import brackets, build, fantasy, roles, score
 
 SCHEMA = 1
 
@@ -111,20 +111,13 @@ SOURCE_WORDS = {"suggested": "suggested by the tool", "manual": "picked by hand"
 NO_TAGS = "Scryfall's function tags for card attributes are not available (offline, and no earlier run saved them)."
 NO_COMBOS = "Combos were not checked: no Commander Spellbook data was available."
 
-TARGETS_PATH = os.path.join(config.COMMITTED, "metric_targets.json")
-
 
 def targets(bracket):
-    """{"removal_power": {"min", "target", "max"}, "wipe_power": {...}} for a bracket, from
-    commander/metric_targets.json (written by calibrate.py); {} when the file is missing or damaged, in which
-    case those two items carry no band."""
-    data = net.read_json(TARGETS_PATH)
-    rows = data.get("brackets") if isinstance(data, dict) else None
-    row = rows.get(str(min(max(int(bracket), 1), 5))) if isinstance(rows, dict) else None
-    if not isinstance(row, dict):
-        return {}
-    return {name: {"min": v[0], "target": v[1], "max": v[2]} for name, v in row.items()
-            if isinstance(v, list) and len(v) == 3}
+    """{"removal_power": {"min", "target", "max"}, "wipe_power": {...}, plus one row for each threat in
+    roles.THREATS} for a bracket, from commander/metric_targets.json (written by calibrate.py); {} when the file is
+    missing or damaged, in which case those items carry no band. roles.metric_targets reads the file (it is the one
+    place that does, since build.py needs the answer bands and cannot import this module)."""
+    return roles.metric_targets(bracket)
 
 
 # ---------------------------------------------------------------- removal power
@@ -399,14 +392,28 @@ def _combo_items(f):
 
 
 # ---------------------------------------------------------------- group: interaction
-THREATS = (("answers_creatures", "Answers to creatures", ("removal-creature", "sweeper")),
-           ("answers_artifacts", "Answers to artifacts", ("removal-artifact",)),
-           ("answers_enchantments", "Answers to enchantments", ("removal-enchantment",)),
-           ("answers_planeswalkers", "Answers to planeswalkers", ("removal-planeswalker",)),
-           ("answers_lands", "Answers to lands", ("removal-land",)),
-           ("answers_graveyards", "Answers to graveyards", ("hate-graveyard",)),
-           ("answers_spells", "Answers to spells", ("counterspell",)))
+THREATS = roles.THREATS      # lives in roles.py, where build.py can read it too; kept here for serve.py and the tests
 INTERACTION_ROLES = ("removal", "wipe", "counter", "protection")
+
+
+def _answers_item(f, id_, label, slugs, band):
+    """One "answers to ..." item. `band` is the bracket's band for the threat from roles.answer_bands (what real
+    decks at the bracket hold, so "short" means fewer than their 25th percentile, as for every other count). When
+    the file has no row for it (`band` is None) one answer is enough: the count is short only at 0."""
+    names = f.with_tag(*slugs)
+    count = f"{len(names)} card can" if len(names) == 1 else f"{len(names)} cards can"
+    why = [f"{count} deal with it" if names else "Nothing in the deck can."]
+    if band is not None:
+        why.append(_answers_band_why(f, id_, band))
+    return _item(id_, label, len(names), band=band or _band(1), cards=names, why=why)
+
+
+def _answers_band_why(f, id_, band):
+    """The line that says where a measured band comes from, so a count that is short but not zero explains itself."""
+    if id_ in roles.BLUE_THREATS and "U" not in f.ctx["ci"]:
+        return "The commander's colors have no blue, so none is expected."
+    usual = f"Decks at Bracket {f.bracket} usually hold {band['min']} to {band['max']} (typically {band['target']})"
+    return usual + (f"; fewer than {band['min']} is short." if band["min"] else "; no minimum applies.")
 
 
 def _power_item(id_, label, rows, band, role):
@@ -425,10 +432,8 @@ def _interaction(f):
                              bands.get("removal_power"), "removal"),
                  _power_item("wipe_power", "Wipe power", rate_wipes(f.names, f.role_map, f.attrs, f.db),
                              bands.get("wipe_power"), "wipe")]
-        for id_, label, slugs in THREATS:
-            names = f.with_tag(*slugs)
-            items.append(_item(id_, label, len(names), band=_band(1), cards=names,
-                               why=[f"{len(names)} cards can deal with it" if names else "Nothing in the deck can."]))
+        answers = roles.answer_bands(f.bracket, f.ctx["ci"])
+        items += [_answers_item(f, id_, label, slugs, answers.get(id_)) for id_, label, slugs in THREATS]
     items.append(f.role_item("counterspells", "Counterspells", "counter", "Cards that counter a spell."))
     items.append(f.role_item("protection", "Protection", "protection", "Cards that shield your permanents."))
     items.append(_instant_share(f))

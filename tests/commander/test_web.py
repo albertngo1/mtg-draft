@@ -127,6 +127,17 @@ class FilesTests(unittest.TestCase):
                 self.assertNotRegex(
                     source, r"innerHTML|outerHTML|insertAdjacentHTML|document\.write|\beval\(|new Function\(")
 
+    def test_the_suggestions_tab_shows_what_the_server_worked_out_and_subtracts_nothing(self):
+        # each price point's change in score and its "Weakens interaction" note come in the server's answer
+        # (`change`, `weakens`), drawn with the shared signed-number formatter and banner; the page never works out a
+        # difference between two scores or compares a count with a typical one
+        source = without_comments(read("deck.js"))
+        suggestions = source[source.index("function suggestionResult("):source.index("function swapRow(")]
+        for wanted in ("point.change", "point.weakens", "ui.signed(", "Weakens interaction", "ui.banner("):
+            self.assertIn(wanted, source, wanted)
+        self.assertNotRegex(suggestions, r"point\.value\s*-|value_before\s*-|-\s*result\.value_before|\.after\s*<|\.before\s*-")
+        self.assertNotRegex(source, r"\.weakens\s*=|\.change\s*=")          # read, never set: the server owns them
+
     def test_the_stylesheet_uses_only_the_tokens_it_has(self):
         # every var(--x) names a token in :root (the page would silently lose that color or size otherwise)
         tokens = set(root_rules(os.path.join(WEB, "styles.css"))[0])

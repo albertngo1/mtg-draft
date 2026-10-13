@@ -4,7 +4,7 @@ arithmetic, `prepare`, `upgrade`, `build` and `suggest`.
 Everything runs on a synthetic world of cards with known scores, roles and prices (World below), so each
 assertion is a worked example rather than a snapshot of real data. Combos and prices come in through the
 `combos_fn` and `prices` arguments; providers and net are closed, so nothing here can reach the network."""
-import collections, math, random, time, unittest
+import collections, json, math, os, random, shutil, tempfile, time, unittest
 from unittest import mock
 from mtgcommander import build, carddb, net, roles, score
 from mtgcommander.providers import edhrec, edhtop16
@@ -144,7 +144,32 @@ class Isolated(unittest.TestCase):
     def setUp(self):
         for fn in ("fetch_json", "request", "download"):
             mock.patch.object(net, fn, side_effect=AssertionError(f"net.{fn} must not run in a test")).start()
+        # `upgrade` asks for the attribute tags (which kinds of threat each card answers). Left alone that would read
+        # whatever tag cache this machine has, or fail on one that has none, so every test starts with tags that load
+        # and that no card carries: the answers floors then bind nothing, and the AnswerTests below set real ones.
+        self.tag_calls = []
+        mock.patch.object(roles, "attributes", side_effect=self.no_tags).start()
+        mock.patch.object(roles, "attributes_loaded", return_value=True).start()
         self.addCleanup(mock.patch.stopall)
+
+    def no_tags(self, names, db, **kw):
+        self.tag_calls.append(list(names))
+        return {name: frozenset() for name in names}
+
+    def set_tags(self, tags, loaded=True):
+        """Give the cards of a test attribute tags, {card name: slugs}; a card that is not in it carries none.
+        `loaded=False` is the tag data being unavailable."""
+        def tagged(names, db, **kw):
+            self.tag_calls.append(list(names))
+            return {n: frozenset(tags.get(n, ())) for n in names}
+        roles.attributes.side_effect = tagged
+        roles.attributes_loaded.return_value = loaded
+
+    def set_bands(self, **bands):
+        """Fix the answer bands of the bracket: set_bands(enchantments=(4, 5, 9)) is a minimum of 4 answers to
+        enchantments, a target of 5 and a maximum of 9. A kind that is not named has no band."""
+        fixed = {f"answers_{kind}": {"min": lo, "target": mid, "max": hi} for kind, (lo, mid, hi) in bands.items()}
+        return mock.patch.object(roles, "answer_bands", return_value=fixed).start()
 
 
 # ----------------------------------------------------------------------------- the value of a deck
@@ -1006,8 +1031,8 @@ class UpgradeTests(Isolated):
         res, _, _ = run_upgrade(self.world(), self.DECK, ["Staple"], max_swaps=1)
         self.assertEqual(set(res), {"command", "deck", "bracket", "budget", "spent", "spec", "swaps",
                                     "price_points", "blocked", "cheap_adds", "roles_before", "roles_after",
-                                    "targets", "value_before", "value_after", "bracket_before", "bracket_after",
-                                    "deck_after", "warnings", "sources"})
+                                    "answers_before", "answers_after", "targets", "value_before", "value_after",
+                                    "bracket_before", "bracket_after", "deck_after", "warnings", "sources"})
         self.assertEqual(set(res["deck"]), {"name", "commanders", "count", "ci"})
         self.assertEqual(res["deck_after"]["commanders"], [CMDR])
         self.assertEqual(res["bracket"], 3)
@@ -1259,9 +1284,633 @@ class PricePointTests(Isolated):
             self.assertAlmostEqual(line["value"], build.deck_value(names, ctx, db)["total"])
         self.assertAlmostEqual(res["price_points"][-1]["value"], res["value_after"])
 
-    def test_each_price_point_line_has_the_four_documented_keys(self):
+    def test_each_price_point_line_has_the_documented_keys(self):
         res, _, _ = self.upgrade(budget=40.0)
-        self.assertEqual(set(res["price_points"][0]), {"budget", "spent", "value", "swaps"})
+        self.assertEqual(set(res["price_points"][0]), {"budget", "spent", "value", "swaps", "change", "answers",
+                                                       "weakens"})
+
+
+# ----------------------------------------------------------------------------- answers to each kind of threat
+ENCH, WALK, ARTI, CREA, SPEL = ("answers_enchantments", "answers_planeswalkers", "answers_artifacts",
+                                "answers_creatures", "answers_spells")
+ENCH_TAG, WALK_TAG, SPELL_TAG = ["removal-enchantment"], ["removal-planeswalker"], ["counterspell"]
+
+
+class KeepsAnswersTests(Isolated):
+    """Plan.keeps_answers: after a swap each kind of threat keeps at least min(the answers it has now, its floor), the
+    floor being what a typical deck at the bracket holds (`upgrade` takes it from the band's target). Every case is a
+    list with a known number of answers to enchantments (Ench 1, 2, ...), one answer to planeswalkers, and a Bear that
+    answers nothing."""
+
+    def keeps(self, cut, add, *, ench, floors, extra=()):
+        names = {"Bear": 0.1, "Dud": 0.1, "Ench New": 0.9, "Walker 1": 0.0, "Walker New": 0.9, "Pulse": 0.0,
+                 "Pulse New": 0.9}
+        names.update({f"Ench {i}": 0.0 for i in range(1, ench + 1)})
+        w = mini(**names)
+        db = w.db()
+        answers = {name: frozenset({ENCH}) for name in names if name.startswith("Ench")}
+        answers.update({"Walker 1": frozenset({WALK}), "Walker New": frozenset({WALK}),
+                        "Pulse": frozenset({ENCH, WALK}), "Pulse New": frozenset({ENCH, WALK})})
+        model = build.Model(make_ctx(w, db, names=list(names), targets=zero_targets()), db, answers=answers)
+        plan = build.Plan(model, db, "BG", 3, prices={}, owned=set())
+        for name in ["Bear", "Walker 1"] + [f"Ench {i}" for i in range(1, ench + 1)] + list(extra):
+            plan.add(name)
+        plan.answer_floors = floors
+        return plan.keeps_answers(model.facts(cut), model.facts(add))
+
+    def test_worked_examples_one_kind_of_threat(self):
+        cases = [
+            # (answers to enchantments, floors, card cut, card added, whether the swap may happen, the situation)
+            (7, {ENCH: 4}, "Ench 1", "Dud", True, "7 answers and a floor of 4: it may fall to 6"),
+            (5, {ENCH: 4}, "Ench 1", "Dud", True, "5 answers: it may trade down to 4, the floor itself"),
+            (4, {ENCH: 4}, "Ench 1", "Dud", False, "4 answers is the floor: it may not fall to 3"),
+            (2, {ENCH: 4}, "Ench 1", "Dud", False, "a list that starts under the floor keeps what it has"),
+            (2, {ENCH: 4}, "Ench 1", "Ench New", True, "under the floor, another answer of that kind may replace one"),
+            (4, {ENCH: 4}, "Ench 1", "Ench New", True, "at the floor, one answer for another answer is fine"),
+            (4, {ENCH: 4}, "Ench 1", "Walker New", False, "an answer to planeswalkers does not make up for one to "
+                                                           "enchantments"),
+            (4, {ENCH: 4}, "Bear", "Dud", True, "a card that answers nothing can always be cut"),
+            (4, {ENCH: 4}, "Bear", "Ench New", True, "and an answer can always be added"),
+            (4, {ENCH: 0}, "Ench 1", "Dud", True, "a floor of 0 asks for nothing"),
+            (0, {ENCH: 4}, "Bear", "Dud", True, "no answers at all and nothing cut that answered anything"),
+            (4, {WALK: 1}, "Ench 1", "Dud", True, "a kind with no floor may be thinned out completely"),
+            (4, {}, "Ench 1", "Dud", True, "no floors at all (build, or no tags): every swap passes"),
+            (4, {ENCH: 4}, "Walker 1", "Dud", True, "the walker answer is not an answer to enchantments"),
+            (4, {ENCH: 4, WALK: 1}, "Walker 1", "Dud", False, "but with a floor of 1 for planeswalkers it stays"),
+        ]
+        for ench, floors, cut, add, passes, why in cases:
+            with self.subTest(why):
+                self.assertIs(self.keeps(cut, add, ench=ench, floors=floors), passes)
+
+    def test_worked_examples_a_card_that_answers_two_kinds(self):
+        # Pulse answers enchantments and planeswalkers, so the list holds 5 answers to enchantments (4 Ench and Pulse)
+        # and 2 to planeswalkers (Walker 1 and Pulse); both are at their floors
+        floors = {ENCH: 5, WALK: 2}
+        cases = [
+            ("Pulse", "Ench New", False, "cutting Pulse for an answer to enchantments loses a planeswalker answer"),
+            ("Pulse", "Walker New", False, "and for an answer to planeswalkers it loses an enchantment answer"),
+            ("Pulse", "Pulse New", True, "another card that answers both keeps both"),
+            ("Pulse", "Dud", False, "a card that answers nothing keeps neither"),
+            ("Ench 1", "Pulse New", True, "an answer to enchantments for a card that answers both is fine"),
+        ]
+        for cut, add, passes, why in cases:
+            with self.subTest(why):
+                self.assertIs(self.keeps(cut, add, ench=4, floors=floors, extra=["Pulse"]), passes)
+
+    def test_a_swap_is_refused_exactly_when_it_thins_out_a_kind_that_is_down_to_its_floor(self):
+        # `best_swap` skips the check when no kind of threat is at its floor (`_tight_answers`); that shortcut must
+        # agree with the check itself in every state: refused <=> a kind in the tight set is cut and not added back
+        rng = random.Random(11)
+        kinds = [ENCH, WALK, ARTI]
+        cards = {f"Card {i}": frozenset(rng.sample(kinds, rng.randint(0, 3))) for i in range(12)}
+        w = mini(**{name: 0.1 for name in cards})
+        db = w.db()
+        model = build.Model(make_ctx(w, db, names=list(cards), targets=zero_targets()), db, answers=cards)
+        seen_refused = seen_tight = 0
+        for _ in range(60):
+            plan = build.Plan(model, db, "BG", 3, prices={}, owned=set())
+            held = rng.sample(list(cards), rng.randint(2, 10))
+            for name in held:
+                plan.add(name)
+            plan.answer_floors = {k: rng.randint(0, 4) for k in rng.sample(kinds, rng.randint(0, 3))}
+            tight = plan._tight_answers()
+            for cut in held:
+                for add in cards:
+                    if add in held:
+                        continue
+                    fc, fa = model.facts(cut), model.facts(add)
+                    refused = not plan.keeps_answers(fc, fa)
+                    self.assertEqual(refused, bool(tight & (fc.answers - fa.answers)), (held, cut, add, tight))
+                    seen_refused += refused
+                    seen_tight += bool(tight)
+        self.assertGreater(seen_refused, 20)                  # the random states did exercise both outcomes
+        self.assertGreater(seen_tight, 20)
+
+    def test_the_shortcut_never_changes_which_swap_best_swap_picks(self):
+        # best_swap asks keeps_answers only for the groups that answer a kind of threat down to its floor; asking for
+        # every group that answers anything with a floor must pick exactly the same swap, in states where the floors
+        # do refuse some
+        rng = random.Random(23)
+        kinds = [ENCH, WALK, ARTI]
+        cards = {f"Card {i:02d}": frozenset(rng.sample(kinds, rng.randint(0, 2))) for i in range(16)}
+        w = mini(**{name: round(0.05 * i, 2) for i, name in enumerate(cards)})
+        db = w.db()
+        model = build.Model(make_ctx(w, db, names=list(cards), targets=zero_targets()), db, answers=cards)
+        refusals = 0
+        for _ in range(80):
+            plan = build.Plan(model, db, "BG", 3, prices={}, owned=set())
+            held = rng.sample(list(cards), rng.randint(4, 11))
+            for name in held:
+                plan.add(name)
+            plan.answer_floors = {k: rng.randint(0, 4) for k in rng.sample(kinds, rng.randint(1, 3))}
+            adds = [n for n in cards if n not in held]
+            quick = plan.best_swap(held, adds, min_gain=-math.inf)
+            with mock.patch.object(build.Plan, "_tight_answers", lambda self: set(self.answer_floors)):
+                full = plan.best_swap(held, adds, min_gain=-math.inf)
+            self.assertEqual(quick, full, (held, plan.answer_floors))
+            plan.answer_floors = {}
+            refusals += plan.best_swap(held, adds, min_gain=-math.inf) != quick     # with no floors it would differ
+        self.assertGreater(refusals, 10)
+
+    def test_a_kind_with_no_answers_or_a_floor_of_zero_is_never_tight(self):
+        w = mini(Pulse=0.1)
+        db = w.db()
+        model = build.Model(make_ctx(w, db, targets=zero_targets()), db, answers={"Pulse": frozenset({ENCH})})
+        plan = build.Plan(model, db, "BG", 3, prices={}, owned=set())
+        plan.answer_floors = {ENCH: 2, WALK: 0, ARTI: 3}
+        self.assertEqual(plan._tight_answers(), set())              # nothing answers anything yet: nothing to thin out
+        plan.add("Pulse")
+        self.assertEqual(plan._tight_answers(), {ENCH})             # 1 answer against a floor of 2
+        plan.answer_floors = {ENCH: 0}
+        self.assertEqual(plan._tight_answers(), set())              # a floor of 0 asks for nothing
+
+    def test_each_kind_is_judged_on_its_own_even_when_the_other_is_far_above_its_floor(self):
+        # 9 answers to enchantments (floor 4) do not pay for the last planeswalker answer (floor 1)
+        self.assertFalse(self.keeps("Walker 1", "Ench New", ench=9, floors={ENCH: 4, WALK: 1}))
+
+
+class AnswerTrackingTests(Isolated):
+    """Facts carry the threats a card answers, the Plan keeps a count for each, and cuts that cover different
+    threats are never one group."""
+
+    TAGS = {"Pulse": ["removal-artifact", "removal-enchantment", "removal-planeswalker", "spot-removal"],
+            "Disenchant": ["removal-enchantment"], "Smash": ["removal-artifact"], "Wrath": ["sweeper"],
+            "Slay": ["removal-creature", "sweeper"], "Hush": ["counterspell"], "Rock": ["mana-rock"], "Bear": []}
+
+    def setUp(self):
+        super().setUp()
+        self.world = mini(**{name: 0.1 * i for i, name in enumerate(self.TAGS)})
+        self.db = self.world.db()
+        self.answers = {name: roles.threats_answered(slugs) for name, slugs in self.TAGS.items()}
+        self.ctx = make_ctx(self.world, self.db, names=list(self.TAGS), targets=zero_targets())
+        self.model = build.Model(self.ctx, self.db, answers=self.answers)
+
+    def plan(self):
+        return build.Plan(self.model, self.db, "BG", 3, prices={}, owned=set())
+
+    def test_the_facts_of_a_card_say_which_threats_it_answers(self):
+        self.assertEqual(self.model.facts("Pulse").answers, frozenset({ARTI, ENCH, WALK}))
+        self.assertEqual(self.model.facts("Slay").answers, frozenset({CREA}))           # two tags, one kind
+        self.assertEqual(self.model.facts("Rock").answers, frozenset())
+        self.assertEqual(self.model.facts("Not A Card").answers, frozenset())           # a name the index lacks
+        self.assertIsInstance(self.model.facts("Hush").answers, frozenset)
+
+    def test_a_model_given_no_answers_has_cards_that_answer_nothing(self):
+        bare = build.Model(self.ctx, self.db)
+        self.assertEqual({bare.facts(n).answers for n in self.TAGS}, {frozenset()})
+
+    def test_a_plan_counts_a_card_once_for_each_threat_it_answers(self):
+        plan = self.plan()
+        for name in ("Pulse", "Disenchant", "Wrath", "Bear"):
+            plan.add(name)
+        self.assertEqual(dict(+plan.answers), {ARTI: 1, ENCH: 2, WALK: 1, CREA: 1})
+        plan.remove("Pulse")
+        self.assertEqual(dict(+plan.answers), {ENCH: 1, CREA: 1})
+        plan.swap("Disenchant", "Smash")
+        self.assertEqual(dict(+plan.answers), {ARTI: 1, CREA: 1})
+
+    def test_a_second_copy_of_a_card_does_not_count_twice_as_metrics_counts_distinct_cards(self):
+        plan = self.plan()
+        plan.add("Disenchant")
+        plan.add("Disenchant")
+        self.assertEqual(plan.answers[ENCH], 1)
+        plan.remove("Disenchant")
+        self.assertEqual(plan.answers[ENCH], 1)                     # one copy is still in the list
+        plan.remove("Disenchant")
+        self.assertEqual(plan.answers[ENCH], 0)
+
+    def test_a_clone_has_its_own_counts_and_floors(self):
+        plan = self.plan()
+        plan.add("Pulse")
+        plan.answer_floors = {ENCH: 1}
+        other = plan.clone()
+        other.add("Disenchant")
+        other.answer_floors[WALK] = 5
+        self.assertEqual((plan.answers[ENCH], other.answers[ENCH]), (1, 2))
+        self.assertEqual((plan.answer_floors, other.answer_floors), ({ENCH: 1}, {ENCH: 1, WALK: 5}))
+
+    def test_the_counts_always_equal_the_distinct_cards_that_answer_each_threat(self):
+        # the number the Metrics tab and calibrate.py count with: roles.answer_counts over the list
+        rng = random.Random(7)
+        plan, names = self.plan(), list(self.TAGS)
+        for step in range(400):
+            held = list(plan.cards)
+            if held and rng.random() < 0.4:
+                plan.remove(rng.choice(held))
+            else:
+                plan.add(rng.choice(names))
+            if step % 50 == 0:
+                plan = plan.clone()
+            counted = roles.answer_counts(plan.names(), {n: frozenset(self.TAGS[n]) for n in names})
+            self.assertEqual({t: plan.answers[t] for t in roles.THREAT_IDS}, counted, step)
+
+    def test_cuts_that_cover_different_threats_are_never_in_one_group(self):
+        # three cards alike in every other way: Disenchant and Disenchant Too answer enchantments, Smash artifacts
+        w = mini(**{"Disenchant": 0.1, "Disenchant Too": 0.2, "Smash": 0.3, "Bear": 0.4})
+        db = w.db()
+        answers = {"Disenchant": frozenset({ENCH}), "Disenchant Too": frozenset({ENCH}), "Smash": frozenset({ARTI})}
+        plan = build.Plan(build.Model(make_ctx(w, db, targets=zero_targets()), db, answers=answers), db, "BG", 3,
+                          prices={}, owned=set())
+        groups = plan._groups(["Disenchant", "Disenchant Too", "Smash", "Bear"])
+        shape = sorted(sorted(f.name for f, _, _ in group) for group in groups)
+        self.assertEqual(shape, [["Bear"], ["Disenchant", "Disenchant Too"], ["Smash"]])
+
+    def test_a_card_that_answers_two_kinds_is_not_grouped_with_one_that_answers_one(self):
+        w = mini(**{"Pulse": 0.1, "Disenchant": 0.2})
+        db = w.db()
+        answers = {"Pulse": frozenset({ARTI, ENCH, WALK}), "Disenchant": frozenset({ENCH})}
+        plan = build.Plan(build.Model(make_ctx(w, db, targets=zero_targets()), db, answers=answers), db, "BG", 3,
+                          prices={}, owned=set())
+        self.assertEqual(len(plan._groups(["Pulse", "Disenchant"])), 2)
+
+    def test_without_answers_the_groups_are_what_they_were_before(self):
+        w = mini(**{"A": 0.1, "B": 0.2, "C": 0.3})
+        db = w.db()
+        plan = build.Plan(build.Model(make_ctx(w, db, targets=zero_targets()), db), db, "BG", 3, prices={},
+                          owned=set())
+        self.assertEqual([[f.name for f, _, _ in group] for group in plan._groups(["A", "B", "C"])], [["A", "B", "C"]])
+
+
+class UpgradeAnswersTests(Isolated):
+    """`upgrade` keeps a deck's answers: the weakest cards go first, and answers to a kind of threat stay down to what a
+    typical deck at the bracket holds (the band's target; the band's min, which the Metrics tab calls short, is a lower
+    bar that the upgrade does not use). A deck of N answers to enchantments that score 0.00 (its weakest cards), five
+    plain cards at 0.10 and staples at 0.94 and below that would replace every card: only the floor stops them. Bands
+    are (min, target, max); these tests give them a min well under the target, so a floor taken from the wrong one
+    shows."""
+
+    def world(self, have, **cards):
+        names = {f"Ench {i}": 0.0 for i in range(1, have + 1)}
+        names.update({f"Plain {i}": 0.10 for i in range(1, 6)})
+        w = mini(**names)
+        for i in range(1, have + 7):
+            w.add(f"Staple {i}", round(0.95 - 0.01 * i, 2), None, price=1.0)
+        for name, value in cards.items():
+            w.add(name, value, None, price=1.0)
+        return w
+
+    def deck(self, have, *more):
+        return [f"Ench {i}" for i in range(1, have + 1)] + [f"Plain {i}" for i in range(1, 6)] + list(more)
+
+    def candidates(self, have, *more):
+        return [f"Staple {i}" for i in range(1, have + 7)] + list(more)
+
+    def tags(self, have, **extra):
+        tags = {f"Ench {i}": ENCH_TAG for i in range(1, have + 1)}
+        tags.update(extra)
+        self.set_tags(tags)
+
+    def upgrade(self, w, deck, candidates, *, ci="BG", **kw):
+        db = w.db()
+        ctx = make_ctx(w, db, names=deck + candidates, targets=zero_targets(), ci=ci)
+        kw.setdefault("prices", w.prices())
+        return build.upgrade(ctx, deck_of(*deck), db, **kw), ctx, db
+
+    def kept(self, res, prefix):
+        return sorted(n for _, n in res["deck_after"]["cards"] if n.startswith(prefix))
+
+    # --- the guard in a whole upgrade
+    def test_a_deck_with_7_answers_and_a_typical_count_of_4_trades_down_to_4_but_not_to_3(self):
+        self.tags(7)
+        self.set_bands(enchantments=(2, 4, 9))                     # a typical deck holds 4; only a quarter hold fewer than 2
+        res, _, _ = self.upgrade(self.world(7), self.deck(7), self.candidates(7))
+        self.assertEqual((res["answers_before"][ENCH], res["answers_after"][ENCH]), (7, 4))
+        self.assertEqual(len(self.kept(res, "Ench")), 4)
+        self.assertEqual(len(res["swaps"]), 3 + 5)                  # three of the answers go, and all five plain cards
+        self.assertEqual({s["cut"][:5] for s in res["swaps"]}, {"Ench ", "Plain"})
+        self.set_bands()                                           # no floor: the same deck loses every one of them
+        free, _, _ = self.upgrade(self.world(7), self.deck(7), self.candidates(7))
+        self.assertEqual((free["answers_after"][ENCH], len(free["swaps"])), (0, 7 + 5))
+
+    def test_a_deck_at_the_typical_count_keeps_every_answer_and_gives_up_the_other_cards(self):
+        self.tags(4)
+        self.set_bands(enchantments=(2, 4, 9))
+        res, _, _ = self.upgrade(self.world(4), self.deck(4), self.candidates(4))
+        self.assertEqual(self.kept(res, "Ench"), [f"Ench {i}" for i in range(1, 5)])
+        self.assertEqual({s["cut"][:5] for s in res["swaps"]}, {"Plain"})
+        self.assertEqual((res["answers_before"][ENCH], res["answers_after"][ENCH]), (4, 4))
+
+    def test_a_deck_that_starts_below_the_typical_count_keeps_the_answers_it_has(self):
+        # it holds 2 where a typical deck holds 4, but more than the 1 a quarter of decks get by on (the min): the
+        # upgrade must not use the min, which would let it trade one of the two away
+        self.tags(2)
+        self.set_bands(enchantments=(1, 4, 9))
+        res, _, _ = self.upgrade(self.world(2), self.deck(2), self.candidates(2))
+        self.assertEqual(self.kept(res, "Ench"), ["Ench 1", "Ench 2"])
+        self.assertEqual((res["answers_before"][ENCH], res["answers_after"][ENCH]), (2, 2))
+
+    def test_an_answer_to_the_same_kind_may_take_the_place_of_one_even_at_the_floor(self):
+        self.tags(4, **{"Better Ench": ENCH_TAG})
+        self.set_bands(enchantments=(2, 4, 9))
+        w = self.world(4, **{"Better Ench": 0.99})
+        res, _, _ = self.upgrade(w, self.deck(4), self.candidates(4, "Better Ench"))
+        first = res["swaps"][0]
+        self.assertEqual((first["cut"][:5], first["add"]), ("Ench ", "Better Ench"))     # the best gain of all
+        self.assertEqual(res["answers_after"][ENCH], 4)
+        self.assertIn("Better Ench", self.kept(res, "Better"))
+
+    def test_an_answer_to_another_kind_does_not_buy_the_right_to_cut_an_answer(self):
+        self.tags(4, **{"Walker Answer": WALK_TAG})
+        self.set_bands(enchantments=(2, 4, 9))
+        w = self.world(4, **{"Walker Answer": 0.99})
+        res, _, _ = self.upgrade(w, self.deck(4), self.candidates(4, "Walker Answer"))
+        first = res["swaps"][0]
+        self.assertEqual(first["add"], "Walker Answer")
+        self.assertTrue(first["cut"].startswith("Plain"), first)      # not an Ench, whatever its score: at the floor
+        self.assertEqual((res["answers_after"][ENCH], res["answers_after"][WALK]), (4, 1))
+
+    def test_floors_apply_to_the_optional_swaps_only_a_forced_swap_still_cuts_a_banned_answer(self):
+        # Banned Ench is the third answer to enchantments and a typical deck holds 4, but the card is not legal in
+        # Commander: it goes first. Afterwards the floor is what the list has left (2)
+        self.tags(2, **{"Banned Ench": ENCH_TAG})
+        self.set_bands(enchantments=(2, 4, 9))
+        w = self.world(2)
+        w.add("Banned Ench", 0.5, None, price=1.0, legal="banned")
+        res, _, _ = self.upgrade(w, self.deck(2, "Banned Ench"), self.candidates(2))
+        first = res["swaps"][0]
+        self.assertEqual((first["forced"], first["cut"]), (True, "Banned Ench"))
+        self.assertTrue(first["add"].startswith("Staple"))              # the replacement is not held to the floor
+        self.assertEqual(self.kept(res, "Ench"), ["Ench 1", "Ench 2"])  # then the floor holds what is left
+        self.assertEqual((res["answers_before"][ENCH], res["answers_after"][ENCH]), (3, 2))
+        self.assertTrue(all(not s["forced"] for s in res["swaps"][1:]))
+
+    def test_a_forced_swap_may_cut_the_last_answer_of_a_kind_and_the_floor_is_then_zero(self):
+        self.tags(0, **{"Banned Ench": ENCH_TAG})
+        self.set_bands(enchantments=(2, 4, 9))
+        w = self.world(0)
+        w.add("Banned Ench", 0.5, None, price=1.0, legal="banned")
+        res, _, _ = self.upgrade(w, self.deck(0, "Banned Ench"), self.candidates(0))
+        self.assertEqual((res["answers_before"][ENCH], res["answers_after"][ENCH]), (1, 0))
+
+    def test_the_floors_come_from_the_bracket_file_and_a_deck_without_blue_has_no_spell_floor(self):
+        # the real reader, on a file: at Bracket 3 a quarter of decks hold 3 answers to spells or fewer and a typical
+        # deck holds 4. A black-green deck is not asked for counterspells; the same deck with blue keeps 4, the
+        # typical count, and not 3, the min
+        tmp = tempfile.mkdtemp()
+        self.addCleanup(shutil.rmtree, tmp, True)
+        path = os.path.join(tmp, "metric_targets.json")
+        with open(path, "w") as f:
+            json.dump({"brackets": {"3": {"answers_spells": [3, 4, 6]}}}, f)
+        mock.patch.object(roles, "METRIC_TARGETS_PATH", path).start()
+        w = self.world(0)
+        for i in range(1, 6):
+            w.add(f"Counter {i}", 0.0, None, price=1.0)
+        deck = self.deck(0) + [f"Counter {i}" for i in range(1, 6)]
+        self.set_tags({name: SPELL_TAG for name in deck if name.startswith("Counter")})
+        without_blue, _, _ = self.upgrade(w, deck, self.candidates(0), ci="BG")
+        self.assertEqual((without_blue["answers_before"][SPEL], without_blue["answers_after"][SPEL]), (5, 0))
+        with_blue, _, _ = self.upgrade(w, deck, self.candidates(0), ci="BGU")
+        self.assertEqual((with_blue["answers_before"][SPEL], with_blue["answers_after"][SPEL]), (5, 4))
+
+    def test_no_tags_means_no_floor_and_a_warning_that_answers_were_not_checked(self):
+        self.set_tags({f"Ench {i}": ENCH_TAG for i in range(1, 8)}, loaded=False)
+        bands = self.set_bands(enchantments=(2, 4, 9))
+        res, _, _ = self.upgrade(self.world(7), self.deck(7), self.candidates(7), budget=20.0, price_points=[10])
+        self.assertEqual(self.kept(res, "Ench"), [])                  # nothing held anything back
+        self.assertEqual(len(res["swaps"]), 7 + 5)
+        notes = [w for w in res["warnings"] if "were not checked" in w]
+        self.assertEqual(len(notes), 1)
+        for noun in ("creatures", "artifacts", "enchantments", "planeswalkers", "lands", "graveyards", "spells"):
+            self.assertIn(noun, notes[0])
+        self.assertIn("function tags", notes[0])
+        bands.assert_not_called()                                      # no floors were even looked up
+        self.assertEqual((res["answers_before"], res["answers_after"]), (None, None))
+        for line in res["price_points"]:
+            self.assertEqual((line["answers"], line["weakens"]), (None, []))
+            self.assertIsInstance(line["change"], float)
+
+    def test_with_tags_there_is_no_such_warning(self):
+        self.tags(4)
+        self.set_bands(enchantments=(2, 4, 9))
+        res, _, _ = self.upgrade(self.world(4), self.deck(4), self.candidates(4))
+        self.assertEqual([w for w in res["warnings"] if "were not checked" in w], [])
+
+    def test_a_bracket_without_a_band_for_a_kind_leaves_that_kind_free(self):
+        self.tags(7)
+        self.set_bands(planeswalkers=(2, 3, 8))                      # no row for enchantments
+        res, _, _ = self.upgrade(self.world(7), self.deck(7), self.candidates(7))
+        self.assertEqual(res["answers_after"][ENCH], 0)
+
+    def test_the_tags_are_asked_for_once_for_the_deck_and_every_candidate(self):
+        self.tags(4)
+        self.set_bands(enchantments=(2, 4, 9))
+        w = self.world(4)
+        self.upgrade(w, self.deck(4), self.candidates(4))
+        self.assertEqual(len(self.tag_calls), 1)
+        asked = set(self.tag_calls[0])
+        self.assertTrue(set(self.deck(4)) | set(self.candidates(4)) <= asked)
+
+    def test_the_result_counts_are_the_counts_of_the_lists_the_swaps_made(self):
+        self.tags(7, **{"Better Ench": ENCH_TAG, "Walker Answer": WALK_TAG})
+        self.set_bands(enchantments=(2, 4, 9))
+        w = self.world(7, **{"Better Ench": 0.99, "Walker Answer": 0.97})
+        res, _, _ = self.upgrade(w, self.deck(7), self.candidates(7, "Better Ench", "Walker Answer"))
+        tags = {f"Ench {i}": frozenset(ENCH_TAG) for i in range(1, 8)}
+        tags.update({"Better Ench": frozenset(ENCH_TAG), "Walker Answer": frozenset(WALK_TAG)})
+        after = [n for _, n in res["deck_after"]["cards"]]
+        self.assertEqual(res["answers_after"], roles.answer_counts(after, tags))
+        self.assertEqual(res["answers_before"], roles.answer_counts(self.deck(7), tags))
+        self.assertEqual(list(res["answers_after"]), list(roles.THREAT_IDS))
+
+    def test_the_combo_repair_may_take_a_kind_under_its_floor_because_a_bracket_rule_outranks_it(self):
+        # W and X form a two-card combo Bracket 3 forbids. The search adds W (replacing Plain 1), then X, an answer to
+        # enchantments (replacing Plain 2, so the list holds 5), then Staple 1 in place of Ench 1 (allowed: 5 answers
+        # against a floor of 4, and it leaves 4). The repair then undoes X, the later piece, and with it one answer:
+        # the list ends with 3, under the floor, because the combo rule comes first
+        self.set_bands(enchantments=(2, 4, 9))
+        enchants = ["Ench 1", "Ench 2", "Ench 3", "Ench 4"]
+        w = mini(**{n: 0.05 for n in enchants}, **{"Plain 1": 0.0, "Plain 2": 0.0})
+        for name, value in (("W", 0.99), ("X", 0.95), ("Staple 1", 0.5)):
+            w.add(name, value, None, price=1.0)
+        deck = enchants + ["Plain 1", "Plain 2"]
+        self.set_tags({**{n: ENCH_TAG for n in enchants}, "X": ENCH_TAG})
+
+        def combos(commanders, names):
+            both = {"W", "X"} <= set(names)
+            return {"included": [{"id": "1-2", "cards": ["W", "X"], "missing": [], "produces": ["win"],
+                                  "min_bracket": 4, "two_card": True, "url": ""}] if both else [], "almost": []}
+        res, _, _ = self.upgrade(w, deck, ["W", "X", "Staple 1"], combos_fn=combos)
+        undone = [x for x in res["warnings"] if x.startswith("Undid ")]
+        self.assertEqual(len(undone), 1, res["warnings"])
+        self.assertIn("X", undone[0])
+        self.assertEqual([(x["cut"], x["add"]) for x in res["swaps"]], [("Plain 1", "W"), ("Ench 1", "Staple 1")])
+        self.assertEqual((res["answers_before"][ENCH], res["answers_after"][ENCH]), (4, 3))
+
+    def test_a_combo_repair_that_does_not_touch_an_answer_leaves_the_floor_met(self):
+        # the same two cards, neither an answer: the repair undoes a swap that never changed the count
+        self.tags(4)
+        self.set_bands(enchantments=(2, 4, 9))
+        w = self.world(4)
+        combos = lambda commanders, names: {"included": [{"id": "1-2", "cards": ["Staple 1", "Staple 2"], "missing": [],
+                                                          "produces": ["win"], "min_bracket": 4, "two_card": True,
+                                                          "url": ""}] if {"Staple 1", "Staple 2"} <= set(names) else [],
+                                            "almost": []}
+        res, _, _ = self.upgrade(w, self.deck(4), self.candidates(4), combos_fn=combos)
+        self.assertTrue(any(x.startswith("Undid ") for x in res["warnings"]), res["warnings"])
+        self.assertEqual(res["answers_after"][ENCH], 4)
+
+
+class BuildKeepsNoAnswerFloorTests(Isolated):
+    """`build` makes a deck from nothing: it has no starting answers to keep, so it behaves as it did before."""
+
+    def test_build_ignores_tags_and_bands_entirely(self):
+        w = standard_world()
+        db = w.db()
+        ctx = make_ctx(w, db)
+        plain = build.build(ctx, db, prices=w.prices())
+        self.assertEqual(self.tag_calls, [])
+        # the same build when every Kill card answers enchantments and the bracket demands 12 of them
+        self.set_tags({f"Kill {i:02d}": ENCH_TAG for i in range(1, 13)})
+        bands = self.set_bands(enchantments=(12, 12, 12))
+        tagged = build.build(ctx, db, prices=w.prices())
+        self.assertEqual(self.tag_calls, [])                           # build never asked for the tags
+        bands.assert_not_called()
+        self.assertEqual((tagged["cards"], tagged["basics"], tagged["value"]),
+                         (plain["cards"], plain["basics"], plain["value"]))
+        self.assertNotIn("answers_before", tagged)
+        self.assertNotIn("answers_after", tagged)
+
+    def test_a_plan_made_for_a_build_has_no_floors(self):
+        w = mini(A=0.1)
+        db = w.db()
+        plan = build.Plan(build.Model(make_ctx(w, db, targets=zero_targets()), db), db, "BG", 3, prices={},
+                          owned=set())
+        self.assertEqual(plan.answer_floors, {})
+        self.assertTrue(plan.keeps_answers(plan.m.facts("A"), plan.m.facts("A")))
+
+
+class PricePointAnswerTests(Isolated):
+    """Each price point reports the answers its list holds, the kinds it has brought down from the starting count to
+    what a typical deck holds or under it (`weakens`: it used up all of that kind's surplus), and how far its value
+    moved from the start. Seven answers to enchantments (0.00) and five plain cards (0.10) are replaced by buys of $5
+    each, two at a time as the price points $10, $20 and $30 allow. Optional swaps never take a kind under what a
+    typical deck holds, so with a typical count of 4 the answers go 7, 5, 4, 4: the third swap of the second point
+    reaches the floor and the cuts after it are plain cards."""
+    BUYS = [f"Buy {i}" for i in range(1, 13)]
+
+    def setUp(self):
+        super().setUp()
+        names = {f"Ench {i}": 0.0 for i in range(1, 8)}
+        names.update({f"Plain {i}": 0.10 for i in range(1, 6)})
+        self.world = mini(**names)
+        for i, name in enumerate(self.BUYS):
+            self.world.add(name, round(0.9 - 0.01 * i, 2), None, price=5.0)
+        self.deck = [f"Ench {i}" for i in range(1, 8)] + [f"Plain {i}" for i in range(1, 6)]
+        self.set_tags({f"Ench {i}": ENCH_TAG for i in range(1, 8)})
+
+    def upgrade(self, **kw):
+        return run_upgrade(self.world, self.deck, self.BUYS, budget=30.0, price_points=[10, 20], **kw)
+
+    def test_the_answers_at_each_point_are_counted_on_the_list_at_that_point(self):
+        self.set_bands(enchantments=(2, 4, 9))
+        res, _, _ = self.upgrade()
+        self.assertEqual([p["swaps"] for p in res["price_points"]], [2, 4, 6])
+        self.assertEqual([p["answers"][ENCH] for p in res["price_points"]], [5, 4, 4])     # 7 less 2, 3 and 3: the floor
+        for line in res["price_points"]:
+            self.assertEqual(list(line["answers"]), list(roles.THREAT_IDS))
+            self.assertEqual(line["answers"][WALK], 0)
+        self.assertEqual(res["price_points"][-1]["answers"], res["answers_after"])
+
+    def test_a_count_still_above_the_typical_count_is_not_listed(self):
+        self.set_bands(enchantments=(2, 4, 9))
+        res, _, _ = self.upgrade()
+        first = res["price_points"][0]
+        self.assertEqual(first["answers"][ENCH], 5)                    # 7 -> 5: fewer, but a deck usually holds 4
+        self.assertEqual(first["weakens"], [])
+
+    def test_a_count_brought_exactly_down_to_the_typical_count_is_listed(self):
+        self.set_bands(enchantments=(2, 4, 9))
+        res, _, _ = self.upgrade()
+        second, third = res["price_points"][1:]
+        entry = {"id": ENCH, "label": "enchantments", "before": 7, "after": 4, "target": 4}
+        self.assertEqual(second["weakens"], [entry])                   # 7 -> 4, where a deck usually holds 4
+        self.assertEqual(third["weakens"], [entry])                    # the floor held it there
+        self.assertEqual(res["answers_before"][ENCH], 7)
+
+    def test_the_first_point_that_lands_on_the_typical_count_is_the_first_to_list_it(self):
+        self.set_bands(enchantments=(2, 5, 9))                         # typical 5: two swaps bring 7 down to exactly 5
+        res, _, _ = self.upgrade()
+        first, second = res["price_points"][:2]
+        self.assertEqual(first["answers"][ENCH], 5)
+        self.assertEqual(first["weakens"], [{"id": ENCH, "label": "enchantments", "before": 7, "after": 5, "target": 5}])
+        self.assertEqual(second["answers"][ENCH], 5)                   # and the floor keeps it there
+
+    def test_a_count_a_forced_swap_took_under_the_typical_count_is_listed_from_the_first_point(self):
+        # three legal answers and a banned one make 4, a typical deck's count; the banned card must go whatever it
+        # answers, which leaves 3, under the typical count, and the floor then keeps the 3
+        self.world.add("Banned Ench", 0.5, None, price=1.0, legal="banned")
+        self.set_tags({**{f"Ench {i}": ENCH_TAG for i in range(1, 4)}, "Banned Ench": ENCH_TAG})
+        self.set_bands(enchantments=(2, 4, 9))
+        deck = ["Ench 1", "Ench 2", "Ench 3", "Banned Ench"] + [f"Plain {i}" for i in range(1, 6)]
+        res, _, _ = run_upgrade(self.world, deck, self.BUYS, budget=30.0, price_points=[10, 20])
+        self.assertTrue(res["swaps"][0]["forced"])
+        entry = {"id": ENCH, "label": "enchantments", "before": 4, "after": 3, "target": 4}
+        for line in res["price_points"]:
+            self.assertEqual((line["answers"][ENCH], line["weakens"]), (3, [entry]))
+
+    def test_a_kind_that_did_not_fall_is_no_weakness_even_when_it_was_under_the_typical_count_all_along(self):
+        # Walker 1 is the deck's only answer to planeswalkers (typical 3): the floor is what the list has, so the
+        # upgrade leaves it be, and a kind that did not fall is not listed
+        self.world.add("Walker 1", 0.0, None, price=1.0)
+        self.set_tags({**{f"Ench {i}": ENCH_TAG for i in range(1, 8)}, "Walker 1": WALK_TAG})
+        self.set_bands(enchantments=(2, 4, 9), planeswalkers=(1, 3, 8))
+        res, _, _ = run_upgrade(self.world, self.deck + ["Walker 1"], self.BUYS, budget=30.0, price_points=[10, 20])
+        for line in res["price_points"]:
+            self.assertEqual(line["answers"][WALK], 1)
+            self.assertNotIn(WALK, [w["id"] for w in line["weakens"]])
+
+    def test_a_kind_the_bracket_has_no_band_for_is_never_listed(self):
+        self.set_bands(planeswalkers=(1, 3, 8))                        # nothing for enchantments
+        res, _, _ = self.upgrade()
+        self.assertEqual(res["price_points"][-1]["answers"][ENCH], 1)    # six buys cut six of the seven, with no floor
+        self.assertTrue(all(line["weakens"] == [] for line in res["price_points"]))
+
+    def test_several_weakened_kinds_are_listed_in_the_order_stats_lists_them(self):
+        # three answers to artifacts that score below everything else go first, down to a typical 1; the enchantments
+        # follow, down to a typical 4
+        for i in range(1, 4):
+            self.world.add(f"Smash {i}", -0.001, None, price=1.0)
+        self.set_tags({**{f"Ench {i}": ENCH_TAG for i in range(1, 8)},
+                       **{f"Smash {i}": ["removal-artifact"] for i in range(1, 4)}})
+        self.set_bands(enchantments=(2, 4, 9), artifacts=(0, 1, 6))
+        deck = self.deck + [f"Smash {i}" for i in range(1, 4)]
+        res, _, _ = run_upgrade(self.world, deck, self.BUYS, budget=30.0, price_points=[10, 20])
+        last = res["price_points"][-1]
+        self.assertEqual([w["id"] for w in last["weakens"]], [ARTI, ENCH])       # artifacts come before enchantments
+        self.assertEqual(last["weakens"][0], {"id": ARTI, "label": "artifacts", "before": 3, "after": 1, "target": 1})
+        self.assertEqual(last["weakens"][1], {"id": ENCH, "label": "enchantments", "before": 7, "after": 4, "target": 4})
+
+    def test_a_deck_without_blue_that_loses_its_counterspells_is_listed_against_a_typical_count_of_0(self):
+        # the real reader on a file: a deck without blue is not expected to hold any, so its typical count is 0 and
+        # its floor is 0; a counterspell it does hold goes like any other weak card, and the note says what it did
+        tmp = tempfile.mkdtemp()
+        self.addCleanup(shutil.rmtree, tmp, True)
+        path = os.path.join(tmp, "metric_targets.json")
+        with open(path, "w") as f:
+            json.dump({"brackets": {"3": {"answers_spells": [3, 4, 6]}}}, f)
+        mock.patch.object(roles, "METRIC_TARGETS_PATH", path).start()
+        for i in range(1, 3):
+            self.world.add(f"Counter {i}", -0.001, None, price=1.0)
+        self.set_tags({f"Counter {i}": SPELL_TAG for i in range(1, 3)})
+        res, _, _ = run_upgrade(self.world, self.deck + ["Counter 1", "Counter 2"], self.BUYS, budget=30.0,
+                                price_points=[10, 20])
+        first = res["price_points"][0]
+        self.assertEqual(first["weakens"], [{"id": SPEL, "label": "spells", "before": 2, "after": 0, "target": 0}])
+
+    def test_change_is_the_points_value_less_the_starting_value_to_two_decimals(self):
+        self.set_bands(enchantments=(2, 4, 9))
+        res, _, _ = self.upgrade()
+        for line in res["price_points"]:
+            self.assertEqual(line["change"], round(line["value"] - res["value_before"], 2))
+        changes = [line["change"] for line in res["price_points"]]
+        self.assertEqual(changes, sorted(changes))
+        self.assertGreater(changes[0], 0)
+
+    def test_without_a_budget_there_are_no_points_but_the_result_still_reports_its_answers(self):
+        self.set_bands(enchantments=(2, 4, 9))
+        res, _, _ = run_upgrade(self.world, self.deck, self.BUYS)
+        self.assertEqual(res["price_points"], [])
+        self.assertEqual((res["answers_before"][ENCH], res["answers_after"][ENCH]), (7, 4))
 
 
 # ----------------------------------------------------------------------------- basic lands

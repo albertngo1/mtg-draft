@@ -104,7 +104,8 @@ list's legality and bracket rules, and it will not recommend a card that breaks 
 
 ```bash
 # Upgrade a precon: ranked cuts and adds, at most $75 on cards you don't own (with what $20 and $40 buy on the
-# way up), leaning toward tokens
+# way up, and a note where a step has cut your answers to some kind of threat down to a typical deck's), leaning toward
+# tokens
 python3 src/mtg-commander.py upgrade --precon "Squirreled Away" --budget 75 --theme tokens
 
 # Check a decklist file: legality, bracket rules, role counts, mana curve
@@ -123,9 +124,10 @@ run `warm "<commander>"` ahead of time and `--offline` works after that.
 
 **Looking at a deck with `stats`.** `stats` takes the same deck, bracket, theme, playstyle and owned-card flags as
 `check` and `upgrade` and prints every number it can work out about a list, in six groups: power (its score and the
-lowest bracket it fits), interaction (how many cards answer each kind of threat, and a *removal power* that weighs how
-fast, how far and how surely each removal card works), mana (lands, ramp, card draw, the curve, the colors), playstyle
-(how much of each playstyle the deck is), win plan (finishers and the combos that win) and table and money (salt, the
+lowest bracket it fits), interaction (how many cards answer each kind of threat, marked short when it is under what
+real decks at the bracket hold, and a *removal power* that weighs how fast, how far and how surely each removal card
+works), mana (lands, ramp, card draw, the curve, the colors), playstyle (how much of each playstyle the deck is),
+win plan (finishers and the combos that win) and table and money (salt, the
 bracket's limits, price, what you own). A number with a usual range for the bracket sits beside it and says if it is
 short of the range or over it. Add `-v` to see how each number was made, or `--json` for the same numbers as data. The
 first run also saves Commander Spellbook's daily combo file (29 MB, kept for 7 days), so later runs find a list's combos
@@ -146,8 +148,11 @@ cards, with four tabs. **Cards** shows every card as its picture: tap one to rea
 cut it or swap it, or use **Add** to search for a card and say what it replaces. **Metrics** shows every number, each with
 how it was worked out behind a tap. **Changes** lists what was added and cut against the base deck, with an Undo for each
 change. **Suggestions** lists `upgrade`'s swaps by price point, which you apply one at a time or a whole price point at
-once. Every change is saved the moment you make it and every number is redrawn from the server's answer, so the pages
-never work a number out themselves. The first time a commander is opened its data is downloaded, which takes several
+once; each point shows its change in score, and a "Weakens interaction" note when it has brought the deck's answers to
+some kind of threat down from where they started to what a typical deck at the bracket holds. Every change is saved the
+moment you make it and every number is redrawn from the server's answer, so the pages never work a number out
+themselves.
+The first time a commander is opened its data is downloaded, which takes several
 seconds, and the page says what it is fetching. On a phone the page is one column with the numbers pinned above the cards;
 on a desktop screen the metrics sit beside the cards. The only thing loaded from another site is each card's picture
 (Scryfall's link, sent by the server); nothing needs installing to run the pages.

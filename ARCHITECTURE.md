@@ -611,7 +611,12 @@ card every builder plays scores about 1; see [How a deck is valued](#how-a-deck-
 With a budget the report also shows what less money would buy: each *price point* line sums up every swap found up to
 that amount (the money it spends, the deck's value and its change from the start, the number of swaps), and the swap
 list is split with a heading such as `Up to $20:` where a step begins (how the steps work is in
-[How a deck is valued and how swaps are chosen](#how-a-deck-is-valued-and-how-swaps-are-chosen)).
+[How a deck is valued and how swaps are chosen](#how-a-deck-is-valued-and-how-swaps-are-chosen)). A price point that
+has brought the deck's answers to some kind of threat down from the starting count to what a typical deck at the
+bracket holds, or under it, has a note under its line (`fewer answers: creatures 14 → 10 (typical 10), planeswalkers
+7 → 3 (typical 3)`), and an `Answers:` line under `Roles:` gives the kinds whose count changed (`creatures 14→10`). With
+a budget but only one price point there is no price-point block, so the note goes under the `Answers:` line; without a
+budget there are no price points and only the `Answers:` line is shown.
 
 ### Commander commands and flags
 
@@ -734,13 +739,13 @@ ignored.
 | `providers/edhtop16.py` | cEDH tournament entries with decklists and results: the tournament source |
 | `providers/spellbook.py` | Commander Spellbook combos (in a list, and one card away) with their bracket tags: its web service, and a local index of its daily file (`combos_for` tries the index first) |
 | `providers/scryfall_tags.py` | Scryfall's community function tags as sets of cards |
-| `roles.py` | what each card does (ramp, draw, ...) from those tags; finer facts about a card (`attributes`); the per-bracket targets |
+| `roles.py` | what each card does (ramp, draw, ...) from those tags; finer facts about a card (`attributes`), among them which kinds of threat it answers (`THREATS`); the per-bracket targets, and the one reader of `commander/metric_targets.json` (`answer_bands`) |
 | `brackets.py` | Wizards' bracket rules as data, the four checks, and the legality check |
 | `fantasy.py` | the fantasy spec: the theme and playstyle menu, and the optional `claude -p` step for free text |
 | `score.py` | card scores: gathers the evidence once, then plain arithmetic |
 | `build.py` | the deck value, and `upgrade`, `build` and `suggest` on top of it |
 | `metrics.py` | every metric of one deck in one item shape, the registry of metric groups, and removal power |
-| `calibrate.py` | measures role targets, and removal and wipe power, from real decks and writes `commander/role_targets.json` and `commander/metric_targets.json` |
+| `calibrate.py` | measures role targets, removal and wipe power, and the answers to each kind of threat, from real decks and writes `commander/role_targets.json` and `commander/metric_targets.json` |
 | `validate.py` | `validate`: held-out checks of builds against real decks |
 | `render.py` | the text reports and the JSON |
 | `commander/` (repo root) | committed reference data (`brackets.json`, `role_targets.json`, `metric_targets.json`, `playstyles.json`); see [`commander/README.md`](./commander/README.md) |
@@ -770,12 +775,14 @@ $ ./mtg-commander.sh upgrade --precon "Squirreled Away" --budget 75 --theme toke
          │    ├─ score.card_scores(...)       base + resid + theme + salt
          │    └─ roles.targets(...)           role_targets.json + playstyle deltas + EDHREC's average land count
          ├─ build.upgrade(ctx, deck, db, ...)
+         │    ├─ roles.attributes(deck + candidates)  which kinds of threat each card answers (None: the tags did not load)
          │    ├─ providers.spellbook.find_combos   combos in the deck, and combos one card away
          │    ├─ brackets.check / blocked_adds     Game Changers, mass land denial, extra turns, two-card combos
-         │    ├─ forced swaps first, then the best swap one at a time, under budget and bracket;
-         │    │  with a budget, step by step up the price points
+         │    ├─ forced swaps first; then roles.answer_bands sets the answers floors; then the best swap one at a
+         │    │  time, under budget, bracket and floors; with a budget, step by step up the price points
          │    ├─ combo check of the finished list; a swap that completes a banned combo is undone
-         │    └─ the price-point lines: the kept swaps replayed on the starting list, one line per point
+         │    └─ the price-point lines: the kept swaps replayed on the starting list, one line per point, each with
+         │       its answers, the kinds it leaves thinner (`weakens`) and its change in value
          └─ render.text(result), or render.as_json(result) with --json
 ```
 
@@ -903,7 +910,38 @@ Both searches are local, not optimal: a swap that needs two cards to change at o
   check, each step is summed up from the swaps that were kept: the money spent, the deck's value, and how many swaps
   there are so far. The report prints one line per step and splits the swap list where a step begins; `--json` has
   `price_points[]`, and each swap says which step found it (`price_point`; none for a forced swap). With one step (the
-  budget alone, or no budget) the report is unchanged.
+  budget alone, or no budget) the report prints no price-point block, but a note on the single step goes under its
+  `Answers:` line. Each entry of `price_points[]` also says what the step did to the deck's answers: `change` (its
+  `value` less the result's `value_before`, to 2 decimals, so a page never subtracts), `answers` (`{threat id: cards
+  that answer it}` for the list at that step, `null` without tags) and `weakens` (see below).
+- **Answers in an upgrade.** The deck's value counts removal cards but not what each one can hit, so a long upgrade
+  could trade away the last cards that answer enchantments or planeswalkers without the value noticing (Squirreled Away
+  at Bracket 3 and $200, without the rule below, went from 14 answers to creatures to 9 and from 7 to planeswalkers to
+  2). So `upgrade` reads the attribute tags of the deck and of every candidate (`roles.attributes`, one request) and
+  gives each card the set of threats it answers (`roles.THREATS`: creatures, artifacts, enchantments, planeswalkers,
+  lands, graveyards, spells). Once the forced swaps are done (a banned card, one outside the colors or one over a
+  bracket's limit must go whatever it answers), no swap may leave a threat with fewer answers than the smaller of what
+  the list has now and what a typical deck at the bracket holds: the band's `target`, the median of real decks
+  (`commander/metric_targets.json`, through `roles.answer_bands`; for spells, 0 in colors without blue). A list with 7
+  answers to enchantments and a typical count of 4 may trade down to 4 but not to 3; a list that starts with 2 keeps
+  its 2, though it may swap one for another; and an answer to one threat does not pay for the loss of an answer to
+  another. This is a higher bar than the Metrics tab's `short`, which is the band's `min`, the 25th percentile: a count
+  can sit above `short` and still be held where it is. The check is `Plan.keeps_answers`, used in `best_swap` next to
+  the land and basic-land rules, and the groups of interchangeable cuts also split by the threats a card answers, so a
+  flexible answer is never judged as a creature-only one. A card counts once for each threat it answers and once
+  however many copies the list holds, as `stats` counts. The combo repair (undoing a swap that completes a combo the
+  bracket forbids) is not held to the floor: a bracket rule outranks it. Without the tags (offline with no tag cache,
+  say) no floor applies and a warning says answers to each kind of threat were not checked; `build` makes a deck from
+  nothing and keeps no floor. On the Squirreled Away example the list starts with 14, 9, 7 and 7 answers to creatures,
+  artifacts, enchantments and planeswalkers against typical counts of 10, 4, 4 and 3, and ends at 10, 7, 6 and 3, with
+  39 swaps and the same $144.33 as without the floor, for a deck score of 92.88 where the search without it reached
+  92.90. The result also reports how far it went: `answers_before` and `answers_after` (`{threat id: count}`, `null`
+  without tags) and, for each price point, `weakens`: the threats whose count at that point is under the starting
+  list's count and at or under the bracket's typical count (the median), as `{"id", "label", "before", "after",
+  "target"}` with `label` the short noun (`"enchantments"`) and `target` the typical count. An entry means the point
+  has used up all of that threat's surplus over a typical deck (7 answers to enchantments down to 4, where a deck
+  usually holds 4); a threat that fell but is still above the typical count (7 down to 5) is not listed, nor is one with
+  no band in the file, and one a forced swap or the combo repair took under the typical count is listed too.
 - **Basic lands in an upgrade.** A basic land scores 0, so any scored nonbasic land looks like an improvement over one,
   and a long upgrade could replace every basic. Three rules prevent that.
   1. A nonbasic land needs a score of at least `NONBASIC_MIN` to take a basic's slot, the rule `build` already used.
@@ -959,8 +997,9 @@ To re-measure the targets from real decks (it needs the network the first time; 
 ```bash
 cd src
 python3 -m mtgcommander.calibrate                     # prints the proposed numbers; nothing is replaced
-python3 -m mtgcommander.calibrate --write             # replaces commander/role_targets.json
+python3 -m mtgcommander.calibrate --write             # replaces commander/role_targets.json and commander/metric_targets.json
 python3 -m mtgcommander.calibrate --sources edhtop16,archidekt   # measure Brackets 3 and 4 from Archidekt too
+python3 -m mtgcommander.calibrate --offline --sources edhtop16   # the committed numbers again, from the cache alone
 ```
 
 Percentiles over each bracket's decks give the numbers: minimum = 25th, target = median, maximum = 90th (lands:
@@ -1025,7 +1064,7 @@ headline `price` is the cost to buy: what the cards you do not own would cost.
 | group | what is in it |
 |---|---|
 | `power` | deck score (and its card-power and theme parts, from `build.deck_value`); the chosen bracket, inside or over its limits, and the lowest bracket those limits allow (a floor); Game Changers used and allowed; combos in the list and one card away; tutors |
-| `interaction` | removal power and wipe power; answers to creatures (removal that hits creatures, and board wipes), artifacts, enchantments, planeswalkers, lands, graveyards and spells (a count of 0 is marked short); counterspells; protection; the share of those removal, wipe, counterspell and protection cards that are instants or have flash |
+| `interaction` | removal power and wipe power; answers to creatures (removal that hits creatures, and board wipes), artifacts, enchantments, planeswalkers, lands, graveyards and spells (each against the bracket's measured band, below: fewer than its 25th percentile is marked short); counterspells; protection; the share of those removal, wipe, counterspell and protection cards that are instants or have flash |
 | `mana` | lands, ramp and card draw against the role targets; ramp split into rocks, creatures that make mana and land ramp; draw split into engines and one-shot draw; the curve (an item for each mana value, 0 to 7 or more) and the average mana value; for each of the commander's colors, the lands that make it against the colored mana symbols of the nonland cards; basic lands against what the land searchers can take; lands that always and that sometimes enter tapped; lands that make only colorless mana; cards costing 6 or more against the limit |
 | `playstyle` | theme fit (the share of nonland cards whose score has a theme part above `score.SHOW_PULL`); one item for each of the 12 playstyles; the creature count; synergy with the commander (the mean EDHREC synergy of the nonland cards that have one) |
 | `win` | finishers (the role count) and by kind (overrun, drain, extra combat, alternate win, theft); combos in the list that win; creatures that are hard to block and their total power |
@@ -1048,12 +1087,18 @@ All of these read Scryfall function tags, so the tags a card carries decide its 
 them, and `roles.attributes()` loads them as a separate request from the role tags: if they cannot be had, the roles
 still work and only the items that need them go without a value).
 
-**The bands for removal and wipe power** are in `commander/metric_targets.json`, measured the way the role targets are:
-`calibrate.py` weighs the removal cards and the board wipes of the same decks (the 60 newest precons for Bracket 2, 248
-EDHTop16 top-cut decks for Bracket 5), takes the 25th percentile, median and 90th percentile, and interpolates
-Brackets 3 and 4 and copies Bracket 2 to Bracket 1 (both judgment, labeled in the file). The files `--write` replaces
-are both `role_targets.json` and `metric_targets.json`; `--out` writes only the role proposal and prints the power
-numbers. Measured on 2026-10-11:
+**The bands for removal and wipe power, and for answers to each threat,** are in `commander/metric_targets.json`,
+measured the way the role targets are: `calibrate.py` weighs the removal cards and the board wipes of the same decks
+(the 60 newest precons for Bracket 2, 248 EDHTop16 top-cut decks for Bracket 5), counts the cards that answer each
+kind of threat, takes the 25th percentile, median and 90th percentile, and interpolates Brackets 3 and 4 and copies
+Bracket 2 to Bracket 1 (both judgment, labeled in the file). The power sums round half up to a tenth. The answer
+counts are whole cards, so they round half up to whole numbers, as the role targets do. Answers to spells are measured
+over the decks whose commander has blue only (32 of the 60 precons, all 248 tournament decks, recorded as
+`samples_blue`), and `roles.answer_bands`, the one place that file is read, drops that band's minimum and target to 0
+for a commander without blue: the rule the counterspell role already follows. The power numbers were measured on
+2026-10-11 and measured again, unchanged, on 2026-10-12 from the same cached samples, when the answer counts were
+added. The files `--write` replaces are both `role_targets.json` and `metric_targets.json`; `--out` writes only the
+role proposal and prints the power and answer numbers.
 
 | bracket | removal power (min / target / max) | wipe power |
 |---|---|---|
@@ -1061,6 +1106,26 @@ numbers. Measured on 2026-10-11:
 | 3 | 3.4 / 4.2 / 6.8 | 0.7 / 0.8 / 1.9 |
 | 4 | 3.0 / 3.8 / 6.0 | 0.5 / 0.6 / 1.6 |
 | 5 | 2.3 / 3.0 / 4.3 | 0.0 / 0.0 / 0.8 |
+
+What counts as an answer is one table, `roles.THREATS`: a card answers a kind of threat when it carries any of these
+Scryfall function tags. A card counts once for each kind it answers (Maelstrom Pulse answers three) and once however
+many copies a list names. The Metrics tab counts with it and `calibrate.py` measures with it.
+
+| answers to | tags | bracket 1, 2 | bracket 3 | bracket 4 | bracket 5 |
+|---|---|---|---|---|---|
+| creatures | `removal-creature`, `sweeper` | 8 / 11 / 15 | 7 / 10 / 14 | 7 / 9 / 13 | 5 / 6 / 10 |
+| artifacts | `removal-artifact` | 3 / 4 / 6 | 3 / 4 / 6 | 4 / 4 / 6 | 4 / 4 / 6 |
+| enchantments | `removal-enchantment` | 3 / 4 / 7 | 3 / 4 / 7 | 4 / 4 / 7 | 4 / 4 / 6 |
+| planeswalkers | `removal-planeswalker` | 2 / 3 / 8 | 2 / 3 / 8 | 3 / 4 / 7 | 3 / 4 / 6 |
+| lands | `removal-land` | 0 / 1 / 2 | 0 / 1 / 2 | 0 / 1 / 2 | 0 / 1 / 2 |
+| graveyards | `hate-graveyard` | 0 / 1 / 3 | 0 / 1 / 3 | 1 / 1 / 3 | 1 / 1 / 3 |
+| spells (blue decks) | `counterspell` | 0 / 1 / 2 | 2 / 3 / 5 | 5 / 6 / 8 | 9 / 10 / 13 |
+
+Each answers item on the Metrics tab uses the bracket's band: a count under the minimum (the 25th percentile) is
+`short`, one over the maximum (the 90th) is `over`. `upgrade` reads the same bands but keeps a deck's answers down to
+the target, the median (see
+[How a deck is valued and how swaps are chosen](#how-a-deck-is-valued-and-how-swaps-are-chosen)). Before the bands were
+measured the tab called a count short only at 0. If the file has no row for a threat the old rule (at least one) stands.
 
 **The playstyle profile.** Each of the 12 playstyles in `commander/playstyles.json` gets an item: the share of the
 deck's nonland cards that signal it (a free sacrifice outlet counts 1.5, any other signal 1). A card counts once, at the
@@ -1434,7 +1499,11 @@ not sent, and the message offers to send them all again.
 | a source did not answer | a banner naming it and the date of the data the numbers use |
 
 Suggestions are asked for again after every change, and a price point from before a change is never applied: its Apply
-buttons are off until the new answer arrives.
+buttons are off until the new answer arrives. Each price point shows its change in score beside the two scores (the
+server's `change`, to one decimal), and one that has brought the deck's answers to some kind of threat down from the
+starting count to what a typical deck holds, or under it, has a "Weakens interaction" note under it, one banner naming
+each kind with its count before and after and the typical count (`enchantments 7 → 4 (typical 4)`), from the server's
+`weakens`: the page subtracts and compares nothing.
 
 **Checking them.** `tests/commander/test_web.py` checks what Python can: the palette matches Albert's, every file the page
 names and every `import` exists and exports what is imported, nothing is loaded from another site, no server text is put

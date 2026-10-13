@@ -1,8 +1,8 @@
 """Tests for calibrate.py: the percentile arithmetic, the land recount for lists that name each basic land
 once, the blue-only counterspell sample, interpolation and the labels, the file format (read back through
-roles.targets), the choice of precons, the same statistics for the removal and wipe power numbers (read back
-through metrics.targets), and whole runs with every source replaced by hand-made decks. Nothing here touches the
-network."""
+roles.targets), the choice of precons, the same statistics for the removal and wipe power numbers and the answer
+counts to each kind of threat (read back through metrics.targets and roles.answer_bands), and whole runs with
+every source replaced by hand-made decks. Nothing here touches the network."""
 import contextlib, datetime, io, json, os, random, shutil, statistics, tempfile, types, unittest
 from fractions import Fraction
 from unittest import mock
@@ -29,11 +29,21 @@ def card(name, type_line="Sorcery", cmc=3.0):
             "legalities": {"commander": "legal"}}
 
 
+# Generated cards that answer threats, and the Scryfall function tags each one carries (see fake_attributes). "Flex" is
+# the card that answers three kinds at once, like Maelstrom Pulse. A Counter card is a counterspell, which is a role
+# of its own as well.
+ANSWER_CARDS = {"Artifact": ("removal-artifact",), "Enchant": ("removal-enchantment",),
+                "Walker": ("removal-planeswalker",), "Landkill": ("removal-land",), "Grave": ("hate-graveyard",),
+                "Flex": ("removal-artifact", "removal-enchantment", "removal-planeswalker"),
+                "Counter": ("counterspell",)}
+
+
 def sample_db():
     """The named cards of calibrate_cards.json plus pools of generated ones: 'Ramp 001' ... one pool per role,
-    'Filler 001' ... (no role) and 'Topend 001' ... (mana value 7, no role)."""
+    'Filler 001' ... (no role), 'Topend 001' ... (mana value 7, no role) and one pool for each of ANSWER_CARDS."""
     objs = fixture("calibrate_cards.json")
-    objs += [card(f"{kind.title()} {i:03d}") for kind in roles.ROLES + ("filler",) for i in range(1, 101)]
+    objs += [card(f"{kind.title()} {i:03d}") for kind in roles.ROLES + ("filler",) + tuple(ANSWER_CARDS)
+             for i in range(1, 101)]
     objs += [card(f"Topend {i:03d}", cmc=7.0) for i in range(1, 11)]
     return carddb.CardDB({rec["name"]: rec for rec in map(carddb.card_record, objs)})
 
@@ -54,17 +64,23 @@ def fake_tag(names, db, **kw):
 
 def fake_attributes(names, db, **kw):
     """roles.attributes for the cards above: a 'Removal 001' exiles any permanent (a sorcery of mana value 3 is worth
-    0.75 x 1.0 x 1.0 x 0.9 = 0.675), a 'Wipe 001' is the same card as a sweeper."""
+    0.75 x 1.0 x 1.0 x 0.9 = 0.675), a 'Wipe 001' is the same card as a sweeper (which answers creatures), and each
+    card of ANSWER_CARDS carries the tags that make it an answer to its kind of threat."""
     exile = frozenset({"removal-permanent", "removal-exile"})
-    return {n: exile if n.startswith("Removal") else exile | {"sweeper"} if n.startswith("Wipe") else frozenset()
-            for n in names}
+    out = {}
+    for n in names:
+        out[n] = (exile if n.startswith("Removal") else exile | {"sweeper"} if n.startswith("Wipe")
+                  else frozenset(ANSWER_CARDS.get(n.split()[0], ())))
+    return out
 
 
-def deck_row(blue=True, power=None, **counts):
-    """One deck as summarize() reads it: role counts (zero unless given), whether the commander has blue, and
-    the removal and wipe power the decks were measured at (None: the tags for it were not available)."""
+def deck_row(blue=True, power=None, answers=None, **counts):
+    """One deck as summarize() reads it: role counts (zero unless given), whether the commander has blue, the
+    removal and wipe power the decks were measured at, and how many cards answer each kind of threat, as the
+    seven numbers of calibrate.ANSWER_ORDER (None for either: the tags for it were not available)."""
     return {"counts": {**dict.fromkeys(ALL_ROLES + ("mdfc_land", "topend"), 0), **counts}, "blue": blue,
-            "power": None if power is None else dict(zip(calibrate.POWER_ORDER, power))}
+            "power": None if power is None else dict(zip(calibrate.POWER_ORDER, power)),
+            "answers": None if answers is None else dict(zip(calibrate.ANSWER_ORDER, answers))}
 
 
 def numbers(topend=0, **per_role):
@@ -312,20 +328,75 @@ class MetricStatisticsTests(unittest.TestCase):
         out = calibrate.summarize_metrics(rows)
         self.assertEqual(out["removal_power"], [5.4, 8.1, 12.4])
         self.assertEqual(out["wipe_power"], [0.6, 0.9, 1.4])          # 0.3, 0.6, 0.9, 1.2, 1.5: 0.6, 0.9, 1.38
-        self.assertEqual(list(out), list(calibrate.POWER_ORDER))
+        self.assertEqual(list(out), list(calibrate.METRIC_ORDER))       # the power sums first, then the answers
 
     def test_a_deck_whose_power_could_not_be_measured_is_left_out(self):
         rows = [deck_row(power=(v, 0.0)) for v in (1.0, 2.0, 3.0)] + [deck_row(), deck_row()]
         self.assertEqual(calibrate.summarize_metrics(rows)["removal_power"], [1.5, 2.0, 2.8])
 
     def test_no_measured_deck_gives_zeros_not_an_error(self):
-        self.assertEqual(calibrate.summarize_metrics([deck_row()]), {"removal_power": [0.0, 0.0, 0.0],
-                                                                      "wipe_power": [0.0, 0.0, 0.0]})
+        zeros = {"removal_power": [0.0, 0.0, 0.0], "wipe_power": [0.0, 0.0, 0.0]}
+        zeros.update({id_: [0, 0, 0] for id_ in roles.THREAT_IDS})
+        self.assertEqual(calibrate.summarize_metrics([deck_row()]), zeros)
 
     def test_min_target_max_stay_in_order(self):
         rng = random.Random(3)
         for _ in range(30):
             rows = [deck_row(power=(rng.uniform(0, 15), rng.uniform(0, 4))) for _ in range(rng.randint(3, 40))]
+            for name, (low, mid, high) in calibrate.summarize_metrics(rows).items():
+                self.assertTrue(low <= mid <= high, (name, low, mid, high))
+
+    # --- the answer counts: whole cards
+    def answers_of(self, **per_threat):
+        """The seven answer counts of one deck, zero unless given: answers_of(creatures=3, spells=1)."""
+        return [per_threat.get(id_.replace("answers_", ""), 0) for id_ in calibrate.ANSWER_ORDER]
+
+    def test_answer_counts_are_whole_cards_and_a_half_rounds_up_like_the_role_counts(self):
+        # four decks with 1, 2, 3 and 4 answers to enchantments: the 25th percentile sits at 1.75 (2), the median
+        # between 2 and 3 (2.5 goes up to 3, where Python's round() would give 2) and the 90th at 3.7 (4)
+        rows = [deck_row(answers=self.answers_of(enchantments=n)) for n in (1, 2, 3, 4)]
+        got = calibrate.summarize_metrics(rows)["answers_enchantments"]
+        self.assertEqual(got, [2, 3, 4])
+        self.assertTrue(all(isinstance(x, int) for x in got), got)           # 3, not 3.0: they are cards
+
+    def test_every_threat_gets_its_own_row_in_the_order_stats_lists_them(self):
+        rows = [deck_row(answers=self.answers_of(creatures=8, artifacts=2, enchantments=3, planeswalkers=1,
+                                                 lands=0, graveyards=1, spells=2)) for _ in range(3)]
+        out = calibrate.summarize_metrics(rows)
+        self.assertEqual({k: v for k, v in out.items() if k.startswith("answers_")},
+                         {"answers_creatures": [8, 8, 8], "answers_artifacts": [2, 2, 2],
+                          "answers_enchantments": [3, 3, 3], "answers_planeswalkers": [1, 1, 1],
+                          "answers_lands": [0, 0, 0], "answers_graveyards": [1, 1, 1], "answers_spells": [2, 2, 2]})
+        self.assertEqual(list(out)[2:], [id_ for id_, _, _ in roles.THREATS])
+
+    def test_answers_to_spells_use_only_decks_whose_commander_has_blue(self):
+        # three blue decks with 1, 2 and 3 counterspells and three green ones with none: counting the green ones
+        # would drag the usual number of a blue deck down to 0/1/2, so only the blue decks count (as for counters)
+        blue = [deck_row(blue=True, answers=self.answers_of(spells=n, creatures=n)) for n in (1, 2, 3)]
+        green = [deck_row(blue=False, answers=self.answers_of(spells=0, creatures=0)) for _ in range(3)]
+        out = calibrate.summarize_metrics(blue + green)
+        self.assertEqual(out["answers_spells"], [2, 2, 3])                   # 1, 2, 3: 1.5 up to 2, 2, 2.8 up to 3
+        # every other threat counts all six decks (0, 0, 0, 1, 2, 3): 0, then 0.5 up to 1, then 2.5 up to 3
+        self.assertEqual(out["answers_creatures"], [0, 1, 3])
+
+    def test_without_a_single_blue_deck_answers_to_spells_are_zero_not_an_error(self):
+        rows = [deck_row(blue=False, answers=self.answers_of(spells=0)) for _ in range(3)]
+        self.assertEqual(calibrate.summarize_metrics(rows)["answers_spells"], [0, 0, 0])
+
+    def test_a_deck_whose_answers_could_not_be_measured_is_left_out_of_them_only(self):
+        # three decks with 2, 4 and 6 answers to creatures, and a fourth with a measured power but no answers
+        rows = [deck_row(power=(1.0, 0.0), answers=self.answers_of(creatures=n)) for n in (2, 4, 6)]
+        rows.append(deck_row(power=(9.0, 0.0)))
+        out = calibrate.summarize_metrics(rows)
+        self.assertEqual(out["answers_creatures"], [3, 4, 6])                # 2, 4, 6: 3, 4 and 5.6 up to 6
+        self.assertEqual(out["removal_power"], [1.0, 1.0, 6.6])              # 1, 1, 1, 9: all four decks count here
+
+    def test_min_target_max_of_the_answers_stay_in_order(self):
+        rng = random.Random(5)
+        for _ in range(30):
+            rows = [deck_row(blue=rng.random() < 0.5, power=(1.0, 0.5),
+                             answers=[rng.randint(0, 12) for _ in calibrate.ANSWER_ORDER])
+                    for _ in range(rng.randint(3, 40))]
             for name, (low, mid, high) in calibrate.summarize_metrics(rows).items():
                 self.assertTrue(low <= mid <= high, (name, low, mid, high))
 
@@ -344,14 +415,31 @@ class MetricStatisticsTests(unittest.TestCase):
         low, high = {"x": [0.0, 3.0, 6.0]}, {"x": [3.0, 6.0, 9.0]}
         self.assertEqual(calibrate.interpolate_metrics(low, high, 1), {"x": [1.0, 4.0, 7.0]})
 
+    def test_interpolated_answer_counts_are_whole_cards_and_a_half_goes_up(self):
+        # Bracket 2 holds 6/9/14 answers to creatures, Bracket 5 holds 2/3/5: a quarter of the way is 5, 7.5 and 11.75
+        two, five = {"answers_creatures": [6, 9, 14]}, {"answers_creatures": [2, 3, 5]}
+        three = calibrate.interpolate_metrics(two, five, 1, of=4)
+        self.assertEqual(three["answers_creatures"], [5, 8, 12])             # 7.5 goes up to 8, 11.75 to 12
+        # halfway is 4, 6 and 9.5, and the half goes up to 10
+        self.assertEqual(calibrate.interpolate_metrics(two, five, 1, of=2)["answers_creatures"], [4, 6, 10])
+        self.assertTrue(all(isinstance(x, int) for x in three["answers_creatures"]))
+        self.assertEqual(two["answers_creatures"], [6, 9, 14])               # the ends are left alone
+
+    def test_one_interpolation_rounds_the_power_sums_to_tenths_and_the_answers_to_cards(self):
+        two = {"removal_power": [5.4, 8.1, 12.4], "answers_lands": [1, 2, 4]}
+        five = {"removal_power": [2.7, 2.7, 5.4], "answers_lands": [0, 1, 1]}
+        got = calibrate.interpolate_metrics(two, five, 1, of=4)
+        # the answers: 0.75 goes up to 1, 1.75 to 2, and 3.25 down to 3
+        self.assertEqual(got, {"removal_power": [4.7, 6.8, 10.7], "answers_lands": [1, 2, 3]})
+
 
 class MetricTableTests(unittest.TestCase):
     def setUp(self):
         patcher = mock.patch.object(calibrate, "MIN_DECKS", 3)
         patcher.start()
         self.addCleanup(patcher.stop)
-        self.two = [deck_row(power=(p, p / 10)) for p in (4.0, 5.0, 6.0)]
-        self.five = [deck_row(power=(p, 0.0)) for p in (1.0, 2.0, 3.0)]
+        self.two = [deck_row(power=(p, p / 10), answers=[int(p)] * 7) for p in (4.0, 5.0, 6.0)]
+        self.five = [deck_row(power=(p, 0.0), answers=[int(p)] * 7) for p in (1.0, 2.0, 3.0)]
 
     def test_bracket_1_is_bracket_2_and_3_and_4_are_interpolated_without_decks_of_their_own(self):
         table, measured = calibrate.build_metric_table({2: self.two, 5: self.five})
@@ -359,8 +447,22 @@ class MetricTableTests(unittest.TestCase):
         self.assertEqual(list(table), [1, 2, 3, 4, 5])
         self.assertEqual(table[1], table[2])
         self.assertIsNot(table[1]["removal_power"], table[2]["removal_power"])      # a copy, not the same list
+        self.assertIsNot(table[1]["answers_lands"], table[2]["answers_lands"])
         self.assertEqual(table[3], calibrate.interpolate_metrics(table[2], table[5], *calibrate.BLEND[3]))
         self.assertEqual(table[4], calibrate.interpolate_metrics(table[2], table[5], *calibrate.BLEND[4]))
+
+    def test_bracket_1_has_the_answer_rows_of_bracket_2_and_the_middle_brackets_blend_them_to_whole_cards(self):
+        table, _ = calibrate.build_metric_table({2: self.two, 5: self.five})
+        # Bracket 2's decks hold 4, 5 and 6 of each kind (4.5 up to 5 at the 25th percentile and 5.8 up to 6 at the
+        # 90th); Bracket 5's hold 1, 2 and 3
+        self.assertEqual(table[2]["answers_creatures"], [5, 5, 6])
+        self.assertEqual(table[5]["answers_creatures"], [2, 2, 3])
+        self.assertEqual(table[1]["answers_creatures"], [5, 5, 6])
+        # a quarter of the way from 5/5/6 to 2/2/3: 4.25, 4.25 and 5.25 round to 4, 4 and 5; halfway is 3.5, 3.5, 4.5
+        self.assertEqual(table[3]["answers_creatures"], [4, 4, 5])
+        self.assertEqual(table[4]["answers_creatures"], [4, 4, 5])
+        for id_ in roles.THREAT_IDS:
+            self.assertTrue(all(isinstance(x, int) for t in table.values() for x in t[id_]), id_)
 
     def test_decks_for_a_bracket_replace_its_interpolation(self):
         three = [deck_row(power=(9.0, 1.0)) for _ in range(3)]
@@ -388,6 +490,20 @@ class MetricTableTests(unittest.TestCase):
                        "12 MTGJSON Commander precons released 2024-02-09 to 2026-10-02", f"{KINNAN} (7)",
                        "Brackets 3 and 4 = interpolated", "Bracket 1 = Bracket 2 (judgment)"):
             self.assertIn(phrase, method)
+
+    def test_the_text_says_what_counts_as_an_answer_and_how_the_counts_are_rounded(self):
+        sampler = types.SimpleNamespace(precon_span=None, tournament=[(KINNAN, 7)])
+        samples = {1: 0, 2: 12, 3: 0, 4: 0, 5: 12}
+        measured = {1: False, 2: True, 3: False, 4: False, 5: True}
+        method = calibrate.describe_metrics(samples, measured, sampler, 150)[1]
+        # the tags come from roles.THREATS itself, so the text cannot say one thing while the code counts another
+        for id_, label, slugs in roles.THREATS:
+            self.assertIn(f"{roles.THREAT_NOUNS[id_]} = {' or '.join(slugs)}", method)
+        for phrase in ("answers_* counts", "distinct cards", "round half up to one decimal for the power sums and to "
+                       "whole numbers for the answer counts", "answers to spells use only decks whose commander has "
+                       "blue"):
+            self.assertIn(phrase, method)
+        self.assertIn("creatures = removal-creature or sweeper", method)
 
     def test_the_role_text_is_still_the_same_after_sharing_its_sentences(self):
         sampler = types.SimpleNamespace(precon_span=None, tournament=[(KINNAN, 7)])
@@ -437,16 +553,19 @@ def sample_report():
 
 
 def sample_metric_report():
-    """sample_report() with the removal and wipe power numbers, built as run() builds them."""
+    """sample_report() with the removal and wipe power numbers and the answer counts, built as run() builds them."""
     report = sample_report()
-    rows2 = [deck_row(power=(3.0 + i / 2, 1.0 + i / 10)) for i in range(12)]
-    rows5 = [deck_row(power=(2.0 + i / 4, i / 10)) for i in range(12)]
+    rows2 = [deck_row(blue=i % 3 == 0, power=(3.0 + i / 2, 1.0 + i / 10),
+                      answers=[6 + i % 5, 2 + i % 3, 2 + i % 4, 1 + i % 3, i % 2, i % 4, i % 3]) for i in range(12)]
+    rows5 = [deck_row(power=(2.0 + i / 4, i / 10), answers=[4 + i % 3, 3 + i % 2, 3, 2 + i % 3, i % 2, 1, 8 + i % 4])
+             for i in range(12)]
     brackets, measured = calibrate.build_metric_table({2: rows2, 5: rows5})
     samples = {1: 0, 2: 12, 3: 0, 4: 0, 5: 12}
     sampler = types.SimpleNamespace(precon_span=("2024-02-09", "2026-10-02"), tournament=[(KINNAN, 7), (PAIR, 5)])
     labels, method = calibrate.describe_metrics(samples, measured, sampler, 150)
-    report["metrics"] = {"brackets": brackets, "samples": samples, "measured": measured, "labels": labels,
-                         "method": method, "previous": {}, "changes": [], "written": None}
+    report["metrics"] = {"brackets": brackets, "samples": samples, "samples_blue": {1: 0, 2: 4, 3: 0, 4: 0, 5: 12},
+                         "measured": measured, "labels": labels, "method": method, "previous": {}, "changes": [],
+                         "written": None}
     return report
 
 
@@ -532,13 +651,17 @@ class FileTests(unittest.TestCase):
     def test_the_metric_file_reads_back_through_metrics_targets(self):
         report = sample_metric_report()
         path = os.path.join(self.tmp, "metric_targets.json")
-        with mock.patch.object(metrics, "TARGETS_PATH", path):
-            self.assertEqual(calibrate.write_metric_file(report), path)             # default: metrics.TARGETS_PATH
+        with mock.patch.object(roles, "METRIC_TARGETS_PATH", path):
+            self.assertEqual(calibrate.write_metric_file(report), path)             # default: roles.METRIC_TARGETS_PATH
             for b, row in report["metrics"]["brackets"].items():
                 got = metrics.targets(b)
-                self.assertEqual(sorted(got), ["removal_power", "wipe_power"])
+                self.assertEqual(sorted(got), sorted(calibrate.METRIC_ORDER))
                 for name, (low, mid, high) in row.items():
                     self.assertEqual(got[name], {"min": low, "target": mid, "max": high}, (b, name))
+                # the answer bands come back through the one reader that build.py and the Metrics tab share
+                bands = roles.answer_bands(b)
+                self.assertEqual(sorted(bands), sorted(roles.THREAT_IDS))
+                self.assertEqual(bands["answers_creatures"], got["answers_creatures"])
 
     def test_the_metric_file_is_stamped_with_where_every_bracket_came_from(self):
         report = sample_metric_report()
@@ -546,22 +669,42 @@ class FileTests(unittest.TestCase):
         with open(path) as f:
             data = json.load(f)
         self.assertEqual(sorted(data), ["as_of", "brackets", "format", "labels", "measured", "method", "samples",
-                                        "source"])
+                                        "samples_blue", "source"])
         self.assertEqual(data["as_of"], "2026-10-11")
         self.assertEqual(data["samples"], {"1": 0, "2": 12, "3": 0, "4": 0, "5": 12})
+        self.assertEqual(data["samples_blue"], {"1": 0, "2": 4, "3": 0, "4": 0, "5": 12})      # what spells rest on
         self.assertEqual(sorted(data["brackets"]), ["1", "2", "3", "4", "5"])
         self.assertEqual(data["labels"]["1"], "judgment: the same as Bracket 2")
         self.assertEqual(data["brackets"]["1"], data["brackets"]["2"])
         self.assertIn("removal_power", data["format"])
+        self.assertIn("answers_*", data["format"])
+        self.assertEqual(list(data["brackets"]["3"]), list(calibrate.METRIC_ORDER))
         self.assertEqual(data["method"], report["metrics"]["method"])
 
-    def test_the_metric_numbers_are_laid_out_one_bracket_to_a_block_two_metrics_to_a_line(self):
-        text = calibrate.dumps(calibrate.metric_file_data(sample_metric_report()))
+    def test_the_metric_numbers_are_laid_out_one_bracket_to_a_block_the_power_sums_on_a_line_of_their_own(self):
+        text = calibrate.dumps(calibrate.metric_file_data(sample_metric_report()), calibrate.METRIC_LINES)
         self.assertTrue(text.startswith("{\n") and text.endswith("}\n"))
-        block = text[text.index('    "2": {'):]
-        self.assertTrue(block.startswith('    "2": {\n      "removal_power": ['))
-        line = block.splitlines()[1]
-        self.assertIn('"wipe_power": [', line)                                       # both metrics on one line
+        block = text[text.index('    "2": {'):].split("    }")[0].splitlines()
+        self.assertEqual(block[0], '    "2": {')
+        self.assertEqual(len(block), 4)                                              # the opener and three lines
+        self.assertTrue(block[1].startswith('      "removal_power": ['))
+        self.assertTrue(block[1].rstrip().endswith("],") and '"wipe_power": [' in block[1])
+        self.assertNotIn("answers_", block[1])                                       # a line never mixes the two kinds
+        self.assertEqual([line.count('"answers_') for line in block[2:]], [4, 3])   # then the answers, 4 and 3 a line
+        self.assertTrue(block[2].lstrip().startswith('"answers_creatures": ['))
+        self.assertTrue(block[3].lstrip().startswith('"answers_lands": ['))
+        self.assertEqual(json.loads(text)["brackets"]["2"].keys(), set(calibrate.METRIC_ORDER))
+
+    def test_writing_the_role_file_still_puts_four_roles_on_a_line(self):
+        text = calibrate.dumps(calibrate.file_data(sample_report()))
+        first = text[text.index('    "2": {'):].splitlines()[1]
+        self.assertEqual(first.count("["), 4)
+
+    def test_a_layout_with_one_size_repeats_it_and_a_short_row_still_prints_whole(self):
+        data = {"a": 1, "brackets": {"1": {"x": [1, 2, 3], "y": [4, 5, 6], "z": [7, 8, 9]}}}
+        self.assertEqual(calibrate.dumps(data, (2,)).splitlines()[4:6],
+                         ['      "x": [1, 2, 3], "y": [4, 5, 6],', '      "z": [7, 8, 9]'])
+        self.assertEqual(json.loads(calibrate.dumps(data, (1, 5))), data)
 
     def test_writing_the_metric_file_replaces_an_old_one_and_leaves_no_temporary_file(self):
         path = os.path.join(self.tmp, "metric_targets.json")
@@ -631,6 +774,7 @@ class RunTests(unittest.TestCase):
                         "Only Fancy Collector's Edition": HAZEL, "Old Deck": KINNAN}
     PRECON_COUNTER = {"Newest Deck": 2, "Middle Deck": 4, "Old Deck": 6}   # the blue ones; the rest run none
     PRECON_REMOVAL = PRECON_WIPE = {}     # removal cards and board wipes in a precon (none unless a test sets it)
+    PRECON_ANSWERS = {}                   # cards that answer a threat, by precon: {"Old Deck": {"Artifact": 3}}
 
     def setUp(self):
         self.db = sample_db()
@@ -653,7 +797,7 @@ class RunTests(unittest.TestCase):
             mock.patch.object(roles, "attributes", self.attributes),
             mock.patch.object(roles, "attributes_loaded", lambda: self.attributes_ok),
             mock.patch.object(roles, "TARGETS_PATH", self.path),
-            mock.patch.object(metrics, "TARGETS_PATH", self.metrics_path),
+            mock.patch.object(roles, "METRIC_TARGETS_PATH", self.metrics_path),
             mock.patch.object(decklist, "_entries", self.decklist_entries),
             mock.patch.object(decklist, "precon", self.precon),
             mock.patch.object(edhtop16, "top_commanders", self.top_commanders),
@@ -689,8 +833,9 @@ class RunTests(unittest.TestCase):
             raise net.FetchError("mtgjson", "https://mtgjson.com/x", "HTTP 500")
         ramp, counter = self.PRECON_RAMP[name], self.PRECON_COUNTER.get(name, 0)
         removal, wipe = self.PRECON_REMOVAL.get(name, 0), self.PRECON_WIPE.get(name, 0)
-        spell_names = spells(ramp=ramp, counter=counter, removal=removal, wipe=wipe,
-                             filler=62 - ramp - counter - removal - wipe)
+        answers = self.PRECON_ANSWERS.get(name, {})
+        spell_names = spells(ramp=ramp, counter=counter, removal=removal, wipe=wipe, **answers,
+                             filler=62 - ramp - counter - removal - wipe - sum(answers.values()))
         if self.unknown_card:
             spell_names[-1] = self.unknown_card
         lands = [(21, "Forest"), (15, "Island"), (1, "Command Tower")]       # 37 lands
@@ -704,13 +849,15 @@ class RunTests(unittest.TestCase):
         return self.top
 
     TOURNAMENT_REMOVAL = TOURNAMENT_WIPE = {}     # the same in a tournament deck, by its ramp count
+    TOURNAMENT_ANSWERS = {}                       # and the cards that answer a threat: {16: {"Artifact": 2}}
 
     def tournament_entry(self, ramp, topcut, commanders=1):
         """A collapsed list like EDHTop16's: each basic land once. 71 spells = 28 lands in a 99-card deck."""
         nonland = 71 if commanders == 1 else 70
         removal, wipe = self.TOURNAMENT_REMOVAL.get(ramp, 0), self.TOURNAMENT_WIPE.get(ramp, 0)
-        names = spells(ramp=ramp, counter=5, topend=2, removal=removal, wipe=wipe,
-                       filler=nonland - ramp - 5 - 2 - removal - wipe)
+        answers = self.TOURNAMENT_ANSWERS.get(ramp, {})
+        names = spells(ramp=ramp, counter=5, topend=2, removal=removal, wipe=wipe, **answers,
+                       filler=nonland - ramp - 5 - 2 - removal - wipe - sum(answers.values()))
         if self.unknown_card:
             names[-1] = self.unknown_card
         names += ["Forest", "Island", "Command Tower"]
@@ -990,6 +1137,90 @@ class RunTests(unittest.TestCase):
         self.assertIsNone(metric["written"])
         self.assertIn("Removal and wipe power", calibrate.format_report(report))
         self.assertIn("removal_power", calibrate.format_report(report))
+        self.assertEqual(metric["samples_blue"], {1: 0, 2: 3, 3: 0, 4: 0, 5: 7})
+
+    # --- the answers to each kind of threat
+    DECKS = ["Newest Deck", "Reprinted Deck", "Middle Deck", "Only Fancy Collector's Edition", "Old Deck"]
+
+    def measure_answers(self, **kw):
+        """A run whose decks hold known numbers of cards that answer a threat. A precon (newest first) holds 2 to 6
+        sweepers (which answer creatures), 1 to 5 artifact answers, one Flex card (an answer to artifacts,
+        enchantments and planeswalkers at once) and, in the newest, a graveyard answer; the blue ones hold 2, 4 and 6
+        counterspells. A tournament deck holds 2 sweepers, 1 to 7 artifact answers (by its ramp, 16 to 22) and 5
+        counterspells."""
+        self.PRECON_WIPE = dict(zip(self.DECKS, (2, 3, 4, 5, 6)))
+        self.PRECON_ANSWERS = {name: {"Artifact": i, "Flex": 1} for i, name in enumerate(self.DECKS, 1)}
+        self.PRECON_ANSWERS["Newest Deck"]["Grave"] = 1
+        self.TOURNAMENT_WIPE = dict.fromkeys(range(16, 23), 2)
+        self.TOURNAMENT_ANSWERS = {ramp: {"Artifact": ramp - 15} for ramp in range(16, 23)}
+        return self.run_it(**kw)
+
+    def test_the_same_decks_measure_how_many_cards_answer_each_kind_of_threat(self):
+        metric = self.measure_answers()["metrics"]["brackets"]
+        two, five = metric[2], metric[5]
+        # 2 to 6 sweepers: positions 1, 2 and 3.6 of 0..4, and 5.6 goes up to 6
+        self.assertEqual(two["answers_creatures"], [3, 4, 6])
+        # an artifact answer, or the Flex card that answers artifacts too: 2, 3, 4, 5 and 6 cards
+        self.assertEqual(two["answers_artifacts"], [3, 4, 6])
+        self.assertEqual(two["answers_enchantments"], [1, 1, 1])     # the Flex card is the only one every precon holds
+        self.assertEqual(two["answers_planeswalkers"], [1, 1, 1])
+        self.assertEqual(two["answers_graveyards"], [0, 0, 1])       # only the newest holds one: 0.6 of a card goes up
+        self.assertEqual(two["answers_lands"], [0, 0, 0])
+        self.assertEqual(five["answers_creatures"], [2, 2, 2])
+        # 1 to 7 artifact answers: the 25th percentile is 2.5, and a half goes up (Python's round() would say 2)
+        self.assertEqual(five["answers_artifacts"], [3, 4, 6])
+
+    def test_answers_to_spells_rest_on_the_decks_with_blue_like_the_counterspell_role(self):
+        report = self.measure_answers()
+        metric = report["metrics"]
+        # the blue precons hold 2, 4 and 6 counterspells; the other two hold none and are not counted. Counting
+        # them too would give 0/2/5
+        self.assertEqual(metric["brackets"][2]["answers_spells"], [3, 4, 6])
+        self.assertEqual(metric["brackets"][5]["answers_spells"], [5, 5, 5])
+        self.assertEqual(metric["samples_blue"], {1: 0, 2: 3, 3: 0, 4: 0, 5: 7})
+        for b in (2, 5):                                             # a counterspell is both: the numbers agree
+            counter = report["brackets"][b]["counter"]
+            self.assertEqual(metric["brackets"][b]["answers_spells"], counter)
+
+    def test_brackets_3_and_4_blend_the_answer_counts_to_whole_cards_and_bracket_1_is_bracket_2(self):
+        metric = self.measure_answers()["metrics"]["brackets"]
+        # a quarter of the way from [3, 4, 6] to [2, 2, 2]: 2.75, 3.5 (goes up) and 5
+        self.assertEqual(metric[3]["answers_creatures"], [3, 4, 5])
+        self.assertEqual(metric[4]["answers_creatures"], [3, 3, 4])  # halfway: 2.5 goes up, 3 and 4
+        self.assertEqual(metric[3]["answers_spells"], [4, 4, 6])     # from [3, 4, 6] to [5, 5, 5]: 3.5, 4.25, 5.75
+        self.assertEqual(metric[1], metric[2])
+        for b in metric:
+            for id_ in roles.THREAT_IDS:
+                self.assertTrue(all(isinstance(x, int) for x in metric[b][id_]), (b, id_))
+
+    def test_the_commander_is_not_one_of_the_cards_that_are_counted_as_answers(self):
+        seen = []
+        real = roles.answer_counts
+
+        def spy(names, attrs):
+            seen.append(list(names))
+            return real(names, attrs)
+        with mock.patch.object(roles, "answer_counts", spy):
+            self.run_it()
+        self.assertTrue(seen)
+        self.assertFalse([names for names in seen if KINNAN in names or HAZEL in names])
+
+    def test_a_deck_costs_one_request_for_the_tags_whether_it_is_weighed_or_counted(self):
+        # the power sums and the answer counts read the same tags: one request for each of the 5 precons and 7
+        # tournament decks, and the one that checks up front that the tags exist
+        self.run_it()
+        self.assertEqual(len([1 for label, _, _ in self.seen if label == "attributes"]), 1 + 5 + 7)
+
+    def test_the_report_lists_the_answer_rows_old_and_new(self):
+        report = self.measure_answers()
+        metric = report["metrics"]
+        self.assertIn("Bracket 2 answers_creatures: none -> 3/4/6", metric["changes"])
+        text = calibrate.format_report(report)
+        self.assertIn("Removal and wipe power and answer counts, measured from the same decks", text)
+        for id_ in roles.THREAT_IDS:
+            self.assertEqual(text.count(f"  {id_} "), 5, id_)          # one row for each bracket
+        line = next(l for l in text.splitlines() if l.strip().startswith("answers_creatures") and "3/4/6" in l)
+        self.assertIn("none  ->  3/4/6", line)
 
     def test_write_true_writes_the_metric_file_beside_the_role_file_and_it_reads_back(self):
         report = self.measure(write=True)
@@ -997,10 +1228,17 @@ class RunTests(unittest.TestCase):
         with open(self.metrics_path) as f:
             data = json.load(f)
         self.assertEqual(sorted(data), ["as_of", "brackets", "format", "labels", "measured", "method", "samples",
-                                        "source"])
+                                        "samples_blue", "source"])
         self.assertEqual(metrics.targets(2)["removal_power"], {"min": 5.4, "target": 8.1, "max": 12.4})
         self.assertEqual(metrics.targets(5)["wipe_power"], {"min": 0.7, "target": 0.7, "max": 0.7})
         self.assertEqual(roles.targets(2)["ramp"], {"min": 12, "target": 14, "max": 17})     # the roles were written too
+
+    def test_the_written_answer_rows_read_back_through_the_one_reader_with_the_no_blue_rule(self):
+        self.measure_answers(write=True)
+        self.assertEqual(roles.answer_bands(2)["answers_creatures"], {"min": 3, "target": 4, "max": 6})
+        self.assertEqual(roles.answer_bands(2, "BG")["answers_spells"], {"min": 0, "target": 0, "max": 6})   # no blue
+        self.assertEqual(roles.answer_bands(2, "UB")["answers_spells"], {"min": 3, "target": 4, "max": 6})
+        self.assertEqual(metrics.targets(2)["answers_creatures"], roles.answer_bands(2)["answers_creatures"])
 
     def test_a_second_run_reads_the_metric_files_old_numbers(self):
         self.measure(write=True)
@@ -1030,7 +1268,8 @@ class RunTests(unittest.TestCase):
         self.assertIsNone(report["metrics"])
         self.assertEqual(report["brackets"][2]["ramp"], [12, 14, 17])
         self.assertFalse(os.path.exists(self.metrics_path))
-        self.assertTrue(any("Removal and wipe power were not measured" in w for w in report["warnings"]))
+        self.assertTrue(any("Removal and wipe power and the answer counts were not measured" in w
+                            for w in report["warnings"]))
         self.assertEqual(roles.WARNINGS, before)
         self.assertNotIn("measured from the same decks", calibrate.format_report(report))      # no power section
 
@@ -1100,10 +1339,12 @@ class CommandLineTests(unittest.TestCase):
         report["metrics"]["previous"] = {2: {"removal_power": [3.0, 4.0, 5.0]}}
         report["metrics"]["written"] = "/tmp/metric_targets.json"
         text = calibrate.format_report(report)
-        self.assertIn("Removal and wipe power, measured from the same decks (min/target/max; old -> new)", text)
+        self.assertIn("Removal and wipe power and answer counts, measured from the same decks (min/target/max; old -> "
+                      "new)", text)
         line = next(l for l in text.splitlines() if l.strip().startswith("removal_power") and "3.0/4.0/5.0" in l)
         self.assertIn("->", line)
         self.assertEqual(text.count("  wipe_power"), 5)                          # one row per bracket
+        self.assertEqual(text.count("  answers_planeswalkers"), 5)                # and for each kind of threat
         self.assertTrue(text.rstrip().endswith("Wrote /tmp/metric_targets.json"))
 
     def test_the_json_report_keeps_the_metric_numbers_too(self):
