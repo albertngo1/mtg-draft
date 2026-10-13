@@ -1,0 +1,1093 @@
+{
+  "schema": 1,
+  "as_of": "2026-10-11",
+  "source": {
+    "playstyles": "the twelve version-one playstyles; the role deltas are judgment calls, not fitted to data",
+    "themes": "EDHREC theme slugs, checked against the tags sitemap EDHREC lists in its robots.txt: https://edhrec.com/sitemaps/tags.xml (read 2026-10-11)"
+  },
+  "field_notes": {
+    "playstyles": "slug -> label, description (one plain sentence), themes (EDHREC slugs it pulls toward, counted at half weight), targets (role -> whole-number change to the bracket's role targets; negative means fewer), min_bracket (stax needs Bracket 4+).",
+    "common_themes": "The menu shown when the commander is not known. With a commander, the menu is that commander's own EDHREC themes.",
+    "known_themes": "Every EDHREC theme slug except the color-identity pages, so a typed --theme is checked against real slugs, not just the short menu.",
+    "theme_matchers": "A weak fallback signal for a card's theme when no EDHREC page covers it. A card matches a theme when any of its subtypes is in 'subtypes', any of its types is in 'types', or any regex in 'text' matches its lowercased oracle text."
+  },
+  "playstyles": {
+    "combat": {
+      "label": "Combat",
+      "description": "Win by attacking with efficient creatures, combat tricks and a way to push damage through.",
+      "themes": [
+        "aggro",
+        "stompy",
+        "extra-combats"
+      ],
+      "targets": {
+        "finisher": 1,
+        "protection": 1,
+        "wipe": -1
+      },
+      "min_bracket": 1
+    },
+    "voltron": {
+      "label": "Voltron",
+      "description": "Win with one huge, well-protected threat, usually your commander carrying equipment and auras.",
+      "themes": [
+        "voltron",
+        "equipment",
+        "auras"
+      ],
+      "targets": {
+        "protection": 2,
+        "draw": 1,
+        "wipe": -1
+      },
+      "min_bracket": 1
+    },
+    "go-wide": {
+      "label": "Go-wide",
+      "description": "Win with many small creatures and tokens, pumped all at once.",
+      "themes": [
+        "go-wide",
+        "tokens",
+        "anthems"
+      ],
+      "targets": {
+        "finisher": 1,
+        "protection": 1,
+        "wipe": -1
+      },
+      "min_bracket": 1
+    },
+    "aristocrats": {
+      "label": "Aristocrats",
+      "description": "Win by sacrificing your own creatures for value and draining every opponent.",
+      "themes": [
+        "aristocrats",
+        "sacrifice",
+        "lifedrain"
+      ],
+      "targets": {
+        "draw": 1,
+        "recursion": 1,
+        "finisher": 1
+      },
+      "min_bracket": 1
+    },
+    "spellslinger": {
+      "label": "Spellslinger",
+      "description": "Win with many instants and sorceries, chaining cheap spells into card advantage and damage.",
+      "themes": [
+        "spellslinger",
+        "spell-copy",
+        "storm"
+      ],
+      "targets": {
+        "draw": 2,
+        "counter": 1,
+        "finisher": 1
+      },
+      "min_bracket": 1
+    },
+    "control": {
+      "label": "Control",
+      "description": "Win late by answering what opponents do, with removal, counterspells and board wipes.",
+      "themes": [
+        "control",
+        "counterspells"
+      ],
+      "targets": {
+        "removal": 2,
+        "counter": 2,
+        "wipe": 1
+      },
+      "min_bracket": 1
+    },
+    "combo": {
+      "label": "Combo",
+      "description": "Win by assembling a specific set of cards that ends the game.",
+      "themes": [
+        "combo",
+        "storm"
+      ],
+      "targets": {
+        "tutor": 2,
+        "protection": 1,
+        "draw": 1
+      },
+      "min_bracket": 1
+    },
+    "big-mana": {
+      "label": "Big mana",
+      "description": "Win by ramping into huge amounts of mana, then casting oversized threats and spells.",
+      "themes": [
+        "big-mana",
+        "ramp"
+      ],
+      "targets": {
+        "ramp": 3,
+        "land": 1
+      },
+      "min_bracket": 1
+    },
+    "graveyard": {
+      "label": "Graveyard",
+      "description": "Win by filling your graveyard and playing the cards in it again.",
+      "themes": [
+        "graveyard",
+        "reanimator",
+        "self-mill"
+      ],
+      "targets": {
+        "recursion": 2
+      },
+      "min_bracket": 1
+    },
+    "politics": {
+      "label": "Politics",
+      "description": "Win by steering the table with deals, votes and gifts so opponents aim at each other.",
+      "themes": [
+        "politics",
+        "group-hug",
+        "monarch"
+      ],
+      "targets": {
+        "draw": 1,
+        "removal": -1,
+        "protection": 1
+      },
+      "min_bracket": 1
+    },
+    "stax": {
+      "label": "Stax",
+      "description": "Win by restricting what opponents can do with lock pieces you can play around.",
+      "themes": [
+        "stax",
+        "prison"
+      ],
+      "targets": {
+        "ramp": 2,
+        "tutor": 1,
+        "protection": 1
+      },
+      "min_bracket": 4
+    },
+    "value": {
+      "label": "Value",
+      "description": "Play a well-rounded deck that wins through card quality and steady advantage.",
+      "themes": [],
+      "targets": {},
+      "min_bracket": 1
+    }
+  },
+  "common_themes": [
+    {
+      "slug": "tokens",
+      "label": "Tokens"
+    },
+    {
+      "slug": "aristocrats",
+      "label": "Aristocrats"
+    },
+    {
+      "slug": "plus-1-plus-1-counters",
+      "label": "+1/+1 Counters"
+    },
+    {
+      "slug": "artifacts",
+      "label": "Artifacts"
+    },
+    {
+      "slug": "enchantress",
+      "label": "Enchantments"
+    },
+    {
+      "slug": "spellslinger",
+      "label": "Spellslinger"
+    },
+    {
+      "slug": "voltron",
+      "label": "Voltron"
+    },
+    {
+      "slug": "lifegain",
+      "label": "Lifegain"
+    },
+    {
+      "slug": "landfall",
+      "label": "Landfall"
+    },
+    {
+      "slug": "reanimator",
+      "label": "Reanimator"
+    },
+    {
+      "slug": "self-mill",
+      "label": "Self-mill"
+    },
+    {
+      "slug": "blink",
+      "label": "Blink"
+    },
+    {
+      "slug": "treasure",
+      "label": "Treasure"
+    },
+    {
+      "slug": "food",
+      "label": "Food"
+    },
+    {
+      "slug": "dragons",
+      "label": "Dragons"
+    },
+    {
+      "slug": "elves",
+      "label": "Elves"
+    },
+    {
+      "slug": "zombies",
+      "label": "Zombies"
+    },
+    {
+      "slug": "vampires",
+      "label": "Vampires"
+    },
+    {
+      "slug": "squirrels",
+      "label": "Squirrels"
+    },
+    {
+      "slug": "goblins",
+      "label": "Goblins"
+    },
+    {
+      "slug": "wizards",
+      "label": "Wizards"
+    },
+    {
+      "slug": "equipment",
+      "label": "Equipment"
+    },
+    {
+      "slug": "auras",
+      "label": "Auras"
+    },
+    {
+      "slug": "storm",
+      "label": "Storm"
+    },
+    {
+      "slug": "wheels",
+      "label": "Wheels"
+    },
+    {
+      "slug": "group-hug",
+      "label": "Group Hug"
+    },
+    {
+      "slug": "stax",
+      "label": "Stax"
+    },
+    {
+      "slug": "control",
+      "label": "Control"
+    },
+    {
+      "slug": "combo",
+      "label": "Combo"
+    },
+    {
+      "slug": "big-mana",
+      "label": "Big Mana"
+    },
+    {
+      "slug": "mill",
+      "label": "Mill"
+    },
+    {
+      "slug": "infect",
+      "label": "Infect"
+    },
+    {
+      "slug": "sacrifice",
+      "label": "Sacrifice"
+    },
+    {
+      "slug": "graveyard",
+      "label": "Graveyard"
+    },
+    {
+      "slug": "ramp",
+      "label": "Ramp"
+    },
+    {
+      "slug": "go-wide",
+      "label": "Go-wide"
+    },
+    {
+      "slug": "planeswalkers",
+      "label": "Superfriends"
+    },
+    {
+      "slug": "x-spells",
+      "label": "X Spells"
+    },
+    {
+      "slug": "clones",
+      "label": "Clones"
+    },
+    {
+      "slug": "lifedrain",
+      "label": "Lifedrain"
+    },
+    {
+      "slug": "politics",
+      "label": "Politics"
+    }
+  ],
+  "theme_matchers": {
+    "tokens": {
+      "subtypes": [],
+      "types": [],
+      "text": [
+        "\\bcreates? [^.]{0,80}\\btokens?\\b",
+        "\\btokens? you control\\b"
+      ]
+    },
+    "go-wide": {
+      "subtypes": [],
+      "types": [],
+      "text": [
+        "\\bcreatures you control get \\+\\d+/\\+\\d+",
+        "\\bcreatures you control (?:have|gain) ",
+        "\\bfor each creature you control\\b",
+        "\\bcreate (?:two|three|four|five|x|that many) [^.]{0,40}tokens?\\b"
+      ]
+    },
+    "aristocrats": {
+      "subtypes": [],
+      "types": [],
+      "text": [
+        "\\bwhenever (?:you sacrifice|a player sacrifices|another creature you control dies|a creature you control dies|a creature dies)\\b",
+        "\\bsacrifice (?:another|a|an) (?:creature|artifact|permanent)[^.:]{0,30}:"
+      ]
+    },
+    "sacrifice": {
+      "subtypes": [],
+      "types": [],
+      "text": [
+        "\\bsacrifice (?:another|a|an|two|x) [^.:]{0,40}:",
+        "\\bwhenever you sacrifice\\b"
+      ]
+    },
+    "lifedrain": {
+      "subtypes": [],
+      "types": [],
+      "text": [
+        "\\beach opponent loses \\d+ life\\b",
+        "\\btarget (?:opponent|player) loses \\d+ life\\b",
+        "\\beach opponent loses life equal to\\b",
+        "\\bloses? life equal to\\b"
+      ]
+    },
+    "lifegain": {
+      "subtypes": [],
+      "types": [],
+      "text": [
+        "\\byou gain \\d+ life\\b",
+        "\\bwhenever you gain life\\b",
+        "\\byou gain life equal to\\b",
+        "\\blifelink\\b"
+      ]
+    },
+    "plus-1-plus-1-counters": {
+      "subtypes": [],
+      "types": [],
+      "text": [
+        "\\+1/\\+1 counters?"
+      ]
+    },
+    "artifacts": {
+      "subtypes": [],
+      "types": [
+        "Artifact"
+      ],
+      "text": [
+        "\\bartifacts? you control\\b",
+        "\\bwhenever an artifact\\b",
+        "\\bartifact spells?\\b"
+      ]
+    },
+    "enchantress": {
+      "subtypes": [],
+      "types": [
+        "Enchantment"
+      ],
+      "text": [
+        "\\benchantments? you control\\b",
+        "\\bwhenever you cast an enchantment\\b",
+        "\\bconstellation\\b"
+      ]
+    },
+    "spellslinger": {
+      "subtypes": [],
+      "types": [],
+      "text": [
+        "\\bwhenever you cast (?:an? )?(?:instant|sorcery|noncreature)",
+        "\\bcopy target (?:instant|sorcery)",
+        "\\binstant and sorcery spells?\\b",
+        "\\binstant or sorcery\\b",
+        "\\bprowess\\b",
+        "\\bmagecraft\\b"
+      ]
+    },
+    "voltron": {
+      "subtypes": [],
+      "types": [],
+      "text": [
+        "\\bequipped creature (?:gets|has)\\b",
+        "\\benchanted creature (?:gets|has)\\b"
+      ]
+    },
+    "equipment": {
+      "subtypes": [
+        "Equipment"
+      ],
+      "types": [],
+      "text": [
+        "\\bequipped creature\\b",
+        "\\bequip \\{",
+        "\\bequipment you control\\b",
+        "\\bwhenever [^.]{0,40}becomes attached\\b"
+      ]
+    },
+    "auras": {
+      "subtypes": [
+        "Aura"
+      ],
+      "types": [],
+      "text": [
+        "\\baura(?:s)? you control\\b",
+        "\\bwhenever an aura\\b",
+        "\\baura spells?\\b"
+      ]
+    },
+    "landfall": {
+      "subtypes": [],
+      "types": [],
+      "text": [
+        "\\blandfall\\b",
+        "\\bwhenever a land (?:you control )?enters\\b",
+        "\\bwhenever a land enters the battlefield under your control\\b"
+      ]
+    },
+    "reanimator": {
+      "subtypes": [],
+      "types": [],
+      "text": [
+        "\\b(?:return|put) [^.]{0,60}\\bcreature cards? from (?:a|your|an opponent['’]s|any|all) graveyards? (?:to|onto) the battlefield\\b",
+        "\\bunearth\\b"
+      ]
+    },
+    "self-mill": {
+      "subtypes": [],
+      "types": [],
+      "text": [
+        "(?:^|[.;:,] )mill (?:\\w+|x) cards?\\b",
+        "\\bput the top [^.]{0,30}cards? of your library into your graveyard\\b"
+      ]
+    },
+    "mill": {
+      "subtypes": [],
+      "types": [],
+      "text": [
+        "\\b(?:target (?:player|opponent)|each (?:opponent|player)) mills\\b",
+        "\\bputs? the top [^.]{0,30}cards? of (?:their|that player['’]s|target player['’]s) library into (?:their|that player['’]s) graveyard\\b"
+      ]
+    },
+    "graveyard": {
+      "subtypes": [],
+      "types": [],
+      "text": [
+        "\\bcards? (?:in|from) (?:your|a|all|each|target player['’]s) graveyards?\\b",
+        "\\bflashback\\b",
+        "\\bescape\\b",
+        "\\bdredge\\b",
+        "\\bdelirium\\b"
+      ]
+    },
+    "blink": {
+      "subtypes": [],
+      "types": [],
+      "text": [
+        "\\bexile [^.]{0,60}\\b(?:creatures?|permanents?)\\b[^.]{0,60}\\breturn (?:it|that card|them|those cards|that creature|that permanent) to the battlefield\\b",
+        "\\breturn (?:that card|it|them) to the battlefield under (?:its|their) owner['’]s control at the beginning of the next end step",
+        "\\bflicker\\b"
+      ]
+    },
+    "treasure": {
+      "subtypes": [],
+      "types": [],
+      "text": [
+        "\\btreasures?\\b"
+      ]
+    },
+    "food": {
+      "subtypes": [
+        "Food"
+      ],
+      "types": [],
+      "text": [
+        "\\bfood\\b"
+      ]
+    },
+    "dragons": {
+      "subtypes": [
+        "Dragon"
+      ],
+      "types": [],
+      "text": [
+        "\\bdragons? you control\\b",
+        "\\bwhenever a dragon\\b"
+      ]
+    },
+    "elves": {
+      "subtypes": [
+        "Elf"
+      ],
+      "types": [],
+      "text": [
+        "\\belves you control\\b",
+        "\\belf you control\\b"
+      ]
+    },
+    "zombies": {
+      "subtypes": [
+        "Zombie"
+      ],
+      "types": [],
+      "text": [
+        "\\bzombies you control\\b",
+        "\\bzombie you control\\b"
+      ]
+    },
+    "vampires": {
+      "subtypes": [
+        "Vampire"
+      ],
+      "types": [],
+      "text": [
+        "\\bvampires you control\\b",
+        "\\bvampire you control\\b"
+      ]
+    },
+    "squirrels": {
+      "subtypes": [
+        "Squirrel"
+      ],
+      "types": [],
+      "text": [
+        "\\bsquirrels? you control\\b",
+        "\\bsquirrel tokens?\\b"
+      ]
+    },
+    "goblins": {
+      "subtypes": [
+        "Goblin"
+      ],
+      "types": [],
+      "text": [
+        "\\bgoblins? you control\\b",
+        "\\bgoblin tokens?\\b"
+      ]
+    },
+    "wizards": {
+      "subtypes": [
+        "Wizard"
+      ],
+      "types": [],
+      "text": [
+        "\\bwizards? you control\\b"
+      ]
+    },
+    "storm": {
+      "subtypes": [],
+      "types": [],
+      "text": [
+        "\\bstorm \\(when you cast",
+        "\\bstorm count\\b",
+        "\\bcopy it for each (?:other )?spell cast before it\\b"
+      ]
+    },
+    "wheels": {
+      "subtypes": [],
+      "types": [],
+      "text": [
+        "\\beach player discards (?:their|his or her) hand,? (?:then )?draws? (?:seven|that many)\\b"
+      ]
+    },
+    "group-hug": {
+      "subtypes": [],
+      "types": [],
+      "text": [
+        "\\beach player (?:draws (?:a|an additional|two|three) cards?|may draw|gains \\d+ life|may search their library|creates? )",
+        "\\btarget opponent (?:draws|gains|creates)\\b"
+      ]
+    },
+    "infect": {
+      "subtypes": [],
+      "types": [],
+      "text": [
+        "\\binfect\\b",
+        "\\bpoison counters?\\b",
+        "\\btoxic\\b"
+      ]
+    },
+    "planeswalkers": {
+      "subtypes": [],
+      "types": [
+        "Planeswalker"
+      ],
+      "text": [
+        "\\bplaneswalkers? you control\\b",
+        "\\bloyalty counters?\\b"
+      ]
+    },
+    "x-spells": {
+      "subtypes": [],
+      "types": [],
+      "text": [
+        "\\bwhere x is\\b",
+        "\\bx is\\b",
+        "\\bvalue of x\\b",
+        "\\{x\\}"
+      ]
+    },
+    "clones": {
+      "subtypes": [],
+      "types": [],
+      "text": [
+        "\\benters? (?:the battlefield )?as a copy of\\b",
+        "\\bbecomes? a copy of\\b",
+        "\\bcreate a token that['’]s a copy of\\b"
+      ]
+    }
+  },
+  "known_themes": [
+    "activated-abilities",
+    "ad-nauseam",
+    "adventures",
+    "advisors",
+    "affinity",
+    "aggro",
+    "aikido",
+    "airbending",
+    "all-spells",
+    "allies",
+    "amass",
+    "angels",
+    "annihilator",
+    "anthems",
+    "apes",
+    "arcane",
+    "archers",
+    "aristocrats",
+    "artifacts",
+    "artificers",
+    "assassins",
+    "astartes",
+    "atogs",
+    "attack-triggers",
+    "attractions",
+    "auras",
+    "avatars",
+    "banding",
+    "barbarians",
+    "bards",
+    "bats",
+    "battles",
+    "bears",
+    "beasts",
+    "berserkers",
+    "big-mana",
+    "birds",
+    "birthing-pod",
+    "blight",
+    "blink",
+    "blood",
+    "bloodthirst",
+    "blue-moon",
+    "bobbleheads",
+    "books",
+    "bounce",
+    "burn",
+    "cantrips",
+    "card-draw",
+    "cascade",
+    "cats",
+    "caves",
+    "cephalids",
+    "chaos",
+    "charge-counters",
+    "cheerios",
+    "cid",
+    "clash",
+    "clerics",
+    "clones",
+    "clues",
+    "coin-flip",
+    "color-hack",
+    "combo",
+    "commander-matters",
+    "connive",
+    "constructs",
+    "control",
+    "convoke",
+    "counters-matter",
+    "counterspells",
+    "crabs",
+    "craft",
+    "creatureless",
+    "crime",
+    "crocodiles",
+    "curses",
+    "custom-cards",
+    "cybermen",
+    "cycling",
+    "daleks",
+    "dandan",
+    "dash",
+    "day-night",
+    "deathtouch",
+    "defenders",
+    "delirium",
+    "delver",
+    "demons",
+    "descend",
+    "deserts",
+    "detectives",
+    "dethrone",
+    "devils",
+    "devoid",
+    "devotion",
+    "die-roll",
+    "dinosaurs",
+    "discard",
+    "discover",
+    "dogs",
+    "donate",
+    "doomsday",
+    "dragons",
+    "dragons-approach",
+    "drakes",
+    "dredge",
+    "druids",
+    "dune-brood",
+    "dungeon",
+    "dwarves",
+    "earthbending",
+    "eggs",
+    "elders",
+    "eldrazi",
+    "elementals",
+    "elephants",
+    "elves",
+    "empower-jace",
+    "enchantress",
+    "energy",
+    "enrage",
+    "equipment",
+    "etb",
+    "european-highlander",
+    "evoke",
+    "exalted",
+    "exile",
+    "experience-counters",
+    "exploit",
+    "explore",
+    "extra-combats",
+    "extra-turns",
+    "extra-upkeeps",
+    "faeries",
+    "fight",
+    "firebending",
+    "flash",
+    "flashback",
+    "fling",
+    "flying",
+    "food",
+    "forced-combat",
+    "foretell",
+    "foxes",
+    "fractals",
+    "freerunning",
+    "frogs",
+    "fungi",
+    "giants",
+    "glass-cannon",
+    "gnomes",
+    "go-wide",
+    "goats",
+    "goblins",
+    "gods",
+    "golems",
+    "good-stuff",
+    "gorgons",
+    "graveyard",
+    "griffins",
+    "group-hug",
+    "group-slug",
+    "guildgates",
+    "gyruda-companion",
+    "halflings",
+    "hand-size",
+    "hare-apparent",
+    "haste",
+    "hatebears",
+    "hellbent",
+    "heroes",
+    "heroic",
+    "hippos",
+    "historic",
+    "horrors",
+    "horsemanship",
+    "horses",
+    "humans",
+    "hydras",
+    "illusions",
+    "improvise",
+    "impulse-draw",
+    "increment",
+    "incubate",
+    "indestructible",
+    "infect",
+    "ink-treader",
+    "insects",
+    "jegantha-companion",
+    "job-select",
+    "kaheera-companion",
+    "kavu",
+    "keruga-companion",
+    "keywords",
+    "kicker",
+    "kithkin",
+    "knights",
+    "kor",
+    "land-animation",
+    "land-destruction",
+    "landfall",
+    "lands-matter",
+    "landwalk",
+    "legends",
+    "lessons",
+    "level-up",
+    "lhurgoyfs",
+    "life-exchange",
+    "lifedrain",
+    "lifegain",
+    "lizards",
+    "looting",
+    "ltb-effects",
+    "lure",
+    "lurrus-companion",
+    "madness",
+    "mana-dorks",
+    "mana-rocks",
+    "mayhem",
+    "menace",
+    "mercenaries",
+    "merfolk",
+    "mice",
+    "midrange",
+    "mill",
+    "minions",
+    "minotaurs",
+    "minus-1-minus-1-counters",
+    "miracle",
+    "modal-spells",
+    "modified-creatures",
+    "modular",
+    "monarch",
+    "monkeys",
+    "monks",
+    "moonfolk",
+    "morph",
+    "mounts",
+    "multicolor-matters",
+    "mutants",
+    "mutate",
+    "myr",
+    "myriad",
+    "necrons",
+    "nightmares",
+    "ninjas",
+    "ninjutsu",
+    "nobles",
+    "obosh-companion",
+    "offspring",
+    "ogres",
+    "oil-counters",
+    "old-school",
+    "oozes",
+    "opus",
+    "orcs",
+    "otters",
+    "outlaws",
+    "paradigm",
+    "paradox",
+    "party",
+    "pegasi",
+    "persistent-petitioners",
+    "phasing",
+    "phoenixes",
+    "phyrexians",
+    "pillow-fort",
+    "pingers",
+    "pirates",
+    "planechase",
+    "planeswalkers",
+    "plants",
+    "plot",
+    "plus-1-plus-1-counters",
+    "politics",
+    "polymorph",
+    "populate",
+    "power",
+    "power-matters",
+    "power-up",
+    "praetors",
+    "premodern",
+    "prepared",
+    "primal-surge",
+    "prison",
+    "proliferate",
+    "prowess",
+    "rabbits",
+    "raccoons",
+    "rad-counters",
+    "ramp",
+    "rat-colony",
+    "rats",
+    "reach",
+    "reanimator",
+    "rebels",
+    "relentless-rats",
+    "repartee",
+    "retrace",
+    "robots",
+    "rock",
+    "rogues",
+    "rooms",
+    "rube-goldberg",
+    "saboteurs",
+    "sacrifice",
+    "sagas",
+    "samurai",
+    "saprolings",
+    "satyrs",
+    "scarecrows",
+    "scry",
+    "sea-creatures",
+    "self-damage",
+    "self-destruct",
+    "self-discard",
+    "self-mill",
+    "servos",
+    "shades",
+    "shadowborn-apostles",
+    "shamans",
+    "shapeshifters",
+    "sharks",
+    "shrines",
+    "skeletons",
+    "skulk",
+    "slime-against-humanity",
+    "slivers",
+    "snakes",
+    "sneak",
+    "sneak-attack",
+    "snow",
+    "soldiers",
+    "spacecraft",
+    "specters",
+    "speed",
+    "spell-copy",
+    "spellslinger",
+    "sphinxes",
+    "spiders",
+    "spirits",
+    "spore-counters",
+    "squad",
+    "squirrels",
+    "stax",
+    "stickers",
+    "stompy",
+    "stoneblade",
+    "storied",
+    "storm",
+    "stun",
+    "summons",
+    "sunburst",
+    "sunforger",
+    "surveil",
+    "suspend",
+    "symbiotes",
+    "tap-untap",
+    "tempest-hawk",
+    "templar-knights",
+    "tempo",
+    "the-ring",
+    "theft",
+    "themes",
+    "thopters",
+    "time-counters",
+    "time-lords",
+    "tokens",
+    "toolbox",
+    "topdeck",
+    "toughness-matters",
+    "towns",
+    "toys",
+    "transform",
+    "treasure",
+    "treefolk",
+    "triggered-abilities",
+    "tron",
+    "turbo",
+    "turbo-fog",
+    "turtles",
+    "typal",
+    "type-hack",
+    "tyranids",
+    "umori-companion",
+    "unblockable",
+    "unicorns",
+    "unnatural",
+    "value-vintage",
+    "vampires",
+    "vanilla",
+    "vehicles",
+    "villainous-choice",
+    "villains",
+    "voltron",
+    "voting",
+    "warp",
+    "warriors",
+    "waterbending",
+    "web-slinging",
+    "weenies",
+    "werewolves",
+    "whales",
+    "wheels",
+    "witch-maw",
+    "wizards",
+    "wolves",
+    "wraiths",
+    "wurms",
+    "x-spells",
+    "yore-tiller",
+    "yorion-companion",
+    "zirda-companion",
+    "zombies",
+    "zoo"
+  ]
+}

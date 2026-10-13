@@ -1,0 +1,9 @@
+{
+  "clean": "{\"themes\": [\"squirrels\", \"tokens\"], \"playstyle\": \"combat\"}",
+  "chatty": "Sure! Here is the JSON you asked for:\n```json\n{\"themes\": [\"tokens\", \"unicorn-farts\", \"squirrels\", \"aristocrats\", \"plus-1-plus-1-counters\"], \"playstyle\": \"politics\"}\n```\nHope that helps.",
+  "cards_not_words": "{\"themes\": [\"Sol Ring\", \"tokens\"], \"playstyle\": \"combat\"}",
+  "stax": "{\"themes\": [\"tokens\"], \"playstyle\": \"stax\"}",
+  "empty_object": "{}",
+  "not_json": "{this is not json}",
+  "no_object": "I cannot help with that."
+}

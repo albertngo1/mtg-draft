@@ -1,0 +1,14 @@
+{"meta": {"date": "2026-10-11", "version": "5.3.0+20261011"}, "data": {
+  "code": "BLC", "name": "Squirreled Away", "releaseDate": "2024-08-02", "type": "Commander Deck",
+  "commander": [{"name": "Hazel of the Rootbloom", "count": 1, "manaValue": 4.0, "setCode": "BLC"}],
+  "displayCommander": [], "sideBoard": [],
+  "mainBoard": [
+    {"name": "Sol Ring", "count": 1, "setCode": "BLC"},
+    {"name": "Skullclamp", "count": 1, "setCode": "BLC"},
+    {"name": "Chatterfang, Squirrel General", "count": 1, "setCode": "BLC"},
+    {"name": "Command Tower", "count": 1, "setCode": "BLC"},
+    {"name": "Swamp", "count": 4, "setCode": "BLB"},
+    {"name": "Swamp", "count": 4, "setCode": "BLB"},
+    {"name": "Forest", "count": 5, "setCode": "BLB"},
+    {"name": "Forest", "count": 4, "setCode": "BLB"}
+  ]}}

@@ -1,0 +1,32 @@
+{
+ "command": "build",
+ "commanders": ["Hazel of the Rootbloom"],
+ "ci": "BG",
+ "bracket": 3,
+ "bracket_check": {"bracket": 3, "ok": true, "violations": [], "game_changers": ["Demonic Tutor"], "gc_max": 3, "mass_land_denial": [], "extra_turns": [], "two_card_combos": [], "estimated": 3, "notes": ["The list meets the checkable limits of Bracket 3."]},
+ "budget": 75.0,
+ "spent": 61.2,
+ "spec": {"themes": ["tokens"], "playstyle": "go-wide", "include": [], "exclude": [], "weight": 0.5, "keep_fun": true, "bracket": 3, "text": null},
+ "cards": [
+  {"name": "Chatterfang, Squirrel General", "section": "Creatures", "roles": [], "score": 0.64, "price": 9.9, "owned": false, "evidence": "in 64% of 2,310 Bracket 3 Hazel decks (synergy +44%)", "kind": "builder"},
+  {"name": "Zulaport Cutthroat", "section": "Creatures", "roles": ["finisher"], "score": 0.33, "price": 0.25, "owned": false, "evidence": "in 33% of 2,310 Bracket 3 Hazel decks", "kind": "builder"},
+  {"name": "Cultivate", "section": "Sorceries", "roles": ["ramp"], "score": 0.52, "price": 0.25, "owned": false, "evidence": "in 52% of 2,310 Bracket 3 Hazel decks", "kind": "builder"},
+  {"name": "Demonic Tutor", "section": "Sorceries", "roles": ["tutor"], "score": 0.29, "price": 38.5, "owned": false, "evidence": "in 29% of 2,310 Bracket 3 Hazel decks", "kind": "builder"},
+  {"name": "Sol Ring", "section": "Artifacts", "roles": ["ramp"], "score": 0.86, "price": 1.16, "owned": true, "evidence": "in 86% of 2,310 Bracket 3 Hazel decks (all brackets 84%)", "kind": "builder"},
+  {"name": "Arcane Signet", "section": "Artifacts", "roles": ["ramp"], "score": 0.71, "price": 0.38, "owned": false, "evidence": "in 71% of 2,310 Bracket 3 Hazel decks", "kind": "builder"},
+  {"name": "Skullclamp", "section": "Artifacts", "roles": ["draw"], "score": 0.58, "price": 19.13, "owned": false, "evidence": "in 58% of 2,310 Bracket 3 Hazel decks (synergy +30%); tokens decks +12%", "kind": "builder"},
+  {"name": "Command Tower", "section": "Lands", "roles": [], "score": 0.78, "price": 0.2, "owned": true, "evidence": "in 78% of 2,310 Bracket 3 Hazel decks", "kind": "builder"}
+ ],
+ "basics": {"Forest": 9, "Swamp": 8},
+ "count": 99,
+ "roles": {"land": 18, "mdfc_land": 0, "ramp": 3, "draw": 1, "removal": 0, "wipe": 0, "counter": 0, "protection": 0, "recursion": 0, "tutor": 1, "finisher": 1, "topend": 0},
+ "targets": {"land": {"min": 34, "target": 36, "max": 38}, "ramp": {"min": 9, "target": 11, "max": 14}, "draw": {"min": 8, "target": 10, "max": 14}, "removal": {"min": 6, "target": 8, "max": 12}, "wipe": {"min": 1, "target": 3, "max": 5}, "counter": {"min": 0, "target": 0, "max": 6}, "protection": {"min": 1, "target": 3, "max": 6}, "recursion": {"min": 1, "target": 3, "max": 6}, "tutor": {"min": 0, "target": 2, "max": 4}, "finisher": {"min": 2, "target": 3, "max": 6}, "topend": {"max": 7}},
+ "value": {"total": 33.5, "power": 29.8, "theme": 3.7, "roles": {}, "land": 18},
+ "fantasy_cost": {"power_with_theme": 33.5, "power_max": 35.6, "gap": 2.1, "gap_pct": 5.9, "left_out": [{"name": "Rhystic Study", "score": 0.45, "evidence": "in 45% of Hazel decks"}, {"name": "Eternal Witness", "score": 0.4, "evidence": "in 40% of Hazel decks"}], "theme_picks": [{"name": "Zulaport Cutthroat", "theme": "tokens"}]},
+ "blocked": [{"card": "Pitiless Plunderer", "reason": "completes a two-card infinite combo with Chatterfang, Squirrel General"}],
+ "warnings": [],
+ "sources": {
+  "edhrec": {"fetched": "2026-10-11T09:12:44Z", "cache": "network", "age_days": 0.0},
+  "scryfall": {"fetched": "2026-10-09T04:00:00Z", "cache": "fresh", "age_days": 2.2}
+ }
+}

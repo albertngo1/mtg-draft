@@ -1,0 +1,7 @@
+[
+  {"id": 9001, "url": "https://archidekt.com/decks/9001", "bracket": 3, "commanders": ["Heliod, Sun-Crowned"], "cards": ["Sol Ring", "Arcane Signet", "Rhystic Study", "Swords to Plowshares", "Command Tower", "Forest"], "updated": "2026-10-01T10:00:00Z"},
+  {"id": 9002, "url": "https://archidekt.com/decks/9002", "bracket": 3, "commanders": ["Heliod, Sun-Crowned"], "cards": ["Sol Ring", "Arcane Signet", "Mana Vault", "Rhystic Study", "Command Tower", "Forest"], "updated": "2026-10-02T10:00:00Z"},
+  {"id": 9003, "url": "https://archidekt.com/decks/9003", "bracket": 3, "commanders": ["Heliod, Sun-Crowned"], "cards": ["Sol Ring", "Rhystic Study", "Swords to Plowshares", "Command Tower", "Forest", "One-Off 1"], "updated": "2026-10-03T10:00:00Z"},
+  {"id": 9004, "url": "https://archidekt.com/decks/9004", "bracket": 3, "commanders": ["Heliod, Sun-Crowned"], "cards": ["Sol Ring", "Arcane Signet", "Mana Vault", "Command Tower", "Forest", "One-Off 2"], "updated": "2026-10-04T10:00:00Z"},
+  {"id": 9005, "url": "https://archidekt.com/decks/9005", "bracket": 3, "commanders": ["Heliod, Sun-Crowned"], "cards": ["Sol Ring", "Arcane Signet", "Swords to Plowshares", "Command Tower", "Forest", "One-Off 3"], "updated": "2026-10-05T10:00:00Z"}
+]

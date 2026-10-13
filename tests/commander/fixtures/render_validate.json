@@ -1,0 +1,21 @@
+{
+ "command": "validate",
+ "bracket": 3,
+ "method": "leave-one-out against Archidekt Bracket 3 lists",
+ "commanders": [
+  {"name": "Hazel of the Rootbloom", "decks": 38, "overlap": 0.62, "baseline": 0.55},
+  {"name": "Chatterfang, Squirrel General", "decks": 41, "overlap": 0.6, "baseline": 0.54}
+ ],
+ "overall": {"overlap": 0.61, "baseline": 0.545, "n": 79},
+ "roles_in_iqr": 0.83,
+ "bracket_ok_rate": 1.0,
+ "sweep": [{"weight": 0.1, "overlap": 0.6}, {"weight": 0.2, "overlap": 0.61}],
+ "calibration": {"w_bracket": {"3": 0.2}, "k_base": 200, "note": "judgment call at Bracket 3"},
+ "upgrade_check": {"bracket": 3, "budget": 50.0, "precons": 3, "closer": 1, "same": 1, "farther": 1, "share_closer": 0.3333,
+  "within_budget": true, "over_budget": [],
+  "rows": [{"precon": "Squirreled Away", "gap_before": 9, "gap_after": 3, "spent": 41.2, "swaps": 8},
+           {"precon": "Peril of the Peaceful", "gap_before": 0, "gap_after": 0, "spent": 0.0, "swaps": 0},
+           {"precon": "Starter Commander Deck With A Rather Long Name", "gap_before": 2, "gap_after": 4, "spent": 49.99, "swaps": 5}]},
+ "warnings": [],
+ "sources": {"archidekt": {"fetched": "2026-10-11T08:00:00Z", "cache": "network", "age_days": 0.0}}
+}

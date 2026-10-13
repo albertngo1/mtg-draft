@@ -1,0 +1,8 @@
+[
+  {"id": "e1", "wins": 3, "losses": 1, "draws": 0, "standing": 2, "topcut": true, "cards": ["Sol Ring", "Mana Vault", "Rhystic Study", "Force of Will", "One-Off 1", "Island", "Forest"], "tournament": {"name": "Test Open 1", "date": "2026-10-04", "size": 64, "tid": "t1", "top_cut": 16}},
+  {"id": "e2", "wins": 3, "losses": 1, "draws": 0, "standing": 2, "topcut": true, "cards": ["Sol Ring", "Mana Vault", "Rhystic Study", "Demonic Tutor", "One-Off 2", "Island"], "tournament": {"name": "Test Open 2", "date": "2026-10-03", "size": 64, "tid": "t2", "top_cut": 16}},
+  {"id": "e3", "wins": 3, "losses": 1, "draws": 0, "standing": 30, "topcut": false, "cards": ["Sol Ring", "Mana Vault", "Force of Will", "Demonic Tutor", "One-Off 3", "Forest", "Snow-Covered Island"], "tournament": {"name": "Test Open 3", "date": "2026-10-02", "size": 64, "tid": "t3", "top_cut": 16}},
+  {"id": "e4", "wins": 3, "losses": 1, "draws": 0, "standing": 2, "topcut": true, "cards": ["Sol Ring", "Rhystic Study", "Force of Will", "Vampiric Tutor", "One-Off 4", "Island"], "tournament": {"name": "Test Open 4", "date": "2026-10-01", "size": 64, "tid": "t4", "top_cut": 16}},
+  {"id": "e5", "wins": 3, "losses": 1, "draws": 0, "standing": 30, "topcut": false, "cards": ["Sol Ring", "Mana Vault", "Rhystic Study", "One-Off 5", "Island", "Forest"], "tournament": {"name": "Test Open 5", "date": "2026-09-30", "size": 64, "tid": "t5", "top_cut": 16}},
+  {"id": "e6", "wins": 3, "losses": 1, "draws": 0, "standing": 2, "topcut": true, "cards": ["Sol Ring", "Mana Vault", "Force of Will", "Demonic Tutor", "One-Off 6", "Island"], "tournament": {"name": "Test Open 6", "date": "2026-09-29", "size": 64, "tid": "t6", "top_cut": 16}}
+]

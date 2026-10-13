@@ -1,0 +1,510 @@
+{
+  "command": "stats",
+  "headline": {
+    "score": 93.77,
+    "bracket": 3,
+    "bracket_ok": true,
+    "lands": 36,
+    "removal_power": 5.95,
+    "price": 185.43
+  },
+  "groups": [
+    {
+      "id": "power",
+      "label": "Power",
+      "items": [
+        {
+          "id": "score",
+          "label": "Deck score",
+          "value": 93.77,
+          "unit": null,
+          "target": null,
+          "status": null,
+          "why": [
+            "Power 95.44 plus theme -1.67: the card scores, a bonus for filling each role and the land count, less a penalty for too many cards costing 6 or more."
+          ],
+          "cards": [],
+          "base": 79.82
+        },
+        {
+          "id": "bracket",
+          "label": "Bracket",
+          "value": 3,
+          "unit": null,
+          "target": {
+            "min": null,
+            "target": 3,
+            "max": 3
+          },
+          "status": "inside",
+          "why": [
+            "Within Bracket 3's limits: Game Changers, extra turns, mass land denial and two-card combos."
+          ],
+          "cards": [],
+          "base": 3
+        },
+        {
+          "id": "bracket_floor",
+          "label": "Lowest bracket its limits allow",
+          "value": 1,
+          "unit": null,
+          "target": null,
+          "status": null,
+          "why": [
+            "The lowest bracket whose limits (Game Changers, extra turns, mass land denial, two-card combos) the deck meets. Brackets 1 and 2 have the same limits and Wizards says intent decides the real bracket, so this is only a floor."
+          ],
+          "cards": [],
+          "base": 1
+        },
+        {
+          "id": "game_changers",
+          "label": "Game Changers",
+          "value": 0,
+          "unit": null,
+          "target": {
+            "min": null,
+            "target": null,
+            "max": 3
+          },
+          "status": "inside",
+          "why": [
+            "Bracket 3 allows up to 3."
+          ],
+          "cards": [],
+          "base": 0
+        },
+        {
+          "id": "combos_in_deck",
+          "label": "Combos in the deck",
+          "value": 2,
+          "unit": null,
+          "target": null,
+          "status": null,
+          "why": [
+            "Camellia, the Seedmiser + Peregrin Took + Hazel's Brewmaster + Gilded Goose → Infinite artifact ETB, Infinite artifact LTB, Infinite artifact sacrifice triggers (any bracket; https://commanderspellbook.com/combo/4321-4979-5777-5856/)"
+          ],
+          "cards": [
+            "Camellia, the Seedmiser",
+            "Peregrin Took",
+            "Hazel's Brewmaster",
+            "Gilded Goose"
+          ],
+          "base": 1
+        },
+        {
+          "id": "tutors",
+          "label": "Tutors",
+          "value": 2,
+          "unit": null,
+          "target": {
+            "min": 2,
+            "target": 3,
+            "max": 4
+          },
+          "status": "inside",
+          "why": [
+            "Cards that search the library for any card."
+          ],
+          "cards": [
+            "Scavenger's Talent",
+            "Evendo, Waking Haven"
+          ],
+          "base": 0
+        }
+      ]
+    },
+    {
+      "id": "interaction",
+      "label": "Interaction",
+      "items": [
+        {
+          "id": "removal_power",
+          "label": "Removal power",
+          "value": 5.95,
+          "unit": null,
+          "target": {
+            "min": 3.4,
+            "target": 4.2,
+            "max": 6.8
+          },
+          "status": "inside",
+          "why": [
+            "Tear Asunder 1.00 = instant 1.0 × any permanent 1.0 × exile 1.0 × MV 2 1.0",
+            "Assassin's Trophy 0.90 = instant 1.0 × any permanent 1.0 × destroy 0.9 × MV 2 1.0"
+          ],
+          "cards": [
+            "Tear Asunder",
+            "Assassin's Trophy"
+          ],
+          "base": 7.61
+        },
+        {
+          "id": "wipe_power",
+          "label": "Wipe power",
+          "value": 0.61,
+          "unit": null,
+          "target": {
+            "min": 0.7,
+            "target": 0.8,
+            "max": 1.9
+          },
+          "status": "short",
+          "why": [
+            "Swarmyard Massacre 0.35 = sorcery speed 0.75 × conditional 0.6 × damage or -X/-X 0.8 × MV 5 0.65 × one-sided 1.5"
+          ],
+          "cards": [
+            "Swarmyard Massacre",
+            "Decree of Pain"
+          ],
+          "base": 0.61
+        },
+        {
+          "id": "answers_creatures",
+          "label": "Answers to creatures",
+          "value": 10,
+          "unit": null,
+          "target": {
+            "min": 1,
+            "target": null,
+            "max": null
+          },
+          "status": "inside",
+          "why": [
+            "10 cards can deal with it"
+          ],
+          "cards": [
+            "Tear Asunder",
+            "Assassin's Trophy"
+          ],
+          "base": 14
+        },
+        {
+          "id": "answers_spells",
+          "label": "Answers to spells",
+          "value": 0,
+          "unit": null,
+          "target": {
+            "min": 1,
+            "target": null,
+            "max": null
+          },
+          "status": "short",
+          "why": [
+            "Nothing in the deck can."
+          ],
+          "cards": [],
+          "base": 0
+        },
+        {
+          "id": "instant_share",
+          "label": "Interaction at instant speed",
+          "value": 43.8,
+          "unit": "%",
+          "target": null,
+          "status": null,
+          "why": [
+            "7 of 16 removal, wipe, counterspell and protection cards are instants or have flash."
+          ],
+          "cards": [
+            "Tear Asunder"
+          ],
+          "base": 25.0
+        }
+      ]
+    },
+    {
+      "id": "mana",
+      "label": "Mana and consistency",
+      "items": [
+        {
+          "id": "lands",
+          "label": "Lands",
+          "value": 36,
+          "unit": null,
+          "target": {
+            "min": 34,
+            "target": 35,
+            "max": 36
+          },
+          "status": "inside",
+          "why": [
+            "36 lands, 6 of them basic."
+          ],
+          "cards": [],
+          "base": 38
+        },
+        {
+          "id": "avg_mana_value",
+          "label": "Average mana value",
+          "value": 2.84,
+          "unit": null,
+          "target": null,
+          "status": null,
+          "why": [
+            "The mean mana value of the nonland cards."
+          ],
+          "cards": [],
+          "base": 3.31
+        },
+        {
+          "id": "topend",
+          "label": "Cards costing 6 or more",
+          "value": 9,
+          "unit": null,
+          "target": {
+            "min": null,
+            "target": null,
+            "max": 8
+          },
+          "status": "over",
+          "why": [
+            "Bracket 3 allows up to 8 nonland cards costing 6 or more."
+          ],
+          "cards": [
+            "Decree of Pain"
+          ],
+          "base": 5
+        },
+        {
+          "id": "tapped_always",
+          "label": "Lands that always enter tapped",
+          "value": 8,
+          "unit": null,
+          "target": null,
+          "status": null,
+          "why": [
+            "Scryfall's tag `tapland`: they always enter tapped."
+          ],
+          "cards": [
+            "Temple of Malady"
+          ],
+          "base": 9
+        },
+        {
+          "id": "colorless_lands",
+          "label": "Lands that make only colorless mana",
+          "value": 4,
+          "unit": null,
+          "target": null,
+          "status": null,
+          "why": [
+            "Lands that cannot make colored mana and do not fetch a land that can."
+          ],
+          "cards": [
+            "Fountainport",
+            "Grim Backwoods",
+            "Swarmyard",
+            "Temple of the False God"
+          ],
+          "base": 2
+        }
+      ]
+    },
+    {
+      "id": "playstyle",
+      "label": "Playstyle",
+      "items": [
+        {
+          "id": "theme_fit",
+          "label": "Theme fit",
+          "value": 17.5,
+          "unit": "%",
+          "target": null,
+          "status": null,
+          "why": [
+            "11 of 63 nonland cards have a theme score above 0.02."
+          ],
+          "cards": [],
+          "base": 1.6
+        },
+        {
+          "id": "style_aristocrats",
+          "label": "Aristocrats",
+          "value": 30.2,
+          "unit": "%",
+          "target": null,
+          "status": null,
+          "why": [
+            "Counts sacrifice outlets (a free one counts 1.5) and death triggers: 19 of the 63 different nonland cards.",
+            "This is the playstyle you chose."
+          ],
+          "cards": [],
+          "base": 41.8
+        },
+        {
+          "id": "synergy",
+          "label": "Synergy with the commander",
+          "value": null,
+          "unit": null,
+          "target": null,
+          "status": null,
+          "why": [
+            "No card has an EDHREC synergy score (EDHREC is off, or has no page for this commander)."
+          ],
+          "cards": []
+        }
+      ]
+    },
+    {
+      "id": "win",
+      "label": "Win plan",
+      "items": [
+        {
+          "id": "finishers",
+          "label": "Finishers",
+          "value": 7,
+          "unit": null,
+          "target": {
+            "min": 1,
+            "target": 2,
+            "max": 6
+          },
+          "status": "over",
+          "why": [
+            "Cards that end the game: the sum of the kinds below."
+          ],
+          "cards": [],
+          "base": 6
+        },
+        {
+          "id": "evasive_power",
+          "label": "Power of the hard-to-block creatures",
+          "value": null,
+          "unit": null,
+          "target": null,
+          "status": null,
+          "why": [
+            "The card index does not record creature power yet."
+          ],
+          "cards": []
+        }
+      ]
+    },
+    {
+      "id": "table",
+      "label": "Table and money",
+      "items": [
+        {
+          "id": "salt",
+          "label": "Salt",
+          "value": 0,
+          "unit": null,
+          "target": null,
+          "status": null,
+          "why": [
+            "No card in the deck is on EDHREC's salt list."
+          ],
+          "cards": [],
+          "base": 0
+        },
+        {
+          "id": "price_to_buy",
+          "label": "Cost to buy",
+          "value": 185.43,
+          "unit": "$",
+          "target": null,
+          "status": null,
+          "why": [
+            "Chatterfang, Squirrel General $10.00"
+          ],
+          "cards": [
+            "Chatterfang, Squirrel General"
+          ],
+          "base": 0.0
+        },
+        {
+          "id": "owned_share",
+          "label": "Cards you own",
+          "value": 67.7,
+          "unit": "%",
+          "target": null,
+          "status": null,
+          "why": [
+            "67 of 99 cards, the commander included; basic lands count as owned."
+          ],
+          "cards": [],
+          "base": 100.0
+        }
+      ]
+    },
+    {
+      "id": "changes",
+      "label": "Changes from the base deck",
+      "items": [
+        {
+          "id": "changes_added",
+          "label": "Cards added",
+          "value": 36,
+          "unit": null,
+          "target": null,
+          "status": null,
+          "why": [
+            "Thornvault Forager: change 1, in \"Up to $25\", 2026-10-11, by andy, suggested by the tool"
+          ],
+          "cards": [
+            "Thornvault Forager"
+          ]
+        },
+        {
+          "id": "changes_net_cost",
+          "label": "Net cost of the changes",
+          "value": 185.43,
+          "unit": "$",
+          "target": null,
+          "status": null,
+          "why": [
+            "Added: $185.43 for 32 of 36 cards (the others are owned or basic lands).",
+            "Cut: $0.00 for 0 of 36 cards you did not own."
+          ],
+          "cards": []
+        }
+      ]
+    }
+  ],
+  "deck": {
+    "name": "Squirreled Away",
+    "commanders": [
+      "Hazel of the Rootbloom"
+    ],
+    "count": 100,
+    "ci": "BG"
+  },
+  "bracket": 3,
+  "spec": {
+    "themes": [
+      "tokens"
+    ],
+    "playstyle": "aristocrats",
+    "include": [],
+    "exclude": [],
+    "weight": 0.5,
+    "keep_fun": true,
+    "bracket": 3,
+    "text": null
+  },
+  "warnings": [
+    "Combos were checked against Commander Spellbook's daily file."
+  ],
+  "sources": {
+    "edhrec": {
+      "fetched": "2026-10-11T09:12:44Z",
+      "cache": "network",
+      "age_days": 0.0
+    },
+    "spellbook": {
+      "fetched": "2026-10-11T23:11:42Z",
+      "cache": "fresh",
+      "age_days": 0.5
+    },
+    "scryfall": {
+      "fetched": "2026-10-09T04:00:00Z",
+      "cache": "fresh",
+      "age_days": 2.2
+    },
+    "scryfall_tags": {
+      "fetched": "2026-10-09T04:00:00Z",
+      "cache": "fresh",
+      "age_days": 2.2
+    }
+  }
+}

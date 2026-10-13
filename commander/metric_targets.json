@@ -1,0 +1,37 @@
+{
+  "source": "measured by src/mtgcommander/calibrate.py from the decks the role targets rest on; each bracket's label says whether it was measured, interpolated or set by judgment",
+  "as_of": "2026-10-12",
+  "format": "per bracket, each metric is [min, target, max] over the 99 cards (98 with two commanders): removal_power and wipe_power are sums as metrics.py weighs the cards, in the same units stats prints; each answers_* is a count of whole cards, the distinct cards that can answer that kind of threat (roles.THREATS), as stats counts them",
+  "method": "Per deck, removal power and wipe power are the sums metrics.rate_removal and metrics.rate_wipes give over the 99 cards (98 with two commanders, commanders left out): a removal card is worth speed x reach x permanence x cost, times 1.5 if it removes again and again, and a board wipe the same, times 1.5 if it spares your own side. The weights are judgment calls. The answers_* counts are the distinct cards among those same cards that carry any Scryfall function tag of a kind of threat, as stats counts them (roles.THREATS): creatures = removal-creature or sweeper; artifacts = removal-artifact; enchantments = removal-enchantment; planeswalkers = removal-planeswalker; lands = removal-land; graveyards = hate-graveyard; spells = counterspell. Across a bracket's decks, min = 25th percentile, target = median, max = 90th percentile; percentiles interpolate linearly between ranked decks and round half up to one decimal for the power sums and to whole numbers for the answer counts; answers to spells use only decks whose commander has blue. Bracket 2 = 60 MTGJSON Commander precons released 2024-01-22 to 2026-10-02, precons as a Bracket 2 proxy (Wizards no longer ties Core to precons). Bracket 5 = 248 EDHTop16 top-cut decks from the newest 150 entries of each of: Kraum, Ludevic's Opus / Tymna the Weaver (39), Kinnan, Bonder Prodigy (42), Rograkh, Son of Rohgahh / Thrasios, Triton Hero (39), Rograkh, Son of Rohgahh / Silas Renn, Seeker Adept (43), Sisay, Weatherlight Captain (41), Thrasios, Triton Hero / Tymna the Weaver (44). Brackets 3 and 4 = interpolated between 2 and 5, a quarter and half of the way (judgment; no Bracket 3 or 4 deck was sampled). Bracket 1 = Bracket 2 (judgment).",
+  "samples": {"1": 0, "2": 60, "3": 0, "4": 0, "5": 248},
+  "samples_blue": {"1": 0, "2": 32, "3": 0, "4": 0, "5": 248},
+  "measured": {"1": false, "2": true, "3": false, "4": false, "5": true},
+  "labels": {"1": "judgment: the same as Bracket 2", "2": "measured: 60 recent precons (precons as a Bracket 2 proxy)", "5": "measured: 248 EDHTop16 top-cut decks", "3": "interpolated (judgment): Bracket 2 plus 1/4 of the way to Bracket 5", "4": "interpolated (judgment): Bracket 2 plus 1/2 of the way to Bracket 5"},
+  "brackets": {
+    "1": {
+      "removal_power": [3.7, 4.6, 7.6], "wipe_power": [0.9, 1.1, 2.3],
+      "answers_creatures": [8, 11, 15], "answers_artifacts": [3, 4, 6], "answers_enchantments": [3, 4, 7], "answers_planeswalkers": [2, 3, 8],
+      "answers_lands": [0, 1, 2], "answers_graveyards": [0, 1, 3], "answers_spells": [0, 1, 2]
+    },
+    "2": {
+      "removal_power": [3.7, 4.6, 7.6], "wipe_power": [0.9, 1.1, 2.3],
+      "answers_creatures": [8, 11, 15], "answers_artifacts": [3, 4, 6], "answers_enchantments": [3, 4, 7], "answers_planeswalkers": [2, 3, 8],
+      "answers_lands": [0, 1, 2], "answers_graveyards": [0, 1, 3], "answers_spells": [0, 1, 2]
+    },
+    "3": {
+      "removal_power": [3.4, 4.2, 6.8], "wipe_power": [0.7, 0.8, 1.9],
+      "answers_creatures": [7, 10, 14], "answers_artifacts": [3, 4, 6], "answers_enchantments": [3, 4, 7], "answers_planeswalkers": [2, 3, 8],
+      "answers_lands": [0, 1, 2], "answers_graveyards": [0, 1, 3], "answers_spells": [2, 3, 5]
+    },
+    "4": {
+      "removal_power": [3.0, 3.8, 6.0], "wipe_power": [0.5, 0.6, 1.6],
+      "answers_creatures": [7, 9, 13], "answers_artifacts": [4, 4, 6], "answers_enchantments": [4, 4, 7], "answers_planeswalkers": [3, 4, 7],
+      "answers_lands": [0, 1, 2], "answers_graveyards": [1, 1, 3], "answers_spells": [5, 6, 8]
+    },
+    "5": {
+      "removal_power": [2.3, 3.0, 4.3], "wipe_power": [0.0, 0.0, 0.8],
+      "answers_creatures": [5, 6, 10], "answers_artifacts": [4, 4, 6], "answers_enchantments": [4, 4, 6], "answers_planeswalkers": [3, 4, 6],
+      "answers_lands": [0, 1, 2], "answers_graveyards": [1, 1, 3], "answers_spells": [9, 10, 13]
+    }
+  }
+}

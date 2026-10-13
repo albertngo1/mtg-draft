@@ -1,0 +1,11 @@
+{"meta": {"date": "2026-10-11", "version": "5.3.0+20261011"}, "data": [
+  {"code": "BLC", "fileName": "SquirreledAway_BLC", "name": "Squirreled Away", "releaseDate": "2024-08-02",
+   "source": "https://magic.wizards.com/en/news/announcements/bloomburrow-commander-decklists", "type": "Commander Deck"},
+  {"code": "BLC", "fileName": "PeaceOffering_BLC", "name": "Peace Offering", "releaseDate": "2024-08-02",
+   "source": "https://magic.wizards.com/en/news/announcements/bloomburrow-commander-decklists", "type": "Commander Deck"},
+  {"code": "C13", "fileName": "EvasiveManeuvers_C13", "name": "Evasive Maneuvers", "releaseDate": "2013-11-01",
+   "source": "", "type": "Commander Deck"},
+  {"code": "C16", "fileName": "EvasiveManeuvers_C16", "name": "Evasive Maneuvers", "releaseDate": "2016-11-11",
+   "source": "", "type": "Commander Deck"},
+  {"code": "JMP", "fileName": "Walls_JMP", "name": "Walls", "releaseDate": "2020-07-17", "source": "", "type": "Jumpstart"}
+]}

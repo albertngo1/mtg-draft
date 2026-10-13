@@ -1,0 +1,13 @@
+{
+  "data": {
+    "commanders": {
+      "pageInfo": {"hasNextPage": false, "endCursor": "3"},
+      "edges": [
+        {"node": {"name": "Sisay, Weatherlight Captain", "stats": {"count": 3340, "conversionRate": 0.2805}}},
+        {"node": {"name": "Kinnan, Bonder Prodigy", "stats": {"count": 6416, "conversionRate": 0.2684}}},
+        {"node": {"name": "Thrasios, Triton Hero / Tymna the Weaver",
+                  "stats": {"count": 2445, "conversionRate": 0.2609}}}
+      ]
+    }
+  }
+}

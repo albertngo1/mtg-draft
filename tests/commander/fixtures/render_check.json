@@ -1,0 +1,193 @@
+{
+  "command": "check",
+  "deck": {
+    "name": "Squirreled Away",
+    "commanders": [
+      "Hazel of the Rootbloom"
+    ],
+    "count": 101,
+    "ci": "BG"
+  },
+  "legality": {
+    "ok": false,
+    "problems": [
+      {
+        "kind": "count",
+        "cards": [],
+        "message": "A Commander deck has exactly 100 cards, commander included; this list has 101."
+      },
+      {
+        "kind": "color",
+        "cards": [
+          "Swords to Plowshares"
+        ],
+        "message": "1 card outside the commander's colors (BG): Swords to Plowshares."
+      },
+      {
+        "kind": "unknown",
+        "cards": [
+          "Sol Rign"
+        ],
+        "message": "Not found in the card index: Sol Rign (did you mean Sol Ring?)."
+      }
+    ]
+  },
+  "bracket": 3,
+  "bracket_check": {
+    "bracket": 3,
+    "ok": false,
+    "violations": [
+      {
+        "rule": "two_card_combos",
+        "cards": [
+          "Chatterfang, Squirrel General",
+          "Pitiless Plunderer"
+        ],
+        "excess": 1,
+        "url": "https://commanderspellbook.com/combo/3000-4871/",
+        "message": "Chatterfang, Squirrel General + Pitiless Plunderer (infinite mana): Commander Spellbook rates it for Bracket 4 or higher."
+      }
+    ],
+    "game_changers": [
+      "Demonic Tutor",
+      "Skullclamp"
+    ],
+    "gc_max": 3,
+    "mass_land_denial": [],
+    "extra_turns": [],
+    "two_card_combos": [
+      {
+        "cards": [
+          "Chatterfang, Squirrel General",
+          "Pitiless Plunderer"
+        ],
+        "produces": [
+          "Infinite mana",
+          "Infinite tokens"
+        ],
+        "url": "https://commanderspellbook.com/combo/3000-4871/",
+        "min_bracket": 4,
+        "infinite": true
+      }
+    ],
+    "estimated": 4,
+    "notes": [
+      "Wizards says intent and how a deck plays decide its bracket, so treat the estimate as a floor."
+    ]
+  },
+  "roles": {
+    "counts": {
+      "land": 36,
+      "mdfc_land": 0,
+      "ramp": 8,
+      "draw": 8,
+      "removal": 7,
+      "wipe": 6,
+      "counter": 0,
+      "protection": 2,
+      "recursion": 3,
+      "tutor": 1,
+      "finisher": 3,
+      "topend": 5
+    },
+    "targets": {
+      "land": {
+        "min": 34,
+        "target": 36,
+        "max": 38
+      },
+      "ramp": {
+        "min": 9,
+        "target": 11,
+        "max": 14
+      },
+      "draw": {
+        "min": 8,
+        "target": 10,
+        "max": 14
+      },
+      "removal": {
+        "min": 6,
+        "target": 8,
+        "max": 12
+      },
+      "wipe": {
+        "min": 1,
+        "target": 3,
+        "max": 5
+      },
+      "counter": {
+        "min": 0,
+        "target": 0,
+        "max": 6
+      },
+      "protection": {
+        "min": 1,
+        "target": 3,
+        "max": 6
+      },
+      "recursion": {
+        "min": 1,
+        "target": 3,
+        "max": 6
+      },
+      "tutor": {
+        "min": 0,
+        "target": 2,
+        "max": 4
+      },
+      "finisher": {
+        "min": 2,
+        "target": 3,
+        "max": 6
+      },
+      "topend": {
+        "max": 7
+      }
+    },
+    "status": {
+      "land": "ok",
+      "ramp": "low",
+      "draw": "ok",
+      "removal": "ok",
+      "wipe": "high",
+      "counter": "ok",
+      "protection": "ok",
+      "recursion": "ok",
+      "tutor": "ok",
+      "finisher": "ok",
+      "topend": "ok"
+    }
+  },
+  "curve": {
+    "0": 1,
+    "1": 9,
+    "2": 14,
+    "3": 16,
+    "4": 9,
+    "5": 6,
+    "6": 4,
+    "7+": 1,
+    "avg": 3.12
+  },
+  "warnings": [
+    "Commander Spellbook was not reachable, so combos were checked from the cache."
+  ],
+  "sources": {
+    "spellbook": {
+      "fetched": "2026-10-11T09:13:10Z",
+      "cache": "stale",
+      "age_days": 6.1
+    },
+    "scryfall": {
+      "fetched": "2026-10-09T04:00:00Z",
+      "cache": "fresh",
+      "age_days": 2.2
+    },
+    "mtgjson": {
+      "fetched": "2026-10-01T12:00:00Z",
+      "cache": "fresh",
+      "age_days": 10.0
+    }
+  }
+}

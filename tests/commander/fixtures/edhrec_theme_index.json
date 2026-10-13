@@ -1,0 +1,36 @@
+{
+  "related_info": [],
+  "header": "Aristocrats",
+  "description": "",
+  "container": {
+    "breadcrumb": [{"/tags": "Tags"}, {"/tags/aristocrats": "Aristocrats"}],
+    "title": "Aristocrats",
+    "json_dict": {
+      "cardlists": [
+        {"header": "New Commanders", "tag": "newcommanders", "cardviews": [
+          {"name": "The Great Goblin", "url": "/commanders/the-great-goblin/aristocrats",
+           "num_decks": 170, "potential_decks": 7000},
+          {"name": "Teysa Karlov", "url": "/commanders/teysa-karlov/aristocrats",
+           "num_decks": 3500, "potential_decks": 7000}
+        ]},
+        {"header": "Top Commanders", "tag": "topcommanders", "cardviews": [
+          {"name": "Teysa Karlov", "url": "/commanders/teysa-karlov/aristocrats",
+           "num_decks": 3500, "potential_decks": 7000},
+          {"name": "Sephiroth, Fabled SOLDIER", "url": "/commanders/sephiroth-fabled-soldier/aristocrats",
+           "cards": [{"name": "Sephiroth, Fabled SOLDIER", "url": "x"}, {"name": "Sephiroth, One-Winged Angel", "url": "x"}],
+           "num_decks": 2500, "potential_decks": 7000}
+        ]},
+        {"header": "Top Cards", "tag": "topcards", "cardviews": [
+          {"name": "Blood Artist", "url": "/cards/blood-artist", "num_decks": 3400, "potential_decks": 6700,
+           "synergy": 0.39, "lift": 2.4},
+          {"name": "Sol Ring", "url": "/cards/sol-ring", "num_decks": 5900, "potential_decks": 7000,
+           "synergy": 0.01, "lift": 1.0}
+        ]},
+        {"header": "Creatures", "tag": "creatures", "cardviews": [
+          {"name": "Pitiless Plunderer", "url": "/cards/pitiless-plunderer", "num_decks": 2900,
+           "potential_decks": 6700, "synergy": 0.35, "lift": 3.0}
+        ]}
+      ]
+    }
+  }
+}

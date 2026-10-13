@@ -1,0 +1,111 @@
+{
+  "_note": "Hand-written Signal records in providers/__init__.py's shape, for score.gather tests. Names are spelled the way the sources spell them (front face only, some in lower case) so canonicalization has work to do.",
+  "all": {
+    "source": "edhrec", "kind": "builder", "commanders": ["Tessa, Squirrel Queen"], "bracket": null, "theme": null,
+    "url": "https://json.edhrec.com/pages/commanders/tessa-squirrel-queen.json",
+    "fetched": "2026-10-11T12:00:00Z", "cache": "fresh", "n": 10000, "totals": null, "meta": {},
+    "cards": {
+      "Sol Ring": {"decks": 9000, "of": 10000, "synergy": 0.10},
+      "Arcane Signet": {"decks": 3000, "of": 10000, "synergy": 0.02},
+      "Skullclamp": {"decks": 6000, "of": 10000, "synergy": 0.40},
+      "Toxic Deluge": {"decks": 800, "of": 10000, "synergy": -0.05},
+      "chatterfang, squirrel general": {"decks": 5000, "of": 10000, "synergy": 0.50},
+      "Forest": {"decks": 9900, "of": 10000, "synergy": 0.0},
+      "Tessa, Squirrel Queen": {"decks": 10000, "of": 10000, "synergy": 0.0},
+      "Card Nobody Has Heard Of": {"decks": 700, "of": 10000, "synergy": 0.0}
+    }
+  },
+  "b3": {
+    "source": "edhrec", "kind": "builder", "commanders": ["Tessa, Squirrel Queen"], "bracket": 3, "theme": null,
+    "url": "https://json.edhrec.com/pages/commanders/tessa-squirrel-queen/upgraded.json",
+    "fetched": "2026-10-11T12:00:00Z", "cache": "fresh", "n": 1000, "totals": null, "meta": {},
+    "cards": {
+      "Sol Ring": {"decks": 950, "of": 1000, "synergy": 0.12},
+      "Skullclamp": {"decks": 700, "of": 1000, "synergy": 0.45},
+      "Toxic Deluge": {"decks": 60, "of": 1000, "synergy": -0.02},
+      "Chatterfang, Squirrel General": {"decks": 400, "of": 1000, "synergy": 0.55}
+    }
+  },
+  "b2": {
+    "source": "edhrec", "kind": "builder", "commanders": ["Tessa, Squirrel Queen"], "bracket": 2, "theme": null,
+    "url": "https://json.edhrec.com/pages/commanders/tessa-squirrel-queen/core.json",
+    "fetched": "2026-10-11T12:00:00Z", "cache": "fresh", "n": 600, "totals": null, "meta": {},
+    "cards": {
+      "Sol Ring": {"decks": 500, "of": 600, "synergy": 0.10},
+      "Arcane Signet": {"decks": 300, "of": 600, "synergy": 0.03}
+    }
+  },
+  "b4": {
+    "source": "edhrec", "kind": "builder", "commanders": ["Tessa, Squirrel Queen"], "bracket": 4, "theme": null,
+    "url": "https://json.edhrec.com/pages/commanders/tessa-squirrel-queen/optimized.json",
+    "fetched": "2026-10-11T12:00:00Z", "cache": "fresh", "n": 200, "totals": null, "meta": {},
+    "cards": {
+      "Sol Ring": {"decks": 190, "of": 200, "synergy": 0.10},
+      "Skullclamp": {"decks": 120, "of": 200, "synergy": 0.40}
+    }
+  },
+  "b3_thin": {
+    "source": "edhrec", "kind": "builder", "commanders": ["Tessa, Squirrel Queen"], "bracket": 3, "theme": null,
+    "url": "https://json.edhrec.com/pages/commanders/tessa-squirrel-queen/upgraded.json",
+    "fetched": "2026-10-11T12:00:00Z", "cache": "fresh", "n": 20, "totals": null, "meta": {},
+    "cards": {
+      "Sol Ring": {"decks": 18, "of": 20, "synergy": 0.12},
+      "Skullclamp": {"decks": 8, "of": 20, "synergy": 0.45}
+    }
+  },
+  "tokens_b3": {
+    "source": "edhrec", "kind": "builder", "commanders": ["Tessa, Squirrel Queen"], "bracket": 3, "theme": "tokens",
+    "url": "https://json.edhrec.com/pages/commanders/tessa-squirrel-queen/upgraded/tokens.json",
+    "fetched": "2026-10-11T12:00:00Z", "cache": "fresh", "n": 300, "totals": null, "meta": {},
+    "cards": {
+      "Sol Ring": {"decks": 270, "of": 300, "synergy": 0.10},
+      "Skullclamp": {"decks": 240, "of": 300, "synergy": 0.50},
+      "Chatterfang, Squirrel General": {"decks": 200, "of": 300, "synergy": 0.60}
+    }
+  },
+  "tokens_all": {
+    "source": "edhrec", "kind": "builder", "commanders": ["Tessa, Squirrel Queen"], "bracket": null, "theme": "tokens",
+    "url": "https://json.edhrec.com/pages/commanders/tessa-squirrel-queen/tokens.json",
+    "fetched": "2026-10-11T12:00:00Z", "cache": "fresh", "n": 2000, "totals": null, "meta": {},
+    "cards": {
+      "Sol Ring": {"decks": 1800, "of": 2000, "synergy": 0.10},
+      "Skullclamp": {"decks": 1500, "of": 2000, "synergy": 0.50}
+    }
+  },
+  "global_sacrifice": {
+    "source": "edhrec", "kind": "builder", "commanders": [], "bracket": null, "theme": "sacrifice",
+    "url": "https://json.edhrec.com/pages/tags/sacrifice.json",
+    "fetched": "2026-10-11T12:00:00Z", "cache": "fresh", "n": 70000, "totals": null, "meta": {},
+    "cards": {
+      "Pitiless Plunderer": {"decks": 9000, "of": 70000, "synergy": 0.30},
+      "Skullclamp": {"decks": 12000, "of": 70000, "synergy": 0.20}
+    }
+  },
+  "archidekt_b3": {
+    "source": "archidekt", "kind": "builder", "commanders": ["Tessa, Squirrel Queen"], "bracket": 3, "theme": null,
+    "url": "https://archidekt.com/decks/1", "fetched": "2026-10-10T12:00:00Z", "cache": "fresh", "n": 10,
+    "totals": null, "meta": {},
+    "cards": {
+      "Sol Ring": {"decks": 9, "of": 10, "synergy": null},
+      "Pitiless Plunderer": {"decks": 5, "of": 10, "synergy": null}
+    }
+  },
+  "tournament": {
+    "source": "edhtop16", "kind": "tournament", "commanders": ["Tessa, Squirrel Queen"], "bracket": null,
+    "theme": null, "url": "https://edhtop16.com/commander/Tessa", "fetched": "2026-10-11T06:00:00Z",
+    "cache": "fresh", "n": 100,
+    "totals": {"entries": 100, "games": 400, "wins": 200, "draws": 0, "topcuts": 20}, "meta": {"stats": null},
+    "cards": {
+      "Sol Ring": {"entries": 90, "games": 360, "wins": 190, "draws": 0, "topcuts": 19},
+      "Skullclamp": {"entries": 50, "games": 200, "wins": 90, "draws": 0, "topcuts": 8}
+    }
+  },
+  "salt": {"Toxic Deluge": 3.0, "Crux of Fate": 2.0, "Mana Crypt": 2.5, "Not A Card In The Index": 3.5},
+  "meta": {
+    "n_decks": 10000, "bracket_counts": {"1": 5, "2": 600, "3": 1000, "4": 200, "5": 3},
+    "taglinks": [{"slug": "tokens", "label": "Tokens", "count": 2000}],
+    "avg_types": {"land": 37, "basic": 18, "nonbasic": 19}, "mana_curve": {}, "salt": 0.3, "similar": [],
+    "combos": [], "ci": "BG", "url": "https://json.edhrec.com/pages/commanders/tessa-squirrel-queen.json",
+    "fetched": "2026-10-11T12:00:00Z"
+  }
+}

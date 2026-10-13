@@ -1,0 +1,22 @@
+{
+ "command": "suggest",
+ "spec": {"themes": ["tokens"], "playstyle": "go-wide", "include": [], "exclude": [], "weight": 0.5,
+          "keep_fun": true, "bracket": 3, "text": null},
+ "bracket": 3,
+ "filters": {"colors": "BG", "budget": 100.0},
+ "commanders": [
+  {"rank": 1, "name": "Hazel of the Rootbloom", "ci": "BG", "score": 0.62,
+   "theme_share": {"tokens": {"decks": 1457, "of": 12321, "share": 0.118}}, "playstyle_share": 0.21,
+   "bracket_decks": 2310, "salt": 1.2, "tournament": {"entries": 40, "conversion": 0.15}, "core_cost": 85.0,
+   "owned_share": 0.4,
+   "evidence": ["tokens: 1,457 of 12,321 Hazel decks (12%); go-wide themes 21%",
+                "2,310 decks at Bracket 3; salt 1.2 of 4",
+                "40 tournament entries, 15% reach the top cut (thin, so the correction stays small)",
+                "core cards cost about $85; you own 40% of them"]},
+  {"rank": 2, "name": "Chatterfang, Squirrel General", "ci": "BG", "score": 0.55,
+   "theme_share": {"tokens": {"decks": 9800, "of": 24000, "share": 0.408}}, "playstyle_share": 0.5,
+   "bracket_decks": 5100, "salt": null, "tournament": null, "core_cost": 140.0, "owned_share": 0.2, "evidence": []}
+ ],
+ "warnings": [],
+ "sources": {"edhrec": {"fetched": "2026-10-11T09:12:44Z", "cache": "network", "age_days": 0.0}}
+}

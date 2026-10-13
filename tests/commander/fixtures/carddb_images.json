@@ -1,0 +1,272 @@
+[
+ {
+  "object": "card",
+  "keywords": [],
+  "game_changer": false,
+  "released_at": "2024-08-02",
+  "legalities": {
+   "commander": "legal"
+  },
+  "prices": {
+   "usd": "0.25",
+   "usd_foil": null,
+   "usd_etched": null
+  },
+  "id": "01000000-0000-4000-8000-000000000001",
+  "oracle_id": "ffffffff-0000-4000-8000-000000000001",
+  "name": "Hazel of the Rootbloom",
+  "layout": "normal",
+  "cmc": 4.0,
+  "mana_cost": "{2}{B}{G}",
+  "type_line": "Legendary Creature — Squirrel Druid",
+  "oracle_text": "Tap an untapped token: Add one mana.",
+  "color_identity": [
+   "B",
+   "G"
+  ],
+  "image_uris": {
+   "small": "https://cards.scryfall.io/small/front/0/1/01000000-0000-4000-8000-000000000001.jpg?1700000000",
+   "normal": "https://cards.scryfall.io/normal/front/0/1/01000000-0000-4000-8000-000000000001.jpg?1700000000",
+   "large": "https://cards.scryfall.io/large/front/0/1/01000000-0000-4000-8000-000000000001.jpg?1700000000",
+   "png": "https://cards.scryfall.io/png/front/0/1/01000000-0000-4000-8000-000000000001.png?1700000000",
+   "art_crop": "https://cards.scryfall.io/art_crop/front/0/1/01000000-0000-4000-8000-000000000001.jpg?1700000000",
+   "border_crop": "https://cards.scryfall.io/border_crop/front/0/1/01000000-0000-4000-8000-000000000001.jpg?1700000000"
+  },
+  "scryfall_uri": "https://scryfall.com/card/blc/2/hazel-of-the-rootbloom?utm_source=api"
+ },
+ {
+  "object": "card",
+  "keywords": [],
+  "game_changer": false,
+  "released_at": "2024-08-02",
+  "legalities": {
+   "commander": "legal"
+  },
+  "prices": {
+   "usd": "0.25",
+   "usd_foil": null,
+   "usd_etched": null
+  },
+  "id": "02000000-0000-4000-8000-000000000002",
+  "oracle_id": "ffffffff-0000-4000-8000-000000000002",
+  "name": "Delver of Secrets // Insectile Aberration",
+  "layout": "transform",
+  "cmc": 1.0,
+  "type_line": "Creature — Human Wizard // Creature — Human Insect",
+  "color_identity": [
+   "U"
+  ],
+  "scryfall_uri": "https://scryfall.com/card/inr/60/delver-of-secrets-insectile-aberration?utm_source=api",
+  "card_faces": [
+   {
+    "object": "card_face",
+    "name": "Delver of Secrets",
+    "mana_cost": "{U}",
+    "type_line": "Creature — Human Wizard",
+    "oracle_text": "At the beginning of your upkeep, look at the top card of your library.",
+    "image_uris": {
+     "small": "https://cards.scryfall.io/small/front/0/2/02000000-0000-4000-8000-000000000002.jpg?1700000000",
+     "normal": "https://cards.scryfall.io/normal/front/0/2/02000000-0000-4000-8000-000000000002.jpg?1700000000",
+     "large": "https://cards.scryfall.io/large/front/0/2/02000000-0000-4000-8000-000000000002.jpg?1700000000",
+     "png": "https://cards.scryfall.io/png/front/0/2/02000000-0000-4000-8000-000000000002.png?1700000000",
+     "art_crop": "https://cards.scryfall.io/art_crop/front/0/2/02000000-0000-4000-8000-000000000002.jpg?1700000000",
+     "border_crop": "https://cards.scryfall.io/border_crop/front/0/2/02000000-0000-4000-8000-000000000002.jpg?1700000000"
+    }
+   },
+   {
+    "object": "card_face",
+    "name": "Insectile Aberration",
+    "mana_cost": "",
+    "type_line": "Creature — Human Insect",
+    "oracle_text": "Flying",
+    "image_uris": {
+     "small": "https://cards.scryfall.io/small/back/0/2/02000000-0000-4000-8000-000000000002.jpg?1700000000",
+     "normal": "https://cards.scryfall.io/normal/back/0/2/02000000-0000-4000-8000-000000000002.jpg?1700000000",
+     "large": "https://cards.scryfall.io/large/back/0/2/02000000-0000-4000-8000-000000000002.jpg?1700000000",
+     "png": "https://cards.scryfall.io/png/back/0/2/02000000-0000-4000-8000-000000000002.png?1700000000",
+     "art_crop": "https://cards.scryfall.io/art_crop/back/0/2/02000000-0000-4000-8000-000000000002.jpg?1700000000",
+     "border_crop": "https://cards.scryfall.io/border_crop/back/0/2/02000000-0000-4000-8000-000000000002.jpg?1700000000"
+    }
+   }
+  ]
+ },
+ {
+  "object": "card",
+  "keywords": [],
+  "game_changer": false,
+  "released_at": "2024-08-02",
+  "legalities": {
+   "commander": "legal"
+  },
+  "prices": {
+   "usd": "0.25",
+   "usd_foil": null,
+   "usd_etched": null
+  },
+  "id": "03000000-0000-4000-8000-000000000003",
+  "oracle_id": "ffffffff-0000-4000-8000-000000000003",
+  "name": "Valki, God of Lies // Tibalt, Cosmic Impostor",
+  "layout": "modal_dfc",
+  "cmc": 2.0,
+  "type_line": "Legendary Creature — God // Legendary Planeswalker — Tibalt",
+  "color_identity": [
+   "B",
+   "R"
+  ],
+  "scryfall_uri": "https://scryfall.com/card/khm/114/valki-god-of-lies-tibalt-cosmic-impostor?utm_source=api",
+  "card_faces": [
+   {
+    "object": "card_face",
+    "name": "Valki, God of Lies",
+    "mana_cost": "{1}{B}",
+    "type_line": "Legendary Creature — God",
+    "oracle_text": "When Valki enters, each opponent reveals their hand.",
+    "image_uris": {
+     "small": "https://cards.scryfall.io/small/front/0/3/03000000-0000-4000-8000-000000000003.jpg?1700000000",
+     "normal": "https://cards.scryfall.io/normal/front/0/3/03000000-0000-4000-8000-000000000003.jpg?1700000000",
+     "large": "https://cards.scryfall.io/large/front/0/3/03000000-0000-4000-8000-000000000003.jpg?1700000000",
+     "png": "https://cards.scryfall.io/png/front/0/3/03000000-0000-4000-8000-000000000003.png?1700000000",
+     "art_crop": "https://cards.scryfall.io/art_crop/front/0/3/03000000-0000-4000-8000-000000000003.jpg?1700000000",
+     "border_crop": "https://cards.scryfall.io/border_crop/front/0/3/03000000-0000-4000-8000-000000000003.jpg?1700000000"
+    }
+   },
+   {
+    "object": "card_face",
+    "name": "Tibalt, Cosmic Impostor",
+    "mana_cost": "{5}{B}{R}",
+    "type_line": "Legendary Planeswalker — Tibalt",
+    "oracle_text": "As Tibalt enters, you get an emblem.",
+    "image_uris": {
+     "small": "https://cards.scryfall.io/small/back/0/3/03000000-0000-4000-8000-000000000003.jpg?1700000000",
+     "normal": "https://cards.scryfall.io/normal/back/0/3/03000000-0000-4000-8000-000000000003.jpg?1700000000",
+     "large": "https://cards.scryfall.io/large/back/0/3/03000000-0000-4000-8000-000000000003.jpg?1700000000",
+     "png": "https://cards.scryfall.io/png/back/0/3/03000000-0000-4000-8000-000000000003.png?1700000000",
+     "art_crop": "https://cards.scryfall.io/art_crop/back/0/3/03000000-0000-4000-8000-000000000003.jpg?1700000000",
+     "border_crop": "https://cards.scryfall.io/border_crop/back/0/3/03000000-0000-4000-8000-000000000003.jpg?1700000000"
+    }
+   }
+  ]
+ },
+ {
+  "object": "card",
+  "keywords": [],
+  "game_changer": false,
+  "released_at": "2024-08-02",
+  "legalities": {
+   "commander": "legal"
+  },
+  "prices": {
+   "usd": "0.25",
+   "usd_foil": null,
+   "usd_etched": null
+  },
+  "id": "04000000-0000-4000-8000-000000000004",
+  "oracle_id": "ffffffff-0000-4000-8000-000000000004",
+  "name": "Fire // Ice",
+  "layout": "split",
+  "cmc": 4.0,
+  "type_line": "Instant // Instant",
+  "color_identity": [
+   "R",
+   "U"
+  ],
+  "image_uris": {
+   "small": "https://cards.scryfall.io/small/front/0/4/04000000-0000-4000-8000-000000000004.jpg?1700000000",
+   "normal": "https://cards.scryfall.io/normal/front/0/4/04000000-0000-4000-8000-000000000004.jpg?1700000000",
+   "large": "https://cards.scryfall.io/large/front/0/4/04000000-0000-4000-8000-000000000004.jpg?1700000000",
+   "png": "https://cards.scryfall.io/png/front/0/4/04000000-0000-4000-8000-000000000004.png?1700000000",
+   "art_crop": "https://cards.scryfall.io/art_crop/front/0/4/04000000-0000-4000-8000-000000000004.jpg?1700000000",
+   "border_crop": "https://cards.scryfall.io/border_crop/front/0/4/04000000-0000-4000-8000-000000000004.jpg?1700000000"
+  },
+  "scryfall_uri": "https://scryfall.com/card/dmr/215/fire-ice?utm_source=api",
+  "card_faces": [
+   {
+    "object": "card_face",
+    "name": "Fire",
+    "mana_cost": "{1}{R}",
+    "type_line": "Instant",
+    "oracle_text": "Fire deals 2 damage divided as you choose among one or two targets."
+   },
+   {
+    "object": "card_face",
+    "name": "Ice",
+    "mana_cost": "{1}{U}",
+    "type_line": "Instant",
+    "oracle_text": "Tap target permanent. Draw a card."
+   }
+  ]
+ },
+ {
+  "object": "card",
+  "keywords": [],
+  "game_changer": false,
+  "released_at": "2024-08-02",
+  "legalities": {
+   "commander": "legal"
+  },
+  "prices": {
+   "usd": "0.25",
+   "usd_foil": null,
+   "usd_etched": null
+  },
+  "id": "05000000-0000-4000-8000-000000000005",
+  "oracle_id": "ffffffff-0000-4000-8000-000000000005",
+  "name": "Bonecrusher Giant // Stomp",
+  "layout": "adventure",
+  "cmc": 3.0,
+  "type_line": "Creature — Giant // Instant — Adventure",
+  "color_identity": [
+   "R"
+  ],
+  "image_uris": {
+   "small": "https://cards.scryfall.io/small/front/0/5/05000000-0000-4000-8000-000000000005.jpg?1700000000",
+   "normal": "https://cards.scryfall.io/normal/front/0/5/05000000-0000-4000-8000-000000000005.jpg?1700000000",
+   "large": "https://cards.scryfall.io/large/front/0/5/05000000-0000-4000-8000-000000000005.jpg?1700000000",
+   "png": "https://cards.scryfall.io/png/front/0/5/05000000-0000-4000-8000-000000000005.png?1700000000",
+   "art_crop": "https://cards.scryfall.io/art_crop/front/0/5/05000000-0000-4000-8000-000000000005.jpg?1700000000",
+   "border_crop": "https://cards.scryfall.io/border_crop/front/0/5/05000000-0000-4000-8000-000000000005.jpg?1700000000"
+  },
+  "scryfall_uri": "https://scryfall.com/card/clb/781/bonecrusher-giant-stomp?utm_source=api",
+  "card_faces": [
+   {
+    "object": "card_face",
+    "name": "Bonecrusher Giant",
+    "mana_cost": "{2}{R}",
+    "type_line": "Creature — Giant",
+    "oracle_text": "Whenever Bonecrusher Giant becomes the target of a spell, it deals 2 damage to that spell's controller."
+   },
+   {
+    "object": "card_face",
+    "name": "Stomp",
+    "mana_cost": "{1}{R}",
+    "type_line": "Instant — Adventure",
+    "oracle_text": "Damage can't be prevented this turn. Stomp deals 2 damage to any target."
+   }
+  ]
+ },
+ {
+  "object": "card",
+  "keywords": [],
+  "game_changer": false,
+  "released_at": "2024-08-02",
+  "legalities": {
+   "commander": "legal"
+  },
+  "prices": {
+   "usd": "0.25",
+   "usd_foil": null,
+   "usd_etched": null
+  },
+  "id": "06000000-0000-4000-8000-000000000006",
+  "oracle_id": "ffffffff-0000-4000-8000-000000000006",
+  "name": "Card Without Pictures",
+  "layout": "normal",
+  "cmc": 2.0,
+  "mana_cost": "{1}{G}",
+  "type_line": "Creature — Elf",
+  "oracle_text": "",
+  "color_identity": [
+   "G"
+  ]
+ }
+]
