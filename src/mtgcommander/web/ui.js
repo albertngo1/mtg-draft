@@ -117,9 +117,19 @@ export function valueText(value, unit) {
   return NUMBER.format(value);
 }
 
+/**
+ * A change with its sign and unit: 14 -> "+14", -2 -> "−2" (the real minus sign), 4.5 with "%" -> "+4.5%", 12.5 with "$" ->
+ * "+$12.50". Its size is written the way `valueText` writes a value, or the way `format` does when the number beside it is
+ * written another way. A change of zero has no sign, and "—" stands for no number.
+ */
+export function signedValue(change, unit, format = valueText) {
+  if (!isNumber(change)) return "—";
+  return `${change > 0 ? "+" : change < 0 ? "−" : ""}${format(Math.abs(change), unit)}`;
+}
+
 /** A number with a sign, for a change: 0.74 -> "+0.74". */
 export function signed(value) {
-  return isNumber(value) ? `${value > 0 ? "+" : value < 0 ? "−" : ""}${NUMBER.format(Math.abs(value))}` : "—";
+  return signedValue(value, null);
 }
 
 export function oneDecimal(value) {
@@ -155,18 +165,54 @@ export function pathTail(path) {
 
 const COLOR_ORDER = "WUBRG";
 
-/** "{2}{B}{G}" -> the cost with the color letters colored. A two-faced card's "{1}{G} // {2}{W}" keeps its slashes. */
+// Scryfall draws every symbol as a picture in SYMBOL_FOLDER, named <FILE>.svg, where FILE is the symbol with its braces
+// and slashes left out ({W/U} is WU, {2/W} is 2W, {G/P} is GP) except for two: {½} is HALF and {∞} is INFINITY. These are
+// the 84 symbols of the list Scryfall publishes for its symbols (read 2026-10-12). A symbol that is not in it is not drawn
+// as a picture, so a new one shows as text until it is added here.
+const SYMBOL_FOLDER = "https://svgs.scryfall.io/card-symbols/";
+const SYMBOL_FILE = { "½": "HALF", "∞": "INFINITY" };
+const SYMBOLS = new Set([
+  "W U B R G C S L D X Y Z H HW HR T Q E P PW CHAOS A TK",                                     // mana, and what stands beside it
+  "0 ½ 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 100 1000000 ∞",                   // generic mana
+  "W/U W/B B/R B/G U/B U/R R/G R/W G/W G/U C/W C/U C/B C/R C/G 2/W 2/U 2/B 2/R 2/G",         // hybrid
+  "W/P U/P B/P R/P G/P C/P B/G/P B/R/P G/U/P G/W/P R/G/P R/W/P U/B/P U/R/P W/B/P W/U/P",     // Phyrexian: pay 2 life instead
+].join(" ").split(" "));
+
+/** The address of the picture of a symbol such as "{W/U}", or null when Scryfall's list has no such symbol. */
+export function symbolUrl(symbol) {
+  const name = (/^\{([^{}]+)\}$/.exec(symbol) || [])[1];
+  if (!SYMBOLS.has(name)) return null;
+  return `${SYMBOL_FOLDER}${SYMBOL_FILE[name] || name.replace(/\//g, "")}.svg`;
+}
+
+/** A symbol as text, the way the pages drew every symbol before the pictures: its braces, a color's letter in its color. */
+function symbolAsText(symbol) {
+  const name = symbol.slice(1, -1);
+  return h("span", { class: "mana-text" }, "{", h("span", { class: /^[WUBRG]$/.test(name) ? `mana-${name.toLowerCase()}` : null, text: name }), "}");
+}
+
+/**
+ * One symbol, "{B}", as Scryfall's picture of it: the symbol is its alt text and the picture is as tall as the text it
+ * sits in (styles.css). When the picture does not load (offline, blocked) or the symbol is not in the list, it is the text.
+ */
+export function manaSymbol(symbol) {
+  const src = symbolUrl(symbol);
+  if (!src) return symbolAsText(symbol);
+  const img = h("img", { class: "mana-sym", src, alt: symbol });
+  img.addEventListener("error", () => img.replaceWith(symbolAsText(symbol)));
+  return img;
+}
+
+/** Text with symbols in it ("{T}: Add {G}.") -> its words and a symbol for each {...}, as a list of nodes for an element. */
+export function symbolText(text) {
+  const parts = String(text || "").split(/(\{[^{}]*\})/);               // words and symbols alternate: the symbols sit at odd places
+  return parts.map((part, i) => (i % 2 ? manaSymbol(part) : part)).filter((part) => part !== "");
+}
+
+/** "{2}{B}{G}" -> the cost drawn with Scryfall's symbols. A two-faced card's "{1}{G} // {2}{W}" keeps its slashes. */
 export function manaCost(cost) {
-  const out = h("span", { class: "mana" });
   const faces = String(cost || "").split(" // ");
-  faces.forEach((face, i) => {
-    if (i) out.append(" // ");
-    for (const part of face.match(/\{[^}]*\}/g) || []) {
-      const symbol = part.slice(1, -1);
-      out.append("{", h("span", { class: /^[WUBRG]$/.test(symbol) ? `mana-${symbol.toLowerCase()}` : null, text: symbol }), "}");
-    }
-  });
-  return out;
+  return h("span", { class: "mana" }, faces.map((face, i) => [i ? " // " : null, symbolText(face)]));
 }
 
 /** "BG" or ["G", "B"] -> the letters in WUBRG order, each in its color. */
@@ -261,22 +307,28 @@ export function tag(text, { on = false } = {}) {
 
 /** One headline number with its label: stat({value: "93.8", label: "Score", mark: delta(...)}). */
 export function stat({ value, label, mark, title, tone, className } = {}) {
-  return h("div", { class: ["stat", className || ""].join(" ").trim(), title },
+  return h("div", { class: ["stat", mark ? "stat--marked" : "", className || ""].join(" ").trim(), title },
     h("span", { class: ["stat__n", tone ? `is-${tone}` : ""].join(" ").trim(), text: value }),
     h("span", { class: "stat__k" }, label, mark ? " " : null, mark));
 }
 
+/** True when a metric item moved from the base deck's value: the server sent a `change`, and it is not zero. */
+export function hasMoved(item) {
+  return isNumber(item.change) && item.change !== 0;
+}
+
 /**
- * The change from a deck's base value to its value now, as an arrow (and, with `showBase`, the base value beside it).
- * The pages never subtract: the server sends both numbers and this only says which way they differ. Null when equal.
+ * How far a metric item moved from the base deck's value: "+3.4", or with `showBase` "−2 from 38". The size is the
+ * server's own `change`; the pages never subtract. `format` writes the size when the number beside it has its own style
+ * (the stat line's one decimal). A screen reader hears "down 2 from 38" in its place. Null when the item did not move.
  */
-export function delta(value, base, unit, { showBase = true } = {}) {
-  if (!isNumber(value) || !isNumber(base) || Math.abs(value - base) < 1e-9) return null;
-  const up = value > base;
+export function delta(item, { showBase = true, format = valueText } = {}) {
+  if (!hasMoved(item)) return null;
+  const was = valueText(item.base, item.unit);
   return h("span", { class: "delta" },
-    h("span", { class: "delta__arrow", "aria-hidden": "true", text: up ? "▲" : "▼" }),
-    h("span", { class: "sr-only", text: `${up ? "up" : "down"} from ${valueText(base, unit)}` }),
-    showBase ? h("span", { class: "delta__was", "aria-hidden": "true" }, ` (${valueText(base, unit)})`) : null);
+    h("span", { "aria-hidden": "true" }, signedValue(item.change, item.unit, format),
+      showBase ? h("span", { class: "delta__was", text: ` from ${was}` }) : null),
+    h("span", { class: "sr-only", text: `${item.change > 0 ? "up" : "down"} ${format(Math.abs(item.change), item.unit)} from ${was}` }));
 }
 
 /** A small uppercase heading with a line after it ("Versions", "Creatures · 29"). */

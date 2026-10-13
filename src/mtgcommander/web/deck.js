@@ -213,7 +213,7 @@ function changesTab(app, deck) {
   for (const group of data.metrics.groups) {
     if (group.id === "changes") continue;
     for (const item of group.items) {
-      if (ui.isNumber(item.value) && ui.isNumber(item.base) && Math.abs(item.value - item.base) > 1e-9) moved.push(item);
+      if (ui.hasMoved(item)) moved.push(item);
     }
   }
   if (moved.length) {
@@ -221,7 +221,8 @@ function changesTab(app, deck) {
     out.append(h("section", {}, ui.sectionLabel("Before → after", { tight: true }),
       shown.map((item) => h("div", { class: "tr" }, h("span", { text: item.label }),
         h("span", { class: "tr__v" }, `${ui.valueText(item.base, item.unit)} → `,
-          h("b", { class: item.status === "short" ? "is-short" : item.status === "over" ? "is-over" : null, text: ui.valueText(item.value, item.unit) })))),
+          h("b", { class: item.status === "short" ? "is-short" : item.status === "over" ? "is-over" : null, text: ui.valueText(item.value, item.unit) }),
+          h("span", { class: "tr__change", text: ` (${ui.signedValue(item.change, item.unit)})` })))),
       moved.length > 9 ? ui.button({
         label: changesUi.showAllMoved ? "Show fewer" : `Show all ${moved.length} numbers that changed`, kind: "quiet", size: "small",
         onClick: () => { changesUi.showAllMoved = !changesUi.showAllMoved; app.render(); },
@@ -380,7 +381,7 @@ function suggestionResult(app, deck, result) {
           }, h("span", { class: "pp__title", text: title }),
           h("span", { class: "pp__meta" }, "spend ", h("b", { text: ui.money(point.spent) }),
             ` · score ${ui.oneDecimal(result.value_before)} → ${ui.oneDecimal(point.value)}`,
-            ui.isNumber(point.change) ? ` (${ui.signed(Math.round(point.change * 10) / 10)})` : "")),
+            ui.isNumber(point.change) ? ` (${ui.signedValue(point.change, null, ui.oneDecimal)})` : "")),
           ui.button({
             label: `Apply ${point.swaps}`, kind: "gold", disabled: locked, ariaLabel: `Apply ${title}: ${point.swaps} ${point.swaps === 1 ? "swap" : "swaps"}`,
             onClick: () => app.change({ op: "group", label: title, items: swaps.slice(0, point.swaps).map((s) => ({ op: "swap", cut: s.cut, add: s.add })), source: "suggested" }),
@@ -493,9 +494,9 @@ function statLine(app, data) {
   const bracketMark = ok === true ? h("span", { class: "mark-ok" }, "✓", h("span", { class: "sr-only", text: " limits met" }))
     : ok === false ? h("span", { class: "mark-bad" }, "✗", h("span", { class: "sr-only", text: " limits broken" })) : null;
   return h("div", { class: "statline", role: "group", "aria-label": "The deck in numbers" },
-    ui.stat({ value: ui.oneDecimal(head.score), label: "Score", mark: score ? ui.delta(score.value, score.base, null, { showBase: false }) : null, className: faded }),
+    ui.stat({ value: ui.oneDecimal(head.score), label: "Score", mark: score ? ui.delta(score, { showBase: false, format: ui.oneDecimal }) : null, className: faded }),
     ui.stat({ value: head.bracket === null || head.bracket === undefined ? "—" : String(head.bracket), label: "Bracket", mark: bracketMark, tone: ok === false ? "bad" : "", className: faded }),
-    ui.stat({ value: ui.oneDecimal(head.removal_power), label: "Removal", mark: removal ? ui.delta(removal.value, removal.base, null, { showBase: false }) : null, className: faded }),
+    ui.stat({ value: ui.oneDecimal(head.removal_power), label: "Removal", mark: removal ? ui.delta(removal, { showBase: false, format: ui.oneDecimal }) : null, className: faded }),
     ui.stat({ value: head.lands === null || head.lands === undefined ? "—" : String(head.lands), label: "Lands", className: `stat--lands ${faded}` }),
     ui.stat({ value: wide ? ui.money(head.price) : ui.moneyWhole(head.price), label: wide && swaps !== null ? `Spent · ${swapWord(swaps)}` : "Spent", className: faded }));
 }

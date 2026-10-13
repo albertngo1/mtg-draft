@@ -1,12 +1,13 @@
 // Draws the metric groups from the one item shape the server sends every metric in:
 //   {id, label, value, unit, target: {min, target, max} | null, status: short | inside | over | null,
-//    why: [..], cards: [..], base?}
-// Any item is a row: its label, its value with its unit, how it sits in the bracket's band, what it was in the base deck,
-// and its `why` behind a tap. A few families of items are folded into one picture (the mana curve, the answers to each
-// threat, the playstyle shares), but an item the pages have never heard of is still drawn, as a row, with no page code.
+//    why: [..], cards: [..], base?, change?}
+// Any item is a row: its label, its value with its unit, how far it moved from the base deck (and what it was there), how
+// it sits in the bracket's band, and its `why` behind a tap. A few families of items are folded into one picture (the
+// mana curve, the answers to each threat, the playstyle shares), but an item the pages have never heard of is still
+// drawn, as a row, with no page code.
 //
-// Nothing here works out a number. A bar's length is its value against the largest value in its picture (layout); the
-// arrow between a value and its base only says which way they differ.
+// Nothing here works out a number. A bar's length is its value against the largest value in its picture (layout); how far
+// a value moved from its base is the `change` the server sent.
 
 import * as ui from "./ui.js";
 
@@ -49,10 +50,10 @@ export function statusMark(status) {
   return null;
 }
 
-/** The right-hand side of a row: 36 ▼ (38) · want 34–36 ✓ */
+/** The right-hand side of a row: 36 −2 from 38 · want 34–36 ✓ */
 function valueBlock(item) {
   const parts = [h("span", { text: ui.valueText(item.value, item.unit) })];
-  const moved = item.base !== undefined ? ui.delta(item.value, item.base, item.unit) : null;
+  const moved = ui.delta(item);
   if (moved) parts.push(" ", moved);
   const band = bandText(item.target);
   if (band && ui.isNumber(item.value)) parts.push(h("span", { class: "metric__band", text: ` · ${band}` }));
@@ -145,7 +146,7 @@ function answerCells(items, ctx) {
     panel.hidden = true;
     const short = item.status === "short";
     const word = softHyphens(item.label.replace(/^Answers to /, ""));
-    const moved = item.base !== undefined && item.base !== item.value;
+    const moved = ui.hasMoved(item);
     const cell = h("button", { type: "button", class: short ? "cell is-short" : "cell", "aria-expanded": "false", "aria-controls": panel.id },
       h("span", { class: "cell__n", text: ui.valueText(item.value, item.unit) }),
       h("span", { class: "cell__l", text: ui.capitalize(word) + (short ? " · short" : "") }),
@@ -252,7 +253,7 @@ export function metricsTab(app, deck) {
   const added = changes && changes.items.find((item) => item.id === "changes_added");
   const cut = changes && changes.items.find((item) => item.id === "changes_cut");
   const wrap = h("div", { class: app.saving ? "groups is-faded" : "groups" },
-    h("p", { class: "muted small", text: `Grey numbers in brackets are the base deck, ${data.base.name}.` }),
+    h("p", { class: "muted small", text: `Numbers after “from” and grey numbers in brackets are the base deck, ${data.base.name}.` }),
     groups.map((group) => groupCard(group, ctx, { chosen: data.spec.playstyle })));
   if (changes) {
     wrap.append(h("a", { class: "linkcard", href: app.link.deck(deck.player, deck.id, "changes") },

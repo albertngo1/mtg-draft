@@ -1041,7 +1041,7 @@ Every number is an **item**, in one shape:
 {"id": "removal_power", "label": "Removal power", "value": 5.95, "unit": null,
  "target": {"min": 3.4, "target": 4.2, "max": 6.8}, "status": "inside",
  "why": ["Tear Asunder 1.00 = instant 1.0 × any permanent 1.0 × exile 1.0 × MV 2 1.0", "..."],
- "cards": ["Tear Asunder", "..."], "base": 7.61}
+ "cards": ["Tear Asunder", "..."], "base": 7.61, "change": -1.66}
 ```
 
 | field | meaning |
@@ -1053,6 +1053,7 @@ Every number is an **item**, in one shape:
 | `why` | how the number was worked out, one line for each fact |
 | `cards` | the cards behind the number |
 | `base` | the same item's value in the base deck; present only when `compute` was given one, so a page can show *before → after* |
+| `change` | how far `value` moved from `base`: `value` − `base`, rounded to 2 decimals, 0 when equal. Present only when both are numbers (an item with no value has none), so a page can show *−1.66 from 7.61* without subtracting |
 
 The items sit in groups, a registry in `metrics.GROUPS` of `(id, label, applies, compute)`. A page draws any group from
 the item shape, so a new metric is one more item in one function and no page changes. `metrics.compute(ctx, db, cards,
@@ -1365,7 +1366,7 @@ $ ./mtg-commander.sh serve
 | `GET /api/menu` | the playstyles and common themes a version's settings choose from |
 | `GET /api/decks?player=NAME` | that player's versions, newest first: id, name, base deck, its settings (bracket, budget, themes, playstyle), commanders and picture, revision, cards swapped, what the changes cost, and the headline numbers (from the open deck, else from a preparation tried offline, else `null`) |
 | `POST /api/decks` | `{"player", "name", "base", "settings"?}` makes a version; 201 |
-| `GET /api/decks/PLAYER/ID` | the version: `version` (with its change log, each change marked `undone` or not), `base`, `spec` (the settings as the engine reads them), `commanders`, `cards`, `card_count`, `diff`, `cut_cards`, `metrics` (every item beside the base deck's value), `warnings` and `sources`; or 202 |
+| `GET /api/decks/PLAYER/ID` | the version: `version` (with its change log, each change marked `undone` or not), `base`, `spec` (the settings as the engine reads them), `commanders`, `cards`, `card_count`, `diff`, `cut_cards`, `metrics` (every item beside the base deck's value and how far it moved), `warnings` and `sources`; or 202 |
 | `POST /api/decks/PLAYER/ID/changes` | `{"revision", "op": ...}` as in [Deck files](#deck-files), with `"source"`; answers like the GET plus `"result": {"changed", "message"}` |
 | `PATCH /api/decks/PLAYER/ID` | `{"revision", "name"?, "settings"?}`; answers like the GET |
 | `POST /api/decks/PLAYER/ID/suggest` | `{"budget"?, "price_points"?}`: `upgrade` on the list as it is now, with the settings' budget unless one is given. The result of `upgrade`, plus `revision` and `cards` (a card object for each card it names). It keeps nothing: ask again after every change |
@@ -1451,9 +1452,9 @@ network, git and the card index's data, and cover every route, each error, the s
 
 The pages are plain files in `src/mtgcommander/web/`, handed out by the server. There is no build step and there are no
 packages: each file is a JavaScript module (`<script type="module" src="app.js">`) that a browser loads straight from the
-server. Nothing is fetched from another site except each card's picture, whose Scryfall link is part of the server's
-answer (the page's `Content-Security-Policy` allows pictures from any https address and everything else only from the
-server itself).
+server. Nothing is fetched from another site except pictures from Scryfall: each card's, whose link is part of the
+server's answer, and the mana symbols, whose folder `ui.js` names (the one address written in the pages). The page's
+`Content-Security-Policy` allows pictures from any https address and everything else only from the server itself.
 
 | file | job |
 |---|---|
@@ -1461,7 +1462,7 @@ server itself).
 | `styles.css` | Albert's color palette (the `:root` block, copied from `card-reference/site/site.css` and kept equal by a test) and the components. Phone first: one column, the numbers pinned above the tabs, touch targets of at least 44 px. From 1024 px wide the card grid has the metrics beside it |
 | `api.js` | the one `call(method, path, body)`, with a 10 second limit and one error type whose `kind` is `unreachable`, `timeout`, `conflict`, `invalid`, `not_found` or `server`. A 202 (the deck is still being prepared) is an answer, not an error; `callReady` asks again every second until it gets the deck |
 | `app.js` | the address (hash) router, the state, the queue that saves one change at a time for each deck, and the redraw from the state |
-| `ui.js` | the pieces every screen shares, one copy each: card tile, chip, stat, toast, banner, sheet and button (and the few helpers they need) |
+| `ui.js` | the pieces every screen shares, one copy each: card tile, chip, stat, toast, banner, sheet, button and mana symbol (and the few helpers they need) |
 | `decks.js` | Decks, New version and New base deck |
 | `deck.js` | the Deck screen: the header, the numbers, and the Cards, Metrics, Changes and Suggestions tabs |
 | `card.js` | the card sheet: picture (with a flip for a two-faced card), rules text, why it is in the deck, removal power, what cutting it would change, replacements, Cut and Swap |
@@ -1477,9 +1478,20 @@ is guarded: the pages work without it.
 
 **The rule: the pages never work out a number.** Every number on screen came in the server's answer, so each formula
 exists once, in Python, where the tests are. The pages sort, fold and format: how many tiles are in a section or behind a
-filter chip, how long a bar is next to the longest in its picture, which way an arrow points, a price as dollars. They
-subtract nothing: the arrow beside a number only says whether it is above or below the base deck's value, which is
-printed beside it. A metric the pages have never heard of is drawn as a row, so a new metric needs no page code.
+filter chip, how long a bar is next to the longest in its picture, a price as dollars. They subtract nothing: how far a
+number moved from the base deck's value is the item's `change`, which the server works out, and the pages print it with
+its sign (`+3.4` beside the score, `36 −2 from 38` in a row of the Metrics tab). A metric the pages have never heard of
+is drawn as a row, so a new metric needs no page code.
+
+**Mana symbols.** A cost (`{2}{B}{G}`) and the rules text of a card show Scryfall's own pictures of the symbols, from
+`https://svgs.scryfall.io/card-symbols/<FILE>.svg`. FILE is the symbol with its braces and slashes left out (`{W/U}` is
+`WU`, `{2/W}` is `2W`, `{G/P}` is `GP`), except `{½}` (`HALF`) and `{∞}` (`INFINITY`): the rule was checked against all 84
+symbols of the list Scryfall publishes for them (its symbology list, 2026-10-12), and `ui.js` holds that list. Each
+picture is its symbol's text as its alt text and exactly 1em wide and tall, on the baseline, so nothing moves while it
+loads. When one does not load (offline, blocked) it becomes the older text, the braces with a colored letter, and a symbol
+that is not on the list is that text from the start. One helper draws a symbol (`manaSymbol`), one draws a run of text with
+symbols in it (`symbolText`), and `manaCost` joins them for a cost, keeping the ` // ` between the faces of a two-faced
+card; every screen goes through them.
 
 **One change at a time for each deck.** A tap puts a request in `app.js`'s queue and dims its card; the numbers fade, and
 nothing moves until the answer comes. Then everything is redrawn from the answer. If a request fails, the ones behind it are
@@ -1508,7 +1520,8 @@ each kind with its count before and after and the typical count (`enchantments 7
 **Checking them.** `tests/commander/test_web.py` checks what Python can: the palette matches Albert's, every file the page
 names and every `import` exists and exports what is imported, nothing is loaded from another site, no server text is put
 into markup (`innerHTML` is never used), and the real folder is served with the right types. When Node is installed it
-also syntax checks each module. What the pages do is checked in a browser against the real server, at 390 and 1280 px, with
+also syntax checks each module and runs the helpers of `ui.js` that touch no page (a change with its sign and unit, the
+address of a symbol's picture). What the pages do is checked in a browser against the real server, at 390 and 1280 px, with
 the test switches (`MTG_SERVE_DELAY` for a timeout, `MTG_SERVE_CONFLICT` for a 409, `MTG_FAIL_HOSTS` with `--refresh` for
 stale data, and a stopped server for unreachable).
 

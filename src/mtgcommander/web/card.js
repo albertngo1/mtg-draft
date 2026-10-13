@@ -109,7 +109,7 @@ export function open(app, name, options) {
     }
     if (card.text || card.power) {
       const lines = [card.text, card.power !== null && card.power !== undefined && card.power !== "" ? `${card.power}/${card.toughness}` : ""].filter(Boolean);
-      out.push(h("p", { class: "rules", text: lines.join("\n") }));
+      out.push(h("p", { class: "rules" }, ui.symbolText(lines.join("\n"))));
     }
     const tags = h("div", { class: "tags" });
     for (const role of a.roles) tags.append(ui.tag(ui.capitalize(role), { on: true }));

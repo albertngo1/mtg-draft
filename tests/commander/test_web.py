@@ -4,9 +4,10 @@ for them.
 There is no JavaScript test runner in this repo (no build step, no packages), so the checks here are the ones that can
 be made from Python: Albert's color palette has not drifted, every file the pages name exists, the modules fit together
 (every name one imports, the other exports), nothing is fetched from another site, no server text can reach the page as
-markup, and the real folder is what `serve` hands out. When Node is installed the modules are also syntax checked.
-What the pages do is checked in a browser, against the real server (the frontend-verify gate in the design)."""
-import os, re, shutil, subprocess, tempfile, threading, unittest, urllib.error, urllib.request
+markup, and the real folder is what `serve` hands out. When Node is installed the modules are also syntax checked, and
+the helpers of ui.js that touch no page are run (a change with its sign, the address of a symbol's picture). What the
+pages do is checked in a browser, against the real server (the frontend-verify gate in the design)."""
+import json, os, pathlib, re, shutil, subprocess, tempfile, threading, unittest, urllib.error, urllib.request
 from unittest import mock
 from mtgcommander import carddb, net, serve
 from mtgcommander.providers import scryfall_tags
@@ -18,6 +19,7 @@ MODULES = ("api.js", "app.js", "ui.js", "decks.js", "deck.js", "card.js", "add.j
 PAGE_FILES = ("index.html", "styles.css") + MODULES
 OPENER = urllib.request.build_opener(urllib.request.ProxyHandler({}))      # a proxy in the environment must not see us
 SVG_NAMESPACE = "http://www.w3.org/2000/svg"        # a name that identifies SVG, not an address anything is loaded from
+SYMBOL_FOLDER = "https://svgs.scryfall.io/card-symbols/"      # the one address a page file names: Scryfall's mana symbols
 
 
 def read(name):
@@ -101,11 +103,14 @@ class FilesTests(unittest.TestCase):
                                       f"{name} uses {alias}.{member}, which {target} does not export")
 
     def test_no_page_file_loads_anything_from_another_site(self):
-        # Scryfall's picture links come from the server's data; none is written in a file. No CDN, no font service.
+        # Scryfall's card picture links come from the server's data; none is written in a file. The one address that is
+        # written is the folder of Scryfall's mana symbol pictures, once, in ui.js. No CDN, no font service.
         for name in PAGE_FILES:
             text = read(name).replace(SVG_NAMESPACE, "")
             with self.subTest(file=name):
-                self.assertEqual(re.findall(r"https?://[^\s\"'`)>]*", text), [], f"{name} names an address")
+                self.assertEqual(re.findall(r"https?://[^\s\"'`)>]*", text), [SYMBOL_FOLDER] if name == "ui.js" else [],
+                                 f"{name} names an address")
+                text = text.replace(SYMBOL_FOLDER, "")
                 self.assertEqual(re.findall(r"(?:src|href)\s*=\s*[\"']//|url\(\s*[\"']?//|@import", text), [],
                                  f"{name} loads something from another site")
                 self.assertNotRegex(text, r"(?i)scryfall\.(?:io|com)|googleapis|cloudflare|jsdelivr|unpkg|cdnjs")
@@ -138,6 +143,36 @@ class FilesTests(unittest.TestCase):
         self.assertNotRegex(suggestions, r"point\.value\s*-|value_before\s*-|-\s*result\.value_before|\.after\s*<|\.before\s*-")
         self.assertNotRegex(source, r"\.weakens\s*=|\.change\s*=")          # read, never set: the server owns them
 
+    def test_how_far_a_number_moved_is_the_servers_change_so_no_arrow_is_drawn_and_nothing_subtracts(self):
+        # the server sends `change` (value - base) beside `base`; the arrows that only said which way are gone, and no
+        # file works out value - base (or base - value) for itself, in either order
+        for name in PAGE_FILES:
+            source = without_comments(read(name))
+            with self.subTest(file=name):
+                self.assertNotRegex(source, r"[▲▼]|delta__arrow")
+                self.assertNotRegex(source, r"\b(?:value|base)\b\s*-\s*[\w.]*\b(?:value|base)\b")
+
+    def test_only_ui_js_draws_a_symbol_and_the_rules_text_of_a_card_goes_through_it(self):
+        # one copy of each shared piece: no other module builds a symbol picture or names its folder, and the card sheet's
+        # rules text is drawn by the helper that puts a picture in place of each {...}
+        for name in MODULES:
+            source = without_comments(read(name))
+            with self.subTest(file=name):
+                if name != "ui.js":
+                    self.assertNotRegex(source, r"mana-sym|card-symbols|symbolUrl|manaSymbol|symbolAsText")
+        self.assertIn("ui.symbolText(", without_comments(read("card.js")))
+        self.assertNotRegex(without_comments(read("card.js")), r"class:\s*\"rules\"\s*,\s*text")
+
+    def test_the_symbol_list_in_ui_js_repeats_nothing_and_every_name_is_well_formed(self):
+        # the names between the braces, as Scryfall lists them: 2, B, T, W/U, 2/W, G/P, B/G/P, HW, CHAOS, ½ and ∞
+        source = without_comments(read("ui.js"))
+        block = re.search(r"const SYMBOLS = new Set\(\[(.*?)\]\.join", source, re.S).group(1)
+        names = " ".join(re.findall(r'"([^"]*)"', block)).split(" ")
+        self.assertGreater(len(names), 80)
+        self.assertEqual(sorted(names), sorted(set(names)), "a symbol is listed twice")
+        for name in names:
+            self.assertRegex(name, r"^(?:[0-9]+|[A-Z]+|½|∞|[WUBRGC2](?:/[WUBRGCP]){1,2})$")
+
     def test_the_stylesheet_uses_only_the_tokens_it_has(self):
         # every var(--x) names a token in :root (the page would silently lose that color or size otherwise)
         tokens = set(root_rules(os.path.join(WEB, "styles.css"))[0])
@@ -157,6 +192,72 @@ class SyntaxTests(unittest.TestCase):
             if "bad option" in done.stderr:
                 self.skipTest("this Node cannot check a module read from standard input")
             self.assertEqual(done.returncode, 0, f"{name}: {done.stderr}")
+
+
+def in_node(expression):
+    """The JSON value of a JavaScript expression that may use `ui`, the exports of ui.js, worked out by Node. Only the
+    helpers that touch no page can be run this way (nothing here builds an element)."""
+    address = json.dumps(pathlib.Path(WEB, "ui.js").as_uri())
+    script = f"import * as ui from {address}; process.stdout.write(JSON.stringify({expression}));"
+    done = subprocess.run(["node", "--input-type=module", "-e", script], capture_output=True, text=True, timeout=60)
+    if re.search(r"outside a module|ERR_REQUIRE_ESM|ERR_UNKNOWN_FILE_EXTENSION|bad option", done.stderr):
+        raise unittest.SkipTest("this Node cannot load a .js file as a module without a package.json")
+    if done.returncode != 0:
+        raise AssertionError(done.stderr)
+    return json.loads(done.stdout)
+
+
+MINUS = "\N{MINUS SIGN}"       # U+2212, the real minus sign, which is not the hyphen on the keyboard
+DASH = "\N{EM DASH}"           # what stands for a number that is not there
+
+
+@unittest.skipUnless(shutil.which("node"), "Node is not installed, so the helpers of ui.js are not run")
+class PureHelperTests(unittest.TestCase):
+    """The helpers in ui.js that turn numbers into text and symbols into addresses, run by Node. Each case is a worked
+    example."""
+
+    def test_a_signed_value_has_its_sign_and_its_unit(self):
+        got = in_node('[ui.signedValue(14), ui.signedValue(-2), ui.signedValue(4.5, "%"), ui.signedValue(12.5, "$"), '
+                      'ui.signedValue(-3.4, "$"), ui.signedValue(-16.7, "%"), ui.signedValue(0.28), '
+                      'ui.signedValue(1234.5, "$")]')
+        self.assertEqual(got, ["+14", MINUS + "2", "+4.5%", "+$12.50", MINUS + "$3.40", MINUS + "16.7%", "+0.28",
+                               "+$1,234.50"])
+
+    def test_a_change_of_zero_has_no_sign_and_something_that_is_not_a_number_is_a_dash(self):
+        got = in_node('[ui.signedValue(0), ui.signedValue(0, "%"), ui.signedValue(null), ui.signedValue(undefined), '
+                      'ui.signedValue("3"), ui.signedValue(NaN)]')
+        self.assertEqual(got, ["0", "0%", DASH, DASH, DASH, DASH])
+
+    def test_the_size_of_a_change_can_be_written_in_the_style_of_the_number_beside_it(self):
+        # the stat line writes its numbers with one decimal at most: a change of 3.4 is "+3.4" there, 14.04 is "+14"
+        got = in_node('[ui.signedValue(3.4, null, ui.oneDecimal), ui.signedValue(-0.16, null, ui.oneDecimal), '
+                      'ui.signedValue(14.04, null, ui.oneDecimal), ui.signedValue(14.04)]')
+        self.assertEqual(got, ["+3.4", MINUS + "0.2", "+14", "+14.04"])
+
+    def test_signed_is_a_change_with_no_unit_as_it_always_was(self):
+        got = in_node('[ui.signed(0.74), ui.signed(-0.2), ui.signed(0), ui.signed(null), ui.signed(1.236)]')
+        self.assertEqual(got, ["+0.74", MINUS + "0.2", "0", DASH, "+1.24"])
+
+    def test_a_symbol_is_the_picture_named_with_its_braces_and_slashes_left_out(self):
+        # one generic, one colored, X, tap, hybrid, two-generic-or-color, Phyrexian, and a two-digit generic cost
+        got = in_node('["{3}", "{B}", "{X}", "{T}", "{W/U}", "{2/W}", "{G/P}", "{B/G/P}", "{10}"].map(ui.symbolUrl)')
+        files = ("3", "B", "X", "T", "WU", "2W", "GP", "BGP", "10")
+        self.assertEqual(got, [SYMBOL_FOLDER + name + ".svg" for name in files])
+
+    def test_the_half_and_infinity_symbols_have_picture_names_of_their_own(self):
+        got = in_node('["{½}", "{∞}"].map(ui.symbolUrl)')
+        self.assertEqual(got, [SYMBOL_FOLDER + "HALF.svg", SYMBOL_FOLDER + "INFINITY.svg"])
+
+    def test_a_symbol_that_is_not_in_scryfalls_list_has_no_picture_and_is_drawn_as_text(self):
+        # a hybrid written the other way round, a made-up word, lower case, no braces, one brace, none inside, two at once
+        got = in_node('["{U/W}", "{foo}", "{b}", "B", "{B", "{}", "{B}{G}"].map(ui.symbolUrl)')
+        self.assertEqual(got, [None] * 7)
+
+    def test_an_item_moved_when_the_server_sent_a_change_that_is_not_zero(self):
+        got = in_node('[ui.hasMoved({change: 2}), ui.hasMoved({change: -0.01}), ui.hasMoved({change: 0}), '
+                      'ui.hasMoved({}), ui.hasMoved({change: null}), ui.hasMoved({base: 3, value: 5})]')
+        # the last item has a base and a value that differ but no change: the pages do not work that out
+        self.assertEqual(got, [True, True, False, False, False, False])
 
 
 # ----------------------------------------------------------------------------- the real folder, served
