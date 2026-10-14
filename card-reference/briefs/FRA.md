@@ -6,9 +6,10 @@ planeswalker token, every allied pair a recurring free spell at common, and ever
 dual land at common. Fixing is nearly free and splashing is cheap. Games are decided by card
 advantage, removal, and whether anyone attacked the Jace.
 
-> **How to weight this page.** 17Lands numbers (2026-10-08, day ten, ~251k PremierDraft decks)
-> beat everything else; the sample has settled (no card with 1,000+ games moved more than 1.2pp
-> from day six to day ten). Post-play expert takes come next: Limited Resources 874 (10-09),
+> **How to weight this page.** 17Lands numbers (2026-10-08, day ten, ~251k PremierDraft decks;
+> archetype table refreshed 2026-10-14, ~388k decks) beat everything else; the sample has
+> settled (day ten to day sixteen, only Refute Destiny among cards with 1,000+ games moved more
+> than 2pp). Post-play expert takes come next: Limited Resources 874 (10-09),
 > Rough Drafts 81–82, Lords of Limited 499, Limited Level-Ups' State of the Format, Numot's Arena
 > Direct runs. Pre-release predictions are weakest. They're kept only where they still hold, and
 > the ones that failed are listed in the last section.
@@ -20,8 +21,8 @@ advantage, removal, and whether anyone attacked the Jace.
    tokens soak attacks the way life gain does, five sweepers punish over-extending, and 1/3
    two-drops hold the ground (LR 874, Rough Drafts 81).
    Synergy that pays off on turn 6–9 is worth more here than synergy that needs a perfect turn 3.
-2. **Blue is the best colour; W/U (56.9%) and U/B (56.6%) are the best pairs.** W/B and B/R are
-   in the tied bottom four (53.3–53.7%). The spread is only about 4pp, so every pair is playable.
+2. **Blue is the best colour; W/U (56.6%) and U/B (55.8%) are the best pairs.** W/B and B/R are
+   in the tied bottom four (52.9–53.7%). The spread is only about 4pp, so every pair is playable.
    *Why blue:* its best commons and uncommons are card draw and counters, which is exactly what a
    long game rewards, and blue makes the most Jace tokens, which is what turns the duals untapped.
 3. **Card draw and removal win.** Play 6–7 removal spells (counterspells count) and 3–4 card-draw
@@ -57,21 +58,22 @@ advantage, removal, and whether anyone attacked the Jace.
 
 ### Archetypes, ranked by win rate
 
-Win rates are 17Lands day ten. "Removal" counts removal spells available to the pair across all
-rarities; it was the pre-release ranking signal and turned out *not* to predict the order.
+Win rates are 17Lands day sixteen (2026-10-14). "Removal" counts removal spells available to the
+pair across all rarities; it was the pre-release ranking signal and turned out *not* to predict
+the order.
 
 | # | Pair | Name | Plan that actually wins | WR | Removal | Signpost |
 |---|---|---|---|---|---|---|
-| 1 | W/U | Fatehold | Surveil fliers | 56.9% | 13 | `Desperate Futurescribe` |
-| 2 | U/B | Theorix | Removal, discard, two-for-ones | 56.6% | 20 | `Recursive Recruitment` |
-| 3 | B/G | Garruk's Bestiary | Graveyard recursion, big bodies | 55.9% | 21 | `Primal Witchstalker` |
-| 4 | R/G | Konstrari | Ramp into two uncommons | 55.6% | 18 | `Craftwork Crusher` |
-| 5 | U/R | Chandra's Prowess | Red removal plus blue cards | 55.4% | 17 | `Clash of Elements` |
-| 6 | G/W | Vigorbloom | Repeatable lifegain into counters | 54.3% | 13 | `Bloombrute` |
-| 7–10 | R/W | Ajani's Army | Go-wide, +1/+1 counters | 53.3–53.7% | 20 | `Warrior's Blades` |
-| 7–10 | B/R | Stingerquill | Red removal; pings as reach | 53.3–53.7% | **26** | `Grim Repriser` |
-| 7–10 | G/U | Jace's Mastery | Empower Jace | 53.3–53.7% | **11** | `Mind Meanderer` |
-| 7–10 | W/B | Liliana's Attrition | Black removal, white bodies | 53.3–53.7% | 23 | `Twisted Fates` |
+| 1 | W/U | Fatehold | Surveil fliers | 56.6% | 13 | `Desperate Futurescribe` |
+| 2 | U/B | Theorix | Removal, discard, two-for-ones | 55.8% | 20 | `Recursive Recruitment` |
+| 3–5 | B/G | Garruk's Bestiary | Graveyard recursion, big bodies | 55.3% | 21 | `Primal Witchstalker` |
+| 3–5 | R/G | Konstrari | Ramp into two uncommons | 55.2% | 18 | `Craftwork Crusher` |
+| 3–5 | U/R | Chandra's Prowess | Red removal plus blue cards | 55.3% | 17 | `Clash of Elements` |
+| 6 | G/W | Vigorbloom | Repeatable lifegain into counters | 54.1% | 13 | `Bloombrute` |
+| 7–10 | R/W | Ajani's Army | Go-wide, +1/+1 counters | 52.9–53.7% | 20 | `Warrior's Blades` |
+| 7–10 | B/R | Stingerquill | Red removal; pings as reach | 52.9–53.7% | **26** | `Grim Repriser` |
+| 7–10 | G/U | Jace's Mastery | Empower Jace | 52.9–53.7% | **11** | `Mind Meanderer` |
+| 7–10 | W/B | Liliana's Attrition | Black removal, white bodies | 52.9–53.7% | 23 | `Twisted Fates` |
 
 The allied pairs are the colleges of Hexhaven; the enemy pairs are built around the Echoverse
 versions of major characters. Numbers after a card below are its IWD inside that pair (how much
@@ -151,7 +153,7 @@ Mentor`).
 - Skip the dual (−2.6), and don't take `Greenhouse Propagator` early. The lifegain payoffs are
   poor in Sealed (LR 874: "just don't have [Hortimancer] in your deck").
 
-**The tied bottom four (53.3–53.7%).**
+**The tied bottom four (52.9–53.7%).**
 - **R/W:** both halves under-perform (W −1.8, R −1.2). It is an aggro deck in a slow format and
   needs `Mabel, Valley Hero` and `Warrior's Blades`; without them it is a burn deck with white
   bodies that run into 1/3 blockers and Jace tokens. Mabel "really underperformed" and `Graft
