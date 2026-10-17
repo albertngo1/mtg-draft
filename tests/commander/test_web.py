@@ -1,8 +1,8 @@
 """Tests for the deck pages (src/mtgcommander/web/): plain files, so these tests read the files and ask the real server
 for them.
 
-There is no JavaScript test runner in this repo (no build step, no packages), so the checks here are the ones that can
-be made from Python: Albert's color palette has not drifted, every file the pages name exists, the modules fit together
+There is no JavaScript test runner in this repo (the one package is TypeScript, which compiles web-src/ to web/), so the
+checks here are the ones that can be made from Python: Albert's color palette has not drifted, every file the pages name exists, the modules fit together
 (every name one imports, the other exports), nothing is fetched from another site, no server text can reach the page as
 markup, and the real folder is what `serve` hands out. When Node is installed the modules are also syntax checked, and
 the helpers of ui.js that touch no page are run (a change with its sign, the address of a symbol's picture). What the
@@ -72,7 +72,7 @@ class FilesTests(unittest.TestCase):
         self.assertIn('id="sheet-layer"', html)
 
     def test_every_relative_import_exists_and_none_comes_from_a_package(self):
-        # no npm packages and no build step: each import is "./file.js" in the same folder
+        # no packages and no bundler: each import is "./file.js" in the same folder
         for name in MODULES:
             source = without_comments(read(name))
             specifiers = re.findall(r"""(?:from|import)\s*\(?\s*["']([^"']+)["']""", source)
@@ -192,6 +192,50 @@ class SyntaxTests(unittest.TestCase):
             if "bad option" in done.stderr:
                 self.skipTest("this Node cannot check a module read from standard input")
             self.assertEqual(done.returncode, 0, f"{name}: {done.stderr}")
+
+
+SOURCE = os.path.join(REPO, "src", "mtgcommander", "web-src")
+TSC = os.path.join(REPO, "node_modules", ".bin", "tsc")
+
+
+class SourceTests(unittest.TestCase):
+    """The modules are written in TypeScript (src/mtgcommander/web-src/) and compiled to the plain JavaScript in web/,
+    which is committed, so the server hands out pages without Node. These checks keep the two folders in step."""
+
+    def test_every_module_has_its_typescript_source_and_nothing_else_is_compiled(self):
+        # types.d.ts holds only types, so it is the one source with no module of its own
+        sources = sorted(name for name in os.listdir(SOURCE) if name.endswith(".ts") and not name.endswith(".d.ts"))
+        self.assertEqual([name[:-3] + ".js" for name in sources], sorted(MODULES))
+        self.assertEqual(sorted(name for name in os.listdir(SOURCE) if name.endswith(".d.ts")), ["types.d.ts"])
+
+    def test_no_source_puts_server_text_into_markup_either(self):
+        # the same rule as for the modules, read in the sources a person edits
+        for name in os.listdir(SOURCE):
+            with self.subTest(file=name):
+                self.assertNotRegex(without_comments(read(os.path.join(SOURCE, name))),
+                                    r"innerHTML|outerHTML|insertAdjacentHTML|document\.write|\beval\(|new Function\(")
+
+
+@unittest.skipUnless(os.path.isfile(TSC), "TypeScript is not installed (npm install), so the sources are not compiled")
+class CompiledTests(unittest.TestCase):
+    def tsc(self, *args):
+        return subprocess.run([TSC, "-p", os.path.join(REPO, "tsconfig.json"), *args], capture_output=True, text=True,
+                              timeout=120, cwd=REPO)
+
+    def test_the_sources_type_check(self):
+        done = self.tsc("--noEmit")
+        self.assertEqual(done.returncode, 0, done.stdout + done.stderr)
+
+    def test_the_committed_modules_are_what_the_sources_compile_to(self):
+        # a change to web-src/ that was not built (npm run build) would leave the served pages behind it
+        with tempfile.TemporaryDirectory() as out:
+            done = self.tsc("--outDir", out)
+            self.assertEqual(done.returncode, 0, done.stdout + done.stderr)
+            self.assertEqual(sorted(os.listdir(out)), sorted(MODULES))
+            for name in MODULES:
+                with self.subTest(module=name):
+                    self.assertEqual(read(os.path.join(out, name)), read(name),
+                                     f"web/{name} is not what web-src/{name[:-3]}.ts compiles to: run npm run build")
 
 
 def in_node(expression):

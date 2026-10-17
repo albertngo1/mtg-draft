@@ -1,0 +1,14 @@
+{
+  "name": "mtgcommander-web",
+  "private": true,
+  "type": "module",
+  "description": "The deck pages of mtg-commander serve, written in TypeScript (src/mtgcommander/web-src/) and compiled to plain JavaScript modules in src/mtgcommander/web/.",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "check": "tsc -p tsconfig.json --noEmit",
+    "watch": "tsc -p tsconfig.json --watch"
+  },
+  "devDependencies": {
+    "typescript": "7.0.2"
+  }
+}

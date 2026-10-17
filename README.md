@@ -166,6 +166,9 @@ data is downloaded, which takes several seconds, and the page says what it is fe
 column with the numbers pinned above the cards; on a desktop screen the metrics sit beside the cards. The only things
 loaded from another site are pictures from Scryfall: each card's (the link comes from the server) and the mana symbols
 in costs and rules text, which show as text when they cannot be loaded. Nothing needs installing to run the pages.
+The pages are written in TypeScript (`src/mtgcommander/web-src/`) and the JavaScript they compile to is committed, so
+running them still needs only Python. To change them, edit the `.ts` files, then run `npm install` once and
+`npm run build` (Node 22 or later); the tests fail if the committed JavaScript is not what the sources compile to.
 
 ```bash
 python3 src/mtg-commander.py serve                          # http://127.0.0.1:8341/, on this computer only

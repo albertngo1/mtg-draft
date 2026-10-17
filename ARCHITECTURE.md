@@ -732,7 +732,8 @@ ignored.
 | `decklist.py` | reads pasted lists, matches names to real cards, loads precons from MTGJSON, writes lists |
 | `decks.py` | saved decks: base decks and each player's versions as JSON files, with an append-only change log, replay, undo and revisions (see [Deck files](#deck-files)) |
 | `serve.py` | the local web server for the deck pages: the application programming interface (API) over `decks.py` and `metrics.py`, one session for each open deck, the safety checks and the test switches (see [The deck server](#the-deck-server)) |
-| `web/` | the deck pages: `index.html`, `styles.css` and eight JavaScript modules, plain files the server hands out (see [The deck pages](#the-deck-pages)) |
+| `web/` | the deck pages: `index.html`, `styles.css` and eight JavaScript modules, plain files the server hands out; the modules are compiled from `web-src/` (see [The deck pages](#the-deck-pages)) |
+| `web-src/` | the TypeScript the eight modules are compiled from, one `.ts` file for each, and `types.d.ts`, the shapes of the server's answers (types only, so it compiles to nothing). `npm run build` writes `web/` |
 | `providers/` | one module per data source, registered in `providers/__init__.py` (`SIGNAL_PROVIDERS`) |
 | `providers/edhrec.py` | what builders chose, per commander, bracket and theme; themes, salt, average land count |
 | `providers/archidekt.py` | bracket-tagged decklists: the second builder source |
@@ -1498,9 +1499,15 @@ network, git and the card index's data, and cover every route, each error, the s
 
 ### The deck pages
 
-The pages are plain files in `src/mtgcommander/web/`, handed out by the server. There is no build step and there are no
-packages: each file is a JavaScript module (`<script type="module" src="app.js">`) that a browser loads straight from the
-server. Nothing is fetched from another site except pictures from Scryfall: each card's, whose link is part of the
+The pages are plain files in `src/mtgcommander/web/`, handed out by the server. Each file is a JavaScript module
+(`<script type="module" src="app.js">`) that a browser loads straight from the server, with no bundler and no packages.
+The modules are written in TypeScript, in `src/mtgcommander/web-src/`, and compiled one for one by `tsc` (TypeScript
+7.0.2, the one development package in `package.json`): `npm install` once, then `npm run build` after a change, or
+`npm run check` to check the types only. The compiled modules are committed, so running the pages needs Python and a
+browser, never Node. The compiler keeps the comments but not the blank lines or the indentation, so read and change the
+`.ts` files, not the `.js`. The types are strict; `types.d.ts` holds the shapes of the server's answers as
+[The deck server](#the-deck-server) describes them, so a page that reads a field the server does not send is an error
+before it is a blank on screen. Nothing is fetched from another site except pictures from Scryfall: each card's, whose link is part of the
 server's answer, and the mana symbols, whose folder `ui.js` names (the one address written in the pages). The page's
 `Content-Security-Policy` allows pictures from any https address and everything else only from the server itself.
 
@@ -1578,7 +1585,10 @@ reconsider it." (a count of 0 leaves its half out, and there is no line while bo
 names and every `import` exists and exports what is imported, nothing is loaded from another site, no server text is put
 into markup (`innerHTML` is never used), and the real folder is served with the right types. When Node is installed it
 also syntax checks each module and runs the helpers of `ui.js` that touch no page (a change with its sign and unit, the
-address of a symbol's picture). What the pages do is checked in a browser against the real server, at 390 and 1280 px, with
+address of a symbol's picture). Every module has its `.ts` source and nothing else is compiled, and the sources keep the
+same markup rule. When TypeScript is installed (`npm install`) it also checks the types and compiles the sources afresh,
+and each committed module must be exactly what its source compiles to, so a change to `web-src/` that was not built fails
+the tests. What the pages do is checked in a browser against the real server, at 390 and 1280 px, with
 the test switches (`MTG_SERVE_DELAY` for a timeout, `MTG_SERVE_CONFLICT` for a 409, `MTG_FAIL_HOSTS` with `--refresh` for
 stale data, and a stopped server for unreachable).
 

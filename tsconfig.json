@@ -1,0 +1,18 @@
+{
+  // The deck pages: src/mtgcommander/web-src/*.ts compile to plain JavaScript modules in src/mtgcommander/web/, which
+  // serve.py hands out as they are. `npm run build` writes them; `npm run check` only checks the types.
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ES2022",
+    "moduleResolution": "bundler",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "rootDir": "src/mtgcommander/web-src",
+    "outDir": "src/mtgcommander/web",
+    "strict": true,
+    "noEmitOnError": true,
+    "removeComments": false,
+    "newLine": "lf",
+    "skipLibCheck": true
+  },
+  "include": ["src/mtgcommander/web-src"]
+}
