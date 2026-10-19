@@ -116,7 +116,7 @@ export function open(app, name, options) {
         if (a.gc)
             tags.append(ui.tag("Game Changer", { on: true }));
         if (card.owned)
-            tags.append(ui.tag("You own it"));
+            tags.append(ui.tag(card.owned_from && card.owned_from.length ? `You own it, ${ui.fromBoxes(card.owned_from)}` : "You own it"));
         if (a.salt !== null && a.salt !== undefined)
             tags.append(ui.tag(`Salt ${ui.valueText(a.salt)}`));
         if (a.copies > 1)

@@ -1,10 +1,15 @@
-"""Command line for mtg-commander: nine commands, one set of shared steps.
+"""Command line for mtg-commander: ten commands, one set of shared steps.
 
 Why it is thin: scoring and deck search live in score.py and build.py, formatting lives in render.py, and the
 data lives behind carddb, decklist and the providers. This module only turns arguments into calls and results
 into output, so each command reads as: load the card index, find the commander(s), build the spec, call the
 engine, print. The steps every command shares (the card index, a deck or precon, the owned cards, the spec, the
 warnings and sources that end up in the report) are the helpers below.
+
+Owned cards cost $0. They come from --owned files, --owned-precon boxes and the player's collection file
+(<decks folder>/<player>/collection.json; the player is --player, else MTG_COMMANDER_PLAYER), and a card that is free
+because of a box keeps the box's name, so a report says "owned, from Peace Offering" (decklist.attach_owned_from).
+The `collection` command shows that file and adds or removes precons in it.
 
 Exit codes: 0 success; 1 a mistake the user can fix (unknown card or precon, bad flags), with close matches
 printed; 2 data this run cannot do without is unavailable (offline with nothing cached, or the site is down).
@@ -113,15 +118,21 @@ def _fantasy_flags(p, weight=True, cards=True):
                        help="a card the deck must not play (repeatable)")
 
 
+def _player_flag(p, text):
+    p.add_argument("--player", metavar="NAME", help=text)
+
+
 def _owned_flags(p):
     p.add_argument("--owned", action="append", metavar="FILE",
-                   help="a decklist of cards you own; they cost $0 (repeatable)")
+                   help="a decklist (or a collection file) of cards you own; they cost $0 (repeatable)")
     p.add_argument("--owned-precon", action="append", metavar="NAME",
                    help="a precon you own, e.g. \"Squirreled Away\" (repeatable)")
+    _player_flag(p, "count this player's collection (see `collection`) as owned too (default: MTG_COMMANDER_PLAYER)")
 
 
 def _deck_source(p):
-    p.add_argument("deckfile", nargs="?", metavar="DECKFILE", help="a decklist file; - reads standard input")
+    p.add_argument("deckfile", nargs="?", metavar="DECKFILE",
+                   help="a decklist file, as text or JSON; - reads standard input")
     p.add_argument("--precon", metavar="NAME", help="use a preconstructed deck by name instead of a file")
     p.add_argument("--commander", action="append", metavar="NAME",
                    help="the commander, when the list does not mark it (repeat for a partner)")
@@ -202,6 +213,12 @@ def build_parser():
                    help=f"the port to listen on (default {config.SERVE_PORT})")
     p.add_argument("--decks", metavar="DIR",
                    help="the folder of saved decks (default: commander/decks in the repo, or MTG_COMMANDER_DECKS)")
+
+    p = command("collection", "show the precons and cards a player owns, and add or remove precons")
+    _player_flag(p, "whose collection (default: MTG_COMMANDER_PLAYER)")
+    p.add_argument("--add-precon", action="append", metavar="NAME", help="a precon the player now owns (repeatable)")
+    p.add_argument("--remove-precon", action="append", metavar="NAME",
+                   help="a precon the player no longer owns (repeatable)")
 
     p = command("warm", "download everything for a commander ahead of time (for --offline)")
     p.add_argument("commander", metavar="COMMANDER")
@@ -387,25 +404,92 @@ def _precon(session, name):
     return found, {"commanders": found["commanders"], "cards": found["cards"], "sideboard": [], "unparsed": []}
 
 
-def _owned(session, db):
-    """The cards the player owns (they cost $0): --owned decklists and --owned-precon boxes."""
-    owned = set()
-    for path in session.args.owned or []:
+def _read_list(path, db, *, collection_ok=False):
+    """decklist.load of a file named on the command line, text or JSON. A saved version read from standard input is
+    looked up in the decks folder (config.DECKS); one read from a file, in the folder its own path says."""
+    try:
+        return decklist.load(path, db=db, root=config.DECKS, collection_ok=collection_ok)
+    except OSError as e:
+        raise UserError(f"cannot read {path}: {e.strerror or e}")
+    except decklist.NotADeck as e:
+        raise UserError(f"{e} To count the cards it holds as cards you own, give it to --owned instead.")
+    except decklist.ListError as e:
+        raise UserError(str(e))
+
+
+def _player_id(name):
+    """The player folder for a typed name, as the deck pages make it ("Andy" is andy), or a UserError."""
+    player = decks.slug(name)
+    try:
+        return decks._check_player(player)
+    except decks.DeckError as e:
+        raise UserError(f"{name!r} cannot be a player name: {e.message}")
+
+
+def _collection(session):
+    """The collection of --player, or of MTG_COMMANDER_PLAYER when --player is not given; None when there is neither.
+    A player named with --player must have a collection file, so a missing one is a UserError naming the path it
+    looked at. The environment variable is a standing default, so there a missing file is only a warning: the run goes
+    on with the cards the flags name."""
+    given = getattr(session.args, "player", None)
+    name = given if given is not None else config.PLAYER
+    if not name:
+        return None
+    player = _player_id(name)
+    path = decks.collection_path(config.DECKS, player)
+    if not os.path.exists(path):
+        if given is not None:
+            raise UserError(f"{player} has no collection file: there is no {path}. Make one with "
+                            f"`collection --player {player} --add-precon NAME`, or leave out --player.")
+        session.warn(f"MTG_COMMANDER_PLAYER is {player}, but there is no collection file at {path}, so only the "
+                     "cards the flags name count as owned. `collection --add-precon NAME` makes one.")
+        return None
+    try:
+        return decks.collection(config.DECKS, player)
+    except ValueError as e:                              # a damaged file says which
+        raise UserError(str(e))
+
+
+def _owned(session, db, deck_cards=()):
+    """(owned, owned_from): the cards the player owns, which cost $0, and for each card that came in a precon box
+    the boxes it came in ({card: [precon names]}, for "owned, from Peace Offering"). They come from --owned files (a
+    decklist, or a collection file, whose precons are opened as --owned-precon opens them), --owned-precon boxes and
+    the player's collection (its precons, then its loose cards). A decklist's or a collection's loose cards are owned
+    but come from no box. `deck_cards` are the deck's own cards, which `upgrade` owns whatever box they came in, so
+    they get no box."""
+    owned, boxes = set(), {}
+
+    def open_box(name, listed_in=None):
         try:
-            parsed = decklist.load(path)
-        except OSError as e:
-            raise UserError(f"cannot read {path}: {e.strerror or e}")
+            found, parsed = _precon(session, name)
+        except UserError as e:                           # a typo in a collection file: say which file to fix
+            raise UserError(f"{listed_in} lists a precon that cannot be found: {e}" if listed_in else str(e))
+        cards = _owned_names(session, db, parsed, found["name"])
+        for card in cards:
+            boxes.setdefault(card, set()).add(found["name"])
+        return cards
+
+    for path in session.args.owned or []:
+        parsed = _read_list(path, db, collection_ok=True)
+        for name in parsed.get("precons") or []:
+            owned |= open_box(name, path)
         owned |= _owned_names(session, db, parsed, path)
     for name in session.args.owned_precon or []:
-        found, parsed = _precon(session, name)
-        owned |= _owned_names(session, db, parsed, found["name"])
-    return owned
+        owned |= open_box(name)
+    held = _collection(session)
+    if held is not None:
+        label = f"{held['player']}'s collection"
+        for name in held["precons"]:
+            owned |= open_box(name, f"{label} ({decks.collection_path(config.DECKS, held['player'])})")
+        loose = {"commanders": [], "cards": [(n, card) for n, card in held["cards"]], "sideboard": [], "unparsed": []}
+        owned |= _owned_names(session, db, loose, label)
+    return owned, decklist.boxes_of(boxes, own=deck_cards)
 
 
 def _load_deck(session, db):
     """(name, parsed list, resolved deck) from DECKFILE or --precon. A precon is a product the player cannot
     edit, so a name MTGJSON spells in a way the card index does not match is a warning; in a file it is the
-    caller's to report."""
+    caller's to report. A DECKFILE may be JSON (decklist.JSON_SHAPES), but not a collection: that is not a deck."""
     a = session.args
     if bool(a.deckfile) == bool(a.precon):
         raise UserError("give a DECKFILE (use - for standard input) or --precon NAME, one of the two")
@@ -413,10 +497,7 @@ def _load_deck(session, db):
         found, parsed = _precon(session, a.precon)
         name = found["name"]
     else:
-        try:
-            parsed = decklist.load(a.deckfile)
-        except OSError as e:
-            raise UserError(f"cannot read {a.deckfile}: {e.strerror or e}")
+        parsed = _read_list(a.deckfile, db)
         name = "standard input" if a.deckfile == "-" else os.path.basename(a.deckfile)
     deck = decklist.resolve(parsed, db, commander=a.commander or None)
     for note in deck["warnings"]:
@@ -529,7 +610,7 @@ def cmd_suggest(session):
         raise UserError("suggest needs a theme or a playstyle: pass --theme, --playstyle or --fantasy "
                         "(the `themes` command lists the choices)")
     engine = _engine("build", "suggest")
-    result = engine.suggest(spec, db, colors=a.colors, budget=a.budget, owned=_owned(session, db), limit=a.limit,
+    result = engine.suggest(spec, db, colors=a.colors, budget=a.budget, owned=_owned(session, db)[0], limit=a.limit,
                             sources=session.enabled)
     result.setdefault("command", "suggest")
     result.setdefault("spec", spec)
@@ -541,10 +622,11 @@ def cmd_suggest(session):
 def cmd_build(session):
     a, db = session.args, session.db()
     commanders = _lead(db, [a.commander] + ([a.partner] if a.partner else []))
-    spec, owned = _spec(session, db, commanders), _owned(session, db)
+    spec, (owned, owned_from) = _spec(session, db, commanders), _owned(session, db)
     engine = _engine("build", "build")
     ctx = engine.prepare(commanders, spec["bracket"], spec, db, owned=owned, sources=session.enabled)
     result = engine.build(ctx, db, budget=a.budget, combos_fn=spellbook.find_combos, allow_combos=a.allow_combos)
+    decklist.attach_owned_from(result, owned_from)
     result.setdefault("command", "build")
     result.setdefault("commanders", commanders)
     result.setdefault("ci", _ci(db, commanders))
@@ -568,12 +650,14 @@ def cmd_upgrade(session):
     _upgradeable(session, deck, bool(a.precon))
     spec = _spec(session, db, commanders)
     names = [card for _, card in deck["cards"]]
+    owned, owned_from = _owned(session, db, deck_cards=names + commanders)
     engine = _engine("build", "upgrade")
-    ctx = engine.prepare(commanders, spec["bracket"], spec, db, deck_cards=names, owned=_owned(session, db),
+    ctx = engine.prepare(commanders, spec["bracket"], spec, db, deck_cards=names, owned=owned,
                          sources=session.enabled)
     result = engine.upgrade(ctx, dict(deck, name=name), db, budget=a.budget, max_swaps=a.max_swaps,
                             price_points=a.price_points, combos_fn=spellbook.find_combos,
                             allow_combos=a.allow_combos)
+    decklist.attach_owned_from(result, owned_from)
     result["command"] = "upgrade"
     result["deck"] = _deck_info(name, deck, db)
     result.setdefault("spec", spec)
@@ -639,13 +723,14 @@ def cmd_check(session):
 
 
 STATS_VERSION_CLASHES = ("deckfile", "precon", "commander", "bracket", "theme", "playstyle", "fantasy",
-                         "fantasy_weight", "keep_fun", "owned", "owned_precon")
+                         "fantasy_weight", "keep_fun", "owned", "owned_precon", "player")
 
 
 def _stats_of_version(session, db):
     """`stats --version PLAYER/ID`: the metrics of a saved version, worked out by the same code the deck pages use
     (serve.App), so the numbers agree with the pages. The version holds its own bracket, themes, playstyle and owned
-    precons, so none of those flags may be given beside it."""
+    precons, and its player's collection counts as owned as it does on the pages, so none of those flags (nor
+    --player) may be given beside it; MTG_COMMANDER_PLAYER is not read."""
     a = session.args
     clash = ["a DECKFILE" if name == "deckfile" else "--" + name.replace("_", "-")
              for name in STATS_VERSION_CLASHES if getattr(a, name, None) is not None]
@@ -674,7 +759,7 @@ def cmd_stats(session):
     the local combo index and falls back to the API. Cards you own (--owned, --owned-precon) cost $0; the deck's
     own cards do not, so the cost to buy is what the whole list would cost you. Cards are priced at their cheapest
     printing, as `upgrade` prices them (carddb.deck_prices), so the cost to buy of the list an upgrade made is what
-    the upgrade spent.
+    the upgrade spent. The player's collection (--player, or MTG_COMMANDER_PLAYER) counts as owned too.
 
     With --version it shows a saved version instead (see _stats_of_version)."""
     a, db = session.args, session.db()
@@ -688,7 +773,7 @@ def cmd_stats(session):
     _upgradeable(session, deck, bool(a.precon))
     spec = _spec(session, db, commanders)
     names = [card for _, card in deck["cards"]]
-    owned = _owned(session, db)
+    owned, _ = _owned(session, db)
     ctx = _engine("build", "stats").prepare(commanders, spec["bracket"], spec, db, deck_cards=names, owned=owned,
                                             sources=session.enabled)
     attrs = roles.attributes(names, db)
@@ -710,6 +795,69 @@ def cmd_stats(session):
                                                  combos=combos, owned=owned, prices=prices)
     result.update(command="stats", deck=_deck_info(name, deck, db), bracket=spec["bracket"], spec=spec)
     return _finish(session, result, ctx)
+
+
+# ----------------------------------------------------------------------------- collection
+def _commanders_of(name, known):
+    """A precon's commanders for the listing: from `known` (the precons just looked up to add them), else from the
+    cached copy of its MTGJSON deck file, never from the network: the listing is a quick look, and a precon whose file
+    was never downloaded is simply shown without its commanders (None)."""
+    key = carddb.normalize(name)
+    if key in known:
+        return known[key]
+    try:
+        return list(decklist.precon(name, offline=True)["commanders"])
+    except (decklist.UnknownPrecon, net.FetchError):
+        return None
+
+
+def cmd_collection(session):
+    """`collection`: the player's collection file (<decks folder>/<player>/collection.json), shown after any
+    --add-precon and --remove-precon are made. A precon to add is found the way --owned-precon finds one (close
+    spellings and typos included) and stored by its MTGJSON name; adding one the file already has changes nothing and
+    says so. A precon to remove must match a stored name, ignoring case and punctuation; one that does not is a
+    UserError listing the stored ones, and then nothing is written. The file (and the player's folder) is made when
+    it is missing. Its loose cards are edited by hand only, so this command keeps them as they are."""
+    a = session.args
+    name = a.player if a.player is not None else config.PLAYER
+    if not name:
+        raise UserError("say whose collection this is: --player NAME, or set MTG_COMMANDER_PLAYER")
+    player = _player_id(name)
+    path = decks.collection_path(config.DECKS, player)
+    try:
+        held = decks.collection(config.DECKS, player)
+    except ValueError as e:
+        raise UserError(str(e))
+    precons, notes, known = list(held["precons"]), [], {}
+    for wanted in a.add_precon or []:
+        found, _ = _precon(session, wanted)
+        known[carddb.normalize(found["name"])] = list(found["commanders"])
+        if any(carddb.normalize(p) == carddb.normalize(found["name"]) for p in precons):
+            notes.append(f"{found['name']} is already in the collection; nothing changed.")
+            continue
+        precons.append(found["name"])
+        notes.append(f"Added {found['name']}.")
+    for wanted in a.remove_precon or []:
+        match = [p for p in precons if carddb.normalize(p) == carddb.normalize(wanted)]
+        if not match:
+            stored = "; ".join(precons) if precons else "no precons yet"
+            raise UserError(f"{player}'s collection has no precon called {wanted!r}. It holds: {stored}.")
+        precons.remove(match[0])
+        notes.append(f"Removed {match[0]}.")
+    made = not os.path.exists(path)
+    if made or precons != held["precons"]:
+        try:
+            held = decks.save_collection(config.DECKS, player, precons=precons)
+        except ValueError as e:
+            raise UserError(str(e))
+        except OSError as e:
+            raise UserError(f"cannot write {path}: {e.strerror or e}")
+        if made:
+            notes.insert(0, f"Made a new collection file for {player}.")
+    return _finish(session, {"command": "collection", "player": player, "path": path,
+                             "precons": [{"name": p, "commanders": _commanders_of(p, known)} for p in held["precons"]],
+                             "cards": held["cards"], "card_count": sum(n for n, _ in held["cards"]),
+                             "updated": held.get("updated"), "notes": notes})
 
 
 # ----------------------------------------------------------------------------- serve
@@ -963,7 +1111,8 @@ def cmd_warm(session):
 
 
 COMMANDS = {"themes": cmd_themes, "suggest": cmd_suggest, "build": cmd_build, "upgrade": cmd_upgrade,
-            "check": cmd_check, "stats": cmd_stats, "serve": cmd_serve, "warm": cmd_warm, "validate": cmd_validate}
+            "check": cmd_check, "stats": cmd_stats, "collection": cmd_collection, "serve": cmd_serve,
+            "warm": cmd_warm, "validate": cmd_validate}
 
 
 # ----------------------------------------------------------------------------- entry points

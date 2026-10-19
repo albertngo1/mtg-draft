@@ -155,6 +155,19 @@ export function shortDate(iso) {
     return Number.isNaN(then.getTime()) ? "" : then.toLocaleDateString("en-US", { month: "short", day: "numeric" });
 }
 export const capitalize = (text) => (text ? text[0].toUpperCase() + text.slice(1) : text);
+/**
+ * Where a free card comes from, from the server's `owned_from`: ["Peace Offering"] -> "from Peace Offering", two boxes ->
+ * "from Peace Offering or Family Matters", more -> "from Peace Offering, Family Matters or 3 more"; "" for none. The same
+ * words as the terminal's report (render.boxes_text).
+ */
+export function fromBoxes(names) {
+    const boxes = names || [];
+    if (!boxes.length)
+        return "";
+    if (boxes.length <= 2)
+        return `from ${boxes.join(" or ")}`;
+    return `from ${boxes[0]}, ${boxes[1]} or ${boxes.length - 2} more`;
+}
 /** The last two folders of a path: "/Users/andy/mtg-draft/commander/decks" -> "commander/decks". */
 export function pathTail(path) {
     return String(path || "").split(/[\\/]/).filter(Boolean).slice(-2).join("/");

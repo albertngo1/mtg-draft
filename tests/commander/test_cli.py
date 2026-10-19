@@ -175,6 +175,7 @@ class CliCase(unittest.TestCase):
         mock.patch.object(fantasy.subprocess, "run", side_effect=AssertionError("the real claude must never run")).start()
         for door in ("fetch_json", "request", "download"):          # a test that reaches the network is a bug
             mock.patch.object(net, door, side_effect=AssertionError(f"net.{door} must not be called in a test")).start()
+        mock.patch.object(config, "PLAYER", None).start()           # MTG_COMMANDER_PLAYER in the shell must not leak in
         self.addCleanup(mock.patch.stopall)
         saved = dict(net.MODE)
         self.addCleanup(net.MODE.update, saved)
@@ -901,6 +902,253 @@ class StatsVersionTests(CliCase):
         self.assertEqual(result.code, 2)
         self.assertIn("warm COMMANDER", result.err)
 
+
+# ----------------------------------------------------------------------------- what a player owns
+# Three precons andy might own, each holding Sol Ring (most precons do), for naming the box a free card comes from
+BOXES = {"peace offering": ("Peace Offering", ["Chatterfang, Squirrel General"], [(1, "Sol Ring"), (1, "Skullclamp")]),
+         "family matters": ("Family Matters", ["Pir, Imaginative Rascal"], [(1, "Sol Ring"), (1, "Arcane Signet")]),
+         "animated army": ("Animated Army", ["Thrasios, Triton Hero"], [(1, "Sol Ring")])}
+SMALL_DECK = "Commander\n1 Hazel of the Rootbloom\nDeck\n1 Cultivate\n1 Mind Stone\n10 Forest\n"
+
+
+class OwnedCase(CliCase):
+    """A temporary decks folder (config.DECKS) for collection files, and a precon lookup that also knows BOXES."""
+
+    def setUp(self):
+        super().setUp()
+        self.root = tempfile.mkdtemp()
+        self.addCleanup(shutil.rmtree, self.root, True)
+        mock.patch.object(config, "DECKS", self.root).start()
+        mock.patch.object(decklist, "precon", side_effect=self.box).start()
+        self.deck = self.file("small.txt", SMALL_DECK)
+
+    def box(self, name, **kw):
+        found = BOXES.get(carddb.normalize(name))
+        if found is None:
+            return self.precon(name, **kw)
+        title, commanders, cards = found
+        return {"name": title, "code": "BOX", "file": title.replace(" ", ""), "release": "2025-01-01",
+                "commanders": commanders, "cards": cards, "fetched": NOW, "url": "https://mtgjson.test/" + title}
+
+    def file(self, name, text):
+        path = os.path.join(self.root, name)
+        with open(path, "w", encoding="utf-8") as f:
+            f.write(text)
+        return path
+
+    def owned(self):
+        return self.engine.calls["prepare"][1]["owned"]
+
+    def swaps(self, *swaps):
+        """Make the engine's upgrade answer with these swaps (add, owned), each from a Forest."""
+        result = fixture("render_upgrade.json")
+        result["swaps"] = [dict(result["swaps"][0], rank=i, cut="Forest", add=add, owned=owned, price=1.0)
+                           for i, (add, owned) in enumerate(swaps, 1)]
+        self.engine.upgrade = lambda *a, **k: result
+
+
+class PlayerTests(OwnedCase):
+    def test_a_player_named_on_the_command_line_must_have_a_collection_file(self):
+        # --player andy with no andy/collection.json: exit 1, naming the file it looked for, before any scoring
+        result = self.run_cli("upgrade", self.deck, "--player", "andy")
+        self.assertEqual((result.code, result.out), (1, ""))
+        self.assertIn(f"andy has no collection file: there is no {os.path.join(self.root, 'andy', 'collection.json')}",
+                      result.err)
+        self.assertNotIn("prepare", self.engine.calls)
+
+    def test_the_player_from_the_environment_without_a_file_is_a_warning_and_the_run_goes_on(self):
+        # MTG_COMMANDER_PLAYER=andy is a standing default, so a missing file is not a stop
+        with mock.patch.object(config, "PLAYER", "andy"):
+            result = self.run_json("upgrade", self.deck)
+        self.assertTrue(any(w.startswith("MTG_COMMANDER_PLAYER is andy, but there is no collection file at "
+                                         + os.path.join(self.root, "andy", "collection.json")) for w in result["warnings"]),
+                        result["warnings"])
+        self.assertEqual(self.owned(), set())
+
+    def test_the_collections_precons_and_loose_cards_count_as_owned(self):
+        # andy owns Peace Offering and one loose Brainstorm: their cards cost $0, whether --player or the environment
+        decks.save_collection(self.root, "andy", precons=["Peace Offering"], cards=[[1, "Brainstorm"]])
+        self.assertEqual(self.run_cli("upgrade", self.deck, "--player", "Andy").code, 0)      # typed as the pages do
+        self.assertEqual(self.owned(), {"Sol Ring", "Skullclamp", "Chatterfang, Squirrel General", "Brainstorm"})
+        with mock.patch.object(config, "PLAYER", "andy"):
+            self.assertEqual(self.run_cli("stats", self.deck).code, 0)
+        self.assertEqual(self.metrics.calls[-1][1]["owned"],
+                         {"Sol Ring", "Skullclamp", "Chatterfang, Squirrel General", "Brainstorm"})
+
+    def test_a_precon_in_the_collection_that_cannot_be_found_names_the_file_to_fix(self):
+        # a hand edit misspelled a precon: exit 1, as --owned-precon would, but pointing at the collection file
+        decks.save_collection(self.root, "andy", precons=["Peace Ofering Typo Box"])
+        result = self.run_cli("upgrade", self.deck, "--player", "andy")
+        self.assertEqual(result.code, 1)
+        self.assertIn(f"andy's collection ({os.path.join(self.root, 'andy', 'collection.json')}) lists a precon that "
+                      "cannot be found: unknown precon 'Peace Ofering Typo Box'", result.err)
+
+    def test_a_damaged_collection_is_exit_one_naming_the_file(self):
+        os.makedirs(os.path.join(self.root, "andy"))
+        self.file(os.path.join("andy", "collection.json"), "{ not json")
+        result = self.run_cli("build", "Hazel of the Rootbloom", "--player", "andy")
+        self.assertEqual(result.code, 1)
+        self.assertIn("collection.json could not be read", result.err)
+
+    def test_an_owned_file_may_be_a_collection_whose_precons_are_opened(self):
+        # --owned andy's collection file: Family Matters' cards and the loose Brainstorm
+        path = self.file("mine.json", json.dumps({"schema": 1, "kind": "collection", "precons": ["Family Matters"],
+                                                  "cards": [[1, "Brainstorm"]]}))
+        self.assertEqual(self.run_cli("upgrade", self.deck, "--owned", path).code, 0)
+        self.assertEqual(self.owned(), {"Sol Ring", "Arcane Signet", "Pir, Imaginative Rascal", "Brainstorm"})
+
+    def test_a_saved_version_refuses_the_player_flag(self):
+        # stats --version takes the player's collection from the version's own player, so --player is refused
+        result = self.run_cli("stats", "--version", "andy/go-wide", "--player", "albert")
+        self.assertEqual(result.code, 1)
+        self.assertIn("cannot be combined with --player", result.err)
+
+
+class OwnedFromTests(OwnedCase):
+    def test_upgrade_json_names_the_box_of_each_free_card_and_every_swap_has_the_key(self):
+        # Sol Ring is free because andy owns Peace Offering; Brainstorm is a loose card (owned, from no box); Demonic
+        # Tutor is bought
+        decks.save_collection(self.root, "andy", precons=["Peace Offering"], cards=[[1, "Brainstorm"]])
+        self.swaps(("Sol Ring", True), ("Brainstorm", True), ("Demonic Tutor", False))
+        result = self.run_json("upgrade", self.deck, "--player", "andy")
+        self.assertEqual([(s["add"], s["owned_from"]) for s in result["swaps"]],
+                         [("Sol Ring", ["Peace Offering"]), ("Brainstorm", []), ("Demonic Tutor", [])])
+
+    def test_the_report_says_which_box_one_two_or_many(self):
+        # Sol Ring is in all three boxes, Skullclamp in Peace Offering alone, Arcane Signet in Family Matters alone
+        self.swaps(("Sol Ring", True), ("Skullclamp", True), ("Arcane Signet", True))
+        out = self.run_cli("upgrade", self.deck, "--owned-precon", "Peace Offering").out
+        self.assertIn("ADD Sol Ring   +0.42  $0.00  (owned, from Peace Offering)", out)
+        out = self.run_cli("upgrade", self.deck, "--owned-precon", "Peace Offering", "--owned-precon",
+                           "Family Matters").out
+        self.assertIn("ADD Sol Ring   +0.42  $0.00  (owned, from Family Matters or Peace Offering)", out)
+        self.assertIn("ADD Skullclamp   +0.42  $0.00  (owned, from Peace Offering)", out)
+        decks.save_collection(self.root, "andy", precons=["Peace Offering", "Family Matters", "Animated Army"])
+        out = self.run_cli("upgrade", self.deck, "--player", "andy").out
+        self.assertIn("ADD Sol Ring   +0.42  $0.00  (owned, from Animated Army, Family Matters or 1 more)", out)
+
+    def test_the_decks_own_cards_come_from_no_box(self):
+        # Mind Stone is in the deck being upgraded and in a box andy owns: it is the deck's, not the box's
+        BOXES["mind box"] = ("Mind Box", ["Hazel of the Rootbloom"], [(1, "Mind Stone")])
+        self.addCleanup(BOXES.pop, "mind box")
+        self.swaps(("Mind Stone", True))
+        result = self.run_json("upgrade", self.deck, "--owned-precon", "Mind Box")
+        self.assertEqual(result["swaps"][0]["owned_from"], [])
+
+    def test_build_names_the_box_of_each_owned_card(self):
+        # the build fixture owns Sol Ring: with Peace Offering it is from that box, and every card has the key
+        result = self.run_json("build", "Hazel of the Rootbloom", "--owned-precon", "Peace Offering")
+        sol = next(c for c in result["cards"] if c["name"] == "Sol Ring")
+        self.assertEqual(sol["owned_from"], ["Peace Offering"])
+        self.assertTrue(all("owned_from" in c for c in result["cards"]))
+        self.assertEqual({tuple(c["owned_from"]) for c in result["cards"] if c["name"] != "Sol Ring"}, {()})
+        text = self.run_cli("build", "Hazel of the Rootbloom", "--owned-precon", "Peace Offering").out
+        self.assertEqual(" ".join(next(line for line in text.splitlines() if line.startswith("  Sol Ring")).split()),
+                         "Sol Ring 0.86 $0.00 owned, from Peace Offering; ramp")
+
+
+class CollectionCommandTests(OwnedCase):
+    def collection(self, *argv):
+        return self.run_cli("collection", *argv)
+
+    def stored(self, player="andy"):
+        return decks.collection(self.root, player)
+
+    def test_adding_a_precon_makes_the_file_and_stores_the_name_mtgjson_gives_it(self):
+        # 'peace offering' typed in lower case is stored as Peace Offering, and the report lists it with its commander
+        result = self.collection("--player", "andy", "--add-precon", "peace offering")
+        self.assertEqual(result.code, 0, result.err)
+        self.assertEqual(self.stored()["precons"], ["Peace Offering"])
+        self.assertIn(f"andy's collection, in:\n  {os.path.join(self.root, 'andy', 'collection.json')}", result.out)
+        self.assertIn("Made a new collection file for andy.", result.out)
+        self.assertIn("Added Peace Offering.", result.out)
+        self.assertIn("Peace Offering  (Chatterfang, Squirrel General)", result.out)
+        self.assertIn("Loose cards: 0", result.out)
+
+    def test_adding_one_already_there_changes_nothing_and_says_so(self):
+        decks.save_collection(self.root, "andy", precons=["Peace Offering"], now="2026-10-19T12:00:00Z")
+        result = self.collection("--player", "andy", "--add-precon", "Peace Offering", "--json")
+        self.assertEqual(result.code, 0, result.err)
+        answer = json.loads(result.out)
+        self.assertEqual(answer["notes"], ["Peace Offering is already in the collection; nothing changed."])
+        self.assertEqual(self.stored()["updated"], "2026-10-19T12:00:00Z")          # not written again
+
+    def test_removing_matches_a_stored_name_ignoring_case_and_an_unknown_one_lists_what_is_stored(self):
+        decks.save_collection(self.root, "andy", precons=["Peace Offering", "Family Matters"], cards=[[1, "Sol Ring"]])
+        result = self.collection("--player", "andy", "--remove-precon", "FAMILY MATTERS")
+        self.assertEqual(result.code, 0, result.err)
+        self.assertIn("Removed Family Matters.", result.out)
+        self.assertEqual((self.stored()["precons"], self.stored()["cards"]), (["Peace Offering"], [[1, "Sol Ring"]]))
+        result = self.collection("--player", "andy", "--add-precon", "Family Matters", "--remove-precon", "Nope")
+        self.assertEqual(result.code, 1)
+        self.assertIn("andy's collection has no precon called 'Nope'. It holds: Peace Offering; Family Matters.",
+                      result.err)
+        self.assertEqual(self.stored()["precons"], ["Peace Offering"])                # nothing written
+
+    def test_json_lists_each_precon_with_its_commanders_and_the_loose_cards(self):
+        # Animated Army was just looked up; a precon whose list is not cached shows no commanders (None)
+        decks.save_collection(self.root, "andy", precons=["Unlisted Box"], cards=[[1, "Sol Ring"], [2, "Forest"]])
+        answer = json.loads(self.collection("--player", "andy", "--add-precon", "Animated Army", "--json").out)
+        self.assertEqual((answer["command"], answer["player"], answer["path"]),
+                         ("collection", "andy", os.path.join(self.root, "andy", "collection.json")))
+        self.assertEqual(answer["precons"], [{"name": "Unlisted Box", "commanders": None},
+                                             {"name": "Animated Army", "commanders": ["Thrasios, Triton Hero"]}])
+        self.assertEqual((answer["cards"], answer["card_count"]), ([[1, "Sol Ring"], [2, "Forest"]], 3))
+        self.assertEqual(answer["notes"], ["Added Animated Army."])
+        self.assertTrue(answer["updated"])
+
+    def test_the_player_comes_from_the_environment_and_without_one_is_exit_one(self):
+        with mock.patch.object(config, "PLAYER", "albert"):
+            self.assertEqual(self.collection("--add-precon", "Family Matters").code, 0)
+        self.assertEqual(self.stored("albert")["precons"], ["Family Matters"])
+        result = self.collection()
+        self.assertEqual(result.code, 1)
+        self.assertIn("--player NAME, or set MTG_COMMANDER_PLAYER", result.err)
+
+    def test_an_unknown_precon_to_add_is_exit_one_with_close_names(self):
+        result = self.collection("--player", "andy", "--add-precon", "Nope")
+        self.assertEqual(result.code, 1)
+        self.assertIn("unknown precon 'Nope'", result.err)
+        self.assertFalse(os.path.exists(os.path.join(self.root, "andy", "collection.json")))
+
+
+class JsonDeckfileTests(OwnedCase):
+    def test_a_json_deck_file_is_checked_like_a_text_one(self):
+        path = self.file("deck.json", json.dumps({"commanders": ["Hazel of the Rootbloom"],
+                                                  "cards": [[1, "Sol Ring"], {"name": "Forest", "count": 98}]}))
+        result = self.run_json("check", path)
+        self.assertEqual(result["deck"], {"name": "deck.json", "commanders": ["Hazel of the Rootbloom"], "count": 100,
+                                          "ci": "BG"})
+
+    def test_a_saved_version_file_is_its_base_deck_with_its_changes(self):
+        # andy's version cut one Forest for Cultivate; the base deck is found two folders up from the file
+        decks.new_base(self.root, name="Small", commanders=["Hazel of the Rootbloom"],
+                       cards=[(1, "Sol Ring"), (98, "Forest")], source={"type": "paste"}, created_by="andy", db=self.db)
+        decks.new_version(self.root, player="andy", name="Go wide", base_id="small", settings={})
+        decks.apply(self.root, "andy", "go-wide", {"op": "swap", "cut": "Forest", "add": "Cultivate"}, revision=0,
+                    db=self.db)
+        self.run_json("upgrade", os.path.join(self.root, "andy", "go-wide.json"))
+        deck = self.engine.calls["upgrade"][0][1]
+        self.assertEqual(deck["cards"], [(1, "Sol Ring"), (97, "Forest"), (1, "Cultivate")])
+
+    def test_a_version_whose_base_deck_is_gone_is_exit_one_naming_it(self):
+        path = self.file("go-wide.json", json.dumps({"schema": 1, "kind": "version", "base": "small", "changes": []}))
+        result = self.run_cli("check", path)
+        self.assertEqual(result.code, 1)
+        self.assertIn('saved version of the base deck "small"', result.err)
+
+    def test_a_collection_is_not_a_deck(self):
+        path = self.file("mine.json", json.dumps({"schema": 1, "kind": "collection", "precons": []}))
+        result = self.run_cli("stats", path)
+        self.assertEqual(result.code, 1)
+        self.assertIn("a collection is not a deck", result.err)
+        self.assertIn("give it to --owned instead", result.err)
+
+    def test_malformed_json_is_exit_one_with_the_line_and_column(self):
+        result = self.run_cli("check", "-", stdin='{"cards": [\n  [1, "Sol Ring"]\n  [1, "Forest"]\n]}')
+        self.assertEqual(result.code, 1)
+        self.assertIn("Standard input starts like JSON but is not valid JSON", result.err)
+        self.assertIn("line 3, column 3", result.err)
 
 # ----------------------------------------------------------------------------- serve
 class ServeTests(CliCase):

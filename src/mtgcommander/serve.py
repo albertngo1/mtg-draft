@@ -6,7 +6,8 @@ they know comes from the answers below, so each formula exists once, in Python. 
 `"schema": 1`, except the page files.
 
     GET   /api/status                         when each data source was read; the server's settings; the deck files git
-                                              does not have yet (read only, 2 second limit; a note when git cannot say)
+                                              does not have yet (read only, 2 second limit; a note when git cannot say,
+                                              or when git ignores the decks folder)
     GET   /api/players                        the players (the folders under the decks folder)
     GET   /api/menu                           the playstyles and common themes a version's settings choose from
     GET   /api/decks?player=NAME              that player's versions, newest first, each with its headline numbers
@@ -30,8 +31,9 @@ they know comes from the answers below, so each formula exists once, in Python. 
                                               in its place
 
 A deck's numbers need the engine's data (card scores, tags, combos, prices). The first time a deck is opened, and
-whenever its bracket, themes, playstyle, keep-fun choice or owned precons change, that data is prepared on a background
-thread (one at a time in the whole server). Until it is ready the deck answers 202
+whenever its bracket, themes, playstyle, keep-fun choice or owned precons change, or the precons and loose cards of its
+player's collection file (<decks>/<player>/collection.json, read afresh on every request; see `deck_key`), that data is
+prepared on a background thread (one at a time in the whole server). Until it is ready the deck answers 202
 {"status": "preparing", "progress": {"requests", "message"}, "revision"}: `requests` is the number of web requests made
 since this deck's preparation began, and the page asks again until it gets 200. (A deck that is ready within 0.3
 seconds is simply sent.) Every route that needs a ready deck (a change, a search, a card sheet, suggestions) does
@@ -68,11 +70,18 @@ rule is still swapped out, marked required, which an `include` would not allow),
 beside the player's own `include` and `exclude`. The answer's `changes_kept` is {"added", "cut"}, how many cards of
 each. The Changes tab's Undo is how a player reconsiders one.
 
+What a player owns costs nothing: the base deck's cards, the cards of each precon they own (the version's
+owned_precons setting and the precons of their collection) and their collection's loose cards. A card that is free
+because it came in one of those precons names the box: its card object and a suggested swap that adds it carry
+`owned_from`, the precons it came in (decklist.attach_owned_from; empty for a base deck card or a loose card).
+
 A card object (everywhere a card appears): name, front, image, image_back, scryfall_uri, type, cost, cmc, ci (color
-identity letters), price (cheapest printing; null when nothing prices it), owned. In a deck's list it also has count,
-section, new (added since the base deck), score, roles and gc (Game Changer). A deck answer has: version (its fields
-and its change log, each change marked `undone`), base, spec (the settings as the engine reads them), commanders,
-cards, card_count, diff, cut_cards (the base deck's cards that were cut), metrics, warnings and sources.
+identity letters), price (cheapest printing; null when nothing prices it), owned, owned_from. In a deck's list it also
+has count, section, new (added since the base deck), score, roles and gc (Game Changer). A deck answer has: version
+(its fields and its change log, each change marked `undone`), base, spec (the settings as the engine reads them),
+commanders, cards, card_count, diff, cut_cards (the base deck's cards that were cut), other_owned_precons (the precons
+the player owns besides the base deck's own: the setting's, then the collection's, each once), metrics, warnings and
+sources.
 
 There is no login. The server only checks where a request comes from, so a web page from another site cannot use it
 through the player's browser:
@@ -86,7 +95,8 @@ through the player's browser:
 - ids in an address are checked by the decks module, and a page file's path cannot leave src/mtgcommander/web/;
 - a request body is at most 1 MB.
 Anyone who can reach the address can still change every deck, so listen on this computer only, or on a Tailscale
-address, unless the network is trusted. Run one server per repo: the deck files have no lock between processes.
+address, unless the network is trusted. Run one server per decks folder: the deck files have no lock between
+processes.
 
 Test switches (environment variables, all off by default) make the server slow, refuse or fail:
 - MTG_SERVE_DELAY=SECONDS     wait this long after doing the work of each API request, then answer (a slow network: a
@@ -257,6 +267,15 @@ def settings_key(doc):
     return json.dumps([settings.get(name) for name in PREPARE_SETTINGS], sort_keys=True)
 
 
+def deck_key(doc, collection):
+    """What a deck's prepared data depends on: its settings (settings_key) and what its player's collection holds (the
+    precons and the loose cards, not when the file was saved), as text to compare. A session whose workspace was built
+    for another key prepares again, so an edit to collection.json reaches a deck the next time it is asked for, with
+    no restart, exactly as a change of its settings does."""
+    return json.dumps([settings_key(doc), collection.get("precons") or [], collection.get("cards") or []],
+                      sort_keys=True)
+
+
 def _dollars(value, what):
     if value is not None and not (_number(value) and value >= 0):
         raise decks.Invalid(f"The {what} must be an amount of dollars, zero or more.")
@@ -295,7 +314,14 @@ def _is_address(name):
 def git_uncommitted(root):
     """(files, note): the deck files under `root` that git sees as new or changed, as git prints them (from the top
     folder of the repository), and why the list is empty when git cannot say. Read only: git is told not to take its
-    index lock, and gets GIT_TIMEOUT seconds."""
+    index lock, and gets GIT_TIMEOUT seconds for each of its (at most two) runs.
+
+    Decks are each player's own data, so the default folder, commander/decks/ in this repo, is in its .gitignore, and a
+    player keeps decks under version control by pointing --decks or MTG_COMMANDER_DECKS at a folder that is its own
+    git repository. Git's answer is then about that repository. Two cases would otherwise read as "everything is
+    committed": a folder git ignores (git lists nothing in it), and a folder in no repository at all (git fails). Each
+    gets a note instead. Whether git ignores the folder is asked only when git listed nothing, with
+    `git check-ignore -- .`, which prints the folder when it is ignored."""
     if not os.path.isdir(root):
         return [], None                                         # no deck was ever saved here
     env = dict(os.environ, GIT_OPTIONAL_LOCKS="0")
@@ -311,8 +337,26 @@ def git_uncommitted(root):
         return [], f"git could not be run ({e.strerror or e}), so the uncommitted deck files were not listed."
     if done.returncode != 0:
         why = (done.stderr.strip().splitlines() or ["no reason given"])[0]
+        if "not a git repository" in why:
+            return [], ("this folder is not a git repository (nor inside one), so nothing tracks its deck files. To "
+                        "keep them under version control, run git init in it.")
         return [], f"git could not list the uncommitted deck files ({why})."
-    return [line[3:].split(" -> ")[-1] for line in done.stdout.splitlines() if len(line) > 3], None
+    files = [line[3:].split(" -> ")[-1] for line in done.stdout.splitlines() if len(line) > 3]
+    if not files and _git_ignores(root, env):
+        return [], ("git ignores this folder (a .gitignore names it), so its deck files are not tracked. To keep "
+                    "them under version control, use --decks or MTG_COMMANDER_DECKS to name a folder that is its own "
+                    "git repository.")
+    return files, None
+
+
+def _git_ignores(root, env):
+    """Whether git ignores the folder `root` itself. Any failure counts as no: the note is a courtesy."""
+    try:
+        done = subprocess.run(["git", "-C", root, "check-ignore", "--", "."], capture_output=True, text=True,
+                              encoding="utf-8", errors="replace", env=env, timeout=GIT_TIMEOUT)
+    except (OSError, subprocess.TimeoutExpired):
+        return False
+    return done.returncode == 0 and bool(done.stdout.strip())
 
 
 def load_attributes(names, db, **kw):
@@ -423,22 +467,27 @@ class Workspace:
     the cards that context has scored, what the player owns, the attribute tags and prices looked up so far, and the
     metrics of the base deck (the "before" of every number).
 
-    It is built once when a deck is first opened and again when its settings change. After that a change to the card
-    list only extends it: a card the context has not scored is scored by preparing again, offline (about 0.13 s), so
-    a tap never waits on a download. A workspace never writes a deck file, so the deck list builds one to look at
-    and throws it away. Its methods run under the lock of the session that holds it."""
+    It is built once when a deck is first opened and again when its settings or its player's collection change (its
+    `key` is deck_key). After that a change to the card list only extends it: a card the context has not scored is
+    scored by preparing again, offline (about 0.13 s), so a tap never waits on a download. A workspace never writes a
+    deck file, so the deck list builds one to look at and throws it away. Its methods run under the lock of the
+    session that holds it."""
 
     def __init__(self, app, player, doc):
-        self.app, self.player, self.key = app, player, settings_key(doc)
+        self.app, self.player = app, player
+        self.collection, collection_note = app.collection_of(player)     # read once: the key and _owned agree
+        self.key = deck_key(doc, self.collection)
         self.base = decks.base(app.root, doc["base"])
         self.baseline = decks.current(self.base, {"changes": []}, app.db)     # the base deck as the index spells it now
         self.commanders = list(self.baseline["commanders"])
         self.spec, self.spec_warnings = fantasy.validate_spec(doc["settings"], fantasy.menu())
         self.ctx = None
         self.known, self.owned = set(), set()          # names given to prepare so far; names that cost the player $0
+        self.owned_from = {}                           # {card: [the precons it came in]}, for "owned, from X"
+        self.precons = self._precons_owned(doc)        # every precon the player owns, each once
         self.attrs, self.prices, self._priced = {}, {}, set()      # attrs is None when the tag data is unavailable
         self.base_result = None
-        self.notes = []                                # warnings from building, kept for every answer
+        self.notes = [collection_note] if collection_note else []  # warnings from building, kept for every answer
         self.combo_info = None                         # (fetched, cache) of the last combo answer
 
     # --- building
@@ -467,10 +516,29 @@ class Workspace:
                                 deck_cards=sorted(self.known), owned=sorted(self.owned), sources=self.app.sources,
                                 refresh=refresh, offline=offline)
 
+    def _precons_owned(self, doc):
+        """The precons the player owns, each once (by name, ignoring case and punctuation): the version's owned_precons
+        setting first, then the precons of the player's collection."""
+        found = {}
+        for name in list(doc["settings"].get("owned_precons") or []) + list(self.collection["precons"]):
+            found.setdefault(carddb.normalize(name), name)
+        return list(found.values())
+
+    def other_owned_precons(self):
+        """The precons the player owns besides the one the base deck was made from (whose cards the base deck's own
+        already are): what the page means by "you own N other decks"."""
+        source = self.base.get("source") or {}
+        own = carddb.normalize(source.get("name")) if source.get("type") == "precon" else None
+        return [name for name in self.precons if carddb.normalize(name) != own]
+
     def _owned(self, doc, offline):
-        """The base deck's cards and commanders, and the cards of each precon in the settings' owned_precons."""
-        owned = {n for _, n in self.baseline["cards"]} | set(self.commanders)
-        for name in doc["settings"].get("owned_precons") or []:
+        """The base deck's cards and commanders, the cards of each precon the player owns (`precons`: the settings'
+        owned_precons and the collection's) and the collection's loose cards. It also sets `owned_from`, the precons
+        each card came in, except for the base deck's own cards, which are not "from a box"."""
+        db = self.app.db
+        own = {n for _, n in self.baseline["cards"]} | set(self.commanders)
+        owned, boxes = set(own), {}
+        for name in self.precons:
             try:
                 deck = self.app.precon(name, offline=offline)
             except (decklist.UnknownPrecon, net.FetchError) as e:
@@ -478,8 +546,19 @@ class Workspace:
                 self.notes.append(f'The precon "{name}" you own could not be read ({why}), so its cards count as '
                                   "cards you do not own.")
                 continue
-            owned |= {card for _, card in deck["cards"]} | set(deck["commanders"])
-        return {rec["name"] for rec in (self.app.db.get(n) for n in owned) if rec is not None}
+            cards = {card for _, card in deck["cards"]} | set(deck["commanders"])
+            owned |= cards
+            for rec in (db.get(card) for card in cards):
+                if rec is not None:
+                    boxes.setdefault(rec["name"], set()).add(deck["name"])
+        loose = [card for _, card in self.collection["cards"]]
+        unknown = [card for card in loose if db.get(card) is None]
+        if unknown:
+            self.notes.append(f"{len(unknown)} card name(s) in your collection are not in the card index and count as "
+                              f"cards you do not own: {', '.join(unknown[:5])}" + (", ..." if len(unknown) > 5 else ""))
+        owned |= set(loose)
+        self.owned_from = decklist.boxes_of(boxes, own={rec["name"] for rec in map(db.get, own) if rec is not None})
+        return {rec["name"] for rec in (db.get(n) for n in owned) if rec is not None}
 
     def ensure_scored(self, current):
         """Score the cards of `current` that the context has not seen (a card just added, or one an old log brings
@@ -583,14 +662,17 @@ class Workspace:
         return "Basic" in rec["types"] or rec["name"] in self.owned
 
     def tile(self, name):
-        """The card object: what a page needs to draw the card wherever it appears."""
+        """The card object: what a page needs to draw the card wherever it appears. `owned_from` names the precons a
+        free card came in (empty when it is not owned, or is owned another way)."""
         rec = self.app.db.get(name)
         if rec is None:                                         # a name the card index no longer knows
             return {"name": name, "front": name, "image": "", "image_back": "", "scryfall_uri": "", "type": "",
-                    "cost": "", "cmc": 0, "ci": "", "price": None, "owned": False}
+                    "cost": "", "cmc": 0, "ci": "", "price": None, "owned": False, "owned_from": []}
+        owned = self.is_owned(rec)
         return {"name": rec["name"], "front": rec["front"], "image": rec["image"], "image_back": rec["image_back"],
                 "scryfall_uri": rec["scryfall_uri"], "type": rec["type_line"], "cost": rec["mana_cost"],
-                "cmc": rec["cmc"], "ci": rec["ci"], "price": self.price_of(rec), "owned": self.is_owned(rec)}
+                "cmc": rec["cmc"], "ci": rec["ci"], "price": self.price_of(rec), "owned": owned,
+                "owned_from": list(self.owned_from.get(rec["name"], ())) if owned else []}
 
     def score_of(self, name):
         return self.ctx["scores"].get(self.app.db.resolve(name) or name)
@@ -816,10 +898,11 @@ class DeckSession:
 
     # --- preparing
     def start(self, doc):
-        """Begin preparing in the background unless the deck is ready for these settings, a preparation is under way,
-        or the error of one has not been reported yet."""
+        """Begin preparing in the background unless the deck is ready for these settings (and this collection), a
+        preparation is under way, or the error of one has not been reported yet."""
+        key = self.app.deck_key(doc)
         with self._guard:
-            if self.state in ("preparing", "failed") or (self.state == "ready" and self.ws.key == settings_key(doc)):
+            if self.state in ("preparing", "failed") or (self.state == "ready" and self.ws.key == key):
                 return
             self.state, self.stage = "preparing", "waiting"
             self.done.clear()
@@ -855,11 +938,12 @@ class DeckSession:
     def check(self, doc):
         """Return when the deck is ready for the version's settings. Otherwise raise: the error of a failed
         preparation (once; the next request tries again) or Preparing, the 202 answer."""
+        key = self.app.deck_key(doc)
         with self._guard:
             if self.state == "failed":
                 error, self.state, self.error = self.error, "idle", None
                 raise error
-            ready = self.state == "ready" and self.ws.key == settings_key(doc)
+            ready = self.state == "ready" and self.ws.key == key
         if not ready:
             raise Preparing({"status": "preparing", "progress": self.progress(), "revision": doc["revision"]})
 
@@ -893,6 +977,7 @@ class DeckSession:
                "cards": [ws.deck_card(n, name, added) for n, name in current["cards"]],
                "card_count": sum(n for n, _ in current["cards"]) + len(current["commanders"]),
                "diff": difference, "cut_cards": [dict(ws.tile(name), count=n) for n, name in difference["cut"]],
+               "other_owned_precons": ws.other_owned_precons(),
                "metrics": ws.measure(current, doc, combos),
                "warnings": unique(ws.spec_warnings + ws.notes + notes + list(ws.ctx.get("warnings") or [])
                                   + drain(carddb.WARNINGS, roles.WARNINGS, decks.WARNINGS)),
@@ -920,8 +1005,9 @@ class DeckSession:
     def listing(self, doc):
         """(headline, net cost of the changes) for the deck list: from the open deck if it is ready, else from a
         preparation tried offline and remembered for this revision; (None, None) when that would need the network."""
+        key = self.app.deck_key(doc)
         with self._guard:
-            ready = self.state == "ready" and self.ws.key == settings_key(doc)
+            ready = self.state == "ready" and self.ws.key == key
         if not ready:
             return self.app.offline_headline(self.player, doc)
         with self.lock:
@@ -944,7 +1030,8 @@ class App:
         precon_names()                                        every precon's name               decklist.precon_names
         uncommitted(root)                                     (deck files git lacks, a note)          git_uncommitted
 
-    `refresh` re-downloads a deck's data when the deck is first opened, and only then: a server that re-downloaded on
+    `root` is the decks folder: base decks, versions and each player's collection file (decks.py). `refresh`
+    re-downloads a deck's data when the deck is first opened, and only then: a server that re-downloaded on
     every tap would hammer the sites. `wait` is how long a request waits for a preparation before answering 202. `web`
     is the folder of page files, or None. `log(line)` receives a line for each request and each problem."""
 
@@ -995,6 +1082,20 @@ class App:
     def session(self, player, version_id):
         with self._lock:
             return self._sessions.setdefault((player, version_id), DeckSession(self, player, version_id))
+
+    def collection_of(self, player):
+        """(the player's collection, a note or None), read from its file now. A file that cannot be read does not stop
+        the player's decks from opening: it counts as an empty collection, and the note says so."""
+        try:
+            return decks.collection(self.root, player), None
+        except ValueError as e:
+            empty = {"player": player, "precons": [], "cards": []}
+            return empty, (f"Your collection file could not be read ({e}), so its precons and cards count as cards "
+                           "you do not own.")
+
+    def deck_key(self, doc):
+        """deck_key of a version with its player's collection as the file holds it now."""
+        return deck_key(doc, self.collection_of(doc["player"])[0])
 
     # --- who may ask
     def host_allowed(self, header):
@@ -1132,7 +1233,7 @@ class App:
     def offline_headline(self, player, doc):
         """(headline, net cost) from a workspace built offline for a deck nobody has opened yet, remembered for the
         revision and settings it was built for. (None, None) when the cache lacks something it needs."""
-        key, stamp = (player, doc["id"]), (doc["revision"], settings_key(doc))
+        key, stamp = (player, doc["id"]), (doc["revision"], self.deck_key(doc))
         with self._lock:
             cached = self._listing.get(key)
         if cached and cached[0] == stamp:
@@ -1180,10 +1281,13 @@ class App:
             if commander is not None and not (isinstance(commander, str) or (
                     isinstance(commander, list) and all(isinstance(c, str) for c in commander))):
                 raise decks.DeckError('"commander" must be a card name, or a list of two names for partners.')
-            parsed = decks.parse_list(body["list"], self.db, commander=commander)
-            if parsed["problems"]:
-                raise decks.Invalid(f"{len(parsed['problems'])} line(s) of the list could not be read.",
-                                    parsed["problems"])
+            parsed = decks.parse_list(body["list"], self.db, commander=commander, root=self.root)
+            problems = parsed["problems"]
+            if problems and decklist.looks_like_json(body["list"]):     # JSON has names to fix, not lines
+                raise decks.Invalid(f"The card index does not know {', '.join(p['text'] for p in problems)}.",
+                                    problems)
+            if problems:
+                raise decks.Invalid(f"{len(problems)} line(s) of the list could not be read.", problems)
             made = {"name": None, "commanders": parsed["commanders"], "cards": parsed["cards"],
                     "source": {"type": "paste"}}
         base = decks.new_base(self.root, name=body.get("name") or made["name"], commanders=made["commanders"],
@@ -1262,6 +1366,7 @@ class App:
                               combos_fn=lambda commanders, names: self.combos(commanders, names, identity=snap.colors))
         result = dict(result, revision=doc["revision"], budget=budget, spent=snap.spent, left=left, over=over,
                       changes_kept={"added": len(snap.added), "cut": len(snap.cut)})
+        decklist.attach_owned_from(result, ws.owned_from)              # "you own it, from Peace Offering"
         result["warnings"] = unique(notes + list(result.get("warnings") or []) + drain(carddb.WARNINGS, roles.WARNINGS))
         mentioned = [x[k] for x in result.get("swaps") or [] for k in ("cut", "add")]
         mentioned += [x["card"] for x in (result.get("blocked") or []) + (result.get("cheap_adds") or [])]

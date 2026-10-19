@@ -1015,5 +1015,78 @@ class StatsTests(unittest.TestCase, WidthMixin):
         self.assertFits(text)
 
 
+
+class OwnedFromTests(unittest.TestCase, WidthMixin):
+    """A card that is free because it came in a precon the player owns names the box: one, two, or the first two of
+    many. Blood Artist is the upgrade fixture's owned add; Sol Ring is the build fixture's owned card."""
+
+    def setUp(self):
+        self.result = fixture("upgrade")
+        self.swap = self.result["swaps"][1]                   # CUT Poison-Tip Archer → ADD Blood Artist, owned
+
+    def test_the_box_phrase_for_one_two_and_many_boxes(self):
+        self.assertEqual(render.boxes_text(["Peace Offering"]), "from Peace Offering")
+        self.assertEqual(render.boxes_text(["Peace Offering", "Family Matters"]), "from Peace Offering or Family Matters")
+        self.assertEqual(render.boxes_text(["Peace Offering", "Family Matters", "A", "B", "C"]),
+                         "from Peace Offering, Family Matters or 3 more")
+        self.assertEqual((render.boxes_text([]), render.boxes_text(None)), ("", ""))
+
+    def test_an_owned_swap_names_its_box(self):
+        for boxes, mark in ((["Peace Offering"], "(owned, from Peace Offering)"),
+                            (["Peace Offering", "Family Matters"], "(owned, from Peace Offering or Family Matters)"),
+                            (["Peace Offering", "Family Matters", "A", "B", "C"],
+                             "(owned, from Peace Offering, Family Matters or 3 more)")):
+            with self.subTest(boxes=boxes):
+                self.swap["owned_from"] = boxes
+                text = render.text(self.result)          # a long mark moves the ADD to a line of its own
+                self.assertIn(f"ADD Blood Artist   +0.31  $0.00  {mark}", text)
+                self.assertFits(text)
+
+    def test_an_owned_swap_from_no_box_is_plain_owned(self):
+        # a loose card, or the --json key left empty
+        self.swap["owned_from"] = []
+        self.assertIn("ADD Blood Artist   +0.31  $0.00  (owned)", render.text(self.result))
+
+    def test_a_forced_swap_keeps_its_mark_apart_from_the_boxes(self):
+        # the boxes hold commas of their own, so a semicolon separates the two marks
+        self.swap.update(forced=True, owned_from=["Peace Offering", "Family Matters", "Animated Army"])
+        self.assertIn("(owned, from Peace Offering, Family Matters or 1 more; forced)", render.text(self.result))
+
+    def test_a_build_card_names_its_box_before_its_roles(self):
+        built = fixture("build")
+        sol = next(c for c in built["cards"] if c["name"] == "Sol Ring")
+        sol["owned_from"] = ["Peace Offering"]
+        self.assertEqual(" ".join(line_with(render.text(built), "  Sol Ring").split()),
+                         "Sol Ring 0.86 $0.00 owned, from Peace Offering; ramp")
+        sol["roles"] = []
+        self.assertEqual(" ".join(line_with(render.text(built), "  Sol Ring").split()),
+                         "Sol Ring 0.86 $0.00 owned, from Peace Offering")
+        # two boxes make the line too wide for a phone, so it wraps onto the next line instead
+        sol.update(owned_from=["Peace Offering", "Family Matters"], roles=["ramp"])
+        text = render.text(built)
+        self.assertIn("Sol Ring 0.86 $0.00 owned, from Peace Offering or Family Matters; ramp", " ".join(text.split()))
+        self.assertFits(text)
+
+
+class CollectionReportTests(unittest.TestCase, WidthMixin):
+    def test_the_file_the_changes_the_precons_and_the_loose_cards(self):
+        result = {"command": "collection", "player": "andy", "path": "/decks/andy/collection.json",
+                  "precons": [{"name": "Animated Army", "commanders": ["Ezio Auditore da Firenze"]},
+                              {"name": "Unlisted Box", "commanders": None}],
+                  "cards": [[1, "Sol Ring"]], "card_count": 1, "notes": ["Added Animated Army."], "warnings": [],
+                  "sources": {}}
+        text = render.text(result)
+        self.assertEqual(text.splitlines()[:7], ["andy's collection, in:", "  /decks/andy/collection.json",
+                                                 "  Added Animated Army.", "", "Precons (2):",
+                                                 "  Animated Army  (Ezio Auditore da Firenze)", "  Unlisted Box"])
+        self.assertIn("Loose cards: 1 (edit the file to change them)", text)
+        self.assertFits(text)
+
+    def test_an_empty_collection_says_how_to_add_to_it(self):
+        text = render.text({"command": "collection", "player": "andy", "path": "/x", "precons": [], "cards": [],
+                            "card_count": 0, "notes": []})
+        self.assertIn("Precons: none yet (add one with --add-precon NAME)", text)
+        self.assertIn("Loose cards: 0 (cards you own outside these precons; edit the file to add them)", text)
+
 if __name__ == "__main__":
     unittest.main()

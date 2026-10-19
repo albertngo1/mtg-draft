@@ -79,6 +79,23 @@ def _ci(ci):
     return ci or "colorless"
 
 
+def boxes_text(names):
+    """Where a free card comes from, in words: 'from Peace Offering', 'from Peace Offering or Family Matters', or with
+    more than two boxes 'from Peace Offering, Family Matters or 3 more'. "" when it came in no box."""
+    names = list(names or ())
+    if not names:
+        return ""
+    if len(names) <= 2:
+        return "from " + " or ".join(names)
+    return f"from {names[0]}, {names[1]} or {len(names) - 2} more"
+
+
+def _owned_mark(item):
+    """'owned', or 'owned, from Peace Offering' when the card is free because it came in a precon the player owns."""
+    boxes = boxes_text(item.get("owned_from"))
+    return f"owned, {boxes}" if boxes else "owned"
+
+
 def _wrap(text, indent=0, hang=2):
     """`text` as lines of at most WIDTH characters: the first indented `indent` spaces, the rest `hang` more."""
     return textwrap.wrap(text, WIDTH, initial_indent=" " * indent, subsequent_indent=" " * (indent + hang),
@@ -378,8 +395,9 @@ def check_report(result, verbose=False):
 def _swap_lines(rank, swap, verbose):
     forced, owned = bool(swap.get("forced")), bool(swap.get("owned"))
     tail = f"{_gain(swap.get('gain'))}  {_money(0.0 if owned else swap.get('price'))}"
-    marks = [m for m, on in (("owned", owned), ("forced", forced)) if on]
-    tail += f"  ({', '.join(marks)})" if marks else ""
+    marks = [m for m, on in ((_owned_mark(swap), owned), ("forced", forced)) if on]
+    # "(owned, forced)"; once a mark holds a comma of its own (the boxes), a semicolon keeps the two apart
+    tail += f"  ({('; ' if any(',' in m for m in marks) else ', ').join(marks)})" if marks else ""
     cut, add = swap.get("cut") or "?", swap.get("add") or "?"
     one = f"{rank:>2}  CUT {cut}  →  ADD {add}   {tail}"
     lines = [one] if len(one) <= WIDTH else [f"{rank:>2}  CUT {cut}", f"    ADD {add}   {tail}"]
@@ -556,7 +574,12 @@ def _card_row(card):
     name = card.get("name") or "?"
     score = f"{card['score']:>5.2f}" if card.get("score") is not None else " " * 5
     price = _money(0.0 if card.get("owned") else card.get("price"))
-    tail = ", ".join((["owned"] if card.get("owned") else []) + list(card.get("roles") or []))
+    roles = list(card.get("roles") or [])
+    tail = ", ".join(roles)
+    if card.get("owned"):
+        mark = _owned_mark(card)
+        # "owned, ramp"; when the mark names its boxes, a semicolon keeps them apart from the roles
+        tail = f"{mark}; {tail}" if roles and "," in mark else ", ".join([mark] + roles)
     return f"  {name:<{max(44, len(name) + 2)}}{score}{price:>9}" + (f"  {tail}" if tail else "")
 
 
@@ -906,9 +929,27 @@ def stats_report(result, verbose=False):
     return _done(lines + _warnings(result) + _footer(result))
 
 
+# ---------------------------------------------------------------- collection
+def collection_report(result, verbose=False):
+    """A player's collection: where the file is, what this run changed, each precon (with its commanders when the
+    precon's list was at hand) and how many loose cards the file holds."""
+    lines = [f"{result.get('player') or '?'}'s collection, in:", "  " + (result.get("path") or "?")]
+    lines += ["  " + note for note in result.get("notes") or []]
+    precons = result.get("precons") or []
+    lines += ["", f"Precons ({len(precons)}):" if precons else "Precons: none yet (add one with --add-precon NAME)"]
+    for p in precons:
+        leads = " + ".join(p.get("commanders") or [])
+        lines += _wrap(f"{p.get('name')}" + (f"  ({leads})" if leads else ""), indent=2, hang=4)
+    count = result.get("card_count") or 0
+    lines += ["", f"Loose cards: {count}" + (" (edit the file to change them)" if count else
+                                             " (cards you own outside these precons; edit the file to add them)")]
+    return _done(lines + _warnings(result) + _footer(result, evidence=False))
+
+
 # ---------------------------------------------------------------- dispatch
 REPORTS = {"check": check_report, "upgrade": upgrade_report, "build": build_report, "suggest": suggest_report,
-           "themes": themes_report, "warm": warm_report, "validate": validate_report, "stats": stats_report}
+           "themes": themes_report, "warm": warm_report, "validate": validate_report, "stats": stats_report,
+           "collection": collection_report}
 
 
 def text(result, verbose=None):

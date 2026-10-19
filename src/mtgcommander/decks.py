@@ -1,11 +1,13 @@
-"""Saved decks: base decks and each player's versions of them, kept as JSON files in the repo.
+"""Saved decks: base decks, each player's versions of them, and each player's collection, kept as JSON files.
 
 A *base deck* is where a deck starts, a precon or a pasted list; it is written once and never changes. A *version* is
-one player's copy of a base deck plus every change they made to it. Each is one file under `root` (config.DECKS, that
-is commander/decks/ in the repo):
+one player's copy of a base deck plus every change they made to it. A *collection* is what one player owns: the precons
+(by their MTGJSON names) and any loose cards. Each is one file under `root` (config.DECKS: MTG_COMMANDER_DECKS, or else
+commander/decks/ in the repo, which .gitignore keeps out of git, since decks are each player's own data):
 
     bases/<base-id>.json          a base deck
     <player>/<version-id>.json    a version, in its player's own folder
+    <player>/collection.json      the player's collection; "collection" is therefore never a version id
 
 Why a change log and not a card list. A version stores only its changes (add, cut, swap, group, undo). Its card list
 is the base's cards with the changes replayed in order (`current`), so the log and the list can never disagree, "cards
@@ -18,16 +20,17 @@ file holds names and changes only, never a score, price or other number a data s
 Who may change a file. `revision` counts a version's saved writes. Every change says which revision it was made on, and
 a stale one is refused (`Conflict`) before anything else is checked, so a phone and a desktop tab cannot overwrite each
 other. A threading lock per file covers each read, check and write. There is no lock between processes (`fcntl` does
-not exist on Windows, and the repo ships `.bat` launchers), so the files assume one server process per repo. Every
-write goes to a temporary file in the same folder that is then renamed over the old file, so a reader never sees half
-a file.
+not exist on Windows, and the repo ships `.bat` launchers), so the files assume one server process per decks folder.
+Every write goes to a temporary file in the same folder that is then renamed over the old file, so a reader never sees
+half a file.
 
 On disk a file is `json.dumps(indent=1, ensure_ascii=False)` with a newline at the end, except that each card of a
 base and each change of a version sits on one line, so a git diff shows one line per card or change. Keys come in this
 order (a key the tool does not know is kept, after these):
 
-    base      schema, kind, id, name, source, commanders, cards, created, created_by, ids
-    version   schema, kind, id, player, name, base, settings, revision, created, updated, notes, changes
+    base        schema, kind, id, name, source, commanders, cards, created, created_by, ids
+    version     schema, kind, id, player, name, base, settings, revision, created, updated, notes, changes
+    collection  schema, kind, player, precons, cards, updated            (each precon on its own line too)
 
 Every function that reads or writes files takes `root` first (tests pass a temporary folder), and the card index `db`
 where it needs card facts. Mistakes raise `DeckError` or one of its subclasses; each has a `status`, the HTTP code a web
@@ -39,6 +42,7 @@ from . import carddb, decklist, net
 
 SCHEMA = 1
 BASES = "bases"                  # the folder of base decks, which is why no player can be called "bases"
+COLLECTION = "collection"        # <player>/collection.json is the player's collection, so no version has this id
 ID_PATTERN = re.compile(r"[a-z0-9][a-z0-9-]{0,63}")   # an id is a file name, so only what slug() can make is allowed
 ID_MAX = 64
 # Names Windows keeps for devices: a file called con.json cannot be created there (the repo ships .bat launchers)
@@ -52,14 +56,16 @@ NAMES_SHOWN = 8                  # names listed in one message
 BASE_KEYS = ("schema", "kind", "id", "name", "source", "commanders", "cards", "created", "created_by", "ids")
 VERSION_KEYS = ("schema", "kind", "id", "player", "name", "base", "settings", "revision", "created", "updated",
                 "notes", "changes")
-KEY_ORDER = {"base": BASE_KEYS, "version": VERSION_KEYS}
-ONE_LINE_LISTS = ("cards", "changes")     # lists written with one item to a line
+COLLECTION_KEYS = ("schema", "kind", "player", "precons", "cards", "updated")
+KEY_ORDER = {"base": BASE_KEYS, "version": VERSION_KEYS, "collection": COLLECTION_KEYS}
+ONE_LINE_LISTS = ("cards", "changes", "precons")     # lists written with one item to a line
 # The fields the code relies on, per kind of file: field -> (type, default). A hand-edited file that leaves one out
 # gets the default; a default of None means the file cannot do without it.
 FILE_FIELDS = {
     "base": {"name": (str, None), "commanders": (list, []), "cards": (list, []), "ids": (dict, {})},
     "version": {"name": (str, None), "base": (str, None), "settings": (dict, {}), "revision": (int, 0),
                 "changes": (list, [])},
+    "collection": {"precons": (list, []), "cards": (list, [])},
 }
 COLOR_WORDS = {"W": "White", "U": "Blue", "B": "Black", "R": "Red", "G": "Green"}
 
@@ -137,6 +143,16 @@ def _check_player(player):
     if player == BASES:
         raise DeckError(f'"{BASES}" is the folder of base decks, so it cannot be a player name.')
     return player
+
+
+def _check_version_id(value):
+    """`value` if it can name a version. Besides being a valid id it cannot be "collection": a player's folder already
+    holds collection.json, the player's collection, and a version of that name would be the same file."""
+    _check_id("version", value)
+    if value == COLLECTION:
+        raise DeckError(f'"{COLLECTION}" cannot be a version id: each player\'s {COLLECTION}.json file holds the '
+                        "precons and cards they own. Pick another name.")
+    return value
 
 
 def _text(value, what):
@@ -220,9 +236,31 @@ def _read(path, kind):
         raise ValueError(f"{path} is not a {kind} file of schema {SCHEMA}, the only kind this version of the tool "
                          "reads.")
     _check_fields(doc, kind, path)
+    if kind == "collection":
+        return _check_collection(doc, path)
     doc["id"] = os.path.basename(path)[:-len(".json")]
     if kind == "version":
         doc["player"] = os.path.basename(os.path.dirname(path))
+    return doc
+
+
+def _check_collection(doc, path):
+    """A collection file as the code can trust it, else ValueError naming the file. Its player is the folder it sits
+    in: a file that names another player was copied from someone else's folder, so it is refused rather than read as
+    theirs, and one that names no player is given the folder's. Precons are names (text); loose cards are
+    [copies, name] pairs with at least one copy."""
+    folder = os.path.basename(os.path.dirname(path))
+    if doc.get("player", folder) != folder:
+        raise ValueError(f"{path} says it is {doc['player']!r}'s collection, but it is in the folder of {folder!r}.")
+    doc["player"] = folder
+    bad = [p for p in doc["precons"] if not isinstance(p, str) or not p.strip()]
+    if bad:
+        raise ValueError(f"{path} has a precon that is not a name: {bad[0]!r}. Each precon is its name as text.")
+    for entry in doc["cards"]:
+        if not (isinstance(entry, list) and len(entry) == 2 and isinstance(entry[0], int)
+                and not isinstance(entry[0], bool) and entry[0] >= 1 and isinstance(entry[1], str)
+                and entry[1].strip()):
+            raise ValueError(f'{path} has a card line that is not [copies, "Card name"]: {entry!r}.')
     return doc
 
 
@@ -275,6 +313,8 @@ def _load_all(folder, kind):
     for name in names:
         if not name.endswith(".json") or not ID_PATTERN.fullmatch(name[:-len(".json")]):
             continue                            # a temporary file, a stray note, a folder named by hand
+        if kind == "version" and name == COLLECTION + ".json":
+            continue                            # the player's collection sits beside the versions; it is not one
         try:
             doc = _read(os.path.join(folder, name), kind)
         except ValueError as e:
@@ -322,7 +362,7 @@ def versions(root, player):
 def version(root, player, version_id):
     """One version. Raises NotFound when the player or the version is missing."""
     _check_player(player)
-    doc = _read(_version_path(root, player, _check_id("version", version_id)), "version")
+    doc = _read(_version_path(root, player, _check_version_id(version_id)), "version")
     if doc is None:
         if not os.path.isdir(os.path.join(root, player)):
             raise NotFound(f'There is no player called "{player}".')
@@ -339,6 +379,61 @@ def _base_of(root, doc):
         return base(root, doc["base"])
     except NotFound:
         raise NotFound(f'The base deck "{doc["base"]}" of this version is missing; it should be in the {BASES} folder.')
+
+
+# ----------------------------------------------------------------------------- collections
+def collection_path(root, player):
+    """Where a player's collection file is (or would be): <root>/<player>/collection.json."""
+    return os.path.join(root, _check_player(player), COLLECTION + ".json")
+
+
+def _empty_collection(player):
+    return {"schema": SCHEMA, "kind": COLLECTION, "player": player, "precons": [], "cards": [], "updated": None}
+
+
+def collection(root, player):
+    """A player's collection: {"schema", "kind": "collection", "player", "precons": [names], "cards": [[copies,
+    name]], "updated"}. `precons` are the precons the player owns, each by the name MTGJSON gives it (decklist.precon
+    finds it); `cards` are loose cards they own outside those boxes, which only a hand edit adds. A player with no
+    collection file (or no folder) has an empty collection whose "updated" is None, so a caller never has to ask
+    first; os.path.exists(collection_path(...)) tells the two apart when it matters. A file that cannot be used
+    raises ValueError naming it, as a damaged deck file does."""
+    doc = _read(collection_path(root, player), COLLECTION)
+    return _empty_collection(player) if doc is None else doc
+
+
+def _precon_list(precons):
+    """The precon names to store, trimmed, each once (the first spelling of a name kept): a DeckError for anything
+    that is not a list of names."""
+    if not isinstance(precons, (list, tuple)) or not all(isinstance(p, str) and p.strip() for p in precons):
+        raise DeckError('"precons" must be a list of precon names.')
+    out = {}
+    for name in precons:
+        out.setdefault(carddb.normalize(name), name.strip())
+    return list(out.values())
+
+
+def save_collection(root, player, *, precons, cards=None, now=None):
+    """Save a player's collection with these precons and return it. `cards` replaces the loose cards when given
+    ([copies, name] pairs); left out, the file keeps the ones it has, since those are edited by hand. The player's
+    folder is made if it is missing, a key the tool does not know is kept, and the write is atomic like every other
+    (a temporary file renamed over the old one). A collection file that exists but cannot be read raises ValueError
+    and is left alone, so a typo in a hand edit is never written over."""
+    _check_player(player)
+    precons = _precon_list(precons)
+    if cards is not None:
+        if not isinstance(cards, (list, tuple)) or not all(isinstance(e, (list, tuple)) and len(e) == 2 for e in cards):
+            raise DeckError('"cards" must be a list of [copies, "Card name"] pairs.')
+        cards = [[_whole_number(n, "A card's count", 1), _text(name, "A card name")] for n, name in cards]
+    path = collection_path(root, player)
+    with _lock(path):
+        doc = _read(path, COLLECTION) or _empty_collection(player)
+        doc["precons"] = precons
+        if cards is not None:
+            doc["cards"] = cards
+        doc["updated"] = _stamp(now)
+        _write(path, doc)
+    return doc
 
 
 # ----------------------------------------------------------------------------- making base decks
@@ -424,16 +519,30 @@ def _base_id_for(name, given):
     return _check_id("base", given)
 
 
-def parse_list(text, db, *, commander=None):
+def parse_list(text, db, *, commander=None, root=None):
     """Read a pasted list: {"commanders": [name], "cards": [[copies, name]], "problems": [{"line", "text",
     "suggestions"}]}. Names are the card index's spelling. A problem is a line the tool could not use, with its line
     number (the first line is 1), the line as written and close card names; a caller shows these and lets the player
     fix or drop the lines. The list itself is read by decklist.parse and decklist.resolve, so every format they
-    accept works here, and `commander` names the commander when the list does not (decklist.resolve says how).
-    Nothing is saved; with no problems the result goes to new_base."""
+    accept works here, JSON included, and `commander` names the commander when the list does not (decklist.resolve
+    says how). Nothing is saved; with no problems the result goes to new_base.
+
+    A JSON list has no lines to fix one at a time (rewriting a line could break the JSON), so its problems are the
+    card names the index does not know, each with "line" None. JSON that cannot be read, a shape the tool does not
+    know and a collection (which is not a deck) are an Invalid saying so. A pasted saved version is replayed on its
+    base deck in `root`, the decks folder."""
     if not isinstance(text, str):
         raise DeckError("The pasted list must be text.")
-    parsed = decklist.parse(text)
+    if decklist.looks_like_json(text):
+        try:
+            parsed = decklist.parse(text, db=db, root=root, source="The pasted list")
+        except decklist.ListError as e:
+            raise Invalid(str(e))
+        resolved = decklist.resolve(parsed, db, commander=commander)
+        return {"commanders": resolved["commanders"], "cards": [[n, name] for n, name in resolved["cards"]],
+                "problems": [{"line": None, "text": u["name"], "suggestions": u["suggestions"]}
+                             for u in resolved["unknown"]]}
+    parsed = decklist.parse_text(text)
     resolved = decklist.resolve(parsed, db, commander=commander)
     close = {carddb.normalize(u["name"]): u["suggestions"] for u in resolved["unknown"]}
     if parsed["blank_split"]:
@@ -446,7 +555,7 @@ def parse_list(text, db, *, commander=None):
     for number, line in enumerate(text.splitlines(), 1):
         if not line.strip():
             continue
-        one = decklist.parse(line)             # on its own, a line gives the same name it gives in the whole list
+        one = decklist.parse_text(line)        # on its own, a line gives the same name it gives in the whole list
         raws = one["commanders"] + [raw for _, raw in one["cards"] + one["sideboard"]]
         unmatched = [carddb.normalize(raw) for raw in raws if carddb.normalize(raw) in close]
         if one["unparsed"] or unmatched:
@@ -481,7 +590,8 @@ def new_version(root, *, player, name, base_id, settings, version_id=None, now=N
     """Save a new version of a base deck, with no changes yet and revision 0, and return it. `player` is the folder
     name (lowercase letters, digits and hyphens; slug() makes one from a typed name). `settings` is an object holding
     the player's choices (bracket, budget, themes ...), stored as given. The version id defaults to slug(name); one
-    the player already has raises Conflict. NotFound if the base deck does not exist."""
+    the player already has raises Conflict, and "collection" is refused (DeckError): a player's folder holds their
+    collection under that name. NotFound if the base deck does not exist."""
     _check_player(player)
     name = _text(name, "The version's name")
     settings = _settings(settings)
@@ -489,7 +599,7 @@ def new_version(root, *, player, name, base_id, settings, version_id=None, now=N
         version_id = slug(name)
         if not version_id:
             raise DeckError(f'"{name}" has no letters or digits to make an id from; give an id as well.')
-    _check_id("version", version_id)
+    _check_version_id(version_id)
     base(root, _check_id("base", base_id))     # the base must exist
     stamp = _stamp(now)
     doc = {"schema": SCHEMA, "kind": "version", "id": version_id, "player": player, "name": name, "base": base_id,
@@ -855,7 +965,7 @@ def _version_to_change(root, player, version_id, revision):
     the caller's read, check and write are one step. This is rule 1 for every change: `revision` must be the file's,
     else Conflict (carrying the current revision) before anything else is looked at."""
     _check_player(player)
-    _check_id("version", version_id)
+    _check_version_id(version_id)
     revision = _whole_number(revision, '"revision" (the revision of the deck you are changing)')
     path = _version_path(root, player, version_id)
     with _lock(path):

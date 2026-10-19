@@ -116,6 +116,10 @@ python3 src/mtg-commander.py build "Hazel of the Rootbloom" --bracket 3 --budget
 
 # Every number about a deck in one report (see "Looking at a deck with stats" below)
 python3 src/mtg-commander.py stats --precon "Squirreled Away" --bracket 3 --theme tokens --playstyle aristocrats
+
+# Remember the precons you own, once; --player andy (or MTG_COMMANDER_PLAYER=andy) then makes their cards free
+python3 src/mtg-commander.py collection --player andy --add-precon "Animated Army"
+python3 src/mtg-commander.py upgrade --precon "Squirreled Away" --budget 75 --player andy
 ```
 
 Same launchers as the draft coach: `./mtg-commander.sh` on macOS/Linux, `mtg-commander.bat` on Windows. It needs
@@ -137,17 +141,37 @@ first run (or `warm`, ahead of time) also saves Commander Spellbook's daily comb
 function tags for card attributes (kept for 30 days), so later runs find a list's combos without asking the website and,
 with `--offline`, still show the numbers that need the tags.
 
+**Cards you own, and your collection.** Cards you own cost $0 in `upgrade`, `build`, `suggest` and `stats`, so the
+budget goes on cards you do not have. Name them for one run with `--owned FILE` (a decklist of your cards) or
+`--owned-precon NAME` (a precon box you own), or write them down once in your **collection**:
+`collection --player andy --add-precon "Animated Army"` keeps the precon in `andy/collection.json` in the saved-decks
+folder (below), and every later run with `--player andy`, or with `MTG_COMMANDER_PLAYER=andy` set in your environment,
+counts its cards as yours. `collection --player andy` lists what it holds, and `--remove-precon NAME` takes one out.
+Single cards you own outside any box go in the file's `cards` list, by hand (`[[1, "Sol Ring"]]`). The deck pages read
+the same file. A card that is free because it came in one of your precons says which one: `(owned, from Animated
+Army)` in a report, "you own it, from Animated Army" on the pages. Using it means taking it out of that deck, or buying
+another copy.
+
+**Deck lists as JSON.** Wherever the tool reads a deck list (a `DECKFILE`, `--owned FILE`, the deck pages' paste box),
+JSON works as well as the usual text: `{"commanders": ["Hazel of the Rootbloom"], "cards": [[1, "Sol Ring"], ...]}`
+(a card may also be written `"Sol Ring"` or `{"name": "Sol Ring", "count": 1}`), a plain list of cards, or a base deck
+or version file the server saved (a version is read as its cards now). A collection file is fine for `--owned` but is
+not a deck. JSON that does not parse is refused with the line and column of the mistake.
+
 **Saved decks, and the local server `serve`.** `serve` starts a small web server on your own computer. It keeps **base
 decks** (a precon or a pasted list, saved once and never changed) and each player's **versions** of them as small files
-in `commander/decks/`, and it answers every request to read a deck or change it (add, cut, swap, undo, or apply the
-upgrade's suggestions) with all of `stats`' numbers worked out again. It also hands out the **deck pages**: open the
+in a saved-decks folder, and it answers every request to read a deck or change it (add, cut, swap, undo, or apply the
+upgrade's suggestions) with all of `stats`' numbers worked out again. Your decks are your own data, not this repo's:
+the folder is `commander/decks/` unless `--decks DIR` or `MTG_COMMANDER_DECKS` names another, and `commander/decks/` is
+in `.gitignore`, so nothing saved there is committed here. It also hands out the **deck pages**: open the
 address it prints in a browser to see a saved deck as cards, change it, and watch its numbers move. The pages call the
 server's application programming interface (API), under `/api/`. `stats --version andy/squirrels-go-wide` prints the same
 numbers in the terminal, each beside its base deck's.
 
 *What the deck pages do.* **Decks** lists your versions and the base decks. **New version** starts your own copy of a base
 deck with a bracket, a budget, themes and a playstyle, and **New base deck** takes a precon from the list or a deck list
-you paste in (lines it cannot read are shown with their line numbers, so you can fix or drop them). A version opens on its
+you paste in, as text or JSON (lines it cannot read are shown with their line numbers, so you can fix or drop them;
+in pasted JSON it names the cards it does not know instead). A version opens on its
 cards, with four tabs. **Cards** shows every card as its picture: tap one to read it with the tool's numbers for it, then
 cut it or swap it, or use **Add** to search for a card and say what it replaces. **Metrics** shows every number, with
 how far it moved from the base deck and how it was worked out behind a tap. **Changes** lists what was added and cut
@@ -159,7 +183,8 @@ at the bracket holds. A version's budget is the most it may spend in all, so the
 $14.57 more"). A version that has used up its budget is offered only swaps that bring in a card from a precon you own, which
 cost nothing; cutting a card you bought frees its price. Suggestions never undo a change you made: the cards you added stay, and the
 base-deck cards you cut are not offered again (Undo, on the Changes tab, is how you reconsider one), so applying a price
-point does not make the next suggestions take it back.
+point does not make the next suggestions take it back. The precons in your collection count as yours on every version,
+beside the ones a version's settings name, and a change to the collection reaches a deck the next time it is opened.
 Every change is saved the moment you make it and every number is redrawn
 from the server's answer, so the pages never work a number out themselves. The first time a commander is opened its
 data is downloaded, which takes several seconds, and the page says what it is fetching. On a phone the page is one
@@ -188,11 +213,15 @@ computer is on, so use it only on a network you trust.
 own devices. The server does check that a request comes from its own pages, so a web page from another site cannot use it
 through your browser, but that is not a password.
 
-*Run one server per repo.* A deck file is written whole, to a temporary file that then replaces the old one, so a file is
-never half saved. Nothing locks the files between programs, though, so two servers (or a server and an editor) can
-overwrite each other's changes. Share decks the usual way, with git: the server never commits or pushes, and its
-`/api/status` answer lists the deck files git does not have yet. `--decks DIR` (or the `MTG_COMMANDER_DECKS` environment
-variable) picks another folder for the files.
+*Run one server per decks folder.* A deck file is written whole, to a temporary file that then replaces the old one, so a
+file is never half saved. Nothing locks the files between programs, though, so two servers (or a server and an editor)
+can overwrite each other's changes.
+
+*Keeping your decks.* To keep your decks under version control, or share them with friends, make a folder of your own
+a git repository (`git init`) and point the tool at it with `--decks DIR` (for `serve`) or the `MTG_COMMANDER_DECKS`
+environment variable (for every command, `stats --version` and `collection` included). The server never commits or
+pushes; the foot of the Decks screen lists the deck files that repository does not have yet, or says that git ignores
+the folder (the default `commander/decks/`) or that it is in no repository at all.
 
 **What the numbers mean.** At Brackets 1–4 the numbers are what experienced deck builders choose at that bracket,
 not win rates; real per-card win rates exist publicly only for tournament (cEDH) play. So every line says which

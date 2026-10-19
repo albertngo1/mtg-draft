@@ -9,7 +9,7 @@ the helpers of ui.js that touch no page are run (a change with its sign, the add
 pages do is checked in a browser, against the real server (the frontend-verify gate in the design)."""
 import json, os, pathlib, re, shutil, subprocess, tempfile, threading, unittest, urllib.error, urllib.request
 from unittest import mock
-from mtgcommander import carddb, net, serve
+from mtgcommander import carddb, net, render, serve
 from mtgcommander.providers import scryfall_tags
 
 REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -302,6 +302,15 @@ class PureHelperTests(unittest.TestCase):
                       'ui.hasMoved({}), ui.hasMoved({change: null}), ui.hasMoved({base: 3, value: 5})]')
         # the last item has a base and a value that differ but no change: the pages do not work that out
         self.assertEqual(got, [True, True, False, False, False, False])
+
+    def test_the_box_a_free_card_comes_from_reads_as_the_terminal_says_it(self):
+        # one box, two, five, none, and a card the server sent no list for: the same words as render.boxes_text
+        boxes = [["Peace Offering"], ["Peace Offering", "Family Matters"], ["Peace Offering", "Family Matters", "A", "B",
+                                                                            "C"], []]
+        got = in_node(f"[...{json.dumps(boxes)}.map(ui.fromBoxes), ui.fromBoxes(undefined)]")
+        self.assertEqual(got, ["from Peace Offering", "from Peace Offering or Family Matters",
+                               "from Peace Offering, Family Matters or 3 more", "", ""])
+        self.assertEqual(got[:4], [render.boxes_text(b) for b in boxes])
 
 
 # ----------------------------------------------------------------------------- the real folder, served

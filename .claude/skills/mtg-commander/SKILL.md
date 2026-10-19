@@ -33,8 +33,10 @@ All commands are run from the repo root. On Windows use `python` and `mtg-comman
    python3 src/mtg-commander.py stats --precon "<precon name>" --bracket 3 --theme <theme> --playstyle <style>
    ```
    **serve** — when the player wants decks saved between sessions or on their phone, `python3 src/mtg-commander.py serve`
-   runs the local web server for the deck pages (decks are files in `commander/decks/`; `stats --version PLAYER/ID`
-   prints a saved version's numbers). It has no login, so say so, and run only one server at a time.
+   runs the local web server for the deck pages (`stats --version PLAYER/ID` prints a saved version's numbers). Saved
+   decks are the player's own local files, kept out of this repo; to keep them under version control, point
+   `--decks DIR` or `MTG_COMMANDER_DECKS` at a folder that is its own git repository. It has no login, so say so, and
+   run only one server at a time.
 
 3. **upgrade / build / suggest** — pick the one the player asked for:
    ```bash
@@ -50,7 +52,10 @@ All commands are run from the repo root. On Windows use `python` and `mtg-comman
    `fewer answers:` note: pass it on with that price point.
    `themes [--commander NAME]` prints the menu of playstyles and themes to choose words from. Add `--owned FILE` or
    `--owned-precon NAME` for cards the player owns (they cost $0), `--include` / `--exclude` for cards to keep or avoid,
-   and `--json` when you need to read a result exactly.
+   and `--json` when you need to read a result exactly. A deck file may be text or JSON.
+   **Collection:** `collection --player NAME --add-precon "<precon>"` records a precon the player owns, once; after that
+   `--player NAME` (or `MTG_COMMANDER_PLAYER`) counts the collection as owned on every run, and a free card says which
+   box it comes from (`(owned, from X)`: relay it as "free, but it comes out of your X deck").
 
 4. **explain** — lead with the top swaps (or the deck's shape), each with its evidence line in plain words: what kind of
    number it is, how many decks it comes from, and what role it fills. With a budget, start from the price-point lines

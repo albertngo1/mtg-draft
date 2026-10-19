@@ -119,6 +119,7 @@ class Fakes:
         self.tags_available = True
         self.upgrade_result = None
         self.git_files = (["commander/decks/andy/go-wide.json"], None)
+        self.boxes = {}                # more precons a test lets the player own: name -> (commanders, cards)
 
     def prepare(self, commanders, bracket, spec, db, *, deck_cards=(), owned=(), sources=None, refresh=None,
                 offline=None, **kw):
@@ -175,6 +176,11 @@ class Fakes:
 
     def precon(self, name, **kw):
         self.calls["precon"].append(name)
+        for title, (commanders, cards) in self.boxes.items():
+            if carddb.normalize(name) == carddb.normalize(title):
+                return {"name": title, "code": "BOX", "file": title.replace(" ", ""), "release": "2025-01-01",
+                        "commanders": list(commanders), "cards": list(cards), "fetched": "2026-10-11T00:00:00Z",
+                        "url": "x"}
         if carddb.normalize(name) != "squirreled away":
             raise decklist.UnknownPrecon(name, ["Squirreled Away"])
         return {"name": "Squirreled Away", "code": "BLC", "file": "SquirreledAway_BLC", "release": "2024-08-02",
@@ -343,12 +349,13 @@ class ServerCase(unittest.TestCase):
 # ----------------------------------------------------------------------------- opening a deck
 class OpenDeckTests(ServerCase):
     def test_the_deck_answer_holds_everything_a_page_draws(self):
-        # open andy's version: version, base, spec, commanders, cards, counts, difference, metrics, warnings, sources
+        # open andy's version: version, base, spec, commanders, cards, counts, difference, the other precons andy owns,
+        # metrics, warnings, sources
         reply = self.open_deck()
         self.assertEqual(reply.status, 200)
         self.assertEqual(sorted(reply.body), sorted(["schema", "version", "base", "spec", "commanders", "cards",
-                                                     "card_count", "diff", "cut_cards", "metrics", "warnings",
-                                                     "sources"]))
+                                                     "card_count", "diff", "cut_cards", "other_owned_precons",
+                                                     "metrics", "warnings", "sources"]))
         self.assertEqual(reply["schema"], 1)
         self.assertEqual((reply["version"]["id"], reply["version"]["player"], reply["version"]["revision"]),
                          ("go-wide", "andy", 0))
@@ -362,12 +369,13 @@ class OpenDeckTests(ServerCase):
                          ["power", "interaction", "mana", "playstyle", "win", "table", "changes"])
 
     def test_a_card_has_the_keys_a_page_needs(self):
-        # Sol Ring in the deck list, and the commander: image, type, cost, price, owned, count, section, roles ...
+        # Sol Ring in the deck list, and the commander: image, type, cost, price, owned (and the box it came from),
+        # count, section, roles ...
         reply = self.open_deck()
         card = next(c for c in reply["cards"] if c["name"] == "Sol Ring")
         self.assertEqual(sorted(card), sorted(["name", "front", "image", "image_back", "scryfall_uri", "type", "cost",
-                                               "cmc", "ci", "price", "owned", "count", "section", "new", "score",
-                                               "roles", "gc"]))
+                                               "cmc", "ci", "price", "owned", "owned_from", "count", "section", "new",
+                                               "score", "roles", "gc"]))
         self.assertEqual((card["image"], card["type"], card["cost"], card["cmc"]),
                          ("https://img.test/sol-ring.jpg", "Artifact", "{1}", 1.0))
         self.assertEqual((card["count"], card["section"], card["new"], card["owned"]), (1, "Artifacts", False, True))
@@ -375,7 +383,7 @@ class OpenDeckTests(ServerCase):
         commander = reply["commanders"][0]
         self.assertEqual((commander["name"], commander["ci"], commander["owned"]), (CMDR, "BG", True))
         self.assertEqual(sorted(commander), sorted(["name", "front", "image", "image_back", "scryfall_uri", "type",
-                                                    "cost", "cmc", "ci", "price", "owned", "gc"]))
+                                                    "cost", "cmc", "ci", "price", "owned", "owned_from", "gc"]))
 
     def test_basic_lands_are_one_card_with_a_count_and_cost_nothing(self):
         # four Forests and four Swamps: one entry each with count 4, free and owned
@@ -1349,7 +1357,8 @@ class SearchTests(SearchCase):
         # Assassin's Trophy: a card object plus score, evidence, the deck value gained as an extra card, no flag
         trophy = next(c for c in self.search()["cards"] if c["name"] == "Assassin's Trophy")
         self.assertEqual(sorted(trophy), sorted(["name", "front", "image", "image_back", "scryfall_uri", "type", "cost",
-                                                 "cmc", "ci", "price", "owned", "score", "evidence", "gain", "flag"]))
+                                                 "cmc", "ci", "price", "owned", "owned_from", "score", "evidence",
+                                                 "gain", "flag"]))
         self.assertEqual((trophy["score"], trophy["price"], trophy["owned"], trophy["flag"]), (0.7, 2.0, False, None))
         self.assertEqual(trophy["evidence"], "in 70% of 1,125 Bracket 3 Hazel decks")
         copies = [c["name"] for c in self.open_deck()["cards"] for _ in range(c["count"])]
@@ -1590,6 +1599,146 @@ class SheetTests(SearchCase):
         self.app.db.cards["Fire // Ice"] = carddb.card_record(self.world.objs[-1])
         self.assertEqual(self.sheet("Fire // Ice")["card"]["name"], "Fire // Ice")
 
+
+# ----------------------------------------------------------------------------- the player's collection
+class CollectionTests(ServerCase):
+    """andy's collection file, andy/collection.json, beside andy's versions. Family Matters is a precon andy may own: it
+    holds Mind Stone and Eternal Witness, which the deck does not have, and Sol Ring, which the base deck already has."""
+
+    def setUp(self):
+        super().setUp()
+        self.fakes.boxes["Family Matters"] = (["Pir, Imaginative Rascal"],
+                                              [(1, "Mind Stone"), (1, "Eternal Witness"), (1, "Sol Ring")])
+        self.fakes.boxes["Peace Offering"] = ([], [(1, "Craterhoof Behemoth")])
+
+    def own(self, precons=(), cards=()):
+        decks.save_collection(self.root, "andy", precons=list(precons), cards=[list(c) for c in cards])
+
+    def search_card(self, name):
+        found = self.get("/api/cards?deck=andy/go-wide&q=" + urllib.parse.quote(name))
+        return next(c for c in found["cards"] if c["name"] == name)
+
+    def test_a_version_counts_its_players_collection_as_owned(self):
+        # andy owns Family Matters and one loose Assassin's Trophy: both count, beside the base deck's own cards
+        self.own(["Family Matters"], [(1, "Assassin's Trophy")])
+        self.assertEqual(self.open_deck().status, 200)
+        owned = set(self.fakes.calls["prepare"][0]["owned"])
+        self.assertTrue({"Mind Stone", "Eternal Witness", "Assassin's Trophy", "Sol Ring", CMDR} <= owned, owned)
+        self.assertIn("Family Matters", self.fakes.calls["precon"])
+
+    def test_a_card_names_the_box_it_came_from_and_the_base_decks_cards_come_from_none(self):
+        # Mind Stone is free because of Family Matters; Assassin's Trophy is a loose card; Sol Ring is the base deck's
+        self.own(["Family Matters"], [(1, "Assassin's Trophy")])
+        reply = self.open_deck()
+        sol = next(c for c in reply["cards"] if c["name"] == "Sol Ring")
+        self.assertEqual((sol["owned"], sol["owned_from"]), (True, []))
+        stone = self.search_card("Mind Stone")
+        self.assertEqual((stone["owned"], stone["owned_from"]), (True, ["Family Matters"]))
+        trophy = self.search_card("Assassin's Trophy")
+        self.assertEqual((trophy["owned"], trophy["owned_from"]), (True, []))
+        sheet = self.get("/api/cards/Mind%20Stone?deck=andy/go-wide")
+        self.assertEqual(sheet["card"]["owned_from"], ["Family Matters"])
+        self.assertEqual(self.search_card("Demonic Tutor")["owned_from"], [])     # not owned at all
+
+    def test_a_suggested_swap_carries_the_box_its_free_card_came_from(self):
+        # the swap that adds Mind Stone is free because of Family Matters, and its card object says so too
+        self.own(["Family Matters"])
+        self.open_deck()
+        swap = {"cut": "Ogre Slumlord", "add": "Mind Stone", "gain": 0.4, "price": 0.0, "owned": True, "forced": False,
+                "reason": "", "fills": [], "evidence_add": "", "kind_add": "builder", "evidence_cut": "",
+                "price_point": 25.0, "rank": 1}
+        bought = dict(swap, cut="Squirrel Mob", add="Demonic Tutor", owned=False, price=25.0, rank=2)
+        self.fakes.upgrade_result = {"command": "upgrade", "bracket": 3, "swaps": [swap, bought], "price_points": [],
+                                     "blocked": [], "cheap_adds": [], "warnings": []}
+        reply = self.post(DECK + "/suggest")
+        self.assertEqual([(s["add"], s["owned_from"]) for s in reply["swaps"]],
+                         [("Mind Stone", ["Family Matters"]), ("Demonic Tutor", [])])
+        self.assertEqual(reply["cards"]["Mind Stone"]["owned_from"], ["Family Matters"])
+
+    def test_the_other_precons_the_player_owns_are_the_settings_and_the_collections_each_once(self):
+        # the setting names the base deck's own precon and Peace Offering; the collection repeats Peace Offering and
+        # adds Family Matters: the base deck's own is not "another deck", and each of the rest is counted once
+        decks.update(self.root, "andy", "go-wide", revision=0,
+                     settings={"owned_precons": ["Squirreled Away", "Peace Offering"]})
+        self.own(["peace offering", "Family Matters"])
+        self.assertEqual(self.open_deck()["other_owned_precons"], ["Peace Offering", "Family Matters"])
+
+    def test_with_no_collection_the_other_precons_are_the_settings(self):
+        decks.update(self.root, "andy", "go-wide", revision=0, settings={"owned_precons": ["Peace Offering"]})
+        self.assertEqual(self.open_deck()["other_owned_precons"], ["Peace Offering"])
+
+    def test_an_edit_to_the_collection_reaches_the_deck_the_next_time_it_is_asked_for_without_a_restart(self):
+        # opened with nothing owned; then andy adds Family Matters (by hand, or with `collection`): the next request
+        # prepares the deck again, and the one after that does not
+        self.open_deck()
+        self.assertNotIn("Mind Stone", self.fakes.calls["prepare"][-1]["owned"])
+        self.own(["Family Matters"])
+        self.assertEqual(self.open_deck().status, 200)
+        self.assertEqual(len(self.fakes.calls["prepare"]), 2)
+        self.assertIn("Mind Stone", self.fakes.calls["prepare"][-1]["owned"])
+        self.open_deck()
+        self.assertEqual(len(self.fakes.calls["prepare"]), 2)
+        # saving it again with the same precons changes only the time, which is not what the numbers depend on
+        self.own(["Family Matters"])
+        self.open_deck()
+        self.assertEqual(len(self.fakes.calls["prepare"]), 2)
+
+    def test_a_collection_that_cannot_be_read_is_a_warning_and_the_deck_still_opens(self):
+        os.makedirs(os.path.join(self.root, "andy"), exist_ok=True)
+        with open(os.path.join(self.root, "andy", "collection.json"), "w") as f:
+            f.write("<<<<<<< HEAD\n")
+        reply = self.open_deck()
+        self.assertEqual(reply.status, 200)
+        self.assertTrue(any(w.startswith("Your collection file could not be read") and "collection.json" in w
+                            for w in reply["warnings"]), reply["warnings"])
+
+    def test_a_precon_or_a_loose_card_that_cannot_be_read_is_a_warning(self):
+        # "Nope" is no precon, and "Sol Rnig" is not in the card index: both count as not owned, and the deck says so
+        self.own(["Nope"], [(1, "Sol Rnig")])
+        warnings = self.open_deck()["warnings"]
+        self.assertTrue(any('The precon "Nope" you own could not be read' in w for w in warnings), warnings)
+        self.assertTrue(any("1 card name(s) in your collection are not in the card index" in w and "Sol Rnig" in w
+                            for w in warnings), warnings)
+
+    def test_the_version_list_never_reads_the_collection_as_a_version(self):
+        self.own(["Family Matters"])
+        listing = self.get("/api/decks?player=andy")
+        self.assertEqual(([v["id"] for v in listing["versions"]], listing["warnings"]), (["go-wide"], []))
+
+    def test_stats_of_a_saved_version_counts_the_collection_too(self):
+        # `stats --version andy/go-wide` works the numbers out with the same workspace
+        self.own(["Family Matters"])
+        result = self.app.stats_result("andy", "go-wide")
+        self.assertEqual(result["command"], "stats")
+        self.assertIn("Mind Stone", self.fakes.calls["prepare"][-1]["owned"])
+
+
+class JsonBaseTests(ServerCase):
+    """A JSON deck pasted in New base deck. Its problems are names, with line None, since rewriting a line of JSON could
+    break it; JSON that cannot be read says where."""
+
+    def test_a_pasted_json_deck_becomes_a_base_deck(self):
+        text = json.dumps({"commanders": [CMDR], "cards": [[1, "Sol Ring"], {"name": "Forest", "count": 9}]})
+        reply = self.post("/api/bases", {"name": "From JSON", "list": text, "player": "andy"})
+        self.assertEqual(reply.status, 201, reply.text)
+        self.assertEqual((reply["base"]["commanders"], reply["base"]["card_count"]), ([CMDR], 11))
+
+    def test_a_typo_in_a_json_deck_is_422_naming_the_card_on_no_line(self):
+        text = json.dumps({"commanders": [CMDR], "cards": ["Sol Rnig", "Forest"]})
+        reply = self.post("/api/bases", {"name": "Typo", "list": text, "player": "andy"})
+        self.assertEqual(reply.status, 422)
+        self.assertEqual(reply.error()["message"], "The card index does not know Sol Rnig.")
+        self.assertEqual([(p["line"], p["text"]) for p in reply.error()["details"]], [(None, "Sol Rnig")])
+        self.assertEqual(reply.error()["details"][0]["suggestions"][0], "Sol Ring")
+
+    def test_json_that_cannot_be_read_or_a_collection_is_422_saying_why(self):
+        for text, words in (('{"commanders": [\n"x"\n', "line 3, column 1"),
+                            ('{"schema": 1, "kind": "collection", "precons": []}', "a collection is not a deck")):
+            with self.subTest(text=text):
+                reply = self.post("/api/bases", {"name": "Bad", "list": text, "player": "andy"})
+                self.assertEqual(reply.status, 422)
+                self.assertIn(words, reply.error()["message"])
+        self.assertFalse(os.path.exists(os.path.join(self.root, "bases", "bad.json")))
 
 # ----------------------------------------------------------------------------- bases, versions, lists
 class ListTests(ServerCase):
@@ -1902,6 +2051,44 @@ class GitStatusTests(unittest.TestCase):
         self.assertEqual((files, "not a git repository" in note), ([], True))
         with mock.patch.object(serve.subprocess, "run", side_effect=PermissionError(13, "Permission denied")):
             self.assertEqual(serve.git_uncommitted(self.root)[0], [])
+
+    def test_a_folder_git_ignores_has_a_note_saying_so_instead_of_reading_as_all_committed(self):
+        # git lists nothing in an ignored folder; `git check-ignore -- .` printing the folder is the tell
+        listed = SimpleNamespace(returncode=0, stdout="", stderr="")
+        ignored = SimpleNamespace(returncode=0, stdout=".\n", stderr="")
+        with mock.patch.object(serve.subprocess, "run", side_effect=[listed, ignored]) as run:
+            files, note = serve.git_uncommitted(self.root)
+        self.assertEqual(files, [])
+        self.assertIn("git ignores this folder", note)
+        self.assertIn("MTG_COMMANDER_DECKS", note)
+        self.assertEqual(run.call_args[0][0], ["git", "-C", self.root, "check-ignore", "--", "."])
+
+    def test_a_folder_in_no_repository_says_how_to_make_it_one(self):
+        with self.run_git(code=128, err="fatal: not a git repository (or any of the parent directories): .git\n"):
+            files, note = serve.git_uncommitted(self.root)
+        self.assertEqual(files, [])
+        self.assertIn("not a git repository", note)
+        self.assertIn("git init", note)
+
+    def test_a_real_repository_that_ignores_the_decks_folder_says_so(self):
+        # this repo's own .gitignore names commander/decks/: the actual git, in a throwaway repository
+        if shutil.which("git") is None:
+            self.skipTest("git is not installed")
+        env = dict(os.environ, GIT_CONFIG_GLOBAL=os.devnull, GIT_CONFIG_SYSTEM=os.devnull)
+        subprocess.run(["git", "init", "-q", self.root], check=True, env=env, capture_output=True)
+        with open(os.path.join(self.root, ".gitignore"), "w") as f:
+            f.write("commander/decks/\n")
+        folder = os.path.join(self.root, "commander", "decks", "andy")
+        os.makedirs(folder)
+        with open(os.path.join(folder, "a.json"), "w") as f:
+            f.write("{}")
+        files, note = serve.git_uncommitted(os.path.join(self.root, "commander", "decks"))
+        self.assertEqual(files, [])
+        self.assertIn("git ignores this folder", note)
+        # a decks folder that is its own repository, inside the ignored one, answers for itself
+        own = os.path.join(self.root, "commander", "decks")
+        subprocess.run(["git", "init", "-q", own], check=True, env=env, capture_output=True)
+        self.assertEqual(serve.git_uncommitted(own), (["andy/a.json"], None))
 
     def test_a_real_git_repository_lists_a_new_deck_file(self):
         # the actual git, in a throwaway repository (skipped where git is absent)

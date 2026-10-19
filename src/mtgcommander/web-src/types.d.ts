@@ -33,6 +33,8 @@ export interface Card extends CardFace {
   cmc?: number;
   ci?: string;
   owned?: boolean;
+  /** The precons a free card came in ("you own it, from Peace Offering"); empty when it is owned another way. */
+  owned_from?: string[];
   text?: string;
   power?: string | null;
   toughness?: string | null;
@@ -165,6 +167,8 @@ export interface DeckAnswer {
   cards: DeckCard[];
   cut_cards: DeckCard[];
   card_count: number;
+  /** The precons the player owns besides the base deck's own: the version's setting, then the player's collection. */
+  other_owned_precons?: string[];
   diff: { added: [number, string][]; cut: [number, string][] };
   metrics: Metrics;
   warnings?: string[];
@@ -216,10 +220,11 @@ export interface StatusAnswer {
   uncommitted_note: string | null;
 }
 
-/** A problem with a request: a setting that is wrong, or a line of a pasted list. */
+/** A problem with a request: a setting that is wrong, or a line of a pasted list (null: a name on no one line, such as
+ *  a card of a pasted JSON deck, or a misspelled commander). */
 export interface Problem {
   setting?: string;
-  line?: number;
+  line?: number | null;
   text: string;
   suggestions?: string[];
 }
@@ -272,6 +277,7 @@ export interface Swap {
   gain: number;
   price?: number | null;
   owned?: boolean;
+  owned_from?: string[];
   forced?: boolean;
   fills?: string[];
 }
