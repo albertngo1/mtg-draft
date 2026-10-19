@@ -320,7 +320,7 @@ function suggestionsTab(app, deck) {
         return wrap;
     }
     const words = [].concat(data.spec.themes || [], data.spec.playstyle ? [data.spec.playstyle] : []);
-    const owned = (settings.owned_precons || []).length;
+    const owned = (data.other_owned_precons || settings.owned_precons || []).length; // the setting's and the collection's
     wrap.append(h("div", { class: "btnrow", style: { alignItems: "center" } }, h("span", { class: "footnote", style: { flex: "1" }, text: [`Budget ${ui.dollars(budget)}`, spentWords(data.version.revision), `Bracket ${data.spec.bracket}`, words.join(", "), owned ? `you own ${owned} other ${owned === 1 ? "deck" : "decks"}` : ""].filter(Boolean).join(" · ") }), ui.button({ label: "Change", kind: "quiet", size: "small", onClick: () => { suggest.editing = !suggest.editing; app.render(); } })));
     if (suggest.editing)
         wrap.append(budgetForm(app, budget));
@@ -408,7 +408,8 @@ function weakensNote(point) {
 }
 function swapRow(app, deck, result, swap, n, locked) {
     const added = result.cards[swap.add] || { name: swap.add };
-    const price = swap.owned ? "$0.00 · you own it" : swap.price === null || swap.price === undefined ? "price unknown" : ui.money(swap.price);
+    const boxes = ui.fromBoxes(swap.owned_from);
+    const price = swap.owned ? `$0.00 · you own it${boxes ? `, ${boxes}` : ""}` : swap.price === null || swap.price === undefined ? "price unknown" : ui.money(swap.price);
     return h("div", { class: "swap" }, h("span", { class: "swap__n", text: String(n) }), h("a", { class: "swap__cards", href: app.link.card(deck.player, deck.id, swap.add), "aria-label": `${swap.cut} is replaced by ${added.name}. Open ${added.name}` }, h("s", { text: swap.cut }), "→", h("b", { text: added.name })), ui.button({
         label: "Apply", kind: "outline", size: "small", disabled: locked, ariaLabel: `Swap ${swap.cut} for ${swap.add}`,
         onClick: () => app.change({ op: "swap", cut: swap.cut, add: swap.add, source: "suggested" }),

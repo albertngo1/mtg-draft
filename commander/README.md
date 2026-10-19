@@ -13,7 +13,8 @@ For how the tool uses them, see [ARCHITECTURE.md → Commander deck builder](../
 | [`playstyles.json`](./playstyles.json) | the menu of playstyles and themes you can ask for | by hand | the role changes per playstyle are judgment; the theme names are checked against EDHREC's list |
 
 A fourth thing lives in this folder, and it is not reference data: `decks/` holds the decks players have saved (see
-the last section). It does not exist until the first deck is saved.
+the last section). It does not exist until the first deck is saved, and it is in `.gitignore`: saved decks are each
+player's own data, not this repo's.
 
 ## `brackets.json`
 
@@ -162,20 +163,26 @@ EDHREC does (`plus-1-plus-1-counters`); the unit tests check that every theme a 
 
 **What it holds.** The decks players have saved. `bases/<base-id>.json` is a base deck, the deck a player starts from:
 a precon or a pasted list, written once and never changed. `<player>/<version-id>.json` is one player's version of a
-base deck, with a log of every card they added, cut or swapped. The `MTG_COMMANDER_DECKS` environment variable names a
-different folder.
+base deck, with a log of every card they added, cut or swapped. `<player>/collection.json` is the player's collection:
+the precons they own and any loose cards (so no version can be called `collection`). The `MTG_COMMANDER_DECKS`
+environment variable names a different folder.
 
-**Made by.** `src/mtgcommander/decks.py`, not by hand; `mtg-commander serve` calls it on a player's behalf (ARCHITECTURE.md,
-"The deck server"). It checks each change against the deck rules and writes each file in one step, so a file is never
-half written. The files are committed, so players share decks through git, and each
-player's versions sit in that player's own folder, so two players do not edit the same file.
+**Made by.** `src/mtgcommander/decks.py`; `mtg-commander serve` calls it on a player's behalf (ARCHITECTURE.md,
+"The deck server"), and `mtg-commander collection` writes a collection. It checks each change against the deck rules and
+writes each file in one step, so a file is never half written. Only a collection's loose cards are meant to be typed
+by hand. Each player's files sit in that player's own folder, so two players do not edit the same file.
+
+**Not committed.** This folder is in the repo's `.gitignore`: a player's decks are their own, and they would otherwise
+end up in every pull request. To keep them under version control, or share them with friends, make a folder of your
+own a git repository and point `MTG_COMMANDER_DECKS` (or `serve --decks DIR`) at it. The server's `/api/status` then
+lists that repository's uncommitted deck files; for this folder it says that git ignores it.
 
 **What is not in it.** Scores, prices and the other numbers the data sites supply. They are looked up each time, so none
 of that data reaches git (see ARCHITECTURE.md, "Terms of use"). A file holds card names, each beside Scryfall's id for the
 card, and the changes players made.
 
-**Merging.** A version's log only ever grows: an undo adds an entry, it removes none. Two people changing the same
-version on different machines still conflict, as with any file; git then leaves marker lines in it, the file cannot be
+**Merging** (in a decks folder that is its own git repository). A version's log only ever grows: an undo adds an
+entry, it removes none. Two people changing the same version on different machines still conflict, as with any file; git then leaves marker lines in it, the file cannot be
 read until the conflict is resolved, and the tool names the file when it meets one.
 
 How the files are laid out, and the rules every change must pass, are in ARCHITECTURE.md, "Deck files".

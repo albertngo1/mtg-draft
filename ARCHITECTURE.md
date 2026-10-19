@@ -545,6 +545,10 @@ python3 src/mtg-commander.py stats --precon "Squirreled Away" --bracket 3 --them
 # The local server for the deck pages, and the numbers of a version it has saved (see "The deck server" below)
 python3 src/mtg-commander.py serve
 python3 src/mtg-commander.py stats --version andy/squirrels-go-wide
+
+# The precons andy owns, kept once in andy's collection file; --player andy then makes their cards free
+python3 src/mtg-commander.py collection --player andy --add-precon "Animated Army"
+python3 src/mtg-commander.py upgrade --precon "Squirreled Away" --budget 75 --player andy
 ```
 
 The first run downloads Scryfall's card file and builds a local index of about 35,000 cards (31 MB). That takes a
@@ -559,6 +563,7 @@ minute or two, once; the index is rebuilt after 7 days. Everything else it downl
 | **Game Changer** | a card on Wizards' list of cards that push a deck up the scale (53 on 2026-10-11, flagged on each card in Scryfall's data). Bracket 3 allows up to three; Brackets 1 and 2 allow none. |
 | **Precon** | a preconstructed deck sold ready to play. Precon lists come from MTGJSON. |
 | **Base deck**, **version** | a base deck is where a saved deck starts (a precon or a pasted list) and never changes; a version is one player's copy of a base deck with every change they made. Both are files ([Deck files](#deck-files)); `serve` reads and changes them. |
+| **Collection** | what one player owns: the precons (by their MTGJSON names) and any loose cards, in one file beside that player's versions ([Deck files](#deck-files)). `collection` changes it; `--player` and the deck pages count it as owned. |
 | **Price point** | a dollar amount `upgrade` stops at on the way up to your budget (for $200: $25, $50, $100 and $200). The report shows what the swaps found up to each amount come to. In the deck pages it is money still to spend: the version's budget minus what the version has spent ([The deck server](#the-deck-server)). |
 | **Inclusion** | the share of a commander's decks that play a card. **Synergy** is EDHREC's inclusion with this commander minus the inclusion across all decks of the same colors. |
 | **Removal power** | the sum, over a deck's removal cards, of how quick, how far-reaching, how lasting and how cheap each is (see [Deck metrics and `stats`](#deck-metrics-and-stats)). The tool's own measure, with weights that are judgment calls |
@@ -625,18 +630,20 @@ mtg-commander <command> [--json] [--refresh] [--offline] [--sources LIST] ...
 
 themes   [--commander NAME] [--partner NAME]
 suggest  [--theme T] [--playstyle P] [--fantasy TEXT] [--keep-fun | --no-keep-fun] [--bracket N]
-         [--colors WUBRG] [--budget USD] [--owned FILE] [--owned-precon NAME] [--limit N]
+         [--colors WUBRG] [--budget USD] [--owned FILE] [--owned-precon NAME] [--player NAME] [--limit N]
 build    COMMANDER [--partner NAME] [--bracket N] [--budget USD] [--theme T] [--playstyle P]
          [--fantasy TEXT] [--fantasy-weight W] [--keep-fun | --no-keep-fun] [--include CARD]
-         [--exclude CARD] [--owned FILE] [--owned-precon NAME] [--allow-combos] [--out FILE] [-v]
+         [--exclude CARD] [--owned FILE] [--owned-precon NAME] [--player NAME] [--allow-combos]
+         [--out FILE] [-v]
 upgrade  [DECKFILE] [--precon NAME] [--commander NAME] [--bracket N] [--budget USD] [--max-swaps N]
          [--price-points LIST] [--theme T] [--playstyle P] [--fantasy TEXT] [--fantasy-weight W]
          [--keep-fun | --no-keep-fun] [--include CARD] [--exclude CARD] [--owned FILE]
-         [--owned-precon NAME] [--allow-combos] [--out FILE] [-v]
+         [--owned-precon NAME] [--player NAME] [--allow-combos] [--out FILE] [-v]
 check    [DECKFILE] [--precon NAME] [--commander NAME] [--bracket N]
 stats    [DECKFILE] [--precon NAME] [--version PLAYER/ID] [--commander NAME] [--bracket N] [--theme T]
          [--playstyle P] [--fantasy TEXT] [--fantasy-weight W] [--keep-fun | --no-keep-fun] [--owned FILE]
-         [--owned-precon NAME] [-v]
+         [--owned-precon NAME] [--player NAME] [-v]
+collection [--player NAME] [--add-precon NAME] [--remove-precon NAME]
 serve    [--host ADDRESS] [--port N] [--decks DIR]
 warm     COMMANDER [--partner NAME] [--bracket N] [--theme T]
 validate --bracket N [--commanders NAME [NAME ...]] [--limit N] [--sweep] [--calibrate]
@@ -649,7 +656,8 @@ validate --bracket N [--commanders NAME [NAME ...]] [--limit N] [--sweep] [--cal
 | `build` | builds a 100-card list around a commander, with the evidence for each card, the role counts, the bracket check and the *fantasy cost* (below) |
 | `upgrade` | ranked cut/add swaps for a deck from a file, standard input (`-`) or a precon, within a budget and a bracket |
 | `check` | legality (100 cards, colors, duplicates, banned cards), the bracket rules, role counts against the bracket's range, and the mana curve |
-| `stats` | every number about a list: score and bracket, interaction (answers to each kind of threat, removal power), mana (lands, ramp, draw, curve, colors, tapped and colorless lands), playstyle, win plan, salt, price and what you own. Groups and formulas: [Deck metrics and `stats`](#deck-metrics-and-stats). With `--version PLAYER/ID` it shows a saved version, each number beside its base deck's |
+| `stats` | every number about a list: score and bracket, interaction (answers to each kind of threat, removal power), mana (lands, ramp, draw, curve, colors, tapped and colorless lands), playstyle, win plan, salt, price and what you own. Groups and formulas: [Deck metrics and `stats`](#deck-metrics-and-stats). With `--version PLAYER/ID` it shows a saved version, each number beside its base deck's, counting that player's collection as owned the way the deck pages do |
+| `collection` | shows a player's collection file (the path, each precon with its commanders when that precon's list is already cached, and how many loose cards it holds) after adding or removing precons. It makes the file, and the player's folder, when they are missing. Loose cards are only edited by hand |
 | `serve` | runs the local web server for the deck pages until Ctrl-C: saved decks, with every metric worked out again after each change. Prints its address, how to reach it from a phone, and that there is no login. See [The deck server](#the-deck-server) |
 | `warm` | downloads what the other commands need for one commander, and the data that belongs to no commander (the card attribute tags and the combo index), so they can run with `--offline` |
 | `validate` | measures how closely builds match real decks (see [Validation](#validation)) |
@@ -662,12 +670,12 @@ The four flags every command takes, then the rest (help text as `--help` prints 
 | `--refresh` | all | download again instead of using cached data (for `serve`: the card index as it starts, and a deck's data when the deck is first opened, not on every tap) |
 | `--offline` | all | never connect; use cached data only (see `warm`) |
 | `--sources LIST` | all | card-evidence sources to use, comma-separated (choices `edhrec`, `archidekt`, `edhtop16`) |
-| `DECKFILE` | upgrade, check, stats | a decklist file; `-` reads standard input |
+| `DECKFILE` | upgrade, check, stats | a decklist file, as text or JSON (see "Deck lists" below); `-` reads standard input |
 | `--precon NAME` | upgrade, check, stats | use a preconstructed deck by name instead of a file |
-| `--version PLAYER/ID` | stats | a saved version instead of a file or precon, e.g. `andy/squirrels-go-wide`. Its bracket, themes, playstyle and owned precons come from the version, so the flags that set those cannot be given beside it |
+| `--version PLAYER/ID` | stats | a saved version instead of a file or precon, e.g. `andy/squirrels-go-wide`. Its bracket, themes, playstyle and owned precons come from the version, and its player's collection counts as owned, so the flags that set those (and `--player`) cannot be given beside it |
 | `--host ADDRESS` | serve | the address to listen on (default `127.0.0.1`, this computer only); a Tailscale address makes it reachable from a phone |
 | `--port N` | serve | the port to listen on (default 8341; 0 picks a free one) |
-| `--decks DIR` | serve | the folder of saved decks (default `commander/decks/`, or `MTG_COMMANDER_DECKS`) |
+| `--decks DIR` | serve | the folder of saved decks (default `commander/decks/`, which is in `.gitignore`, or `MTG_COMMANDER_DECKS`) |
 | `--commander NAME` | upgrade, check, stats | the commander, when the list does not mark it (repeat for a partner) |
 | `COMMANDER` | build, warm | the commander |
 | `--partner NAME` | build, warm, themes | a second commander (Partner or Background); `themes` also needs `--commander` |
@@ -683,8 +691,12 @@ The four flags every command takes, then the rest (help text as `--help` prints 
 | `--keep-fun`, `--no-keep-fun` | suggest, build, upgrade, stats | penalize cards that are frustrating to play against (default on at Brackets 1-3) |
 | `--include CARD` | build, upgrade | a card the deck must keep (repeatable) |
 | `--exclude CARD` | build, upgrade | a card the deck must not play (repeatable) |
-| `--owned FILE` | suggest, build, upgrade, stats | a decklist of cards you own; they cost $0 (repeatable) |
+| `--owned FILE` | suggest, build, upgrade, stats | a decklist of cards you own, or a collection file (its precons are opened as `--owned-precon` opens them); they cost $0 (repeatable) |
 | `--owned-precon NAME` | suggest, build, upgrade, stats | a precon you own, e.g. "Squirreled Away" (repeatable) |
+| `--player NAME` | suggest, build, upgrade, stats | count this player's collection (`<decks folder>/<player>/collection.json`) as owned: its precons as `--owned-precon` counts one, its loose cards as `--owned` does. Default `MTG_COMMANDER_PLAYER`. A player named with the flag must have the file (exit 1 naming the path); with only the environment variable a missing file is a warning. The name is made an id as the deck pages make one (`Andy` is `andy`) |
+| `--player NAME` | collection | whose collection (default `MTG_COMMANDER_PLAYER`; with neither, exit 1) |
+| `--add-precon NAME` | collection | a precon the player now owns, found as `--owned-precon` finds one (case, punctuation and a close typo forgiven) and stored by its MTGJSON name; one already there is left alone with a note (repeatable) |
+| `--remove-precon NAME` | collection | a stored precon to take out, matched ignoring case and punctuation; a name that matches none is exit 1, listing the stored ones, and nothing is written (repeatable) |
 | `--allow-combos` | build, upgrade | allow two-card combos the bracket would block |
 | `--out FILE` | build, upgrade | write the deck list here (Moxfield and Archidekt import it) |
 | `-v`, `--verbose` | build, upgrade, stats | show the evidence for every card (for `upgrade`, for each cut as well; for `stats`, how each number was worked out and its cards) |
@@ -699,7 +711,8 @@ The four flags every command takes, then the rest (help text as `--help` prints 
 | `MTG_BRACKET` | the bracket used when `--bracket` is not given (otherwise 3) |
 | `MTG_COMMANDER_SOURCES` | comma-separated card-evidence sources, the same choices as `--sources` |
 | `MTG_OFFLINE=1` | the same as `--offline` on every run |
-| `MTG_COMMANDER_DECKS` | the folder of saved decks (otherwise `commander/decks/` in the repo; see [Deck files](#deck-files)) |
+| `MTG_COMMANDER_DECKS` | the folder of saved decks and collections (otherwise `commander/decks/` in the repo, which `.gitignore` keeps out of git; see [Deck files](#deck-files)). Point it at a folder that is its own git repository to keep your decks under version control |
+| `MTG_COMMANDER_PLAYER` | the player whose collection counts as owned when `--player` is not given (`suggest`, `build`, `upgrade`, `stats`), and whose collection `collection` shows |
 | `CLAUDE_CODE_OAUTH_TOKEN` | the Claude token `--fantasy` needs; a gitignored `claude-token.txt` at the repo root works too, the same file the replay uses |
 | `MTG_SERVE_DELAY`, `MTG_SERVE_CONFLICT`, `MTG_FAIL_HOSTS` | test switches for `serve`, all off by default (see [The deck server](#the-deck-server)) |
 
@@ -708,15 +721,40 @@ only the result on stdout, `{"schema": 1, ...}`; `warnings` (a list of strings) 
 `fetched`, `cache` and `age_days`) are on every command. Progress, notes and errors go to stderr. `--out FILE`
 writes a `Commander` section and a `Deck` section, which Moxfield and Archidekt both import.
 
+**Which box a free card comes from.** When the owned cards come from precons (`--owned-precon`, the collection's
+precons, a collection given to `--owned`, and on the deck pages a version's `owned_precons` too), each card keeps the
+names of the precons it is in. Every swap of `upgrade` and every card of `build` carries `owned_from`: those names,
+sorted, when the card is owned, and an empty list when it is not, or is owned outside any box (a loose card, an
+`--owned` decklist, or in `upgrade` one of the deck's own cards). The report writes it into the owned mark:
+`(owned, from Peace Offering)`, `(owned, from Peace Offering or Family Matters)`, and for more than two
+`(owned, from Peace Offering, Family Matters or 3 more)`; a build's card line reads `owned, from Peace Offering; ramp`.
+`decklist.boxes_of` makes the map and `decklist.attach_owned_from` puts it on a result, for the command line and the
+deck server alike.
+
 **Exit codes.** `0` success. `1` a mistake you can fix (unknown card or precon, bad flags), with close matches
 printed ("did you mean ..."). `2` data the command cannot do without is unavailable (offline with nothing
 cached, or the site is down). `130` stopped with Ctrl-C.
 
-**Pasted lists.** `upgrade` and `check` read what players paste: `1 Sol Ring`, `1x Sol Ring` or `Sol Ring`; set and
+**Deck lists.** `upgrade` and `check` read what players paste: `1 Sol Ring`, `1x Sol Ring` or `Sol Ring`; set and
 collector suffixes (`(CMM) 400`); foil marks (`*F*`); Archidekt category tags (`[Ramp]`, `[Commander{top}]`);
 `Commander`, `Deck`, `Sideboard` and `Maybeboard` headers; MTGO's `SB:` lines. The commander is the card under a
 `Commander` header, marked `*CMDR*`, or named with `--commander`. Maybeboard, considering and token cards are
 ignored.
+
+A list whose text starts with `{` or `[` is read as JSON instead, wherever a list is read (a `DECKFILE`, `--owned FILE`,
+the deck pages' paste box). The shapes it accepts:
+
+| shape | read as |
+|---|---|
+| `{"commanders": [names], "cards": [...], "sideboard": [...]}` (the sideboard optional; `commanders` may be one name) | a deck. A card in any of these lists is `[1, "Sol Ring"]`, `"Sol Ring"` or `{"name": "Sol Ring", "count": 1}` (`"quantity"` works for `"count"`) |
+| `[...]` | the cards of a deck, with no commander marked |
+| a base deck file the server saved (`"kind": "base"`) | its commanders and cards, each name read through the card index and the Scryfall id the file kept |
+| a version file the server saved (`"kind": "version"`) | its cards now: the base deck's cards with the version's changes replayed (`decks.current`). The base deck is looked for in the decks folder two levels above the file (`<root>/<player>/<id>.json`); from standard input, in `MTG_COMMANDER_DECKS` (or `commander/decks/`); pasted into the deck pages, in the server's decks folder. A missing base deck is exit 1 naming the file it looked for |
+| a collection file (`"kind": "collection"`) | for `--owned` only: its loose cards, and its precons opened like `--owned-precon`. Given as a deck it is exit 1, "a collection is not a deck" |
+
+JSON that does not parse is exit 1 (on the deck pages, 422) with the line and column of the mistake; any other shape
+is refused with the list above, and so is a card entry that is not a card. A JSON list comes out as the same parsed
+dict a text list does, so nothing after the reading knows the difference.
 
 ### Module map
 
@@ -729,8 +767,8 @@ ignored.
 | `config.py` | paths, how long each source's cache stays fresh, default bracket, default sources, the User-Agent |
 | `net.py` | the one HTTP client: per-host pacing, retries with back-off, the file cache, `--offline` and `--refresh`; `download` streams a large file to disk (unzipped on the way, unless told not to); a count of the requests made (the deck server's progress) and the `MTG_FAIL_HOSTS` test switch |
 | `carddb.py` | Scryfall's bulk card file boiled down to one record per card (with links to its pictures); forgiving name matching; cheapest prices, and `deck_prices`, the one way a deck's cards are priced |
-| `decklist.py` | reads pasted lists, matches names to real cards, loads precons from MTGJSON, writes lists |
-| `decks.py` | saved decks: base decks and each player's versions as JSON files, with an append-only change log, replay, undo and revisions (see [Deck files](#deck-files)) |
+| `decklist.py` | reads deck lists (text or JSON), matches names to real cards, loads precons from MTGJSON, writes lists; names the precon a free card comes from (`boxes_of`, `attach_owned_from`) |
+| `decks.py` | saved decks: base decks, each player's versions and each player's collection as JSON files, with an append-only change log, replay, undo and revisions (see [Deck files](#deck-files)) |
 | `serve.py` | the local web server for the deck pages: the application programming interface (API) over `decks.py` and `metrics.py`, one session for each open deck, the safety checks and the test switches (see [The deck server](#the-deck-server)) |
 | `web/` | the deck pages: `index.html`, `styles.css` and eight JavaScript modules, plain files the server hands out; the modules are compiled from `web-src/` (see [The deck pages](#the-deck-pages)) |
 | `web-src/` | the TypeScript the eight modules are compiled from, one `.ts` file for each, and `types.d.ts`, the shapes of the server's answers (types only, so it compiles to nothing). `npm run build` writes `web/` |
@@ -1293,18 +1331,54 @@ default is a separate decision; see [Terms of use](#terms-of-use).
 
 `decks.py` keeps decks between runs. A **base deck** is where a deck starts, a precon or a pasted list. It is written
 once and never changes. A **version** is one player's copy of a base deck plus every change that player made to it:
-cards added, cut or swapped, and the undoing of any of those. Each is one small JSON file in the repo, so players share
-decks through git, and `decks.py` is the only code that reads or writes them.
+cards added, cut or swapped, and the undoing of any of those. A **collection** is what one player owns. Each is one
+small JSON file, and `decks.py` is the only code that reads or writes them.
+
+The files are each player's own data, not the repo's. The default folder, `commander/decks/`, is in `.gitignore`, so
+nothing saved there is committed. To keep decks under version control, or share them with friends, point
+`MTG_COMMANDER_DECKS` (or `serve --decks DIR`) at a folder that is its own git repository: the server's `/api/status`
+then lists that repository's uncommitted deck files, and says so instead when git ignores the folder or when the folder
+is in no repository at all ([The deck server](#the-deck-server)).
 
 ```
-commander/decks/                  (the MTG_COMMANDER_DECKS environment variable names another folder)
+commander/decks/                  (gitignored; the MTG_COMMANDER_DECKS environment variable names another folder)
   bases/<base-id>.json            one base deck
   <player>/<version-id>.json      one version, in its player's own folder
+  <player>/collection.json        the player's collection
 ```
 
 A player is a folder name, and an id is a file name. Both use lowercase letters, digits and hyphens, so `Squirrels go
-wide` becomes `squirrels-go-wide`; `bases` cannot be a player because it is the folder of base decks. Each player
-has a folder of their own, so two players never edit the same file.
+wide` becomes `squirrels-go-wide`; `bases` cannot be a player because it is the folder of base decks, and `collection`
+cannot be a version id because it is the name of the collection file (a version named "Collection" is refused with a
+message, and a listing of a player's versions never reads `collection.json` as one). Each player has a folder of their
+own, so two players never edit the same file.
+
+**A collection** is `{"schema": 1, "kind": "collection", "player", "precons": [names], "cards": [[count, name]],
+"updated"}`, in that key order, each precon and each card on a line of its own:
+
+```json
+{
+ "schema": 1,
+ "kind": "collection",
+ "player": "andy",
+ "precons": [
+  "Animated Army",
+  "Scions & Spellcraft (FINAL FANTASY XIV)"
+ ],
+ "cards": [
+  [1, "Sol Ring"]
+ ],
+ "updated": "2026-10-19T12:00:00Z"
+}
+```
+
+`precons` are the precons the player owns, by the names MTGJSON gives them (what `precon_names` lists, and what
+`collection --add-precon` stores); `cards` are loose cards owned outside those boxes, which only a hand edit adds.
+`decks.collection(root, player)` reads it (an empty collection, `updated` null, when there is no file) and
+`decks.save_collection` writes it like every other file, keeping the loose cards and any key it does not know. A file
+whose kind is wrong, whose `player` is not its folder's, whose precons are not names or whose cards are not
+`[count ≥ 1, name]` pairs raises `ValueError` naming the file, and is never written over. The command line stops on such
+a file (exit 1); the deck server opens the player's decks anyway, with a warning that the collection could not be read.
 
 **The change log is the truth.** A version stores its changes, not its card list. The list is the base deck's cards
 with the changes replayed in order, so the log and the list cannot disagree, and "cards added" and "cards cut" are
@@ -1345,13 +1419,13 @@ Nothing limits a deck's size; a list of 101 cards is for the caller to point out
 it 1. Every change is made on a revision, so a phone and a desktop tab (or two players) cannot overwrite each other;
 changing the name or settings with `update` counts too. A lock for each file, inside the process, covers the whole read,
 check and write, so two requests at once cannot both pass the revision check. There is no lock between processes: the
-usual tool, `fcntl`, does not exist on Windows, which the `.bat` launchers support. **One server process per repo is
+usual tool, `fcntl`, does not exist on Windows, which the `.bat` launchers support. **One server process per decks folder is
 assumed.** Every write goes to a temporary file in the same folder and is then renamed over the old file, so a reader
 never sees half a file, and a write that fails leaves the old file as it was.
 
 **On disk.** A file is JSON indented by one space, with non-ASCII characters written as they are, a newline at the
-end, and each card of a base deck and each change of a version on a single line, so a git diff shows one line per
-card or change. The keys come in a fixed order, listed at the top of `decks.py`.
+end, and each card of a base deck or a collection, each precon of a collection and each change of a version on a single
+line, so a git diff shows one line per card or change. The keys come in a fixed order, listed at the top of `decks.py`.
 
 ### The deck server
 
@@ -1375,28 +1449,35 @@ $ ./mtg-commander.sh serve
 
 | address | does |
 |---|---|
-| `GET /api/status` | when each data source was read; the server's settings (host, port, offline, decks folder); the deck files git does not have yet (`git status --porcelain`, read only, 2 seconds at most, with a note saying why when git cannot tell) |
+| `GET /api/status` | when each data source was read; the server's settings (host, port, offline, decks folder); the deck files git does not have yet (`git status --porcelain`, read only, 2 seconds at most, with a note saying why when git cannot tell). When git lists nothing, `git check-ignore -- .` asks whether git ignores the folder (the default `commander/decks/` is in `.gitignore`), and the note says so; a folder in no repository gets a note saying how to make it one. The Decks screen shows the note in place of "every saved deck file is committed to git" |
 | `GET /api/players` | the players: the folders under the decks folder |
 | `GET /api/menu` | the playstyles and common themes a version's settings choose from |
 | `GET /api/decks?player=NAME` | that player's versions, newest first: id, name, base deck, its settings (bracket, budget, themes, playstyle), commanders and picture, revision, cards swapped, what the changes cost, and the headline numbers (from the open deck, else from a preparation tried offline, else `null`) |
 | `POST /api/decks` | `{"player", "name", "base", "settings"?}` makes a version; 201 |
-| `GET /api/decks/PLAYER/ID` | the version: `version` (with its change log, each change marked `undone` or not), `base`, `spec` (the settings as the engine reads them), `commanders`, `cards`, `card_count`, `diff`, `cut_cards`, `metrics` (every item beside the base deck's value and how far it moved), `warnings` and `sources`; or 202 |
+| `GET /api/decks/PLAYER/ID` | the version: `version` (with its change log, each change marked `undone` or not), `base`, `spec` (the settings as the engine reads them), `commanders`, `cards`, `card_count`, `diff`, `cut_cards`, `other_owned_precons` (the precons the player owns besides the one the base deck was made from: the version's `owned_precons` setting, then the player's collection, each once), `metrics` (every item beside the base deck's value and how far it moved), `warnings` and `sources`; or 202 |
 | `POST /api/decks/PLAYER/ID/changes` | `{"revision", "op": ...}` as in [Deck files](#deck-files), with `"source"`; answers like the GET plus `"result": {"changed", "message"}` |
 | `PATCH /api/decks/PLAYER/ID` | `{"revision", "name"?, "settings"?}`; answers like the GET |
-| `POST /api/decks/PLAYER/ID/suggest` | `{"budget"?, "price_points"?}`: `upgrade` on the list as it is now, with what is left of the version's budget (the settings' budget unless one is given; see "Suggestions and the budget" below). The result of `upgrade`, plus `revision`, `cards` (a card object for each card it names) and the money: `budget` (the total), `spent` (before these swaps), `left` (what they may spend) and `over` (how far past the budget the version is). It also says how many of the player's changes it works around (`changes_kept`, below). It keeps nothing: ask again after every change |
-| `GET /api/bases`, `POST /api/bases` | the base decks, each with its commanders, their picture and colors (`ci`, as WUBRG letters) and card count; make one from `{"name"?, "precon", "player"}` or `{"name", "list", "commander"?, "player"}`; 201 |
+| `POST /api/decks/PLAYER/ID/suggest` | `{"budget"?, "price_points"?}`: `upgrade` on the list as it is now, with what is left of the version's budget (the settings' budget unless one is given; see "Suggestions and the budget" below). The result of `upgrade` (each swap with its `owned_from`), plus `revision`, `cards` (a card object for each card it names) and the money: `budget` (the total), `spent` (before these swaps), `left` (what they may spend) and `over` (how far past the budget the version is). It also says how many of the player's changes it works around (`changes_kept`, below). It keeps nothing: ask again after every change |
+| `GET /api/bases`, `POST /api/bases` | the base decks, each with its commanders, their picture and colors (`ci`, as WUBRG letters) and card count; make one from `{"name"?, "precon", "player"}` or `{"name", "list", "commander"?, "player"}`; 201. The `list` may be JSON ("Deck lists" above): its unknown cards come back in a 422 as problems with `"line": null` (a line of JSON cannot be rewritten on its own), and JSON that does not parse, an unknown shape or a collection is a 422 saying why |
 | `GET /api/precons?q=TEXT` | precon names that hold every word, at most 20 |
 | `GET /api/cards?q=TEXT&deck=PLAYER/ID` | cards to add, at most 30. With no text, the best-scored cards not in the deck. With text, the Commander-legal cards whose name holds every word: the exact name first, then the commander's colors, then by score (a card with none, by EDHREC rank). Each is a card object plus `score`, `evidence`, `gain` (the deck's value change if it were added as one more card) and `flag`: `null`, or `{"kind": "illegal" \| "colors" \| "in_deck" \| "bracket", "reason"}` for a card that cannot be added |
 | `GET /api/cards/NAME?deck=PLAYER/ID` | the card's sheet: facts and rules text, copies in the deck, roles, attribute tags, `answers` (the kinds of threat it answers, by the tags the deck's "answers to ..." numbers count), score with its evidence and parts, salt, Game Changer, the combos it is in and would complete, the removal breakdown, `if_cut` (the deck score change and only the metric items that move) and `replacements` (the five best cards to put in its place, by the deck's value after the swap) |
 
 A **card object** has `name`, `front`, `image`, `image_back`, `scryfall_uri`, `type`, `cost`, `cmc`, `ci` (color identity
-letters), `price` (cheapest printing; `null` when nothing prices it) and `owned` (in the base deck or a precon the
-player owns, or a basic land). In a deck's list it also has `count`, `section` (Creatures, Lands ...), `new` (added since
-the base deck), `score`, `roles` and `gc` (Game Changer).
+letters), `price` (cheapest printing; `null` when nothing prices it), `owned` (in the base deck, in a precon the player
+owns, a loose card of the player's collection, or a basic land) and `owned_from` (the precons a free card came in;
+empty for a base deck card, a loose card, a basic land or a card not owned). In a deck's list it also has `count`,
+`section` (Creatures, Lands ...), `new` (added since the base deck), `score`, `roles` and `gc` (Game Changer).
+
+**What a player owns.** A version's owned cards are the base deck's cards and commanders, the cards of each precon the
+player owns (the version's `owned_precons` setting, then the precons of the player's collection, each precon once), and
+the collection's loose cards. A precon that cannot be read, a loose card the card index does not know and a collection
+file that cannot be read are each a warning, and those cards count as not owned.
 
 **Preparing a deck, and the 202 answer.** A deck's numbers need the engine's data: the commander's EDHREC pages, role
 tags, scores, combos and prices. The first time a deck is opened, and whenever its bracket, themes, playstyle,
-keep-fun choice or owned precons change, the server prepares that data on a background thread, one deck at a time
+keep-fun choice or owned precons change, or the precons or loose cards of its player's collection change, the server
+prepares that data on a background thread, one deck at a time
 (the sites are asked politely, and the request count then belongs to one deck). Until it is ready the deck answers
 `202 {"status": "preparing", "progress": {"requests", "message"}, "revision"}`, where `requests` is the number of web
 requests made since that deck's preparation began, and the message says what it is doing ("Fetching EDHREC data for
@@ -1414,7 +1495,10 @@ the revision to reload at. The answer is built from the file as `decks.current` 
 scored (one no EDHREC list mentions) is scored by preparing again with it included, offline (about 0.13 seconds), so
 a tap never waits on a download; the card's price is looked up at its cheapest printing. If that scoring fails the
 change is still saved and a warning says the card is unscored. A deck file changed outside the server (`git pull`) is
-read afresh on every request, so there is nothing to restart.
+read afresh on every request, so there is nothing to restart. The collection file is too: what a prepared deck depends
+on (`serve.deck_key`) is its settings plus the collection's precons and loose cards (not its `updated` time), read
+from the file on every request, so an edit to `collection.json`, by hand or with `collection`, prepares the deck again
+the next time it is asked for, exactly as a change of its settings does, and no restart is needed.
 
 **Suggestions and the budget.** A version's budget is the total it may spend, not what each search may spend. `upgrade` counts every card already in the list as free, so handing it the budget as it is lets each Apply open a fresh budget on top of what the last one bought (a $200 version reached $352 that way). The route instead measures the list the way the deck answer does, under the deck's lock, and takes the `price` of the metrics headline: the number the deck screen shows as SPENT, the cost of the cards in the list that the player does not own (basic lands, the base deck's cards and owned precons are free). `upgrade` is given `left`, the budget minus that, to the cent and never below 0. A `budget` in the request is the total too, not the amount left. A version that is over its budget is still searched, with $0: a swap with a card the player owns costs nothing. Cutting a card the version bought takes its price off `spent`, so the next search has that much more.
 
@@ -1449,7 +1533,8 @@ in each set.
 
 One consequence for a version with no money left: its search can only add cards the player owns that are not already
 decided, and the base deck's own cards, once cut, are decided, so what remains are the cards of the other precons the
-player owns (the `owned_precons` setting). A version without any is told "Nothing to suggest" once its budget is spent.
+player owns (the `owned_precons` setting and the collection's precons) and the collection's loose cards. A version
+without any is told "Nothing to suggest" once its budget is spent.
 
 **Errors.** `{"schema": 1, "error": {"code", "message", "details"}}`; the status comes from the `decks.py` error classes.
 
@@ -1492,8 +1577,8 @@ checks for the pages use them.
 | `MTG_SERVE_CONFLICT=N` | the next N change requests answer 409 with the deck's real revision and change nothing |
 | `MTG_FAIL_HOSTS=HOST,...` | `net.request` and `net.download` fail at once for these hosts, as if the site were down. With `--refresh` the cache is not simply served, so the page shows its stale-data banner |
 
-**Running it.** One server per repo: deck files are written whole and replaced atomically, but nothing locks them
-between programs. `--refresh` downloads the card index again as the server starts, and a deck's data again when the deck is first opened (and only then). `--offline`
+**Running it.** One server per decks folder: deck files are written whole and replaced atomically, but nothing locks
+them between programs. `--refresh` downloads the card index again as the server starts, and a deck's data again when the deck is first opened (and only then). `--offline`
 never connects. The tests (`tests/commander/test_serve.py`) start a real server on a free port with fakes for the engine's
 network, git and the card index's data, and cover every route, each error, the safety checks and the switches.
 
@@ -1518,7 +1603,7 @@ server's answer, and the mana symbols, whose folder `ui.js` names (the one addre
 | `api.js` | the one `call(method, path, body)`, with a 10 second limit and one error type whose `kind` is `unreachable`, `timeout`, `conflict`, `invalid`, `not_found` or `server`. A 202 (the deck is still being prepared) is an answer, not an error; `callReady` asks again every second until it gets the deck |
 | `app.js` | the address (hash) router, the state, the queue that saves one change at a time for each deck, and the redraw from the state |
 | `ui.js` | the pieces every screen shares, one copy each: card tile, chip, stat, toast, banner, sheet, button and mana symbol (and the few helpers they need) |
-| `decks.js` | Decks, New version and New base deck |
+| `decks.js` | Decks, New version and New base deck (a pasted list may be JSON; its unknown cards are listed by name, with their close names, since a line of JSON cannot be fixed on its own) |
 | `deck.js` | the Deck screen: the header, the numbers, and the Cards, Metrics, Changes and Suggestions tabs |
 | `card.js` | the card sheet: picture (with a flip for a two-faced card), rules text, why it is in the deck, removal power, what cutting it would change, replacements, Cut and Swap |
 | `add.js` | the Add a card sheet: search, then "what does it replace?" |
@@ -1572,6 +1657,12 @@ starting count to what a typical deck holds, or under it, has a "Weakens interac
 each kind with its count before and after and the typical count (`enchantments 7 → 4 (typical 4)`), from the server's
 `weakens`: the page subtracts and compares nothing.
 
+A swap whose new card is free because it came in a precon the player owns names the box from its `owned_from`:
+"$0.00 · you own it, from Peace Offering" (two boxes "from Peace Offering or Family Matters", more "from Peace
+Offering, Family Matters or 3 more", the same words as the terminal, by `ui.fromBoxes`), and a card's sheet tags it
+"You own it, from Peace Offering". The line above the swaps counts the precons the player owns from the answer's
+`other_owned_precons` ("you own 2 other decks"), which holds the collection's precons as well as the setting's.
+
 The Suggestions tab says where the budget stands, from the answer's `spent`, `left` and `over`: the line under the tabs
 reads `Budget $200 · spent $185.43 · $14.57 left`, or `Budget $200 · spent $352.10 · over by $152.10`; a price point is
 money still to spend (`Up to $14.57 more`); and when nothing is left and no swap with a card the player owns helps, the
@@ -1613,6 +1704,10 @@ stale data, and a stopped server for unreachable).
 | `stats` without the attribute tags (offline, nothing saved) | the items that need them (removal and wipe power, answers, ramp and draw kinds, tapped lands, finishers by kind, most playstyles) have no value and say why; the role counts, the curve, colors, price and the rest still print |
 | `stats` cannot get the combo file | falls back to the API with a warning; if that fails too, the combo items have no value and the combo limit is not verified |
 | A deck is changed on two devices at once | one change is saved; the other gets 409 with the current revision, and the page reloads ([The deck server](#the-deck-server)) |
+| A JSON list that does not parse, or has a shape the tool does not know | exit 1 (a 422 on the deck pages) with the line and column, or with the shapes it reads; a collection given as a deck is refused the same way ("a collection is not a deck") |
+| A version file read as a deck list whose base deck is not in its decks folder | exit 1 naming the base deck file it looked for |
+| A player's collection file is damaged | the command line stops with exit 1 naming the file; the deck server opens the player's decks with a warning, counting none of it as owned; `collection` refuses to write over it |
+| `--player NAME` with no collection file | exit 1 naming the path; with only `MTG_COMMANDER_PLAYER` set, a warning and the run goes on |
 | A data source fails while a deck is open | the deck uses the cached copy and its `sources` entry says `stale`; a source with nothing cached is a warning, or a 500 `data_unavailable` if the deck cannot be prepared at all |
 
 ### Terms of use

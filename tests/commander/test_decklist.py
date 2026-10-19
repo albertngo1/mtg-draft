@@ -405,3 +405,183 @@ class BlankLineGroupsTest(unittest.TestCase):
         r = decklist.resolve(parsed, self.db)
         self.assertEqual(r["commanders"], ["Hazel of the Rootbloom"])
         self.assertEqual(sorted(r["cards"]), [(1, "Arcane Signet"), (1, "Sol Ring")])
+
+
+class JsonListTests(unittest.TestCase):
+    """A list can be JSON: a plain deck, a list of cards, this tool's base deck or saved version, or (only as cards a
+    player owns) a collection. Each comes back in the same dict the text parser returns, so nothing downstream changes.
+    The card index is the sample; a saved version is read from a real temporary decks folder."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.db = sample_db()
+
+    def folder(self):
+        import shutil, tempfile
+        root = tempfile.mkdtemp()
+        self.addCleanup(shutil.rmtree, root, True)
+        return root
+
+    def write(self, root, *parts, text):
+        path = os.path.join(root, *parts)
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+        with open(path, "w", encoding="utf-8") as f:
+            f.write(text)
+        return path
+
+    def test_json_is_told_from_text_by_its_first_character(self):
+        # "{" or "[" after any spaces (and a byte order mark) is JSON; "#", "1 Sol Ring" and "Sol Ring" are text
+        for text in ('{"cards": []}', '  \n[1]', '﻿[]'):
+            self.assertTrue(decklist.looks_like_json(text), text)
+        for text in ("# [my deck]", "1 Sol Ring", "Sol Ring [Ramp]", ""):
+            self.assertFalse(decklist.looks_like_json(text), text)
+
+    def test_a_text_list_that_opens_with_a_bracketed_header_is_still_text(self):
+        # Forge's .dck files start with "[metadata]", and some exports head the list with "[Commander]": before JSON
+        # import these read as text (the cards came through), so they must not now fail as "not valid JSON"
+        forge = "[metadata]\nName=Squirrels\n[Commander]\n1 Hazel of the Rootbloom\n[Main]\n1 Sol Ring\n"
+        for text in (forge, "[Commander]\n1 Hazel of the Rootbloom\n", "  [ Main ]\n1 Sol Ring\n"):
+            self.assertFalse(decklist.looks_like_json(text), text)
+            self.assertIn((1, "Sol Ring") if "Sol Ring" in text else (1, "Hazel of the Rootbloom"),
+                          decklist.parse(text)["cards"])
+        # a JSON list still reads as JSON, pretty-printed or not, and so does a bracket with a quoted name in it
+        for text in ('[\n  [1, "Sol Ring"]\n]', '["Sol Ring"]', '[[1, "Sol Ring"]]'):
+            self.assertTrue(decklist.looks_like_json(text), text)
+            self.assertEqual([(1, "Sol Ring")], decklist.parse(text)["cards"])
+
+    def test_a_plain_deck_in_each_card_shape_reads_like_the_same_deck_as_text(self):
+        # the three ways a JSON list writes a card: [count, name], a bare name, {"name", "count" or "quantity"}
+        text = json.dumps({"commanders": ["Hazel of the Rootbloom"],
+                           "cards": [[1, "Sol Ring"], "Arcane Signet", {"name": "Forest", "count": 9},
+                                     {"name": "Swamp", "quantity": 8}],
+                           "sideboard": [{"name": "Brainstorm"}]})
+        parsed = decklist.parse(text)
+        self.assertEqual(parsed, {"commanders": ["Hazel of the Rootbloom"],
+                                  "cards": [(1, "Sol Ring"), (1, "Arcane Signet"), (9, "Forest"), (8, "Swamp")],
+                                  "sideboard": [(1, "Brainstorm")], "unparsed": [], "sectioned": True,
+                                  "blank_split": False})
+        as_text = decklist.parse("Commander\n1 Hazel of the Rootbloom\nDeck\n1 Sol Ring\n1 Arcane Signet\n9 Forest\n"
+                                 "8 Swamp\nSideboard\n1 Brainstorm\n")
+        self.assertEqual(decklist.resolve(parsed, self.db), decklist.resolve(as_text, self.db))
+
+    def test_a_list_on_its_own_is_the_cards(self):
+        # [...] at the top: no commander marked, so resolve() asks for one as it does for text
+        parsed = decklist.parse('[[1, "Sol Ring"], "Hazel of the Rootbloom"]')
+        self.assertEqual((parsed["commanders"], parsed["cards"]), ([], [(1, "Sol Ring"), (1, "Hazel of the Rootbloom")]))
+        r = decklist.resolve(parsed, self.db, commander="Hazel of the Rootbloom")
+        self.assertEqual((r["commanders"], r["cards"]), (["Hazel of the Rootbloom"], [(1, "Sol Ring")]))
+
+    def test_a_base_deck_file_is_its_commanders_and_cards(self):
+        # what serve saves in bases/: without a card index the names are taken as written, with one they are the
+        # index's spelling (looked up by name, then by the Scryfall id the file kept)
+        base = {"schema": 1, "kind": "base", "id": "squirrels", "name": "Squirrels",
+                "commanders": ["Hazel of the Rootbloom"], "cards": [[1, "Sol Ring"], [9, "Forest"]],
+                "ids": {"Sol Ring": "00000000-0000-4000-8000-000000000001"}}
+        self.assertEqual(decklist.parse(json.dumps(base))["cards"], [(1, "Sol Ring"), (9, "Forest")])
+        base["cards"][0] = [1, "Sol Ring Before Its Rename"]
+        base["ids"] = {"Sol Ring Before Its Rename": "00000000-0000-4000-8000-000000000001"}
+        parsed = decklist.parse(json.dumps(base), db=self.db)
+        self.assertEqual((parsed["commanders"], parsed["cards"]), (["Hazel of the Rootbloom"], [(1, "Sol Ring"),
+                                                                                                (9, "Forest")]))
+
+    def test_a_saved_version_is_its_base_deck_with_its_changes_replayed(self):
+        # andy cut a Forest for Cultivate; the file holds only that change, and its base deck is two folders up
+        from mtgcommander import decks
+        root = self.folder()
+        decks.new_base(root, name="Squirrels", commanders=["Hazel of the Rootbloom"],
+                       cards=[(1, "Sol Ring"), (9, "Forest")], source={"type": "paste"}, created_by="andy", db=self.db)
+        decks.new_version(root, player="andy", name="Go wide", base_id="squirrels", settings={})
+        decks.apply(root, "andy", "go-wide", {"op": "swap", "cut": "Forest", "add": "Cultivate"}, revision=0,
+                    db=self.db)
+        parsed = decklist.load(os.path.join(root, "andy", "go-wide.json"), db=self.db)
+        self.assertEqual((parsed["commanders"], parsed["cards"]),
+                         (["Hazel of the Rootbloom"], [(1, "Sol Ring"), (8, "Forest"), (1, "Cultivate")]))
+        # read from standard input, it belongs to the decks folder the caller names
+        import io
+        with open(os.path.join(root, "andy", "go-wide.json"), encoding="utf-8") as f:
+            text = f.read()
+        with mock.patch("sys.stdin", io.StringIO(text)):
+            self.assertEqual(decklist.load("-", db=self.db, root=root)["cards"][-1], (1, "Cultivate"))
+
+    def test_a_saved_version_whose_base_deck_is_missing_names_the_file_it_looked_for(self):
+        root = self.folder()
+        version = {"schema": 1, "kind": "version", "id": "go-wide", "player": "andy", "name": "Go wide",
+                   "base": "squirrels", "settings": {}, "revision": 0, "changes": []}
+        path = self.write(root, "andy", "go-wide.json", text=json.dumps(version))
+        with self.assertRaises(decklist.ListError) as caught:
+            decklist.load(path, db=self.db)
+        self.assertIn(os.path.join(root, "bases", "squirrels.json"), str(caught.exception))
+        self.assertIn('base deck "squirrels"', str(caught.exception))
+        with self.assertRaises(decklist.ListError) as caught:              # pasted, with no folder to look in
+            decklist.parse(json.dumps(version), db=self.db)
+        self.assertIn("holds the changes made to a base deck, not a card list", str(caught.exception))
+
+    def test_a_version_whose_changes_cannot_all_be_replayed_says_so_through_resolve(self):
+        # a hand edit cut a card the deck does not have: the rest still reads, and the warning reaches the caller
+        from mtgcommander import decks
+        root = self.folder()
+        decks.new_base(root, name="Squirrels", commanders=["Hazel of the Rootbloom"], cards=[(1, "Sol Ring")],
+                       source={"type": "paste"}, created_by="andy", db=self.db)
+        version = {"schema": 1, "kind": "version", "base": "squirrels", "changes": [
+            {"n": 1, "op": "cut", "cut": "Mana Crypt"}]}
+        path = self.write(root, "andy", "go-wide.json", text=json.dumps(version))
+        r = decklist.resolve(decklist.load(path, db=self.db), self.db)
+        self.assertEqual(r["cards"], [(1, "Sol Ring")])
+        self.assertTrue(any("Skipped change 1" in w for w in r["warnings"]), r["warnings"])
+
+    def test_a_collection_is_not_a_deck_but_is_cards_a_player_owns(self):
+        # where a deck is wanted it is refused; as owned cards it gives its loose cards and its precons
+        text = json.dumps({"schema": 1, "kind": "collection", "player": "andy", "precons": ["Animated Army"],
+                           "cards": [[1, "Sol Ring"]], "updated": "2026-10-19T12:00:00Z"})
+        with self.assertRaises(decklist.NotADeck) as caught:
+            decklist.parse(text)
+        self.assertIn("a collection is not a deck", str(caught.exception))
+        parsed = decklist.parse(text, collection_ok=True)
+        self.assertEqual((parsed["cards"], parsed["precons"], parsed["commanders"]),
+                         ([(1, "Sol Ring")], ["Animated Army"], []))
+
+    def test_malformed_json_says_where(self):
+        # a missing comma on line 2: the message gives the line and the column
+        with self.assertRaises(decklist.ListError) as caught:
+            decklist.parse('{"commanders": ["Hazel of the Rootbloom"]\n "cards": []}', source="mydeck.json")
+        self.assertIn("mydeck.json starts like JSON but is not valid JSON", str(caught.exception))
+        self.assertIn("line 2, column 2", str(caught.exception))
+
+    def test_a_shape_the_tool_does_not_know_lists_the_ones_it_reads(self):
+        for text in ('{"deck": []}', '{"kind": "draft", "cards": []}', '{"cards": {"Sol Ring": 1}}'):
+            with self.subTest(text=text), self.assertRaises(decklist.ListError) as caught:
+                decklist.parse(text)
+            self.assertTrue("It reads a deck" in str(caught.exception) or '"cards" must be a list' in
+                            str(caught.exception), str(caught.exception))
+
+    def test_a_card_entry_that_is_not_a_card_is_named(self):
+        # a JSON list half understood would quietly lose cards, so the second entry stops the read
+        with self.assertRaises(decklist.ListError) as caught:
+            decklist.parse('{"cards": [[1, "Sol Ring"], [0, "Forest"], {"count": 2}]}')
+        self.assertIn('entry 2 of "cards" is not a card: [0, "Forest"]', str(caught.exception))
+
+    def test_text_is_never_read_as_json_by_parse_text(self):
+        # one line read on its own, "[Ramp]", is a line of text that holds nothing to read
+        self.assertEqual(decklist.parse_text("[Ramp]")["unparsed"], ["[Ramp]"])
+
+
+class OwnedFromTests(unittest.TestCase):
+    """The box a free card comes from: worked out once (boxes_of) and put on results once (attach_owned_from)."""
+
+    def test_each_card_lists_its_boxes_sorted_and_the_decks_own_cards_have_none(self):
+        found = {"Sol Ring": {"Peace Offering", "Family Matters"}, "Skullclamp": {"Peace Offering"}, "Forest": set(),
+                 "Mind Stone": {"Family Matters"}}
+        self.assertEqual(decklist.boxes_of(found, own=["Mind Stone"]),
+                         {"Sol Ring": ["Family Matters", "Peace Offering"], "Skullclamp": ["Peace Offering"]})
+
+    def test_every_swap_and_every_card_carries_the_key_and_only_owned_ones_name_a_box(self):
+        owned_from = {"Sol Ring": ["Peace Offering"], "Skullclamp": ["Peace Offering"]}
+        result = {"swaps": [{"add": "Sol Ring", "owned": True}, {"add": "Skullclamp", "owned": False},
+                            {"add": "Brainstorm", "owned": True}],
+                  "cards": [{"name": "Sol Ring", "owned": True}, {"name": "Cultivate", "owned": False}]}
+        decklist.attach_owned_from(result, owned_from)
+        self.assertEqual([s["owned_from"] for s in result["swaps"]], [["Peace Offering"], [], []])
+        self.assertEqual([c["owned_from"] for c in result["cards"]], [["Peace Offering"], []])
+        # a result whose cards are a map (the server's suggestions) is left alone there
+        self.assertEqual(decklist.attach_owned_from({"cards": {"Sol Ring": {}}}, owned_from)["cards"],
+                         {"Sol Ring": {}})

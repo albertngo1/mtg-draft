@@ -606,18 +606,24 @@ function pasteForm(app: App): HTMLFormElement {
   list.addEventListener("input", () => { base.list = list.value; base.errors.list = ""; });
   form.append(ui.field({
     id: "base-list", label: "The deck list", control: list, error: base.errors.list,
-    hint: "One card on each line, with its count: “1 Sol Ring”. Mark the commander under a “Commander” heading, or name it below.",
+    hint: "One card on each line, with its count: “1 Sol Ring”. Mark the commander under a “Commander” heading, or name it below. A JSON deck can be pasted too.",
   }));
   const commander = h("input", { id: "base-commander", class: "input", type: "text", value: base.commander, placeholder: "Only if the list does not mark it", autocomplete: "off" });
   commander.addEventListener("input", () => { base.commander = commander.value; });
   form.append(ui.field({ id: "base-commander", label: "Commander (optional)", control: commander }));
   if (base.problems.length) {
-    form.append(h("section", { class: "stack" }, ui.sectionLabel(`${base.problems.length} ${base.problems.length === 1 ? "line" : "lines"} could not be read`, { tight: true }),
-      h("ul", { class: "problems" }, base.problems.map((p) => h("li", {},
-        h("div", {}, h("span", { class: "mono", text: `Line ${p.line}: ` }), p.text),
-        h("div", { class: "seg", style: { marginTop: "6px" } },
-          (p.suggestions || []).map((suggestion) => ui.chip({ label: suggestion, onClick: () => { fixLine(p.line!, suggestion); app.render(); } })),
-          ui.chip({ label: "Drop this line", onClick: () => { fixLine(p.line!, null); app.render(); } })))))));
+    // A problem with no line (a card of a pasted JSON deck, a misspelled commander) cannot be fixed by rewriting a line,
+    // which could break the JSON: it names the card and its close names, and the player edits the list.
+    const lines = base.problems.some((p) => p.line !== null && p.line !== undefined);
+    form.append(h("section", { class: "stack" }, ui.sectionLabel(`${base.problems.length} ${lines ? (base.problems.length === 1 ? "line" : "lines") : (base.problems.length === 1 ? "name" : "names")} could not be read`, { tight: true }),
+      h("ul", { class: "problems" }, base.problems.map((p) => p.line === null || p.line === undefined
+        ? h("li", {}, h("div", {}, h("span", { class: "mono", text: "Not a card: " }), p.text),
+          p.suggestions && p.suggestions.length ? h("div", { class: "field__hint", text: `Close names: ${p.suggestions.join(", ")}` }) : null)
+        : h("li", {},
+          h("div", {}, h("span", { class: "mono", text: `Line ${p.line}: ` }), p.text),
+          h("div", { class: "seg", style: { marginTop: "6px" } },
+            (p.suggestions || []).map((suggestion) => ui.chip({ label: suggestion, onClick: () => { fixLine(p.line!, suggestion); app.render(); } })),
+            ui.chip({ label: "Drop this line", onClick: () => { fixLine(p.line!, null); app.render(); } })))))));
   }
   ui.append(form, [noticeBanner(base.notice)]);
   form.append(ui.button({ label: "Create base deck", kind: "primary", size: "big", busy: base.busy, type: "submit", className: "btn--block" }));
@@ -647,8 +653,13 @@ async function createFromList(app: App): Promise<void> {
     base.busy = false;
     if (error.kind === "invalid" && Array.isArray(error.details) && error.details.length && error.details[0].line !== undefined) {
       base.problems = error.details;
-      base.notice = warning("Fix or drop these lines,", "then create the base deck again.");
+      // pasted JSON names its unknown cards with no line numbers, so there are no lines to drop
+      const lines = error.details.some((p: Problem) => p.line !== null && p.line !== undefined);
+      base.notice = lines ? warning("Fix or drop these lines,", "then create the base deck again.")
+        : warning("Fix these card names in the pasted JSON,", "then create the base deck again.");
     } else if (error.kind === "conflict") base.errors.name = error.message;
+    // a list the server could not read at all (JSON that does not parse): sending it again cannot help, so no Retry
+    else if (error.kind === "invalid") base.errors.list = error.message;
     else base.notice = failureNotice(error, () => createFromList(app));
     app.render();
   }

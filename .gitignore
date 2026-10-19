@@ -12,3 +12,6 @@ docs/
 
 # TypeScript for the deck pages (npm install); src/mtgcommander/web/*.js is its committed output
 node_modules/
+
+# Saved Commander decks are each player's own data: keep them in a repo of your own via --decks / MTG_COMMANDER_DECKS
+commander/decks/

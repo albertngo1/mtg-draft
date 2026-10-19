@@ -1911,5 +1911,161 @@ class ConfigTests(unittest.TestCase):
         self.assertEqual(self.decks_folder(MTG_COMMANDER_DECKS=""), os.path.join(config.COMMITTED, "decks"))
 
 
+# ----------------------------------------------------------------------------- collections
+class CollectionTests(DeckFiles):
+    """andy's collection: the precons and loose cards andy owns, in andy/collection.json beside the versions."""
+
+    def collection_file(self, doc, player="andy"):
+        os.makedirs(self.path(player), exist_ok=True)
+        with open(self.path(player, "collection.json"), "w", encoding="utf-8") as f:
+            json.dump(doc, f)
+
+    def test_a_player_with_no_collection_file_has_an_empty_collection_and_nothing_is_made(self):
+        # nobody has saved one yet: empty, "updated" None, and no folder appears just from asking
+        self.assertEqual(decks.collection(self.root, "andy"), {"schema": 1, "kind": "collection", "player": "andy",
+                                                                "precons": [], "cards": [], "updated": None})
+        self.assertFalse(os.path.exists(self.path("andy")))
+        self.assertEqual(decks.collection_path(self.root, "andy"), self.path("andy", "collection.json"))
+
+    def test_a_collection_file_is_exactly_this_text(self):
+        # the documented key order, one precon and one card to a line, like the other deck files
+        decks.save_collection(self.root, "andy", precons=["Animated Army", "Scions & Spellcraft (FINAL FANTASY XIV)"],
+                              cards=[[1, "Sol Ring"]], now="2026-10-19T12:00:00Z")
+        self.assertEqual(self.raw("andy", "collection.json").decode("utf-8"),
+                         '{\n'
+                         ' "schema": 1,\n'
+                         ' "kind": "collection",\n'
+                         ' "player": "andy",\n'
+                         ' "precons": [\n'
+                         '  "Animated Army",\n'
+                         '  "Scions & Spellcraft (FINAL FANTASY XIV)"\n'
+                         ' ],\n'
+                         ' "cards": [\n'
+                         '  [1, "Sol Ring"]\n'
+                         ' ],\n'
+                         ' "updated": "2026-10-19T12:00:00Z"\n'
+                         '}\n')
+        self.assertEqual(decks.collection(self.root, "andy")["precons"],
+                         ["Animated Army", "Scions & Spellcraft (FINAL FANTASY XIV)"])
+
+    def test_saving_precons_keeps_the_hand_edited_cards_and_any_key_the_tool_does_not_know(self):
+        # andy typed two loose cards and a note into the file; adding a precon leaves them be
+        self.collection_file({"schema": 1, "kind": "collection", "player": "andy", "precons": ["Animated Army"],
+                              "cards": [[1, "Sol Ring"], [2, "Forest"]], "note": "the binder"})
+        saved = decks.save_collection(self.root, "andy", precons=["Animated Army", "Peace Offering"], now=at(30))
+        again = decks.collection(self.root, "andy")
+        self.assertEqual((again["precons"], again["cards"], again["note"], again["updated"]),
+                         (["Animated Army", "Peace Offering"], [[1, "Sol Ring"], [2, "Forest"]], "the binder", at(30)))
+        self.assertEqual(saved, again)
+
+    def test_a_precon_named_twice_is_kept_once(self):
+        # 'animated army' after 'Animated Army' is the same box
+        saved = decks.save_collection(self.root, "andy", precons=["Animated Army", " animated army "])
+        self.assertEqual(saved["precons"], ["Animated Army"])
+
+    def test_bad_arguments_are_400s_and_write_nothing(self):
+        for kw in ({"precons": "Animated Army"}, {"precons": ["", "X"]}, {"precons": [], "cards": [["1", "Sol Ring"]]},
+                   {"precons": [], "cards": [[0, "Sol Ring"]]}, {"precons": [], "cards": "Sol Ring"}):
+            with self.subTest(kw=kw), self.assertRaises(decks.DeckError):
+                decks.save_collection(self.root, "andy", **kw)
+        self.assertFalse(os.path.exists(self.path("andy")))
+        with self.assertRaises(decks.DeckError):                          # the folder of base decks is no player
+            decks.collection(self.root, "bases")
+
+    def test_a_damaged_file_names_itself_and_is_never_written_over(self):
+        # each of these is a ValueError naming the file; save_collection leaves the file as it was
+        cases = {"not json": "{ precons: [}", "wrong kind": {"schema": 1, "kind": "version", "precons": []},
+                 "newer schema": {"schema": 2, "kind": "collection"},
+                 "another player's": {"schema": 1, "kind": "collection", "player": "albert"},
+                 "a precon that is not a name": {"schema": 1, "kind": "collection", "precons": [3]},
+                 "a card line that is not a pair": {"schema": 1, "kind": "collection", "cards": [["Sol Ring", 1]]},
+                 "no copies": {"schema": 1, "kind": "collection", "cards": [[0, "Sol Ring"]]},
+                 "precons not a list": {"schema": 1, "kind": "collection", "precons": "Animated Army"}}
+        for label, doc in cases.items():
+            with self.subTest(label):
+                if isinstance(doc, str):
+                    os.makedirs(self.path("andy"), exist_ok=True)
+                    with open(self.path("andy", "collection.json"), "w") as f:
+                        f.write(doc)
+                else:
+                    self.collection_file(doc)
+                with self.assertRaisesRegex(ValueError, "collection.json"):
+                    decks.collection(self.root, "andy")
+                before = self.raw("andy", "collection.json")
+                with self.assertRaisesRegex(ValueError, "collection.json"):
+                    decks.save_collection(self.root, "andy", precons=["Animated Army"])
+                self.assertEqual(self.raw("andy", "collection.json"), before)
+
+    def test_a_hand_made_file_that_leaves_out_the_player_and_the_lists_is_read_with_the_folders_player(self):
+        self.collection_file({"schema": 1, "kind": "collection"})
+        found = decks.collection(self.root, "andy")
+        self.assertEqual((found["player"], found["precons"], found["cards"]), ("andy", [], []))
+
+    def test_collection_is_not_a_version_id(self):
+        # a version called "Collection" would be andy/collection.json, the collection itself
+        with self.assertRaisesRegex(decks.DeckError, '"collection" cannot be a version id'):
+            self.new_version(name="Collection")
+        with self.assertRaises(decks.DeckError):
+            self.new_version(name="Mine", version_id="collection")
+        decks.save_collection(self.root, "andy", precons=["Animated Army"])
+        with self.assertRaises(decks.DeckError) as caught:
+            decks.version(self.root, "andy", "collection")
+        self.assertEqual(caught.exception.status, 400)
+        with self.assertRaises(decks.DeckError):
+            decks.apply(self.root, "andy", "collection", {"op": "add", "card": "Mind Stone"}, revision=0, db=DB)
+        with self.assertRaises(decks.DeckError):
+            decks.update(self.root, "andy", "collection", revision=0, name="x")
+
+    def test_the_listing_never_reads_the_collection_as_a_version(self):
+        # andy has one version and a collection: one version listed, no warning about a file of the wrong kind
+        self.new_version()
+        decks.save_collection(self.root, "andy", precons=["Animated Army"])
+        self.assertEqual([v["id"] for v in decks.versions(self.root, "andy")], ["go-wide"])
+        self.assertEqual(decks.WARNINGS, [])
+        # albert has only a collection: albert is a player with no versions yet
+        decks.save_collection(self.root, "albert", precons=[])
+        self.assertIn("albert", decks.players(self.root))
+        self.assertEqual(decks.versions(self.root, "albert"), [])
+
+
+class ParseListJsonTests(unittest.TestCase):
+    """A pasted JSON deck in the New base deck box. Its problems are names, not lines: rewriting one line could break
+    the JSON, so each unknown card comes with line None and its close names."""
+
+    def test_a_json_deck_reads_like_a_text_one(self):
+        text = json.dumps({"commanders": ["hazel of the rootbloom"], "cards": [[1, "Sol Ring"], {"name": "Forest",
+                                                                                                 "count": 9}]})
+        self.assertEqual(decks.parse_list(text, DB), {"commanders": ["Hazel of the Rootbloom"],
+                                                     "cards": [[1, "Sol Ring"], [9, "Forest"]], "problems": []})
+
+    def test_a_typo_in_a_json_deck_is_a_problem_on_no_line(self):
+        out = decks.parse_list('{"commanders": ["Hazel of the Rootbloom"],\n "cards": ["Sol Rnig", "Forest"]}', DB)
+        self.assertEqual(out["cards"], [[1, "Forest"]])
+        self.assertEqual([(p["line"], p["text"]) for p in out["problems"]], [(None, "Sol Rnig")])
+        self.assertEqual(out["problems"][0]["suggestions"][0], "Sol Ring")
+
+    def test_json_that_cannot_be_read_and_a_collection_are_422s_that_say_why(self):
+        for text, words in (('{"cards": [1 "Sol Ring"]}', "line 1, column 14"),
+                            ('{"deck": []}', "a shape this tool does not know"),
+                            ('{"schema": 1, "kind": "collection", "precons": []}', "a collection is not a deck")):
+            with self.subTest(text=text), self.assertRaises(decks.Invalid) as caught:
+                decks.parse_list(text, DB)
+            self.assertIn(words, caught.exception.message)
+            self.assertEqual(caught.exception.status, 422)
+
+    def test_a_pasted_saved_version_is_replayed_on_its_base_deck_in_the_decks_folder(self):
+        root = tempfile.mkdtemp()
+        self.addCleanup(shutil.rmtree, root, True)
+        decks.new_base(root, name="Squirreled Away", commanders=["Hazel of the Rootbloom"], cards=SQUIRRELED_AWAY,
+                       source=PRECON, created_by="andy", db=DB)
+        decks.new_version(root, player="andy", name="Go wide", base_id="squirreled-away", settings={})
+        decks.apply(root, "andy", "go-wide", {"op": "cut", "card": "Skullclamp"}, revision=0, db=DB)
+        with open(os.path.join(root, "andy", "go-wide.json"), encoding="utf-8") as f:
+            text = f.read()
+        out = decks.parse_list(text, DB, root=root)
+        self.assertNotIn("Skullclamp", [name for _, name in out["cards"]])
+        self.assertEqual(sum(n for n, _ in out["cards"]), sum(n for n, _ in SQUIRRELED_AWAY) - 1)
+
+
 if __name__ == "__main__":
     unittest.main()

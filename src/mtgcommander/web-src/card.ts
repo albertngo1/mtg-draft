@@ -118,7 +118,7 @@ export function open(app: App, name: string, options: ui.SheetOptions): ui.Sheet
     const tags = h("div", { class: "tags" });
     for (const role of a.roles) tags.append(ui.tag(ui.capitalize(role), { on: true }));
     if (a.gc) tags.append(ui.tag("Game Changer", { on: true }));
-    if (card.owned) tags.append(ui.tag("You own it"));
+    if (card.owned) tags.append(ui.tag(card.owned_from && card.owned_from.length ? `You own it, ${ui.fromBoxes(card.owned_from)}` : "You own it"));
     if (a.salt !== null && a.salt !== undefined) tags.append(ui.tag(`Salt ${ui.valueText(a.salt)}`));
     if (a.copies > 1) tags.append(ui.tag(`${a.copies} copies in the deck`));
     if (tags.children.length) out.push(tags);

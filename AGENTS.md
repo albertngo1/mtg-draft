@@ -584,7 +584,8 @@ Windows use `python` and `mtg-commander.bat`; on macOS/Linux `./mtg-commander.sh
 | "what commander fits a squirrel army?" | `themes`, then `suggest` |
 | "is this deck Bracket 3?", "is this card allowed?" | `check` |
 | "how good is this deck at X?", "show me the numbers", "how much removal does it have?" | `stats` |
-| "save my deck", "show my decks on my phone", "change my deck from the couch" | `serve`, a local web server that also hands out the deck pages (`src/mtgcommander/web/`): open the address it prints to see a saved version as cards, change it and watch every number move (saved decks are files in `commander/decks/`; `stats --version PLAYER/ID` prints a saved version). It has no login: tell the player, and run one server at a time |
+| "save my deck", "show my decks on my phone", "change my deck from the couch" | `serve`, a local web server that also hands out the deck pages (`src/mtgcommander/web/`): open the address it prints to see a saved version as cards, change it and watch every number move (`stats --version PLAYER/ID` prints a saved version). Saved decks are the player's own files, kept out of this repo (`commander/decks/` is in `.gitignore`); to keep them under version control, point `--decks DIR` or `MTG_COMMANDER_DECKS` at a folder that is its own git repository. It has no login: tell the player, and run one server at a time |
+| "track the decks I own", "I bought Animated Army", "I own these precons" | `collection --player NAME --add-precon "Animated Army"` (repeatable; `--remove-precon` takes one out, and `collection --player NAME` lists them). After that `--player NAME` (or `MTG_COMMANDER_PLAYER`) makes their cards free on every run, and the deck pages count them too |
 | "I will be offline" | `warm` now; `--offline` later |
 
 ```bash
@@ -604,12 +605,16 @@ of any list. The first run of most commands also builds the card index (a minute
 what the flags need:
 
 1. **The deck.** A precon name (`--precon`), a decklist file (write a pasted list to a file first; `-` reads standard
-   input), or a commander to build around. If the list does not mark its commander, add `--commander NAME` (twice for
-   a partner pair).
+   input; text or JSON, including a version file the server saved), or a commander to build around. If the list does
+   not mark its commander, add `--commander NAME` (twice for a partner pair).
 2. **The bracket.** Default 3 (Upgraded). Offer 2 for a looser table. Go to 4 or 5 only when the player asks for a
    stronger deck.
 3. **The budget**, in US dollars, for cards they do not own (`--budget`). Cards they own cost $0: `--owned FILE` (a
-   decklist) and `--owned-precon NAME` (they own the box). In `upgrade`, the deck's own cards already count as owned.
+   decklist, or a collection file), `--owned-precon NAME` (they own the box) and `--player NAME`, which counts that
+   player's collection (the precons stored with `collection --add-precon`, and any loose cards in the file). Ask
+   whether they have a collection before listing their precons again; `MTG_COMMANDER_PLAYER` set in the environment
+   does the same as `--player`, and a missing collection is then only a warning. In `upgrade`, the deck's own cards
+   already count as owned.
    With a budget, `upgrade` also shows what less money would buy, at a few price points on the way up to it
    (`--price-points 25,50,100` picks the amounts).
 4. **The fantasy**, below.
@@ -645,8 +650,8 @@ Quote a number from its line, and say what it measures:
   creature's power). Say that the number is missing; never estimate it.
 - **Price** is the cheapest printing of each card, the same price `upgrade` charges, so the cost to buy of the list an
   upgrade made is what the upgrade spent. If Scryfall could not be asked, the card index's price stands in and a warning
-  says so. Cards the player owns (`--owned`, `--owned-precon`) cost $0 to buy; unlike in `upgrade`, the list's own cards
-  do not.
+  says so. Cards the player owns (`--owned`, `--owned-precon`, `--player`) cost $0 to buy; unlike in `upgrade`, the
+  list's own cards do not.
 - `warm` (or else the first online `stats` run) downloads Commander Spellbook's daily combo file (29 MB) and the card
   attribute tags once; after that `stats --offline` works for any list.
 
@@ -725,6 +730,11 @@ report ends with the same warning, and so should your summary.
   fallen, but it is above the typical count. `answers_before` / `answers_after` in `--json` have the exact counts.
 - `upgrade` has no limit on swaps unless `--max-swaps N` is set, so a large budget can give dozens. Lead with the
   first ones and the price-point lines, and offer the rest.
+- A swap or a built card marked `(owned, from Peace Offering)` costs $0 because the card is in a precon the player
+  owns. Relay it as "free, but it comes out of your Peace Offering deck": taking it means moving the card from that
+  deck, or buying another copy. With two boxes it says `from Peace Offering or Family Matters`, and with more it names
+  two and how many others (`or 3 more`). A plain `(owned)` is a card they own outside any box (a loose card or an
+  `--owned` list), and in `upgrade` the deck's own cards never carry a box.
 
 ### Say when the data is thin
 
@@ -756,11 +766,12 @@ cannot do without is unavailable (offline with nothing cached): run `warm` while
 | command | keys to read |
 |---|---|
 | `check` | `legality` (`ok`, `problems[]` with `kind`, `cards`, `message`), `bracket`, `bracket_check` (the bracket report: `ok`, `violations[]`, `game_changers`, `gc_max`, `two_card_combos[]`, `estimated`, `notes`), `roles` (`counts`, `targets`, `status`), `curve` |
-| `upgrade` | `swaps[]` (`rank`, `cut`, `add`, `gain`, `price`, `owned`, `forced`, `reason`, `fills`, `evidence_add`, `kind_add`, `evidence_cut`, `price_point`: the step that found it, null for a forced swap), `price_points[]` (`budget`, `spent`, `value`, `swaps`: totals up to that step; `change`: `value` less `value_before`; `answers`: `{threat id: count}` at that step, null without tags; `weakens[]`: `id`, `label`, `before`, `after`, `target` for each kind of threat that step has brought down from the start's count to the bracket's typical count or under it; empty without a budget), `blocked[]` (`card`, `reason`, `gain`), `cheap_adds[]`, `spent`, `roles_before`, `roles_after`, `answers_before`, `answers_after` (`{threat id: count}` of the cards that answer each kind of threat, null without tags), `targets`, `value_before`, `value_after`, `bracket_before`, `bracket_after`, `deck_after` |
-| `build` | `cards[]` (`name`, `section`, `roles`, `score`, `price`, `owned`, `evidence`, `kind`), `basics`, `count`, `spent`, `roles`, `targets`, `value`, `fantasy_cost`, `bracket_check`, `blocked` |
+| `upgrade` | `swaps[]` (`rank`, `cut`, `add`, `gain`, `price`, `owned`, `owned_from`: the precons the free card came in, empty when it is not owned or is owned outside any box, `forced`, `reason`, `fills`, `evidence_add`, `kind_add`, `evidence_cut`, `price_point`: the step that found it, null for a forced swap), `price_points[]` (`budget`, `spent`, `value`, `swaps`: totals up to that step; `change`: `value` less `value_before`; `answers`: `{threat id: count}` at that step, null without tags; `weakens[]`: `id`, `label`, `before`, `after`, `target` for each kind of threat that step has brought down from the start's count to the bracket's typical count or under it; empty without a budget), `blocked[]` (`card`, `reason`, `gain`), `cheap_adds[]`, `spent`, `roles_before`, `roles_after`, `answers_before`, `answers_after` (`{threat id: count}` of the cards that answer each kind of threat, null without tags), `targets`, `value_before`, `value_after`, `bracket_before`, `bracket_after`, `deck_after` |
+| `build` | `cards[]` (`name`, `section`, `roles`, `score`, `price`, `owned`, `owned_from` as in `upgrade`, `evidence`, `kind`), `basics`, `count`, `spent`, `roles`, `targets`, `value`, `fantasy_cost`, `bracket_check`, `blocked` |
 | `suggest` | `commanders[]` (`rank`, `name`, `ci`, `score`, `theme_share`, `playstyle_share`, `bracket_decks`, `salt`, `tournament`, `core_cost`, `owned_share`, `evidence[]`) |
 | `stats` | `headline` (`score`, `bracket` (the chosen one), `bracket_ok` (whether the deck keeps its limits), `lands`, `removal_power`, `price`), `groups[]` (`id`, `label`, `items[]`). Each item has `id`, `label`, `value` (null when it cannot be had), `unit` (`%`, `$` or null), `target` (`min`, `target`, `max`, any of them null), `status` (`short`, `inside`, `over` or null), `why[]`, `cards[]`; read `why` for how a number was made or why it is missing. With `--version`, an item also has `base` (the base deck's value) and, when both are numbers, `change` (how far `value` moved from it, rounded to 2 decimals): quote `change`, do not subtract |
 | `themes`, `warm` | `playstyles[]` and `themes[]` (`slug`, `label`, `count`); `fetched[]` (`source`, `what`, `cache`, `fetched`) |
+| `collection` | `player`, `path` (the file), `precons[]` (`name`, `commanders`: null when the precon's list is not cached), `cards` (the loose cards, `[[count, name]]`), `card_count`, `updated`, `notes[]` (what this run added or removed) |
 | `validate` | `method`, `commanders[]` (`name`, `decks`, `overlap`, `baseline`), `overall` (`overlap`, `baseline`, `n`), `roles_in_iqr`, `bracket_ok_rate`, `sweep`, `calibration`, `upgrade_check` |
 
 `kind` / `kind_add` is `builder`, `tournament`, `popularity` or `none`: the evidence type from the table above.
