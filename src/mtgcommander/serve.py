@@ -9,7 +9,8 @@ they know comes from the answers below, so each formula exists once, in Python. 
                                               does not have yet (read only, 2 second limit; a note when git cannot say,
                                               or when git ignores the decks folder)
     GET   /api/players                        the players (the folders under the decks folder)
-    GET   /api/menu                           the playstyles and common themes a version's settings choose from
+    GET   /api/menu                           the playstyles and common themes a version's settings choose from,
+                                              and the bracket a new version starts on (MTG_BRACKET, else 4)
     GET   /api/decks?player=NAME              that player's versions, newest first, each with its headline numbers
     POST  /api/decks                          {"player", "name", "base", "settings"?} makes a version; 201
     GET   /api/decks/PLAYER/ID                a version: its cards, change log, difference from its base deck and every
@@ -1204,7 +1205,7 @@ class App:
         return 200, {"players": decks.players(self.root)}
 
     def route_menu(self, args, query, body):
-        return 200, fantasy.menu()
+        return 200, {**fantasy.menu(), "bracket": config.DEFAULT_BRACKET}
 
     def route_decks(self, args, query, body):
         player = query.get("player")

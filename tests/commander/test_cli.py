@@ -549,7 +549,7 @@ class ModeTests(CliCase):
 # ----------------------------------------------------------------------------- check
 class CheckTests(CliCase):
     def test_a_legal_precon_through_every_check(self):
-        result = self.run_json("check", "--precon", "Test Precon")
+        result = self.run_json("check", "--precon", "Test Precon", "--bracket", "3")     # the checks, not the default bracket
         self.assertEqual(result["schema"], 1)
         self.assertEqual(result["command"], "check")
         self.assertEqual(result["deck"], {"name": "Test Precon", "commanders": ["Hazel of the Rootbloom"], "count": 100,
@@ -571,12 +571,12 @@ class CheckTests(CliCase):
         self.combos.update(included=[{"id": "1-2", "cards": ["Hazel of the Rootbloom", "Sol Ring"], "missing": [],
                                       "produces": ["Infinite mana"], "bracket_tag": "R", "min_bracket": 4,
                                       "two_card": True, "infinite": True, "url": "https://example.test/1-2/"}])
-        report = self.run_json("check", "--precon", "Test Precon")["bracket_check"]
+        report = self.run_json("check", "--precon", "Test Precon", "--bracket", "3")["bracket_check"]   # a Bracket 3 deck
         self.assertFalse(report["ok"])
         self.assertEqual(report["two_card_combos"][0]["url"], "https://example.test/1-2/")
 
     def test_roles_are_counted_against_the_brackets_targets_with_a_status(self):
-        roles_block = self.run_json("check", "--precon", "Test Precon")["roles"]
+        roles_block = self.run_json("check", "--precon", "Test Precon", "--bracket", "3")["roles"]     # counted at Bracket 3
         self.assertEqual((roles_block["counts"]["ramp"], roles_block["counts"]["draw"]), (3, 1))
         self.assertEqual(roles_block["counts"]["land"], 82)          # 3 nonbasic lands and 79 basics
         bracket3 = roles.targets(3)["ramp"]          # whatever the shipped calibration says
@@ -640,7 +640,7 @@ class CheckTests(CliCase):
         self.assertEqual([p["kind"] for p in result["legality"]["problems"]], ["commander"])   # Pir wants Toothy
 
     def test_the_text_report_goes_to_stdout(self):
-        result = self.run_cli("check", "--precon", "Test Precon")
+        result = self.run_cli("check", "--precon", "Test Precon", "--bracket", "3")
         self.assertEqual(result.code, 0)
         self.assertIn("Test Precon: Hazel of the Rootbloom (BG), 100 cards; checked at Bracket 3", result.out)
         self.assertIn("Legality: ok", result.out)
@@ -664,7 +664,7 @@ class StatsTests(CliCase):
         return self.run_json("stats", "--precon", "Test Precon", *argv)
 
     def test_a_precon_through_the_metrics_engine(self):
-        result = self.stats()
+        result = self.stats("--bracket", "3")                  # the report's shape, not the default bracket
         self.assertEqual((result["schema"], result["command"], result["bracket"]), (1, "stats", 3))
         self.assertEqual(result["deck"], {"name": "Test Precon", "commanders": ["Hazel of the Rootbloom"], "count": 100,
                                           "ci": "BG"})
@@ -797,7 +797,7 @@ class StatsTests(CliCase):
         self.assertIn("warm COMMANDER", result.err)
 
     def test_the_text_report_goes_to_stdout_and_json_is_alone_on_stdout(self):
-        text = self.run_cli("stats", "--precon", "Test Precon")
+        text = self.run_cli("stats", "--precon", "Test Precon", "--bracket", "3")
         self.assertEqual(text.code, 0)
         self.assertIn("Test Precon → Bracket 3, no budget", text.out)
         self.assertIn("Score 93.77, Bracket 3 within its limits, 36 lands, removal power 5.95, cost to buy $185.43", text.out)
@@ -1309,12 +1309,15 @@ class UpgradeTests(CliCase):
         return SimpleNamespace(prep_args=prep_args, prep_kw=prep_kw, ctx=ctx, deck=deck, db=db, up_kw=up_kw)
 
     def test_the_shared_steps_in_order_with_the_defaults(self):
-        self.assertEqual(self.upgrade().code, 0)
+        # no --bracket: the built-in default is Bracket 4 (patched, so an exported MTG_BRACKET cannot change this test),
+        # which is above the Brackets 1-3 where keep-fun is on, so keep-fun is off
+        with mock.patch.object(config, "DEFAULT_BRACKET", 4):
+            self.assertEqual(self.upgrade().code, 0)
         c = self.calls()
         commanders, bracket, spec, db = c.prep_args
-        self.assertEqual((commanders, bracket, db), (["Hazel of the Rootbloom"], 3, self.db))
+        self.assertEqual((commanders, bracket, db), (["Hazel of the Rootbloom"], 4, self.db))
         self.assertEqual((spec["themes"], spec["playstyle"], spec["include"], spec["exclude"], spec["keep_fun"]),
-                         ([], "value", [], [], True))
+                         ([], "value", [], [], False))
         names = c.prep_kw["deck_cards"]
         self.assertEqual((len(names), names[:3]), (22, ["Sol Ring", "Mana Crypt", "Skullclamp"]))   # distinct cards
         self.assertEqual((c.prep_kw["owned"], c.prep_kw["sources"]), (set(), config.SOURCES))
@@ -1572,9 +1575,12 @@ class SuggestTests(CliCase):
         self.assertIn("Commanders for tokens; playstyle: go-wide", result.out)
 
     def test_defaults(self):
-        self.run_cli("suggest", "--theme", "tokens")
+        # no --bracket: the built-in default is Bracket 4 (patched, so an exported MTG_BRACKET cannot change this test),
+        # which is above the Brackets 1-3 where keep-fun is on, so keep-fun is off
+        with mock.patch.object(config, "DEFAULT_BRACKET", 4):
+            self.run_cli("suggest", "--theme", "tokens")
         (spec, _), kw = self.engine.calls["suggest"]
-        self.assertEqual((spec["bracket"], spec["keep_fun"]), (3, True))
+        self.assertEqual((spec["bracket"], spec["keep_fun"]), (4, False))
         self.assertEqual((kw["colors"], kw["budget"], kw["limit"], kw["owned"]), (None, None, 10, set()))
 
     def test_a_playstyle_alone_is_enough(self):
@@ -1590,7 +1596,7 @@ class SuggestTests(CliCase):
     def test_the_result_is_completed_where_the_engine_left_gaps(self):
         bare = {"commanders": []}
         self.engine.suggest = lambda *a, **k: dict(bare)
-        result = self.run_json("suggest", "--theme", "tokens", "--colors", "bg", "--budget", "100")
+        result = self.run_json("suggest", "--theme", "tokens", "--colors", "bg", "--budget", "100", "--bracket", "3")
         self.assertEqual((result["command"], result["bracket"], result["filters"]),
                          ("suggest", 3, {"colors": "BG", "budget": 100.0}))
         self.assertEqual(result["spec"]["themes"], ["tokens"])
@@ -1607,6 +1613,9 @@ class WarmTests(CliCase):
 
     def setUp(self):
         super().setUp()
+        # the rows and counts below are those of a warm at Bracket 3, the bracket a run without --bracket used before
+        # the default became 4; pinned so the shell's MTG_BRACKET cannot change them (a test of another bracket says so)
+        mock.patch.object(config, "DEFAULT_BRACKET", 3).start()
         self.log = []
         self.decks = {"all": 12334, "bracket": 1125, "bracket_theme": 281, "theme": 1455, "global": 5000}   # deck counts
         mock.patch.object(edhrec, "signals", side_effect=self.edhrec_signals).start()

@@ -13,7 +13,7 @@ import collections, http.client, json, os, re, shutil, socket, subprocess, tempf
 import urllib.error, urllib.parse, urllib.request
 from types import SimpleNamespace
 from unittest import mock
-from mtgcommander import build, carddb, decklist, decks, net, render, roles, serve
+from mtgcommander import build, carddb, config, decklist, decks, net, render, roles, serve
 from mtgcommander.providers import scryfall_tags, spellbook
 
 CMDR = "Hazel of the Rootbloom"
@@ -1754,6 +1754,12 @@ class ListTests(ServerCase):
         self.assertEqual(len(menu["playstyles"]), 12)
         self.assertEqual(sorted(menu["playstyles"][0]), ["description", "label", "min_bracket", "slug", "themes"])
         self.assertEqual(menu["themes"][0]["slug"], "tokens")
+
+    def test_the_menu_starts_a_new_version_on_the_default_bracket(self):
+        # MTG_BRACKET=4 makes the new-version form start on Bracket 4; without it the form starts on 3
+        self.assertEqual(self.get("/api/menu")["bracket"], config.DEFAULT_BRACKET)
+        with mock.patch.object(config, "DEFAULT_BRACKET", 4):
+            self.assertEqual(self.get("/api/menu")["bracket"], 4)
 
     def test_the_deck_list_gives_each_version_its_headline_from_a_ready_deck(self):
         # after the deck is open, the list shows its numbers (no preparation of its own)

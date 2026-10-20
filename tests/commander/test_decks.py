@@ -1910,6 +1910,18 @@ class ConfigTests(unittest.TestCase):
         # MTG_COMMANDER_DECKS= (set but empty)
         self.assertEqual(self.decks_folder(MTG_COMMANDER_DECKS=""), os.path.join(config.COMMITTED, "decks"))
 
+    def default_bracket(self, **environment):
+        """config.DEFAULT_BRACKET as a fresh run of config.py computes it, whatever MTG_BRACKET the shell has."""
+        env = {k: v for k, v in os.environ.items() if k != "MTG_BRACKET"}
+        env.update(environment)
+        with mock.patch.dict(os.environ, env, clear=True):
+            return runpy.run_path(config.__file__)["DEFAULT_BRACKET"]
+
+    def test_the_default_bracket_is_4_unless_the_environment_names_another(self):
+        # no variable at all (Optimized), then MTG_BRACKET=2 (a player who wants a looser table)
+        self.assertEqual(self.default_bracket(), 4)
+        self.assertEqual(self.default_bracket(MTG_BRACKET="2"), 2)
+
 
 # ----------------------------------------------------------------------------- collections
 class CollectionTests(DeckFiles):

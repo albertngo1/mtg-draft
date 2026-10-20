@@ -17,7 +17,7 @@ DECKS = os.environ.get("MTG_COMMANDER_DECKS") or os.path.join(COMMITTED, "decks"
 PLAYER = os.environ.get("MTG_COMMANDER_PLAYER") or None
 os.makedirs(CACHE, exist_ok=True)
 
-DEFAULT_BRACKET = int(os.environ.get("MTG_BRACKET", "3"))  # no bracket given → Bracket 3 (Upgraded)
+DEFAULT_BRACKET = int(os.environ.get("MTG_BRACKET", "4"))  # no bracket given → Bracket 4 (Optimized)
 DEFAULT_FANTASY_WEIGHT = 0.5                                # 0 = pure power, 1 = theme above all
 
 # `serve` (the deck pages' server) listens on this computer only unless --host says otherwise
