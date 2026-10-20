@@ -1,13 +1,87 @@
 {
-  "data": {
-    "commanders": {
-      "pageInfo": {"hasNextPage": false, "endCursor": "3"},
-      "edges": [
-        {"node": {"name": "Sisay, Weatherlight Captain", "stats": {"count": 3340, "conversionRate": 0.2805}}},
-        {"node": {"name": "Kinnan, Bonder Prodigy", "stats": {"count": 6416, "conversionRate": 0.2684}}},
-        {"node": {"name": "Thrasios, Triton Hero / Tymna the Weaver",
-                  "stats": {"count": 2445, "conversionRate": 0.2609}}}
-      ]
+ "data": {
+  "commanders": {
+   "edges": [
+    {
+     "node": {
+      "id": "Q29tbWFuZGVyOj1",
+      "name": "Sisay, Weatherlight Captain",
+      "colorId": "WUBRG",
+      "breakdownUrl": "/commander/Sisay,%20Weatherlight%20Captain",
+      "stats": {
+       "conversionRate": 0.2805,
+       "topCuts": 937,
+       "count": 3340,
+       "metaShare": 0.0167,
+       "winRate": 0.21
+      },
+      "cards": [
+       {
+        "imageUrls": [
+         "https://cards.scryfall.io/art_crop/front/x.jpg"
+        ],
+        "id": "Q2FyZDox"
+       }
+      ],
+      "__typename": "Commander"
+     },
+     "cursor": "1"
+    },
+    {
+     "node": {
+      "id": "Q29tbWFuZGVyOj2",
+      "name": "Kinnan, Bonder Prodigy",
+      "colorId": "UG",
+      "breakdownUrl": "/commander/Kinnan,%20Bonder%20Prodigy",
+      "stats": {
+       "conversionRate": 0.2684,
+       "topCuts": 1722,
+       "count": 6416,
+       "metaShare": 0.03208,
+       "winRate": 0.21
+      },
+      "cards": [
+       {
+        "imageUrls": [
+         "https://cards.scryfall.io/art_crop/front/x.jpg"
+        ],
+        "id": "Q2FyZDox"
+       }
+      ],
+      "__typename": "Commander"
+     },
+     "cursor": "2"
+    },
+    {
+     "node": {
+      "id": "Q29tbWFuZGVyOj3",
+      "name": "Thrasios, Triton Hero / Tymna the Weaver",
+      "colorId": "WUBG",
+      "breakdownUrl": "/commander/Thrasios,%20Triton%20Hero%20/%20Tymna%20the%20Weaver",
+      "stats": {
+       "conversionRate": 0.2609,
+       "topCuts": 638,
+       "count": 2445,
+       "metaShare": 0.012225,
+       "winRate": 0.21
+      },
+      "cards": [
+       {
+        "imageUrls": [
+         "https://cards.scryfall.io/art_crop/front/x.jpg"
+        ],
+        "id": "Q2FyZDox"
+       }
+      ],
+      "__typename": "Commander"
+     },
+     "cursor": "3"
     }
+   ],
+   "pageInfo": {
+    "endCursor": "3",
+    "hasNextPage": false
+   }
   }
+ }
 }

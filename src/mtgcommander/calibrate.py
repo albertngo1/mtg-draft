@@ -349,6 +349,11 @@ class Sampler:
             except net.FetchError as err:
                 self.warnings.append(f"EDHTop16 commander {c['name']!r} skipped: {err}")
                 continue
+            if entries and not any(e["cards"] for e in entries):
+                # no entry carries its cards any more, so no commander can add a deck: say why once and stop
+                # asking (build_table's "needs at least N decks" error then quotes this warning)
+                self.warnings.append(f"Bracket 5 has no tournament decks: {edhtop16.NO_DECKLISTS}")
+                break
             commanders = split_pair(c["name"])
             cut = [e for e in entries if e["topcut"]]
             rows += [self.row(commanders, [(1, name) for name in e["cards"]]) for e in cut]

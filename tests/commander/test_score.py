@@ -6,7 +6,7 @@ card_scores is pure arithmetic on an evidence dict, so most tests build a tiny e
 numbers against the formula worked out in the comment above each assertion. gather's providers are replaced
 with canned answers from fixtures/score_signals.json; net is closed (Isolated.setUp), so nothing here can reach
 the network."""
-import copy, json, os, unittest
+import copy, json, os, tempfile, unittest
 from unittest import mock
 from mtgcommander import carddb, decklist, net, score
 from mtgcommander.providers import archidekt, edhrec, edhtop16
@@ -284,6 +284,17 @@ class CedhBaseTests(Isolated):
         ev["cards"]["Skullclamp"] = card(at=stats(400, 1000), all=stats(400, 1000))
         # no entry played it: only the small cEDH-page prior is left, (0 + 25 * 0.4) / (100 + 25) = 0.08
         self.assertAlmostEqual(one(ev, "Skullclamp")["parts"]["base"], 0.08)
+
+    def test_a_card_the_tournament_source_did_not_look_up_keeps_the_builder_rate(self):
+        # EDHTop16 lists only a commander's 100 most played cards. Skullclamp was not among them, so its
+        # 0 entries mean "not looked at", not "no deck ran it": the cEDH builders' rate stands,
+        # (400 + 200 * 0.4) / (1000 + 200) = 0.40, where reading it as unplayed would give 0.08
+        ev = self.evidence(100, 60)
+        ev["cards"]["Skullclamp"] = card(at=stats(400, 1000), all=stats(400, 1000), tourn_unchecked=True)
+        r = one(ev, "Skullclamp")
+        self.assertEqual(r["kind"], "builder")
+        self.assertAlmostEqual(r["parts"]["base"], (400 + 200 * 0.4) / 1200)
+        self.assertEqual(one(ev, "Sol Ring")["kind"], "tournament")   # a looked-up card is unchanged
 
 
 # ----------------------------------------------------------------------------- theme pull
@@ -777,6 +788,24 @@ class GatherTests(Isolated):
         self.top.assert_not_called()
         self.assertEqual(ev["n"]["tourn"], 99)
 
+    def test_cards_the_tournament_source_did_not_look_up_are_marked(self):
+        # the signal says it looked up only Sol Ring (EDHTop16: a commander's 100 most played cards); every
+        # other card the builders know is marked, so Bracket 5 does not read its missing entries as 0
+        self.standard_pages()
+        partial = copy.deepcopy(self.sig["tournament"])
+        partial.setdefault("meta", {})["checked"] = ["Sol Ring"]
+        ev = self.gather(tournament_signal=partial)
+        self.assertNotIn("tourn_unchecked", ev["cards"]["Sol Ring"])
+        self.assertTrue(ev["cards"]["Skullclamp"]["tourn_unchecked"])
+
+    def test_a_signal_that_saw_every_card_marks_none(self):
+        # a signal built from whole decklists (validate's held-out decks) has no "checked" list
+        self.standard_pages()
+        whole = copy.deepcopy(self.sig["tournament"])
+        (whole.get("meta") or {}).pop("checked", None)
+        ev = self.gather(tournament_signal=whole)
+        self.assertFalse(any(c.get("tourn_unchecked") for c in ev["cards"].values()))
+
     def test_a_tournament_signal_passed_in_is_ignored_where_it_has_no_weight(self):
         self.standard_pages()
         ev = self.gather(2, tournament_signal=self.sig["tournament"])
@@ -828,6 +857,89 @@ class GatherTests(Isolated):
         s = ev["precon"]["s"]
         sol = score.card_scores(ev, SPEC, self.db, {}, names=["Sol Ring"])["Sol Ring"]
         self.assertAlmostEqual(sol["parts"]["base"], (1130 / 1200 - s) / (1 - s))
+
+
+
+# ----------------------------------------------------------------------------- the real EDHTop16 provider in gather
+class RealTournamentSourceTests(Isolated):
+    """gather with edhtop16.signals NOT replaced: only the network underneath it is faked, so what the site
+    answers (or refuses) is followed all the way to the evidence and its warnings."""
+    REFUSAL = {"errors": ["Only persisted queries are allowed in production. Plain text queries are disabled."]}
+    SPEC = {"themes": [], "playstyle": "value", "weight": 0.5, "keep_fun": False, "bracket": 5}
+
+    def setUp(self):
+        super().setUp()
+        self.db = make_db()
+        tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(tmp.cleanup)
+        mock.patch.object(net, "CACHE", tmp.name).start()      # a cache file the provider deletes is a scratch one
+        self.asked = []
+
+    def serve(self, answer):
+        """Make net.fetch_json answer every EDHTop16 request with answer(persisted key): a payload to return,
+        or an Exception to raise."""
+        key_of_id = {query_id: key for key, (_, query_id) in edhtop16.PERSISTED.items()}
+
+        def fetch(url, **kw):
+            key = key_of_id[kw["data"]["extensions"]["pastoria-id"]]
+            self.asked.append(key)
+            result = answer(key)
+            if isinstance(result, Exception):
+                raise result
+            return result, {"url": url, "fetched": "2026-10-11T06:00:00Z", "cache": "network", "age_days": 0.1}
+        mock.patch.object(net, "fetch_json", fetch).start()
+
+    def gather(self):
+        return score.gather([TESSA], 5, self.SPEC, self.db, sources=("edhtop16",))
+
+    def test_a_working_site_gives_tournament_evidence_and_no_warning(self):
+        # The control for the failures below: the same run with the site answering
+        one_page = fixture("edhtop16_entries_page1.json")
+        one_page["data"]["commander"]["entries"]["pageInfo"] = {"endCursor": "5", "hasNextPage": False}
+        deck = {"data": {"commander": {"cardEntries": {"edges": [{"node": {"id": "E1"}}, {"node": {"id": "E4"}}],
+                                                       "pageInfo": {"endCursor": "2", "hasNextPage": False}}}}}
+        routes = {"entries": one_page, "stats": fixture("edhtop16_stats.json"),
+                  "staples": {"data": {"commander": {"staples": [{"name": "Sol Ring"}]}}}, "card_entries": deck}
+        self.serve(lambda key: routes[key])
+        ev = self.gather()
+        self.assertEqual(ev["n"]["tourn"], 5)                         # E1-E5, the whole window
+        self.assertEqual(ev["cards"]["Sol Ring"]["tourn"]["entries"], 2)    # E1 and E4 ran it
+        self.assertEqual(ev["tourn_totals"]["games"], 20)
+        self.assertIn("edhtop16", ev["sources"])
+        self.assertEqual([w for w in ev["warnings"] if "EDHTop16" in w], [])
+
+    def test_the_plain_text_refusal_is_a_warning_not_silently_no_data(self):
+        # 2026-10-19: this answer used to read as "no such commander": no evidence and no warning at all
+        self.serve(lambda key: self.REFUSAL)
+        ev = self.gather()
+        self.assertEqual(ev["n"]["tourn"], 0)
+        self.assertNotIn("edhtop16", ev["sources"])
+        self.assertTrue(any(w.startswith("EDHTop16 unavailable for tournament results:")
+                            and "Only persisted queries are allowed" in w for w in ev["warnings"]), ev["warnings"])
+
+    def test_a_query_id_the_site_no_longer_knows_is_a_warning_that_says_to_refresh_the_ids(self):
+        self.serve(lambda key: net.FetchError("edhtop16", edhtop16.API, "HTTP 400"))
+        ev = self.gather()
+        self.assertTrue(any(w.startswith("EDHTop16 unavailable for tournament results:")
+                            and "no longer recognizes its query id" in w and "PERSISTED" in w
+                            for w in ev["warnings"]), ev["warnings"])
+
+    def test_a_failure_halfway_through_the_card_lookups_still_warns(self):
+        one_page = fixture("edhtop16_entries_page1.json")
+        one_page["data"]["commander"]["entries"]["pageInfo"] = {"endCursor": "5", "hasNextPage": False}
+        routes = {"entries": one_page, "stats": fixture("edhtop16_stats.json"),
+                  "staples": {"data": {"commander": {"staples": [{"name": "Sol Ring"}]}}},
+                  "card_entries": net.FetchError("edhtop16", edhtop16.API, "HTTP 503")}
+        self.serve(lambda key: routes[key])
+        ev = self.gather()
+        self.assertEqual(ev["n"]["tourn"], 0)      # no half-built evidence: a missing card would read as unplayed
+        self.assertIn("EDHTop16 unavailable for tournament results: HTTP 503", ev["warnings"])
+
+    def test_an_unknown_commander_is_not_a_warning(self):
+        self.serve(lambda key: fixture("edhtop16_entries_missing.json"))
+        ev = self.gather()
+        self.assertEqual(ev["n"]["tourn"], 0)
+        self.assertEqual([w for w in ev["warnings"] if "EDHTop16" in w], [])
 
 
 if __name__ == "__main__":

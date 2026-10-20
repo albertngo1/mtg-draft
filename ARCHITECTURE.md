@@ -775,7 +775,7 @@ dict a text list does, so nothing after the reading knows the difference.
 | `providers/` | one module per data source, registered in `providers/__init__.py` (`SIGNAL_PROVIDERS`) |
 | `providers/edhrec.py` | what builders chose, per commander, bracket and theme; themes, salt, average land count |
 | `providers/archidekt.py` | bracket-tagged decklists: the second builder source |
-| `providers/edhtop16.py` | cEDH tournament entries with decklists and results: the tournament source |
+| `providers/edhtop16.py` | cEDH tournament results, and which entries ran each of a commander's 100 most played cards: the tournament source (it sends the site's own persisted queries; the ids are listed in the file) |
 | `providers/spellbook.py` | Commander Spellbook combos (in a list, and one card away) with their bracket tags: its web service, and a local index of its daily file (`combos_for` tries the index first) |
 | `providers/scryfall_tags.py` | Scryfall's community function tags as sets of cards |
 | `roles.py` | what each card does (ramp, draw, ...) from those tags; finer facts about a card (`attributes`), among them which kinds of threat it answers (`THREATS`); the per-bracket targets, and the one reader of `commander/metric_targets.json` (`answer_bands`) |
@@ -865,7 +865,9 @@ Four special cases:
   of the precon's nonland cards' base scores (`PRECON_PERCENTILE`, capped at `PRECON_S_MAX`) and rescales each
   precon card to `max(0, (base − s) / (1 − s))`. These cards are labeled `precon-adjusted`.
 - **Bracket 5.** With at least `TOURN_MIN` (30) tournament entries, `base` is the play rate among those decks,
-  shrunk toward the cEDH builders' rate the same way: `(entries_with_card + K_BASE · p_at) / (entries + K_BASE)`.
+  shrunk toward the cEDH builders' rate: `(entries_with_card + K_TOURN · p_at) / (entries + K_TOURN)`. EDHTop16
+  looks up only a commander's 100 most played cards, so a card outside them is marked as not looked up
+  (`tourn_unchecked`) and keeps its builder rate: its missing entries mean "not counted", not "never played".
 - **No deck-builder data at all** (both builder sources off, failed or without a page for the commander). A card
   scores by Scryfall's overall EDHREC rank, `POP_WEIGHT · (1 − ln(rank) / ln(POP_MAX_RANK))`, over the best
   `POP_POOL` cards inside the colors, and the report warns that the result is good-stuff staples, not what this
@@ -1050,7 +1052,7 @@ What each bracket rests on is limited by what the sources' terms allow:
 | bracket | how its numbers are made |
 |---|---|
 | 2 | the newest 60 MTGJSON precons, as a Bracket 2 proxy. Wizards no longer ties Core to precons, so these are typical out-of-the-box decks, not a sample of Bracket 2 decks |
-| 5 | EDHTop16 top-cut decklists of the most played tournament commanders (the site invites use of its public application programming interface, or API) |
+| 5 | EDHTop16 top-cut decklists of the most played tournament commanders (the site invites use of its public application programming interface, or API). Since 2026-10-19 the API no longer gives decklists or top-cut sizes, so re-measuring this row needs another source of decklists; the committed numbers stand |
 | 3, 4 | Archidekt decks tagged with that bracket, only when `archidekt` is among the sources; otherwise interpolated between 2 and 5 (a quarter and half of the way) and labeled *interpolated (judgment)* |
 | 1 | Bracket 2 with one more land and no tutors, labeled *judgment* |
 
@@ -1276,7 +1278,7 @@ The bracket wording, the dates and the places where Wizards' articles disagree (
 |---|---|---|---|---|
 | EDHREC | per commander, bracket and theme: decks that play each card, synergy; theme lists; the salt list; average land count | builder choice | 7 days | `json.edhrec.com` |
 | Archidekt | decklists tagged with a bracket | builder choice | 7 days for a search, 30 for a deck | `archidekt.com` |
-| EDHTop16 | cEDH tournament entries: decklists with wins, losses, draws, standing | tournament result | 1 day | `edhtop16.com` |
+| EDHTop16 | cEDH tournament entries (wins, losses, draws, standing) and, for the commander's 100 most played cards, which entries ran each. A cold read is about 100 requests, then one day from the cache | tournament result | 1 day | `edhtop16.com` |
 | Commander Spellbook | combos in a list and combos one card away, each with a bracket tag: from the API for `check`, `build` and `upgrade` (per list), and from the daily combo file, boiled down to a local index, for `stats` and `serve` (which `warm` downloads ahead of time) | rules check | API answers 7 days; the combo index 7 days | `backend.commanderspellbook.com`, `json.commanderspellbook.com` |
 | Scryfall | card data, function tags (the role tags and the attribute tags, saved in one file), cheapest printing | rules, roles, prices | card index 7 days, tags 30, prices 7 | `api.scryfall.com`, `data.scryfall.io` |
 | MTGJSON | precon decklists | input | 30 days (the list of precons: 7) | `mtgjson.com` |
@@ -1724,7 +1726,8 @@ use a source. Quotes are copied from the pages named, read on 2026-10-11.
 - **EDHTop16** ([terms](https://edhtop16.com/terms), updated August 2, 2026): "We provide an API for developers and
   data enthusiasts." It also bars "excessive automated requests" and says its statistics "may not be reproduced or
   redistributed without permission", so the cache stays local and out of git. This tool uses only that API, one
-  request a second, cached for a day. Its terms say "Applications using our API must not imply endorsement by
+  request a second, cached for a day. Since 2026-10-19 the API refuses plain-text queries, so it sends the persisted
+  queries the site's own pages send (the ids are listed in `providers/edhtop16.py`). Its terms say "Applications using our API must not imply endorsement by
   EDHTop16": **this tool is not endorsed by EDHTop16.**
 - **Commander Spellbook** ([guidelines for API consumers](https://spacecowmedia.github.io/commander-spellbook-backend/api.html))
   asks for "a few HTTP calls per user interaction", says "80 requests per minute should be a safe rate", asks
@@ -1763,7 +1766,8 @@ baseline is hard to beat on overlap, since it is what most builders start from; 
 the budget, the bracket's limits and the role targets. The measured results are in AGENTS.md ("Commander deck
 building"): 81% against 82% at Bracket 5, 48% against 51% at Bracket 3, every build within the bracket's limits.
 
-- **Bracket 5** (needs `edhtop16`). For each commander, take its newest 150 EDHTop16 entries and hold out its top-cut
+- **Bracket 5** (needs `edhtop16`; since 2026-10-19 it finds no top-cut deck to hold out, because the API no longer gives
+  decklists or top-cut sizes, so each commander only gets a warning). For each commander, take its newest 150 EDHTop16 entries and hold out its top-cut
   decks one at a time, up to `--limit`. The build is handed the tournament results of every other entry, and reads
   EDHREC's cEDH page when EDHREC is a source. The baseline is the same number of cards most played by the other
   entries. Pilots reuse their lists, and EDHREC's cEDH page may hold the held-out list, so read the gap to the

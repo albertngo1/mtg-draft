@@ -380,6 +380,12 @@ def gather(commanders, bracket, spec, db, *, sources=None, refresh=None, offline
         if sig:
             for card, st in _canon_cards(db, sig["cards"], skip).items():
                 ev["cards"].setdefault(card, _blank_card())["tourn"] = st
+            checked = (sig.get("meta") or {}).get("checked")
+            if checked is not None:   # the source looked up only these cards (EDHTop16: a commander's 100 most played)
+                looked_up = set(_canon_cards(db, dict.fromkeys(checked, {}), skip))
+                for card, rec in ev["cards"].items():
+                    if card not in looked_up:
+                        rec["tourn_unchecked"] = True   # not looked at, which is not "never played": see _base
             ev["n"]["tourn"], ev["tourn_totals"] = sig["n"], sig.get("totals")
             _note_source(ev["sources"], sig)
 
@@ -447,8 +453,9 @@ def _base(ev, card, rec=None):
     n = ev.get("n") or {}
     all_, at = card.get("all"), card.get("at")
     p_all, p_at = _incl(ev, card)
-    if ev["bracket"] == 5 and n.get("tourn", 0) >= TOURN_MIN:
-        # cEDH: what tournament decks played, shrunk toward what cEDH builders chose (when we know that)
+    if ev["bracket"] == 5 and n.get("tourn", 0) >= TOURN_MIN and not card.get("tourn_unchecked"):
+        # cEDH: what tournament decks played, shrunk toward what cEDH builders chose (when we know that). A card
+        # the tournament source did not look up keeps the builder rate below: 0 tournament entries would be a guess
         entries, nt = (card.get("tourn") or {}).get("entries", 0), n["tourn"]
         has_prior = bool(all_ or at or n.get("at") or n.get("all"))
         base = (entries + K_TOURN * p_at) / (nt + K_TOURN) if has_prior else entries / nt

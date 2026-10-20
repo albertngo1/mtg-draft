@@ -928,6 +928,16 @@ class RunTests(unittest.TestCase):
         self.assertEqual(self.precon_calls, ["Newest Deck", "Reprinted Deck", "Middle Deck",
                                              "Only Fancy Collector's Edition"])
 
+    def test_entries_without_decklists_explain_the_missing_bracket_5(self):
+        # since 2026-10-19 EDHTop16 gives no deck's cards: the run stops on the first commander and the error
+        # says why, not only "Bracket 5 needs at least N decks"
+        bare = lambda commanders, **kw: (self.entries_calls.append((commanders, kw.get("limit")))
+                                         or [dict(self.tournament_entry(16, True), cards=[])])
+        with mock.patch.object(edhtop16, "entries", bare):
+            with self.assertRaisesRegex(calibrate.NotEnoughData, "no longer gives decklists"):
+                self.run_it()
+        self.assertEqual([c for c, _ in self.entries_calls], [KINNAN])
+
     def test_only_as_many_tournament_commanders_as_asked_are_read(self):
         self.run_it(tournament_commanders=2)
         self.assertEqual([c for c, _ in self.entries_calls], [KINNAN, PAIR])

@@ -374,6 +374,17 @@ class LeaveOneOutTests(Isolated):
         self.assertEqual((result["commanders"], result["overall"]["n"]), ([], 0))
         self.assertIn(f"{KINNAN}: no top-cut deck among its 6 newest EDHTop16 entries.", result["warnings"])
 
+    def test_entries_without_decklists_are_named_for_what_they_are(self):
+        # since 2026-10-19 EDHTop16 gives no deck's cards: the warning says so, not "no top-cut deck"
+        def entries(name, **kw):
+            return [dict(e, cards=[]) for e in fixture("validate_entries.json")], dict(INFO)
+        validate.read_tournament_entries.side_effect = entries
+        self.use(FakeBuilder(BUILT))
+        result = validate.run(5, [KINNAN], sources=("edhtop16",))
+        self.assertEqual(result["commanders"], [])
+        self.assertTrue(any(w.startswith(f"{KINNAN}: no deck to hold out. EDHTop16 no longer gives decklists")
+                            for w in result["warnings"]), result["warnings"])
+
     def test_names_the_card_index_lacks_are_reported_not_silently_dropped(self):
         def entries(name, **kw):
             data = fixture("validate_entries.json")
