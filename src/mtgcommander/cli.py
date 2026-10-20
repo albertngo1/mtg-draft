@@ -111,7 +111,7 @@ def _fantasy_flags(p, weight=True, cards=True):
         p.add_argument("--fantasy-weight", type=float, metavar="W",
                        help=f"0 = pure power, 1 = theme above all (default {config.DEFAULT_FANTASY_WEIGHT})")
     p.add_argument("--keep-fun", action=argparse.BooleanOptionalAction, default=None,
-                   help="penalize cards that are frustrating to play against (default on at Brackets 1-3)")
+                   help="penalize cards that are frustrating to play against (default on at Brackets 1-3, off at 4-5)")
     if cards:
         p.add_argument("--include", action="append", metavar="CARD", help="a card the deck must keep (repeatable)")
         p.add_argument("--exclude", action="append", metavar="CARD",

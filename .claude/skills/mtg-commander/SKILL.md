@@ -66,8 +66,9 @@ All commands are run from the repo root. On Windows use `python` and `mtg-comman
 ## Non-negotiables (from AGENTS.md — apply every time)
 
 - **Run the tool first and coach against its output.** Never invent a card, a price, a deck count or a percentage.
-- **Ask what the flags need:** which deck or commander; the bracket (default 3, go to 4–5 only if asked); the budget in
-  US dollars for cards they do not own; what they own; the fantasy; cards to keep or avoid.
+- **Ask what the flags need:** which deck or commander; the bracket (default 4, offer 2–3 for a looser table, go to
+  5 only if asked); the budget in US dollars for cards they do not own; what they own; the fantasy; cards to keep or
+  avoid.
 - **The fantasy is menu words, never cards.** Pass `--theme` and `--playstyle`, or free text with `--fantasy "..."`
   (the tool maps it to menu words; with no Claude token it says so and you map the words yourself). Cards enter only
   through `--include` and `--exclude`.

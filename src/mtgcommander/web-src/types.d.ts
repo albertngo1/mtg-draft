@@ -212,7 +212,7 @@ export interface Playstyle {
 export interface Menu {
   playstyles: Playstyle[];
   themes: { slug: string; label: string }[];
-  bracket: number;   // the bracket a new version starts on: the server's MTG_BRACKET, else 3
+  bracket: number;   // the bracket a new version starts on: the server's MTG_BRACKET, else 4
 }
 
 export interface StatusAnswer {

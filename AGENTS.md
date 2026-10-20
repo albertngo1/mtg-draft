@@ -607,8 +607,8 @@ what the flags need:
 1. **The deck.** A precon name (`--precon`), a decklist file (write a pasted list to a file first; `-` reads standard
    input; text or JSON, including a version file the server saved), or a commander to build around. If the list does
    not mark its commander, add `--commander NAME` (twice for a partner pair).
-2. **The bracket.** Default 3 (Upgraded). Offer 2 for a looser table. Go to 4 or 5 only when the player asks for a
-   stronger deck.
+2. **The bracket.** Default 4 (Optimized). Offer 3 or 2 for a looser table. Go to 5 only when the player asks for a
+   competitive (cEDH) deck.
 3. **The budget**, in US dollars, for cards they do not own (`--budget`). Cards they own cost $0: `--owned FILE` (a
    decklist, or a collection file), `--owned-precon NAME` (they own the box) and `--player NAME`, which counts that
    player's collection (the precons stored with `collection --add-precon`, and any loose cards in the file). Ask

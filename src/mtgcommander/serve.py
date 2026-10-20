@@ -10,7 +10,7 @@ they know comes from the answers below, so each formula exists once, in Python. 
                                               or when git ignores the decks folder)
     GET   /api/players                        the players (the folders under the decks folder)
     GET   /api/menu                           the playstyles and common themes a version's settings choose from,
-                                              and the bracket a new version starts on (MTG_BRACKET, else 3)
+                                              and the bracket a new version starts on (MTG_BRACKET, else 4)
     GET   /api/decks?player=NAME              that player's versions, newest first, each with its headline numbers
     POST  /api/decks                          {"player", "name", "base", "settings"?} makes a version; 201
     GET   /api/decks/PLAYER/ID                a version: its cards, change log, difference from its base deck and every

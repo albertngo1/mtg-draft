@@ -99,7 +99,7 @@ the other way around.
 Play Commander (also called EDH) instead of drafting? `mtg-commander` is a second tool in the same repo. It upgrades
 a deck you have, builds a full 100-card deck around a commander, and suggests commanders for the themes and playstyle
 you want, each within a **budget** and one of Wizards' power **brackets** (1 Exhibition, 2 Core, 3 Upgraded, 4
-Optimized, 5 cEDH, which is competitive tournament play; Bracket 3 unless you say otherwise). It also checks a
+Optimized, 5 cEDH, which is competitive tournament play; Bracket 4 unless you say otherwise). It also checks a
 list's legality and bracket rules, and it will not recommend a card that breaks them.
 
 ```bash
