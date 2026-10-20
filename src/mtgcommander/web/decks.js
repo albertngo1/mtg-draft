@@ -238,6 +238,8 @@ export async function loadForm(app) {
         if (token !== formToken)
             return;
         formData = { status: "ready", bases: bases.body.bases, menu: menu.body, players: players.body.players, error: null };
+        if (route.name === "new")
+            version.bracket = menu.body.bracket; // the form shows only once loaded, so nothing chosen is overwritten
         if (!app.state.player && players.body.players.length === 1)
             app.rememberPlayer(players.body.players[0]);
     }

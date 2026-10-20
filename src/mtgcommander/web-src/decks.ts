@@ -303,6 +303,7 @@ export async function loadForm(app: App): Promise<void> {
     const [bases, menu, players] = await Promise.all([call<{ bases: BaseEntry[] }>("GET", "/api/bases"), call<Menu>("GET", "/api/menu"), call<{ players: string[] }>("GET", "/api/players")]);
     if (token !== formToken) return;
     formData = { status: "ready", bases: bases.body.bases, menu: menu.body, players: players.body.players, error: null };
+    if (route.name === "new") version.bracket = menu.body.bracket;   // the form shows only once loaded, so nothing chosen is overwritten
     if (!app.state.player && players.body.players.length === 1) app.rememberPlayer(players.body.players[0]);
   } catch (e) {
     if (token !== formToken) return;

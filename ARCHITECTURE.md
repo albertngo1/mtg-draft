@@ -708,7 +708,7 @@ The four flags every command takes, then the rest (help text as `--help` prints 
 
 | environment variable | meaning |
 |---|---|
-| `MTG_BRACKET` | the bracket used when `--bracket` is not given (otherwise 3) |
+| `MTG_BRACKET` | the bracket used when `--bracket` is not given, and the one the deck pages' new-version form starts on (otherwise 3) |
 | `MTG_COMMANDER_SOURCES` | comma-separated card-evidence sources, the same choices as `--sources` |
 | `MTG_OFFLINE=1` | the same as `--offline` on every run |
 | `MTG_COMMANDER_DECKS` | the folder of saved decks and collections (otherwise `commander/decks/` in the repo, which `.gitignore` keeps out of git; see [Deck files](#deck-files)). Point it at a folder that is its own git repository to keep your decks under version control |
@@ -1451,7 +1451,7 @@ $ ./mtg-commander.sh serve
 |---|---|
 | `GET /api/status` | when each data source was read; the server's settings (host, port, offline, decks folder); the deck files git does not have yet (`git status --porcelain`, read only, 2 seconds at most, with a note saying why when git cannot tell). When git lists nothing, `git check-ignore -- .` asks whether git ignores the folder (the default `commander/decks/` is in `.gitignore`), and the note says so; a folder in no repository gets a note saying how to make it one. The Decks screen shows the note in place of "every saved deck file is committed to git" |
 | `GET /api/players` | the players: the folders under the decks folder |
-| `GET /api/menu` | the playstyles and common themes a version's settings choose from |
+| `GET /api/menu` | the playstyles and common themes a version's settings choose from, and `bracket`: the bracket a new version starts on (`MTG_BRACKET`, else 3) |
 | `GET /api/decks?player=NAME` | that player's versions, newest first: id, name, base deck, its settings (bracket, budget, themes, playstyle), commanders and picture, revision, cards swapped, what the changes cost, and the headline numbers (from the open deck, else from a preparation tried offline, else `null`) |
 | `POST /api/decks` | `{"player", "name", "base", "settings"?}` makes a version; 201 |
 | `GET /api/decks/PLAYER/ID` | the version: `version` (with its change log, each change marked `undone` or not), `base`, `spec` (the settings as the engine reads them), `commanders`, `cards`, `card_count`, `diff`, `cut_cards`, `other_owned_precons` (the precons the player owns besides the one the base deck was made from: the version's `owned_precons` setting, then the player's collection, each once), `metrics` (every item beside the base deck's value and how far it moved), `warnings` and `sources`; or 202 |
