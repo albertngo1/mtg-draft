@@ -1,21 +1,72 @@
 {
-  "data": {
-    "commander": {
-      "entries": {
-        "pageInfo": {"hasNextPage": false, "endCursor": "7"},
-        "edges": [
-          {"node": {"id": "E1", "wins": 3, "losses": 1, "draws": 0, "standing": 1,
-                    "maindeck": [{"name": "Sol Ring"}, {"name": "Skullclamp"}, {"name": "Forest"}, {"name": "Swamp"},
-                                 {"name": "Pitiless Plunderer"}],
-                    "tournament": {"TID": "big-open", "name": "Big Open", "size": 64, "topCut": 16,
-                                   "tournamentDate": "2026-10-10T19:00:00.000Z"}}},
-          {"node": {"id": "E6", "wins": 2, "losses": 1, "draws": 1, "standing": 4,
-                    "maindeck": [{"name": "Sol Ring"}, {"name": "Skullclamp"}, {"name": "Mana Crypt"},
-                                 {"name": "Forest"}],
-                    "tournament": {"TID": "the-cut", "name": "The Cut", "size": 24, "topCut": 4,
-                                   "tournamentDate": "2026-09-14T17:00:00.000Z"}}}
-        ]
-      }
+ "data": {
+  "node": {
+   "__typename": "Commander",
+   "id": "Q29tbWFuZGVyOjExOQ==",
+   "entries": {
+    "edges": [
+     {
+      "node": {
+       "id": "E1",
+       "standing": 1,
+       "wins": 3,
+       "losses": 1,
+       "draws": 0,
+       "decklist": "https://topdeck.gg/deck/big-open/E1",
+       "decklistUrl": "/tournament/big-open/decklist/E1",
+       "priceUsd": 1200.5,
+       "player": {
+        "name": "Player E1",
+        "team": null,
+        "isKnownCheater": false,
+        "tag": null,
+        "id": "UGxheWVyOjE1"
+       },
+       "tournament": {
+        "name": "Big Open",
+        "size": 64,
+        "tournamentDate": "2026-10-10T19:00:00.000Z",
+        "TID": "big-open",
+        "id": "VG91cm5hbWVudDox"
+       },
+       "__typename": "Entry"
+      },
+      "cursor": "5"
+     },
+     {
+      "node": {
+       "id": "E6",
+       "standing": 4,
+       "wins": 2,
+       "losses": 1,
+       "draws": 1,
+       "decklist": "https://topdeck.gg/deck/the-cut/E6",
+       "decklistUrl": "/tournament/the-cut/decklist/E6",
+       "priceUsd": 1200.5,
+       "player": {
+        "name": "Player E6",
+        "team": null,
+        "isKnownCheater": false,
+        "tag": null,
+        "id": "UGxheWVyOjE6"
+       },
+       "tournament": {
+        "name": "The Cut",
+        "size": 32,
+        "tournamentDate": "2026-10-05T17:00:00.000Z",
+        "TID": "the-cut",
+        "id": "VG91cm5hbWVudDoz"
+       },
+       "__typename": "Entry"
+      },
+      "cursor": "6"
+     }
+    ],
+    "pageInfo": {
+     "endCursor": "7",
+     "hasNextPage": false
     }
+   }
   }
+ }
 }

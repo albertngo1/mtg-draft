@@ -140,7 +140,8 @@ under these weights", not a fact about the game. An answer count has no weights:
 Scryfall function tags for card attributes, which `warm`, `stats` or `calibrate` downloads the first time; without them
 the role targets are still measured and this file is left alone. With everything cached, `--offline --sources edhtop16`
 measures the committed numbers again (the default sources also name Archidekt, which would measure Brackets 3 and 4
-instead of interpolating them).
+instead of interpolating them). Since 2026-10-19 EDHTop16 no longer gives decklists, so the Bracket 5 sample is empty and the
+run stops with "Bracket 5 needs at least ... decks"; the committed numbers stand until another decklist source is added.
 
 ## `playstyles.json`
 

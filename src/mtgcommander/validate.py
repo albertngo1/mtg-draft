@@ -391,6 +391,9 @@ class _Run:
             if not entries:
                 self.warn(f"EDHTop16 has no entries with decklists for {shown}.")
                 continue
+            if not any(e["cards"] for e in entries):   # what every entry looks like since 2026-10-19
+                self.warn(f"{shown}: no deck to hold out. {edhtop16.NO_DECKLISTS}.")
+                continue
             pool = Pool(self.db, names, entries, info)
             if pool.unknown:
                 self.warn(f"{pool.unknown} card name(s) in {shown}'s decklists are not in the card index and "

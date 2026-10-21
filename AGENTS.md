@@ -783,7 +783,8 @@ Every result's `bracket` is the target bracket number; the rule reports are `bra
 `validate` checks the builder against real decks it never saw, the way `sealed_algo.py --validate` does for Sealed. It
 holds a real list out, builds for the commander without it, and counts how many of that list's non-basic cards the
 build also plays, beside a baseline that takes the same number of most-played cards. At Bracket 5 the real lists are
-EDHTop16 top-cut decks, held out one at a time; at Brackets 1–4 they are Archidekt lists tagged with that bracket. It
+EDHTop16 top-cut decks, held out one at a time (since 2026-10-19 EDHTop16 no longer gives decklists or top-cut sizes, so
+that exam finds no deck to hold out and warns instead); at Brackets 1–4 they are Archidekt lists tagged with that bracket. It
 also reports the share of builds that follow the bracket's rules, how many of a build's role counts fall inside the
 middle half of the real lists, and, at Bracket 3, whether upgrading the newest precons within $50 moves their role
 counts toward the bracket's targets. Results:

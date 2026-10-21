@@ -1,0 +1,38 @@
+{
+ "data": {
+  "commander": {
+   "name": "Chatterfang, Squirrel General",
+   "id": "Q29tbWFuZGVyOjExOQ==",
+   "staples": [
+    {
+     "id": "Q2FyZDo1",
+     "name": "Sol Ring",
+     "type": "Artifact",
+     "manaCost": "{1}",
+     "playRateLastYear": 0.98
+    },
+    {
+     "id": "Q2FyZDo2",
+     "name": "Skullclamp",
+     "type": "Artifact \u2014 Equipment",
+     "manaCost": "{1}",
+     "playRateLastYear": 0.9
+    },
+    {
+     "id": "Q2FyZDo3",
+     "name": "Mana Crypt",
+     "type": "Artifact",
+     "manaCost": "{0}",
+     "playRateLastYear": 0.7
+    },
+    {
+     "id": "Q2FyZDo4",
+     "name": "Demonic Tutor",
+     "type": "Sorcery",
+     "manaCost": "{1}{B}",
+     "playRateLastYear": 0.5
+    }
+   ]
+  }
+ }
+}

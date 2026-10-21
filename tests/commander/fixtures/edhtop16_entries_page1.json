@@ -1,33 +1,155 @@
 {
-  "data": {
-    "commander": {
-      "entries": {
-        "pageInfo": {"hasNextPage": true, "endCursor": "5"},
-        "edges": [
-          {"node": {"id": "E1", "wins": 3, "losses": 1, "draws": 0, "standing": 1,
-                    "maindeck": [{"name": "Sol Ring"}, {"name": "Skullclamp"}, {"name": "Forest"}, {"name": "Swamp"},
-                                 {"name": "Pitiless Plunderer"}],
-                    "tournament": {"TID": "big-open", "name": "Big Open", "size": 64, "topCut": 16,
-                                   "tournamentDate": "2026-10-10T19:00:00.000Z"}}},
-          {"node": {"id": "E2", "wins": 1, "losses": 2, "draws": 1, "standing": 20,
-                    "maindeck": [{"name": "Sol Ring"}, {"name": "Forest"}, {"name": "Swamp"},
-                                 {"name": "Demonic Tutor"}],
-                    "tournament": {"TID": "big-open", "name": "Big Open", "size": 64, "topCut": 16,
-                                   "tournamentDate": "2026-10-10T19:00:00.000Z"}}},
-          {"node": {"id": "E3", "wins": 2, "losses": 2, "draws": 0, "standing": 3,
-                    "maindeck": [],
-                    "tournament": {"TID": "club-night", "name": "Club Night", "size": 12, "topCut": 4,
-                                   "tournamentDate": "2026-10-03T00:00:00.000Z"}}},
-          {"node": {"id": "E4", "wins": 2, "losses": 1, "draws": 1, "standing": 2,
-                    "maindeck": [{"name": "Sol Ring"}, {"name": "Skullclamp"}, {"name": "Forest"}],
-                    "tournament": {"TID": "swiss-only", "name": "Swiss Only", "size": 9, "topCut": 0,
-                                   "tournamentDate": "2026-09-28T10:00:00.000Z"}}},
-          {"node": {"id": "E5", "wins": 0, "losses": 4, "draws": 0, "standing": 31,
-                    "maindeck": null,
-                    "tournament": {"TID": "big-open", "name": "Big Open", "size": 64, "topCut": 16,
-                                   "tournamentDate": "2026-10-10T19:00:00.000Z"}}}
-        ]
-      }
+ "data": {
+  "commander": {
+   "id": "Q29tbWFuZGVyOjExOQ==",
+   "entries": {
+    "edges": [
+     {
+      "node": {
+       "id": "E1",
+       "standing": 1,
+       "wins": 3,
+       "losses": 1,
+       "draws": 0,
+       "decklist": "https://topdeck.gg/deck/big-open/E1",
+       "decklistUrl": "/tournament/big-open/decklist/E1",
+       "priceUsd": 1200.5,
+       "player": {
+        "name": "Player E1",
+        "team": null,
+        "isKnownCheater": false,
+        "tag": null,
+        "id": "UGxheWVyOjE1"
+       },
+       "tournament": {
+        "name": "Big Open",
+        "size": 64,
+        "tournamentDate": "2026-10-10T19:00:00.000Z",
+        "TID": "big-open",
+        "id": "VG91cm5hbWVudDox"
+       },
+       "__typename": "Entry"
+      },
+      "cursor": "1"
+     },
+     {
+      "node": {
+       "id": "E2",
+       "standing": 20,
+       "wins": 1,
+       "losses": 2,
+       "draws": 1,
+       "decklist": "https://topdeck.gg/deck/big-open/E2",
+       "decklistUrl": "/tournament/big-open/decklist/E2",
+       "priceUsd": 1200.5,
+       "player": {
+        "name": "Player E2",
+        "team": null,
+        "isKnownCheater": false,
+        "tag": null,
+        "id": "UGxheWVyOjE2"
+       },
+       "tournament": {
+        "name": "Big Open",
+        "size": 64,
+        "tournamentDate": "2026-10-10T19:00:00.000Z",
+        "TID": "big-open",
+        "id": "VG91cm5hbWVudDox"
+       },
+       "__typename": "Entry"
+      },
+      "cursor": "2"
+     },
+     {
+      "node": {
+       "id": "E3",
+       "standing": 12,
+       "wins": 2,
+       "losses": 2,
+       "draws": 0,
+       "decklist": null,
+       "decklistUrl": null,
+       "priceUsd": 1200.5,
+       "player": {
+        "name": "Player E3",
+        "team": null,
+        "isKnownCheater": false,
+        "tag": null,
+        "id": "UGxheWVyOjE3"
+       },
+       "tournament": {
+        "name": "Swiss Night",
+        "size": 12,
+        "tournamentDate": "2026-10-08T18:00:00.000Z",
+        "TID": "swiss-night",
+        "id": "VG91cm5hbWVudDoy"
+       },
+       "__typename": "Entry"
+      },
+      "cursor": "3"
+     },
+     {
+      "node": {
+       "id": "E4",
+       "standing": 5,
+       "wins": 2,
+       "losses": 1,
+       "draws": 1,
+       "decklist": "https://topdeck.gg/deck/swiss-night/E4",
+       "decklistUrl": "/tournament/swiss-night/decklist/E4",
+       "priceUsd": 1200.5,
+       "player": {
+        "name": "Player E4",
+        "team": null,
+        "isKnownCheater": false,
+        "tag": null,
+        "id": "UGxheWVyOjE4"
+       },
+       "tournament": {
+        "name": "Swiss Night",
+        "size": 12,
+        "tournamentDate": "2026-10-08T18:00:00.000Z",
+        "TID": "swiss-night",
+        "id": "VG91cm5hbWVudDoy"
+       },
+       "__typename": "Entry"
+      },
+      "cursor": "4"
+     },
+     {
+      "node": {
+       "id": "E5",
+       "standing": 41,
+       "wins": 0,
+       "losses": 4,
+       "draws": 0,
+       "decklist": "https://topdeck.gg/deck/swiss-night/E5",
+       "decklistUrl": "/tournament/swiss-night/decklist/E5",
+       "priceUsd": 1200.5,
+       "player": {
+        "name": "Player E5",
+        "team": null,
+        "isKnownCheater": false,
+        "tag": null,
+        "id": "UGxheWVyOjE5"
+       },
+       "tournament": {
+        "name": "Swiss Night",
+        "size": 12,
+        "tournamentDate": "2026-10-08T18:00:00.000Z",
+        "TID": "swiss-night",
+        "id": "VG91cm5hbWVudDoy"
+       },
+       "__typename": "Entry"
+      },
+      "cursor": "5"
+     }
+    ],
+    "pageInfo": {
+     "endCursor": "5",
+     "hasNextPage": true
     }
+   }
   }
+ }
 }
