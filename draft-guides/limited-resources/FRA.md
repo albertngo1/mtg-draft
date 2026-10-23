@@ -1,16 +1,22 @@
 # FRA — Reality Fracture (Limited Resources)
 
 > Source: **Limited Resources** podcast (Marshall Sutcliffe + Luis Scott-Vargas / "LSV") — 3 FRA episodes: #872 (commons/uncommons review), #873 (rares/mythics review) and #874 (Format Overview, first week of play). Built 2026-09-22 from #872; revised 2026-10-09 with #873 and #874. #872 and #873 are YouTube auto-captions; #874 is a local whisper transcription of the audio with **no speaker labels**, so Marshall-vs-LSV attribution on #874 takes is inferred from context and usually left as "the hosts". Every card name below was matched against the FRA card list; uncertain readings are marked `(?)`.
+>
+> **Update 2026-10-23:** added **#875** (*The Reality of Reality Fracture with Sierkovitz*, 2026-10-16, Marshall + Sierkovitz; LSV absent) and **#876** (*Reality Fracture Update Plus New Cards for the Arena Cube with Zach Barash*, 2026-10-22, Marshall + LSV). Only #876's FRA segment, the first ~42 minutes, is used; the Cube interview is out of scope. Both are local whisper.cpp (medium.en) transcripts of the Libsyn podcast audio with no speaker labels, because YouTube returned HTTP 403 on audio. Attributions come from context and are marked "(inferred)" where unsure. 17Lands figures added with them come from `data/cache/17lands_FRA_PremierDraft_1200d.json` (GIH WR = `ever_drawn_win_rate`, ALSA = `avg_seen`, cache 2026-10-23, set mean GIH ≈ 55.1%), deck win rates from `17lands_arch_FRA_PremierDraft.json`, and per-pair card splits from `17lands_pairs_FRA.json`.
 
 ## ⚠ Recency rule (read first)
 
-**#874 (2026-10-09) is the strongest evidence in this file and overrides #872/#873 on any conflict.** It is the first post-release episode: about a week of Arena drafts plus many Arena Sealed (Win-a-Box) events, and the hosts had just looked at 17Lands. Where #874 contradicts a release-week grade, the bullet keeps the original grade and adds the **874:** take — read the 874 take.
+**#876 (2026-10-22) and #875 (2026-10-16) are now the newest evidence and override #874 on conflict.** #875 is a data-led guest episode: Sierkovitz cites 17Lands throughout. #876 is a short FRA update followed by a Cube interview. Where they re-rate a card, the bullet is in the **#875 / #876 notes** block at the top of `## Card tips`.
+
+**#874 (2026-10-09) overrides #872/#873 on any conflict.** It is the first post-release episode: about a week of Arena drafts plus many Arena Sealed (Win-a-Box) events, and the hosts had just looked at 17Lands. Where #874 contradicts a release-week grade, the bullet keeps the original grade and adds the **874:** take — read the 874 take.
 
 - **#872** (Commons & Uncommons, 2026-09-21) — pure prediction from card text. **Weakest.**
 - **#873** (Rares & Mythics, 2026-09-30) — recorded as the set hit Arena; LSV had played only **early access**, Marshall had played one limited event. Still essentially pre-play predictions. **Weak.**
-- **#874** (Format Overview, 2026-10-09) — post-release play + early 17Lands. **Strongest so far.**
+- **#874** (Format Overview, 2026-10-09) — post-release play + early 17Lands. Strong.
+- **#875** (with Sierkovitz, 2026-10-16) — ~2.5 weeks of data; 17Lands-led. **Strongest so far** (tied with #876).
+- **#876** (FRA update + Cube, 2026-10-22) — ~3 weeks of play; crack-a-pack and "underrated cards". **Strongest so far** (tied with #875).
 
-**Not yet distilled:** any later deck/combos show, the Sunset Show. **17Lands GIH WR supersedes all of it** — the hosts themselves cite 17Lands throughout #874.
+**Not yet distilled:** the Sunset Show. **17Lands GIH WR supersedes all of it** — the hosts themselves cite 17Lands throughout #874.
 
 Grades use LR's A–F scale with +/− and two subgrades, **sideboard** and **build-around**. Where Marshall and LSV disagreed the split is kept (`C+/B−`, Marshall first where the speaker is known). Where the grade moved during discussion, the final grade is given and the starting one noted. Auto-captions write "C plus" as "C++"; every such case is read as C+. #874 gives few letter grades — it re-evaluates cards in words.
 
@@ -20,7 +26,9 @@ Grades use LR's A–F scale with +/− and two subgrades, **sideboard** and **bu
 |---|---|---|---|---|
 | 2026-09-21 | 872 | Reality Fracture Set Review: Commons and Uncommons | release-week (pre-Arena) | **Weakest** |
 | 2026-09-30 | 873 | Reality Fracture Set Review: Rare and Mythic Rare | release-week (early access only) | Weak |
-| 2026-10-09 | 874 | Reality Fracture Format Overview: We Are So Back!! | early (≈1 week of play + Sealed) | **Strongest so far** |
+| 2026-10-09 | 874 | Reality Fracture Format Overview: We Are So Back!! | early (≈1 week of play + Sealed) | Strong |
+| 2026-10-16 | 875 | The Reality of Reality Fracture with Sierkovitz | mid (≈2.5 weeks; data-led guest) | **Strongest so far** |
+| 2026-10-22 | 876 | Reality Fracture Update Plus New Cards for the Arena Cube with Zach Barash! (FRA segment only) | mid (≈3 weeks) | **Strongest so far** |
 
 ## Supersessions
 
@@ -37,6 +45,18 @@ The headline reversal: #872 predicted a **fast-ish** format where cheap bodies m
 | Prowess / UR Chandra skepticism | Confirmed: prowess decks "aren't good at being aggressive enough", removal is too good | **Confirmed** |
 | Cheap Ways = build-around/D; 4–5-mana Ways = B to B+ | Confirmed: "the expensive Ways have all been fine", the cheap ones are bad or mediocre | **Confirmed** |
 | WU and UB "middle" | WU is #1 and UB #2 on 17Lands; **blue is the best colour** | **Reversed (up)** |
+
+**#875 / #876 reversals and confirmations**
+
+| Earlier take | #875 / #876 take | Verdict |
+|---|---|---|
+| #874: Divinations good; card draw everywhere | #875 (Sierkovitz): card draw is "the most defining feature of this format", the first of three pillars (card draw, removal, engines) | **Confirmed, strengthened** |
+| #874: WU #1, WB worst | #875: WU 56.6% top, bottom (Orzhov or Simic) ~53%. **Don't draft toward the top pair**: the best deck is "the most open lane in your pod" | **Confirmed numbers, reframed** |
+| Unsummon C/C+ (#872, "good in a fast format") | #876 (LSV, inferred): "the best I've ever seen Unsummon be": cheap is valuable with a full hand; saves ETB creatures from removal | **Up** |
+| Ajani's Anguish B (#873) | #876: Marshall would slam it; LSV has "soured" ("most of the time you're paying 3–4 mana to kill something") and takes Mindseeker Oculus over it | **Split** |
+| Kiora of Salt and Sand build-around B/B− (#872) | #876: "not a card you should be taking particularly early… most of the time you should also just not be playing it" | **Down** |
+| Command the Stage build-around C+ (#872, Marshall) | #876 (Marshall): "had higher hopes… it just didn't quite click" | **Down** |
+| Fateshaper Aspirant (#872) | #875 (Sierkovitz): "filler minus" in draft; fine in Sealed | **Down (draft)** |
 
 **Card grades that flipped (release → #874)**
 
@@ -65,7 +85,25 @@ The headline reversal: #872 predicted a **fast-ish** format where cheap bodies m
 
 ## Format speed / meta read
 
-**From #874 (strongest):**
+**From #875 (Sierkovitz, 2026-10-16) — newest:**
+
+- **Three pillars.** (1) **Card draw** beats bombs that need several answers: Twinned Vision, Protege's Awakening, Sphinx's Approach, Murmuring Volume, Mindseeker Oculus, Way of the Mind Sculptor. (2) **Removal**, because the top end needs multiple answers: Ajani Unrelenting ("best card in the format, probably best rare since Midnight Hunt"), Theorix rares, Garruks, Sphinx of False Conclusions, Null Summoner, plus the uncommons Craftwork Crusher and Kiora of Fire and Ashes. (3) **Engines**, i.e. repeatable value: Kiora's 8-mana Dragons, Bloombrute, Murmuring Volume's rummage, self-mill with graveyard payoffs. "Card advantage and a bunch of 2/2s… you're gonna lose."
+- **Following the pillars pulls you to Sultai / Jeskai wedges.** U/B has all three pillars except raw card draw, and mill fills the selection gap.
+- **Archetype spread is tiny, so don't force.** Sierkovitz: WU 56.6% (#1) vs the bottom pair (WB or UG) ~53%, a 3.5-point spread. The 2026-10-23 cache agrees: WU 56.4%, UG 52.7% bottom, WB 53.6%, WR 53.3%. **Deck quality matters more than pair:** Sierkovitz says W/U decks with Cryotheory Adept average 54.2%, and with blue Yargle 51.4% (both below Boros). Boros decks average 53.4%, but 55.4% with Kiora of Fire and Ashes and **61.3% with Ajani Unrelenting**. The difference between Boros-with-Ajani and an average W/U deck is bigger than between W/U and Boros. These deck-level splits can't be recomputed from the cache. The per-pair GIH data points the same way: Cryotheory Adept runs −3.5 below the W/U deck average, Ajani Unrelenting +15 to +20 in every pair.
+- **Trophy maths:** a 7–2 trophy needs ~77% in that event. Marshall: you need mid-to-high-60s win rates against Arena Direct fields to expect boxes. At the 17Lands-typical 54–55% you're not even +EV.
+- **Boros works late in the format** if you follow the rules: 5–7 good removal spells (Memory Trap, the 5–6 damage spells), card advantage (Twinned Vision is perfect even off red), then the best 2s/3s. Sierkovitz's 2× Mabel W/R deck also ran Yoshimaru, Predictive Preparations, Danitha and Generous Revival.
+- **B/G is self-mill value recursion, not "deathtouch + trample".** Primal Witchstalker is the signpost. Per Sierkovitz, Mark Rosewater said the marketing description was wrong.
+- **Land cyclers:** most of his decks run 2–3. In Sultai he's happy to cycle on turn 2 to put a big creature in the yard (Hapatra, reanimation, Theoretical Necromancer). In aggressive decks it's a fallback.
+- **No 1/1 tokens below rare**, so sacrifice outlets (Silence the Echo, Way of the Deathbringer) have no fodder: "five-mana destroy target creature".
+
+**From #876 (2026-10-22, FRA segment):**
+
+- **Removal timing (LSV):** FRA games go long and the first 4 turns of attacks rarely decide them. Usually deploy creatures first, then removal. Kill early only a creature that snowballs (Mabel, Valley Hero getting counters). Aim for a turn-4/5 double-spell (four-drop, then removal + removal).
+- **Blue inflation warning (LSV, inferred):** "all the blue cards just get an extra couple percentage boost because blue is so good", so don't compare a blue card's GIH WR to a red card's directly. No Admittance pulls more weight than its number. Colour-level deck win rates in the cache: blue 55.0%, black 54.6%, red 54.2%, green 54.2%, white 54.1%. So blue does lead, by about 0.7–0.9 points.
+- **"Red is way worse… not a good place to build a deck from"** (LSV, inferred), yet he'd take No Admittance P1P1 over Protege's Awakening as a splashable removal spell to attach to two other colours. **Partly contradicted:** red's deck win rate (54.2%) is level with green and white. Only blue stands out.
+- **Underrated now** (LSV, inferred): Something Worth Saving, Primal Witchstalker ("amazing… held back by being black-green"; it goes late, so lean Sultai), Unsummon, Murmuring Volume.
+
+**From #874:**
 
 - **Slow — the slowest format in quite some time.** You can landcycle on turn 2 and you're "not just dead". You'll be fine without a 2-drop, so don't put bad 2-drops in to raise the count. Counterspells are good because games go long and they answer expensive bombs.
 - **Removal:** excellent from 2–4 mana, but there's **no cheap (1–2 mana) instant removal**, so sticky 1-drops like Stingerquill Voxmancer survive. A fast curve-out (e.g. Samut, Hazoret's Champion into 3-drops) is the thing this format is least set up to beat.
@@ -126,6 +164,49 @@ All ten pairs are supported. Allied pairs are the five **Hexhaven** schools; ene
 - **UR Chandra's Prowess (noncreature spells).** Saheeli, Jewel of Avishkar B+, Clash of Elements B; the hosts distrust prowess creatures as a plan. *(#874: confirmed.)*
 
 ## Card tips
+
+### #875 / #876 notes (2026-10-16 / 2026-10-22 — newest, override everything below)
+
+No letter grades in these episodes. `S` = Sierkovitz (#875), `M` = Marshall, `L` = LSV (#876, inferred). `17L` = 17Lands Premier Draft GIH WR / ALSA, cache 2026-10-23.
+
+- **Ajani Unrelenting** — S (#875): "best card in the format, probably the best rare since Midnight Hunt". When you face it, "you're doomed most of the time". 17L: **73.2%** / ALSA 1.25, by far the top card (supports).
+- **Extended Absence** — S: "second best common in the set". He'd take it over Mindseeker Oculus because card draw is easier to find later. 17L: 59.2% / 3.20, #2 common behind Oculus at 59.8% (supports the rank).
+- **Mindseeker Oculus** — M: "as an individual card, definitely the best" common. L (#876) takes it over Ajani's Anguish P1P1 "and it's not very close". 17L: 59.8%, #1 common (supports).
+- **Craftwork Crusher** — M's "favourite card in the set". S: plays like a rare; only eight rares have a higher win rate, and it matches Kindred Judgment and Kwia Vigorbloom. 17L: 62.0% / 3.34. **Updated:** in the 2026-10-23 cache only **four** rares are higher (Sphinx of False Conclusions 63.7%, Null Summoner 62.6%, Lich's Relic 62.4%, Vraska, the Cutting Glare 62.4%). Kindred Judgment is 61.4% and Kwia Vigorbloom 62.0%.
+- **Simulacrum Shaper** — "the ultimate enabler" for Crusher, but S still takes Crusher (Crusher "62-ish", Shaper "around 60"). 17L: 59.8% (supports).
+- **Gideon the Oathless** — S: win rate "comparable to Extended Absence, around 60%". Good in every deck, but punishes weak players more: strong players draw enough to pay the ward. He'd take it over Extended Absence and Fatehold Charm. 17L: 59.2% / 2.21 (supports).
+- **Twinned Vision** — S: "absolutely essential… multiple decks are living or dying by the couple of copies". It's card advantage for **Gruul** off red mana. Hold a land in hand so you can flash it back. He takes it "by quite a lot" over Surveillance Phantasm. 17L: 57.9% / 4.99. By pair it does best in UB/UR (58.9%); in RG it's 56.8% vs the 55.2% RG average (+1.6), which supports the Gruul point.
+- **Surveillance Phantasm** — S: "phenomenal… should become a standard". It enables its own attack, vigilance walls aggro, and flying pressures walkers. He'd take it about 5th pick, not 1st. He says it has "a positive win rate in every single colour combination". 17L: 57.2% / 4.81. **Supports:** it is above the deck average in every pair with data (WU +2.0, UB +2.1, UR +1.2, UG +3.1).
+- **Cryotheory Adept** — S: "fillery" two-drop. A W/U deck that plays it is a symptom of a lane that wasn't open (54.2% deck average). 17L: 53.2%; −3.5 vs the W/U deck average in pair data (supports).
+- **Apex Witchstalker** — S: his pre-release hot take that it might rival the white landcycler was "not that far off", though Hexhaven Battalion is still better. Pick it 5th–8th. 17L: 55.4% vs Battalion 57.4% (supports the order).
+- **Fateshaper Aspirant** — S: "filler minus" in draft, slightly better in W/B. M: one copy was welcome in Sealed, where pools hold more legendary bombs. 17L: 51.9% / 7.01 (supports the draft read).
+- **Sphinx's Approach** — S: a late pick that fills the card-draw slot when you lack better ones. 17L: 56.0% / ALSA 7.41, a good rate for how late it goes.
+- **Chandra's Emberling** — S: filler. A 3-mana 2/2 is "two stat points" under rate, and removal kills it before it grows. 17L: 51.8% (supports).
+- **Tam's Resistance** — M: "a little bit of a sleeper"; Empower Jace 4 carries it. S: run it out on turn 2. With nothing to protect, surveil first and draw next turn to dig an extra card for a missing land. 17L: 56.1% / 5.57 (supports).
+- **Living Library** — "last and least". The 0 power means opponents attack into it freely. Sideboard at best. 17L: 52.9% (supports).
+- **Fatehold Charm** — S: "very solid", and the bounce mode is a nasty remand on key spells. He still takes common removal over it. 17L: 57.8% / 5.01.
+- **Perfected Theory** — S: even in good tempo decks "every card should be better than" it. 17L: 52.0% (supports).
+- **Karn, Gilded Guardian** / **Karn, Argent Defender** — misses for Limited. Gilded Guardian can draw 2 with Heartwood tokens out. 17L: 52.7% / 50.0% (supports).
+- **Murmuring Volume** — S: great only if you tick the boxes (slow deck, 3+ colours, hungry for late cards). Otherwise there's better ramp. L (#876): underrated, "plays very nicely". 17L: 56.3% / 6.05.
+- **Infinite Coursework** — "solid, not great". Untap effects free the creature but it stays blank. 17L: 55.8%.
+- **Predictive Preparations** — "missed really hard". Fine only with several overlapping synergies (S's counters-and-targeting W/R deck). 17L: 48.5%, the lowest white common (supports).
+- **Silence the Echo** — S: with no 1/1 tokens below rare, it's effectively a 5-mana sorcery kill. If you're playing it, "something went a bit wrong". M: sacrificing a spare Jace token to it is a real use. 17L: 52.7% / 5.20 (supports S).
+- **Ferocity of the Hunt** — neither plays it. S: "even for the top players… a negative win rate card", so filler minus. 17L: 52.8%. By pair it is below the deck average in every pair except UG (+0.1) (supports).
+- **Way of the Deathbringer** — "bringing slightly aged celery into a knife fight": no sac fodder, and Beasts are small-ball in this set. 17L: 51.3% (supports).
+- **Titanbones, Towering Heart** — "exactly what this format is not about". Reach clogs boards sometimes, but Amphisbaena, removal and Unsummon handle it. 17L: 51.9% (supports).
+- **Tinybones, Pocket Nuisance** — always played by M in Sealed. S: like Gideon, it punishes weak players; closer to filler. 17L: 55.3% (about average).
+- **Eye of Jace** — dismissed in one word ("Next."). 17L: 49.8%.
+- **Kiora of Fire and Ashes** — S (#875): an engine that needs removal. Boros decks with it average 55.4% vs 53.4% without. 17L: 61.3% / 2.31, +2.5 to +8.4 above every pair's deck average.
+- **Unsummon** — L (#876, inferred): "the best I've ever seen Unsummon be". M: a 1-mana answer to Beast tokens, and it lets you cast a big draw spell and still hold up interaction. 17L: 57.3% / ALSA 5.17, which supports "goes fairly late" for its win rate.
+- **Something Worth Saving** — L (#876, inferred): underrated. It smooths draws, finds bombs and fills the yard. Not scary in decks with Paradox Shaper or Fblthp. 17L: 56.8% / **6.87** (supports: late for its rate).
+- **Primal Witchstalker** — L (#876, inferred): "an amazing card, held back by being black-green". It goes 5th, so lean Sultai when you see it. 17L: 59.0% / 5.28 (supports).
+- **No Admittance** — L (inferred) and M both take it over Protege's Awakening P1P1, as splashable removal. 17L: 56.7% vs Protege's 58.4%. The data favours Protege's, but the hosts argue blue inflation (see Format read).
+- **Ajani's Anguish** — M: "splashable, game-ending", and he'd slam it. L: "fine", about a 3–4-mana removal spell. 17L: 56.2% / 1.91. **Data sides with LSV**: it's barely above the 55.1% mean.
+- **Kiora of Salt and Sand** — #876: don't take it early and usually don't play it. Neither host has seen the 8/8 made more than once. 17L: 53.7% / 6.41 (supports).
+- **Command the Stage** — M: had higher hopes; it needed every part to fire. L has lost to it (looped with Hallway Heckler (?)). 17L: 49.8% (supports).
+- **Marwyn, the Clearcutter** — both low; sacrificing lands is a real cost in long games. 17L: 55.2% (about average, slightly contradicts).
+- **Marwyn, the Preserver** — M (inferred): "just okay"; it makes his decks but isn't a first pick. 17L: 54.2%.
+- **Icy Reception** — #876: "pretty underrated". 17L: 57.7% / 5.13, #5 common (supports).
 
 Commons/uncommons are graded in #872; rares/mythics (and the bonus-sheet "special guests") in #873, listed in a separate block per colour. **874:** marks a post-play take, which wins on conflict. Cards within each block are ordered best to worst by their release grade.
 
@@ -499,3 +580,5 @@ Commons/uncommons are graded in #872; rares/mythics (and the bonus-sheet "specia
 - 2026-09-21 — Limited Resources 872 – Reality Fracture Set Review: Commons and Uncommons (mLABrUxyTKw)
 - 2026-09-30 — Limited Resources 873 – Reality Fracture Set Review: Rare and Mythic Rare (Pf4DvBpzH7g)
 - 2026-10-09 — Limited Resources 874 – Reality Fracture Format Overview: We Are So Back!! (1wcN57NXlvA)
+- 2026-10-16 — Limited Resources 875 – The Reality of Reality Fracture with Sierkovitz (CBVwn_ikQp8) — whisper.cpp medium.en transcript of the Libsyn audio
+- 2026-10-22 — Limited Resources 876 – Reality Fracture Update Plus New Cards for the Arena Cube with Zach Barash! (jxYgD2gFmCk) — FRA segment only; whisper.cpp medium.en transcript of the first 65 min of the Libsyn audio

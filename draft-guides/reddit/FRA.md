@@ -1,5 +1,149 @@
 # FRA — Reddit notes
 
+## Weeks three and four (Arena, 2026-10-08 → 10-23)
+
+> Source: **r/lrcast** (primary) + **r/MagicArena**, posts dated 2026-10-08 → 10-23. 2,092 post
+> headers were scanned (669 r/lrcast, 1,423 r/MagicArena), and 39 FRA Limited threads were read in
+> full, with the top 25 comments per thread by score. Pulled 2026-10-23 via the arctic_shift archive
+> API (`/api/posts/search?subreddit=…&after=2026-10-08`, paged with `before=`, then
+> `/api/comments/search?link_id=…`). Raw JSON is in `data/cache/reddit_FRA_week4/`. **Comment scores
+> are the archive's snapshot, so some are far below the live numbers** (the 29-box AMA, 1x45zcj, shows
+> top comments at 2–6 points, and the archive returned 100 of its 304 comments). Threads from 10-21 →
+> 23 have few replies so far.
+>
+> **Evidence class:** post-play Arena anecdote, with the same caveats: survivorship-biased trophy posts
+> and single-player runs. **New this fortnight: the Arena Limited Championship Qualifiers (ALCQ)**, a
+> high-entry Bo1 draft event with stronger pods, and the end of the Arena Direct (Sealed) run. ALCQ
+> reads come from tougher tables than the ladder. GIH WR below is 17Lands PremierDraft as of
+> 2026-10-23 (set median ≈ 55.1%) unless a thread quoted its own number. Pair win rates as of 10-23:
+> WU 56.4, UB 55.5, UR 55.3, BG 55.3, RG 55.2, GW 53.9, BR 53.8, WB 53.6, RW 53.3, GU 52.7.
+
+### Format read (what changed since week two)
+
+- **The "synergy or quality?" argument is settled: quality and value.** Week two had trophies on both
+  sides. By 10-19 the top replies agree. "FRA isn't a synergy set. It's a set that *has synergies*"
+  (1xa3gsc). "Forcing the synergy makes you a trash deck" (1xa3gsc). "Draft decks that have a strong
+  average card quality that stand alone" (1xa3gsc). The 20-drafts post (1x1nde6, 105) rewrites BREAD as
+  "BVREAD": value matters because "trading 1 for 1 often leaves you down a card". **The data agrees.**
+  The best commons are removal and card flow: Mindseeker Oculus 59.8%, Extended Absence 59.2%,
+  Protege's Awakening 58.4%, Twinned Vision 57.9%. The synergy build-arounds are still low: Way of the
+  Pyromancer 51.7%, Rescue Girl, First Responder 52.5%, Way of the Cryomancer 52.9%.
+- **Blue complaints moved from "be blue" to "blue eats the draft".** The most-upvoted take (1x6blnk, 95):
+  "Blue can absorb the best of every color so seamlessly, creating this black hole effect." Blue
+  decks splash the other pairs' gold cards; one reply plays UB "*because* it can trivially splash both
+  GB Hapatra and Mind Meanderer" (86). High-rank players report "the same U/b/x control shells 9/10
+  times" (1x6ubrm). Counter-view: "Blue is clearly ahead but not at an exploitable level of dominance"
+  (1xafb2u). That reply's P1P1 trophy rates by colour: blue 20.3%, black 19.8%, red 19.4%, green 18.7%,
+  white 18.3%. **Data:** blue pairs are 50% of all two-colour games (260k of 518k), and Dimir is the
+  most-played pair (94,923 games). Blue still tops the pairs (WU 56.4%), but the spread is small: UB
+  55.5% is level with BG 55.3% and RG 55.2%, and GU is last (52.7%).
+- **Green-based non-blue decks get credit.** "I'm cleaning up with Jund value piles in premier draft
+  while everybody else is fighting for blue scraps" (1x6blnk, 39). "RG does fine with not even its
+  best spells" (1x2oyj0, 29). The RG deck in 1x7yqm6 ("kind of disgusting", 79) took Kiora of Fire and
+  Ashes 4th, Craftwork Crusher 7th and 9th, and Ajani Unrelenting 2nd. The drafter's read: "When
+  crusher wheeled in pack 1, it became very clear I needed to be in RG". One player's "four pillars"
+  (1x8awrp): greedy Esper, Jund graveyard, UG soup, W-x fliers. They now rank black as the best colour
+  to start in, ahead of blue.
+- **Splashing went from "normal" to "always".** "Answer is: always" (1x91xlf, 15). The Arena Direct
+  leader (29 boxes, #1 on the 17Lands Sealed trophy board) says only 2 of his 29 trophies were true
+  two-colour decks. "Whenever I see 2c decks, I often suspect my opponent as less experienced" (1x45zcj).
+  He plays landcyclers "as 2 mana colorless cards" to patch mana. Pushback is about card quality, not
+  colours: "you need to splash high impact card, not random C level cards" (1x3tyw1), and "you
+  shouldn't count a splashed 4-drop as a for drop… It should be counted more like a 6-drop"
+  (1xax1vo). The 1x6blnk thread blames the fixing: landcyclers, common duals, and green with "zero
+  fixing at all except with red". **This is Sealed and anecdote. In Draft the data still favours two
+  colours** (see below).
+- **Aggro: still weak on the ladder, real at strong tables.** "The aggro decks just don't come together
+  often enough. There's so much card draw and removal in this format" (1x4s6jj, 33). "All-out aggro
+  seems bad, but WX 'aggro,' where you are actually a midrange deck with good fliers" works (1x4s6jj,
+  26). BR "you need the nuts" (1x3ttui, 43). The new data point is the ALCQ: "Among top drafters there
+  absolutely is aggro… Tons of black red and naya aggro" (1xa3gsc). One 7-0 player argues for
+  "focused, curve conscious, low color creature decks" when blue and RG are cut, as a "zig while
+  they're zagging archetype" (1x6ttvx, 44). The pair data hasn't moved: BR 53.8%, RW 53.3%.
+- **ALCQ: the deck that wins looks plain.** The 6-0 W/U deck in draft 2 ($2,000, 1x9nbob, 158) was
+  "Nothing too crazy, just high card quality and a good mix of fliers, card draw, and disruption". The
+  top reply adds that ALCQ pods "know how good the empower cards are and snap them up" and pass fewer
+  busted cards. The drafter passed Countersculpt for Way of the Mind Sculptor at P2P2 because Countersculpt
+  "has underperformed a bit for me – UU is awkward to hold up". He said he regretted The Echoverse
+  Fulcrum over a second Mindseeker Oculus. ALCQ variance is the other thread (1x9j4yn, 52): Bo1 with
+  two losses allowed against strong fields. "A 65% winrate only has ~25% to X-2 larger fields."
+- **Removal is harder to get.** "I think people are picking premium removal very highly this set"
+  (1x7scm5, 44). Advice: let removal decide colours, and splash black for it ("I think it's a rare
+  draft that I'm not splashing black for 3 removal spells these days", 1x7scm5). Last Gasp's ALSA is
+  3.58 and Extended Absence's is 3.20, both early for commons.
+- **Card advantage is the most common diagnosis for a 0-3.** "High card quality, lots of value,
+  literally zero card draw or selection. In 10+ turn formats you need to account for that, which also
+  explains why you flooded" (1xax1vo, 34). Another reply asks "Why do you need a 4 drop creature? This
+  isn't a curve out format".
+- **Opinion on the format: high.** "This format deserves an 'A' grade" (1x1nde6). "Best draft format I
+  played since Rise of the Eldrazi" (1x9bque). One reply reports a consensus that it is "the best set
+  of 2026", in a weak year. Complaints: splashing is too easy, games are slow, and Bo1 matchmaking feeds you blue mirrors
+  (1x9bque, 1x6ubrm).
+
+### Card notes (weeks three and four)
+
+- **Fblthp, Impossibly Lost** — two threads. 1x3y61s (a reviewer who graded it F) gets the
+  inflation argument as its top reply (121): it "shuffles in and gets drawn again", and every draw
+  counts toward GIH. Players also confirm the alt-win: "6 of my 7 wins were fblthp triggers" (1x1zt15,
+  139). Rules confusion continues. 1x7uwin (144 comments) is another player who decked himself
+  reading the win clause as static. 1xc9yk8: **Surveillance Phantasm cannot attack after you
+  "surveil" an empty library** on Arena. Commenters split on whether that is a bug, since rule
+  701.25d covers triggered abilities only. Some got refunds. **Data:** Fblthp, Impossibly Lost is
+  59.7% GIH but 55.2% games-played WR. That GP WR is identical to its green twin, Fblthp, Knows the
+  Way (57.7% GIH, 55.2% GP). This fits the inflation argument.
+- **Twinned Vision vs Sphinx's Approach** (1x8coij, 103 comments) — the top reply (259): "It's split
+  into installments and is able to be cast from graveyard for free value." Milled or surveilled copies
+  don't count toward GIH, so the card is "even better than the data would suggest" (42). Data: Twinned
+  Vision 57.9%, Sphinx's Approach 56.0%. **Sphinx's Approach vs Cast Away Doubt** (1x7u413): "instant
+  speed makes A LOT of difference" (119), and Cast Away Doubt "is a secret black/red gold card". Data:
+  56.0% vs 53.0%.
+- **Theoretical Necromancer** — the week-two claim holds. "By GPWR it's the second-best black common"
+  (1x3y61s). Data: GP 55.2%, second among black commons behind Extended Absence (56.0%). GIH and GP
+  are equal (55.2%) and its ALSA is 6.48, so it still goes late.
+- **Best and worst first picks** (1xafb2u, from 17Lands trophy rate after the P1P1, first 17 days).
+  Top: Ajani Unrelenting, The Theorist, Jace Beleren, Uldaros Theorix, Overwrite the Multiverse.
+  Countersculpt (#11) and **Primal Witchstalker** (#12) beat many rares; the second surprised the
+  thread. Worst: Master of Barbs, Ruric Thar, Magecrusher, Traxos, Academy Guardian, Vraska's Final
+  Mercy. Ajani: "Exactly zero people cut it from the maindeck in the first week."
+- **Variable Chaser** (1x8h4la) — the wheel spell is a choice, not the reason it wins: "a 2/3 flying
+  prowess is good" (31). Cast it when you are ahead on mana or the opponent can't use the cards
+  first. It pairs with Fblthp. 57.5%.
+- **Uldaros Theorix** splashes off one pip: "It's a single pip. Go for it" (1x7g02z, 57). 69.2%.
+- **Mind Twist and Splinter Twin** (Special Guests) — the sub's new complaint (1x8oacl,
+  130). Mind Twist is 64.6% (1,950 GIH games) and Splinter Twin 62.8% (1,432). The samples are
+  small, but they rank 8th and 11th of 279 cards.
+- **Tarmogoyf** P1P1 over a weak pack (1x80jb3, 84): "The pack is overall weak enough that you can be
+  guilt free taking it" (124). "If goyf was an uncommon you wouldn't be thinking about it here at
+  all." 56.5%, about median.
+- **Way of the Cryomancer** stays a cut (1x8yxzp): "It's a D- card for a reason". 52.9%. **Way of the
+  Mind Sculptor** is the one Way people defend and complain about: "I hate way of the mindsculptor so
+  much" (1x6ubrm). Data: 57.8%, the best Way.
+- **Hexhaven Invigorator** mono-green trophy with three copies (1x4iwel): "Nobody takes the quad green
+  card because they're cowards" (28). It is 54.4% (3,188 games), below median, and its ALSA is 2.87.
+
+### Where weeks-three-and-four Reddit disagrees with 17Lands or the other guides
+
+1. **"Jund leads the FRA Limited Tier List"** (1xa29sm, an Untapped.gg post using trophy rate). 17Lands
+   has Jund at 55.0%, behind WU (56.4%), UB (55.5%) and the base RG pair (55.2%). A reply in the same
+   thread quoted 17Lands' last week with UW still first. The Untapped list measures trophies, which
+   rewards high-variance decks. Another reply (32) calls it "not accurate analysis".
+2. **"Always splash" / "2c means inexperienced".** 17Lands Draft: two-colour decks win 54.9%,
+   three-colour decks 53.5%, and four-colour decks 52.0%. Sultai (55.1%) and Jund (55.0%) hold up;
+   Naya (51.2%), Bant (51.1%) and Mardu (47.6%) don't. The 29-box claim is about Sealed, and 17Lands
+   puts a light splash in the base pair. A splash for a bomb or removal is fine. A full third colour
+   still costs you in Draft.
+3. **Skilled Battlecarver as "the key common" for red aggro** (1x1nde6, 1x4s6jj; "underestimate the
+   battlecarver ER at your peril", 1x3ttui). 52.9% GIH, 204th of 279 cards, ALSA 6.53.
+4. **"Countersculpt has underperformed"** (1x9nbob, an ALCQ winner). 59.6% GIH, a top-five uncommon.
+   This is one player's sample.
+5. **Craftwork Crusher "wheeling"** (1x7yqm6) is a weak pod, not a trend: ALSA 3.34. Primal
+   Witchstalker is the uncommon that goes late: 59.0% GIH at ALSA 5.28.
+6. **"Plan for All Outcomes is profoundly underrated"** (1x9nbob) — drafters already take it early:
+   ALSA 2.95, 59.0%.
+7. **Black as the best starting colour** (1x8awrp). Unweighted averages of each colour's four pairs: blue 55.0%, black 54.6%, red 54.4%,
+   white 54.3%, green 54.3%. Black is second, and the gap behind it is small. The post's "red last" is
+   not in the data.
+
 ## Week two (Arena, 2026-10-05 → 10-08)
 
 > Source: **r/lrcast** (primary) + **r/MagicArena**, posts dated 2026-10-05 → 10-08. 400 post

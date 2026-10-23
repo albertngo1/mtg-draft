@@ -170,7 +170,7 @@ and Numot's `**Card:** note` colon-in-bold form, which recovered notes across ~2
 | **DSK** | 281 | 272 | 34.6M | 60 | CGB 271 |
 | **ECL** | 288 | 273 | 22.2M | 108 | — |
 | **FIN** | 357 | 348 | 42.1M | 63 | — |
-| **FRA** | 280 | 0 | — | 265 | DS 280 · AZ 194 |
+| **FRA** | 290 | 279 | 16.9M | 290 | DS 280 · AZ 194 |
 | **HOB** | 188 | 179 | 6.5M | 182 | CGB 188 · LR 183 |
 | **LCI** | 286 | 283 | 27.8M | 70 | — |
 | **MH3** | 321 | 307 | 26.2M | 75 | — |
@@ -180,16 +180,12 @@ and Numot's `**Card:** note` colon-in-bold form, which recovered notes across ~2
 | **SOS** | 341 | 327 | 29.2M | 166 | DS 341 |
 
 **Every set is at 100% for images, AI takes and a format brief** — those three are the floor. What
-varies is how much the rest of the world has written about a set:
-
-- **FRA is a prerelease reference and the only set here with no live data at all.** It prereleases
-  2026-09-25 and reaches Arena 2026-10-02, so every win-rate column is blank by design and its card
-  list and images come from Scryfall via `scryfall_cardlist.py` rather than a 17Lands export. It
-  still meets the floor — 280/280 images, 280/280 AI takes, and a format brief — and it is the
-  best-reviewed set here for a set with no data: **two** reviewer grades side by side (**DS**,
-  Draftsim's 0–10 rescaled to /5, all 280; **AZ**, MTG Arena Zone's 0–5, 194) plus per-card notes on
-  265 of 280 tiles from those same two reviews. Rebuild it once 17Lands data lands and the blank
-  win-rate columns fill in with no other change.
+varies is how much the rest of the world has written about a - **FRA has live data and post-release takes.** It reached Arena 2026-09-29; the reference now
+  carries 17Lands PremierDraft as of 2026-10-23 (~518k decks, 279/290 cards rated) and its 290 AI
+  takes were rewritten that day on the live numbers plus per-pair IWD (the original takes were
+  written pre-release from card text and Draftsim grades alone). Expert notes cover all 290 tiles:
+  the two pre-release web reviews (**DS**, **AZ**) plus post-release Limited Resources, Lords of
+  Limited, Limited Level-Ups, Rough Drafts, Numot and Reddit.hange.
 
 - **Guide-note coverage tracks how many channels covered the set**, not its quality. MSH and HOB have
   four channels each; DSK and OTJ have two, and it shows.

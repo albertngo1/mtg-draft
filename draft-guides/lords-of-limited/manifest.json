@@ -4,7 +4,7 @@
   "note": "Fingerprint of distilled scrape. sha1 = sha1 of the cleaned transcript .txt.",
   "counts": {
     "sets": 34,
-    "videos_distilled": 158,
+    "videos_distilled": 159,
     "videos_no_captions": 1
   },
   "sets": {
@@ -123,7 +123,8 @@
       "tier": null,
       "file": "FRA-draft-guide.md",
       "video_ids": [
-        "5kb0DiBo9CE"
+        "5kb0DiBo9CE",
+        "dDXD8ejDPpI"
       ]
     },
     "GRN": {
@@ -978,6 +979,12 @@
       "set": "DSK",
       "sha1": "dd4161ebc9456dac20aa24e30b83b0ca769cd017",
       "words": 5239,
+      "distilled": true
+    },
+    "dDXD8ejDPpI": {
+      "set": "FRA",
+      "sha1": "990314533575f9481d35dbd5f33ec57c0d6eb146",
+      "words": 16439,
       "distilled": true
     },
     "dXfR2zxQa3E": {

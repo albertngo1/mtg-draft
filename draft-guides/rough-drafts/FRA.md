@@ -1,9 +1,15 @@
 # FRA — Rough Drafts notes
 
-> Source: **Rough Drafts** (Samp — Sam Pardee) — all 3 Reality Fracture episodes so far distilled:
+> Source: **Rough Drafts** (Samp — Sam Pardee) — all 5 Reality Fracture episodes so far distilled:
 > ep 80 (Hot Topics preview, 11.7k words), **ep 81 "Campus Crier" (2026-10-01, played, ~5.9k words,
-> added 2026-10-09)** and **ep 82 "Theorix Metamage" (2026-10-08, played, ~7.1k words, added
-> 2026-10-08)**. Eps 81 and 82 were transcribed locally with whisper (medium.en) from the podcast
+> added 2026-10-09)**, **ep 82 "Theorix Metamage" (2026-10-08, played, ~7.1k words, added
+> 2026-10-08)**, **ep 83 "Cryotheory Adept" (2026-10-15, ~5.9k words)** and **ep 84 "Hexhaven
+> Battalion" (2026-10-22, ~4.9k words)**, both added 2026-10-23 from whisper (medium.en) transcripts
+> of the Libsyn podcast audio (YouTube returned HTTP 403 on audio downloads that day). In eps 83/84
+> the host introduces himself as **"Sam Pratt"**, which is also the podcast feed's listed author, so
+> "Sam Pardee" above may be wrong; it is left as-is pending a check.
+> Every 17Lands figure added on 2026-10-23 comes from `data/cache/17lands_FRA_PremierDraft_1200d.json`
+> (GIH WR = `ever_drawn_win_rate`, ALSA = `avg_seen`; set mean GIH ≈ 55.1%). Eps 81 and 82 were transcribed locally with whisper (medium.en) from the podcast
 > audio, because YouTube rate-limited caption downloads (HTTP 429). Ep 80 was distilled 2026-09-27 from YouTube auto-caption
 > transcripts. Card names are corrected against the printed FRA card list (Scryfall), uncertain readings marked `(?)`.
 >
@@ -22,9 +28,12 @@
 
 ## ⚠ Recency rule (read first)
 
-- **The newest episode wins on any conflict.** Episode 82 (2026-10-08) is the newest and most-played FRA
-  episode: about a week of Arena drafts, mostly in Sultai colours. It overrides eps 80 and 81 wherever
-  they disagree. See `## Supersessions`.
+- **The newest episode wins on any conflict.** Episode 84 (2026-10-22, "Hexhaven Battalion") is now the
+  newest: about three weeks of Arena play, recorded after Quick Draft opened and pick orders tightened.
+  It is a **white-cards episode**. Episode 83 (2026-10-15, "Cryotheory Adept") is a **blue-cards
+  tier list** from his U/B-Grixis preference, which he flags as personal ("you could say, SAM, you're
+  crazy"). Both override eps 80–82 where they disagree. See `## Supersessions`.
+- **Ep 82 (2026-10-08)** was about a week of Arena drafts, mostly Sultai. It overrides eps 80 and 81.
 - **Episode 80 (Hot Topics) is a PREVIEW** recorded before anyone had played the set: zero drafts,
   no Early Access, no prerelease. By design it asks questions instead of giving answers. Weakest
   evidence class. On MSH, the Hot Topics episode was the one later episodes overturned most often
@@ -45,11 +54,37 @@
 |---|------|---------|-------|---------|--------|
 | 80 | 2026-09-24 | Reality Fracture Hot Topics | Hot-Topics — preview, zero games, questions not answers | **No** (pre-prerelease, no Early Access) | **Weakest** |
 | 81 | 2026-10-01 | Campus Crier | card-episode in name only — a two-drop taxonomy (stat-line buckets → deck role) | **Yes** (7 drafts the day before recording; 3 of them W/R) | Middle — early played read |
-| 82 | 2026-10-08 | Theorix Metamage | card-episode (graveyard/self-mill theory + colour hierarchy) | **Yes** (~1 week of Arena, heavy Sultai) | **Strongest so far** |
+| 82 | 2026-10-08 | Theorix Metamage | card-episode (graveyard/self-mill theory + colour hierarchy) | **Yes** (~1 week of Arena, heavy Sultai) | Strong |
+| 83 | 2026-10-15 | Cryotheory Adept | card-episode in name only — every blue common/uncommon ranked from a U/B-Grixis preference | **Yes** (~2 weeks; RCQ top 8, mostly U/B) | Strong (self-declared personal bias) |
+| 84 | 2026-10-22 | Hexhaven Battalion | card-episode — "removal is abundant, so build engines that win when the dust settles"; white cards | **Yes** (~3 weeks; post-Quick-Draft queues) | **Strongest so far** |
 
 ## Supersessions
 
-Ep 80 preview → ep 81 / ep 82 (played), and the verdict.
+Ep 80 preview → ep 81 / ep 82 / ep 83 / ep 84 (played), and the verdict.
+
+**Ep 83 / ep 84 reversals (2026-10-15 / 10-22)**
+
+- **Green: "blue > black ≈ green" (ep 82) → he dropped green (ep 83/84).** Ep 83: "I've dropped green
+  after underperforming with a bunch of green decks in a row", G/B especially. Ep 84: his
+  ramp-into-Craftwork-Crusher decks "fold to interaction" and he has no fix yet. **Ep 84 wins** on
+  his own preference. The data does not back the downgrade: Craftwork Crusher is 62.0% GIH and Hapatra,
+  the Desert Fang 59.2%, both well above the 55.1% set mean.
+- **White: "bottom colour, avoid as a base" (ep 82) → "I understand white a lot better" (ep 84).** He
+  had Hexhaven Battalion too low. White works as go-wide token engines (Battalion, Way of the Healer)
+  pumped by Twisted Fates, and "all of my white trophies in this format have been in white-black".
+  **Ep 84 wins.**
+- **Aggro: ep 81's W/R beatdown → "a traditional beatdown deck kind of doesn't cut it" (ep 84).** When
+  Quick Draft opened he tried a lower curve with more red and white, and "banged my head against the
+  wall". Removal is too good and defensive two-drops (Surveillance Phantasm) wall early attacks.
+  **Ep 84 wins**, but he plans to retry red beatdown next week because others report success.
+- **Cryotheory Adept: "not great" (ep 82) → "a staple of my blue decks" (ep 83).** He still won't
+  call it good, and he gets it for free late. **Ep 83 wins on playability only.** The data sides with
+  ep 82: 53.2% GIH, the 4th-lowest blue common.
+- **Hapatra, the Desert Fang: "just great" (ep 82) → "a very good card but not a card that actually
+  wins the game" (ep 84).** A downgrade in role, not in power. 17Lands: 59.2% GIH.
+- **Surveillance Phantasm: "decent enough" (ep 81) → "probably quite a bit overrated" (ep 83).** He
+  points out that Arena drafters take it before Icy Reception and Unsummon. The ALSA agrees with him
+  (4.81 vs 5.13 and 5.17), but the GIH gap is only 0.1–0.5 pts (57.2% vs 57.7% / 57.3%).
 
 - **Ep 81 "I played white-red three times in seven drafts" → ep 82 "Boros is the one pair I do not
   want to be".** Ep 81 found W/R workable in several shapes (straight beatdown; go-wide with Hexhaven
@@ -79,6 +114,45 @@ Ep 80 preview → ep 81 / ep 82 (played), and the verdict.
   Shaper mainly as **insurance against decking**, not as a win condition. See below.
 
 ## Format speed / meta read
+
+### Episode 84 update (2026-10-22, ~3 weeks played — overrides everything below on conflict)
+
+**Thesis: there is a lot of removal and it is really good, so the first few threats that matter on
+both sides die. Build to be ahead "when the dust settles".** The typical FRA game is that both players
+deploy their hands, trade off (empower Jace also pushes you to trade), and end in a small game with an
+empty board and both players topdecking. "That's not true for most limited formats of the past few
+years," and playing for it improved his win rate over the past week.
+
+- **Two ways to win the dust-settled game.** (1) Blue card advantage that carries you into the late
+  game. (2) If you're not blue, **"assemble Splinter Twin"**: 2–3-card engines and sideways synergies
+  that either win late or force removal early. This matters more now that good cards go earlier
+  (Quick Draft opened, newer players left Premier/Trad), so you get fewer raw-power cards.
+- **Curve-out beatdown is not a reliable plan.** You are advantaged on a 2-3-4 curve, but if that is
+  your whole plan, removal and defensive two-drops pick it apart. Close games with **evasion**, not
+  ground pressure. Campus Crier "just trades off".
+- **Splashing more.** With fewer good cards and "really good" fixing, he splashes a lot (e.g. Twisted
+  Fates into U/W or G/W).
+- **Green ramp problem unsolved.** Low end plus Craftwork Crusher gives decks that stall and then can't
+  stabilise. Too little top end and the Crusher gets countered or killed. Too much and he gets run
+  over. He'll keep working on it.
+- **Next week (ep 85):** a grab-bag of rares and leftover commons/uncommons, plus red beatdown attempts.
+  He expects only two more FRA episodes before Star Trek.
+
+### Episode 83 update (2026-10-15, ~2 weeks played — ep 84 overrides on conflict)
+
+**Thesis: FRA is balanced across colours, which makes it a good format to draft with strong
+preferences.** He is responding to Lords of Limited's "don't lean too hard in one direction". His
+preference is blue first, black second, aiming for U/B or Grixis spells. He has ended up in U/B "more
+than any other colour pair by a very wide margin", rarely drafts W/U, and calls that a gap he plans to
+fix. Advice: lean into your preferences for a while, then deliberately shake up your pick order.
+
+- **Grixis spells package:** Cryotheory Adept + Twinned Vision + Unsummon + counterspells, with Omit
+  Variables creatures as free prowess triggers. Instant-speed Twinned Vision in combat punishes bad
+  blocks and often deals lethal.
+- **Hold counters for the six-drop turn.** "I have lost to no card more than the red uncommon Kiora"
+  (Kiora of Fire and Ashes). Time Icy Reception for the opponent's Kiora or Craftwork Crusher turn.
+- **Card-advantage textures differ by deck.** Twinned Vision fits Grixis spells (instant, cheap,
+  flashback). Protege's Awakening fits W/U, which can protect a Jace on 3 and get the third card.
 
 ### Episode 82 update (2026-10-08, played — supersedes the ep-80 preview below on conflict)
 
@@ -218,6 +292,127 @@ No ranking. He has played zero drafts. These are the per-pair reads he did give:
 | Other enemy pairs | Lorwyn-five Echoverse | Not discussed beyond "light themes, balanced gold cards". |
 
 ## Card notes
+
+### Episode 84 notes (2026-10-22, white cards — newest, override everything below)
+
+Hedges are his. `17L` = 17Lands Premier Draft GIH WR / ALSA (cache 2026-10-23, set mean ≈ 55.1%).
+
+- **Hexhaven Battalion** — the namesake, and it does carry the episode. "The best common in white by a
+  pretty clear margin… take this as a top common in the format." Not having it high enough is why he
+  disliked white. Three Cadet tokens survive removal ("your threat is a pile of 2/2s"), and Empower
+  Jace 2 gives late-game selection. 17L: 57.4% / 4.28, the #1 white common and #6 common overall.
+  **Partly contradicted:** Surgical Precision is 57.3%, so it is not a "clear margin".
+- **Way of the Healer** — with Battalion, "the two best performing white cards below rare" on
+  17Lands: go-wide, removal-resilient, and surveils every activation. 17L: 57.3% / 3.14. True among
+  mono-white non-rares, but by 0.1 pts (Surgical Precision 57.3%, Generous Revival 57.2%), and the
+  W/U gold uncommons Fatehold Charm (57.8%) and Desperate Futurescribe (57.6%) are higher.
+- **Twisted Fates** — "gone way, way up". Destroy any nonland permanent plus a +1/+1 counter on each of
+  your creatures. It's the best way to turn Battalion/Healer tokens into a win, and he splashes it into
+  U/W and G/W. 17L: 56.9% / 4.78, above average. It still goes mid-pack. His W/B trophies run
+  against the pair data: W/B decks are 53.6%, the third-lowest two-colour pair (W/U is 56.4%).
+- **Prudent Fateseer** / **Fatehold Charm** — W/U's other token pumps, and why W/U leads the white
+  pairs. 17L: Fatehold Charm 57.8% / 5.01 (supports); Prudent Fateseer 55.7%. Pair data supports
+  the W/U point: W/U is the top two-colour deck at 56.4%. The other white pairs are 53.3–53.9%.
+- **Shatterwing Pegasus** — likes it "a lot less" as a go-wide pump. 17L: 53.5% / 6.73 (agrees).
+- **Charge the Sanctum** — "I wouldn't recommend putting that in a deck" outside an all-in go-wide
+  build. 17L: 50.6% (agrees).
+- **Unflinching Hortimancer** — ward 1 makes it removal-resistant, but it's "just a two-drop" that has
+  to be drawn early. He builds engines around it. 17L: 53.8% / 5.22, below average.
+- **Medic's Kitesail** — "come way up" this week. Put it on a Hortimancer for a must-kill threat, or
+  on Battalion tokens to hold the ground and hit for 3 a turn in the air. Not taken highly. 17L: 54.3% /
+  7.07, below average but very late.
+- **Thalia, the Survivor** — the tax stacks with Hortimancer's ward 1. 17L: 54.5%.
+- **Blessed Ghoul** — only with self-mill or a stack of lifegain payoffs (his four-Hortimancer W/B
+  deck). "Don't put Blessed Ghoul in your decks unless you're self-milling or doing something with
+  it." 17L: 54.1%.
+- **Bloombrute** / **Lyra, Archangel of Dawn** — lifegain payoffs you can hold until after the
+  trades, then deploy as an engine. 17L: 57.4% / 58.8%.
+- **Liliana the Faultless** / **Greenhouse Propagator** — the lifegain enablers. Once he's happy to
+  play Bloombrute, he takes Propagator "pretty aggressively". 17L: 57.8% / 54.4%.
+- **Rescue Girl, First Responder** — "absolutely not a Rescue Girl believer." He builds around it only
+  with rare ETB payoffs, mainly **Lich's Relic** and to a lesser degree **Ajani's Anguish**. 17L:
+  52.5%, which supports him; Lich's Relic is 62.4%.
+- **Yoshimaru, Beloved Companion** — W counters, best with Twisted Fates; a late-game mana sink that is
+  "quite bad on curve". He's "considering" it. Also works with Generous Revival on cheap fliers, but he
+  believes reanimating Yoshimaru itself doesn't get the extra counter. **Contradicted:** 17L 49.6%, the
+  second-lowest white uncommon.
+- **Ghalta the Immovable** — wants something extreme: Tetsuko Umezawa, Fugitive in W/U, or a pile of
+  Blossom-Blessed Angels (curve Angel into Ghalta and they hit for 4 in the air). He played it in a
+  mono-white deck with about six Angels. 17L: 52.0% / 6.54; it wheels.
+- **Fateshaper Aspirant** — "don't sleep on this": it rebuys your best legendary card (Garruk, Kiora,
+  Lyra) from the graveyard after self-mill, and the counter + indestructible mode matters sometimes.
+  **Contradicted** as a general pick: 17L 51.9% / 7.01. Treat it as a narrow rare-rebuy card.
+- **Campus Crier** — still likes it, but it "just kind of trades off" and is not the key to aggro.
+  17L: 55.7%.
+
+### Episode 83 notes (2026-10-15, blue cards from a U/B-Grixis preference — ep 84 overrides on conflict)
+
+His own order, best first. He says the ranking is "foggy" past the top few, and biased because he
+rarely drafts W/U.
+
+- **Mindseeker Oculus** — "pretty clear best common in the set", better than many uncommons. 17L: 59.8%,
+  #1 common (supports).
+- **Twinned Vision** — the #2 blue common and "the most under-drafted card in the format". He takes it
+  like "the second-best common in the set", a notch over Extended Absence, and admits that isn't
+  "right". Hybrid, so it is a mono-red card in R/G and B/R. Free from the graveyard off surveil or
+  self-mill. He says the data shows it at its worst in W/U. 17L: 57.9% / 4.99, the #4 common, behind
+  Extended Absence (59.2%) and Protege's Awakening (58.4%). **Data puts it below his rank.** His W/U
+  claim **holds**: by pair it is 57.3% in W/U (+0.9 over the 56.4% W/U deck average) against 58.9% in
+  U/B (+3.4 over 55.5%) and 58.9% in U/R (+3.6 over 55.3%).
+- **Icy Reception** — likes it a bit more than Unsummon; happily plays two. Hold it for the six-drop
+  turn (Kiora of Fire and Ashes, Craftwork Crusher). 17L: 57.7% / 5.13, the #5 common (supports).
+- **Unsummon** — "just a really good spell", better on defence than as tempo here. Arena drafters
+  underrate it. 17L: 57.3% / 5.17 (supports).
+- **Cryotheory Adept** — the namesake. "Not going to say it's better than Surveillance Phantasm", but
+  he drafts far more of them and runs two in his two-drop slot. It works with Twinned Vision in combat,
+  Omit Variables prowess triggers, and self-mill (late-game tap + stun from the graveyard). He gets it
+  for free. **Contradicted:** 17L 53.2% / 6.87, among the weakest blue commons.
+- **Surveillance Phantasm** — "probably quite a bit overrated": it's picked above Icy Reception and
+  Unsummon by ALSA, and he doesn't prioritise it. 17L: 57.2% / 4.81. The ALSA claim holds, but the
+  GIH WR is about level with those two.
+- **Protege's Awakening** — "I don't love this card." It's better the fewer other Empower Jace cards
+  you have, and better in W/U or splashed in G/B, where you can protect the 3-loyalty Jace. He wants
+  one to go with Twinned Vision. **Contradicted:** 17L 58.4% / 5.13, the #3 common in the set (he
+  acknowledges it). The pair data also contradicts "better in W/U": it is 58.4% in W/U (+2.0 over the
+  deck average) and 59.5% in U/B (+4.0).
+- **Undulating Witness** — "the worst landcycler, but it's fine." Don't run it out on 5 onto an empty
+  board. 17L: 55.7%.
+- **Theorix Metamage** — still likes it; a 3/3 flier the opponent must answer. 17L: 54.2% / 6.69.
+- **Fatehold Chronologist** — fine, but rarely in his decks. He'd rather have Cryotheory Adept in
+  spells decks. 17L: 56.3%, higher than the Adept.
+- **Infinite Coursework** / **Sphinx's Approach** — "fine". Sphinx's Approach is "Twinned Vision at
+  home", better with the blue Lyra rare. 17L: 55.8% / 56.0% (ALSA 7.41).
+- **Tam's Resistance** — "no read". It's a blank to him in packs, and he was surprised it grades C+.
+  Probably best on fliers like Phantasm or Chronologist. 17L: 56.1%.
+- **Semester Foreseer** / **Divining Duelist** — "hope to never put this in a deck." 17L: 53.7% / 55.2%.
+- **Countersculpt** — "for my money the best blue uncommon." It's good without Empower Jace and
+  protects key threats. 17L: 59.6% / 3.75. Among mono-blue uncommons only Fblthp (59.7%) is higher, by
+  0.1 pts.
+- **Plan for All Outcomes** — "hooked". He rates it a much better card-advantage engine than Way of the
+  Mind Sculptor for midrange blue, with free extra empowers off instant Twinned Vision or Countersculpt.
+  17L: 59.0% vs Way of the Mind Sculptor 57.8% (supports).
+- **Way of the Mind Sculptor** — next tier down; best in "super Sultai piles" engineering a huge late
+  game. 17L: 57.8% / 3.27.
+- **Geist of Saint Thalia** — "closer to a top uncommon" than its data. 17L: 56.8% / 4.06. That's
+  above the mean, but it sits mid-pack among blue uncommons, so the data still disagrees.
+- **Fblthp, Impossibly Lost** — takes it fairly highly in creature-light Grixis spells. Pair with
+  Tetsuko. 17L: 59.7% (see ep-82 note on inflation).
+- **Recursive Recruitment** — treat it as colourless and splash it. "Merely good" without heavy
+  self-mill, awesome with a critical mass of Omit Variables cards. 17L: 60.5%, the top blue card below
+  rare.
+- **Saheeli, Jewel of Avishkar** — "slightly come up". Treat it as a six-drop: cast it with counter
+  backup or a follow-up Twinned Vision. It's a reason to splash red in U/B. 17L: 56.8%.
+- **Proft, Consulting Detective** — a two-drop you can cash in later off the free surveils from Empower
+  Jace, so it isn't W/U-only. 17L: 57.3% / 3.60.
+- **Paradox Shaper** — he has now done the stack-your-deck loops, usually with Fblthp. 17L: 54.9%.
+- **Tetsuko Umezawa, Fugitive** — fun, not taken highly. It pumps Cryotheory Adept with Twinned
+  Vision after blockers are declared, and it works with Skilled Battlecarver and Theoretical
+  Necromancer. 17L: 54.6% / 5.75.
+- **Way of the Cryomancer** — likes it in spell-heavy decks with cheap removal (No Admittance, Last
+  Gasp), fed by Plan for All Outcomes. Copying Twinned Vision draws three. **Contradicted:** 17L 52.9%.
+- **Traxos, Academy Guardian** / **Prudent Fateseer** / **Theorix Charm** / **Clash of Elements** /
+  **Mind Meanderer** — "reasonable / fine". Meanderer wants green ramp so it can't be answered on
+  cast. 17L: Clash of Elements is 58.4%, well above his "fine".
 
 ### Episode 82 notes (2026-10-08, played — override the ep-80 notes below)
 
@@ -529,6 +724,18 @@ Crusher**; **"kindred vision"** → **Kindred Judgment** (?) (described as "the 
 **"Sam Pratt"** → Samp (host); **"Sam Black"** in ep 82 is the real Sam Black ("the person to go to"
 for Paradox Shaper mill-out decks), not the host.
 
+**Eps 83/84 (whisper transcripts) garble:** **"Cryo Theory Adept / Cryo-Figure Adept"** →
+**Cryotheory Adept**; **"Twin Vision"** → **Twinned Vision**; **"the Jerd"** = his nickname for
+**Surveillance Phantasm** ("Jace bird"); **"Gist / Geist of St. Talia"** → **Geist of Saint Thalia**;
+**"Profed Consulting Detective"** → **Proft, Consulting Detective**; **"Arnie Humble Scribe"** →
+**Arni, Humble Scribe**; **"Therix"** → **Theorix**; **"Hortomancer / Hoardermancer"** →
+**Unflinching Hortimancer**; **"kite sale"** → **Medic's Kitesail**; **"Johnny's anguish"** →
+**Ajani's Anguish**; **"Galta / galt of the immovable"** → **Ghalta the Immovable**; **"Lyra archangel
+of dawn"** → **Lyra, Archangel of Dawn**; **"the two-four angel at common that has Seed Suture"** →
+**Blossom-Blessed Angel**; **"red 2-drop with first strike on your turn"** → **Skilled Battlecarver**;
+**"Lords Unlimited"** → Lords of Limited; **"Sam Pratt / SamP6 / SamPratt.bsky.social"** — the host's
+self-introduction.
+
 **Ep 81 (whisper transcript) garble:** **"atomic is it spark mage"** → **Tomik, Izzet Sparkmage**;
 **"tomic Orzhov Law Mage"** → **Tomik, Orzhov Lawmage**; **"galley of the merrymaker"** → **Gallia, the
 Merrymaker**; **"tail light shield expert"** → **Teyo, Lightshield Expert**; **"sure shot sower"** →
@@ -546,3 +753,7 @@ Merrymaker**; **"tail light shield expert"** → **Teyo, Lightshield Expert**; *
   actually a two-drop stat-line taxonomy; whisper transcript of the audio*
 - Episode 82 — 2026-10-08 — Theorix Metamage (`ST6ahmQdFkU`) — *played (~1 week of Arena); graveyard
   theory + colour hierarchy; whisper.cpp transcript of the Libsyn audio*
+- Episode 83 — 2026-10-15 — Cryotheory Adept (`0UFC8Ckvn0Y`) — *played (~2 weeks); blue commons and
+  uncommons ranked from his U/B preference; whisper.cpp medium.en transcript of the Libsyn audio*
+- Episode 84 — 2026-10-22 — Hexhaven Battalion (`f3572pe_zQk`) — *played (~3 weeks); removal-abundance
+  thesis + white cards; whisper.cpp medium.en transcript of the Libsyn audio*

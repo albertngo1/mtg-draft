@@ -6,12 +6,12 @@ planeswalker token, every allied pair a recurring free spell at common, and ever
 dual land at common. Fixing is nearly free and splashing is cheap. Games are decided by card
 advantage, removal, and whether anyone attacked the Jace.
 
-> **How to weight this page.** 17Lands numbers (2026-10-08, day ten, ~251k PremierDraft decks;
-> archetype table refreshed 2026-10-14, ~388k decks) beat everything else; the sample has
-> settled (day ten to day sixteen, only Refute Destiny among cards with 1,000+ games moved more
-> than 2pp). Post-play expert takes come next: Limited Resources 874 (10-09),
-> Rough Drafts 81–82, Lords of Limited 499, Limited Level-Ups' State of the Format, Numot's Arena
-> Direct runs. Pre-release predictions are weakest. They're kept only where they still hold, and
+> **How to weight this page.** 17Lands numbers (per-card figures in the prose are from 2026-10-08,
+> day ten, ~251k PremierDraft decks; archetype table refreshed 2026-10-23, ~518k decks) beat
+> everything else; the sample has settled (day sixteen to day twenty-four, no card with 1,000+
+> games moved more than 1.1pp). Post-play expert takes come next: Limited Resources 874–876,
+> Rough Drafts 81–84, Lords of Limited 499–500, Limited Level-Ups' State of the Format and #259,
+> Numot's Arena Direct runs. Pre-release predictions are weakest. They're kept only where they still hold, and
 > the ones that failed are listed in the last section.
 
 ### The format in six lines
@@ -21,8 +21,8 @@ advantage, removal, and whether anyone attacked the Jace.
    tokens soak attacks the way life gain does, five sweepers punish over-extending, and 1/3
    two-drops hold the ground (LR 874, Rough Drafts 81).
    Synergy that pays off on turn 6–9 is worth more here than synergy that needs a perfect turn 3.
-2. **Blue is the best colour; W/U (56.6%) and U/B (55.8%) are the best pairs.** W/B and B/R are
-   in the tied bottom four (52.9–53.7%). The spread is only about 4pp, so every pair is playable.
+2. **Blue is the best colour; W/U (56.4%) and U/B (55.5%) are the best pairs.** G/W, B/R, W/B and
+   R/W sit together at 53.3–53.9%, with G/U last (52.7%). The spread is under 4pp, so every pair is playable.
    *Why blue:* its best commons and uncommons are card draw and counters, which is exactly what a
    long game rewards, and blue makes the most Jace tokens, which is what turns the duals untapped.
 3. **Card draw and removal win.** Play 6–7 removal spells (counterspells count) and 3–4 card-draw
@@ -58,22 +58,22 @@ advantage, removal, and whether anyone attacked the Jace.
 
 ### Archetypes, ranked by win rate
 
-Win rates are 17Lands day sixteen (2026-10-14). "Removal" counts removal spells available to the
+Win rates are 17Lands day twenty-four (2026-10-23). "Removal" counts removal spells available to the
 pair across all rarities; it was the pre-release ranking signal and turned out *not* to predict
 the order.
 
 | # | Pair | Name | Plan that actually wins | WR | Removal | Signpost |
 |---|---|---|---|---|---|---|
-| 1 | W/U | Fatehold | Surveil fliers | 56.6% | 13 | `Desperate Futurescribe` |
-| 2 | U/B | Theorix | Removal, discard, two-for-ones | 55.8% | 20 | `Recursive Recruitment` |
+| 1 | W/U | Fatehold | Surveil fliers | 56.4% | 13 | `Desperate Futurescribe` |
+| 2 | U/B | Theorix | Removal, discard, two-for-ones | 55.5% | 20 | `Recursive Recruitment` |
 | 3–5 | B/G | Garruk's Bestiary | Graveyard recursion, big bodies | 55.3% | 21 | `Primal Witchstalker` |
 | 3–5 | R/G | Konstrari | Ramp into two uncommons | 55.2% | 18 | `Craftwork Crusher` |
 | 3–5 | U/R | Chandra's Prowess | Red removal plus blue cards | 55.3% | 17 | `Clash of Elements` |
-| 6 | G/W | Vigorbloom | Repeatable lifegain into counters | 54.1% | 13 | `Bloombrute` |
-| 7–10 | R/W | Ajani's Army | Go-wide, +1/+1 counters | 52.9–53.7% | 20 | `Warrior's Blades` |
-| 7–10 | B/R | Stingerquill | Red removal; pings as reach | 52.9–53.7% | **26** | `Grim Repriser` |
-| 7–10 | G/U | Jace's Mastery | Empower Jace | 52.9–53.7% | **11** | `Mind Meanderer` |
-| 7–10 | W/B | Liliana's Attrition | Black removal, white bodies | 52.9–53.7% | 23 | `Twisted Fates` |
+| 6 | G/W | Vigorbloom | Repeatable lifegain into counters | 53.9% | 13 | `Bloombrute` |
+| 7–10 | R/W | Ajani's Army | Go-wide, +1/+1 counters | 53.3% | 20 | `Warrior's Blades` |
+| 7–10 | B/R | Stingerquill | Red removal; pings as reach | 53.8% | **26** | `Grim Repriser` |
+| 7–10 | G/U | Jace's Mastery | Empower Jace | 52.7% | **11** | `Mind Meanderer` |
+| 7–10 | W/B | Liliana's Attrition | Black removal, white bodies | 53.6% | 23 | `Twisted Fates` |
 
 The allied pairs are the colleges of Hexhaven; the enemy pairs are built around the Echoverse
 versions of major characters. Numbers after a card below are its IWD inside that pair (how much
@@ -153,7 +153,7 @@ Mentor`).
 - Skip the dual (−2.6), and don't take `Greenhouse Propagator` early. The lifegain payoffs are
   poor in Sealed (LR 874: "just don't have [Hortimancer] in your deck").
 
-**The tied bottom four (52.9–53.7%).**
+**The bottom four (52.7–53.8%).**
 - **R/W:** both halves under-perform (W −1.8, R −1.2). It is an aggro deck in a slow format and
   needs `Mabel, Valley Hero` and `Warrior's Blades`; without them it is a burn deck with white
   bodies that run into 1/3 blockers and Jace tokens. Mabel "really underperformed" and `Graft
@@ -289,6 +289,41 @@ Responder` is split: D-level on 17Lands, but LSV went 7 wins with it in early ac
 `Consider` 57.4%; `Flourishing Grapple` 45.6% and `Codie, Ravenous Codex` 46.8% are near the
 bottom of the set.
 
+### Expert takes since day sixteen (10-12 → 10-23)
+
+Sources: Limited Resources 875 (with Sierkovitz, 10-16) and 876 (10-22), Limited Level-Ups #259
+(10-17), Lords of Limited 500 (10-12), Rough Drafts 83–84, and 39 Reddit threads (10-08 → 10-23).
+Each claim is checked against 17Lands as of 2026-10-23.
+
+**Confirmed by the data:**
+- **`Ajani Unrelenting` is the best card in the format** (Sierkovitz): 73.2% GIH, taken at pick
+  1.25 on average.
+- **Draft the open lane, not W/U** (LR 875): the whole pair spread is 3.8pp.
+- **Card quality and value beat synergy** (Reddit's settled view): `Mindseeker Oculus` 59.8% and
+  `Extended Absence` 59.2% vs `Way of the Pyromancer` 51.7% and `Way of the Cryomancer` 52.9%.
+- **`Twinned Vision` is worst in W/U** (Samp): +0.9 over the W/U average vs +3.4 in U/B and +3.6
+  in U/R. *Why:* its value is graveyard-driven, and W/U doesn't use its graveyard.
+- **`Fblthp, Impossibly Lost` is inflated:** 59.7% GIH but 55.2% games-played win rate, the same
+  as the other Fblthp. Take it, but not over premium removal.
+- **`Primal Witchstalker` is the uncommon that goes late:** 59.0% at an average last-seen pick of
+  5.3. It's a free signal for B/G.
+
+**Contradicted by the data:**
+- **"`Hexhaven Battalion` is the best white common by a clear margin"** (Samp): 57.4% vs
+  `Surgical Precision` 57.3%. It's tied, not clear.
+- **"`Bestial Incursion` is terrible"** (LoL 500): 56.2%, above the 55.1% mean.
+- **"`Flickering Hound` is a fun build-around"** (LoL 500): 45.2%, among the worst cards in the set.
+- **"`Kiora of Salt and Sand` is worth the trouble"** (LLU's Alex): 53.7%. LR 876 says don't play it.
+- **"Red is way worse"** (LSV): red's decks win 54.2%, level with white and green; only blue leads.
+- **"`Craftwork Crusher` wheels"** (Reddit): average last-seen pick 3.3. It doesn't.
+- **"Jund leads the tier list"** (Untapped trophy rates on Reddit): 55.0% on 17Lands, behind W/U,
+  U/B and plain R/G.
+- **"`Skilled Battlecarver` is a key common":** 52.9%, 204th of 279.
+
+**New and small-sample:** bonus-sheet `Mind Twist` (64.6%, 1,950 games) and `Splinter Twin`
+(62.8%, 1,432 games) are Reddit's new complaint. `Rescue Girl, First Responder` (LLU #259's
+question) is 52.5% on 27k games, so the 17Lands side of that dispute has won.
+
 ### What the experts and Reddit got wrong
 
 **Pre-release predictions the data overturned:**
@@ -314,7 +349,6 @@ bottom of the set.
 **Still disputed:**
 - **Whether to attack a small Jace.** Lords of Limited says yes by default; Numot ignores a
   1-loyalty Jace when his own deck has plenty of empower.
-- **`Rescue Girl, First Responder`** — 17Lands D-level vs LSV's build-around B.
 - **Ramp ceilings.** Lords of Limited's ramp combo is `Way of the Pyromancer` + `Way of the
   Paradox` + `Inspired Tethermage`, but Pyromancer is 52.1% and Tethermage under-performs
   everywhere except G/U. Treat it as a ceiling play, not a default.

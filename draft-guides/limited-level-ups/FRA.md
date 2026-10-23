@@ -4,12 +4,15 @@
 >
 > The set review is split across six videos: Multicolor + Colorless, then one per colour. Commons and uncommons get an **A+→F letter grade** from both hosts, shown as `Alex X / Mark Y` where they split. Those grades are this channel's distinctive product.
 >
+> **Update 2026-10-23:** added **LLU #259, "Reality Fracture Buildarounds, Synergy, and is Rescue Girl Bad?"** (2026-10-17, `YSM2Lx12q1c`, Alex solo, ~44 min). It's a whisper.cpp (medium.en) transcript of the Libsyn podcast audio, because YouTube returned HTTP 403 on audio downloads. No letter grades; post-play verdicts on build-arounds. 17Lands numbers added with it come from `data/cache/17lands_FRA_PremierDraft_1200d.json` (GIH WR / ALSA, cache of 2026-10-23, set mean GIH ≈ 55.1%), and pair splits come from `17lands_pairs_FRA.json`. **Not distilled:** LLU #258 "Draft Navigation, Splashing, and How to Blue/Red" (2026-10-10, `O56wGoo7xvQ`), which #259 refers back to as "last week". Also undistilled: the draft-gameplay videos (`994X9PlPInQ`, `re7j0kVSnUg`, `5aMQKjCukTc`, `Uy49kTqon4o`).
+>
 > ⚠ **Gaps:**
 > - **Blue (5/6, `ke_XTZAqxWI`) comes from a local whisper transcript, not YouTube captions.** YouTube refused this one video's captions from this machine (HTTP 429) for over a day, so the audio was transcribed locally with whisper.cpp (medium model) on 2026-09-23. That transcript has no speaker markers, so blue attributions lean harder on the I = Mark rule, and a few grades are marked `(?)`.
 > - **Rares and mythics come from one separate video (09-25, `XPPMF-xrFjk`), recorded the day after early access.** YouTube captions worked for it (no whisper needed). Grades there already fold in a day of early-access play, and several were moved on air; moves are shown as `A → B`. Not graded: Gardenize and Omnipresence (skipped as constructed-only), and the 10 "special guest" reprints such as Austere Command (Mark said he'd add those to his tier list later).
 
 ## ⚠ Recency rule (read first)
 
+- **LLU #259 (10-17) is now the newest and strongest source.** It comes after three weeks of play and the first Arena Open weekend of Sealed pools. Where a note carries an **LLU#259 10-17** tag, it wins over SotF 10-05 and the letter grades.
 - **The letter grades are pre-play predictions; the State of the Format Address (10-05) is not.** Order of authority, weakest first: First Impressions (09-18, Alex solo, no grades) → per-colour set review (09-22) → rares + mythics review (09-25, after one day of early access) → **State of the Format Address (10-05, Alex solo, after early access plus the first Arena days, citing live 17Lands numbers)**. Where a card's note carries a **SotF 10-05** tag, that tag wins over the letter grade beside it. A later send-off episode would supersede this file, and **17Lands GIH WR supersedes all of it** as samples grow.
 - **Alex's caution on 17Lands for this set (10-05):** trust the high win rates, but the C− to D+ cards hide a lot of variance. Many are build-arounds that look bad because they're played in decks without enough support (Danitha, Sword of Hope sits at D+ on 17Lands; it wants 9–10 targeting effects, not 4–5). "Draft decks, not cards."
 - **The hosts distrust their own grades on this set.** Alex: "the conversation around the grades is absolutely more important than the grade itself." Mark: he won't trust most stats on this set because "there's so many ways you can use or misuse cards." They expect a large gap between top-player and all-player win rates, which makes 17Lands numbers noisier than usual.
@@ -27,9 +30,21 @@
 | 2026-09-22 | Set Review 5/6: BLUE (`ke_XTZAqxWI`) — whisper transcript | early (pre-play grades) | Weak-Medium |
 | 2026-09-22 | Set Review 6/6: WHITE (`BmIJbG1z69Q`) | early (pre-play grades) | Weak-Medium |
 | 2026-09-25 | Rare + Mythic Limited Set Review (`XPPMF-xrFjk`) | early access (1 day of play) | Medium |
-| 2026-10-05 | The Reality Fracture State of the Format Address (`rj0RpGFKg0k`) | mid (early access + first Arena days, Alex solo, no letter grades) | **Strongest so far** |
+| 2026-10-05 | The Reality Fracture State of the Format Address (`rj0RpGFKg0k`) | mid (early access + first Arena days, Alex solo, no letter grades) | Strong |
+| 2026-10-17 | Buildarounds, Synergy, and is Rescue Girl Bad? (LLU #259) (`YSM2Lx12q1c`) — whisper transcript | mid-late (~3 weeks of play, Alex solo, no letter grades) | **Strongest so far** |
 
 ## Supersessions (grade/opinion flips between first-impressions and later reviews)
+
+### LLU #259 (10-17) vs earlier takes
+
+- **Rescue Girl, First Responder**: Alex C+ / Mark C− ("a value engine for slow white decks") → **"sometimes food"**. It isn't worth it unless you already hold about two rare ETB-removal payoffs. 17Lands agrees: 52.5% GIH.
+- **Fblthp, Impossibly Lost**: D+ → SotF "an okay way to draw cards" → "last week" (#258, not distilled) "about a C+" → **"newfound respect"**, after Mark pushed back. It's "the one actual, true" build-around in the set, because a turbo-mill deck is guaranteed to see it. 17Lands: 59.7% GIH, but inflated by redraws (Alex explains why).
+- **Theoretical Necromancer**: D+ ("four mana to do nothing") → **"slightly too low"**. Casting it on turn 3 is "almost a roadblock", it trades up with 4/4 Beasts, and he runs 2–3 in turbo-mill. 17Lands: 55.2% / ALSA 6.48, about average.
+- **Way of the Pyromancer**: SotF "still unimpressed" → **"like it a little bit more"** after Mark's case, but "still a fairly niche card". 17Lands: 51.7%, among the lowest uncommons (the case for it doesn't show in the data).
+- **Command the Stage**: Alex C+ / Mark C ("probably the best payoff for pinging") → **"biggest disappointment of this set for me… I would avoid trying to make this work."** 17Lands: 49.8% (agrees).
+- **Eye of Jace**: Alex C / Mark C− → **never actively wants it**, because surveil is everywhere already. 17Lands: 49.8% (agrees).
+- **Kiora of Salt and Sand**: Alex C / Mark C− ("upside trap") → **"I do think Kiora is worth the trouble"**, for the unblockable mode rather than the 8/8. **Contradicted:** 17Lands 53.7% / ALSA 6.41.
+- **Way of the Paradox**: SotF #3 Way for ramp → also **a lifegain engine for GW** (every Empower Jace card gains life). 17Lands by pair: 56.1% in GW against a 53.9% GW deck average (+2.2).
 
 ### State of the Format (10-05) vs the graded reviews
 
@@ -64,6 +79,15 @@ These are Alex's First Impressions calls (09-18) against the graded review four 
 - **Held up:** Surgical Precision ("one of the best commons") → Alex B− / Mark C+. Twisted Fates ("really pushed") → B. Compel Brutality ("really, really good") → C+. Craftwork Crusher ("a sicko") → **A−, the top grade in the review**.
 
 ## Format speed / meta read
+
+**LLU #259 (10-17), Alex on synergy:**
+
+- **Synergy is the top layer, not the foundation.** Take the best card in your colours by default. In a typical draft he takes something other than the best card for synergy, curve or deck needs **about 30% of the time**. Two traps: taking a payoff early and then forcing medium enablers (his example: with Bloombrute taken 3rd, take Hexhaven Battalion over Unflinching Hortimancer at pick 5), and playing truly bad cards for synergy (blue Yargle for white Ghalta).
+- **Pick the synergy piece when it's close in power.** With Bloombrute in the pile he takes Vigorbloom Vanguard over Hexhaven Battalion, because it is "close enough" in power and on-plan. Weak packs with no slam-dunk card are where Hortimancers, Phytomedics, splash fixing and speculation picks belong.
+- **Turbo-mill Fblthp is a real deck.** Control-ish shell: card draw, removal, self-mill (Paradox Shaper most important, then Theorix Metamage and Void Extrapolator; Something Worth Saving if green), and Theoretical Necromancer to rebuy Fblthp. Finishers that can land the last hit: Theorix Metamage, Undulating Witness, Tetsuko Umezawa, Fugitive. Graveyard value: Twinned Vision, Blessed Ghoul. One Unsummon protects Fblthp from exile. He rates the "Fblthp-less" Paradox Shaper loop-forever plan as much less reliable.
+- **Red aggro package:** Stingerquill Voxmancer → Tomik, Izzet Sparkmage → a convoke 5-mana red Winter (?) that gives +1/+0 per noncreature spell. Voxmancer's repeatable ping is "the most important combo card". He may do an aggro deep-dive next week.
+- **Small interactions win long games:** Marwyn, the Preserver + Room of Refuge (late-game loop), and Heartwood Crafter + Bestial Incursion (turn-4 flashback off the Crafter's mana).
+- **News:** FRA will stay on Arena past the Star Trek release, so the two sets will overlap (length not announced).
 
 **State of the Format (10-05), Alex's three truths:**
 
@@ -133,6 +157,30 @@ These are Alex's First Impressions calls (09-18) against the graded review four 
 ## Card tips
 
 Grades are from the 09-22 colour review unless noted, and a **SotF 10-05** tag (State of the Format, post-play) overrides the grade beside it; rares and mythics come from the 09-25 rares review and sit in a **Rares + mythics** block at the end of each section (in Multicolor, at the end of each pair, tagged (R)/(M)); `Alex X / Mark Y` where they split. Cards are ordered best to worst within each section.
+
+### LLU #259 notes (2026-10-17 — newest, override the grades below)
+
+Alex solo, post-play, no letter grades. `17L` = Premier Draft GIH WR / ALSA (cache 2026-10-23, mean ≈ 55.1%).
+
+- **Rescue Girl, First Responder** — **LLU#259 10-17:** "Very much a sometimes food." Commons and uncommons with ETBs (Mindseeker Oculus) don't justify a 3-mana 1/3. You need about **two** rare ETB-removal payoffs: Lich's Relic, Ajani's Anguish, Vraska, the Cutting Glare. Hapatra, the Desert Fang is the one uncommon at that level ("multiple Hapatras, I could see you going rareless"). Plan for All Outcomes and Warrior's Blades only half-work. Once she's in the deck, Teyo, Lightshield Expert protects her. 17L: 52.5% (supports him); Lich's Relic 62.4%, Vraska, the Cutting Glare 62.4%, Hapatra 59.2%.
+- **Fblthp, Impossibly Lost** — **LLU#259 10-17:** The set's one true build-around (see Format read). In W/U fliers it's just a draw two. **Inflation:** 17Lands counts every redraw of a shuffled-back Fblthp in a won game as an extra win. 17L: 59.7% / 4.30. By pair it's 60.6% in UB and 60.1% in WU.
+- **Theoretical Necromancer** — **LLU#259 10-17:** Up. Fine to cast on turn 3, a roadblock that trades with 4/4 Beasts. Run 2–3 in turbo-mill to rebuy Fblthp. 17L: 55.2% / 6.48.
+- **Paradox Shaper** — **LLU#259 10-17:** "Probably the most important" self-mill piece for Fblthp. 17L: 54.9% / 5.57, below average.
+- **Something Worth Saving** — **LLU#259 10-17:** "Everything this deck wants" in a green turbo-mill build. 17L: 56.8% / ALSA 6.87, late for its win rate.
+- **Hexhaven Battalion** — **LLU#259 10-17:** "Just a great card in literally every white deck"; far better than Unflinching Hortimancer at pick 5. 17L: 57.4% vs Hortimancer 53.8% (supports).
+- **Vigorbloom Vanguard** — **LLU#259 10-17:** Close enough to Battalion to take over it when you already have Bloombrute. 17L: 56.2% / 3.45, so the data agrees it's close (Battalion 57.4%).
+- **Ghalta the Unstoppable** — **LLU#259 10-17:** Aim to cast it for about 5, which takes roughly five 4/4s (Bestial Incursion, Way of the Wildspeaker). Most of his green decks would play it, but he doesn't take it highly. 17L: 53.2% / 4.07.
+- **Ghalta the Immovable** — **LLU#259 10-17:** Almost exclusively W/U (Surveillance Phantasm; Tetsuko Umezawa, Fugitive is the best partner). "A mistake to build your deck around"; it's a 20th–23rd card when the deck happens to support it. 17L: 52.0% / 6.54.
+- **Way of the Cryomancer** — **LLU#259 10-17:** Play it with about 7–8 removal spells or token-makers, not draw spells. Best copies: Violent Echoes, Hexhaven Battalion, and Recursive Recruitment (a copy doesn't count as cast from the graveyard, so the flashback bonus is lost). Often leave it at 5 loyalty and don't activate it on the turn you cast it, because opponents pressure it. **Contradicted** as a playable: 17L 52.9%. Violent Echoes is 59.3%.
+- **Way of the Pyromancer** — **LLU#259 10-17:** Mark's case, which Alex half-accepts: play it in decks with many 2-drops and 4-drops and only medium Empower numbers (Empower 2s, not Protege's Awakening), because it uses up your Jace activation. Bad if you play it on turn 2 into an attacker. 17L: 51.7%. Best by pair in RG at 53.1%, below the 55.2% RG average, so the data doesn't support it.
+- **Way of the Paradox** — **LLU#259 10-17:** Still best with lots of card draw, and newly a GW lifegain engine (Bloombrute, Unflinching Hortimancer). Play note: against Paradox + a 1-loyalty Jace, attack the Jace with a 1-power creature, since the life comes straight back. 17L: 56.6%.
+- **Stingerquill Voxmancer** / **Tomik, Izzet Sparkmage** — **LLU#259 10-17:** The core of the red aggro package, with Voxmancer "the most important combo card". **Contradicted:** 17L 54.2% / 51.3%.
+- **Kiora of Salt and Sand** — **LLU#259 10-17:** "Worth the trouble." Take Tam's Resistance and Protege's Awakening for big Empower numbers. Combos: Jace's Machinations (instant-speed −8 Kraken), Repurposed Enforcer (unblockable each turn). **Contradicted:** 17L 53.7% / 6.41.
+- **Pia, Aether Ascetic** — **LLU#259 10-17:** "A very, very niche card." It needs several different enchantments to fetch (Memory Trap, Infinite Coursework, Way of the Healer; best is Plan for All Outcomes) and flashback cards to discard (Bestial Incursion). 17L: 49.6% (agrees).
+- **Command the Stage** — **LLU#259 10-17:** "Biggest disappointment of this set… avoid trying to make this work." 17L: 49.8% (agrees).
+- **Eye of Jace** — **LLU#259 10-17:** Surveil is already everywhere, so it adds nothing. Only a last-resort playable. 17L: 49.8% (agrees).
+- **Marwyn, the Preserver** / **Room of Refuge** — **LLU#259 10-17:** A late-game loop that beat him in a long game. Take Room over a late dual if you have Marwyns. 17L: 54.2% / 55.8%.
+- **Heartwood Crafter** / **Bestial Incursion** — **LLU#259 10-17:** Turn-1 Crafter makes turn-4 Incursion flashback possible. 17L: 56.7% / 56.2%.
 
 ### White (W)
 
@@ -478,3 +526,4 @@ Grades are from the 09-22 colour review unless noted, and a **SotF 10-05** tag (
 - 2026-09-22 — Reality Fracture Limited Set Review! | White | 6/6 (BmIJbG1z69Q)
 - 2026-09-25 — Reality Fracture Rare + Mythic Limited Set Review! (XPPMF-xrFjk)
 - 2026-10-05 — The Reality Fracture State of the Format Address| Draft Guide (rj0RpGFKg0k)
+- 2026-10-17 — Reality Fracture Buildarounds, Synergy, and is Rescue Girl Bad? | LLU #259 (YSM2Lx12q1c) — whisper.cpp medium.en transcript of the Libsyn audio
