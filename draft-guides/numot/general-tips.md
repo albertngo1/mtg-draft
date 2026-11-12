@@ -1,5 +1,5 @@
 # Numot — general draft principles
-> Evergreen, set-independent draft & play principles distilled across ~245 NumotTheNummy (Kenji Egashira) regular Arena draft VODs. Built 2026-06-10, last extended 2026-08-23 (MSH full-format backlog — 32 new VODs). Expert opinion/theory and the "why" behind picks — and the lens that *decodes* the 17Lands data: every GIH WR is archetype-conditional, so these principles tell you whose-deck a number came from and whether it transfers to yours (see AGENTS.md).
+> Evergreen, set-independent draft & play principles distilled across ~245 NumotTheNummy (Kenji Egashira) regular Arena draft VODs. Built 2026-06-10, last extended 2026-11-11 (TRK Early Access Sealed; before that 2026-08-23, MSH full-format backlog — 32 new VODs). Expert opinion/theory and the "why" behind picks — and the lens that *decodes* the 17Lands data: every GIH WR is archetype-conditional, so these principles tell you whose-deck a number came from and whether it transfers to yours (see AGENTS.md).
 
 ## Picking & pick order
 
@@ -87,6 +87,7 @@
 
 ## Mindset & format approach
 
+- **Learn a new set in Sealed before drafting it.** *"Starting off with Sealed as I normally do these days because I want to actually have time to read the cards and not skip over entire packs reading a singular card during a draft."* In early events he builds for reps, not the best deck: *"I am NOT interested in building the perfect deck during this event, I'm more interested in just getting reps in with the cards."* (TRK Early Access, 2026-11)
 - "Three rules of BO1: win the die roll, curve out, don't punt." These are the levers you control; macro-strategy matters less than execution.
 - Play/draw is enormous in fast formats. Being on the draw against aggro opponents is a structural disadvantage equivalent to being on a worse deck. Mulligan more aggressively on the draw.
 - BO1 heavily skews results toward aggro. Fast deck win rates in BO1 do not translate to BO3 / paper. When evaluating format strength, mentally adjust for the game mode.

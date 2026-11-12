@@ -17,3 +17,4 @@ in this repo: **17Lands GIH WR is primary**; these grades are a reviewer/theory 
 | Set | Guide | Sources |
 |-----|-------|---------|
 | Marvel Super Heroes (MSH) | [MSH.md](./MSH.md) | 10 episodes (First Impressions, per-color reviews, Rare/Mythic, Prerelease, Early-Access draft) |
+| Star Trek (TRK) | [TRK.md](./TRK.md) | 9 episodes (6 per-color reviews + Prerelease/Sealed as local whisper transcripts, Rare/Mythic, "Drafts are Here" early-access stream) |

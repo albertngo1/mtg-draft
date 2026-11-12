@@ -23,4 +23,5 @@ lens, and every WR in a soup format like SOS is archetype-conditional (multicolo
 |-----|-------|--------|----------|
 | Secrets of Strixhaven (SOS) | [SOS.md](./SOS.md) | [mtg-sos-draft-guide](https://draftsim.com/mtg-sos-draft-guide/) | 2026-06-21 |
 | Reality Fracture (FRA) | [FRA.md](./FRA.md) | [mtg-fra-limited-set-review](https://draftsim.com/mtg-fra-limited-set-review/) | 2026-09-21 |
+| Star Trek (TRK) | [TRK.md](./TRK.md) | [mtg-trk-limited-set-review](https://draftsim.com/mtg-trk-limited-set-review/) | 2026-11-11 |
 | Marvel Super Heroes (MSH) | [MSH.md](./MSH.md) | [mtg-msh-draft-archetypes](https://draftsim.com/mtg-msh-draft-archetypes-6-3-26/) | 2026-06-23 |

@@ -4,9 +4,9 @@ A draft helper for MTG Arena that runs in your terminal. While you draft, it rea
 from Arena's log file and ranks the cards by their [17Lands](https://www.17lands.com/) win rates.
 
 **Just want to look up cards?** The [card reference site](https://albertngo1.github.io/mtg-draft/)
-has every card from 13 sets with win rates, expert grades and notes, and nothing to install.
-Newest set: Reality Fracture ([cards](https://albertngo1.github.io/mtg-draft/sets/FRA.html),
-[prerelease guide](https://albertngo1.github.io/mtg-draft/prerelease/FRA.html)).
+has every card from 14 sets with win rates, expert grades and notes, and nothing to install.
+Newest set: Star Trek ([cards](https://albertngo1.github.io/mtg-draft/sets/TRK.html), pre-release
+build on early 17Lands data).
 
 ## What it looks like
 

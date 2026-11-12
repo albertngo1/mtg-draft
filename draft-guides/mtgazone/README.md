@@ -21,3 +21,4 @@ a prediction; where a grade and a win rate disagree, the win rate is the result.
 | Set | Guide | Reviewer | Captured | Cards |
 |-----|-------|----------|----------|-------|
 | Reality Fracture (FRA) | [FRA.md](./FRA.md) | J2SJosh | 2026-09-21 | 194 |
+| Star Trek (TRK) | [TRK.md](./TRK.md) | J2SJosh | 2026-11-11 | 281 |

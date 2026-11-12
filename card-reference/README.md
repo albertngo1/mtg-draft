@@ -178,14 +178,23 @@ and Numot's `**Card:** note` colon-in-bold form, which recovered notes across ~2
 | **MSH** | 334 | 289 | 19.0M | 259 | CGB 276 |
 | **OTJ** | 376 | 364 | 38.6M | 75 | CGB 376 |
 | **SOS** | 341 | 327 | 29.2M | 166 | DS 341 |
+| **TRK** | 336 | 57 | 0.22M | 317 | DS 336 · AZ 306 |
 
-**Every set is at 100% for images, AI takes and a format brief** — those three are the floor. What
-varies is how much the rest of the world has written about a - **FRA has live data and post-release takes.** It reached Arena 2026-09-29; the reference now
+**Every set is at 100% for images and a format brief, and every set except TRK for AI takes** —
+those are the floor. What varies is how much the rest of the world has written about a set:
+
+- **TRK is a pre-release build on early 17Lands data.** It reaches Arena 2026-11-13; the reference
+  carries 17Lands PremierDraft as of 2026-11-11 (about 8.7k early-access games, only 57/336 cards
+  rated, almost all commons). **It has no AI takes yet** — `ai_takes_TRK.json` is an empty `{}`
+  stub so the build runs, as HOB's was before its takes. Expert notes cover 317/336 tiles from all
+  five channels plus the Draftsim and MTG Arena Zone web reviews (both left visible for now).
+  Archetype win rates are shown with sample sizes; per-pair synergy returns nothing at this sample.
+- **FRA has live data and post-release takes.** It reached Arena 2026-09-29; the reference now
   carries 17Lands PremierDraft as of 2026-10-23 (~518k decks, 279/290 cards rated) and its 290 AI
   takes were rewritten that day on the live numbers plus per-pair IWD (the original takes were
   written pre-release from card text and Draftsim grades alone). Expert notes cover all 290 tiles:
   the two pre-release web reviews (**DS**, **AZ**) plus post-release Limited Resources, Lords of
-  Limited, Limited Level-Ups, Rough Drafts, Numot and Reddit.hange.
+  Limited, Limited Level-Ups, Rough Drafts, Numot and Reddit.
 
 - **Guide-note coverage tracks how many channels covered the set**, not its quality. MSH and HOB have
   four channels each; DSK and OTJ have two, and it shows.

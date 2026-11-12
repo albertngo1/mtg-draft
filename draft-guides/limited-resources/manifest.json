@@ -3,8 +3,8 @@
   "scope": "audio podcast on YouTube: card-by-card set reviews (letter grades) + format overviews",
   "note": "Fingerprint of distilled scrape. sha1 = sha1 of the cleaned transcript .txt.",
   "counts": {
-    "sets": 9,
-    "videos_distilled": 44,
+    "sets": 10,
+    "videos_distilled": 46,
     "videos_no_captions": 0
   },
   "sets": {
@@ -105,6 +105,14 @@
         "gr7wsr0z_2c",
         "xcTMrj6GNUY"
       ]
+    },
+    "TRK": {
+      "tier": 1,
+      "file": "TRK.md",
+      "video_ids": [
+        "E8GMevAKQ9w",
+        "vnmIgVf-3Jc"
+      ]
     }
   },
   "videos": {
@@ -136,6 +144,12 @@
       "set": "FRA",
       "sha1": "9ba57b66d66097511ed41d29f12445a7976b61ee",
       "words": 21491,
+      "distilled": true
+    },
+    "E8GMevAKQ9w": {
+      "set": "TRK",
+      "sha1": "8c4423b6e81097d46e4fe79d3c893a968034246c",
+      "words": 48613,
       "distilled": true
     },
     "G9bqewk4i4Y": {
@@ -346,6 +360,12 @@
       "set": "FIN",
       "sha1": "e327077e7806588b8997922ee5168761fc5f687a",
       "words": 15662,
+      "distilled": true
+    },
+    "vnmIgVf-3Jc": {
+      "set": "TRK",
+      "sha1": "7831e2a1c4d183b0409e049cda5d762d34ccdad6",
+      "words": 40088,
       "distilled": true
     },
     "xGEAEjCH8VE": {

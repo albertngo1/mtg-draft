@@ -12,6 +12,7 @@ Per-set draft notes distilled from the **Limited Resources** podcast (Marshall S
 |---|---|---|---|
 | MKM (Murders at Karlov Manor) | 6 (#735–743) | 2024-01-31 → 2024-03-29 | ✓ |
 | SOS (Secrets of Strixhaven) | 6 (#849–857) | 2026-04-15 → 2026-06-11 | ✓ |
+| TRK (Star Trek) | 2 (#878–879, set reviews only) | 2026-11-04 → 2026-11-10 | — |
 
 ## House style
 

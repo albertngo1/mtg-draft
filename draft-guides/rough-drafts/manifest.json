@@ -3,8 +3,8 @@
   "scope": "Limited podcast: per-set 'Hot Topics' (early), 'Grab Bag' (mid) and 'Retrospective' (end-of-format) episodes, plus weekly episodes TITLED after a single card that are in practice format-theory essays",
   "note": "Fingerprint of distilled scrape. sha1 = sha1 of the cleaned transcript .txt.",
   "counts": {
-    "sets": 6,
-    "videos_distilled": 39,
+    "sets": 7,
+    "videos_distilled": 40,
     "videos_no_captions": 0
   },
   "sets": {
@@ -82,6 +82,13 @@
         "pVePkJmzAdg",
         "vH2dVk3NnAc"
       ]
+    },
+    "TRK": {
+      "tier": null,
+      "file": "TRK.md",
+      "video_ids": [
+        "3t2SdTVgyWw"
+      ]
     }
   },
   "videos": {
@@ -119,6 +126,12 @@
       "set": "ECL",
       "sha1": "5d3e74b257f334ba8c4feababa5ffe6e25a2886d",
       "words": 6229,
+      "distilled": true
+    },
+    "3t2SdTVgyWw": {
+      "set": "TRK",
+      "sha1": "4f521611934933fd42c55d27bcdff7403411d500",
+      "words": 5983,
       "distilled": true
     },
     "4WNyRCI-k5A": {

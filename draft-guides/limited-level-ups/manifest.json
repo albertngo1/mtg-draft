@@ -3,15 +3,16 @@
   "scope": "Limited-focused podcast/video: per-color card-by-card set reviews (letter grades) + rare/mythic review + prerelease/first-impressions guides + occasional early-access draft gameplay + weekly strategy deep-dives",
   "note": "Fingerprint of distilled scrape. sha1 = sha1 of the cleaned transcript .txt.",
   "counts": {
-    "sets": 4,
-    "videos_distilled": 65,
-    "videos_no_captions": 0
+    "sets": 5,
+    "videos_distilled": 75,
+    "videos_no_captions": 1
   },
   "sets": {
     "FRA": {
       "tier": 1,
       "file": "FRA.md",
       "video_ids": [
+        "994X9PlPInQ",
         "BmIJbG1z69Q",
         "Gq7DmwSLcJk",
         "I1PPajMb938",
@@ -96,6 +97,21 @@
         "vjL_BPA0M4g",
         "zTBgiLmaEAs"
       ]
+    },
+    "TRK": {
+      "tier": 1,
+      "file": "TRK.md",
+      "video_ids": [
+        "32ezSQZlMOc",
+        "85S24LLwuHk",
+        "ElSr417GIAY",
+        "Fz2EVZy8xt4",
+        "HD76S7IEOI4",
+        "HzCjR_lRMm8",
+        "KTv20qlQkyw",
+        "i63Qmywky3k",
+        "xHZ4BlF66yM"
+      ]
     }
   },
   "videos": {
@@ -103,6 +119,12 @@
       "set": "HOB",
       "sha1": "94cb0c179f5957119d5c5f0dec6ccb260a5136c2",
       "words": 6993,
+      "distilled": true
+    },
+    "32ezSQZlMOc": {
+      "set": "TRK",
+      "sha1": "f3dbf0c86821ba4eda9bb8687294fb57b4e7aa53",
+      "words": 10005,
       "distilled": true
     },
     "4RA3i8gWCRk": {
@@ -129,6 +151,18 @@
       "words": 8000,
       "distilled": true
     },
+    "85S24LLwuHk": {
+      "set": "TRK",
+      "sha1": "6847a6e0cb7e40f82a49427f2339779f85918eab",
+      "words": 7186,
+      "distilled": true
+    },
+    "994X9PlPInQ": {
+      "set": "FRA",
+      "sha1": "8e91081afd2b0b294314f4a27a39d7cc7e12d826",
+      "words": 12583,
+      "distilled": true
+    },
     "Axp4Ovw9D-4": {
       "set": "MSH",
       "sha1": "b14405b4fd1fc3f08c502f734e5a98757b513a43",
@@ -139,6 +173,12 @@
       "set": "FRA",
       "sha1": "233292d9f4c7295cbd980fa8899a7653a6f0e3c3",
       "words": 5681,
+      "distilled": true
+    },
+    "ElSr417GIAY": {
+      "set": "TRK",
+      "sha1": "d486c079f58589929ecd8b100b77dc40f6edfb7e",
+      "words": 9784,
       "distilled": true
     },
     "Enz1PdA_J1E": {
@@ -159,6 +199,12 @@
       "words": 9207,
       "distilled": true
     },
+    "Fz2EVZy8xt4": {
+      "set": "TRK",
+      "sha1": "a7d24ba7c1bee88d283bc6f6cda5f5ee51147d11",
+      "words": 7661,
+      "distilled": true
+    },
     "G9kQKcUxWKA": {
       "set": "MSH",
       "sha1": "d489bc3ef807d7a165a30e9e7dcc04699cc70c30",
@@ -169,6 +215,12 @@
       "set": "FRA",
       "sha1": "6f1f30720601f1a7a09027456041e3b88fcad5f7",
       "words": 10248,
+      "distilled": true
+    },
+    "HD76S7IEOI4": {
+      "set": "TRK",
+      "sha1": "52a3e5f931faf78683de3bf37bd1bcad09f1885b",
+      "words": 15835,
       "distilled": true
     },
     "HU-5U2k0Jww": {
@@ -189,6 +241,12 @@
       "words": 9496,
       "distilled": true
     },
+    "HzCjR_lRMm8": {
+      "set": "TRK",
+      "sha1": "ebc6cc3ebc33f0707733ae1166f5a0fdd6b71291",
+      "words": 7139,
+      "distilled": true
+    },
     "I1PPajMb938": {
       "set": "FRA",
       "sha1": "00d0d40abe3a1c392ea74f8755516601c6850725",
@@ -205,6 +263,12 @@
       "set": "SOS",
       "sha1": "e3fd7dd8c04c23c3a91fbb971aa13cbbd977ff85",
       "words": 7823,
+      "distilled": true
+    },
+    "KTv20qlQkyw": {
+      "set": "TRK",
+      "sha1": "74d40ccbd9877339a789a63b48488f35d72090bc",
+      "words": 1856,
       "distilled": true
     },
     "Kc03EadPn9Y": {
@@ -333,6 +397,12 @@
       "words": 10285,
       "distilled": true
     },
+    "i63Qmywky3k": {
+      "set": "TRK",
+      "sha1": "996a969e772c4f2bea4ff7e7fe34f21bb0b3c582",
+      "words": 6362,
+      "distilled": true
+    },
     "jD3Tr03b2MQ": {
       "set": "HOB",
       "sha1": "2bbfc8c8254ab01bca631833b9f2c6923143280b",
@@ -435,6 +505,13 @@
       "words": 8156,
       "distilled": true
     },
+    "re7j0kVSnUg": {
+      "set": "FRA",
+      "sha1": null,
+      "words": 0,
+      "distilled": false,
+      "reason": "no-captions"
+    },
     "rj0RpGFKg0k": {
       "set": "FRA",
       "sha1": "44d4d27e44689265e1424f5d6fc1ddeb180f8e56",
@@ -475,6 +552,12 @@
       "set": "MSH",
       "sha1": "fc75968c76ed699c51ac0d0248947d1c436e577a",
       "words": 10105,
+      "distilled": true
+    },
+    "xHZ4BlF66yM": {
+      "set": "TRK",
+      "sha1": "2fcedb6540d9888e2354c6ae89c5858e49d5c341",
+      "words": 30572,
       "distilled": true
     },
     "zGVOVbSYcwQ": {

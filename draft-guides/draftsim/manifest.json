@@ -3,7 +3,7 @@
  "scope": "web-prose draft strategy guides (written articles), NOT YouTube transcripts; outside the src/ingest ETL",
  "note": "Each set's guide is hand-captured from a Draftsim article URL. sha1 = shasum of the committed <SET>.md. Distinct from grades/draftsim_<SET>.json, which holds Draftsim's numeric pick-order grades.",
  "counts": {
-  "sets": 3
+  "sets": 4
  },
  "sets": {
   "SOS": {
@@ -32,6 +32,18 @@
    "note": "Unlike the other sets here this file HAS a '## Card notes' section — the FRA article is a per-card set review, so it feeds the card-reference tiles as well as grades/draftsim_FRA.json (0-10 rescaled to /5).",
    "evidence_note": "Pre-release; the reviewer states the ratings are initial impressions with no games played.",
    "sha1": "0bc9e41a3508c71ec4ccd98b5eebef2e3554803e"
+  },
+  "TRK": {
+   "tier": 1,
+   "file": "TRK.md",
+   "source_url": "https://draftsim.com/mtg-trk-limited-set-review/",
+   "captured": "2026-11-11",
+   "published": "2026-11-02",
+   "reviewer": "Andrew Quinn",
+   "cards_with_notes": 306,
+   "note": "Per-card set review like FRA: has a '## Card notes' section and feeds grades/draftsim_TRK.json (0-10 rescaled to /5). Four land cycles graded as groups (grade applied per land, no notes). Stardates bonus sheet keyed by original card names.",
+   "evidence_note": "Pre-release; the reviewer states the ratings are initial impressions.",
+   "sha1": "2e1ee0e9f983d51edea6e40d0872add6c011feaf"
   }
  }
 }

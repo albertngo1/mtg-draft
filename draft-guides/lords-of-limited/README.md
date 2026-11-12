@@ -49,6 +49,7 @@ via `src/ingest/fetch_subs.sh lords-of-limited`).
 | Tarkir: Dragonstorm (TDM) | [TDM-draft-guide.md](./TDM-draft-guide.md) | 6 | 2025-03 → 2025-05 | Boros aggro vs 5c dragon soup. |
 | Theros Beyond Death (THB) | [THB-draft-guide.md](./THB-draft-guide.md) | 6 | 2020-01 → 2020-03 | Black is best/deepest by a wide margin. |
 | Teenage Mutant Ninja Turtles (TMNT) | [TMNT-draft-guide.md](./TMNT-draft-guide.md) | 1 | 2026-02 | **Thin** — one early-access episode, first impressions. |
+| Star Trek (TRK) | [TRK-draft-guide.md](./TRK-draft-guide.md) | 2 | 2026-11 | **Thin, pre-release** — Crash Course + ep 504 (early access/prerelease); play to the board, Beam Me Up is the linchpin, W-based decks (WB/WU/RW) top. |
 | Innistrad: Crimson Vow (VOW) | [VOW-draft-guide.md](./VOW-draft-guide.md) | 2 | 2021-11 → 2021-12 | **Thin** — red is best by a margin. |
 | War of the Spark (WAR) | [WAR-draft-guide.md](./WAR-draft-guide.md) | 2 | 2019-05 → 2019-06 | **Thin** — UR spells / RB sac best. |
 | Wilds of Eldraine (WOE) | [WOE-draft-guide.md](./WOE-draft-guide.md) | 6 | 2023-08 → 2023-11 | Red is best by a clear margin. |

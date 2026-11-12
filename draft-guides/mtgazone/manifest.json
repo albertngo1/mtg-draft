@@ -3,7 +3,7 @@
  "scope": "web-prose per-card Limited set reviews (written articles), NOT YouTube transcripts; outside the src/ingest ETL",
  "note": "One article per colour per set. sha1 = shasum of the committed <SET>.md. Numeric ratings live in grades/mtgazone_<SET>.json (scale is already 0-5) and render as the AZ column.",
  "counts": {
-  "sets": 1
+  "sets": 2
  },
  "sets": {
   "FRA": {
@@ -22,6 +22,26 @@
     "https://mtgazone.com/reality-fracture-fra-limited-set-review-black/",
     "https://mtgazone.com/reality-fracture-fra-limited-set-review-red/",
     "https://mtgazone.com/reality-fracture-fra-limited-set-review-green/"
+   ]
+  },
+  "TRK": {
+   "tier": 1,
+   "file": "TRK.md",
+   "reviewer": "J2SJosh (The Draft Lab)",
+   "captured": "2026-11-11",
+   "published": "2026-10-30..2026-11-02",
+   "cards_with_notes": 281,
+   "scale": "0-5, used verbatim",
+   "evidence_note": "Published before TRK's release — every rating is a pre-gameplay prediction. 17Lands GIH WR supersedes. Planets/Shock Lands/Surveil Lands graded as groups (grade applied per land, no notes); Stardates bonus sheet not reviewed.",
+   "sha1": "2f884ceda12190364cd9fd9cb954a366a54543cd",
+   "source_urls": [
+    "https://mtgazone.com/star-trek-trk-limited-set-review-white/",
+    "https://mtgazone.com/star-trek-trk-limited-set-review-blue/",
+    "https://mtgazone.com/star-trek-trk-limited-set-review-black/",
+    "https://mtgazone.com/star-trek-trk-limited-set-review-red/",
+    "https://mtgazone.com/star-trek-trk-limited-set-review-green/",
+    "https://mtgazone.com/star-trek-trk-limited-set-review-multicolor/",
+    "https://mtgazone.com/star-trek-trk-limited-set-review-artifacts-and-lands/"
    ]
   }
  }
