@@ -5,8 +5,8 @@ from Arena's log file and ranks the cards by their [17Lands](https://www.17lands
 
 **Just want to look up cards?** The [card reference site](https://albertngo1.github.io/mtg-draft/)
 has every card from 14 sets with win rates, expert grades and notes, and nothing to install.
-Newest set: Star Trek ([cards](https://albertngo1.github.io/mtg-draft/sets/TRK.html), pre-release
-build on early 17Lands data).
+Newest set: Star Trek ([cards](https://albertngo1.github.io/mtg-draft/sets/TRK.html), launch-day
+17Lands data).
 
 ## What it looks like
 

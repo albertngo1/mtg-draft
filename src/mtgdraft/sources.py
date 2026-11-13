@@ -1,4 +1,4 @@
-import os, json, time, datetime, urllib.request, urllib.parse
+import os, re, json, time, datetime, urllib.request, urllib.parse
 from .config import CACHE, SCRY_CACHE, UA
 
 # Scryfall cache entry schema version. Bump whenever _scry_rec() starts storing new fields
@@ -251,8 +251,24 @@ def seventeen(set_code, fmt, days, refresh=False):
         raise RuntimeError(
             f"17Lands unavailable and no cache for {set_code}/{fmt}: {e}"
         ) from e
+    for c in data if isinstance(data, list) else []:
+        c["url"] = _scryfall_image(c.get("url"))
     _atomic_json(path, data)
     return data
+
+
+_LANDSCAPES = re.compile(r"^https://cards\.17landscapes\.com/\w+/(front|back)/(\w/\w/[0-9a-f-]{36})\.\w+")
+
+
+def _scryfall_image(url):
+    """17Lands moved card images (Nov 2026) from cards.scryfall.io to its own
+    cards.17landscapes.com webp mirror, keyed by the same Scryfall card id. Map them
+    back so references keep hotlinking Scryfall and --local-images' /large/ -> /normal/
+    swap still works. Anything unrecognised passes through unchanged."""
+    m = _LANDSCAPES.match(url or "")
+    return f"https://cards.scryfall.io/large/{m.group(1)}/{m.group(2)}.jpg" if m else url
+
+
 def ratings(set_code, fmt, days, refresh=False):
     """17Lands dataset with the historical fallback: if the requested format has no win-rate data
     yet (e.g. a Quick-Draft re-run early in its window, or a junk format), proxy with the set's

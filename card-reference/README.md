@@ -170,25 +170,25 @@ and Numot's `**Card:** note` colon-in-bold form, which recovered notes across ~2
 | **DSK** | 281 | 272 | 34.6M | 60 | CGB 271 |
 | **ECL** | 288 | 273 | 22.2M | 108 | — |
 | **FIN** | 357 | 348 | 42.1M | 63 | — |
-| **FRA** | 290 | 279 | 16.9M | 290 | DS 280 · AZ 194 |
-| **HOB** | 188 | 179 | 6.5M | 182 | CGB 188 · LR 183 |
+| **FRA** | 290 | 280 | 23.0M | 290 | DS 280 · AZ 194 |
+| **HOB** | 188 | 184 | 13.2M | 182 | CGB 188 · LR 183 |
 | **LCI** | 286 | 283 | 27.8M | 70 | — |
-| **MH3** | 321 | 307 | 26.2M | 75 | — |
+| **MH3** | 321 | 307 | 26.3M | 75 | — |
 | **MKM** | 321 | 296 | 28.6M | 147 | CGB 321 |
 | **MSH** | 334 | 289 | 19.0M | 259 | CGB 276 |
-| **OTJ** | 376 | 364 | 38.6M | 75 | CGB 376 |
+| **OTJ** | 376 | 365 | 39.1M | 75 | CGB 376 |
 | **SOS** | 341 | 327 | 29.2M | 166 | DS 341 |
-| **TRK** | 336 | 57 | 0.22M | 317 | DS 336 · AZ 306 |
+| **TRK** | 336 | 266 | 1.7M | 317 | DS 336 · AZ 306 |
 
 **Every set is at 100% for images and a format brief, and every set except TRK for AI takes** —
 those are the floor. What varies is how much the rest of the world has written about a set:
 
-- **TRK is a pre-release build on early 17Lands data.** It reaches Arena 2026-11-13; the reference
-  carries 17Lands PremierDraft as of 2026-11-11 (about 8.7k early-access games, only 57/336 cards
-  rated, almost all commons). **It has no AI takes yet** — `ai_takes_TRK.json` is an empty `{}`
+- **TRK is on launch-day 17Lands data.** It reached Arena 2026-11-13; the reference carries
+  17Lands PremierDraft as of that morning (about 64k games, 266/336 cards rated, including 60 of 96
+  rares and 9 of 37 mythics). **It has no AI takes yet** — `ai_takes_TRK.json` is an empty `{}`
   stub so the build runs, as HOB's was before its takes. Expert notes cover 317/336 tiles from all
   five channels plus the Draftsim and MTG Arena Zone web reviews (both left visible for now).
-  Archetype win rates are shown with sample sizes; per-pair synergy returns nothing at this sample.
+  Archetype win rates are shown with sample sizes and 95% intervals.
 - **FRA has live data and post-release takes.** It reached Arena 2026-09-29; the reference now
   carries 17Lands PremierDraft as of 2026-10-23 (~518k decks, 279/290 cards rated) and its 290 AI
   takes were rewritten that day on the live numbers plus per-pair IWD (the original takes were
